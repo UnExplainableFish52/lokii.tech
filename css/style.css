@@ -217,6 +217,57 @@ section {
     text-decoration: none;
 }
 
+/* Enhanced Nav Links */
+.nav-link-enhanced {
+    color: #e0e0e0;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 0.5rem 0;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.nav-link-enhanced::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #00e5ff, #00bcd4);
+    transition: width 0.3s ease;
+}
+
+.nav-link-enhanced:hover {
+    color: #00e5ff;
+    text-decoration: none;
+}
+
+.nav-link-enhanced:hover::after {
+    width: 100%;
+}
+
+/* Contribute Button - Pill Style */
+.nav-contribute {
+    background: linear-gradient(135deg, rgba(0, 229, 255, 0.15), rgba(0, 188, 212, 0.1));
+    border: 1px solid #00e5ff;
+    color: #00e5ff !important;
+    padding: 0.5rem 1.25rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    text-shadow: 0 0 10px rgba(0, 229, 255, 0.3);
+}
+
+.nav-contribute:hover {
+    background: linear-gradient(135deg, #00e5ff, #00bcd4);
+    color: #000 !important;
+    text-decoration: none;
+    box-shadow: 0 0 25px rgba(0, 229, 255, 0.5);
+    transform: translateY(-2px);
+}
+
 /* ============================================
    Hero Section
    ============================================ */

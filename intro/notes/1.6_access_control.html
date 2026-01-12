@@ -64,7 +64,7 @@
             margin-bottom: 15px;
         }
         
-        . highlight {
+        .highlight {
             color: #ffd700;
             font-weight: 900;
         }
@@ -137,9 +137,76 @@
             margin: 25px 0;
             border-radius: 5px;
         }
+
+        /* Site Header */
+        .site-header {
+            padding: 15px 20px;
+            border-bottom: 1px solid #30363d;
+            background: rgba(13, 17, 23, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .branding {
+            text-decoration: none;
+        }
+
+        .branding .logo {
+            color: #00ffff;
+            font-size: 1.5rem;
+            font-weight: 800;
+        }
+
+        .site-nav {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .site-nav .nav-link {
+            color: #8b949e;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .site-nav .nav-link:hover {
+            color: #00ffff;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- Site Header -->
+    <header class="site-header">
+        <div class="header-content">
+            <a href="../../index.html" class="branding">
+                <span class="logo">lokii.tech</span>
+            </a>
+            <nav class="site-nav">
+                <a href="../../index.html#about" class="nav-link">About</a>
+                <a href="../../index.html#resources" class="nav-link">Resources</a>
+                <a href="https://github.com/UnExplainableFish52" target="_blank" class="nav-link">GitHub</a>
+            </nav>
+        </div>
+    </header>
+
     <div class="container">
         <h1>🔐 Access Control</h1>
         <p style="text-align: center; font-size: 1.2em; color: #aaa;">ISC2 Certified in Cybersecurity - Foundation Notes</p>
