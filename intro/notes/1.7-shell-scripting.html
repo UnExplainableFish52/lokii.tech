@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1.7 Shell Scripting Basics | lokii.tech</title>
+    
+    <meta name="description" content="Complete beginner's guide to shell scripting. Learn variables, loops, conditionals, functions with examples and practice tests.">
+    <meta name="author" content="lokii (UnExplainableFish52)">
+    <meta name="theme-color" content="#0d1117">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://lokii.tech/intro/notes/1.7-shell-scripting.html">
+    <meta property="og:title" content="Shell Scripting Basics | lokii.tech">
+    <meta property="og:description" content="Learn shell scripting from scratch with practical examples and exercises.">
+    <meta property="og:image" content="https://lokii.tech/preview.jpg">
+    
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" href="/favicon.ico">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background: #0d1117;
+            color: #e6edf3;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+        
+        .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
+        
+        /* Header */
+        .site-header {
+            padding: 15px 20px;
+            border-bottom: 1px solid #30363d;
+            background: rgba(13, 17, 23, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .branding { text-decoration: none; }
+        .branding .logo { color: #00bcd4; font-size: 1.5rem; font-weight: 800; }
+        
+        .site-nav { display: flex; gap: 25px; align-items: center; }
+        .site-nav .nav-link {
+            color: #8b949e;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        .site-nav .nav-link:hover { color: #00bcd4; }
+        
+        /* Typography */
+        header.page-header { text-align: center; padding: 40px 20px; margin-bottom: 30px; }
+        
+        h1 { font-size: 2.5em; color: #00bcd4; font-weight: bold; margin-bottom: 15px; }
+        h2 { font-size: 1.8em; color: #00bcd4; margin: 50px 0 25px; padding-bottom: 10px; border-bottom: 2px solid #30363d; }
+        h3 { font-size: 1.4em; color: #fff; margin: 30px 0 15px; }
+        h4 { font-size: 1.15em; color: #ffd700; margin: 20px 0 10px; }
+        
+        .subtitle { color: #8b949e; font-size: 1.1em; }
+        
+        /* Sections */
+        .section {
+            background: rgba(22, 27, 34, 0.5);
+            border: 1px solid #30363d;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        
+        p { margin-bottom: 15px; }
+        .highlight { color: #ffd700; font-weight: bold; }
+        .cyan { color: #00bcd4; }
+        
+        .code-text {
+            color: #4ec9b0;
+            font-family: 'Consolas', 'Monaco', monospace;
+            background: rgba(78, 201, 176, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+        
+        ul, ol { margin: 15px 0; padding-left: 25px; }
+        li { margin-bottom: 10px; }
+        
+        /* Info Boxes */
+        .info-box {
+            background: rgba(0, 188, 212, 0.1);
+            border-left: 4px solid #00bcd4;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .warning-box {
+            background: rgba(255, 193, 7, 0.1);
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .success-box {
+            background: rgba(76, 175, 80, 0.1);
+            border-left: 4px solid #4caf50;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        /* Code Blocks */
+        pre {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            padding: 20px;
+            overflow-x: auto;
+            margin: 20px 0;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9em;
+        }
+        
+        code {
+            font-family: 'Consolas', 'Monaco', monospace;
+            color: #4ec9b0;
+        }
+        
+        pre code { color: #e6edf3; }
+        
+        .cmd-comment { color: #6a737d; }
+        .cmd-string { color: #a5d6ff; }
+        .cmd-keyword { color: #ff7b72; }
+        .cmd-variable { color: #ffa657; }
+        
+        /* TOC */
+        .toc {
+            background: rgba(22, 27, 34, 0.8);
+            border: 1px solid #30363d;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .toc h3 { margin-top: 0; margin-bottom: 15px; }
+        .toc ul { list-style: none; padding-left: 0; }
+        .toc li { margin-bottom: 8px; }
+        .toc a { color: #8b949e; text-decoration: none; transition: color 0.3s; }
+        .toc a:hover { color: #00bcd4; }
+        .toc .section-num { color: #ffd700; margin-right: 8px; }
+        
+        /* Quiz Section */
+        .quiz-item {
+            background: rgba(22, 27, 34, 0.8);
+            border: 1px solid #30363d;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+        
+        .quiz-question {
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+        
+        .quiz-options { margin-left: 20px; }
+        .quiz-options li { margin-bottom: 8px; color: #e6edf3; }
+        
+        .answer-toggle {
+            background: linear-gradient(135deg, #00bcd4, #0099aa);
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-top: 15px;
+            transition: all 0.3s;
+        }
+        
+        .answer-toggle:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(0, 188, 212, 0.3); }
+        
+        .answer-content {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            background: rgba(76, 175, 80, 0.15);
+            border-left: 4px solid #4caf50;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .answer-content.show { display: block; }
+        
+        /* Page Navigation */
+        .page-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid #30363d;
+        }
+        
+        .page-nav a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #00bcd4;
+            text-decoration: none;
+            padding: 15px 25px;
+            border: 2px solid #30363d;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .page-nav a:hover { border-color: #00bcd4; background: rgba(0, 188, 212, 0.1); }
+        
+        /* Footer */
+        footer { text-align: center; padding: 40px 20px; margin-top: 60px; border-top: 1px solid #30363d; color: #8b949e; }
+        footer a { color: #00bcd4; }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8em; }
+            h2 { font-size: 1.5em; }
+            .page-nav { flex-direction: column; gap: 15px; }
+            .page-nav a { width: 100%; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Site Header -->
+    <header class="site-header">
+        <div class="header-content">
+            <a href="../../index.html" class="branding">
+                <span class="logo">lokii.tech</span>
+            </a>
+            <nav class="site-nav">
+                <a href="../../index.html#about" class="nav-link">About</a>
+                <a href="../../index.html#resources" class="nav-link">Resources</a>
+                <a href="https://github.com/UnExplainableFish52" target="_blank" class="nav-link">GitHub</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <header class="page-header">
+            <h1>📜 1.7 Shell Scripting Basics</h1>
+            <p class="subtitle">Automate tasks and become a command-line wizard</p>
+        </header>
+
+        <!-- Table of Contents -->
+        <div class="toc">
+            <h3>📑 Table of Contents</h3>
+            <ul>
+                <li><a href="#what-is"><span class="section-num">1.</span> What is Shell Scripting?</a></li>
+                <li><a href="#getting-started"><span class="section-num">2.</span> Getting Started</a></li>
+                <li><a href="#variables"><span class="section-num">3.</span> Variables</a></li>
+                <li><a href="#user-input"><span class="section-num">4.</span> User Input</a></li>
+                <li><a href="#conditionals"><span class="section-num">5.</span> Conditionals (if/else)</a></li>
+                <li><a href="#loops"><span class="section-num">6.</span> Loops</a></li>
+                <li><a href="#functions"><span class="section-num">7.</span> Functions</a></li>
+                <li><a href="#arrays"><span class="section-num">8.</span> Arrays</a></li>
+                <li><a href="#exit-codes"><span class="section-num">9.</span> Exit Codes</a></li>
+                <li><a href="#tests"><span class="section-num">10.</span> Practice Tests</a></li>
+            </ul>
+        </div>
+
+        <!-- SECTION 1: WHAT IS SHELL SCRIPTING -->
+        <h2 id="what-is">📖 1. What is Shell Scripting?</h2>
+        
+        <div class="section">
+            <p>
+                A <span class="highlight">shell script</span> is a text file containing a sequence of commands 
+                that the shell (command-line interpreter) can execute. Instead of typing commands one by one, 
+                you write them in a file and run them all at once!
+            </p>
+
+            <h3>Why Learn Shell Scripting?</h3>
+            <ul>
+                <li><span class="highlight">Automation:</span> Repeat tasks without manual effort</li>
+                <li><span class="highlight">Efficiency:</span> Run multiple commands with one script</li>
+                <li><span class="highlight">System Administration:</span> Essential for managing Linux servers</li>
+                <li><span class="highlight">DevOps:</span> Foundation for CI/CD pipelines and deployments</li>
+                <li><span class="highlight">Cybersecurity:</span> Create tools, automate scans, process logs</li>
+            </ul>
+
+            <div class="info-box">
+                <strong>💡 Fun Fact:</strong> Most Linux systems use <span class="code-text">Bash</span> 
+                (Bourne Again SHell) as the default shell. It's what we'll focus on in this guide!
+            </div>
+        </div>
+
+        <!-- SECTION 2: GETTING STARTED -->
+        <h2 id="getting-started">🚀 2. Getting Started</h2>
+        
+        <div class="section">
+            <h3>Your First Script</h3>
+            <p>Let's create a simple "Hello World" script:</p>
+
+            <h4>Step 1: Create the file</h4>
+<pre><code><span class="cmd-comment"># Create a new file</span>
+nano hello.sh</code></pre>
+
+            <h4>Step 2: Write the script</h4>
+<pre><code><span class="cmd-comment">#!/bin/bash</span>
+<span class="cmd-comment"># My first shell script</span>
+
+echo <span class="cmd-string">"Hello, World!"</span>
+echo <span class="cmd-string">"Welcome to shell scripting!"</span></code></pre>
+
+            <h4>Step 3: Make it executable</h4>
+<pre><code><span class="cmd-comment"># Add execute permission</span>
+chmod +x hello.sh
+
+<span class="cmd-comment"># Run the script</span>
+./hello.sh</code></pre>
+
+            <div class="warning-box">
+                <strong>⚠️ The Shebang Line:</strong> The <span class="code-text">#!/bin/bash</span> at the top 
+                (called a "shebang" or "hashbang") tells the system which interpreter to use. Always include it!
+            </div>
+
+            <h3>Script File Conventions</h3>
+            <ul>
+                <li>Use <span class="code-text">.sh</span> extension (e.g., <code>myscript.sh</code>)</li>
+                <li>Always start with the shebang line</li>
+                <li>Add comments using <span class="code-text">#</span></li>
+                <li>Use descriptive names for your scripts</li>
+            </ul>
+        </div>
+
+        <!-- SECTION 3: VARIABLES -->
+        <h2 id="variables">📦 3. Variables</h2>
+        
+        <div class="section">
+            <p>
+                Variables store data that your script can use. Think of them as labeled containers 
+                for information.
+            </p>
+
+            <h3>Declaring Variables</h3>
+<pre><code><span class="cmd-comment">#!/bin/bash</span>
+
+<span class="cmd-comment"># Declaring variables (NO spaces around =)</span>
+<span class="cmd-variable">name</span>=<span class="cmd-string">"lokii"</span>
+<span class="cmd-variable">age</span>=25
+<span class="cmd-variable">course</span>=<span class="cmd-string">"Shell Scripting"</span>
+
+<span class="cmd-comment"># Using variables (prefix with $)</span>
+echo <span class="cmd-string">"Name: $name"</span>
+echo <span class="cmd-string">"Age: $age"</span>
+echo <span class="cmd-string">"Course: $course"</span></code></pre>
+
+            <div class="warning-box">
+                <strong>⚠️ Important:</strong> NO spaces around the <code>=</code> sign! 
+                <code>name="value"</code> ✅ vs <code>name = "value"</code> ❌
+            </div>
+
+            <h3>Variable Types</h3>
+<pre><code><span class="cmd-comment"># Strings</span>
+<span class="cmd-variable">greeting</span>=<span class="cmd-string">"Hello there!"</span>
+
+<span class="cmd-comment"># Numbers</span>
+<span class="cmd-variable">count</span>=42
+
+<span class="cmd-comment"># Command output (command substitution)</span>
+<span class="cmd-variable">current_date</span>=$(date)
+<span class="cmd-variable">user</span>=$(whoami)
+
+echo <span class="cmd-string">"Today is: $current_date"</span>
+echo <span class="cmd-string">"Logged in as: $user"</span></code></pre>
+
+            <h3>Special Variables</h3>
+<pre><code><span class="cmd-comment"># Script arguments</span>
+<span class="cmd-variable">$0</span>  <span class="cmd-comment"># Script name</span>
+<span class="cmd-variable">$1</span>  <span class="cmd-comment"># First argument</span>
+<span class="cmd-variable">$2</span>  <span class="cmd-comment"># Second argument</span>
+<span class="cmd-variable">$#</span>  <span class="cmd-comment"># Number of arguments</span>
+<span class="cmd-variable">$@</span>  <span class="cmd-comment"># All arguments</span>
+<span class="cmd-variable">$?</span>  <span class="cmd-comment"># Exit status of last command</span>
+<span class="cmd-variable">$$</span>  <span class="cmd-comment"># Current process ID</span></code></pre>
+
+            <h4>Example: Using Arguments</h4>
+<pre><code><span class="cmd-comment">#!/bin/bash</span>
+<span class="cmd-comment"># greet.sh - A greeting script</span>
+
+echo <span class="cmd-string">"Script name: $0"</span>
+echo <span class="cmd-string">"Hello, $1!"</span>
+echo <span class="cmd-string">"You passed $# arguments"</span>
+
+<span class="cmd-comment"># Run with: ./greet.sh Alice</span></code></pre>
+        </div>
+
+        <!-- SECTION 4: USER INPUT -->
+        <h2 id="user-input">⌨️ 4. User Input</h2>
+        
+        <div class="section">
+            <p>Use the <span class="code-text">read</span> command to get input from users:</p>
+
+<pre><code><span class="cmd-comment">#!/bin/bash</span>
+
+<span class="cmd-comment"># Basic input</span>
+echo <span class="cmd-string">"What is your name?"</span>
+<span class="cmd-keyword">read</span> username
+echo <span class="cmd-string">"Hello, $username!"</span>
+
+<span class="cmd-comment"># Input with prompt (-p flag)</span>
+<span class="cmd-keyword">read</span> -p <span class="cmd-string">"Enter your age: "</span> age
+echo <span class="cmd-string">"You are $age years old"</span>
+
+<span class="cmd-comment"># Silent input for passwords (-s flag)</span>
+<span class="cmd-keyword">read</span> -sp <span class="cmd-string">"Enter password: "</span> password
+echo  <span class="cmd-comment"># New line after hidden input</span>
+echo <span class="cmd-string">"Password received!"</span>
+
+<span class="cmd-comment"># Input with timeout (-t flag)</span>
+<span class="cmd-keyword">read</span> -t 5 -p <span class="cmd-string">"Quick! Enter something (5 sec): "</span> quick_input</code></pre>
+
+            <div class="info-box">
+                <strong>💡 Tip:</strong> Combine flags! <code>read -sp</code> creates a silent prompt 
+                (great for passwords).
+            </div>
+        </div>
+
+        <!-- SECTION 5: CONDITIONALS -->
+        <h2 id="conditionals">🔀 5. Conditionals (if/else)</h2>
+        
+        <div class="section">
+            <p>Make decisions in your scripts using <span class="code-text">if</span> statements:</p>
+
+            <h3>Basic Syntax</h3>
+<pre><code><span class="cmd-comment">#!/bin/bash</span>
+
+<span class="cmd-variable">age</span>=18
+
+<span class="cmd-keyword">if</span> [ <span class="cmd-variable">$age</span> -ge 18 ]; <span class="cmd-keyword">then</span>
+    echo <span class="cmd-string">"You are an adult"</span>
+<span class="cmd-keyword">else</span>
+    echo <span class="cmd-string">"You are a minor"</span>
+<span class="cmd-keyword">fi</span></code></pre>
+
+            <h3>if / elif / else</h3>
+<pre><code><span class="cmd-comment">#!/bin/bash</span>
+
+<span class="cmd-keyword">read</span> -p <span class="cmd-string">"Enter your score: "</span> score
+
+<span class="cmd-keyword">if</span> [ <span class="cmd-variable">$score</span> -ge 90 ]; <span class="cmd-keyword">then</span>
+    echo <span class="cmd-string">"Grade: A"</span>
+<span class="cmd-keyword">elif</span> [ <span class="cmd-variable">$score</span> -ge 80 ]; <span class="cmd-keyword">then</span>
+    echo <span class="cmd-string">"Grade: B"</span>
+<span class="cmd-keyword">elif</span> [ <span class="cmd-variable">$score</span> -ge 70 ]; <span class="cmd-keyword">then</span>
+    echo <span class="cmd-string">"Grade: C"</span>
+<span class="cmd-keyword">else</span>
+    echo <span class="cmd-string">"Grade: F"</span>
+<span class="cmd-keyword">fi</span></code></pre>
+
+            <h3>Comparison Operators</h3>
+            <h4>Numeric Comparisons</h4>
+<pre><code><span class="cmd-comment"># Equal: -eq</span>
+[ <span class="cmd-variable">$a</span> -eq <span class="cmd-variable">$b</span> ]
+
+<span class="cmd-comment"># Not equal: -ne</span>
+[ <span class="cmd-variable">$a</span> -ne <span class="cmd-variable">$b</span> ]
+
+<span class="cmd-comment"># Greater than: -gt</span>
+[ <span class="cmd-variable">$a</span> -gt <span class="cmd-variable">$b</span> ]
+
+<span class="cmd-comment"># Less than: -lt</span>
+[ <span class="cmd-variable">$a</span> -lt <span class="cmd-variable">$b</span> ]
+
+<span class="cmd-comment"># Greater or equal: -ge</span>
+[ <span class="cmd-variable">$a</span> -ge <span class="cmd-variable">$b</span> ]
+
+<span class="cmd-comment"># Less or equal: -le</span>
+[ <span class="cmd-variable">$a</span> -le <span class="cmd-variable">$b</span> ]</code></pre>
+
+            <h4>String Comparisons</h4>
+<pre><code><span class="cmd-comment"># Equal</span>
+[ <span class="cmd-string">"$str1"</span> = <span class="cmd-string">"$str2"</span> ]
+
+<span class="cmd-comment"># Not equal</span>
+[ <span class="cmd-string">"$str1"</span> != <span class="cmd-string">"$str2"</span> ]
+
+<span class="cmd-comment"># String is empty</span>
+[ -z <span class="cmd-string">"$str"</span> ]
+
+<span class="cmd-comment"># String is not empty</span>
+[ -n <span class="cmd-string">"$str"</span> ]</code></pre>
+
+            <h4>File Tests</h4>
+<pre><code><span class="cmd-comment"># File exists</span>
+[ -e <span class="cmd-string">"filename"</span> ]
+
+<span class="cmd-comment"># Is a regular file</span>
+[ -f <span class="cmd-string">"filename"</span> ]
+
+<span class="cmd-comment"># Is a directory</span>
+[ -d <span class="cmd-string">"dirname"</span> ]
+
+<span class="cmd-comment"># File is readable</span>
+[ -r <span class="cmd-string">"filename"</span> ]
+
+<span class="cmd-comment"># File is writable</span>
+[ -w <span class="cmd-string">"filename"</span> ]
+
+<span class="cmd-comment"># File is executable</span>
+[ -x <span class="cmd-string">"filename"</span> ]</code></pre>
+
+            <h4>Example: File Check Script</h4>
+<pre><code><span class="cmd-comment">#!/bin/bash</span>
+
+<span class="cmd-keyword">read</span> -p <span class="cmd-string">"Enter filename: "</span> filename
+
+<span class="cmd-keyword">if</span> [ -e <span class="cmd-string">"$filename"</span> ]; <span class="cmd-keyword">then</span>
+    <span class="cmd-keyword">if</span> [ -d <span class="cmd-string">"$filename"</span> ]; <span class="cmd-keyword">then</span>
+        echo <span class="cmd-string">"$filename is a directory"</span>
+    <span class="cmd-keyword">elif</span> [ -f <span class="cmd-string">"$filename"</span> ]; <span class="cmd-keyword">then</span>
+        echo <span class="cmd-string">"$filename is a regular file"</span>
+    <span class="cmd-keyword">fi</span>
+<span class="cmd-keyword">else</span>
+    echo <span class="cmd-string">"$filename does not exist"</span>
+<span class="cmd-keyword">fi</span></code></pre>
+        </div>
+
+        <!-- SECTION 6: LOOPS -->
+        <h2 id="loops">🔄 6. Loops</h2>
+        
+        <div class="section">
+            <p>Loops let you repeat commands multiple times.</p>
+
+            <h3>For Loop</h3>
+<pre><code><span class="cmd-comment">#!/bin/bash</span>
+
+<span class="cmd-comment"># Loop through a list</span>
+<span class="cmd-keyword">for</span> fruit <span class="cmd-keyword">in</span> apple banana orange; <span class="cmd-keyword">do</span>
+    echo <span class="cmd-string">"I like $fruit"</span>
+<span class="cmd-keyword">done</span>
+
+<span class="cmd-comment"># Loop through numbers</span>
+<span class="cmd-keyword">for</span> i <span class="cmd-keyword">in</span> {1..5}; <span class="cmd-keyword">do</span>
+    echo <span class="cmd-string">"Count: $i"</span>
+<span class="cmd-keyword">done</span>
+
+<span class="cmd-comment"># Loop through files</span>
+<span class="cmd-keyword">for</span> file <span class="cmd-keyword">in</span> *.txt; <span class="cmd-keyword">do</span>
+    echo <span class="cmd-string">"Processing: $file"</span>
+<span class="cmd-keyword">done</span>
+
+<span class="cmd-comment"># C-style for loop</span>
+<span class="cmd-keyword">for</span> ((i=0; i<5; i++)); <span class="cmd-keyword">do</span>
+    echo <span class="cmd-string">"Number: $i"</span>
+<span class="cmd-keyword">done</span></code></pre>
+
+            <h3>While Loop</h3>
+<pre><code><span class="cmd-comment">#!/bin/bash</span>
+
+<span class="cmd-variable">count</span>=1
+
+<span class="cmd-keyword">while</span> [ <span class="cmd-variable">$count</span> -le 5 ]; <span class="cmd-keyword">do</span>
+    echo <span class="cmd-string">"Count is: $count"</span>
+    ((count++))
+<span class="cmd-keyword">done</span>
+
+<span class="cmd-comment"># Reading file line by line</span>
+<span class="cmd-keyword">while</span> <span class="cmd-keyword">read</span> line; <span class="cmd-keyword">do</span>
+    echo <span class="cmd-string">"Line: $line"</span>
+<span class="cmd-keyword">done</span> < myfile.txt</code></pre>
+
+            <h3>Until Loop</h3>
+<pre><code><span class="cmd-comment">#!/bin/bash</span>
+
+<span class="cmd-variable">count</span>=1
+
+<span class="cmd-comment"># Runs UNTIL condition becomes true</span>
+<span class="cmd-keyword">until</span> [ <span class="cmd-variable">$count</span> -gt 5 ]; <span class="cmd-keyword">do</span>
+    echo <span class="cmd-string">"Count: $count"</span>
+    ((count++))
+<span class="cmd-keyword">done</span></code></pre>
+
+            <h3>Loop Control</h3>
+<pre><code><span class="cmd-comment"># break - exit the loop</span>
+<span class="cmd-keyword">for</span> i <span class="cmd-keyword">in</span> {1..10}; <span class="cmd-keyword">do</span>
+    <span class="cmd-keyword">if</span> [ <span class="cmd-variable">$i</span> -eq 5 ]; <span class="cmd-keyword">then</span>
+        <span class="cmd-keyword">break</span>
+    <span class="cmd-keyword">fi</span>
+    echo <span class="cmd-string">"$i"</span>
+<span class="cmd-keyword">done</span>
+
+<span class="cmd-comment"># continue - skip to next iteration</span>
+<span class="cmd-keyword">for</span> i <span class="cmd-keyword">in</span> {1..5}; <span class="cmd-keyword">do</span>
+    <span class="cmd-keyword">if</span> [ <span class="cmd-variable">$i</span> -eq 3 ]; <span class="cmd-keyword">then</span>
+        <span class="cmd-keyword">continue</span>
+    <span class="cmd-keyword">fi</span>
+    echo <span class="cmd-string">"$i"</span>  <span class="cmd-comment"># Prints 1,2,4,5 (skips 3)</span>
+<span class="cmd-keyword">done</span></code></pre>
+        </div>
+
+        <!-- SECTION 7: FUNCTIONS -->
+        <h2 id="functions">🔧 7. Functions</h2>
+        
+        <div class="section">
+            <p>Functions let you organize code into reusable blocks.</p>
+
+            <h3>Defining Functions</h3>
+<pre><code><span class="cmd-comment">#!/bin/bash</span>
+
+<span class="cmd-comment"># Method 1: Using function keyword</span>
+<span class="cmd-keyword">function</span> greet() {
+    echo <span class="cmd-string">"Hello, World!"</span>
+}
+
+<span class="cmd-comment"># Method 2: Without function keyword</span>
+say_goodbye() {
+    echo <span class="cmd-string">"Goodbye!"</span>
+}
+
+<span class="cmd-comment"># Calling functions</span>
+greet
+say_goodbye</code></pre>
+
+            <h3>Functions with Parameters</h3>
+<pre><code><span class="cmd-comment">#!/bin/bash</span>
+
+greet_user() {
+    echo <span class="cmd-string">"Hello, $1!"</span>
+    echo <span class="cmd-string">"You are $2 years old"</span>
+}
+
+<span class="cmd-comment"># Call with arguments</span>
+greet_user <span class="cmd-string">"Alice"</span> 25
+greet_user <span class="cmd-string">"Bob"</span> 30</code></pre>
+
+            <h3>Return Values</h3>
+<pre><code><span class="cmd-comment">#!/bin/bash</span>
+
+<span class="cmd-comment"># Functions return exit codes (0-255)</span>
+is_even() {
+    <span class="cmd-keyword">if</span> [ $(($1 % 2)) -eq 0 ]; <span class="cmd-keyword">then</span>
+        <span class="cmd-keyword">return</span> 0  <span class="cmd-comment"># True (success)</span>
+    <span class="cmd-keyword">else</span>
+        <span class="cmd-keyword">return</span> 1  <span class="cmd-comment"># False (failure)</span>
+    <span class="cmd-keyword">fi</span>
+}
+
+<span class="cmd-keyword">if</span> is_even 4; <span class="cmd-keyword">then</span>
+    echo <span class="cmd-string">"4 is even"</span>
+<span class="cmd-keyword">fi</span>
+
+<span class="cmd-comment"># For string output, use echo and capture</span>
+get_greeting() {
+    echo <span class="cmd-string">"Hello, $1!"</span>
+}
+
+<span class="cmd-variable">message</span>=$(get_greeting <span class="cmd-string">"Alice"</span>)
+echo <span class="cmd-variable">$message</span></code></pre>
+        </div>
+
+        <!-- SECTION 8: ARRAYS -->
+        <h2 id="arrays">📝 8. Arrays</h2>
+        
+        <div class="section">
+            <p>Arrays store multiple values in a single variable.</p>
+
+<pre><code><span class="cmd-comment">#!/bin/bash</span>
+
+<span class="cmd-comment"># Declaring arrays</span>
+<span class="cmd-variable">fruits</span>=(<span class="cmd-string">"apple"</span> <span class="cmd-string">"banana"</span> <span class="cmd-string">"orange"</span> <span class="cmd-string">"grape"</span>)
+
+<span class="cmd-comment"># Accessing elements (0-indexed)</span>
+echo <span class="cmd-string">"First fruit: ${fruits[0]}"</span>
+echo <span class="cmd-string">"Third fruit: ${fruits[2]}"</span>
+
+<span class="cmd-comment"># All elements</span>
+echo <span class="cmd-string">"All fruits: ${fruits[@]}"</span>
+
+<span class="cmd-comment"># Array length</span>
+echo <span class="cmd-string">"Total: ${#fruits[@]}"</span>
+
+<span class="cmd-comment"># Add element</span>
+<span class="cmd-variable">fruits</span>+=(<span class="cmd-string">"mango"</span>)
+
+<span class="cmd-comment"># Loop through array</span>
+<span class="cmd-keyword">for</span> fruit <span class="cmd-keyword">in</span> <span class="cmd-string">"${fruits[@]}"</span>; <span class="cmd-keyword">do</span>
+    echo <span class="cmd-string">"Fruit: $fruit"</span>
+<span class="cmd-keyword">done</span>
+
+<span class="cmd-comment"># Loop with index</span>
+<span class="cmd-keyword">for</span> i <span class="cmd-keyword">in</span> <span class="cmd-string">"${!fruits[@]}"</span>; <span class="cmd-keyword">do</span>
+    echo <span class="cmd-string">"Index $i: ${fruits[$i]}"</span>
+<span class="cmd-keyword">done</span></code></pre>
+        </div>
+
+        <!-- SECTION 9: EXIT CODES -->
+        <h2 id="exit-codes">🚪 9. Exit Codes</h2>
+        
+        <div class="section">
+            <p>
+                Every command returns an <span class="highlight">exit code</span>. 
+                <code>0</code> means success, anything else indicates an error.
+            </p>
+
+<pre><code><span class="cmd-comment">#!/bin/bash</span>
+
+<span class="cmd-comment"># Check last command's exit code</span>
+ls /some/directory
+echo <span class="cmd-string">"Exit code: $?"</span>
+
+<span class="cmd-comment"># Exit with custom code</span>
+<span class="cmd-keyword">if</span> [ ! -f <span class="cmd-string">"config.txt"</span> ]; <span class="cmd-keyword">then</span>
+    echo <span class="cmd-string">"Error: config.txt not found!"</span>
+    <span class="cmd-keyword">exit</span> 1
+<span class="cmd-keyword">fi</span>
+
+echo <span class="cmd-string">"Config loaded successfully!"</span>
+<span class="cmd-keyword">exit</span> 0</code></pre>
+
+            <div class="info-box">
+                <strong>💡 Common Exit Codes:</strong><br>
+                • <code>0</code> - Success<br>
+                • <code>1</code> - General error<br>
+                • <code>2</code> - Misuse of command<br>
+                • <code>126</code> - Permission denied<br>
+                • <code>127</code> - Command not found<br>
+                • <code>130</code> - Script terminated by Ctrl+C
+            </div>
+        </div>
+
+        <!-- SECTION 10: PRACTICE TESTS -->
+        <h2 id="tests">📝 10. Practice Tests</h2>
+        
+        <div class="section">
+            <p>Test your knowledge with these exercises! Click "Show Answer" to check your response.</p>
+
+            <!-- Question 1 -->
+            <div class="quiz-item">
+                <div class="quiz-question">1. What does the shebang line "#!/bin/bash" do?</div>
+                <ol class="quiz-options" type="A">
+                    <li>Starts a comment</li>
+                    <li>Tells the system which interpreter to use</li>
+                    <li>Declares a variable</li>
+                    <li>Imports a library</li>
+                </ol>
+                <button class="answer-toggle" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer-content">
+                    <strong>Answer: B</strong><br>
+                    The shebang (#!/bin/bash) tells the operating system which interpreter should execute the script. Without it, the system might not know how to run your script.
+                </div>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="quiz-item">
+                <div class="quiz-question">2. Which is the correct way to declare a variable in bash?</div>
+                <ol class="quiz-options" type="A">
+                    <li><code>name = "John"</code></li>
+                    <li><code>$name="John"</code></li>
+                    <li><code>name="John"</code></li>
+                    <li><code>var name = "John"</code></li>
+                </ol>
+                <button class="answer-toggle" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer-content">
+                    <strong>Answer: C</strong><br>
+                    In bash, there must be NO spaces around the = sign. The $ is only used when accessing the variable, not declaring it.
+                </div>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="quiz-item">
+                <div class="quiz-question">3. What operator checks if a number is greater than another in bash?</div>
+                <ol class="quiz-options" type="A">
+                    <li><code>></code></li>
+                    <li><code>-gt</code></li>
+                    <li><code>greater</code></li>
+                    <li><code>==</code></li>
+                </ol>
+                <button class="answer-toggle" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer-content">
+                    <strong>Answer: B</strong><br>
+                    In bash's test brackets [ ], use -gt for "greater than", -lt for "less than", -eq for "equal", etc.
+                </div>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="quiz-item">
+                <div class="quiz-question">4. Write a script that prints numbers 1 to 5 using a for loop.</div>
+                <button class="answer-toggle" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer-content">
+                    <strong>Answer:</strong>
+<pre><code>#!/bin/bash
+for i in {1..5}; do
+    echo "$i"
+done</code></pre>
+                    Or using C-style:
+<pre><code>#!/bin/bash
+for ((i=1; i<=5; i++)); do
+    echo "$i"
+done</code></pre>
+                </div>
+            </div>
+
+            <!-- Question 5 -->
+            <div class="quiz-item">
+                <div class="quiz-question">5. What does $? return?</div>
+                <ol class="quiz-options" type="A">
+                    <li>The current process ID</li>
+                    <li>The number of arguments</li>
+                    <li>The exit status of the last command</li>
+                    <li>A random number</li>
+                </ol>
+                <button class="answer-toggle" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer-content">
+                    <strong>Answer: C</strong><br>
+                    $? contains the exit status of the last executed command. 0 means success, non-zero indicates an error.
+                </div>
+            </div>
+
+            <!-- Question 6 -->
+            <div class="quiz-item">
+                <div class="quiz-question">6. Write a function that takes a name as an argument and prints "Hello, [name]!"</div>
+                <button class="answer-toggle" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer-content">
+                    <strong>Answer:</strong>
+<pre><code>#!/bin/bash
+
+greet() {
+    echo "Hello, $1!"
+}
+
+# Usage
+greet "Alice"  # Outputs: Hello, Alice!</code></pre>
+                </div>
+            </div>
+
+            <!-- Question 7 -->
+            <div class="quiz-item">
+                <div class="quiz-question">7. How do you read silent input (like a password) from user?</div>
+                <ol class="quiz-options" type="A">
+                    <li><code>read -p password</code></li>
+                    <li><code>read -s password</code></li>
+                    <li><code>read --hidden password</code></li>
+                    <li><code>read -silent password</code></li>
+                </ol>
+                <button class="answer-toggle" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer-content">
+                    <strong>Answer: B</strong><br>
+                    The <code>-s</code> flag makes the input silent (invisible). You can combine it with <code>-p</code> for a prompt: <code>read -sp "Password: " pass</code>
+                </div>
+            </div>
+
+            <!-- Question 8 -->
+            <div class="quiz-item">
+                <div class="quiz-question">8. Write a script that checks if a file exists and prints whether it's a file or directory.</div>
+                <button class="answer-toggle" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer-content">
+                    <strong>Answer:</strong>
+<pre><code>#!/bin/bash
+
+read -p "Enter path: " path
+
+if [ -e "$path" ]; then
+    if [ -f "$path" ]; then
+        echo "$path is a file"
+    elif [ -d "$path" ]; then
+        echo "$path is a directory"
+    fi
+else
+    echo "$path does not exist"
+fi</code></pre>
+                </div>
+            </div>
+
+            <!-- Question 9 -->
+            <div class="quiz-item">
+                <div class="quiz-question">9. What's the difference between a while loop and an until loop?</div>
+                <button class="answer-toggle" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer-content">
+                    <strong>Answer:</strong><br>
+                    • <strong>while</strong>: Runs while the condition is TRUE<br>
+                    • <strong>until</strong>: Runs until the condition becomes TRUE (runs while FALSE)<br><br>
+                    They are essentially opposites of each other!
+                </div>
+            </div>
+
+            <!-- Question 10 -->
+            <div class="quiz-item">
+                <div class="quiz-question">10. Create a script that counts from 1 to 10, but skips the number 5.</div>
+                <button class="answer-toggle" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer-content">
+                    <strong>Answer:</strong>
+<pre><code>#!/bin/bash
+
+for i in {1..10}; do
+    if [ $i -eq 5 ]; then
+        continue
+    fi
+    echo "$i"
+done</code></pre>
+                    The <code>continue</code> statement skips the rest of the loop body and jumps to the next iteration.
+                </div>
+            </div>
+
+            <div class="success-box">
+                <strong>🎉 Congratulations!</strong> You've completed the Shell Scripting Basics quiz! 
+                Keep practicing by writing your own scripts. The best way to learn is by doing!
+            </div>
+        </div>
+
+        <!-- Page Navigation -->
+        <nav class="page-nav">
+            <a href="1.6_access_control.html">← Previous: Access Control</a>
+            <a href="../../index.html#resources">Back to Resources →</a>
+        </nav>
+    </div>
+
+    <footer>
+        <p>Built with ❤️ by <a href="https://github.com/UnExplainableFish52" target="_blank">lokii</a> | Open Source on <a href="https://github.com/UnExplainableFish52/lokii.tech" target="_blank">GitHub</a></p>
+    </footer>
+
+    <script>
+        function toggleAnswer(button) {
+            const answer = button.nextElementSibling;
+            answer.classList.toggle('show');
+            button.textContent = answer.classList.contains('show') ? 'Hide Answer' : 'Show Answer';
+        }
+    </script>
+</body>
+</html>
