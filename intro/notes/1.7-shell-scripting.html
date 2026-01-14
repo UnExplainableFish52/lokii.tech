@@ -315,14 +315,17 @@
             <ul>
                 <li><a href="#what-is"><span class="section-num">1.</span> What is Shell Scripting?</a></li>
                 <li><a href="#getting-started"><span class="section-num">2.</span> Getting Started</a></li>
-                <li><a href="#variables"><span class="section-num">3.</span> Variables</a></li>
+                <li><a href="#variables"><span class="section-num">3.</span> Variables & Scopes</a></li>
                 <li><a href="#user-input"><span class="section-num">4.</span> User Input</a></li>
-                <li><a href="#conditionals"><span class="section-num">5.</span> Conditionals (if/else)</a></li>
-                <li><a href="#loops"><span class="section-num">6.</span> Loops</a></li>
-                <li><a href="#functions"><span class="section-num">7.</span> Functions</a></li>
-                <li><a href="#arrays"><span class="section-num">8.</span> Arrays</a></li>
-                <li><a href="#exit-codes"><span class="section-num">9.</span> Exit Codes</a></li>
-                <li><a href="#tests"><span class="section-num">10.</span> Practice Tests</a></li>
+                <li><a href="#conditionals"><span class="section-num">5.</span> Conditionals (if/else) & Modern Syntax</a></li>
+                <li><a href="#case-statements"><span class="section-num">6.</span> Case Statements</a></li>
+                <li><a href="#loops"><span class="section-num">7.</span> Loops & Nested Loops</a></li>
+                <li><a href="#functions"><span class="section-num">8.</span> Functions & Scope</a></li>
+                <li><a href="#arrays"><span class="section-num">9.</span> Arrays</a></li>
+                <li><a href="#strings"><span class="section-num">10.</span> String Manipulation</a></li>
+                <li><a href="#arithmetic"><span class="section-num">11.</span> Arithmetic Operations</a></li>
+                <li><a href="#exit-codes"><span class="section-num">12.</span> Exit Codes</a></li>
+                <li><a href="#tests"><span class="section-num">13.</span> Practice Tests</a></li>
             </ul>
         </div>
 
@@ -391,7 +394,7 @@ chmod +x hello.sh
         </div>
 
         <!-- SECTION 3: VARIABLES -->
-        <h2 id="variables">📦 3. Variables</h2>
+        <h2 id="variables">📦 3. Variables & Scopes</h2>
         
         <div class="section">
             <p>
@@ -431,15 +434,65 @@ echo <span class="cmd-string">"Course: $course"</span></code></pre>
 echo <span class="cmd-string">"Today is: $current_date"</span>
 echo <span class="cmd-string">"Logged in as: $user"</span></code></pre>
 
+            <h3>Variable Scopes</h3>
+            <p>Understanding variable scope is crucial for writing maintainable scripts:</p>
+
+            <h4>Global Variables (Default)</h4>
+<pre><code><span class="cmd-comment">#!/bin/bash</span>
+
+<span class="cmd-comment"># Global variable - accessible everywhere in the script</span>
+<span class="cmd-variable">GLOBAL_VAR</span>=<span class="cmd-string">"I'm global!"</span>
+
+my_function() {
+    echo <span class="cmd-string">"Inside function: $GLOBAL_VAR"</span>
+    <span class="cmd-variable">GLOBAL_VAR</span>=<span class="cmd-string">"Modified inside function"</span>  <span class="cmd-comment"># Modifies the global!</span>
+}
+
+my_function
+echo <span class="cmd-string">"After function: $GLOBAL_VAR"</span>
+<span class="cmd-comment"># Output: Modified inside function</span></code></pre>
+
+            <h4>Local Variables (with 'local' keyword)</h4>
+<pre><code><span class="cmd-comment">#!/bin/bash</span>
+
+<span class="cmd-variable">name</span>=<span class="cmd-string">"Global Alice"</span>
+
+greet() {
+    <span class="cmd-keyword">local</span> <span class="cmd-variable">name</span>=<span class="cmd-string">"Local Bob"</span>  <span class="cmd-comment"># Only exists inside this function</span>
+    echo <span class="cmd-string">"Inside: $name"</span>       <span class="cmd-comment"># Prints: Local Bob</span>
+}
+
+greet
+echo <span class="cmd-string">"Outside: $name"</span>  <span class="cmd-comment"># Prints: Global Alice (unchanged!)</span></code></pre>
+
+            <h4>Environment Variables</h4>
+<pre><code><span class="cmd-comment">#!/bin/bash</span>
+
+<span class="cmd-comment"># Export makes variable available to child processes</span>
+<span class="cmd-keyword">export</span> <span class="cmd-variable">MY_API_KEY</span>=<span class="cmd-string">"secret123"</span>
+
+<span class="cmd-comment"># Common environment variables</span>
+echo <span class="cmd-string">"Home: $HOME"</span>
+echo <span class="cmd-string">"User: $USER"</span>
+echo <span class="cmd-string">"Path: $PATH"</span>
+echo <span class="cmd-string">"Shell: $SHELL"</span>
+echo <span class="cmd-string">"PWD: $PWD"</span></code></pre>
+
+            <div class="success-box">
+                <strong>💡 Best Practice:</strong> Use <code>local</code> for function variables to avoid accidentally modifying global state. Use UPPERCASE for environment/global constants, lowercase for local variables.
+            </div>
+
             <h3>Special Variables</h3>
 <pre><code><span class="cmd-comment"># Script arguments</span>
 <span class="cmd-variable">$0</span>  <span class="cmd-comment"># Script name</span>
 <span class="cmd-variable">$1</span>  <span class="cmd-comment"># First argument</span>
 <span class="cmd-variable">$2</span>  <span class="cmd-comment"># Second argument</span>
 <span class="cmd-variable">$#</span>  <span class="cmd-comment"># Number of arguments</span>
-<span class="cmd-variable">$@</span>  <span class="cmd-comment"># All arguments</span>
+<span class="cmd-variable">$@</span>  <span class="cmd-comment"># All arguments (as separate words)</span>
+<span class="cmd-variable">$*</span>  <span class="cmd-comment"># All arguments (as single string)</span>
 <span class="cmd-variable">$?</span>  <span class="cmd-comment"># Exit status of last command</span>
-<span class="cmd-variable">$$</span>  <span class="cmd-comment"># Current process ID</span></code></pre>
+<span class="cmd-variable">$$</span>  <span class="cmd-comment"># Current process ID</span>
+<span class="cmd-variable">$!</span>  <span class="cmd-comment"># PID of last background process</span></code></pre>
 
             <h4>Example: Using Arguments</h4>
 <pre><code><span class="cmd-comment">#!/bin/bash</span>
@@ -450,6 +503,19 @@ echo <span class="cmd-string">"Hello, $1!"</span>
 echo <span class="cmd-string">"You passed $# arguments"</span>
 
 <span class="cmd-comment"># Run with: ./greet.sh Alice</span></code></pre>
+
+            <h3>Variable Best Practices</h3>
+            <ul>
+                <li><span class="highlight">Always quote variables:</span> Use <code>"$var"</code> to prevent word splitting</li>
+                <li><span class="highlight">Use braces for clarity:</span> <code>${variable}</code> especially in strings</li>
+                <li><span class="highlight">Initialize variables:</span> Set defaults with <code>${var:-default}</code></li>
+                <li><span class="highlight">Check if set:</span> Use <code>${var:?error message}</code> to exit if unset</li>
+            </ul>
+
+<pre><code><span class="cmd-comment"># Variable defaults and checks</span>
+<span class="cmd-variable">name</span>=<span class="cmd-string">"${1:-Guest}"</span>      <span class="cmd-comment"># Use "Guest" if $1 is empty</span>
+<span class="cmd-variable">file</span>=<span class="cmd-string">"${2:?File required}"</span>  <span class="cmd-comment"># Exit with error if $2 is empty</span>
+echo <span class="cmd-string">"Hello ${name}! Processing ${file}..."</span></code></pre>
         </div>
 
         <!-- SECTION 4: USER INPUT -->
@@ -484,7 +550,7 @@ echo <span class="cmd-string">"Password received!"</span>
         </div>
 
         <!-- SECTION 5: CONDITIONALS -->
-        <h2 id="conditionals">🔀 5. Conditionals (if/else)</h2>
+        <h2 id="conditionals">🔀 5. Conditionals (if/else) & Modern Syntax</h2>
         
         <div class="section">
             <p>Make decisions in your scripts using <span class="code-text">if</span> statements:</p>
@@ -500,16 +566,63 @@ echo <span class="cmd-string">"Password received!"</span>
     echo <span class="cmd-string">"You are a minor"</span>
 <span class="cmd-keyword">fi</span></code></pre>
 
+            <h3>🆕 Modern [[ ]] vs Traditional [ ]</h3>
+            <p>Modern bash provides <span class="code-text">[[ ]]</span> - a more powerful and safer alternative:</p>
+
+            <div class="info-box">
+                <strong>💡 Key Differences:</strong><br>
+                • <code>[[ ]]</code> is a bash keyword (not a command like <code>[ ]</code>)<br>
+                • No word splitting - no need to quote variables inside<br>
+                • Supports <code>&&</code>, <code>||</code> directly inside<br>
+                • Pattern matching with <code>==</code> and regex with <code>=~</code><br>
+                • Safer: won't break with empty variables
+            </div>
+
+<pre><code><span class="cmd-comment">#!/bin/bash</span>
+
+<span class="cmd-variable">name</span>=<span class="cmd-string">"Alice"</span>
+<span class="cmd-variable">empty_var</span>=<span class="cmd-string">""</span>
+
+<span class="cmd-comment"># Traditional [ ] - MUST quote variables!</span>
+<span class="cmd-keyword">if</span> [ <span class="cmd-string">"$empty_var"</span> = <span class="cmd-string">""</span> ]; <span class="cmd-keyword">then</span>
+    echo <span class="cmd-string">"Empty (traditional)"</span>
+<span class="cmd-keyword">fi</span>
+
+<span class="cmd-comment"># Modern [[ ]] - No quoting needed, safer!</span>
+<span class="cmd-keyword">if</span> [[ $empty_var == "" ]]; <span class="cmd-keyword">then</span>
+    echo <span class="cmd-string">"Empty (modern)"</span>
+<span class="cmd-keyword">fi</span>
+
+<span class="cmd-comment"># Logical operators inside [[ ]]</span>
+<span class="cmd-keyword">if</span> [[ $name == "Alice" && $age -ge 18 ]]; <span class="cmd-keyword">then</span>
+    echo <span class="cmd-string">"Adult Alice!"</span>
+<span class="cmd-keyword">fi</span>
+
+<span class="cmd-comment"># Pattern matching with wildcards</span>
+<span class="cmd-keyword">if</span> [[ $name == A* ]]; <span class="cmd-keyword">then</span>
+    echo <span class="cmd-string">"Name starts with A"</span>
+<span class="cmd-keyword">fi</span>
+
+<span class="cmd-comment"># Regex matching with =~</span>
+<span class="cmd-variable">email</span>=<span class="cmd-string">"user@example.com"</span>
+<span class="cmd-keyword">if</span> [[ $email =~ ^[a-zA-Z0-9]+@[a-zA-Z]+\.[a-z]+$ ]]; <span class="cmd-keyword">then</span>
+    echo <span class="cmd-string">"Valid email format"</span>
+<span class="cmd-keyword">fi</span></code></pre>
+
+            <div class="success-box">
+                <strong>✅ Best Practice:</strong> Use <code>[[ ]]</code> for all string and pattern tests in bash. Use <code>[ ]</code> only when POSIX compatibility is required (e.g., <code>/bin/sh</code> scripts).
+            </div>
+
             <h3>if / elif / else</h3>
 <pre><code><span class="cmd-comment">#!/bin/bash</span>
 
 <span class="cmd-keyword">read</span> -p <span class="cmd-string">"Enter your score: "</span> score
 
-<span class="cmd-keyword">if</span> [ <span class="cmd-variable">$score</span> -ge 90 ]; <span class="cmd-keyword">then</span>
+<span class="cmd-keyword">if</span> [[ $score -ge 90 ]]; <span class="cmd-keyword">then</span>
     echo <span class="cmd-string">"Grade: A"</span>
-<span class="cmd-keyword">elif</span> [ <span class="cmd-variable">$score</span> -ge 80 ]; <span class="cmd-keyword">then</span>
+<span class="cmd-keyword">elif</span> [[ $score -ge 80 ]]; <span class="cmd-keyword">then</span>
     echo <span class="cmd-string">"Grade: B"</span>
-<span class="cmd-keyword">elif</span> [ <span class="cmd-variable">$score</span> -ge 70 ]; <span class="cmd-keyword">then</span>
+<span class="cmd-keyword">elif</span> [[ $score -ge 70 ]]; <span class="cmd-keyword">then</span>
     echo <span class="cmd-string">"Grade: C"</span>
 <span class="cmd-keyword">else</span>
     echo <span class="cmd-string">"Grade: F"</span>
@@ -517,74 +630,146 @@ echo <span class="cmd-string">"Password received!"</span>
 
             <h3>Comparison Operators</h3>
             <h4>Numeric Comparisons</h4>
-<pre><code><span class="cmd-comment"># Equal: -eq</span>
-[ <span class="cmd-variable">$a</span> -eq <span class="cmd-variable">$b</span> ]
+<pre><code><span class="cmd-comment"># Works in both [ ] and [[ ]]</span>
+[ <span class="cmd-variable">$a</span> -eq <span class="cmd-variable">$b</span> ]  <span class="cmd-comment"># Equal</span>
+[ <span class="cmd-variable">$a</span> -ne <span class="cmd-variable">$b</span> ]  <span class="cmd-comment"># Not equal</span>
+[ <span class="cmd-variable">$a</span> -gt <span class="cmd-variable">$b</span> ]  <span class="cmd-comment"># Greater than</span>
+[ <span class="cmd-variable">$a</span> -lt <span class="cmd-variable">$b</span> ]  <span class="cmd-comment"># Less than</span>
+[ <span class="cmd-variable">$a</span> -ge <span class="cmd-variable">$b</span> ]  <span class="cmd-comment"># Greater or equal</span>
+[ <span class="cmd-variable">$a</span> -le <span class="cmd-variable">$b</span> ]  <span class="cmd-comment"># Less or equal</span>
 
-<span class="cmd-comment"># Not equal: -ne</span>
-[ <span class="cmd-variable">$a</span> -ne <span class="cmd-variable">$b</span> ]
-
-<span class="cmd-comment"># Greater than: -gt</span>
-[ <span class="cmd-variable">$a</span> -gt <span class="cmd-variable">$b</span> ]
-
-<span class="cmd-comment"># Less than: -lt</span>
-[ <span class="cmd-variable">$a</span> -lt <span class="cmd-variable">$b</span> ]
-
-<span class="cmd-comment"># Greater or equal: -ge</span>
-[ <span class="cmd-variable">$a</span> -ge <span class="cmd-variable">$b</span> ]
-
-<span class="cmd-comment"># Less or equal: -le</span>
-[ <span class="cmd-variable">$a</span> -le <span class="cmd-variable">$b</span> ]</code></pre>
+<span class="cmd-comment"># Modern alternative for numbers: (( ))</span>
+<span class="cmd-keyword">if</span> (( a > b )); <span class="cmd-keyword">then</span> echo <span class="cmd-string">"a is greater"</span>; <span class="cmd-keyword">fi</span>
+<span class="cmd-keyword">if</span> (( a >= 10 && a <= 20 )); <span class="cmd-keyword">then</span> echo <span class="cmd-string">"10-20 range"</span>; <span class="cmd-keyword">fi</span></code></pre>
 
             <h4>String Comparisons</h4>
-<pre><code><span class="cmd-comment"># Equal</span>
-[ <span class="cmd-string">"$str1"</span> = <span class="cmd-string">"$str2"</span> ]
+<pre><code><span class="cmd-comment"># In [[ ]] - preferred</span>
+[[ <span class="cmd-variable">$str1</span> == <span class="cmd-variable">$str2</span> ]]   <span class="cmd-comment"># Equal (use == in [[ ]])</span>
+[[ <span class="cmd-variable">$str1</span> != <span class="cmd-variable">$str2</span> ]]   <span class="cmd-comment"># Not equal</span>
+[[ <span class="cmd-variable">$str1</span> < <span class="cmd-variable">$str2</span> ]]    <span class="cmd-comment"># Alphabetically less</span>
+[[ <span class="cmd-variable">$str1</span> > <span class="cmd-variable">$str2</span> ]]    <span class="cmd-comment"># Alphabetically greater</span>
+[[ -z <span class="cmd-variable">$str</span> ]]         <span class="cmd-comment"># String is empty</span>
+[[ -n <span class="cmd-variable">$str</span> ]]         <span class="cmd-comment"># String is not empty</span>
 
-<span class="cmd-comment"># Not equal</span>
-[ <span class="cmd-string">"$str1"</span> != <span class="cmd-string">"$str2"</span> ]
-
-<span class="cmd-comment"># String is empty</span>
-[ -z <span class="cmd-string">"$str"</span> ]
-
-<span class="cmd-comment"># String is not empty</span>
-[ -n <span class="cmd-string">"$str"</span> ]</code></pre>
+<span class="cmd-comment"># In [ ] - use = and quote strings</span>
+[ <span class="cmd-string">"$str1"</span> = <span class="cmd-string">"$str2"</span> ]</code></pre>
 
             <h4>File Tests</h4>
-<pre><code><span class="cmd-comment"># File exists</span>
-[ -e <span class="cmd-string">"filename"</span> ]
+<pre><code><span class="cmd-comment"># Works in both [ ] and [[ ]]</span>
+[[ -e <span class="cmd-string">"filename"</span> ]]   <span class="cmd-comment"># File exists</span>
+[[ -f <span class="cmd-string">"filename"</span> ]]   <span class="cmd-comment"># Is a regular file</span>
+[[ -d <span class="cmd-string">"dirname"</span> ]]    <span class="cmd-comment"># Is a directory</span>
+[[ -r <span class="cmd-string">"filename"</span> ]]   <span class="cmd-comment"># File is readable</span>
+[[ -w <span class="cmd-string">"filename"</span> ]]   <span class="cmd-comment"># File is writable</span>
+[[ -x <span class="cmd-string">"filename"</span> ]]   <span class="cmd-comment"># File is executable</span>
+[[ -s <span class="cmd-string">"filename"</span> ]]   <span class="cmd-comment"># File is not empty</span>
+[[ -L <span class="cmd-string">"filename"</span> ]]   <span class="cmd-comment"># Is a symbolic link</span>
+[[ <span class="cmd-variable">$f1</span> -nt <span class="cmd-variable">$f2</span> ]]     <span class="cmd-comment"># f1 is newer than f2</span>
+[[ <span class="cmd-variable">$f1</span> -ot <span class="cmd-variable">$f2</span> ]]     <span class="cmd-comment"># f1 is older than f2</span></code></pre>
 
-<span class="cmd-comment"># Is a regular file</span>
-[ -f <span class="cmd-string">"filename"</span> ]
+            <h4>Logical Operators</h4>
+<pre><code><span class="cmd-comment"># Inside [[ ]] - cleaner syntax</span>
+<span class="cmd-keyword">if</span> [[ $a -gt 5 && $b -lt 10 ]]; <span class="cmd-keyword">then</span> echo <span class="cmd-string">"Both true"</span>; <span class="cmd-keyword">fi</span>
+<span class="cmd-keyword">if</span> [[ $a -gt 5 || $b -lt 10 ]]; <span class="cmd-keyword">then</span> echo <span class="cmd-string">"One is true"</span>; <span class="cmd-keyword">fi</span>
+<span class="cmd-keyword">if</span> [[ ! -f $file ]]; <span class="cmd-keyword">then</span> echo <span class="cmd-string">"Not a file"</span>; <span class="cmd-keyword">fi</span>
 
-<span class="cmd-comment"># Is a directory</span>
-[ -d <span class="cmd-string">"dirname"</span> ]
+<span class="cmd-comment"># With [ ] - use -a, -o, or external &&, ||</span>
+<span class="cmd-keyword">if</span> [ $a -gt 5 ] && [ $b -lt 10 ]; <span class="cmd-keyword">then</span> echo <span class="cmd-string">"OK"</span>; <span class="cmd-keyword">fi</span></code></pre>
 
-<span class="cmd-comment"># File is readable</span>
-[ -r <span class="cmd-string">"filename"</span> ]
-
-<span class="cmd-comment"># File is writable</span>
-[ -w <span class="cmd-string">"filename"</span> ]
-
-<span class="cmd-comment"># File is executable</span>
-[ -x <span class="cmd-string">"filename"</span> ]</code></pre>
-
-            <h4>Example: File Check Script</h4>
+            <h4>Example: Modern File Check Script</h4>
 <pre><code><span class="cmd-comment">#!/bin/bash</span>
 
 <span class="cmd-keyword">read</span> -p <span class="cmd-string">"Enter filename: "</span> filename
 
-<span class="cmd-keyword">if</span> [ -e <span class="cmd-string">"$filename"</span> ]; <span class="cmd-keyword">then</span>
-    <span class="cmd-keyword">if</span> [ -d <span class="cmd-string">"$filename"</span> ]; <span class="cmd-keyword">then</span>
+<span class="cmd-keyword">if</span> [[ -e $filename ]]; <span class="cmd-keyword">then</span>
+    <span class="cmd-keyword">if</span> [[ -d $filename ]]; <span class="cmd-keyword">then</span>
         echo <span class="cmd-string">"$filename is a directory"</span>
-    <span class="cmd-keyword">elif</span> [ -f <span class="cmd-string">"$filename"</span> ]; <span class="cmd-keyword">then</span>
+    <span class="cmd-keyword">elif</span> [[ -f $filename ]]; <span class="cmd-keyword">then</span>
         echo <span class="cmd-string">"$filename is a regular file"</span>
+        [[ -r $filename ]] && echo <span class="cmd-string">"  - Readable"</span>
+        [[ -w $filename ]] && echo <span class="cmd-string">"  - Writable"</span>
+        [[ -x $filename ]] && echo <span class="cmd-string">"  - Executable"</span>
     <span class="cmd-keyword">fi</span>
 <span class="cmd-keyword">else</span>
     echo <span class="cmd-string">"$filename does not exist"</span>
 <span class="cmd-keyword">fi</span></code></pre>
         </div>
 
-        <!-- SECTION 6: LOOPS -->
-        <h2 id="loops">🔄 6. Loops</h2>
+        <!-- SECTION 6: CASE STATEMENTS -->
+        <h2 id="case-statements">🎯 6. Case Statements</h2>
+        
+        <div class="section">
+            <p>The <span class="code-text">case</span> statement is cleaner than multiple if-elif chains for pattern matching:</p>
+
+            <h3>Basic Syntax</h3>
+<pre><code><span class="cmd-comment">#!/bin/bash</span>
+
+<span class="cmd-keyword">read</span> -p <span class="cmd-string">"Enter a fruit: "</span> fruit
+
+<span class="cmd-keyword">case</span> $fruit <span class="cmd-keyword">in</span>
+    apple)
+        echo <span class="cmd-string">"Red and crunchy!"</span>
+        ;;
+    banana)
+        echo <span class="cmd-string">"Yellow and sweet!"</span>
+        ;;
+    orange|lemon)
+        echo <span class="cmd-string">"Citrus fruit!"</span>
+        ;;
+    *)
+        echo <span class="cmd-string">"Unknown fruit"</span>
+        ;;
+<span class="cmd-keyword">esac</span></code></pre>
+
+            <h3>Pattern Matching in Case</h3>
+<pre><code><span class="cmd-comment">#!/bin/bash</span>
+
+<span class="cmd-keyword">read</span> -p <span class="cmd-string">"Enter a filename: "</span> file
+
+<span class="cmd-keyword">case</span> $file <span class="cmd-keyword">in</span>
+    *.txt)
+        echo <span class="cmd-string">"Text file"</span>
+        ;;
+    *.sh)
+        echo <span class="cmd-string">"Shell script"</span>
+        ;;
+    *.jpg|*.png|*.gif)
+        echo <span class="cmd-string">"Image file"</span>
+        ;;
+    [0-9]*)
+        echo <span class="cmd-string">"Starts with a number"</span>
+        ;;
+    *)
+        echo <span class="cmd-string">"Other file type"</span>
+        ;;
+<span class="cmd-keyword">esac</span></code></pre>
+
+            <h3>Menu Example</h3>
+<pre><code><span class="cmd-comment">#!/bin/bash</span>
+
+echo <span class="cmd-string">"=== System Menu ==="</span>
+echo <span class="cmd-string">"1) Show disk usage"</span>
+echo <span class="cmd-string">"2) Show memory usage"</span>
+echo <span class="cmd-string">"3) Show uptime"</span>
+echo <span class="cmd-string">"4) Exit"</span>
+
+<span class="cmd-keyword">read</span> -p <span class="cmd-string">"Choose option: "</span> choice
+
+<span class="cmd-keyword">case</span> $choice <span class="cmd-keyword">in</span>
+    1) df -h ;;
+    2) free -h ;;
+    3) uptime ;;
+    4) echo <span class="cmd-string">"Goodbye!"</span>; <span class="cmd-keyword">exit</span> 0 ;;
+    *) echo <span class="cmd-string">"Invalid option"</span>; <span class="cmd-keyword">exit</span> 1 ;;
+<span class="cmd-keyword">esac</span></code></pre>
+
+            <div class="info-box">
+                <strong>💡 Tip:</strong> Use <code>;;&</code> instead of <code>;;</code> to fall through to the next case (bash 4+), or <code>;&</code> to fall through and execute the next case's commands.
+            </div>
+        </div>
+
+        <!-- SECTION 7: LOOPS -->
+        <h2 id="loops">🔄 7. Loops & Nested Loops</h2>
         
         <div class="section">
             <p>Loops let you repeat commands multiple times.</p>
@@ -597,9 +782,14 @@ echo <span class="cmd-string">"Password received!"</span>
     echo <span class="cmd-string">"I like $fruit"</span>
 <span class="cmd-keyword">done</span>
 
-<span class="cmd-comment"># Loop through numbers</span>
+<span class="cmd-comment"># Loop through numbers (brace expansion)</span>
 <span class="cmd-keyword">for</span> i <span class="cmd-keyword">in</span> {1..5}; <span class="cmd-keyword">do</span>
     echo <span class="cmd-string">"Count: $i"</span>
+<span class="cmd-keyword">done</span>
+
+<span class="cmd-comment"># With step: {start..end..step}</span>
+<span class="cmd-keyword">for</span> i <span class="cmd-keyword">in</span> {0..10..2}; <span class="cmd-keyword">do</span>
+    echo <span class="cmd-string">"Even: $i"</span>  <span class="cmd-comment"># 0, 2, 4, 6, 8, 10</span>
 <span class="cmd-keyword">done</span>
 
 <span class="cmd-comment"># Loop through files</span>
@@ -607,7 +797,7 @@ echo <span class="cmd-string">"Password received!"</span>
     echo <span class="cmd-string">"Processing: $file"</span>
 <span class="cmd-keyword">done</span>
 
-<span class="cmd-comment"># C-style for loop</span>
+<span class="cmd-comment"># C-style for loop (( ))</span>
 <span class="cmd-keyword">for</span> ((i=0; i<5; i++)); <span class="cmd-keyword">do</span>
     echo <span class="cmd-string">"Number: $i"</span>
 <span class="cmd-keyword">done</span></code></pre>
@@ -617,15 +807,21 @@ echo <span class="cmd-string">"Password received!"</span>
 
 <span class="cmd-variable">count</span>=1
 
-<span class="cmd-keyword">while</span> [ <span class="cmd-variable">$count</span> -le 5 ]; <span class="cmd-keyword">do</span>
+<span class="cmd-keyword">while</span> [[ $count -le 5 ]]; <span class="cmd-keyword">do</span>
     echo <span class="cmd-string">"Count is: $count"</span>
     ((count++))
 <span class="cmd-keyword">done</span>
 
-<span class="cmd-comment"># Reading file line by line</span>
-<span class="cmd-keyword">while</span> <span class="cmd-keyword">read</span> line; <span class="cmd-keyword">do</span>
+<span class="cmd-comment"># Reading file line by line (safe method)</span>
+<span class="cmd-keyword">while</span> IFS= <span class="cmd-keyword">read</span> -r line; <span class="cmd-keyword">do</span>
     echo <span class="cmd-string">"Line: $line"</span>
-<span class="cmd-keyword">done</span> < myfile.txt</code></pre>
+<span class="cmd-keyword">done</span> < myfile.txt
+
+<span class="cmd-comment"># Infinite loop with break condition</span>
+<span class="cmd-keyword">while</span> <span class="cmd-keyword">true</span>; <span class="cmd-keyword">do</span>
+    <span class="cmd-keyword">read</span> -p <span class="cmd-string">"Enter 'quit' to exit: "</span> input
+    [[ $input == "quit" ]] && <span class="cmd-keyword">break</span>
+<span class="cmd-keyword">done</span></code></pre>
 
             <h3>Until Loop</h3>
 <pre><code><span class="cmd-comment">#!/bin/bash</span>
@@ -633,31 +829,66 @@ echo <span class="cmd-string">"Password received!"</span>
 <span class="cmd-variable">count</span>=1
 
 <span class="cmd-comment"># Runs UNTIL condition becomes true</span>
-<span class="cmd-keyword">until</span> [ <span class="cmd-variable">$count</span> -gt 5 ]; <span class="cmd-keyword">do</span>
+<span class="cmd-keyword">until</span> [[ $count -gt 5 ]]; <span class="cmd-keyword">do</span>
     echo <span class="cmd-string">"Count: $count"</span>
     ((count++))
+<span class="cmd-keyword">done</span></code></pre>
+
+            <h3>Nested Loops</h3>
+            <p>Loops inside loops - useful for 2D operations, matrices, and combinations:</p>
+
+<pre><code><span class="cmd-comment">#!/bin/bash</span>
+
+<span class="cmd-comment"># Multiplication table</span>
+<span class="cmd-keyword">for</span> i <span class="cmd-keyword">in</span> {1..5}; <span class="cmd-keyword">do</span>
+    <span class="cmd-keyword">for</span> j <span class="cmd-keyword">in</span> {1..5}; <span class="cmd-keyword">do</span>
+        <span class="cmd-variable">result</span>=$((i * j))
+        printf <span class="cmd-string">"%4d"</span> $result
+    <span class="cmd-keyword">done</span>
+    echo  <span class="cmd-comment"># New line</span>
+<span class="cmd-keyword">done</span>
+
+<span class="cmd-comment"># Nested with different iterable types</span>
+<span class="cmd-keyword">for</span> dir <span class="cmd-keyword">in</span> /home/*; <span class="cmd-keyword">do</span>
+    [[ -d $dir ]] || <span class="cmd-keyword">continue</span>
+    echo <span class="cmd-string">"Directory: $dir"</span>
+    <span class="cmd-keyword">for</span> file <span class="cmd-keyword">in</span> <span class="cmd-string">"$dir"</span>/*.txt; <span class="cmd-keyword">do</span>
+        [[ -f $file ]] && echo <span class="cmd-string">"  File: $file"</span>
+    <span class="cmd-keyword">done</span>
 <span class="cmd-keyword">done</span></code></pre>
 
             <h3>Loop Control</h3>
 <pre><code><span class="cmd-comment"># break - exit the loop</span>
 <span class="cmd-keyword">for</span> i <span class="cmd-keyword">in</span> {1..10}; <span class="cmd-keyword">do</span>
-    <span class="cmd-keyword">if</span> [ <span class="cmd-variable">$i</span> -eq 5 ]; <span class="cmd-keyword">then</span>
-        <span class="cmd-keyword">break</span>
-    <span class="cmd-keyword">fi</span>
+    [[ $i -eq 5 ]] && <span class="cmd-keyword">break</span>
     echo <span class="cmd-string">"$i"</span>
 <span class="cmd-keyword">done</span>
 
 <span class="cmd-comment"># continue - skip to next iteration</span>
 <span class="cmd-keyword">for</span> i <span class="cmd-keyword">in</span> {1..5}; <span class="cmd-keyword">do</span>
-    <span class="cmd-keyword">if</span> [ <span class="cmd-variable">$i</span> -eq 3 ]; <span class="cmd-keyword">then</span>
-        <span class="cmd-keyword">continue</span>
-    <span class="cmd-keyword">fi</span>
+    [[ $i -eq 3 ]] && <span class="cmd-keyword">continue</span>
     echo <span class="cmd-string">"$i"</span>  <span class="cmd-comment"># Prints 1,2,4,5 (skips 3)</span>
+<span class="cmd-keyword">done</span>
+
+<span class="cmd-comment"># break N - break out of N levels of nested loops</span>
+<span class="cmd-keyword">for</span> i <span class="cmd-keyword">in</span> {1..3}; <span class="cmd-keyword">do</span>
+    <span class="cmd-keyword">for</span> j <span class="cmd-keyword">in</span> {1..3}; <span class="cmd-keyword">do</span>
+        [[ $i -eq 2 && $j -eq 2 ]] && <span class="cmd-keyword">break</span> 2  <span class="cmd-comment"># Exit both loops</span>
+        echo <span class="cmd-string">"i=$i, j=$j"</span>
+    <span class="cmd-keyword">done</span>
 <span class="cmd-keyword">done</span></code></pre>
+
+            <div class="success-box">
+                <strong>💡 Loop Best Practices:</strong><br>
+                • Use <code>while IFS= read -r</code> for reading files to preserve whitespace<br>
+                • Quote variables inside loops: <code>"$file"</code> not <code>$file</code><br>
+                • Check if glob matches files: <code>[[ -f $file ]]</code> before processing<br>
+                • Use <code>(( ))</code> for arithmetic in loop conditions
+            </div>
         </div>
 
-        <!-- SECTION 7: FUNCTIONS -->
-        <h2 id="functions">🔧 7. Functions</h2>
+        <!-- SECTION 8: FUNCTIONS -->
+        <h2 id="functions">🔧 8. Functions & Scope</h2>
         
         <div class="section">
             <p>Functions let you organize code into reusable blocks.</p>
@@ -665,12 +896,12 @@ echo <span class="cmd-string">"Password received!"</span>
             <h3>Defining Functions</h3>
 <pre><code><span class="cmd-comment">#!/bin/bash</span>
 
-<span class="cmd-comment"># Method 1: Using function keyword</span>
+<span class="cmd-comment"># Method 1: Using function keyword (bash-specific)</span>
 <span class="cmd-keyword">function</span> greet() {
     echo <span class="cmd-string">"Hello, World!"</span>
 }
 
-<span class="cmd-comment"># Method 2: Without function keyword</span>
+<span class="cmd-comment"># Method 2: POSIX-compatible (recommended)</span>
 say_goodbye() {
     echo <span class="cmd-string">"Goodbye!"</span>
 }
@@ -685,22 +916,63 @@ say_goodbye</code></pre>
 greet_user() {
     echo <span class="cmd-string">"Hello, $1!"</span>
     echo <span class="cmd-string">"You are $2 years old"</span>
+    echo <span class="cmd-string">"All args: $@"</span>
+    echo <span class="cmd-string">"Arg count: $#"</span>
 }
 
 <span class="cmd-comment"># Call with arguments</span>
 greet_user <span class="cmd-string">"Alice"</span> 25
 greet_user <span class="cmd-string">"Bob"</span> 30</code></pre>
 
+            <h3>Function Scope</h3>
+            <p>Understanding variable scope inside functions is critical:</p>
+
+<pre><code><span class="cmd-comment">#!/bin/bash</span>
+
+<span class="cmd-variable">global_var</span>=<span class="cmd-string">"I'm global"</span>
+
+demo_scope() {
+    <span class="cmd-keyword">local</span> <span class="cmd-variable">local_var</span>=<span class="cmd-string">"I'm local"</span>    <span class="cmd-comment"># Only exists in this function</span>
+    <span class="cmd-variable">global_var</span>=<span class="cmd-string">"Modified!"</span>        <span class="cmd-comment"># Modifies the global</span>
+    <span class="cmd-variable">new_var</span>=<span class="cmd-string">"Created in func"</span>    <span class="cmd-comment"># Creates a new GLOBAL!</span>
+    
+    echo <span class="cmd-string">"Inside: local_var=$local_var"</span>
+}
+
+demo_scope
+echo <span class="cmd-string">"Outside: global_var=$global_var"</span>   <span class="cmd-comment"># Modified!</span>
+echo <span class="cmd-string">"Outside: new_var=$new_var"</span>         <span class="cmd-comment"># Accessible!</span>
+echo <span class="cmd-string">"Outside: local_var=$local_var"</span>     <span class="cmd-comment"># Empty!</span></code></pre>
+
+            <div class="warning-box">
+                <strong>⚠️ Important:</strong> Always use <code>local</code> for function variables to avoid accidentally creating/modifying globals. Without <code>local</code>, variables leak to global scope!
+            </div>
+
+            <h3>Nested Functions</h3>
+<pre><code><span class="cmd-comment">#!/bin/bash</span>
+
+outer_function() {
+    <span class="cmd-keyword">local</span> <span class="cmd-variable">outer_var</span>=<span class="cmd-string">"outer"</span>
+    
+    <span class="cmd-comment"># Define inner function</span>
+    inner_function() {
+        <span class="cmd-keyword">local</span> <span class="cmd-variable">inner_var</span>=<span class="cmd-string">"inner"</span>
+        echo <span class="cmd-string">"Inner: outer_var=$outer_var, inner_var=$inner_var"</span>
+    }
+    
+    inner_function
+    echo <span class="cmd-string">"Outer: outer_var=$outer_var"</span>
+}
+
+outer_function
+<span class="cmd-comment"># inner_function  # Error! Only exists inside outer_function</span></code></pre>
+
             <h3>Return Values</h3>
 <pre><code><span class="cmd-comment">#!/bin/bash</span>
 
 <span class="cmd-comment"># Functions return exit codes (0-255)</span>
 is_even() {
-    <span class="cmd-keyword">if</span> [ $(($1 % 2)) -eq 0 ]; <span class="cmd-keyword">then</span>
-        <span class="cmd-keyword">return</span> 0  <span class="cmd-comment"># True (success)</span>
-    <span class="cmd-keyword">else</span>
-        <span class="cmd-keyword">return</span> 1  <span class="cmd-comment"># False (failure)</span>
-    <span class="cmd-keyword">fi</span>
+    (( $1 % 2 == 0 )) && <span class="cmd-keyword">return</span> 0 || <span class="cmd-keyword">return</span> 1
 }
 
 <span class="cmd-keyword">if</span> is_even 4; <span class="cmd-keyword">then</span>
@@ -713,11 +985,29 @@ get_greeting() {
 }
 
 <span class="cmd-variable">message</span>=$(get_greeting <span class="cmd-string">"Alice"</span>)
-echo <span class="cmd-variable">$message</span></code></pre>
+echo <span class="cmd-string">"$message"</span>
+
+<span class="cmd-comment"># Return multiple values via global or array</span>
+get_user_info() {
+    <span class="cmd-variable">_name</span>=<span class="cmd-string">"$1"</span>
+    <span class="cmd-variable">_age</span>=<span class="cmd-string">"$2"</span>
+}
+
+get_user_info <span class="cmd-string">"Alice"</span> 25
+echo <span class="cmd-string">"Name: $_name, Age: $_age"</span></code></pre>
+
+            <div class="success-box">
+                <strong>💡 Function Best Practices:</strong><br>
+                • Always use <code>local</code> for variables inside functions<br>
+                • Use POSIX syntax <code>func() { }</code> for portability<br>
+                • Document function parameters with comments<br>
+                • Return 0 for success, non-zero for errors<br>
+                • Use command substitution <code>$(func)</code> to capture output
+            </div>
         </div>
 
-        <!-- SECTION 8: ARRAYS -->
-        <h2 id="arrays">📝 8. Arrays</h2>
+        <!-- SECTION 9: ARRAYS -->
+        <h2 id="arrays">📝 9. Arrays</h2>
         
         <div class="section">
             <p>Arrays store multiple values in a single variable.</p>
@@ -751,8 +1041,118 @@ echo <span class="cmd-string">"Total: ${#fruits[@]}"</span>
 <span class="cmd-keyword">done</span></code></pre>
         </div>
 
-        <!-- SECTION 9: EXIT CODES -->
-        <h2 id="exit-codes">🚪 9. Exit Codes</h2>
+        <!-- SECTION 10: STRING MANIPULATION -->
+        <h2 id="strings">🔤 10. String Manipulation</h2>
+        
+        <div class="section">
+            <p>Bash provides powerful built-in string manipulation features:</p>
+
+            <h3>String Length & Substring</h3>
+<pre><code><span class="cmd-comment">#!/bin/bash</span>
+
+<span class="cmd-variable">str</span>=<span class="cmd-string">"Hello, World!"</span>
+
+<span class="cmd-comment"># String length</span>
+echo <span class="cmd-string">"Length: ${#str}"</span>  <span class="cmd-comment"># 13</span>
+
+<span class="cmd-comment"># Substring: ${string:start:length}</span>
+echo <span class="cmd-string">"${str:0:5}"</span>   <span class="cmd-comment"># Hello</span>
+echo <span class="cmd-string">"${str:7}"</span>     <span class="cmd-comment"># World! (from position 7)</span>
+echo <span class="cmd-string">"${str: -6}"</span>   <span class="cmd-comment"># World! (last 6 chars, note space)</span></code></pre>
+
+            <h3>Search & Replace</h3>
+<pre><code><span class="cmd-variable">str</span>=<span class="cmd-string">"hello_world_hello"</span>
+
+<span class="cmd-comment"># Replace first occurrence</span>
+echo <span class="cmd-string">"${str/hello/hi}"</span>   <span class="cmd-comment"># hi_world_hello</span>
+
+<span class="cmd-comment"># Replace all occurrences</span>
+echo <span class="cmd-string">"${str//hello/hi}"</span>  <span class="cmd-comment"># hi_world_hi</span>
+
+<span class="cmd-comment"># Delete pattern (replace with nothing)</span>
+echo <span class="cmd-string">"${str//_/}"</span>        <span class="cmd-comment"># helloworldhello</span></code></pre>
+
+            <h3>Pattern Removal</h3>
+<pre><code><span class="cmd-variable">path</span>=<span class="cmd-string">"/home/user/docs/file.txt"</span>
+
+<span class="cmd-comment"># Remove from beginning (shortest #, longest ##)</span>
+echo <span class="cmd-string">"${path#*/}"</span>    <span class="cmd-comment"># home/user/docs/file.txt</span>
+echo <span class="cmd-string">"${path##*/}"</span>   <span class="cmd-comment"># file.txt (basename)</span>
+
+<span class="cmd-comment"># Remove from end (shortest %, longest %%)</span>
+echo <span class="cmd-string">"${path%/*}"</span>    <span class="cmd-comment"># /home/user/docs (dirname)</span>
+echo <span class="cmd-string">"${path%%/*}"</span>   <span class="cmd-comment"># (empty, removes longest)</span>
+
+<span class="cmd-comment"># Get extension</span>
+<span class="cmd-variable">file</span>=<span class="cmd-string">"document.tar.gz"</span>
+echo <span class="cmd-string">"${file##*.}"</span>   <span class="cmd-comment"># gz</span></code></pre>
+
+            <h3>Case Conversion (Bash 4+)</h3>
+<pre><code><span class="cmd-variable">str</span>=<span class="cmd-string">"Hello World"</span>
+
+<span class="cmd-comment"># Lowercase</span>
+echo <span class="cmd-string">"${str,,}"</span>   <span class="cmd-comment"># hello world</span>
+echo <span class="cmd-string">"${str,}"</span>    <span class="cmd-comment"># hello World (first char)</span>
+
+<span class="cmd-comment"># Uppercase</span>
+echo <span class="cmd-string">"${str^^}"</span>   <span class="cmd-comment"># HELLO WORLD</span>
+echo <span class="cmd-string">"${str^}"</span>    <span class="cmd-comment"># Hello World (first char)</span></code></pre>
+
+            <div class="info-box">
+                <strong>💡 Tip:</strong> These parameter expansions are much faster than calling external tools like <code>sed</code>, <code>awk</code>, or <code>tr</code> for simple string operations.
+            </div>
+        </div>
+
+        <!-- SECTION 11: ARITHMETIC OPERATIONS -->
+        <h2 id="arithmetic">🔢 11. Arithmetic Operations</h2>
+        
+        <div class="section">
+            <p>Bash supports integer arithmetic with various methods:</p>
+
+            <h3>Arithmetic Expansion $(( ))</h3>
+<pre><code><span class="cmd-comment">#!/bin/bash</span>
+
+<span class="cmd-variable">a</span>=10
+<span class="cmd-variable">b</span>=3
+
+echo <span class="cmd-string">"Add: $((a + b))"</span>      <span class="cmd-comment"># 13</span>
+echo <span class="cmd-string">"Subtract: $((a - b))"</span> <span class="cmd-comment"># 7</span>
+echo <span class="cmd-string">"Multiply: $((a * b))"</span> <span class="cmd-comment"># 30</span>
+echo <span class="cmd-string">"Divide: $((a / b))"</span>   <span class="cmd-comment"># 3 (integer division)</span>
+echo <span class="cmd-string">"Modulo: $((a % b))"</span>   <span class="cmd-comment"># 1</span>
+echo <span class="cmd-string">"Power: $((a ** 2))"</span>   <span class="cmd-comment"># 100</span>
+
+<span class="cmd-comment"># Compound assignments</span>
+((a++))     <span class="cmd-comment"># Increment</span>
+((a--))     <span class="cmd-comment"># Decrement</span>
+((a += 5))  <span class="cmd-comment"># Add and assign</span>
+((a *= 2))  <span class="cmd-comment"># Multiply and assign</span></code></pre>
+
+            <h3>let Command</h3>
+<pre><code><span class="cmd-keyword">let</span> <span class="cmd-string">"result = 5 + 3"</span>
+<span class="cmd-keyword">let</span> <span class="cmd-string">"result++"</span>
+echo <span class="cmd-string">"$result"</span>  <span class="cmd-comment"># 9</span></code></pre>
+
+            <h3>expr Command (POSIX)</h3>
+<pre><code><span class="cmd-comment"># Older method, but POSIX-compatible</span>
+<span class="cmd-variable">result</span>=$(expr 5 + 3)
+<span class="cmd-variable">result</span>=$(expr $a \* $b)  <span class="cmd-comment"># Must escape *</span></code></pre>
+
+            <h3>Floating Point with bc</h3>
+<pre><code><span class="cmd-comment"># Bash only does integers! Use bc for decimals</span>
+<span class="cmd-variable">result</span>=$(echo <span class="cmd-string">"scale=2; 10 / 3"</span> | bc)
+echo <span class="cmd-string">"$result"</span>  <span class="cmd-comment"># 3.33</span>
+
+<span class="cmd-comment"># More complex calculations</span>
+<span class="cmd-variable">pi</span>=$(echo <span class="cmd-string">"scale=10; 4*a(1)"</span> | bc -l)  <span class="cmd-comment"># Pi approximation</span></code></pre>
+
+            <div class="warning-box">
+                <strong>⚠️ Note:</strong> Bash arithmetic only works with integers. For floating-point math, use <code>bc</code>, <code>awk</code>, or Python.
+            </div>
+        </div>
+
+        <!-- SECTION 12: EXIT CODES -->
+        <h2 id="exit-codes">🚪 12. Exit Codes</h2>
         
         <div class="section">
             <p>
@@ -786,8 +1186,8 @@ echo <span class="cmd-string">"Config loaded successfully!"</span>
             </div>
         </div>
 
-        <!-- SECTION 10: PRACTICE TESTS -->
-        <h2 id="tests">📝 10. Practice Tests</h2>
+        <!-- SECTION 13: PRACTICE TESTS -->
+        <h2 id="tests">📝 13. Practice Tests</h2>
         
         <div class="section">
             <p>Test your knowledge with these exercises! Click "Show Answer" to check your response.</p>
