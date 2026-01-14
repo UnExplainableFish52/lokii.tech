@@ -585,6 +585,50 @@
             th, td {
                 padding: 8px;
             }
+
+            .scroll-to-top-btn {
+                width: 45px;
+                height: 45px;
+                font-size: 1.25rem;
+                bottom: 16px;
+                right: 16px;
+            }
+        }
+
+        /* Scroll to Top Button */
+        .scroll-to-top-btn {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #00bcd4, #0099aa);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5);
+            transition: all 0.25s ease-in-out;
+            z-index: 99;
+            cursor: pointer;
+            border: none;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+        }
+
+        .scroll-to-top-btn.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .scroll-to-top-btn:hover {
+            background: linear-gradient(135deg, #0099aa, #007788);
+            transform: scale(1.1) translateY(0);
+            box-shadow: 0 15px 30px rgba(0, 188, 212, 0.4);
         }
         /* Site Header - Homepage Style */
         .site-header {
@@ -1286,5 +1330,6 @@
             </p>
         </footer>
     </div>
+    <script src="../../js/main.js"></script>
 </body>
 </html>

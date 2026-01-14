@@ -423,6 +423,50 @@
             .site-nav {
                 gap: 15px;
             }
+
+            .scroll-to-top-btn {
+                width: 45px;
+                height: 45px;
+                font-size: 1.25rem;
+                bottom: 16px;
+                right: 16px;
+            }
+        }
+
+        /* Scroll to Top Button */
+        .scroll-to-top-btn {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #00ffff, #00cccc);
+            color: #0d1117;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5);
+            transition: all 0.25s ease-in-out;
+            z-index: 99;
+            cursor: pointer;
+            border: none;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+        }
+
+        .scroll-to-top-btn.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .scroll-to-top-btn:hover {
+            background: linear-gradient(135deg, #00cccc, #009999);
+            transform: scale(1.1) translateY(0);
+            box-shadow: 0 15px 30px rgba(0, 255, 255, 0.4);
         }
     </style>
 </head>
@@ -706,5 +750,6 @@
             <p>Part of the Cybersecurity Beginner Course at <a href="../../index.html">lokii.tech</a></p>
         </footer>
     </div>
+    <script src="../../js/main.js"></script>
 </body>
 </html>
