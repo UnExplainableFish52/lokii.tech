@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vim & Neovim Mastery — From Zero to Lightning Speed</title>
+    
+    <meta name="description" content="Complete Vim/Neovim guide from beginner to pro. Master modal editing, motions, macros, and become lightning fast.">
+    <meta name="author" content="lokii (UnExplainableFish52)">
+    <meta name="theme-color" content="#0d1117">
+    
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://lokii.tech/intermediate/tools/vim.html">
+    <meta property="og:title" content="Vim & Neovim Mastery | lokii.tech">
+    <meta property="og:description" content="Complete Vim/Neovim guide from beginner to pro. Master modal editing and become lightning fast.">
+    <meta property="og:image" content="https://lokii.tech/preview.jpg">
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" href="/favicon.ico">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #0d1117;
+            color: #e6edf3;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 18px;
+            line-height: 1.7;
+            padding: 40px 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 { color: #00ffff; font-size: 2.8em; font-weight: 700; text-align: center; margin-bottom: 40px; text-shadow: 0 0 10px rgba(0, 255, 255, 0.3); }
+        h2 { color: #00ffff; font-size: 1.8em; font-weight: 700; margin-top: 50px; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #30363d; }
+        h3 { color: #ffa500; font-size: 1.4em; font-weight: 600; margin-top: 30px; margin-bottom: 15px; }
+        h4 { color: #ff79c6; font-size: 1.2em; font-weight: 600; margin-top: 20px; margin-bottom: 10px; }
+        p { color: #e6edf3; font-weight: 600; margin-bottom: 15px; }
+        strong { color: #ffd700; font-weight: 700; }
+        code { background-color: #161b22; color: #7ee787; padding: 3px 8px; border-radius: 5px; font-family: 'Consolas', 'Courier New', monospace; font-size: 0.95em; }
+        pre { background-color: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 20px; overflow-x: auto; margin: 15px 0 25px 0; }
+        pre code { color: #7ee787; padding: 0; font-size: 1em; line-height: 1.6; }
+        .comment { color: #8b949e; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0 30px 0; }
+        th { background-color: #1f2937; color: #00ffff; font-weight: 700; text-align: left; padding: 15px; border: 1px solid #30363d; }
+        td { background-color: #161b22; color: #e6edf3; padding: 12px 15px; border: 1px solid #30363d; }
+        td:first-child { color: #7ee787; font-family: 'Consolas', 'Courier New', monospace; }
+        tr:hover td { background-color: #1f2937; }
+        ul, ol { margin: 15px 0 20px 30px; }
+        li { color: #e6edf3; font-weight: 600; margin-bottom: 10px; }
+        .tip { background-color: #1c3d5a; border-left: 4px solid #58a6ff; padding: 15px 20px; margin: 20px 0; border-radius: 0 8px 8px 0; }
+        .tip-title { color: #58a6ff; font-weight: 700; margin-bottom: 8px; }
+        .warning { background-color: #5a3c1c; border-left: 4px solid #ffa500; padding: 15px 20px; margin: 20px 0; border-radius: 0 8px 8px 0; }
+        .warning-title { color: #ffa500; font-weight: 700; margin-bottom: 8px; }
+        .speed-tip { background-color: #2d1f3d; border-left: 4px solid #ff79c6; padding: 15px 20px; margin: 20px 0; border-radius: 0 8px 8px 0; }
+        .speed-tip-title { color: #ff79c6; font-weight: 700; margin-bottom: 8px; }
+        .question { background-color: #1a1a2e; border: 1px solid #4a4a6a; border-radius: 8px; padding: 20px; margin: 20px 0; }
+        .question-title { color: #ff79c6; font-weight: 700; font-size: 1.1em; margin-bottom: 12px; }
+        .divider { border: 0; height: 1px; background: linear-gradient(to right, transparent, #30363d, transparent); margin: 40px 0; }
+        .cheatsheet { background-color: #0f1419; border: 2px solid #00ffff; border-radius: 10px; padding: 25px; margin: 30px 0; }
+        .section-number { color: #ff79c6; }
+        .kbd { background: linear-gradient(135deg, #2d2d2d, #1a1a1a); border: 1px solid #444; border-radius: 4px; padding: 3px 8px; font-family: 'Consolas', monospace; font-size: 0.9em; box-shadow: 0 2px 0 #333; color: #ffd700; }
+        .site-header { padding: 15px 20px; border-bottom: 1px solid #30363d; background: rgba(13, 17, 23, 0.95); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100; margin-bottom: 20px; }
+        .header-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .branding { text-decoration: none; }
+        .branding .logo { color: #00ffff; font-size: 1.5rem; font-weight: 800; }
+        .site-nav { display: flex; gap: 25px; align-items: center; }
+        .site-nav .nav-link { color: #8b949e; text-decoration: none; font-weight: 500; transition: color 0.3s ease; }
+        .site-nav .nav-link:hover { color: #00ffff; }
+        .toc { background-color: #161b22; border: 1px solid #30363d; border-radius: 10px; padding: 25px; margin: 30px 0; }
+        .toc-title { color: #00ffff; font-size: 1.3em; margin-bottom: 15px; }
+        .toc a { color: #58a6ff; text-decoration: none; }
+        .toc a:hover { text-decoration: underline; }
+        .toc ul { list-style: none; margin-left: 0; }
+        .toc li { margin-bottom: 8px; }
+        @media (max-width: 768px) { body { padding: 20px; font-size: 16px; } h1 { font-size: 2em; } }
+    </style>
+</head>
+<body>
+
+<header class="site-header">
+    <div class="header-content">
+        <a href="../../index.html" class="branding"><span class="logo">lokii.tech</span></a>
+        <nav class="site-nav">
+            <a href="../../index.html#about" class="nav-link">About</a>
+            <a href="../../index.html#resources" class="nav-link">Resources</a>
+            <a href="https://github.com/UnExplainableFish52" target="_blank" class="nav-link">GitHub</a>
+        </nav>
+    </div>
+</header>
+
+<h1>Vim & Neovim Mastery — From Zero to Lightning Speed</h1>
+
+<div class="toc">
+    <div class="toc-title">📑 Table of Contents</div>
+    <ul>
+        <li><a href="#what-is-vim">1. What is Vim/Neovim?</a></li>
+        <li><a href="#which-to-use">2. Which One Should You Use?</a></li>
+        <li><a href="#installation">3. Installation Guide</a></li>
+        <li><a href="#understanding-modes">4. Understanding Modes</a></li>
+        <li><a href="#basic-navigation">5. Basic Navigation</a></li>
+        <li><a href="#editing-basics">6. Editing Basics</a></li>
+        <li><a href="#advanced-motions">7. Advanced Motions & Text Objects</a></li>
+        <li><a href="#search-replace">8. Search & Replace</a></li>
+        <li><a href="#visual-mode">9. Visual Mode Mastery</a></li>
+        <li><a href="#registers-yanking">10. Registers & Yanking</a></li>
+        <li><a href="#macros">11. Macros — Record & Replay</a></li>
+        <li><a href="#buffers-windows">12. Buffers, Windows & Tabs</a></li>
+        <li><a href="#configuration">13. Configuration (.vimrc / init.lua)</a></li>
+        <li><a href="#plugins">14. Essential Plugins</a></li>
+        <li><a href="#speed-tips">15. ⚡ Pro Speed Tips</a></li>
+        <li><a href="#practice">16. Practice Exercises</a></li>
+        <li><a href="#cheatsheet">17. Ultimate Cheatsheet</a></li>
+    </ul>
+</div>
+
+<hr class="divider">
+
+<!-- Section 1 -->
+<h2 id="what-is-vim"><span class="section-number">1.</span> What is Vim/Neovim?</h2>
+
+<p><strong>Vim</strong> = <strong>Vi IMproved</strong> — A highly configurable, modal text editor built for efficiency.</p>
+
+<p><strong>Neovim</strong> = A modern fork of Vim with better defaults, Lua scripting, LSP support, and async plugins.</p>
+
+<h3>Why Learn Vim?</h3>
+<table>
+    <tr><th>Reason</th><th>Explanation</th></tr>
+    <tr><td>Speed</td><td>Edit text at the speed of thought — no mouse needed</td></tr>
+    <tr><td>Ubiquity</td><td>Available on every Unix system, SSH servers, containers</td></tr>
+    <tr><td>Efficiency</td><td>Fewer keystrokes = less RSI, more productivity</td></tr>
+    <tr><td>Extensibility</td><td>Thousands of plugins for any workflow</td></tr>
+    <tr><td>Portability</td><td>Your config travels with you</td></tr>
+</table>
+
+<div class="tip">
+    <div class="tip-title">💡 The Vim Way</div>
+    <p>Vim is a <strong>language</strong>, not just an editor. Commands combine like words: <code>d</code> (delete) + <code>w</code> (word) = <code>dw</code> (delete word). Once you learn the grammar, you can infinitely combine commands.</p>
+</div>
+
+<hr class="divider">
+
+<!-- Section 2 -->
+<h2 id="which-to-use"><span class="section-number">2.</span> Which One Should You Use?</h2>
+
+<table>
+    <tr><th>Feature</th><th>Vim</th><th>Neovim</th></tr>
+    <tr><td>Configuration</td><td>Vimscript (.vimrc)</td><td>Lua or Vimscript (init.lua)</td></tr>
+    <tr><td>LSP Support</td><td>Via plugins (CoC)</td><td>Built-in native LSP</td></tr>
+    <tr><td>Async Plugins</td><td>Limited</td><td>Native async support</td></tr>
+    <tr><td>Modern Features</td><td>Classic</td><td>Floating windows, tree-sitter</td></tr>
+    <tr><td>Plugin Ecosystem</td><td>Mature</td><td>Growing rapidly</td></tr>
+    <tr><td>Default Settings</td><td>Minimal</td><td>Sensible defaults</td></tr>
+</table>
+
+<div class="tip">
+    <div class="tip-title">🎯 Recommendation</div>
+    <p><strong>Beginners:</strong> Start with <strong>Neovim</strong> — better defaults, modern features, and an amazing plugin ecosystem. <br>
+    <strong>Servers/SSH:</strong> Learn basic <strong>Vim</strong> — it's everywhere by default.</p>
+</div>
+
+<hr class="divider">
+
+<!-- Section 3 -->
+<h2 id="installation"><span class="section-number">3.</span> Installation Guide</h2>
+
+<h3>Linux</h3>
+<pre><code><span class="comment"># Vim</span>
+sudo apt install vim          <span class="comment"># Debian/Ubuntu</span>
+sudo pacman -S vim            <span class="comment"># Arch</span>
+sudo dnf install vim          <span class="comment"># Fedora</span>
+
+<span class="comment"># Neovim</span>
+sudo apt install neovim
+sudo pacman -S neovim
+sudo dnf install neovim</code></pre>
+
+<h3>macOS</h3>
+<pre><code>brew install vim
+brew install neovim</code></pre>
+
+<h3>Windows</h3>
+<pre><code><span class="comment"># Using Chocolatey</span>
+choco install vim
+choco install neovim
+
+<span class="comment"># Using Scoop</span>
+scoop install vim
+scoop install neovim
+
+<span class="comment"># Using winget</span>
+winget install vim.vim
+winget install Neovim.Neovim</code></pre>
+
+<h3>Verify Installation</h3>
+<pre><code>vim --version
+nvim --version</code></pre>
+
+<hr class="divider">
+
+<!-- Section 4 -->
+<h2 id="understanding-modes"><span class="section-number">4.</span> Understanding Modes — The Core Concept</h2>
+
+<p>Vim is a <strong>modal editor</strong> — different modes for different tasks. This is what makes it powerful!</p>
+
+<table>
+    <tr><th>Mode</th><th>Purpose</th><th>Enter With</th><th>Exit With</th></tr>
+    <tr><td>Normal</td><td>Navigation, commands</td><td><code>Esc</code></td><td>—</td></tr>
+    <tr><td>Insert</td><td>Type text</td><td><code>i</code>, <code>a</code>, <code>o</code></td><td><code>Esc</code></td></tr>
+    <tr><td>Visual</td><td>Select text</td><td><code>v</code>, <code>V</code>, <code>Ctrl+v</code></td><td><code>Esc</code></td></tr>
+    <tr><td>Command</td><td>Ex commands</td><td><code>:</code></td><td><code>Enter</code> or <code>Esc</code></td></tr>
+    <tr><td>Replace</td><td>Overwrite text</td><td><code>R</code></td><td><code>Esc</code></td></tr>
+</table>
+
+<div class="warning">
+    <div class="warning-title">⚠️ Muscle Memory Alert</div>
+    <p>The #1 beginner mistake: staying in Insert mode. <strong>Normal mode is your home base!</strong> Learn to tap <span class="kbd">Esc</span> (or remap to <span class="kbd">jk</span>) constantly.</p>
+</div>
+
+<h3>Ways to Enter Insert Mode</h3>
+<table>
+    <tr><th>Key</th><th>Action</th></tr>
+    <tr><td>i</td><td>Insert before cursor</td></tr>
+    <tr><td>I</td><td>Insert at beginning of line</td></tr>
+    <tr><td>a</td><td>Append after cursor</td></tr>
+    <tr><td>A</td><td>Append at end of line</td></tr>
+    <tr><td>o</td><td>Open new line below</td></tr>
+    <tr><td>O</td><td>Open new line above</td></tr>
+    <tr><td>s</td><td>Substitute character (delete & insert)</td></tr>
+    <tr><td>S</td><td>Substitute entire line</td></tr>
+</table>
+
+<hr class="divider">
+
+<!-- Section 5 -->
+<h2 id="basic-navigation"><span class="section-number">5.</span> Basic Navigation</h2>
+
+<h3>Character Movement</h3>
+<table>
+    <tr><th>Key</th><th>Action</th><th>Mnemonic</th></tr>
+    <tr><td>h</td><td>Move left</td><td>←</td></tr>
+    <tr><td>j</td><td>Move down</td><td>↓ (j hangs down)</td></tr>
+    <tr><td>k</td><td>Move up</td><td>↑ (k points up)</td></tr>
+    <tr><td>l</td><td>Move right</td><td>→</td></tr>
+</table>
+
+<h3>Word Movement</h3>
+<table>
+    <tr><th>Key</th><th>Action</th></tr>
+    <tr><td>w</td><td>Next word (start)</td></tr>
+    <tr><td>W</td><td>Next WORD (whitespace-separated)</td></tr>
+    <tr><td>e</td><td>End of word</td></tr>
+    <tr><td>E</td><td>End of WORD</td></tr>
+    <tr><td>b</td><td>Back to start of word</td></tr>
+    <tr><td>B</td><td>Back to start of WORD</td></tr>
+</table>
+
+<h3>Line Movement</h3>
+<table>
+    <tr><th>Key</th><th>Action</th></tr>
+    <tr><td>0</td><td>Start of line</td></tr>
+    <tr><td>^</td><td>First non-blank character</td></tr>
+    <tr><td>$</td><td>End of line</td></tr>
+    <tr><td>g_</td><td>Last non-blank character</td></tr>
+</table>
+
+<h3>Screen Movement</h3>
+<table>
+    <tr><th>Key</th><th>Action</th></tr>
+    <tr><td>gg</td><td>Go to first line</td></tr>
+    <tr><td>G</td><td>Go to last line</td></tr>
+    <tr><td>:n</td><td>Go to line n</td></tr>
+    <tr><td>Ctrl+d</td><td>Scroll down half page</td></tr>
+    <tr><td>Ctrl+u</td><td>Scroll up half page</td></tr>
+    <tr><td>Ctrl+f</td><td>Scroll forward full page</td></tr>
+    <tr><td>Ctrl+b</td><td>Scroll backward full page</td></tr>
+    <tr><td>H</td><td>Top of screen (High)</td></tr>
+    <tr><td>M</td><td>Middle of screen</td></tr>
+    <tr><td>L</td><td>Bottom of screen (Low)</td></tr>
+    <tr><td>zz</td><td>Center cursor on screen</td></tr>
+</table>
+
+<div class="speed-tip">
+    <div class="speed-tip-title">⚡ Speed Tip: Use Counts!</div>
+    <p>Prefix any motion with a number: <code>5j</code> = move 5 lines down, <code>3w</code> = move 3 words forward, <code>10G</code> = go to line 10.</p>
+</div>
+
+<hr class="divider">
+
+<!-- Section 6 -->
+<h2 id="editing-basics"><span class="section-number">6.</span> Editing Basics</h2>
+
+<h3>Delete Commands</h3>
+<table>
+    <tr><th>Command</th><th>Action</th></tr>
+    <tr><td>x</td><td>Delete character under cursor</td></tr>
+    <tr><td>X</td><td>Delete character before cursor</td></tr>
+    <tr><td>dd</td><td>Delete entire line</td></tr>
+    <tr><td>D</td><td>Delete from cursor to end of line</td></tr>
+    <tr><td>dw</td><td>Delete word</td></tr>
+    <tr><td>d$</td><td>Delete to end of line</td></tr>
+    <tr><td>d0</td><td>Delete to start of line</td></tr>
+    <tr><td>dG</td><td>Delete to end of file</td></tr>
+    <tr><td>dgg</td><td>Delete to start of file</td></tr>
+</table>
+
+<h3>Change Commands</h3>
+<p>Change = Delete + Enter Insert mode</p>
+<table>
+    <tr><th>Command</th><th>Action</th></tr>
+    <tr><td>cc</td><td>Change entire line</td></tr>
+    <tr><td>C</td><td>Change from cursor to end of line</td></tr>
+    <tr><td>cw</td><td>Change word</td></tr>
+    <tr><td>ciw</td><td>Change inner word</td></tr>
+    <tr><td>ci"</td><td>Change inside quotes</td></tr>
+    <tr><td>ci(</td><td>Change inside parentheses</td></tr>
+</table>
+
+<h3>Copy (Yank) & Paste</h3>
+<table>
+    <tr><th>Command</th><th>Action</th></tr>
+    <tr><td>yy</td><td>Yank (copy) line</td></tr>
+    <tr><td>Y</td><td>Yank line (same as yy)</td></tr>
+    <tr><td>yw</td><td>Yank word</td></tr>
+    <tr><td>y$</td><td>Yank to end of line</td></tr>
+    <tr><td>p</td><td>Paste after cursor</td></tr>
+    <tr><td>P</td><td>Paste before cursor</td></tr>
+</table>
+
+<h3>Undo & Redo</h3>
+<table>
+    <tr><th>Command</th><th>Action</th></tr>
+    <tr><td>u</td><td>Undo</td></tr>
+    <tr><td>Ctrl+r</td><td>Redo</td></tr>
+    <tr><td>U</td><td>Undo all changes on line</td></tr>
+    <tr><td>.</td><td>Repeat last command (POWERFUL!)</td></tr>
+</table>
+
+<div class="speed-tip">
+    <div class="speed-tip-title">⚡ The Dot Command is MAGIC</div>
+    <p>The <code>.</code> command repeats your last change. Example: <code>ciw</code>hello<code>Esc</code> then navigate to another word and press <code>.</code> to replace it with "hello" too!</p>
+</div>
+
+<hr class="divider">
+
+<!-- Section 7 -->
+<h2 id="advanced-motions"><span class="section-number">7.</span> Advanced Motions & Text Objects</h2>
+
+<h3>The Vim Grammar</h3>
+<p><strong>Operator + Motion = Action</strong></p>
+<pre><code><span class="comment"># Operators</span>
+d = delete
+c = change
+y = yank (copy)
+v = visual select
+> = indent right
+< = indent left
+
+<span class="comment"># Formula: operator + [count] + motion</span>
+d2w   = delete 2 words
+c3j   = change 3 lines down
+y5l   = yank 5 characters right</code></pre>
+
+<h3>Text Objects — The PRO Secret</h3>
+<p>Text objects let you operate on semantic units of text.</p>
+
+<table>
+    <tr><th>Object</th><th>Meaning</th><th>Example</th></tr>
+    <tr><td>iw</td><td>inner word</td><td><code>diw</code> = delete word</td></tr>
+    <tr><td>aw</td><td>a word (includes space)</td><td><code>daw</code> = delete word + space</td></tr>
+    <tr><td>is</td><td>inner sentence</td><td><code>cis</code> = change sentence</td></tr>
+    <tr><td>ip</td><td>inner paragraph</td><td><code>yip</code> = yank paragraph</td></tr>
+    <tr><td>i"</td><td>inside quotes</td><td><code>ci"</code> = change inside quotes</td></tr>
+    <tr><td>a"</td><td>around quotes</td><td><code>da"</code> = delete including quotes</td></tr>
+    <tr><td>i(</td><td>inside parentheses</td><td><code>di(</code> = delete inside parens</td></tr>
+    <tr><td>i{</td><td>inside curly braces</td><td><code>ci{</code> = change inside braces</td></tr>
+    <tr><td>i[</td><td>inside brackets</td><td><code>yi[</code> = yank inside brackets</td></tr>
+    <tr><td>it</td><td>inside HTML tag</td><td><code>cit</code> = change tag content</td></tr>
+    <tr><td>at</td><td>around HTML tag</td><td><code>dat</code> = delete entire tag</td></tr>
+</table>
+
+<div class="speed-tip">
+    <div class="speed-tip-title">⚡ Text Objects = 10x Speed</div>
+    <p>Instead of navigating: just <code>ci"</code> anywhere inside quotes to change them. <code>dap</code> deletes entire paragraph. This is the secret weapon!</p>
+</div>
+
+<h3>Find & Till Motions</h3>
+<table>
+    <tr><th>Command</th><th>Action</th></tr>
+    <tr><td>f{char}</td><td>Jump to next {char} on line</td></tr>
+    <tr><td>F{char}</td><td>Jump to previous {char}</td></tr>
+    <tr><td>t{char}</td><td>Jump till (before) next {char}</td></tr>
+    <tr><td>T{char}</td><td>Jump till previous {char}</td></tr>
+    <tr><td>;</td><td>Repeat last f/t motion</td></tr>
+    <tr><td>,</td><td>Repeat f/t in reverse direction</td></tr>
+</table>
+
+<pre><code><span class="comment"># Delete until comma</span>
+dt,
+
+<span class="comment"># Change to next quote</span>
+ct"
+
+<span class="comment"># Delete including the comma</span>
+df,</code></pre>
+
+<hr class="divider">
+
+<!-- Section 8 -->
+<h2 id="search-replace"><span class="section-number">8.</span> Search & Replace</h2>
+
+<h3>Basic Search</h3>
+<table>
+    <tr><th>Command</th><th>Action</th></tr>
+    <tr><td>/pattern</td><td>Search forward</td></tr>
+    <tr><td>?pattern</td><td>Search backward</td></tr>
+    <tr><td>n</td><td>Next match</td></tr>
+    <tr><td>N</td><td>Previous match</td></tr>
+    <tr><td>*</td><td>Search word under cursor (forward)</td></tr>
+    <tr><td>#</td><td>Search word under cursor (backward)</td></tr>
+</table>
+
+<h3>Search & Replace (Substitute)</h3>
+<pre><code><span class="comment"># Basic syntax</span>
+:s/old/new/           <span class="comment"># Replace first on current line</span>
+:s/old/new/g          <span class="comment"># Replace all on current line</span>
+:%s/old/new/g         <span class="comment"># Replace all in file</span>
+:%s/old/new/gc        <span class="comment"># Replace all with confirmation</span>
+
+<span class="comment"># Case insensitive</span>
+:%s/old/new/gi
+
+<span class="comment"># Replace in range (lines 5-20)</span>
+:5,20s/old/new/g
+
+<span class="comment"># Replace in visual selection</span>
+:'<,'>s/old/new/g</code></pre>
+
+<h3>Useful Search Patterns</h3>
+<pre><code><span class="comment"># Word boundaries</span>
+/\<word\>             <span class="comment"># Exact word match</span>
+
+<span class="comment"># Case insensitive</span>
+/pattern\c
+
+<span class="comment"># Very magic mode (better regex)</span>
+/\v(pattern1|pattern2)</code></pre>
+
+<div class="tip">
+    <div class="tip-title">💡 Clear Search Highlight</div>
+    <p>After searching, clear the highlight with <code>:noh</code> or <code>:nohlsearch</code>. Pro tip: map this to a key like <code>&lt;leader&gt;h</code>.</p>
+</div>
+
+<hr class="divider">
+
+<!-- Section 9 -->
+<h2 id="visual-mode"><span class="section-number">9.</span> Visual Mode Mastery</h2>
+
+<h3>Visual Mode Types</h3>
+<table>
+    <tr><th>Key</th><th>Mode</th><th>Use Case</th></tr>
+    <tr><td>v</td><td>Character-wise</td><td>Select characters</td></tr>
+    <tr><td>V</td><td>Line-wise</td><td>Select entire lines</td></tr>
+    <tr><td>Ctrl+v</td><td>Block (column)</td><td>Select columns/rectangles</td></tr>
+</table>
+
+<h3>Visual Mode Operations</h3>
+<pre><code><span class="comment"># Select and operate</span>
+v + motion + operator
+viw + y              <span class="comment"># Select inner word, yank</span>
+V5j + d              <span class="comment"># Select 5 lines, delete</span>
+
+<span class="comment"># Block mode magic (Ctrl+v)</span>
+Ctrl+v + 3j + I + // + Esc   <span class="comment"># Comment 4 lines</span>
+Ctrl+v + 3j + $ + A + ; + Esc  <span class="comment"># Add semicolon to 4 lines</span></code></pre>
+
+<div class="speed-tip">
+    <div class="speed-tip-title">⚡ Block Mode is Incredible</div>
+    <p><code>Ctrl+v</code> lets you edit multiple lines at once. Select a column, press <code>I</code> to insert, type text, press <code>Esc</code> — text appears on ALL selected lines!</p>
+</div>
+
+<h3>Useful Visual Commands</h3>
+<table>
+    <tr><th>Command</th><th>Action</th></tr>
+    <tr><td>o</td><td>Move to other end of selection</td></tr>
+    <tr><td>O</td><td>Move to other corner (block mode)</td></tr>
+    <tr><td>gv</td><td>Reselect last visual selection</td></tr>
+    <tr><td>></td><td>Indent selection</td></tr>
+    <tr><td><</td><td>Unindent selection</td></tr>
+    <tr><td>=</td><td>Auto-indent selection</td></tr>
+    <tr><td>~</td><td>Toggle case</td></tr>
+    <tr><td>U</td><td>Uppercase</td></tr>
+    <tr><td>u</td><td>Lowercase</td></tr>
+</table>
+
+<hr class="divider">
+
+<!-- Section 10 -->
+<h2 id="registers-yanking"><span class="section-number">10.</span> Registers & Advanced Yanking</h2>
+
+<p>Vim has multiple "clipboards" called registers.</p>
+
+<h3>Register Types</h3>
+<table>
+    <tr><th>Register</th><th>Description</th></tr>
+    <tr><td>"</td><td>Default (unnamed) register</td></tr>
+    <tr><td>0</td><td>Yank register (last yanked text)</td></tr>
+    <tr><td>1-9</td><td>Delete history (1 = most recent)</td></tr>
+    <tr><td>a-z</td><td>Named registers (you control)</td></tr>
+    <tr><td>A-Z</td><td>Append to named register</td></tr>
+    <tr><td>+</td><td>System clipboard</td></tr>
+    <tr><td>*</td><td>Primary selection (X11)</td></tr>
+    <tr><td>_</td><td>Black hole (delete without saving)</td></tr>
+    <tr><td>/</td><td>Last search pattern</td></tr>
+</table>
+
+<h3>Using Registers</h3>
+<pre><code><span class="comment"># View all registers</span>
+:registers
+:reg
+
+<span class="comment"># Yank to register a</span>
+"ayy
+
+<span class="comment"># Paste from register a</span>
+"ap
+
+<span class="comment"># Yank to system clipboard</span>
+"+yy
+
+<span class="comment"># Paste from system clipboard</span>
+"+p
+
+<span class="comment"># Delete without affecting registers</span>
+"_dd</code></pre>
+
+<div class="tip">
+    <div class="tip-title">💡 The 0 Register Trick</div>
+    <p>When you yank text, it goes to register <code>0</code>. When you delete, it goes to <code>"</code>. Use <code>"0p</code> to paste your last yank even after deleting!</p>
+</div>
+
+<hr class="divider">
+
+<!-- Section 11 -->
+<h2 id="macros"><span class="section-number">11.</span> Macros — Record & Replay</h2>
+
+<p>Macros record keystrokes and replay them. This is <strong>automation gold</strong>!</p>
+
+<h3>Basic Macro Workflow</h3>
+<pre><code><span class="comment"># 1. Start recording to register q</span>
+qq
+
+<span class="comment"># 2. Perform your actions</span>
+...edit commands...
+
+<span class="comment"># 3. Stop recording</span>
+q
+
+<span class="comment"># 4. Replay macro</span>
+@q
+
+<span class="comment"># 5. Replay again</span>
+@@
+
+<span class="comment"># 6. Replay 10 times</span>
+10@q</code></pre>
+
+<h3>Macro Example: Add Semicolons</h3>
+<pre><code><span class="comment"># Starting position: cursor on first line</span>
+qq          <span class="comment"># Start recording</span>
+A;          <span class="comment"># Go to end, insert semicolon</span>
+Esc         <span class="comment"># Exit insert mode</span>
+j           <span class="comment"># Move to next line</span>
+q           <span class="comment"># Stop recording</span>
+
+99@q        <span class="comment"># Apply to next 99 lines</span></code></pre>
+
+<div class="speed-tip">
+    <div class="speed-tip-title">⚡ Macro Pro Tips</div>
+    <p>1. Start macros at line beginning (<code>0</code>) or on a word (<code>b</code>)<br>
+    2. Use <code>/pattern&lt;CR&gt;</code> to jump consistently<br>
+    3. End with motion to next target for chaining<br>
+    4. Save macros in your vimrc: <code>let @q = 'A;^[j'</code></p>
+</div>
+
+<hr class="divider">
+
+<!-- Section 12 -->
+<h2 id="buffers-windows"><span class="section-number">12.</span> Buffers, Windows & Tabs</h2>
+
+<h3>Buffers (Open Files)</h3>
+<pre><code><span class="comment"># List buffers</span>
+:ls
+:buffers
+
+<span class="comment"># Switch buffers</span>
+:b [number]     <span class="comment"># Go to buffer number</span>
+:b [name]       <span class="comment"># Go to buffer by name</span>
+:bn             <span class="comment"># Next buffer</span>
+:bp             <span class="comment"># Previous buffer</span>
+:bd             <span class="comment"># Delete (close) buffer</span>
+
+<span class="comment"># Open file in new buffer</span>
+:e filename</code></pre>
+
+<h3>Windows (Splits)</h3>
+<pre><code><span class="comment"># Split windows</span>
+:sp [file]      <span class="comment"># Horizontal split</span>
+:vsp [file]     <span class="comment"># Vertical split</span>
+Ctrl+w s        <span class="comment"># Horizontal split</span>
+Ctrl+w v        <span class="comment"># Vertical split</span>
+
+<span class="comment"># Navigate windows</span>
+Ctrl+w h        <span class="comment"># Move left</span>
+Ctrl+w j        <span class="comment"># Move down</span>
+Ctrl+w k        <span class="comment"># Move up</span>
+Ctrl+w l        <span class="comment"># Move right</span>
+Ctrl+w w        <span class="comment"># Cycle windows</span>
+
+<span class="comment"># Resize</span>
+Ctrl+w =        <span class="comment"># Equal size</span>
+Ctrl+w >        <span class="comment"># Wider</span>
+Ctrl+w <        <span class="comment"># Narrower</span>
+Ctrl+w +        <span class="comment"># Taller</span>
+Ctrl+w -        <span class="comment"># Shorter</span>
+
+<span class="comment"># Close</span>
+:q              <span class="comment"># Close window</span>
+:only           <span class="comment"># Close all other windows</span></code></pre>
+
+<h3>Tabs</h3>
+<pre><code>:tabnew [file]  <span class="comment"># New tab</span>
+:tabn           <span class="comment"># Next tab</span>
+:tabp           <span class="comment"># Previous tab</span>
+gt              <span class="comment"># Next tab</span>
+gT              <span class="comment"># Previous tab</span>
+:tabclose       <span class="comment"># Close tab</span></code></pre>
+
+<hr class="divider">
+
+<!-- Section 13 -->
+<h2 id="configuration"><span class="section-number">13.</span> Configuration</h2>
+
+<h3>Config File Locations</h3>
+<pre><code><span class="comment"># Vim</span>
+~/.vimrc                    <span class="comment"># Linux/Mac</span>
+~/_vimrc                    <span class="comment"># Windows</span>
+
+<span class="comment"># Neovim</span>
+~/.config/nvim/init.vim     <span class="comment"># Vimscript</span>
+~/.config/nvim/init.lua     <span class="comment"># Lua (recommended)</span></code></pre>
+
+<h3>Essential .vimrc Settings</h3>
+<pre><code>" Basic settings
+set nocompatible
+set number relativenumber   " Line numbers
+set tabstop=4               " Tab width
+set shiftwidth=4            " Indent width
+set expandtab               " Spaces instead of tabs
+set autoindent              " Auto indent
+set smartindent             " Smart indent
+set wrap                    " Wrap lines
+set linebreak               " Wrap at word boundaries
+
+" Search
+set ignorecase              " Case insensitive
+set smartcase               " Unless uppercase used
+set hlsearch                " Highlight matches
+set incsearch               " Incremental search
+
+" UI
+set cursorline              " Highlight current line
+set showmatch               " Show matching brackets
+set wildmenu                " Command completion
+set scrolloff=8             " Keep 8 lines visible
+set signcolumn=yes          " Always show sign column
+set colorcolumn=80          " Show column marker
+
+" Performance
+set lazyredraw              " Don't redraw during macros
+set updatetime=300          " Faster updates
+
+" Key mappings
+let mapleader = " "         " Space as leader
+inoremap jk &lt;Esc&gt;           " jk to escape
+nnoremap &lt;leader&gt;w :w&lt;CR&gt;   " Quick save
+nnoremap &lt;leader&gt;h :noh&lt;CR&gt; " Clear search</code></pre>
+
+<h3>Neovim init.lua Basics</h3>
+<pre><code>-- Basic options
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
+vim.opt.smartindent = true
+vim.opt.cursorline = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+
+-- Leader key
+vim.g.mapleader = " "
+
+-- Key mappings
+vim.keymap.set('i', 'jk', '&lt;Esc&gt;')
+vim.keymap.set('n', '&lt;leader&gt;w', ':w&lt;CR&gt;')
+vim.keymap.set('n', '&lt;leader&gt;h', ':noh&lt;CR&gt;')</code></pre>
+
+<hr class="divider">
+
+<!-- Section 14 -->
+<h2 id="plugins"><span class="section-number">14.</span> Essential Plugins</h2>
+
+<h3>Plugin Managers</h3>
+<table>
+    <tr><th>Manager</th><th>For</th></tr>
+    <tr><td>vim-plug</td><td>Vim &amp; Neovim</td></tr>
+    <tr><td>packer.nvim</td><td>Neovim (Lua)</td></tr>
+    <tr><td>lazy.nvim</td><td>Neovim (modern, recommended)</td></tr>
+</table>
+
+<h3>Must-Have Plugins</h3>
+<table>
+    <tr><th>Plugin</th><th>Purpose</th></tr>
+    <tr><td>nvim-treesitter</td><td>Better syntax highlighting</td></tr>
+    <tr><td>nvim-lspconfig</td><td>Language Server Protocol</td></tr>
+    <tr><td>telescope.nvim</td><td>Fuzzy finder (files, grep, etc.)</td></tr>
+    <tr><td>nvim-cmp</td><td>Autocompletion</td></tr>
+    <tr><td>nvim-tree / neo-tree</td><td>File explorer</td></tr>
+    <tr><td>lualine.nvim</td><td>Status line</td></tr>
+    <tr><td>gitsigns.nvim</td><td>Git integration</td></tr>
+    <tr><td>vim-surround</td><td>Surround text objects</td></tr>
+    <tr><td>comment.nvim</td><td>Easy commenting</td></tr>
+    <tr><td>which-key.nvim</td><td>Keybinding hints</td></tr>
+</table>
+
+<div class="tip">
+    <div class="tip-title">💡 Starter Configs</div>
+    <p>Don't build from scratch! Try these preconfigured Neovim distros:<br>
+    • <strong>LazyVim</strong> — Modern, fast, well-maintained<br>
+    • <strong>NvChad</strong> — Beautiful, beginner-friendly<br>
+    • <strong>AstroNvim</strong> — Feature-rich, extensible<br>
+    • <strong>LunarVim</strong> — IDE-like experience</p>
+</div>
+
+<hr class="divider">
+
+<!-- Section 15 -->
+<h2 id="speed-tips"><span class="section-number">15.</span> ⚡ Pro Speed Tips — Be Lightning Fast</h2>
+
+<h3>Mindset Shifts</h3>
+<ol>
+    <li><strong>Stay in Normal mode</strong> — It's your home. Quick edits, back to Normal.</li>
+    <li><strong>Think in text objects</strong> — <code>ciw</code>, <code>dap</code>, <code>yi"</code> instead of selecting</li>
+    <li><strong>Use counts</strong> — <code>5dd</code>, <code>3yy</code>, <code>10j</code></li>
+    <li><strong>Use the dot command</strong> — Repeat with <code>.</code></li>
+    <li><strong>Use macros for repetition</strong> — Record once, replay forever</li>
+</ol>
+
+<h3>Speed Techniques</h3>
+
+<h4>1. Replace Escape with jk</h4>
+<pre><code>inoremap jk &lt;Esc&gt;</code></pre>
+<p>Your fingers never leave home row!</p>
+
+<h4>2. Use Leader for Common Actions</h4>
+<pre><code>let mapleader = " "
+nnoremap &lt;leader&gt;w :w&lt;CR&gt;     " Save
+nnoremap &lt;leader&gt;q :q&lt;CR&gt;     " Quit
+nnoremap &lt;leader&gt;e :Ex&lt;CR&gt;    " File explorer</code></pre>
+
+<h4>3. Jump, Don't Scroll</h4>
+<pre><code>/ and ?        <span class="comment"># Search to jump</span>
+*              <span class="comment"># Jump to word under cursor</span>
+f and t        <span class="comment"># Line-level precision</span>
+{  }           <span class="comment"># Jump paragraphs</span>
+]]  [[         <span class="comment"># Jump sections/functions</span>
+gd             <span class="comment"># Go to definition</span>
+Ctrl+o Ctrl+i  <span class="comment"># Jump list back/forward</span></code></pre>
+
+<h4>4. Use Marks for Quick Navigation</h4>
+<pre><code>ma             <span class="comment"># Set mark 'a' at cursor</span>
+'a             <span class="comment"># Jump to line of mark 'a'</span>
+`a             <span class="comment"># Jump to exact position of mark 'a'</span>
+''             <span class="comment"># Jump to last position</span>
+'.             <span class="comment"># Jump to last edit</span></code></pre>
+
+<h4>5. Master ciw, ci", ci(</h4>
+<p>These 3 commands will change your life:</p>
+<pre><code>ciw    <span class="comment"># Change word (anywhere in word)</span>
+ci"    <span class="comment"># Change inside quotes</span>
+ci(    <span class="comment"># Change inside parentheses</span>
+ci{    <span class="comment"># Change inside braces</span>
+cit    <span class="comment"># Change inside HTML tag</span></code></pre>
+
+<h4>6. Quick Fixes</h4>
+<pre><code>~      <span class="comment"># Toggle case of character</span>
+xp     <span class="comment"># Swap two characters</span>
+ddp    <span class="comment"># Swap two lines</span>
+J      <span class="comment"># Join lines</span>
+gU{motion}  <span class="comment"># Uppercase</span>
+gu{motion}  <span class="comment"># Lowercase</span></code></pre>
+
+<h4>7. Global Commands</h4>
+<pre><code>:g/pattern/d       <span class="comment"># Delete all lines matching pattern</span>
+:g!/pattern/d      <span class="comment"># Delete lines NOT matching</span>
+:g/pattern/normal A;  <span class="comment"># Append ; to matching lines</span></code></pre>
+
+<div class="speed-tip">
+    <div class="speed-tip-title">⚡ The Ultimate Speed Hierarchy</div>
+    <p><strong>Level 1:</strong> hjkl instead of arrows<br>
+    <strong>Level 2:</strong> word motions (w, b, e)<br>
+    <strong>Level 3:</strong> text objects (ciw, ci", dap)<br>
+    <strong>Level 4:</strong> search/find motions (/, f, t)<br>
+    <strong>Level 5:</strong> marks and jumps<br>
+    <strong>Level 6:</strong> macros and global commands<br>
+    <strong>Master:</strong> Thinking in Vim grammar</p>
+</div>
+
+<hr class="divider">
+
+<!-- Section 16 -->
+<h2 id="practice"><span class="section-number">16.</span> Practice Exercises</h2>
+
+<h3>Beginner Exercises</h3>
+
+<div class="question">
+    <div class="question-title">Exercise 1: Basic Navigation</div>
+    <p>Open a file with 50+ lines. Navigate using only hjkl for 5 minutes. No arrow keys!</p>
+    <p><strong>Goal:</strong> Build muscle memory for basic movement.</p>
+</div>
+
+<div class="question">
+    <div class="question-title">Exercise 2: Word Jumps</div>
+    <p>Move through a paragraph using only <code>w</code>, <code>b</code>, and <code>e</code>. Count how many keystrokes to get from start to end.</p>
+</div>
+
+<div class="question">
+    <div class="question-title">Exercise 3: Delete Practice</div>
+    <p>Create lines of text. Practice: <code>dd</code>, <code>3dd</code>, <code>dw</code>, <code>d$</code>, <code>d0</code></p>
+</div>
+
+<h3>Intermediate Exercises</h3>
+
+<div class="question">
+    <div class="question-title">Exercise 4: Text Objects</div>
+    <p>Given: <code>const name = "John Doe";</code><br>
+    Change "John Doe" to "Jane Smith" using only <code>ci"</code></p>
+</div>
+
+<div class="question">
+    <div class="question-title">Exercise 5: Function Editing</div>
+    <p>Given a function with content in curly braces:<br>
+    <code>function test() { old content here }</code><br>
+    Replace all content inside {} using <code>ci{</code></p>
+</div>
+
+<div class="question">
+    <div class="question-title">Exercise 6: Search and Replace</div>
+    <p>Replace all occurrences of "foo" with "bar" in a file.</p>
+    <pre><code>:%s/foo/bar/g</code></pre>
+</div>
+
+<div class="question">
+    <div class="question-title">Exercise 7: Visual Block</div>
+    <p>Add <code>//</code> comment prefix to 10 consecutive lines using <code>Ctrl+v</code></p>
+    <pre><code>Ctrl+v → 9j → I → // → Esc</code></pre>
+</div>
+
+<h3>Advanced Exercises</h3>
+
+<div class="question">
+    <div class="question-title">Exercise 8: Macro Challenge</div>
+    <p>You have 20 lines like: <code>item1</code>, <code>item2</code>...<br>
+    Convert all to: <code>- [ ] item1</code><br>
+    Record macro, apply to all lines.</p>
+    <pre><code>qq0i- [ ] &lt;Esc&gt;jq
+19@q</code></pre>
+</div>
+
+<div class="question">
+    <div class="question-title">Exercise 9: Registers</div>
+    <p>Yank a line to register "a", yank another to "b". Paste both in different locations.</p>
+    <pre><code>"ayy    <span class="comment"># Yank to a</span>
+"byy    <span class="comment"># Yank to b</span>
+"ap     <span class="comment"># Paste from a</span>
+"bp     <span class="comment"># Paste from b</span></code></pre>
+</div>
+
+<div class="question">
+    <div class="question-title">Exercise 10: The Dot Command</div>
+    <p>Change "old" to "new" on 5 different lines using <code>ciw</code> once, then <code>n.</code> for others.</p>
+    <pre><code>/old&lt;CR&gt;   <span class="comment"># Find first</span>
+ciwnew&lt;Esc&gt; <span class="comment"># Change it</span>
+n.         <span class="comment"># Find next, repeat change</span>
+n.         <span class="comment"># Repeat...</span></code></pre>
+</div>
+
+<h3>Practice Resources</h3>
+<ul>
+    <li><strong>vimtutor</strong> — Run <code>vimtutor</code> in terminal (built-in!)</li>
+    <li><strong>Vim Adventures</strong> — vim-adventures.com (game)</li>
+    <li><strong>OpenVim</strong> — openvim.com (interactive)</li>
+    <li><strong>Vim Golf</strong> — vimgolf.com (challenges)</li>
+    <li><strong>ThePrimeagen's YouTube</strong> — Speed editing tutorials</li>
+</ul>
+
+<hr class="divider">
+
+<!-- Section 17 -->
+<h2 id="cheatsheet"><span class="section-number">17.</span> Ultimate Cheatsheet</h2>
+
+<div class="cheatsheet">
+    <h3>Survival Kit</h3>
+    <table>
+        <tr><th>Command</th><th>Action</th></tr>
+        <tr><td>:w</td><td>Save</td></tr>
+        <tr><td>:q</td><td>Quit</td></tr>
+        <tr><td>:wq</td><td>Save and quit</td></tr>
+        <tr><td>:q!</td><td>Quit without saving</td></tr>
+        <tr><td>u</td><td>Undo</td></tr>
+        <tr><td>Ctrl+r</td><td>Redo</td></tr>
+        <tr><td>Esc</td><td>Return to Normal mode</td></tr>
+    </table>
+
+    <h3>Movement</h3>
+    <table>
+        <tr><th>Command</th><th>Action</th></tr>
+        <tr><td>hjkl</td><td>Left/Down/Up/Right</td></tr>
+        <tr><td>w / b</td><td>Next/Previous word</td></tr>
+        <tr><td>0 / $</td><td>Start/End of line</td></tr>
+        <tr><td>gg / G</td><td>Start/End of file</td></tr>
+        <tr><td>Ctrl+d / Ctrl+u</td><td>Half page down/up</td></tr>
+        <tr><td>f{char} / t{char}</td><td>Find/Till character</td></tr>
+    </table>
+
+    <h3>Editing</h3>
+    <table>
+        <tr><th>Command</th><th>Action</th></tr>
+        <tr><td>i / a</td><td>Insert before/after cursor</td></tr>
+        <tr><td>o / O</td><td>New line below/above</td></tr>
+        <tr><td>dd / yy / p</td><td>Delete/Yank/Paste line</td></tr>
+        <tr><td>ciw / diw</td><td>Change/Delete inner word</td></tr>
+        <tr><td>ci" / di"</td><td>Change/Delete inside quotes</td></tr>
+        <tr><td>.</td><td>Repeat last change</td></tr>
+    </table>
+
+    <h3>Search</h3>
+    <table>
+        <tr><th>Command</th><th>Action</th></tr>
+        <tr><td>/pattern</td><td>Search forward</td></tr>
+        <tr><td>n / N</td><td>Next/Previous match</td></tr>
+        <tr><td>*</td><td>Search word under cursor</td></tr>
+        <tr><td>:%s/old/new/g</td><td>Replace all</td></tr>
+    </table>
+
+    <h3>Windows</h3>
+    <table>
+        <tr><th>Command</th><th>Action</th></tr>
+        <tr><td>:sp / :vsp</td><td>Horizontal/Vertical split</td></tr>
+        <tr><td>Ctrl+w hjkl</td><td>Navigate splits</td></tr>
+        <tr><td>Ctrl+w q</td><td>Close split</td></tr>
+    </table>
+</div>
+
+<div class="warning">
+    <div class="warning-title">🎯 Remember</div>
+    <p>Vim mastery takes time. Aim to learn <strong>one new thing per day</strong>. In a month, you'll be significantly faster. In a year, you'll be a wizard.</p>
+</div>
+
+<hr class="divider">
+
+<p style="text-align: center; color: #8b949e; margin-top: 40px;">
+    Happy Vimming! ⚡ May your keystrokes be few and your edits be swift.
+</p>
+
+<script src="../../js/main.js"></script>
+</body>
+</html>
