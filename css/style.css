@@ -829,3 +829,596 @@ blockquote {
 .mb-2 {
     margin-bottom: var(--spacing-lg);
 }
+
+/* ============================================
+   Notes Page Styles
+   For advanced notes pages (vim, awk, grep, sed, etc.)
+   ============================================ */
+
+/* Notes page container */
+.notes-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 60px;
+}
+
+@media (max-width: 768px) {
+    .notes-container {
+        padding: 20px;
+    }
+}
+
+/* Notes page headings */
+.notes-container h1 {
+    color: #00ffff;
+    font-size: 2.8em;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 40px;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+    border: none;
+    padding: 0;
+}
+
+.notes-container h2 {
+    color: #00ffff;
+    font-size: 1.8em;
+    font-weight: 700;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #30363d;
+}
+
+.notes-container h3 {
+    color: #ffa500;
+    font-size: 1.4em;
+    font-weight: 600;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.notes-container h4 {
+    color: #ff79c6;
+    font-size: 1.2em;
+    font-weight: 600;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+/* Section numbers */
+.section-number {
+    color: #ff79c6;
+}
+
+/* Notes tables */
+.notes-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0 30px 0;
+}
+
+.notes-container th {
+    background-color: #1f2937;
+    color: #00ffff;
+    font-weight: 700;
+    text-align: left;
+    padding: 15px;
+    border: 1px solid #30363d;
+    text-transform: none;
+    letter-spacing: normal;
+}
+
+.notes-container td {
+    background-color: #161b22;
+    color: #e6edf3;
+    padding: 12px 15px;
+    border: 1px solid #30363d;
+}
+
+.notes-container td:first-child {
+    color: #7ee787;
+    font-family: var(--font-mono);
+}
+
+.notes-container tr:hover td {
+    background-color: #1f2937;
+}
+
+/* Notes code blocks */
+.notes-container pre {
+    background-color: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    padding: 20px;
+    overflow-x: auto;
+    margin: 15px 0 25px 0;
+}
+
+.notes-container pre code {
+    color: #7ee787;
+    padding: 0;
+    font-size: 1em;
+    line-height: 1.6;
+    background: transparent;
+}
+
+.notes-container code {
+    background-color: #161b22;
+    color: #7ee787;
+    padding: 3px 8px;
+    border-radius: 5px;
+    font-family: var(--font-mono);
+    font-size: 0.95em;
+}
+
+.notes-container .comment {
+    color: #8b949e;
+}
+
+/* Notes paragraph */
+.notes-container p {
+    color: #e6edf3;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.notes-container strong {
+    color: #ffd700;
+    font-weight: 700;
+}
+
+/* Tip boxes */
+.tip {
+    background-color: #1c3d5a;
+    border-left: 4px solid #58a6ff;
+    padding: 15px 20px;
+    margin: 20px 0;
+    border-radius: 0 8px 8px 0;
+}
+
+.tip-title {
+    color: #58a6ff;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+/* Warning boxes */
+.warning {
+    background-color: #5a3c1c;
+    border-left: 4px solid #ffa500;
+    padding: 15px 20px;
+    margin: 20px 0;
+    border-radius: 0 8px 8px 0;
+}
+
+.warning-title {
+    color: #ffa500;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+/* Speed tip boxes */
+.speed-tip {
+    background-color: #2d1f3d;
+    border-left: 4px solid #ff79c6;
+    padding: 15px 20px;
+    margin: 20px 0;
+    border-radius: 0 8px 8px 0;
+}
+
+.speed-tip-title {
+    color: #ff79c6;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+/* Question/practice boxes */
+.question {
+    background-color: #1a1a2e;
+    border: 1px solid #4a4a6a;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.question-title {
+    color: #ff79c6;
+    font-weight: 700;
+    font-size: 1.1em;
+    margin-bottom: 12px;
+}
+
+/* Divider line */
+.divider {
+    border: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #30363d, transparent);
+    margin: 40px 0;
+}
+
+/* Cheatsheet box */
+.cheatsheet {
+    background-color: #0f1419;
+    border: 2px solid #00ffff;
+    border-radius: 10px;
+    padding: 25px;
+    margin: 30px 0;
+}
+
+/* Keyboard key styling */
+.kbd {
+    background: linear-gradient(135deg, #2d2d2d, #1a1a1a);
+    border: 1px solid #444;
+    border-radius: 4px;
+    padding: 3px 8px;
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+    box-shadow: 0 2px 0 #333;
+    color: #ffd700;
+}
+
+/* Table of Contents */
+.toc {
+    background-color: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 10px;
+    padding: 25px;
+    margin: 30px 0;
+}
+
+.toc-title {
+    color: #00ffff;
+    font-size: 1.3em;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.toc a {
+    color: #58a6ff;
+    text-decoration: none;
+}
+
+.toc a:hover {
+    text-decoration: underline;
+}
+
+.toc ul {
+    list-style: none;
+    margin-left: 0;
+}
+
+.toc li {
+    margin-bottom: 8px;
+}
+
+/* CSV/data display */
+.csv-data {
+    background-color: #1a1a1a;
+    border: 1px solid #444;
+    border-radius: 8px;
+    padding: 15px;
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+    color: #aaa;
+    overflow-x: auto;
+    white-space: pre;
+}
+
+/* ============================================
+   Markdown Container Styles
+   For pages using .markdown class wrapper
+   ============================================ */
+
+/* Site nav (alternative to nav-links) */
+.site-nav {
+    display: flex;
+    gap: 25px;
+    align-items: center;
+}
+
+.site-nav .nav-link {
+    color: #8b949e;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.site-nav .nav-link:hover {
+    color: #00bcd4;
+    text-decoration: none;
+}
+
+/* Markdown article container */
+.markdown {
+    line-height: 1.7;
+    font-size: 1rem;
+}
+
+.markdown h1 {
+    color: #00bcd4;
+    font-size: 2.5em;
+    font-weight: bold;
+    margin: 50px 0 25px;
+    text-align: center;
+    border: none;
+    padding: 0;
+}
+
+.markdown h1:first-child {
+    margin-top: 40px;
+    padding-bottom: 15px;
+}
+
+.markdown h1:first-of-type {
+    font-size: 2.8em;
+    background: linear-gradient(145deg, #161b22, #0d1117);
+    border: 1px solid #30363d;
+    border-radius: 12px;
+    padding: 30px;
+    text-align: center;
+}
+
+.markdown h2 {
+    color: #00bcd4;
+    font-size: 1.8em;
+    font-weight: bold;
+    margin: 50px 0 25px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #30363d;
+}
+
+.markdown h3 {
+    color: #fff;
+    font-size: 1.4em;
+    font-weight: bold;
+    margin: 30px 0 15px;
+}
+
+.markdown h4 {
+    color: #fff;
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 25px 0 12px;
+}
+
+.markdown p {
+    color: #e6edf3;
+    margin-bottom: 15px;
+    line-height: 1.7;
+}
+
+.markdown strong {
+    color: #ffd700;
+    font-weight: bold;
+}
+
+.markdown em {
+    color: #e6edf3;
+    font-style: italic;
+}
+
+/* Markdown tables */
+.markdown table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.95em;
+    background: rgba(22, 27, 34, 0.5);
+    border: 1px solid #30363d;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.markdown th {
+    background: rgba(0, 188, 212, 0.2);
+    color: #00bcd4;
+    padding: 15px;
+    text-align: left;
+    border-bottom: 2px solid #00bcd4;
+    font-weight: bold;
+    font-size: 0.95em;
+    text-transform: none;
+    letter-spacing: normal;
+}
+
+.markdown td {
+    padding: 15px;
+    border-bottom: 1px solid #30363d;
+    color: #e6edf3;
+}
+
+.markdown tr:hover {
+    background: rgba(0, 188, 212, 0.05);
+}
+
+.markdown tr:last-child td {
+    border-bottom: none;
+}
+
+.markdown td:first-child strong {
+    color: #ffd700;
+}
+
+/* Markdown code blocks */
+.markdown pre {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+    overflow-x: auto;
+}
+
+.markdown pre code {
+    background: transparent;
+    color: #4ec9b0;
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: 0.95em;
+    line-height: 1.6;
+    padding: 0;
+}
+
+.markdown code {
+    color: #4ec9b0;
+    font-family: 'Consolas', 'Monaco', monospace;
+    background: rgba(78, 201, 176, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+/* Markdown lists */
+.markdown ul,
+.markdown ol {
+    margin: 15px 0;
+    padding-left: 25px;
+}
+
+.markdown li {
+    margin-bottom: 10px;
+    color: #e6edf3;
+}
+
+.markdown li strong {
+    color: #ffd700;
+}
+
+/* Task lists */
+.markdown input[type="checkbox"] {
+    margin-right: 8px;
+    accent-color: #00bcd4;
+}
+
+/* Markdown blockquotes */
+.markdown blockquote {
+    background: rgba(0, 188, 212, 0.1);
+    border-left: 4px solid #00bcd4;
+    padding: 20px;
+    margin: 25px 0;
+    border-radius: 0 8px 8px 0;
+    color: #e6edf3;
+    font-style: normal;
+}
+
+.markdown blockquote strong {
+    color: #00bcd4;
+}
+
+.markdown blockquote p {
+    margin-bottom: 8px;
+}
+
+.markdown blockquote p:last-child {
+    margin-bottom: 0;
+}
+
+.markdown blockquote ul,
+.markdown blockquote ol {
+    margin: 10px 0;
+    padding-left: 20px;
+}
+
+.markdown blockquote li {
+    margin-bottom: 8px;
+}
+
+.markdown blockquote h4 {
+    color: #4ec9b0;
+    margin: 0 0 10px 0;
+}
+
+/* Markdown horizontal rules */
+.markdown hr {
+    border: none;
+    border-top: 2px solid #30363d;
+    margin: 40px 0;
+}
+
+/* Markdown links */
+.markdown a {
+    color: #00bcd4;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.markdown a:hover {
+    background: rgba(0, 188, 212, 0.15);
+    text-decoration: none;
+}
+
+/* Markdown images */
+.markdown img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin: 20px 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Content sections with background */
+.markdown h2+p,
+.markdown h2+table,
+.markdown h2+pre,
+.markdown h2+ul,
+.markdown h2+ol {
+    background: rgba(22, 27, 34, 0.5);
+    border: 1px solid #30363d;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+/* Markdown responsive */
+@media (max-width: 768px) {
+    .markdown {
+        font-size: 0.95rem;
+    }
+
+    .markdown h1 {
+        font-size: 1.8em;
+    }
+
+    .markdown h2 {
+        font-size: 1.5em;
+    }
+
+    .markdown h1:first-of-type {
+        font-size: 2em;
+        padding: 20px;
+    }
+
+    .markdown table {
+        font-size: 0.85em;
+    }
+
+    .markdown th,
+    .markdown td {
+        padding: 10px;
+    }
+
+    .markdown pre {
+        padding: 15px;
+        font-size: 0.85em;
+    }
+
+    .site-nav {
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .markdown h1 {
+        font-size: 1.6em;
+    }
+
+    .markdown h2 {
+        font-size: 1.3em;
+    }
+
+    .markdown h1:first-of-type {
+        font-size: 1.75em;
+        padding: 15px;
+    }
+}

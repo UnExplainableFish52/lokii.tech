@@ -20,75 +20,33 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="icon" href="/favicon.ico">
     
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            background-color: #0d1117;
-            color: #e6edf3;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            font-size: 18px;
-            line-height: 1.7;
-            padding: 40px 60px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        h1 { color: #00ffff; font-size: 2.8em; font-weight: 700; text-align: center; margin-bottom: 40px; text-shadow: 0 0 10px rgba(0, 255, 255, 0.3); }
-        h2 { color: #00ffff; font-size: 1.8em; font-weight: 700; margin-top: 50px; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #30363d; }
-        h3 { color: #ffa500; font-size: 1.4em; font-weight: 600; margin-top: 30px; margin-bottom: 15px; }
-        h4 { color: #ff79c6; font-size: 1.2em; font-weight: 600; margin-top: 20px; margin-bottom: 10px; }
-        p { color: #e6edf3; font-weight: 600; margin-bottom: 15px; }
-        strong { color: #ffd700; font-weight: 700; }
-        code { background-color: #161b22; color: #7ee787; padding: 3px 8px; border-radius: 5px; font-family: 'Consolas', 'Courier New', monospace; font-size: 0.95em; }
-        pre { background-color: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 20px; overflow-x: auto; margin: 15px 0 25px 0; }
-        pre code { color: #7ee787; padding: 0; font-size: 1em; line-height: 1.6; }
-        .comment { color: #8b949e; }
-        table { width: 100%; border-collapse: collapse; margin: 20px 0 30px 0; }
-        th { background-color: #1f2937; color: #00ffff; font-weight: 700; text-align: left; padding: 15px; border: 1px solid #30363d; }
-        td { background-color: #161b22; color: #e6edf3; padding: 12px 15px; border: 1px solid #30363d; }
-        td:first-child { color: #7ee787; font-family: 'Consolas', 'Courier New', monospace; }
-        tr:hover td { background-color: #1f2937; }
-        ul, ol { margin: 15px 0 20px 30px; }
-        li { color: #e6edf3; font-weight: 600; margin-bottom: 10px; }
-        .tip { background-color: #1c3d5a; border-left: 4px solid #58a6ff; padding: 15px 20px; margin: 20px 0; border-radius: 0 8px 8px 0; }
-        .tip-title { color: #58a6ff; font-weight: 700; margin-bottom: 8px; }
-        .warning { background-color: #5a3c1c; border-left: 4px solid #ffa500; padding: 15px 20px; margin: 20px 0; border-radius: 0 8px 8px 0; }
-        .warning-title { color: #ffa500; font-weight: 700; margin-bottom: 8px; }
-        .speed-tip { background-color: #2d1f3d; border-left: 4px solid #ff79c6; padding: 15px 20px; margin: 20px 0; border-radius: 0 8px 8px 0; }
-        .speed-tip-title { color: #ff79c6; font-weight: 700; margin-bottom: 8px; }
-        .question { background-color: #1a1a2e; border: 1px solid #4a4a6a; border-radius: 8px; padding: 20px; margin: 20px 0; }
-        .question-title { color: #ff79c6; font-weight: 700; font-size: 1.1em; margin-bottom: 12px; }
-        .divider { border: 0; height: 1px; background: linear-gradient(to right, transparent, #30363d, transparent); margin: 40px 0; }
-        .cheatsheet { background-color: #0f1419; border: 2px solid #00ffff; border-radius: 10px; padding: 25px; margin: 30px 0; }
-        .section-number { color: #ff79c6; }
-        .kbd { background: linear-gradient(135deg, #2d2d2d, #1a1a1a); border: 1px solid #444; border-radius: 4px; padding: 3px 8px; font-family: 'Consolas', monospace; font-size: 0.9em; box-shadow: 0 2px 0 #333; color: #ffd700; }
-        .site-header { padding: 15px 20px; border-bottom: 1px solid #30363d; background: rgba(13, 17, 23, 0.95); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100; margin-bottom: 20px; }
-        .header-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-        .branding { text-decoration: none; }
-        .branding .logo { color: #00ffff; font-size: 1.5rem; font-weight: 800; }
-        .site-nav { display: flex; gap: 25px; align-items: center; }
-        .site-nav .nav-link { color: #8b949e; text-decoration: none; font-weight: 500; transition: color 0.3s ease; }
-        .site-nav .nav-link:hover { color: #00ffff; }
-        .toc { background-color: #161b22; border: 1px solid #30363d; border-radius: 10px; padding: 25px; margin: 30px 0; }
-        .toc-title { color: #00ffff; font-size: 1.3em; margin-bottom: 15px; }
-        .toc a { color: #58a6ff; text-decoration: none; }
-        .toc a:hover { text-decoration: underline; }
-        .toc ul { list-style: none; margin-left: 0; }
-        .toc li { margin-bottom: 8px; }
-        @media (max-width: 768px) { body { padding: 20px; font-size: 16px; } h1 { font-size: 2em; } }
-    </style>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Centralized CSS -->
+    <link rel="stylesheet" href="../../css/style.css">
 </head>
 <body>
 
+<!-- Site Header -->
 <header class="site-header">
-    <div class="header-content">
-        <a href="../../index.html" class="branding"><span class="logo">lokii.tech</span></a>
-        <nav class="site-nav">
-            <a href="../../index.html#about" class="nav-link">About</a>
-            <a href="../../index.html#resources" class="nav-link">Resources</a>
-            <a href="https://github.com/UnExplainableFish52" target="_blank" class="nav-link">GitHub</a>
-        </nav>
+    <div class="container">
+        <div class="header-content">
+            <a href="../../index.html" class="branding">
+                <span class="logo" style="color: #00e5ff; font-size: 1.7rem; font-weight: 800; text-shadow: 0 0 20px rgba(0, 229, 255, 0.4);">lokii.tech</span>
+            </a>
+            <nav class="nav-links" style="gap: 2rem;">
+                <a href="../../index.html#about" class="nav-link nav-link-enhanced">About</a>
+                <a href="../../index.html#resources" class="nav-link nav-link-enhanced">Resources</a>
+                <a href="https://github.com/UnExplainableFish52" target="_blank" class="nav-link nav-link-enhanced">GitHub</a>
+            </nav>
+        </div>
     </div>
 </header>
+
+<div class="notes-container">
 
 <h1>Vim & Neovim Mastery — From Zero to Lightning Speed</h1>
 
@@ -975,6 +933,9 @@ n.         <span class="comment"># Repeat...</span></code></pre>
     Happy Vimming! ⚡ May your keystrokes be few and your edits be swift.
 </p>
 
+</div>
+
+<!-- Centralized JavaScript -->
 <script src="../../js/main.js"></script>
 </body>
 </html>
