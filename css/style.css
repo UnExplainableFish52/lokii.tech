@@ -273,7 +273,7 @@ section {
    ============================================ */
 
 .hero {
-    background: linear-gradient(135deg, #0a0a0a 0%, #111827 50%, #0a0a0a 100%);
+    background: linear-gradient(180deg, var(--bg-body) 0%, #111827 50%, var(--bg-body) 100%);
     padding: var(--spacing-2xl) 0;
     text-align: center;
 }
