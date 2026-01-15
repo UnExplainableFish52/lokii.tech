@@ -7,40 +7,39 @@
     <meta name="description" content="Master network devices for cybersecurity. Learn about hubs, switches, routers, firewalls, IDS/IPS, and security implications of each device.">
     <meta name="author" content="lokii (UnExplainableFish52)">
     <meta name="theme-color" content="#0d1117">
+    
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
     <link rel="icon" href="/favicon.ico">
     
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Centralized Styles -->
+    <link rel="stylesheet" href="../../../css/style.css">
+    
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background: #0d1117; color: #e6e6e6; font-family: system-ui, 'Segoe UI', sans-serif; line-height: 1.7; min-height: 100vh; }
-        .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
-        
-        .site-header { padding: 15px 20px; border-bottom: 1px solid #30363d; background: rgba(13,17,23,0.95); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100; }
-        .header-content { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-        .branding { text-decoration: none; }
-        .branding .logo { color: #00ffff; font-size: 1.5rem; font-weight: 800; }
-        .site-nav { display: flex; gap: 25px; }
-        .site-nav .nav-link { color: #8b949e; text-decoration: none; font-weight: 500; transition: color 0.3s; }
-        .site-nav .nav-link:hover { color: #00ffff; }
-        
-        header.page-header { text-align: center; padding: 50px 20px; margin-bottom: 40px; }
-        h1 { font-size: 2.5em; color: #00ffff; font-weight: bold; margin-bottom: 15px; }
-        h2 { font-size: 1.8em; color: #00ffff; font-weight: bold; margin: 50px 0 25px; padding-bottom: 10px; border-bottom: 2px solid #30363d; }
-        h3 { font-size: 1.4em; color: #00ffff; font-weight: bold; margin: 30px 0 15px; }
-        h4 { font-size: 1.2em; color: #fff; font-weight: bold; margin: 25px 0 12px; }
+        /* Page-specific styles for Network Devices notes */
+        .notes-header { text-align: center; padding: 50px 20px; margin-bottom: 40px; }
+        .notes-header h1 { font-size: 2.5em; color: #00bcd4; font-weight: bold; margin-bottom: 15px; border: none; padding: 0; }
         .subtitle { color: #8b949e; font-size: 1.2em; }
         
-        .section { background: rgba(22,27,34,0.5); border: 1px solid #30363d; border-radius: 12px; padding: 30px; margin-bottom: 30px; }
-        p { margin-bottom: 15px; font-weight: 500; }
-        .highlight { color: #ffd700; font-weight: bold; }
-        .code-text { color: #00ff88; font-family: 'Consolas', monospace; background: rgba(0,255,136,0.1); padding: 2px 6px; border-radius: 4px; }
-        a { color: #58a6ff; text-decoration: none; transition: all 0.3s; }
-        a:hover { color: #79c0ff; text-decoration: underline; }
-        ul, ol { margin: 15px 0; padding-left: 25px; }
-        li { margin-bottom: 10px; }
+        h2 { font-size: 1.8em; color: #00bcd4; font-weight: bold; margin: 50px 0 25px; padding-bottom: 10px; border-bottom: 2px solid #30363d; }
+        h3 { font-size: 1.4em; color: #00bcd4; font-weight: bold; margin: 30px 0 15px; }
+        h4 { font-size: 1.2em; color: #fff; font-weight: bold; margin: 25px 0 12px; }
         
-        .info-box { background: rgba(0,255,255,0.1); border-left: 4px solid #00ffff; padding: 20px; margin: 25px 0; border-radius: 0 8px 8px 0; }
+        .section { background: rgba(22,27,34,0.5); border: 1px solid #30363d; border-radius: 12px; padding: 30px; margin-bottom: 30px; }
+        .highlight { color: #ffd700; font-weight: bold; }
+        .code-text { color: #4ec9b0; font-family: 'JetBrains Mono', monospace; background: rgba(78,201,176,0.1); padding: 2px 6px; border-radius: 4px; }
+        
+        .info-box { background: rgba(0,188,212,0.1); border-left: 4px solid #00bcd4; padding: 20px; margin: 25px 0; border-radius: 0 8px 8px 0; }
         .security-box { background: rgba(255,0,85,0.1); border-left: 4px solid #ff0055; padding: 20px; margin: 25px 0; border-radius: 0 8px 8px 0; }
-        .tip-box { background: rgba(0,255,136,0.1); border-left: 4px solid #00ff88; padding: 20px; margin: 25px 0; border-radius: 0 8px 8px 0; }
+        .tip-box { background: rgba(78,201,176,0.1); border-left: 4px solid #4ec9b0; padding: 20px; margin: 25px 0; border-radius: 0 8px 8px 0; }
         .warning-box { background: rgba(255,107,107,0.1); border-left: 4px solid #ff6b6b; padding: 20px; margin: 25px 0; border-radius: 0 8px 8px 0; }
         
         /* Layer color coding */
@@ -53,79 +52,77 @@
         .device-card { padding: 20px; margin: 20px 0; border-radius: 0 10px 10px 0; }
         .device-card h4 { margin-top: 0; }
         
-        table { width: 100%; border-collapse: collapse; margin: 25px 0; font-size: 0.9em; }
-        th { background: rgba(0,255,255,0.2); color: #00ffff; padding: 12px 10px; text-align: left; border-bottom: 2px solid #00ffff; font-weight: bold; }
-        td { padding: 12px 10px; border-bottom: 1px solid #30363d; }
-        tr:nth-child(even) { background: rgba(22,27,34,0.5); }
-        tr:hover { background: rgba(0,255,255,0.05); }
-        
         .code-block { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 20px; margin: 20px 0; overflow-x: auto; }
-        .code-block code { color: #00ff88; font-family: 'Consolas', monospace; font-size: 0.95em; line-height: 1.6; }
-        .code-header { background: rgba(0,255,136,0.15); color: #00ff88; padding: 8px 15px; border-radius: 8px 8px 0 0; margin: 20px 0 0 0; font-family: monospace; font-size: 0.85em; font-weight: bold; }
+        .code-block code { color: #4ec9b0; font-family: 'JetBrains Mono', monospace; font-size: 0.95em; line-height: 1.6; }
+        .code-header { background: rgba(78,201,176,0.15); color: #4ec9b0; padding: 8px 15px; border-radius: 8px 8px 0 0; margin: 20px 0 0 0; font-family: 'JetBrains Mono', monospace; font-size: 0.85em; font-weight: bold; }
         .code-header + .code-block { margin-top: 0; border-radius: 0 0 8px 8px; }
         .comment { color: #8b949e; }
         
-        .diagram { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 25px; margin: 20px 0; text-align: center; font-family: monospace; color: #00ffff; overflow-x: auto; }
+        .diagram { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 25px; margin: 20px 0; text-align: center; font-family: 'JetBrains Mono', monospace; color: #00bcd4; overflow-x: auto; }
         .diagram pre { margin: 0; display: inline-block; text-align: left; line-height: 1.4; }
         
         .checklist { list-style: none; padding-left: 0; }
-        .checklist li { padding: 10px 15px; margin: 8px 0; background: rgba(22,27,34,0.5); border-radius: 8px; border-left: 3px solid #30363d; }
+        .checklist li { padding: 10px 15px; margin: 8px 0; background: rgba(22,27,34,0.5); border-radius: 8px; border-left: 3px solid #4ec9b0; }
         .checklist li::before { content: "☐ "; color: #ffd700; font-weight: bold; }
         
         .comparison-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin: 20px 0; }
         .compare-card { padding: 20px; border-radius: 10px; background: rgba(22,27,34,0.5); border: 1px solid #30363d; }
-        .compare-card h4 { color: #00ffff; margin-top: 0; }
+        .compare-card h4 { color: #00bcd4; margin-top: 0; }
         
         .quiz-question { background: rgba(22,27,34,0.8); border: 1px solid #30363d; border-radius: 10px; padding: 20px; margin: 15px 0; }
         .quiz-question strong { color: #ffd700; }
         .quiz-options { margin: 15px 0 0 20px; }
         .quiz-options label { display: block; padding: 8px 0; cursor: pointer; }
         
-        .answers-toggle { background: rgba(0,255,136,0.15); color: #00ff88; border: 2px solid #00ff88; padding: 12px 25px; border-radius: 8px; cursor: pointer; font-size: 1em; font-weight: bold; transition: all 0.3s; }
-        .answers-toggle:hover { background: rgba(0,255,136,0.25); }
+        .answers-toggle { background: rgba(78,201,176,0.15); color: #4ec9b0; border: 2px solid #4ec9b0; padding: 12px 25px; border-radius: 8px; cursor: pointer; font-size: 1em; font-weight: bold; transition: all 0.3s; }
+        .answers-toggle:hover { background: rgba(78,201,176,0.25); }
         .answers-content { display: none; background: rgba(22,27,34,0.8); border: 1px solid #30363d; border-radius: 10px; padding: 25px; margin-top: 15px; }
         .answers-content.show { display: block; }
         .answer-item { padding: 10px 0; border-bottom: 1px solid #30363d; }
         .answer-item:last-child { border-bottom: none; }
-        .answer-correct { color: #00ff88; font-weight: bold; }
+        .answer-correct { color: #4ec9b0; font-weight: bold; }
         
         .page-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 60px; padding-top: 30px; border-top: 2px solid #30363d; flex-wrap: wrap; gap: 10px; }
-        .page-nav a { display: flex; align-items: center; gap: 10px; color: #00ffff; text-decoration: none; padding: 15px 25px; border: 2px solid #30363d; border-radius: 10px; transition: all 0.3s; font-weight: 600; }
-        .page-nav a:hover { border-color: #00ffff; background: rgba(0,255,255,0.1); text-decoration: none; }
+        .page-nav a { display: flex; align-items: center; gap: 10px; color: #00bcd4; text-decoration: none; padding: 15px 25px; border: 2px solid #30363d; border-radius: 10px; transition: all 0.3s; font-weight: 600; }
+        .page-nav a:hover { border-color: #00bcd4; background: rgba(0,188,212,0.1); text-decoration: none; }
         
-        footer { text-align: center; padding: 40px 20px; margin-top: 60px; border-top: 1px solid #30363d; color: #8b949e; }
+        .notes-footer { text-align: center; padding: 40px 20px; margin-top: 60px; border-top: 1px solid #30363d; color: #8b949e; }
         
         @media (max-width: 768px) {
-            h1 { font-size: 1.8em; }
+            .notes-header h1 { font-size: 1.8em; }
             h2 { font-size: 1.5em; }
-            table { font-size: 0.75em; }
-            th, td { padding: 8px 5px; }
             .page-nav { flex-direction: column; }
             .page-nav a { width: 100%; justify-content: center; }
-            .header-content { flex-direction: column; gap: 15px; }
             .comparison-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
+    <!-- Persistent Navigation (matches index.html) -->
     <header class="site-header">
-        <div class="header-content">
-            <a href="../../../index.html" class="branding"><span class="logo">lokii.tech</span></a>
-            <nav class="site-nav">
-                <a href="../../../index.html#about" class="nav-link">About</a>
-                <a href="../../../index.html#resources" class="nav-link">Resources</a>
-                <a href="https://github.com/UnExplainableFish52" target="_blank" class="nav-link">GitHub</a>
-            </nav>
+        <div class="container">
+            <div class="header-content">
+                <a href="../../../index.html" class="branding">
+                    <span class="logo" style="color: #00e5ff; font-size: 1.7rem; font-weight: 800; text-shadow: 0 0 20px rgba(0, 229, 255, 0.4);">lokii.tech</span>
+                </a>
+                <nav class="nav-links" style="gap: 2rem;">
+                    <a href="../../../index.html#about" class="nav-link nav-link-enhanced">About</a>
+                    <a href="../../../index.html#resources" class="nav-link nav-link-enhanced">Resources</a>
+                    <a href="https://github.com/UnExplainableFish52/lokii.tech" target="_blank" class="nav-link nav-link-enhanced">GitHub</a>
+                    <a href="https://github.com/UnExplainableFish52/lokii.tech/issues" target="_blank" class="nav-link nav-contribute">Contribute ✨</a>
+                </nav>
+            </div>
         </div>
     </header>
 
-    <div class="container">
-        <header class="page-header">
-            <h1>🔧 1.5.4 Network Devices</h1>
-            <p class="subtitle">Understanding the hardware that builds and secures networks</p>
-        </header>
+    <main>
+        <div class="container">
+            <header class="notes-header">
+                <h1>🔧 1.5.4 Network Devices</h1>
+                <p class="subtitle">Understanding the hardware that builds and secures networks</p>
+            </header>
 
-        <!-- Section 1: Overview -->
+            <!-- Section 1: Overview -->
         <h2>📋 1. Overview</h2>
         <div class="section">
             <h3>Why Understanding Devices Matters for Security</h3>
@@ -975,10 +972,12 @@ ipconfig /release && ipconfig /renew  <span class="comment"># Windows</span></co
             <a href="1.5.5_wifi_explained.html"><span>Next: WiFi Explained</span><span>→</span></a>
         </nav>
 
-        <footer>
-            <p>© 2026 lokii.tech | <a href="https://github.com/UnExplainableFish52/lokii.tech" target="_blank">Open Source Project</a></p>
-        </footer>
-    </div>
+        </div>
+    </main>
+
+    <footer class="notes-footer">
+        <p>© 2026 lokii.tech | <a href="https://github.com/UnExplainableFish52/lokii.tech" target="_blank">Open Source Project</a></p>
+    </footer>
 
     <script>
         function toggleAnswers() {
