@@ -22,60 +22,76 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="icon" href="/favicon.ico">
     
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Centralized Styles -->
+    <link rel="stylesheet" href="../../css/style.css">
+    
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body {
-            background: #0d1117;
-            color: #e6edf3;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.7;
-            min-height: 100vh;
+        /* Page-specific styles for Shell Scripting notes */
+        .notes-header {
+            text-align: center;
+            padding: 40px 20px;
+            margin-bottom: 30px;
         }
-        
-        .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
-        
-        /* Header */
-        .site-header {
-            padding: 15px 20px;
-            border-bottom: 1px solid #30363d;
-            background: rgba(13, 17, 23, 0.95);
-            backdrop-filter: blur(10px);
-            position: sticky;
-            top: 0;
-            z-index: 100;
+
+        .notes-header h1 {
+            font-size: 2.5em;
+            color: #00bcd4;
+            font-weight: bold;
+            margin-bottom: 15px;
+            border: none;
+            padding: 0;
         }
-        
-        .header-content {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .branding { text-decoration: none; }
-        .branding .logo { color: #00bcd4; font-size: 1.5rem; font-weight: 800; }
-        
-        .site-nav { display: flex; gap: 25px; align-items: center; }
-        .site-nav .nav-link {
+
+        .subtitle {
             color: #8b949e;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
+            font-size: 1.1em;
         }
-        .site-nav .nav-link:hover { color: #00bcd4; }
-        
-        /* Typography */
-        header.page-header { text-align: center; padding: 40px 20px; margin-bottom: 30px; }
-        
-        h1 { font-size: 2.5em; color: #00bcd4; font-weight: bold; margin-bottom: 15px; }
-        h2 { font-size: 1.8em; color: #00bcd4; margin: 50px 0 25px; padding-bottom: 10px; border-bottom: 2px solid #30363d; }
-        h3 { font-size: 1.4em; color: #fff; margin: 30px 0 15px; }
-        h4 { font-size: 1.15em; color: #ffd700; margin: 20px 0 10px; }
-        
-        .subtitle { color: #8b949e; font-size: 1.1em; }
-        
+
+        h2 {
+            font-size: 1.8em;
+            color: #00bcd4;
+            font-weight: bold;
+            margin: 50px 0 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #30363d;
+        }
+
+        h3 {
+            font-size: 1.4em;
+            color: #fff;
+            font-weight: bold;
+            margin: 30px 0 15px;
+        }
+
+        h4 {
+            font-size: 1.15em;
+            color: #ffd700;
+            font-weight: bold;
+            margin: 20px 0 10px;
+        }
+
+        .highlight {
+            color: #ffd700;
+            font-weight: bold;
+        }
+
+        .cyan {
+            color: #00bcd4;
+        }
+
+        .code-text {
+            color: #4ec9b0;
+            font-family: 'JetBrains Mono', 'Consolas', monospace;
+            background: rgba(78, 201, 176, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
         /* Sections */
         .section {
             background: rgba(22, 27, 34, 0.5);
@@ -84,22 +100,7 @@
             padding: 30px;
             margin-bottom: 30px;
         }
-        
-        p { margin-bottom: 15px; }
-        .highlight { color: #ffd700; font-weight: bold; }
-        .cyan { color: #00bcd4; }
-        
-        .code-text {
-            color: #4ec9b0;
-            font-family: 'Consolas', 'Monaco', monospace;
-            background: rgba(78, 201, 176, 0.1);
-            padding: 2px 6px;
-            border-radius: 4px;
-        }
-        
-        ul, ol { margin: 15px 0; padding-left: 25px; }
-        li { margin-bottom: 10px; }
-        
+
         /* Info Boxes */
         .info-box {
             background: rgba(0, 188, 212, 0.1);
@@ -108,7 +109,7 @@
             margin: 25px 0;
             border-radius: 0 8px 8px 0;
         }
-        
+
         .warning-box {
             background: rgba(255, 193, 7, 0.1);
             border-left: 4px solid #ffc107;
@@ -116,7 +117,7 @@
             margin: 25px 0;
             border-radius: 0 8px 8px 0;
         }
-        
+
         .success-box {
             background: rgba(76, 175, 80, 0.1);
             border-left: 4px solid #4caf50;
@@ -124,31 +125,13 @@
             margin: 25px 0;
             border-radius: 0 8px 8px 0;
         }
-        
-        /* Code Blocks */
-        pre {
-            background: #161b22;
-            border: 1px solid #30363d;
-            border-radius: 8px;
-            padding: 20px;
-            overflow-x: auto;
-            margin: 20px 0;
-            font-family: 'Consolas', 'Monaco', monospace;
-            font-size: 0.9em;
-        }
-        
-        code {
-            font-family: 'Consolas', 'Monaco', monospace;
-            color: #4ec9b0;
-        }
-        
-        pre code { color: #e6edf3; }
-        
+
+        /* Code syntax highlighting */
         .cmd-comment { color: #6a737d; }
         .cmd-string { color: #a5d6ff; }
         .cmd-keyword { color: #ff7b72; }
         .cmd-variable { color: #ffa657; }
-        
+
         /* TOC */
         .toc {
             background: rgba(22, 27, 34, 0.8);
@@ -157,14 +140,14 @@
             padding: 25px;
             margin-bottom: 40px;
         }
-        
+
         .toc h3 { margin-top: 0; margin-bottom: 15px; }
         .toc ul { list-style: none; padding-left: 0; }
         .toc li { margin-bottom: 8px; }
         .toc a { color: #8b949e; text-decoration: none; transition: color 0.3s; }
         .toc a:hover { color: #00bcd4; }
         .toc .section-num { color: #ffd700; margin-right: 8px; }
-        
+
         /* Quiz Section */
         .quiz-item {
             background: rgba(22, 27, 34, 0.8);
@@ -173,16 +156,16 @@
             padding: 25px;
             margin-bottom: 20px;
         }
-        
+
         .quiz-question {
             font-weight: 600;
             color: #fff;
             margin-bottom: 15px;
         }
-        
+
         .quiz-options { margin-left: 20px; }
         .quiz-options li { margin-bottom: 8px; color: #e6edf3; }
-        
+
         .answer-toggle {
             background: linear-gradient(135deg, #00bcd4, #0099aa);
             color: #000;
@@ -194,9 +177,12 @@
             margin-top: 15px;
             transition: all 0.3s;
         }
-        
-        .answer-toggle:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(0, 188, 212, 0.3); }
-        
+
+        .answer-toggle:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 188, 212, 0.3);
+        }
+
         .answer-content {
             display: none;
             margin-top: 15px;
@@ -205,9 +191,9 @@
             border-left: 4px solid #4caf50;
             border-radius: 0 8px 8px 0;
         }
-        
+
         .answer-content.show { display: block; }
-        
+
         /* Page Navigation */
         .page-nav {
             display: flex;
@@ -217,7 +203,7 @@
             padding-top: 30px;
             border-top: 2px solid #30363d;
         }
-        
+
         .page-nav a {
             display: flex;
             align-items: center;
@@ -229,105 +215,74 @@
             border-radius: 10px;
             transition: all 0.3s ease;
         }
-        
-        .page-nav a:hover { border-color: #00bcd4; background: rgba(0, 188, 212, 0.1); }
-        
+
+        .page-nav a:hover {
+            border-color: #00bcd4;
+            background: rgba(0, 188, 212, 0.1);
+        }
+
         /* Footer */
-        footer { text-align: center; padding: 40px 20px; margin-top: 60px; border-top: 1px solid #30363d; color: #8b949e; }
-        footer a { color: #00bcd4; }
-        
-        /* Scroll to Top Button */
-        .scroll-to-top-btn {
-            position: fixed;
-            bottom: 24px;
-            right: 24px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #00bcd4, #0099aa);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5);
-            transition: all 0.25s ease-in-out;
-            z-index: 99;
-            cursor: pointer;
-            border: none;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(20px);
-        }
-
-        .scroll-to-top-btn.visible {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .scroll-to-top-btn:hover {
-            background: linear-gradient(135deg, #0099aa, #007788);
-            transform: scale(1.1) translateY(0);
-            box-shadow: 0 15px 30px rgba(0, 188, 212, 0.4);
+        .notes-footer {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+            border-top: 1px solid #30363d;
+            color: #8b949e;
         }
 
         /* Responsive */
         @media (max-width: 768px) {
-            h1 { font-size: 1.8em; }
+            .notes-header h1 { font-size: 1.8em; }
             h2 { font-size: 1.5em; }
             .page-nav { flex-direction: column; gap: 15px; }
             .page-nav a { width: 100%; justify-content: center; }
-            .scroll-to-top-btn {
-                width: 45px;
-                height: 45px;
-                font-size: 1.25rem;
-                bottom: 16px;
-                right: 16px;
-            }
         }
     </style>
 </head>
 <body>
-    <!-- Site Header -->
+    <!-- Persistent Navigation (matches index.html) -->
     <header class="site-header">
-        <div class="header-content">
-            <a href="../../index.html" class="branding">
-                <span class="logo">lokii.tech</span>
-            </a>
-            <nav class="site-nav">
-                <a href="../../index.html#about" class="nav-link">About</a>
-                <a href="../../index.html#resources" class="nav-link">Resources</a>
-                <a href="https://github.com/UnExplainableFish52" target="_blank" class="nav-link">GitHub</a>
-            </nav>
+        <div class="container">
+            <div class="header-content">
+                <a href="../../index.html" class="branding">
+                    <span class="logo" style="color: #00e5ff; font-size: 1.7rem; font-weight: 800; text-shadow: 0 0 20px rgba(0, 229, 255, 0.4);">lokii.tech</span>
+                </a>
+                <nav class="nav-links" style="gap: 2rem;">
+                    <a href="../../index.html#about" class="nav-link nav-link-enhanced">About</a>
+                    <a href="../../index.html#resources" class="nav-link nav-link-enhanced">Resources</a>
+                    <a href="https://github.com/UnExplainableFish52/lokii.tech" target="_blank" class="nav-link nav-link-enhanced">GitHub</a>
+                    <a href="https://github.com/UnExplainableFish52/lokii.tech/issues" target="_blank" class="nav-link nav-contribute">Contribute ✨</a>
+                </nav>
+            </div>
         </div>
     </header>
 
-    <div class="container">
-        <header class="page-header">
-            <h1>📜 1.7 Shell Scripting Basics</h1>
-            <p class="subtitle">Automate tasks and become a command-line wizard</p>
-        </header>
+    <main>
+        <div class="container">
+            <header class="notes-header">
+                <h1>📜 1.7 Shell Scripting Basics</h1>
+                <p class="subtitle">Automate tasks and become a command-line wizard</p>
+            </header>
 
-        <!-- Table of Contents -->
-        <div class="toc">
-            <h3>📑 Table of Contents</h3>
-            <ul>
-                <li><a href="#what-is"><span class="section-num">1.</span> What is Shell Scripting?</a></li>
-                <li><a href="#getting-started"><span class="section-num">2.</span> Getting Started</a></li>
-                <li><a href="#variables"><span class="section-num">3.</span> Variables & Scopes</a></li>
-                <li><a href="#user-input"><span class="section-num">4.</span> User Input</a></li>
-                <li><a href="#conditionals"><span class="section-num">5.</span> Conditionals (if/else) & Modern Syntax</a></li>
-                <li><a href="#case-statements"><span class="section-num">6.</span> Case Statements</a></li>
-                <li><a href="#loops"><span class="section-num">7.</span> Loops & Nested Loops</a></li>
-                <li><a href="#functions"><span class="section-num">8.</span> Functions & Scope</a></li>
-                <li><a href="#arrays"><span class="section-num">9.</span> Arrays</a></li>
-                <li><a href="#strings"><span class="section-num">10.</span> String Manipulation</a></li>
-                <li><a href="#arithmetic"><span class="section-num">11.</span> Arithmetic Operations</a></li>
-                <li><a href="#exit-codes"><span class="section-num">12.</span> Exit Codes</a></li>
-                <li><a href="#tests"><span class="section-num">13.</span> Practice Tests</a></li>
-            </ul>
-        </div>
+            <!-- Table of Contents -->
+            <div class="toc">
+                <h3>📑 Table of Contents</h3>
+                <ul>
+                    <li><a href="#what-is"><span class="section-num">1.</span> What is Shell Scripting?</a></li>
+                    <li><a href="#getting-started"><span class="section-num">2.</span> Getting Started</a></li>
+                    <li><a href="#variables"><span class="section-num">3.</span> Variables & Scopes</a></li>
+                    <li><a href="#user-input"><span class="section-num">4.</span> User Input</a></li>
+                    <li><a href="#conditionals"><span class="section-num">5.</span> Conditionals (if/else) & Modern Syntax</a></li>
+                    <li><a href="#case-statements"><span class="section-num">6.</span> Case Statements</a></li>
+                    <li><a href="#loops"><span class="section-num">7.</span> Loops & Nested Loops</a></li>
+                    <li><a href="#functions"><span class="section-num">8.</span> Functions & Scope</a></li>
+                    <li><a href="#arrays"><span class="section-num">9.</span> Arrays</a></li>
+                    <li><a href="#strings"><span class="section-num">10.</span> String Manipulation</a></li>
+                    <li><a href="#arithmetic"><span class="section-num">11.</span> Arithmetic Operations</a></li>
+                    <li><a href="#exit-codes"><span class="section-num">12.</span> Exit Codes</a></li>
+                    <li><a href="#tests"><span class="section-num">13.</span> Practice Tests</a></li>
+                </ul>
+            </div>
 
         <!-- SECTION 1: WHAT IS SHELL SCRIPTING -->
         <h2 id="what-is">📖 1. What is Shell Scripting?</h2>
@@ -1365,14 +1320,15 @@ done</code></pre>
             </div>
         </div>
 
-        <!-- Page Navigation -->
-        <nav class="page-nav">
-            <a href="1.6_access_control.html">← Previous: Access Control</a>
-            <a href="../../index.html#resources">Back to Resources →</a>
-        </nav>
-    </div>
+            <!-- Page Navigation -->
+            <nav class="page-nav">
+                <a href="1.6_access_control.html">← Previous: Access Control</a>
+                <a href="../../index.html#resources">Back to Resources →</a>
+            </nav>
+        </div>
+    </main>
 
-    <footer>
+    <footer class="notes-footer">
         <p>© 2026 lokii.tech | <a href="https://github.com/UnExplainableFish52/lokii.tech" target="_blank">Open Source Project</a></p>
     </footer>
 

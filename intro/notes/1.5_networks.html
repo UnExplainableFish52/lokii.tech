@@ -30,90 +30,40 @@
     <link rel="manifest" href="/site.webmanifest">
     <link rel="icon" href="/favicon.ico">
     
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Centralized Styles -->
+    <link rel="stylesheet" href="../../css/style.css">
+    
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background: #0d1117;
-            color: #e6e6e6;
-            font-family: system-ui, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.7;
-            min-height: 100vh;
-        }
-
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        /* Site Header */
-        .site-header {
-            padding: 15px 20px;
-            border-bottom: 1px solid #30363d;
-            background: rgba(13, 17, 23, 0.95);
-            backdrop-filter: blur(10px);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .header-content {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .branding {
-            text-decoration: none;
-        }
-
-        .branding .logo {
-            color: #00ffff;
-            font-size: 1.5rem;
-            font-weight: 800;
-        }
-
-        .site-nav {
-            display: flex;
-            gap: 25px;
-            align-items: center;
-        }
-
-        .site-nav .nav-link {
-            color: #8b949e;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .site-nav .nav-link:hover {
-            color: #00ffff;
-        }
-
-        /* Header */
-        header.page-header {
+        /* Page-specific styles for networking notes */
+        .notes-header {
             text-align: center;
             padding: 50px 20px;
             margin-bottom: 40px;
         }
 
-        h1 {
+        .notes-header h1 {
             font-size: 2.5em;
-            color: #00ffff;
+            color: #00bcd4;
             font-weight: bold;
             margin-bottom: 15px;
+            border: none;
+            padding: 0;
+        }
+
+        .subtitle {
+            color: #8b949e;
+            font-size: 1.2em;
+            margin-top: 10px;
         }
 
         h2 {
             font-size: 1.8em;
-            color: #00ffff;
+            color: #00bcd4;
             font-weight: bold;
             margin: 50px 0 25px;
             padding-bottom: 10px;
@@ -122,7 +72,7 @@
 
         h3 {
             font-size: 1.4em;
-            color: #00ffff;
+            color: #00bcd4;
             font-weight: bold;
             margin: 30px 0 15px;
         }
@@ -134,13 +84,20 @@
             margin: 25px 0 12px;
         }
 
-        .subtitle {
-            color: #8b949e;
-            font-size: 1.2em;
-            margin-top: 10px;
+        .highlight {
+            color: #ffd700;
+            font-weight: bold;
         }
 
-        /* Content Sections */
+        .code-text {
+            color: #4ec9b0;
+            font-family: 'JetBrains Mono', 'Consolas', monospace;
+            background: rgba(78, 201, 176, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        /* Sections */
         .section {
             background: rgba(22, 27, 34, 0.5);
             border: 1px solid #30363d;
@@ -149,58 +106,18 @@
             margin-bottom: 30px;
         }
 
-        p {
-            margin-bottom: 15px;
-            font-weight: 500;
-        }
-
-        .highlight {
-            color: #ffd700;
-            font-weight: bold;
-        }
-
-        .code-text {
-            color: #00ff88;
-            font-family: 'Consolas', 'Monaco', monospace;
-            background: rgba(0, 255, 136, 0.1);
-            padding: 2px 6px;
-            border-radius: 4px;
-        }
-
-        /* Links */
-        a {
-            color: #58a6ff;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        a:hover {
-            color: #79c0ff;
-            text-decoration: underline;
-        }
-
-        /* Lists */
-        ul, ol {
-            margin: 15px 0;
-            padding-left: 25px;
-        }
-
-        li {
-            margin-bottom: 10px;
-        }
-
         /* Info Boxes */
         .info-box {
-            background: rgba(0, 255, 255, 0.1);
-            border-left: 4px solid #00ffff;
+            background: rgba(0, 188, 212, 0.1);
+            border-left: 4px solid #00bcd4;
             padding: 20px;
             margin: 25px 0;
             border-radius: 0 8px 8px 0;
         }
 
         .tip-box {
-            background: rgba(0, 255, 136, 0.1);
-            border-left: 4px solid #00ff88;
+            background: rgba(78, 201, 176, 0.1);
+            border-left: 4px solid #4ec9b0;
             padding: 20px;
             margin: 25px 0;
             border-radius: 0 8px 8px 0;
@@ -225,15 +142,15 @@
         }
 
         .module-card:hover {
-            border-color: #00ffff;
-            box-shadow: 0 8px 25px rgba(0, 255, 255, 0.1);
+            border-color: #00bcd4;
+            box-shadow: 0 8px 25px rgba(0, 188, 212, 0.1);
             transform: translateY(-3px);
             text-decoration: none;
         }
 
         .module-number {
-            background: rgba(0, 255, 255, 0.15);
-            color: #00ffff;
+            background: rgba(0, 188, 212, 0.15);
+            color: #00bcd4;
             font-size: 1.3em;
             font-weight: bold;
             width: 60px;
@@ -275,20 +192,19 @@
         }
 
         .glossary-item:hover {
-            border-color: #00ff88;
+            border-color: #4ec9b0;
         }
 
         .glossary-term {
-            color: #00ff88;
-            font-family: 'Consolas', 'Monaco', monospace;
+            color: #4ec9b0;
+            font-family: 'JetBrains Mono', 'Consolas', monospace;
             font-weight: bold;
             margin-bottom: 5px;
         }
 
         .glossary-def {
-            color: #e6e6e6;
+            color: #e6edf3;
             font-size: 0.9em;
-            font-weight: 500;
         }
 
         /* Learning Path */
@@ -326,13 +242,12 @@
             margin: 0;
             color: #8b949e;
             font-size: 0.9em;
-            font-weight: 400;
         }
 
         .time-badge {
             display: inline-block;
-            background: rgba(88, 166, 255, 0.15);
-            color: #58a6ff;
+            background: rgba(0, 188, 212, 0.15);
+            color: #00bcd4;
             font-size: 0.8em;
             padding: 3px 10px;
             border-radius: 12px;
@@ -353,7 +268,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            color: #00ffff;
+            color: #00bcd4;
             text-decoration: none;
             padding: 15px 25px;
             border: 2px solid #30363d;
@@ -363,8 +278,8 @@
         }
 
         .page-nav a:hover {
-            border-color: #00ffff;
-            background: rgba(0, 255, 255, 0.1);
+            border-color: #00bcd4;
+            background: rgba(0, 188, 212, 0.1);
             text-decoration: none;
         }
 
@@ -373,7 +288,7 @@
         }
 
         /* Footer */
-        footer {
+        .notes-footer {
             text-align: center;
             padding: 40px 20px;
             margin-top: 60px;
@@ -381,115 +296,41 @@
             color: #8b949e;
         }
 
-        /* Icons */
-        .icon {
-            font-size: 1.5em;
-        }
-
         /* Responsive */
         @media (max-width: 768px) {
-            h1 {
-                font-size: 1.8em;
-            }
-
-            h2 {
-                font-size: 1.5em;
-            }
-
-            .module-card {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .glossary-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .page-nav {
-                flex-direction: column;
-                gap: 15px;
-            }
-
-            .page-nav a {
-                width: 100%;
-                justify-content: center;
-            }
-
-            .header-content {
-                flex-direction: column;
-                gap: 15px;
-            }
-
-            .site-nav {
-                gap: 15px;
-            }
-
-            .scroll-to-top-btn {
-                width: 45px;
-                height: 45px;
-                font-size: 1.25rem;
-                bottom: 16px;
-                right: 16px;
-            }
-        }
-
-        /* Scroll to Top Button */
-        .scroll-to-top-btn {
-            position: fixed;
-            bottom: 24px;
-            right: 24px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #00ffff, #00cccc);
-            color: #0d1117;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5);
-            transition: all 0.25s ease-in-out;
-            z-index: 99;
-            cursor: pointer;
-            border: none;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(20px);
-        }
-
-        .scroll-to-top-btn.visible {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .scroll-to-top-btn:hover {
-            background: linear-gradient(135deg, #00cccc, #009999);
-            transform: scale(1.1) translateY(0);
-            box-shadow: 0 15px 30px rgba(0, 255, 255, 0.4);
+            .notes-header h1 { font-size: 1.8em; }
+            h2 { font-size: 1.5em; }
+            .module-card { flex-direction: column; text-align: center; }
+            .glossary-grid { grid-template-columns: 1fr; }
+            .page-nav { flex-direction: column; gap: 15px; }
+            .page-nav a { width: 100%; justify-content: center; }
         }
     </style>
 </head>
 <body>
-    <!-- Site Header -->
+    <!-- Persistent Navigation (matches index.html) -->
     <header class="site-header">
-        <div class="header-content">
-            <a href="../../index.html" class="branding">
-                <span class="logo">lokii.tech</span>
-            </a>
-            <nav class="site-nav">
-                <a href="../../index.html#about" class="nav-link">About</a>
-                <a href="../../index.html#resources" class="nav-link">Resources</a>
-                <a href="https://github.com/UnExplainableFish52" target="_blank" class="nav-link">GitHub</a>
-            </nav>
+        <div class="container">
+            <div class="header-content">
+                <a href="../../index.html" class="branding">
+                    <span class="logo" style="color: #00e5ff; font-size: 1.7rem; font-weight: 800; text-shadow: 0 0 20px rgba(0, 229, 255, 0.4);">lokii.tech</span>
+                </a>
+                <nav class="nav-links" style="gap: 2rem;">
+                    <a href="../../index.html#about" class="nav-link nav-link-enhanced">About</a>
+                    <a href="../../index.html#resources" class="nav-link nav-link-enhanced">Resources</a>
+                    <a href="https://github.com/UnExplainableFish52/lokii.tech" target="_blank" class="nav-link nav-link-enhanced">GitHub</a>
+                    <a href="https://github.com/UnExplainableFish52/lokii.tech/issues" target="_blank" class="nav-link nav-contribute">Contribute ✨</a>
+                </nav>
+            </div>
         </div>
     </header>
 
-    <div class="container">
-        <header class="page-header">
-            <h1>🌐 1.5 Networking — Complete Guide</h1>
-            <p class="subtitle">From Fundamentals to Advanced Security Concepts</p>
-        </header>
+    <main>
+        <div class="container">
+            <header class="notes-header">
+                <h1>🌐 1.5 Networking — Complete Guide</h1>
+                <p class="subtitle">From Fundamentals to Advanced Security Concepts</p>
+            </header>
 
         <!-- Introduction -->
         <h2>📡 Introduction</h2>
@@ -733,22 +574,23 @@
             </div>
         </div>
 
-        <!-- Page Navigation -->
-        <nav class="page-nav">
-            <a href="1.4-intro-to-os.html">
-                <span>←</span>
-                <span>Previous: Intro to OS</span>
-            </a>
-            <a href="1.5_networks/1.5.1_network_fundamentals.html" class="next">
-                <span>Start: Network Fundamentals</span>
-                <span>→</span>
-            </a>
-        </nav>
+            <!-- Page Navigation -->
+            <nav class="page-nav">
+                <a href="1.4-intro-to-os.html">
+                    <span>←</span>
+                    <span>Previous: Intro to OS</span>
+                </a>
+                <a href="1.5_networks/1.5.1_network_fundamentals.html" class="next">
+                    <span>Start: Network Fundamentals</span>
+                    <span>→</span>
+                </a>
+            </nav>
+        </div>
+    </main>
 
-        <footer>
-            <p>© 2026 lokii.tech | <a href="https://github.com/UnExplainableFish52/lokii.tech" target="_blank">Open Source Project</a></p>
-        </footer>
-    </div>
+    <footer class="notes-footer">
+        <p>© 2026 lokii.tech | <a href="https://github.com/UnExplainableFish52/lokii.tech" target="_blank">Open Source Project</a></p>
+    </footer>
     <script src="../../js/main.js"></script>
 </body>
 </html>

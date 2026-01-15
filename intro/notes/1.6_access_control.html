@@ -3,257 +3,155 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Access Control - ISC2 CC Notes</title>
+    <title>Access Control - ISC2 CC Notes | lokii.tech</title>
+    
+    <meta name="description" content="Comprehensive guide to Access Control concepts for ISC2 Certified in Cybersecurity exam preparation.">
+    <meta name="author" content="lokii (UnExplainableFish52)">
+    <meta name="theme-color" content="#0d1117">
+    
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" href="/favicon.ico">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Centralized Styles -->
+    <link rel="stylesheet" href="../../css/style.css">
+    
     <style>
-        * {
-            margin:  0;
-            padding: 0;
-            box-sizing:  border-box;
-        }
-        
-        body {
-            background:  linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-            color: #f0f0f0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            padding: 40px;
-            line-height:  1.8;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: rgba(0, 0, 0, 0.6);
-            padding: 50px;
-            border-radius: 15px;
-            box-shadow:  0 8px 32px rgba(0, 0, 0, 0.5);
-        }
-        
-        h1 {
-            color:  #00d9ff;
-            font-size: 3em;
+        /* Page-specific styles for Access Control notes */
+        .notes-header {
             text-align: center;
-            margin-bottom: 20px;
-            font-weight: 900;
+            padding: 40px 20px;
+            margin-bottom: 30px;
+        }
+
+        .notes-header h1 {
+            font-size: 2.5em;
+            color: #00bcd4;
+            font-weight: bold;
+            margin-bottom: 15px;
             text-transform: uppercase;
-            letter-spacing: 3px;
-            text-shadow:  0 0 20px rgba(0, 217, 255, 0.5);
+            letter-spacing: 2px;
+            border: none;
+            padding: 0;
         }
-        
-        h2 {
-            color: #00d9ff;
-            font-size: 2em;
-            margin-top: 40px;
-            margin-bottom:  20px;
-            font-weight: 800;
-            border-bottom: 3px solid #00d9ff;
-            padding-bottom: 10px;
-        }
-        
-        h3 {
-            color: #00d9ff;
-            font-size: 1.5em;
-            margin-top: 30px;
-            margin-bottom: 15px;
-            font-weight: 700;
-        }
-        
-        p, li {
-            color: #ffffff;
+
+        .subtitle {
+            color: #8b949e;
             font-size: 1.1em;
-            font-weight: 600;
-            margin-bottom: 15px;
         }
-        
+
+        h2 {
+            font-size: 1.8em;
+            color: #00bcd4;
+            font-weight: bold;
+            margin: 50px 0 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #00bcd4;
+        }
+
+        h3 {
+            font-size: 1.4em;
+            color: #00bcd4;
+            font-weight: bold;
+            margin: 30px 0 15px;
+        }
+
         .highlight {
             color: #ffd700;
-            font-weight: 900;
+            font-weight: bold;
         }
-        
+
         .code {
-            color: #00ff41;
-            font-family: 'Courier New', monospace;
-            font-weight: 700;
-            background: rgba(0, 255, 65, 0.1);
+            color: #4ec9b0;
+            font-family: 'JetBrains Mono', 'Consolas', monospace;
+            font-weight: 600;
+            background: rgba(78, 201, 176, 0.1);
             padding: 2px 6px;
             border-radius: 4px;
         }
-        
-        ul, ol {
-            margin-left: 40px;
-            margin-bottom:  20px;
-        }
-        
-        li {
-            margin-bottom: 12px;
-        }
-        
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin:  30px 0;
-            background: rgba(0, 0, 0, 0.4);
-        }
-        
-        th {
-            background: linear-gradient(135deg, #00d9ff, #0099cc);
-            color: #000;
-            padding: 15px;
-            text-align: left;
-            font-weight: 900;
-            font-size: 1.1em;
-        }
-        
-        td {
-            padding: 15px;
-            border:  1px solid #444;
-            color: #fff;
-            font-weight: 600;
-        }
-        
-        tr:nth-child(even) {
-            background: rgba(255, 255, 255, 0.05);
-        }
-        
+
+        /* Note Boxes */
         .note-box {
             background: rgba(255, 215, 0, 0.1);
             border-left: 5px solid #ffd700;
             padding: 20px;
             margin: 25px 0;
-            border-radius: 5px;
+            border-radius: 0 8px 8px 0;
         }
-        
+
         .example-box {
-            background: rgba(0, 255, 65, 0.1);
-            border-left: 5px solid #00ff41;
+            background: rgba(78, 201, 176, 0.1);
+            border-left: 5px solid #4ec9b0;
             padding: 20px;
             margin: 25px 0;
-            border-radius: 5px;
+            border-radius: 0 8px 8px 0;
         }
-        
+
         .exam-tip {
-            background: rgba(255, 0, 100, 0.1);
-            border-left: 5px solid #ff0064;
+            background: rgba(233, 30, 99, 0.1);
+            border-left: 5px solid #e91e63;
             padding: 20px;
             margin: 25px 0;
-            border-radius: 5px;
+            border-radius: 0 8px 8px 0;
         }
 
-        /* Site Header */
-        .site-header {
-            padding: 15px 20px;
-            border-bottom: 1px solid #30363d;
-            background: rgba(13, 17, 23, 0.95);
-            backdrop-filter: blur(10px);
-            position: sticky;
-            top: 0;
-            z-index: 100;
+        /* Lists */
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 20px;
         }
 
-        .header-content {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        li {
+            margin-bottom: 12px;
         }
 
-        .branding {
-            text-decoration: none;
-        }
-
-        .branding .logo {
-            color: #00ffff;
-            font-size: 1.5rem;
-            font-weight: 800;
-        }
-
-        .site-nav {
-            display: flex;
-            gap: 25px;
-            align-items: center;
-        }
-
-        .site-nav .nav-link {
+        /* Footer */
+        .notes-footer {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+            border-top: 1px solid #30363d;
             color: #8b949e;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
         }
 
-        .site-nav .nav-link:hover {
-            color: #00ffff;
-        }
-
+        /* Responsive */
         @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                gap: 15px;
-            }
-
-            .scroll-to-top-btn {
-                width: 45px;
-                height: 45px;
-                font-size: 1.25rem;
-                bottom: 16px;
-                right: 16px;
-            }
-        }
-
-        /* Scroll to Top Button */
-        .scroll-to-top-btn {
-            position: fixed;
-            bottom: 24px;
-            right: 24px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #00d9ff, #0099cc);
-            color: #000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5);
-            transition: all 0.25s ease-in-out;
-            z-index: 99;
-            cursor: pointer;
-            border: none;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(20px);
-        }
-
-        .scroll-to-top-btn.visible {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .scroll-to-top-btn:hover {
-            background: linear-gradient(135deg, #0099cc, #006688);
-            transform: scale(1.1) translateY(0);
-            box-shadow: 0 15px 30px rgba(0, 217, 255, 0.4);
+            .notes-header h1 { font-size: 1.8em; }
+            h2 { font-size: 1.5em; }
         }
     </style>
 </head>
 <body>
-    <!-- Site Header -->
+    <!-- Persistent Navigation (matches index.html) -->
     <header class="site-header">
-        <div class="header-content">
-            <a href="../../index.html" class="branding">
-                <span class="logo">lokii.tech</span>
-            </a>
-            <nav class="site-nav">
-                <a href="../../index.html#about" class="nav-link">About</a>
-                <a href="../../index.html#resources" class="nav-link">Resources</a>
-                <a href="https://github.com/UnExplainableFish52" target="_blank" class="nav-link">GitHub</a>
-            </nav>
+        <div class="container">
+            <div class="header-content">
+                <a href="../../index.html" class="branding">
+                    <span class="logo" style="color: #00e5ff; font-size: 1.7rem; font-weight: 800; text-shadow: 0 0 20px rgba(0, 229, 255, 0.4);">lokii.tech</span>
+                </a>
+                <nav class="nav-links" style="gap: 2rem;">
+                    <a href="../../index.html#about" class="nav-link nav-link-enhanced">About</a>
+                    <a href="../../index.html#resources" class="nav-link nav-link-enhanced">Resources</a>
+                    <a href="https://github.com/UnExplainableFish52/lokii.tech" target="_blank" class="nav-link nav-link-enhanced">GitHub</a>
+                    <a href="https://github.com/UnExplainableFish52/lokii.tech/issues" target="_blank" class="nav-link nav-contribute">Contribute ✨</a>
+                </nav>
+            </div>
         </div>
     </header>
 
-    <div class="container">
-        <h1>🔐 Access Control</h1>
-        <p style="text-align: center; font-size: 1.2em; color: #aaa;">ISC2 Certified in Cybersecurity - Foundation Notes</p>
+    <main>
+        <div class="container">
+            <header class="notes-header">
+                <h1>🔐 Access Control</h1>
+                <p class="subtitle">ISC2 Certified in Cybersecurity - Foundation Notes</p>
+            </header>
         
         <h2>📖 What is Access Control?</h2>
         <p><span class="highlight">Access Control</span> is a security technique that regulates who or what can view or use resources in a computing environment. It's a fundamental concept of security compliance that determines <span class="highlight">who is allowed to access what</span>.</p>
@@ -711,11 +609,16 @@
             </ul>
         </div>
         
-        <div style="margin-top: 50px; text-align: center; color: #888; font-size: 0.9em;">
-            <p>Notes prepared for ISC2 Certified in Cybersecurity | Access Control Fundamentals</p>
-            <p>Study smart.  Stay secure.  🔐</p>
+            <div style="margin-top: 50px; text-align: center; color: #888; font-size: 0.9em;">
+                <p>Notes prepared for ISC2 Certified in Cybersecurity | Access Control Fundamentals</p>
+                <p>Study smart.  Stay secure.  🔐</p>
+            </div>
         </div>
-    </div>
+    </main>
+
+    <footer class="notes-footer">
+        <p>© 2026 lokii.tech | <a href="https://github.com/UnExplainableFish52/lokii.tech" target="_blank">Open Source Project</a></p>
+    </footer>
     <script src="../../js/main.js"></script>
 </body>
 </html>
