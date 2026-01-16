@@ -30,37 +30,74 @@
     <link rel="manifest" href="/site.webmanifest">
     <link rel="icon" href="/favicon.ico">
     
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    
-    <!-- Centralized Styles -->
-    <link rel="stylesheet" href="../../css/style.css">
-    
     <style>
-        /* Page-specific styles for cybersecurity landscape content */
-        .notes-header {
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0d1117;
+            color: #e6edf3;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Navigation */
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #30363d;
+            margin-bottom: 40px;
+        }
+
+        .nav-link {
+            color: #00bcd4;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            background: rgba(0, 188, 212, 0.15);
+        }
+
+        .breadcrumb {
+            color: #8b949e;
+            font-size: 0.9em;
+        }
+
+        .breadcrumb a {
+            color: #00bcd4;
+            text-decoration: none;
+        }
+
+        /* Header */
+        header {
             text-align: center;
             padding: 40px 20px;
             margin-bottom: 30px;
         }
 
-        .notes-header h1 {
+        h1 {
             font-size: 2.5em;
             color: #00bcd4;
             font-weight: bold;
             margin-bottom: 15px;
-            border: none;
-            padding: 0;
         }
 
-        .subtitle {
-            color: #8b949e;
-            font-size: 1.1em;
-        }
-
-        /* Content headings */
         h2 {
             font-size: 1.8em;
             color: #00bcd4;
@@ -84,17 +121,9 @@
             margin: 20px 0 10px;
         }
 
-        .highlight {
-            color: #ffd700;
-            font-weight: bold;
-        }
-
-        .code-text {
-            color: #4ec9b0;
-            font-family: 'JetBrains Mono', 'Consolas', monospace;
-            background: rgba(78, 201, 176, 0.1);
-            padding: 2px 6px;
-            border-radius: 4px;
+        .subtitle {
+            color: #8b949e;
+            font-size: 1.1em;
         }
 
         /* Sections */
@@ -104,6 +133,32 @@
             border-radius: 12px;
             padding: 30px;
             margin-bottom: 30px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        .highlight {
+            color: #ffd700;
+            font-weight: bold;
+        }
+
+        .code-text {
+            color: #4ec9b0;
+            font-family: 'Consolas', 'Monaco', monospace;
+            background: rgba(78, 201, 176, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        ul, ol {
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+
+        li {
+            margin-bottom: 10px;
         }
 
         /* Threat Actor Cards */
@@ -197,6 +252,31 @@
         .example-box h4 {
             color: #4ec9b0;
             margin-top: 0;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 0.9em;
+        }
+
+        th {
+            background: rgba(0, 188, 212, 0.2);
+            color: #00bcd4;
+            padding: 12px;
+            text-align: left;
+            border-bottom: 2px solid #00bcd4;
+        }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #30363d;
+        }
+
+        tr:hover {
+            background: rgba(0, 188, 212, 0.05);
         }
 
         /* Kill Chain */
@@ -447,7 +527,7 @@
         }
 
         /* Footer */
-        .notes-footer {
+        footer {
             text-align: center;
             padding: 40px 20px;
             margin-top: 60px;
@@ -457,16 +537,24 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            .notes-header h1 { font-size: 1.8em; }
-            h2 { font-size: 1.5em; }
+            h1 {
+                font-size: 1.8em;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+
             .kill-chain {
                 flex-direction: column;
                 align-items: center;
             }
+
             .kill-chain-step {
                 width: 100%;
                 max-width: 200px;
             }
+
             .kill-chain-step::after {
                 content: "↓";
                 right: 50%;
@@ -474,41 +562,99 @@
                 bottom: -15px;
                 transform: translateX(50%);
             }
+
             .layer {
                 flex-direction: column;
                 text-align: center;
             }
-            .page-nav { flex-direction: column; gap: 15px; }
-            .page-nav a { width: 100%; justify-content: center; }
+
+            .page-nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .page-nav a {
+                width: 100%;
+                justify-content: center;
+            }
+
+            table {
+                font-size: 0.8em;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+        }
+        /* Site Header - Homepage Style */
+        .site-header {
+            padding: 15px 20px;
+            border-bottom: 1px solid #30363d;
+            background: rgba(13, 17, 23, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .branding {
+            text-decoration: none;
+        }
+
+        .branding .logo {
+            color: #00bcd4;
+            font-size: 1.5rem;
+            font-weight: 800;
+        }
+
+        .site-nav {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .site-nav .nav-link {
+            color: #8b949e;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .site-nav .nav-link:hover {
+            color: #00bcd4;
         }
     </style>
 </head>
 <body>
-    <!-- Persistent Navigation (matches index.html) -->
+    <!-- Site Header -->
     <header class="site-header">
-        <div class="container">
-            <div class="header-content">
-                <a href="../../index.html" class="branding">
-                    <span class="logo" style="color: #00e5ff; font-size: 1.7rem; font-weight: 800; text-shadow: 0 0 20px rgba(0, 229, 255, 0.4);">lokii.tech</span>
-                </a>
-                <nav class="nav-links" style="gap: 2rem;">
-                    <a href="../../index.html#about" class="nav-link nav-link-enhanced">About</a>
-                    <a href="../../index.html#resources" class="nav-link nav-link-enhanced">Resources</a>
-                    <a href="https://github.com/UnExplainableFish52/lokii.tech" target="_blank" class="nav-link nav-link-enhanced">GitHub</a>
-                    <a href="https://github.com/UnExplainableFish52/lokii.tech/issues" target="_blank" class="nav-link nav-contribute">Contribute ✨</a>
-                </nav>
-            </div>
+        <div class="header-content">
+            <a href="../../index.html" class="branding">
+                <span class="logo">lokii.tech</span>
+            </a>
+            <nav class="site-nav">
+                <a href="../../index.html#about" class="nav-link">About</a>
+                <a href="../../index.html#resources" class="nav-link">Resources</a>
+                <a href="https://github.com/UnExplainableFish52" target="_blank" class="nav-link">GitHub</a>
+            </nav>
         </div>
     </header>
 
-    <main>
-        <div class="container">
-            <header class="notes-header">
-                <h1>🌐 1.3 The Cybersecurity Landscape</h1>
-                <p class="subtitle">Understanding who attacks, why they attack, and how we defend</p>
-            </header>
+    <div class="container">
+        <header>
+            <h1>🌐 1.3 The Cybersecurity Landscape</h1>
+            <p class="subtitle">Understanding who attacks, why they attack, and how we defend</p>
+        </header>
 
-            <!-- Threat Actors Section -->
+        <!-- Threat Actors Section -->
         <h2>👤 Threat Actors — Who Attacks?</h2>
 
         <div class="section">
@@ -1120,23 +1266,25 @@
             </div>
         </div>
 
-            <!-- Page Navigation -->
-            <nav class="page-nav">
-                <a href="1.2-glossary.html">
-                    <span>←</span>
-                    <span>Previous: Cybersecurity Glossary</span>
-                </a>
-                <a href="index.html">
-                    <span>Back to Module Hub</span>
-                    <span>→</span>
-                </a>
-            </nav>
-        </div>
-    </main>
+        <!-- Page Navigation -->
+        <nav class="page-nav">
+            <a href="1.2-glossary.html">
+                <span>←</span>
+                <span>Previous: Cybersecurity Glossary</span>
+            </a>
+            <a href="index.html">
+                <span>Back to Module Hub</span>
+                <span>→</span>
+            </a>
+        </nav>
 
-    <footer class="notes-footer">
-        <p>© 2026 lokii.tech | <a href="https://github.com/UnExplainableFish52/lokii.tech" target="_blank">Open Source Project</a></p>
-    </footer>
-    <script src="../../js/main.js"></script>
+        <footer>
+            <p>Module 1: Introduction to Cybersecurity | Lesson 1.3</p>
+            <p>Part of the Cybersecurity Beginner Course at projects.saksham.bio</p>
+            <p style="margin-top: 20px;">
+                <strong>🎉 Congratulations!</strong> You've completed Module 1: Introduction to Cybersecurity
+            </p>
+        </footer>
+    </div>
 </body>
 </html>

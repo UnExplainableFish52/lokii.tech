@@ -389,7 +389,7 @@
         <tr><th>Option</th><th>Meaning</th><th>Example</th></tr>
         <tr><td>-F</td><td>Field separator</td><td><code>-F,</code> for CSV, <code>-F: </code> for /etc/passwd</td></tr>
         <tr><td>-v</td><td>Define variable</td><td><code>-v threshold=50000</code></td></tr>
-        <tr><td>-f</td><td>Read awk script from file</td><td><code>awk -f script.awk data.txt</code></td></tr>
+        <tr><td>-f</td><td>Read awk script from file</td><td><code>awk -f script. awk data.txt</code></td></tr>
     </table>
 
     <hr class="divider">
@@ -402,13 +402,13 @@
 awk -F, '{print $1}' file.csv
 
 <span class="comment"># TSV (tab)</span>
-awk -F'\t' '{print $1}' file.tsv
+awk -F'\t' '{print $1}' file. tsv
 
 <span class="comment"># Colon (like /etc/passwd)</span>
 awk -F:  '{print $1}' /etc/passwd
 
 <span class="comment"># Pipe</span>
-awk -F'|' '{print $1}' file.psv
+awk -F'|' '{print $1}' file. psv
 
 <span class="comment"># Multiple separators (comma OR semicolon)</span>
 awk -F'[,;]' '{print $1}' file.txt</code></pre>
@@ -481,7 +481,7 @@ awk -F'[,;]' '{print $1}' file.txt</code></pre>
 awk -F, '$2 ~ /a/' emp.csv
 
 <span class="comment"># Department NOT marketing</span>
-awk -F, '$3 !~ /marketing/' emp.csv</code></pre>
+awk -F, '$3 ! ~ /marketing/' emp.csv</code></pre>
 
     <hr class="divider">
 
@@ -873,6 +873,6 @@ awk -F, 'NR>1 {sum+=$5; count++; data[NR]=$0} END {avg=sum/count; for(i in data)
         <strong>End of AWK Mastery Notes</strong><br>
         Built for Loki by Shelly 🔥
     </p>
-    <script src="../../js/main.js"></script>
+
 </body>
 </html>

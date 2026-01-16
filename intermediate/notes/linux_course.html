@@ -35,28 +35,71 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     
     <!-- Shared Premium Styles -->
-    <link rel="stylesheet" href="../../css/style.css">
-    <link rel="stylesheet" href="../../css/notes.css">
+    <link rel="stylesheet" href="style.css">
     
-    <!-- Highlight.js for syntax coloring -->
+    <!-- Highlight.js for syntax coloring (Can be customized in style.css or kept separate) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/base16/tomorrow-night.min.css">
+    <style>
+        /* Site Header - Homepage Style */
+        .site-header {
+            padding: 15px 20px;
+            border-bottom: 1px solid #262626;
+            background: rgba(5, 5, 5, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .site-header .header-content {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .branding {
+            text-decoration: none;
+        }
+
+        .branding .logo {
+            color: #00bcd4;
+            font-size: 1.5rem;
+            font-weight: 800;
+        }
+
+        .site-nav {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .site-nav .nav-link {
+            color: #A1A1AA;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .site-nav .nav-link:hover {
+            color: #00bcd4;
+        }
+    </style>
 </head>
 <body>
 
-    <!-- Persistent Navigation (matches index.html) -->
+    <!-- Site Header -->
     <header class="site-header">
-        <div class="container">
-            <div class="header-content">
-                <a href="../../index.html" class="branding">
-                    <span class="logo" style="color: #00e5ff; font-size: 1.7rem; font-weight: 800; text-shadow: 0 0 20px rgba(0, 229, 255, 0.4);">lokii.tech</span>
-                </a>
-                <nav class="nav-links" style="gap: 2rem;">
-                    <a href="../../index.html#about" class="nav-link nav-link-enhanced">About</a>
-                    <a href="../../index.html#resources" class="nav-link nav-link-enhanced">Resources</a>
-                    <a href="https://github.com/UnExplainableFish52/lokii.tech" target="_blank" class="nav-link nav-link-enhanced">GitHub</a>
-                    <a href="https://github.com/UnExplainableFish52/lokii.tech/issues" target="_blank" class="nav-link nav-contribute">Contribute ✨</a>
-                </nav>
-            </div>
+        <div class="header-content">
+            <a href="../../index.html" class="branding">
+                <span class="logo">lokii.tech</span>
+            </a>
+            <nav class="site-nav">
+                <a href="../../index.html#about" class="nav-link">About</a>
+                <a href="../../index.html#resources" class="nav-link">Resources</a>
+                <a href="https://github.com/UnExplainableFish52" target="_blank" class="nav-link">GitHub</a>
+            </nav>
         </div>
     </header>
 
@@ -13876,6 +13919,18 @@ You've covered 17 modules, from foundation to mastery. The commands and concepts
             });
         }
     </script>
-    <script src="../../js/main.js"></script>
+</body>
+    <!-- Markdown Parsing Logic -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const source = document.getElementById('md-source').textContent;
+            const target = document.getElementById('md-target');
+            if(source && target && window.marked) {
+                target.innerHTML = marked.parse(source);
+            }
+            if (window.hljs) hljs.highlightAll();
+        });
+    </script>
 </body>
 </html>

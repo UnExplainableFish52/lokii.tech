@@ -1,11 +1,72 @@
 /**
  * LOKII.TECH - Main JavaScript
  * Shared functionality for all pages
- * Provides floating home navigation button and other utilities
+ * Provides navbar, floating home navigation button and other utilities
  */
 
 (function () {
     'use strict';
+
+    /**
+     * Initialize the navbar component
+     * Dynamically generates and injects the navbar based on page location
+     */
+    function initNavbar() {
+        // Check if navbar placeholder exists or if we should prepend to body
+        const placeholder = document.getElementById('navbar-placeholder');
+
+        // If no placeholder and a header already exists, skip
+        if (!placeholder && document.querySelector('.site-header')) {
+            return;
+        }
+
+        // Detect page depth by counting path segments
+        const pathname = window.location.pathname;
+        const isHomePage = pathname === '/' ||
+            pathname.endsWith('/index.html') ||
+            pathname === '/index.html' ||
+            (pathname.endsWith('/') && !pathname.includes('.html'));
+
+        // Calculate base path for links
+        let basePath = '';
+        if (!isHomePage) {
+            // Count directory levels from root
+            const pathParts = pathname.split('/').filter(p => p && !p.includes('.html'));
+            basePath = pathParts.map(() => '..').join('/');
+            if (basePath) basePath = basePath;
+        }
+
+        // Build link paths
+        const homeLink = isHomePage ? '/' : (basePath ? basePath + '/index.html' : '/index.html');
+        const aboutLink = isHomePage ? '#about' : (basePath ? basePath + '/index.html#about' : '/index.html#about');
+        const resourcesLink = isHomePage ? '#resources' : (basePath ? basePath + '/index.html#resources' : '/index.html#resources');
+
+        // Generate navbar HTML
+        const navbarHTML = `
+            <header class="site-header">
+                <div class="container">
+                    <div class="header-content">
+                        <a href="${homeLink}" class="branding">
+                            <span class="logo">lokii.tech</span>
+                        </a>
+                        <nav class="nav-links" style="gap: 2rem;">
+                            <a href="${aboutLink}" class="nav-link nav-link-enhanced">About</a>
+                            <a href="${resourcesLink}" class="nav-link nav-link-enhanced">Resources</a>
+                            <a href="https://github.com/UnExplainableFish52/lokii.tech" target="_blank" class="nav-link nav-link-enhanced">GitHub</a>
+                            <a href="https://github.com/UnExplainableFish52/lokii.tech/issues" target="_blank" class="nav-link nav-contribute">Contribute ✨</a>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+        `;
+
+        // Insert navbar
+        if (placeholder) {
+            placeholder.outerHTML = navbarHTML;
+        } else {
+            document.body.insertAdjacentHTML('afterbegin', navbarHTML);
+        }
+    }
 
     /**
      * Initialize floating home button
@@ -119,6 +180,7 @@
      * Initialize all functionality when DOM is ready
      */
     function init() {
+        initNavbar();
         initFloatingHomeButton();
         initScrollToTopButton();
         initSmoothScrolling();
