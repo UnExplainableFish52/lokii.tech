@@ -541,6 +541,9 @@
             const section = header.parentElement;
             const isActive = section.classList.contains('active');
             
+            // Store current scroll position to prevent unwanted scrolling
+            const scrollY = window.scrollY;
+            
             // Close all sections
             document.querySelectorAll('.accordion-section').forEach(s => {
                 s.classList.remove('active');
@@ -550,9 +553,14 @@
             if (!isActive) {
                 section.classList.add('active');
             }
+            
+            // Restore scroll position to prevent jumping
+            requestAnimationFrame(() => {
+                window.scrollTo(0, scrollY);
+            });
         }
     </script>
     
-    <script src="js/main.js"></script>
+    <script src="/js/main.js"></script>
 </body>
 </html>
