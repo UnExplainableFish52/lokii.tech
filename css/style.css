@@ -273,13 +273,20 @@ section {
    ============================================ */
 
 .hero {
-    background: linear-gradient(180deg, var(--bg-body) 0%, #111827 50%, var(--bg-body) 100%);
+    background: transparent;
     padding: var(--spacing-2xl) 0;
     text-align: center;
+    position: relative;
+    overflow: hidden;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
 }
 
 .hero-content {
     padding: var(--spacing-2xl) 0;
+    position: relative;
+    z-index: 2;
 }
 
 .hero-title {

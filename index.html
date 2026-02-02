@@ -235,6 +235,17 @@
             background: rgba(239, 68, 68, 0.2);
             color: #EF4444;
         }
+
+        /* Matrix/Network Background Canvas */
+        #matrix-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
     </style>
 </head>
 <body>
@@ -258,6 +269,8 @@
     <main>
         <!-- Hero Section -->
         <section class="hero">
+            <!-- Matrix/Network Background (hero only) -->
+            <canvas id="matrix-bg"></canvas>
             <div class="container">
                 <div class="hero-content">
                     <h1 class="hero-title">Break Into CS with Confidence</h1>
@@ -569,5 +582,152 @@
     </script>
     
     <script src="/js/main.js"></script>
+
+    <!-- Enhanced Matrix/Network Background Animation -->
+    <script>
+        (function() {
+            const canvas = document.getElementById('matrix-bg');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const hero = document.querySelector('.hero');
+
+            let width, height;
+            let particles = [];
+            let matrixDrops = [];
+            let mouseX = 0, mouseY = 0;
+
+            // Matrix characters
+            const matrixChars = 'アイウエオカキクケコサシスセソタチツテト01234567890$#~/|><{}[]@&*;:=+-_./\\sudo apt wget curl chmod bash nmap grep';
+            const charArray = matrixChars.split('');
+
+            function resize() {
+                width = canvas.width = hero.offsetWidth;
+                height = canvas.height = hero.offsetHeight;
+                initParticles();
+                initMatrix();
+            }
+
+            // Floating network particles
+            function initParticles() {
+                particles = [];
+                const count = Math.floor((width * height) / 12000);
+                for (let i = 0; i < count; i++) {
+                    particles.push({
+                        x: Math.random() * width,
+                        y: Math.random() * height,
+                        vx: (Math.random() - 0.5) * 0.5,
+                        vy: (Math.random() - 0.5) * 0.5,
+                        radius: Math.random() * 2.5 + 1,
+                        opacity: Math.random() * 0.6 + 0.3
+                    });
+                }
+            }
+
+            // Matrix rain columns
+            function initMatrix() {
+                const fontSize = 14;
+                const columns = Math.floor(width / fontSize);
+                matrixDrops = [];
+                for (let i = 0; i < columns; i++) {
+                    matrixDrops.push({
+                        y: Math.random() * -100,
+                        speed: 0.3 + Math.random() * 0.4,
+                        x: i * fontSize,
+                        active: Math.random() > 0.6
+                    });
+                }
+            }
+
+            // Track mouse for interactive effects
+            document.addEventListener('mousemove', (e) => {
+                const rect = hero.getBoundingClientRect();
+                mouseX = e.clientX - rect.left;
+                mouseY = e.clientY - rect.top;
+            });
+
+            function draw() {
+                // Clear with fade effect
+                ctx.fillStyle = 'rgba(5, 5, 5, 0.1)';
+                ctx.fillRect(0, 0, width, height);
+
+                // Draw matrix rain
+                const fontSize = 14;
+                ctx.font = fontSize + 'px JetBrains Mono, Consolas, monospace';
+
+                matrixDrops.forEach((drop) => {
+                    if (!drop.active) return;
+                    
+                    const char = charArray[Math.floor(Math.random() * charArray.length)];
+                    const opacity = 0.2 + Math.random() * 0.2;
+                    
+                    if (Math.random() > 0.93) {
+                        ctx.fillStyle = `rgba(0, 229, 255, ${opacity + 0.4})`;
+                    } else {
+                        ctx.fillStyle = `rgba(0, 255, 65, ${opacity})`;
+                    }
+                    
+                    ctx.fillText(char, drop.x, drop.y * fontSize);
+
+                    if (drop.y * fontSize > height && Math.random() > 0.97) {
+                        drop.y = 0;
+                        drop.active = Math.random() > 0.5;
+                    }
+                    drop.y += drop.speed;
+                });
+
+                // Draw particles with connections
+                particles.forEach((p, i) => {
+                    p.x += p.vx;
+                    p.y += p.vy;
+
+                    // Mouse interaction
+                    const dx = mouseX - p.x;
+                    const dy = mouseY - p.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 150) {
+                        p.vx -= dx * 0.0001;
+                        p.vy -= dy * 0.0001;
+                    }
+
+                    // Boundary wrap
+                    if (p.x < 0) p.x = width;
+                    if (p.x > width) p.x = 0;
+                    if (p.y < 0) p.y = height;
+                    if (p.y > height) p.y = 0;
+
+                    // Draw particle with glow
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(0, 229, 255, ${p.opacity})`;
+                    ctx.shadowColor = '#00e5ff';
+                    ctx.shadowBlur = 8;
+                    ctx.fill();
+                    ctx.shadowBlur = 0;
+
+                    // Draw connections
+                    particles.slice(i + 1).forEach((p2) => {
+                        const dx = p.x - p2.x;
+                        const dy = p.y - p2.y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        
+                        if (distance < 130) {
+                            ctx.beginPath();
+                            ctx.moveTo(p.x, p.y);
+                            ctx.lineTo(p2.x, p2.y);
+                            ctx.strokeStyle = `rgba(0, 188, 212, ${0.2 * (1 - distance / 130)})`;
+                            ctx.lineWidth = 0.6;
+                            ctx.stroke();
+                        }
+                    });
+                });
+
+                requestAnimationFrame(draw);
+            }
+
+            window.addEventListener('resize', resize);
+            resize();
+            draw();
+        })();
+    </script>
 </body>
 </html>

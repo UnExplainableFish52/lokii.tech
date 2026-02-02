@@ -34,17 +34,30 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     
-    <!-- Shared Premium Styles -->
-    <link rel="stylesheet" href="style.css">
-    
-    <!-- Highlight.js for syntax coloring (Can be customized in style.css or kept separate) -->
+    <!-- Highlight.js for syntax coloring -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/base16/tomorrow-night.min.css">
     <style>
-        /* Site Header - Homepage Style */
+        /* Base Reset & Body */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0d0d0d 0%, #1a1a2e 50%, #0d0d0d 100%);
+            color: #ffffff;
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 18px;
+            line-height: 1.8;
+            min-height: 100vh;
+        }
+
+        /* Site Header */
         .site-header {
             padding: 15px 20px;
-            border-bottom: 1px solid #262626;
-            background: rgba(5, 5, 5, 0.95);
+            border-bottom: 1px solid #30363d;
+            background: rgba(13, 13, 13, 0.95);
             backdrop-filter: blur(10px);
             position: sticky;
             top: 0;
@@ -76,7 +89,7 @@
         }
 
         .site-nav .nav-link {
-            color: #A1A1AA;
+            color: #888;
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s ease;
@@ -85,9 +98,241 @@
         .site-nav .nav-link:hover {
             color: #00bcd4;
         }
+
+        /* Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Headings */
+        h1 {
+            color: #00ffff;
+            font-size: 2.5em;
+            font-weight: 800;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+        }
+
+        h2 {
+            color: #00ffff;
+            font-size: 1.8em;
+            font-weight: 700;
+            margin-top: 50px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #00ffff;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+        }
+
+        h3 {
+            color: #00d4ff;
+            font-size: 1.4em;
+            font-weight: 600;
+            margin-top: 35px;
+            margin-bottom: 15px;
+        }
+
+        h4 {
+            color: #40e0d0;
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+
+        /* Paragraphs and Lists */
+        p, li {
+            color: #e0e0e0;
+            font-weight: 400;
+            margin-bottom: 12px;
+        }
+
+        ul, ol {
+            margin-left: 30px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        li::marker {
+            color: #00ffff;
+        }
+
+        /* Links */
+        a {
+            color: #00d4ff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #ffd700;
+            text-decoration: underline;
+        }
+
+        /* Code */
+        code {
+            background: #1e1e1e;
+            color: #00ff88;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', 'Consolas', 'Fira Code', monospace;
+            font-size: 0.9em;
+        }
+
+        pre {
+            background: #0a0a0a;
+            border: 1px solid #333;
+            border-left: 4px solid #00ff88;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+
+        pre code {
+            background: transparent;
+            color: #00ff88;
+            padding: 0;
+            font-size: 0.85em;
+            line-height: 1.6;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: #111;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            color: #00ffff;
+            font-weight: 700;
+            padding: 15px;
+            text-align: left;
+            border-bottom: 2px solid #00ffff;
+        }
+
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #333;
+            color: #e0e0e0;
+        }
+
+        td:first-child {
+            color: #00ff88;
+            font-family: 'JetBrains Mono', 'Consolas', monospace;
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background: rgba(0, 255, 255, 0.05);
+        }
+
+        /* Blockquotes */
+        blockquote {
+            background: linear-gradient(90deg, rgba(0, 188, 212, 0.1), transparent);
+            border-left: 4px solid #00bcd4;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+        }
+
+        blockquote p {
+            margin-bottom: 0;
+        }
+
+        /* Horizontal Rule */
+        hr {
+            border: none;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00ffff, transparent);
+            margin: 40px 0;
+        }
+
+        /* Strong and Emphasis */
+        strong {
+            color: #ffd700;
+            font-weight: 700;
+        }
+
+        em {
+            color: #ff69b4;
+        }
+
+        /* Task Lists */
+        input[type="checkbox"] {
+            accent-color: #00ffff;
+            margin-right: 8px;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #00ffff;
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00aaff;
+        }
+
+        /* Matrix Rain Canvas */
+        #matrix-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                font-size: 16px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            h2 {
+                font-size: 1.4em;
+            }
+
+            pre {
+                padding: 15px;
+            }
+
+            .container {
+                padding: 20px 15px;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- Matrix Rain Background -->
+    <canvas id="matrix-canvas"></canvas>
 
     <!-- Site Header -->
     <header class="site-header">
@@ -13919,18 +14164,76 @@ You've covered 17 modules, from foundation to mastery. The commands and concepts
             });
         }
     </script>
-</body>
-    <!-- Markdown Parsing Logic -->
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <!-- Matrix Rain Animation -->
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const source = document.getElementById('md-source').textContent;
-            const target = document.getElementById('md-target');
-            if(source && target && window.marked) {
-                target.innerHTML = marked.parse(source);
+        (function() {
+            const canvas = document.getElementById('matrix-canvas');
+            const ctx = canvas.getContext('2d');
+
+            // Resize canvas to fit window
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
             }
-            if (window.hljs) hljs.highlightAll();
-        });
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+
+            // Matrix characters - mix of Japanese katakana, numbers, and Linux/bash symbols
+            const chars = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789$#~/|><{}[]@&*;:=+-_.abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            const charArray = chars.split('');
+
+            const fontSize = 14;
+            let columns = Math.floor(canvas.width / fontSize);
+            let drops = [];
+
+            // Initialize drops
+            function initDrops() {
+                columns = Math.floor(canvas.width / fontSize);
+                drops = [];
+                for (let i = 0; i < columns; i++) {
+                    drops[i] = Math.random() * -100;
+                }
+            }
+            initDrops();
+            window.addEventListener('resize', initDrops);
+
+            // Draw function
+            function draw() {
+                // Semi-transparent black to create trail effect
+                ctx.fillStyle = 'rgba(13, 13, 13, 0.05)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                ctx.fillStyle = '#00ff41'; // Matrix green
+                ctx.font = fontSize + 'px JetBrains Mono, Consolas, monospace';
+
+                for (let i = 0; i < drops.length; i++) {
+                    // Random character
+                    const char = charArray[Math.floor(Math.random() * charArray.length)];
+                    
+                    // Vary the green shade slightly for depth
+                    const shade = Math.random();
+                    if (shade > 0.95) {
+                        ctx.fillStyle = '#ffffff'; // Occasional bright white
+                    } else if (shade > 0.8) {
+                        ctx.fillStyle = '#00ff88'; // Bright green
+                    } else {
+                        ctx.fillStyle = 'rgba(0, 255, 65, ' + (0.3 + Math.random() * 0.5) + ')'; // Varied opacity green
+                    }
+
+                    ctx.fillText(char, i * fontSize, drops[i] * fontSize);
+
+                    // Reset drop to top randomly after going off screen
+                    if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                        drops[i] = 0;
+                    }
+                    drops[i] += 0.5 + Math.random() * 0.5; // Varied speed
+                }
+            }
+
+            // Animation loop - slower for subtle effect
+            setInterval(draw, 50);
+        })();
     </script>
 </body>
 </html>
