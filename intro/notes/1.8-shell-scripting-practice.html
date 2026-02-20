@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1.8 Shell Scripting Practice | lokii.tech</title>
+
+    <meta name="description" content="10 realistic shell scripting scenarios for cybersecurity and DevOps professionals. Practice with real-world problems and solutions.">
+    <meta name="author" content="lokii (UnExplainableFish52)">
+    <meta name="theme-color" content="#0d1117">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://lokii.tech/intro/notes/1.8-shell-scripting-practice.html">
+    <meta property="og:title" content="Shell Scripting Practice | lokii.tech">
+    <meta property="og:description" content="10 realistic shell scripting scenarios for cybersecurity and DevOps professionals.">
+    <meta property="og:image" content="https://lokii.tech/preview.jpg">
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" href="/favicon.ico">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Centralized Styles -->
+    <link rel="stylesheet" href="../../css/style.css">
+
+    <style>
+        .notes-header {
+            text-align: center;
+            padding: 40px 20px;
+            margin-bottom: 30px;
+        }
+        .notes-header h1 {
+            font-size: 2.2em;
+            background: linear-gradient(135deg, #00e5ff, #ffd700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            color: #8b949e;
+            font-size: 1.1rem;
+        }
+        .section {
+            background: rgba(22, 27, 34, 0.5);
+            border: 1px solid #30363d;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        .scenario-card {
+            background: rgba(22, 27, 34, 0.6);
+            border: 1px solid #30363d;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 35px;
+            transition: border-color 0.3s ease;
+        }
+        .scenario-card:hover { border-color: #00bcd4; }
+        .scenario-num {
+            display: inline-block;
+            background: linear-gradient(135deg, #00bcd4, #0099aa);
+            color: #000;
+            font-weight: 700;
+            font-size: 0.85rem;
+            padding: 4px 12px;
+            border-radius: 6px;
+            margin-bottom: 12px;
+        }
+        .scenario-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #e6edf3;
+            margin-bottom: 20px;
+        }
+        .scenario-label {
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .scenario-label.situation { color: #ffd700; }
+        .scenario-label.objective { color: #00bcd4; }
+        .scenario-label.solution { color: #4caf50; }
+        .scenario-label.best-practices { color: #ff9800; }
+        .scenario-situation, .scenario-objective {
+            color: #d4d4d8;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            padding-left: 10px;
+            border-left: 3px solid #30363d;
+            padding: 10px 15px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 0 8px 8px 0;
+        }
+        .solution-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #238636, #1a7f37);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            margin: 10px 0;
+        }
+        .solution-toggle:hover {
+            background: linear-gradient(135deg, #2ea043, #238636);
+            transform: translateY(-1px);
+        }
+        .solution-content {
+            display: none;
+            margin-top: 15px;
+        }
+        .solution-content.show { display: block; }
+        .solution-content pre {
+            background: #0d1117;
+            border: 1px solid #30363d;
+            border-radius: 10px;
+            padding: 20px;
+            overflow-x: auto;
+            font-size: 0.88rem;
+            line-height: 1.6;
+        }
+        .solution-content code {
+            color: #c9d1d9;
+            font-family: 'JetBrains Mono', 'Consolas', monospace;
+        }
+        .bp-list {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0 0 0;
+        }
+        .bp-list li {
+            padding: 8px 12px;
+            border-left: 3px solid #ff9800;
+            margin-bottom: 8px;
+            background: rgba(255, 152, 0, 0.05);
+            border-radius: 0 6px 6px 0;
+            color: #d4d4d8;
+        }
+        .bp-list li code {
+            background: rgba(110, 118, 129, 0.2);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+        .info-box {
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            background: rgba(0, 188, 212, 0.08);
+            border-left: 4px solid #00bcd4;
+        }
+        .success-box {
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            background: rgba(76, 175, 80, 0.1);
+            border-left: 4px solid #4caf50;
+        }
+        .use-case-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .use-case-item {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid #30363d;
+            border-radius: 10px;
+            padding: 20px;
+            transition: border-color 0.3s ease;
+        }
+        .use-case-item:hover { border-color: #00bcd4; }
+        .use-case-item h4 { color: #00bcd4; margin-bottom: 8px; margin-top: 0; }
+        .use-case-item p { color: #8b949e; margin: 0; font-size: 0.95rem; }
+        .toc { background: rgba(22, 27, 34, 0.6); border: 1px solid #30363d; border-radius: 12px; padding: 25px; margin-bottom: 40px; }
+        .toc h3 { margin-top: 0; margin-bottom: 15px; }
+        .toc ul { list-style: none; padding-left: 0; }
+        .toc li { margin-bottom: 8px; }
+        .toc a { color: #8b949e; text-decoration: none; transition: color 0.3s; }
+        .toc a:hover { color: #00bcd4; }
+        .toc .section-num { color: #ffd700; margin-right: 8px; }
+        .page-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid #30363d;
+        }
+        .page-nav a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: rgba(22, 27, 34, 0.6);
+            border: 1px solid #30363d;
+            border-radius: 10px;
+            color: #8b949e;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .page-nav a:hover {
+            border-color: #00bcd4;
+            color: #00bcd4;
+            text-decoration: none;
+        }
+        .notes-footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: #484f58;
+            font-size: 0.85rem;
+            border-top: 1px solid #21262d;
+            margin-top: 60px;
+        }
+        .notes-footer a { color: #58a6ff; }
+        @media (max-width: 768px) {
+            .notes-header h1 { font-size: 1.6em; }
+            .scenario-card { padding: 20px; }
+            .page-nav { flex-direction: column; gap: 15px; }
+            .page-nav a { width: 100%; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+    <div id="navbar-placeholder"></div>
+
+    <main>
+        <div class="container">
+            <header class="notes-header">
+                <h1>🛡️ 1.8 Shell Scripting Practice</h1>
+                <p class="subtitle">10 Real-World Scenarios for CyberSec & DevOps Professionals</p>
+            </header>
+
+            <!-- Table of Contents -->
+            <div class="toc">
+                <h3>📑 Table of Contents</h3>
+                <ul>
+                    <li><a href="#best-practices-top"><span class="section-num">0.</span> Best Practices Checklist</a></li>
+                    <li><a href="#scenario-1"><span class="section-num">1.</span> Failed SSH Login Monitor</a></li>
+                    <li><a href="#scenario-2"><span class="section-num">2.</span> Automated Backup with Integrity Verification</a></li>
+                    <li><a href="#scenario-3"><span class="section-num">3.</span> Bash Port Scanner</a></li>
+                    <li><a href="#scenario-4"><span class="section-num">4.</span> Log Rotation & Cleanup Daemon</a></li>
+                    <li><a href="#scenario-5"><span class="section-num">5.</span> Service Health Monitor with Auto-Recovery</a></li>
+                    <li><a href="#scenario-6"><span class="section-num">6.</span> Firewall Rule Auditor</a></li>
+                    <li><a href="#scenario-7"><span class="section-num">7.</span> User Account Security Auditor</a></li>
+                    <li><a href="#scenario-8"><span class="section-num">8.</span> SSL Certificate Expiry Checker</a></li>
+                    <li><a href="#scenario-9"><span class="section-num">9.</span> Incident Response Data Collector</a></li>
+                    <li><a href="#scenario-10"><span class="section-num">10.</span> CI/CD Deployment Script with Rollback</a></li>
+                    <li><a href="#use-cases"><span class="section-num">★</span> Real-Life Use Cases</a></li>
+                </ul>
+            </div>
+
+            <!-- Intro -->
+            <div class="section">
+                <p>Welcome to the <strong>Shell Scripting Practice Lab</strong>! This page wraps up the shell scripting series with <strong>10 realistic, scenario-based challenges</strong> designed for cybersecurity analysts and DevOps engineers.</p>
+                <p>Each scenario follows a structured format:</p>
+                <ul>
+                    <li><strong style="color:#ffd700;">🎯 Situation</strong> — A real-world problem you'd encounter on the job</li>
+                    <li><strong style="color:#00bcd4;">📋 Objective</strong> — What you need to accomplish</li>
+                    <li><strong style="color:#4caf50;">💡 Solution</strong> — A complete, working script (toggle to reveal)</li>
+                    <li><strong style="color:#ff9800;">📌 Best Practices</strong> — Key takeaways for production use</li>
+                </ul>
+                <p>Try to write your own solution before revealing the answer!</p>
+            </div>
+
+            <!-- Best Practices Checklist -->
+            <h2 id="best-practices-top">📌 Shell Scripting Best Practices for Security & DevOps</h2>
+            <div class="section">
+                <ol style="line-height: 2.2;">
+                    <li>Always start scripts with <code>set -euo pipefail</code> for strict error handling</li>
+                    <li>Quote all variables: <code>"$var"</code> — prevents word splitting and glob expansion</li>
+                    <li>Use <code>[[ ]]</code> over <code>[ ]</code> for safer, modern conditional tests</li>
+                    <li>Validate all inputs — never trust user-provided data in security scripts</li>
+                    <li>Log everything with timestamps — audit trails are critical for incident response</li>
+                    <li>Use <code>local</code> variables in functions to prevent namespace pollution</li>
+                    <li>Implement proper exit codes: <code>0</code> for success, non-zero for specific failure types</li>
+                    <li>Use <code>shellcheck</code> to lint your scripts before deploying to production</li>
+                    <li>Never hardcode credentials — use environment variables or secret managers</li>
+                    <li>Add usage messages and <code>--help</code> flags to all scripts shared with your team</li>
+                </ol>
+            </div>
+
+            <!-- Scenario 1 -->
+            <div class="scenario-card" id="scenario-1">
+                <span class="scenario-num">🔒 Scenario 1</span>
+                <h3 class="scenario-title">Failed SSH Login Monitor</h3>
+
+                <div class="scenario-label situation">🎯 Situation</div>
+                <div class="scenario-situation">Your company's cloud server has been experiencing brute-force SSH login attempts. The security team needs a script that monitors <code>/var/log/auth.log</code> in real-time, counts failed attempts per IP, and triggers an alert when any single IP exceeds a threshold — optionally adding the IP to a blocklist.</div>
+
+                <div class="scenario-label objective">📋 Objective</div>
+                <div class="scenario-objective">Parse auth logs for failed SSH login attempts, aggregate by source IP, and alert (or auto-block) when an IP exceeds N failed attempts within a time window.</div>
+
+                <div class="scenario-label solution">💡 Solution</div>
+                <button class="solution-toggle" onclick="toggleSolution(this)">Show Solution ▼</button>
+                <div class="solution-content">
+                    <pre><code>#!/bin/bash
+# ssh_monitor.sh — Failed SSH Login Monitor
+# Usage: ./ssh_monitor.sh [threshold] [logfile]
+
+set -euo pipefail
+
+THRESHOLD="${1:-5}"
+LOGFILE="${2:-/var/log/auth.log}"
+ALERT_LOG="/var/log/ssh_alerts.log"
+
+log_alert() {
+    local msg="[$(date '+%Y-%m-%d %H:%M:%S')] ALERT: $1"
+    echo "$msg" | tee -a "$ALERT_LOG"
+}
+
+check_failed_logins() {
+    echo "=== SSH Failed Login Report ==="
+    echo "Threshold: $THRESHOLD attempts"
+    echo "Log file:  $LOGFILE"
+    echo "-------------------------------"
+
+    # Extract failed login IPs and count occurrences
+    grep "Failed password" "$LOGFILE" 2&gt;/dev/null \
+        | grep -oP 'from \K[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+' \
+        | sort | uniq -c | sort -rn \
+        | while read -r count ip; do
+            if (( count &gt;= THRESHOLD )); then
+                log_alert "$ip has $count failed attempts — BLOCKING"
+                # Auto-block with iptables (uncomment in production)
+                # iptables -A INPUT -s "$ip" -j DROP
+                echo "  [BLOCKED] $ip — $count attempts"
+            else
+                echo "  [OK]      $ip — $count attempts"
+            fi
+        done
+
+    echo "-------------------------------"
+    echo "Report generated: $(date)"
+}
+
+# Validate log file exists
+if [[ ! -f "$LOGFILE" ]]; then
+    echo "Error: Log file '$LOGFILE' not found" &gt;&amp;2
+    exit 1
+fi
+
+check_failed_logins</code></pre>
+                </div>
+
+                <div class="scenario-label best-practices" style="margin-top: 20px;">📌 Best Practices</div>
+                <ul class="bp-list">
+                    <li>Always validate input files exist before processing</li>
+                    <li>Use <code>set -euo pipefail</code> for safer script execution</li>
+                    <li>Log all security actions with timestamps for audit trails</li>
+                    <li>Test blocking rules in dry-run mode before enabling auto-block</li>
+                </ul>
+            </div>
+
+            <!-- Scenario 2 -->
+            <div class="scenario-card" id="scenario-2">
+                <span class="scenario-num">💾 Scenario 2</span>
+                <h3 class="scenario-title">Automated Backup with Integrity Verification</h3>
+
+                <div class="scenario-label situation">🎯 Situation</div>
+                <div class="scenario-situation">Your DevOps team manages multiple production servers. Critical configuration files and databases need daily backups with integrity verification. Old backups must be rotated to save disk space, and the team needs email notifications on failure.</div>
+
+                <div class="scenario-label objective">📋 Objective</div>
+                <div class="scenario-objective">Create a backup script that archives specified directories, generates SHA-256 checksums for integrity, implements backup rotation (keep last N backups), and reports success/failure.</div>
+
+                <div class="scenario-label solution">💡 Solution</div>
+                <button class="solution-toggle" onclick="toggleSolution(this)">Show Solution ▼</button>
+                <div class="solution-content">
+                    <pre><code>#!/bin/bash
+# secure_backup.sh — Automated Backup with Integrity Check
+# Usage: ./secure_backup.sh
+
+set -euo pipefail
+
+# Configuration
+BACKUP_DIRS=("/etc" "/var/www" "/home")
+BACKUP_DEST="/backup"
+RETENTION_DAYS=30
+DATE_STAMP=$(date +%Y%m%d_%H%M%S)
+BACKUP_FILE="${BACKUP_DEST}/backup_${DATE_STAMP}.tar.gz"
+CHECKSUM_FILE="${BACKUP_FILE}.sha256"
+LOG_FILE="/var/log/backup.log"
+
+log() { echo "[$(date '+%F %T')] $1" | tee -a "$LOG_FILE"; }
+
+# Ensure backup directory exists
+mkdir -p "$BACKUP_DEST"
+
+log "Starting backup..."
+
+# Create compressed archive
+if tar -czf "$BACKUP_FILE" "${BACKUP_DIRS[@]}" 2&gt;&gt;"$LOG_FILE"; then
+    log "Archive created: $BACKUP_FILE ($(du -h "$BACKUP_FILE" | cut -f1))"
+else
+    log "ERROR: Backup failed!"
+    exit 1
+fi
+
+# Generate checksum
+sha256sum "$BACKUP_FILE" &gt; "$CHECKSUM_FILE"
+log "Checksum generated: $(cat "$CHECKSUM_FILE")"
+
+# Verify integrity immediately
+if sha256sum -c "$CHECKSUM_FILE" &amp;&gt;/dev/null; then
+    log "Integrity check: PASSED ✓"
+else
+    log "ERROR: Integrity check FAILED!"
+    exit 2
+fi
+
+# Rotate old backups
+deleted=$(find "$BACKUP_DEST" -name "backup_*.tar.gz" \
+    -mtime +"$RETENTION_DAYS" -delete -print | wc -l)
+log "Rotation: Removed $deleted backups older than ${RETENTION_DAYS} days"
+
+log "Backup completed successfully"</code></pre>
+                </div>
+
+                <div class="scenario-label best-practices" style="margin-top: 20px;">📌 Best Practices</div>
+                <ul class="bp-list">
+                    <li>Always verify backup integrity immediately after creation</li>
+                    <li>Implement backup rotation to prevent disk space exhaustion</li>
+                    <li>Log every step for troubleshooting and audit compliance</li>
+                    <li>Store backups on a separate volume or remote location</li>
+                </ul>
+            </div>
+
+            <!-- Scenario 3 -->
+            <div class="scenario-card" id="scenario-3">
+                <span class="scenario-num">🔍 Scenario 3</span>
+                <h3 class="scenario-title">Bash Port Scanner</h3>
+
+                <div class="scenario-label situation">🎯 Situation</div>
+                <div class="scenario-situation">During a penetration test engagement, you find yourself on a compromised host with no tools installed — no nmap, no netcat, nothing. You need to perform basic network reconnaissance against an internal target to identify open services using only bash built-ins.</div>
+
+                <div class="scenario-label objective">📋 Objective</div>
+                <div class="scenario-objective">Build a lightweight port scanner using bash's <code>/dev/tcp</code> pseudo-device to scan a target host for open ports, with timeout handling and clean output.</div>
+
+                <div class="scenario-label solution">💡 Solution</div>
+                <button class="solution-toggle" onclick="toggleSolution(this)">Show Solution ▼</button>
+                <div class="solution-content">
+                    <pre><code>#!/bin/bash
+# bash_scanner.sh — Lightweight Bash Port Scanner
+# Usage: ./bash_scanner.sh &lt;target&gt; [start_port] [end_port]
+
+set -uo pipefail
+
+TARGET="${1:?Usage: $0 &lt;target&gt; [start_port] [end_port]}"
+START_PORT="${2:-1}"
+END_PORT="${3:-1024}"
+TIMEOUT=1
+OPEN_PORTS=()
+
+echo "════════════════════════════════════════"
+echo "  Bash Port Scanner v1.0"
+echo "  Target: $TARGET"
+echo "  Range:  $START_PORT — $END_PORT"
+echo "════════════════════════════════════════"
+echo ""
+echo "Scanning..."
+
+for (( port=START_PORT; port&lt;=END_PORT; port++ )); do
+    # Use /dev/tcp to attempt connection with timeout
+    (echo &gt;/dev/tcp/"$TARGET"/"$port") 2&gt;/dev/null &amp;
+    pid=$!
+
+    # Wait with timeout
+    ( sleep "$TIMEOUT"; kill "$pid" 2&gt;/dev/null ) &amp;
+    waiter=$!
+    wait "$pid" 2&gt;/dev/null
+    result=$?
+    kill "$waiter" 2&gt;/dev/null
+    wait "$waiter" 2&gt;/dev/null
+
+    if [[ "$result" -eq 0 ]]; then
+        OPEN_PORTS+=("$port")
+        printf "  [OPEN] Port %-5d\n" "$port"
+    fi
+
+    # Progress indicator every 100 ports
+    (( port % 100 == 0 )) &amp;&amp; echo "  ... scanned $port/$END_PORT"
+done
+
+echo ""
+echo "════════════════════════════════════════"
+echo "  Scan Complete"
+echo "  Open ports: ${#OPEN_PORTS[@]}"
+for p in "${OPEN_PORTS[@]}"; do
+    printf "    → %d\n" "$p"
+done
+echo "════════════════════════════════════════"</code></pre>
+                </div>
+
+                <div class="scenario-label best-practices" style="margin-top: 20px;">📌 Best Practices</div>
+                <ul class="bp-list">
+                    <li>Only use in authorized penetration testing engagements</li>
+                    <li>Implement timeouts to avoid hanging on filtered ports</li>
+                    <li>This is slower than nmap — use it only when no tools are available</li>
+                    <li><code>/dev/tcp</code> is a bash-specific feature, not available in all shells</li>
+                </ul>
+            </div>
+
+            <!-- Scenario 4 -->
+            <div class="scenario-card" id="scenario-4">
+                <span class="scenario-num">📋 Scenario 4</span>
+                <h3 class="scenario-title">Log Rotation & Cleanup Daemon</h3>
+
+                <div class="scenario-label situation">🎯 Situation</div>
+                <div class="scenario-situation">A production web application generates massive log files that consume disk space rapidly. The server ran out of disk space last week causing a 2-hour outage. Management wants automated log management with compression, rotation, and disk space alerts.</div>
+
+                <div class="scenario-label objective">📋 Objective</div>
+                <div class="scenario-objective">Write a script that compresses logs older than 1 day, deletes compressed logs older than 30 days, monitors disk usage, and alerts when thresholds are exceeded.</div>
+
+                <div class="scenario-label solution">💡 Solution</div>
+                <button class="solution-toggle" onclick="toggleSolution(this)">Show Solution ▼</button>
+                <div class="solution-content">
+                    <pre><code>#!/bin/bash
+# log_manager.sh — Log Rotation &amp; Cleanup
+# Run via cron: 0 2 * * * /opt/scripts/log_manager.sh
+
+set -euo pipefail
+
+LOG_DIRS=("/var/log/nginx" "/var/log/app" "/var/log/syslog")
+COMPRESS_AGE=1    # Compress logs older than N days
+DELETE_AGE=30     # Delete compressed logs older than N days
+DISK_THRESHOLD=80 # Alert if disk usage exceeds N%
+REPORT="/var/log/log_manager_report.log"
+
+log() { echo "[$(date '+%F %T')] $1" | tee -a "$REPORT"; }
+
+log "=== Log Management Started ==="
+
+total_compressed=0
+total_deleted=0
+space_saved=0
+
+for dir in "${LOG_DIRS[@]}"; do
+    [[ -d "$dir" ]] || continue
+    log "Processing: $dir"
+
+    # Compress old logs (skip already compressed)
+    while IFS= read -r -d '' file; do
+        size_before=$(stat -c%s "$file")
+        if gzip "$file" 2&gt;/dev/null; then
+            size_after=$(stat -c%s "${file}.gz")
+            saved=$(( size_before - size_after ))
+            space_saved=$(( space_saved + saved ))
+            ((total_compressed++))
+        fi
+    done &lt; &lt;(find "$dir" -name "*.log" -mtime +"$COMPRESS_AGE" \
+        -not -name "*.gz" -print0)
+
+    # Delete old compressed logs
+    count=$(find "$dir" -name "*.gz" -mtime +"$DELETE_AGE" \
+        -delete -print | wc -l)
+    total_deleted=$((total_deleted + count))
+done
+
+# Check disk usage
+disk_usage=$(df / | awk 'NR==2 {print $5}' | tr -d '%')
+if (( disk_usage &gt;= DISK_THRESHOLD )); then
+    log "WARNING: Disk usage at ${disk_usage}% (threshold: ${DISK_THRESHOLD}%)"
+fi
+
+log "Compressed: $total_compressed files"
+log "Deleted:    $total_deleted old archives"
+log "Saved:      $(( space_saved / 1024 / 1024 )) MB"
+log "Disk usage: ${disk_usage}%"
+log "=== Log Management Complete ==="</code></pre>
+                </div>
+
+                <div class="scenario-label best-practices" style="margin-top: 20px;">📌 Best Practices</div>
+                <ul class="bp-list">
+                    <li>Schedule via cron during low-traffic hours</li>
+                    <li>Always check if directories exist before processing</li>
+                    <li>Use <code>-print0</code> with <code>read -d ''</code> for filenames with spaces</li>
+                    <li>Monitor disk usage proactively, don't wait for outages</li>
+                </ul>
+            </div>
+
+            <!-- Scenario 5 -->
+            <div class="scenario-card" id="scenario-5">
+                <span class="scenario-num">🏥 Scenario 5</span>
+                <h3 class="scenario-title">Service Health Monitor with Auto-Recovery</h3>
+
+                <div class="scenario-label situation">🎯 Situation</div>
+                <div class="scenario-situation">Your team manages several critical microservices. Last month, the payment API went down for 45 minutes before anyone noticed. You need a monitoring script that checks service health endpoints, attempts auto-restart on failure, and sends alerts via webhook.</div>
+
+                <div class="scenario-label objective">📋 Objective</div>
+                <div class="scenario-objective">Monitor multiple HTTP endpoints, detect failures with retry logic, attempt service restarts, and send notifications when services are down.</div>
+
+                <div class="scenario-label solution">💡 Solution</div>
+                <button class="solution-toggle" onclick="toggleSolution(this)">Show Solution ▼</button>
+                <div class="solution-content">
+                    <pre><code>#!/bin/bash
+# health_monitor.sh — Service Health Monitor
+# Usage: ./health_monitor.sh (run via cron every 1-5 min)
+
+set -uo pipefail
+
+# Service definitions: "name|url|service_name"
+SERVICES=(
+    "Payment API|http://localhost:8001/health|payment-api"
+    "Auth Service|http://localhost:8002/health|auth-service"
+    "Web Frontend|http://localhost:3000|nginx"
+)
+
+MAX_RETRIES=3
+TIMEOUT=5
+WEBHOOK_URL="${SLACK_WEBHOOK:-}"
+LOG="/var/log/health_monitor.log"
+
+log() { echo "[$(date '+%F %T')] $1" | tee -a "$LOG"; }
+
+send_alert() {
+    local msg="$1"
+    log "ALERT: $msg"
+    if [[ -n "$WEBHOOK_URL" ]]; then
+        curl -sf -X POST "$WEBHOOK_URL" \
+            -H 'Content-Type: application/json' \
+            -d "{\"text\":\"🚨 $msg\"}" &amp;&gt;/dev/null || true
+    fi
+}
+
+check_service() {
+    local name="$1" url="$2" svc="$3"
+    local attempt=1
+
+    while (( attempt &lt;= MAX_RETRIES )); do
+        status=$(curl -sf -o /dev/null -w "%{http_code}" \
+            --max-time "$TIMEOUT" "$url" 2&gt;/dev/null || echo "000")
+
+        if [[ "$status" == "200" ]]; then
+            log "$name: UP (attempt $attempt)"
+            return 0
+        fi
+        log "$name: attempt $attempt failed (HTTP $status)"
+        ((attempt++))
+        sleep 2
+    done
+
+    # All retries failed — attempt restart
+    log "$name: DOWN — attempting restart of $svc"
+    if systemctl restart "$svc" 2&gt;/dev/null; then
+        send_alert "$name was down, auto-restarted $svc"
+    else
+        send_alert "$name is DOWN and restart FAILED! Manual intervention needed."
+    fi
+    return 1
+}
+
+log "=== Health Check Started ==="
+failures=0
+
+for entry in "${SERVICES[@]}"; do
+    IFS='|' read -r name url svc &lt;&lt;&lt; "$entry"
+    check_service "$name" "$url" "$svc" || ((failures++))
+done
+
+log "=== Health Check Complete: $failures failures ==="</code></pre>
+                </div>
+
+                <div class="scenario-label best-practices" style="margin-top: 20px;">📌 Best Practices</div>
+                <ul class="bp-list">
+                    <li>Implement retry logic before declaring a service down</li>
+                    <li>Use timeouts on all HTTP requests to prevent hanging</li>
+                    <li>Log all actions for post-incident analysis</li>
+                    <li>Set up escalation — auto-restart first, alert humans if that fails</li>
+                </ul>
+            </div>
+
+            <!-- Scenario 6 -->
+            <div class="scenario-card" id="scenario-6">
+                <span class="scenario-num">🧱 Scenario 6</span>
+                <h3 class="scenario-title">Firewall Rule Auditor</h3>
+
+                <div class="scenario-label situation">🎯 Situation</div>
+                <div class="scenario-situation">During a security audit, you need to review the firewall configuration on 20+ Linux servers. You need to identify dangerous rules like open SSH from any source, permissive ACCEPT policies, or rules that expose sensitive ports to the internet.</div>
+
+                <div class="scenario-label objective">📋 Objective</div>
+                <div class="scenario-objective">Parse iptables/ufw rules, flag dangerous configurations (wide-open ports, ANY source rules, missing DROP policies), and generate a security report.</div>
+
+                <div class="scenario-label solution">💡 Solution</div>
+                <button class="solution-toggle" onclick="toggleSolution(this)">Show Solution ▼</button>
+                <div class="solution-content">
+                    <pre><code>#!/bin/bash
+# firewall_audit.sh — Firewall Rule Auditor
+# Usage: ./firewall_audit.sh
+
+set -uo pipefail
+
+REPORT="/tmp/firewall_audit_$(date +%Y%m%d).txt"
+DANGEROUS_PORTS=(22 3306 5432 6379 27017 9200)
+ISSUES=0
+
+header() { echo -e "\n$1" | tee -a "$REPORT"; }
+finding() { echo "  [!] $1" | tee -a "$REPORT"; ((ISSUES++)); }
+ok() { echo "  [✓] $1" | tee -a "$REPORT"; }
+
+echo "Firewall Security Audit — $(date)" | tee "$REPORT"
+echo "Host: $(hostname)" | tee -a "$REPORT"
+
+# Check if firewall is active
+header "1. Firewall Status"
+if command -v ufw &amp;&gt;/dev/null; then
+    status=$(ufw status 2&gt;/dev/null | head -1)
+    if [[ "$status" == *"inactive"* ]]; then
+        finding "UFW is INACTIVE — no firewall protection!"
+    else
+        ok "UFW is active"
+    fi
+fi
+
+# Check default policies
+header "2. Default Policies"
+iptables -L -n 2&gt;/dev/null | grep -E "^Chain (INPUT|FORWARD)" | \
+while read -r line; do
+    chain=$(echo "$line" | awk '{print $2}')
+    policy=$(echo "$line" | grep -oP '\(policy \K\w+')
+    if [[ "$policy" == "ACCEPT" ]]; then
+        finding "$chain default policy is ACCEPT (should be DROP)"
+    else
+        ok "$chain default policy is $policy"
+    fi
+done
+
+# Check for wide-open rules
+header "3. Wide-Open Rules (source: 0.0.0.0/0)"
+iptables -L INPUT -n 2&gt;/dev/null | grep "ACCEPT" | \
+while read -r rule; do
+    for port in "${DANGEROUS_PORTS[@]}"; do
+        if echo "$rule" | grep -qE "dpt:$port.*0\.0\.0\.0/0|0\.0\.0\.0/0.*dpt:$port"; then
+            finding "Port $port is open to ANY source: $rule"
+        fi
+    done
+done
+
+# Check for rules without source restriction
+header "4. Unrestricted ACCEPT Rules"
+iptables -L INPUT -n --line-numbers 2&gt;/dev/null | \
+    grep "ACCEPT" | grep "0.0.0.0/0.*0.0.0.0/0" | \
+while read -r rule; do
+    finding "Unrestricted ACCEPT: $rule"
+done
+
+header "=== Audit Complete ==="
+echo "Total issues found: $ISSUES" | tee -a "$REPORT"
+echo "Report saved: $REPORT" | tee -a "$REPORT"</code></pre>
+                </div>
+
+                <div class="scenario-label best-practices" style="margin-top: 20px;">📌 Best Practices</div>
+                <ul class="bp-list">
+                    <li>Default INPUT policy should be DROP, not ACCEPT</li>
+                    <li>Never expose database ports (3306, 5432, 6379) to 0.0.0.0/0</li>
+                    <li>Restrict SSH access to specific IP ranges or use a VPN</li>
+                    <li>Run firewall audits regularly as part of compliance checks</li>
+                </ul>
+            </div>
+
+            <!-- Scenario 7 -->
+            <div class="scenario-card" id="scenario-7">
+                <span class="scenario-num">👤 Scenario 7</span>
+                <h3 class="scenario-title">User Account Security Auditor</h3>
+
+                <div class="scenario-label situation">🎯 Situation</div>
+                <div class="scenario-situation">As part of quarterly access reviews (required by ISO 27001 and SOC 2), you need to audit all user accounts on Linux servers. You must identify accounts with no password, UID 0 (root-equivalent) accounts, users who haven't logged in for 90+ days, and accounts with shells that shouldn't have them.</div>
+
+                <div class="scenario-label objective">📋 Objective</div>
+                <div class="scenario-objective">Scan <code>/etc/passwd</code>, <code>/etc/shadow</code>, and login records to identify security risks in user accounts and generate an actionable report.</div>
+
+                <div class="scenario-label solution">💡 Solution</div>
+                <button class="solution-toggle" onclick="toggleSolution(this)">Show Solution ▼</button>
+                <div class="solution-content">
+                    <pre><code>#!/bin/bash
+# user_audit.sh — User Account Security Auditor
+# Usage: sudo ./user_audit.sh
+
+set -uo pipefail
+
+[[ $EUID -eq 0 ]] || { echo "Run as root"; exit 1; }
+
+REPORT="/tmp/user_audit_$(date +%Y%m%d).txt"
+STALE_DAYS=90
+ISSUES=0
+
+log() { echo "$1" | tee -a "$REPORT"; }
+warn() { echo "  [!] $1" | tee -a "$REPORT"; ((ISSUES++)); }
+ok() { echo "  [✓] $1" | tee -a "$REPORT"; }
+
+log "User Account Audit — $(date)"
+log "Host: $(hostname)"
+log ""
+
+# Check for UID 0 accounts (root equivalents)
+log "=== UID 0 Accounts (Root Equivalents) ==="
+while IFS=: read -r user _ uid _; do
+    if [[ "$uid" == "0" &amp;&amp; "$user" != "root" ]]; then
+        warn "$user has UID 0 — root-equivalent access!"
+    fi
+done &lt; /etc/passwd
+
+# Check for accounts with no password
+log ""
+log "=== Password Status ==="
+while IFS=: read -r user pass _; do
+    case "$pass" in
+        "")  warn "$user has NO password set" ;;
+        "!"|"!!"|"*") ;; # Locked or system account
+        *)   ok "$user has a password set" ;;
+    esac
+done &lt; /etc/shadow
+
+# Check for stale accounts
+log ""
+log "=== Stale Accounts (no login in ${STALE_DAYS}+ days) ==="
+cutoff=$(date -d "-${STALE_DAYS} days" +%s 2&gt;/dev/null || \
+    date -v-${STALE_DAYS}d +%s)
+while IFS=: read -r user _ uid _ _ _ shell; do
+    (( uid &lt; 1000 )) &amp;&amp; continue  # Skip system accounts
+    [[ "$shell" == */nologin || "$shell" == */false ]] &amp;&amp; continue
+    last_login=$(lastlog -u "$user" 2&gt;/dev/null | tail -1 | awk '{print $4,$5,$6,$7}')
+    if [[ "$last_login" == *"Never"* ]]; then
+        warn "$user has NEVER logged in (shell: $shell)"
+    fi
+done &lt; /etc/passwd
+
+log ""
+log "=== Audit Complete: $ISSUES issues found ==="
+log "Report: $REPORT"</code></pre>
+                </div>
+
+                <div class="scenario-label best-practices" style="margin-top: 20px;">📌 Best Practices</div>
+                <ul class="bp-list">
+                    <li>Run account audits quarterly for compliance frameworks</li>
+                    <li>Disable accounts that haven't been used in 90+ days</li>
+                    <li>Only root should have UID 0 — any other UID 0 account is a red flag</li>
+                    <li>Service accounts should use <code>/sbin/nologin</code> as their shell</li>
+                </ul>
+            </div>
+
+            <!-- Scenario 8 -->
+            <div class="scenario-card" id="scenario-8">
+                <span class="scenario-num">🔐 Scenario 8</span>
+                <h3 class="scenario-title">SSL Certificate Expiry Checker</h3>
+
+                <div class="scenario-label situation">🎯 Situation</div>
+                <div class="scenario-situation">Your organization manages 50+ domains and subdomains. Last quarter, a production API certificate expired causing a major incident. You need proactive monitoring that checks certificate expiry dates and alerts the team before any cert expires.</div>
+
+                <div class="scenario-label objective">📋 Objective</div>
+                <div class="scenario-objective">Connect to multiple domains via OpenSSL, extract certificate expiry dates, calculate days remaining, and flag certificates expiring within a threshold.</div>
+
+                <div class="scenario-label solution">💡 Solution</div>
+                <button class="solution-toggle" onclick="toggleSolution(this)">Show Solution ▼</button>
+                <div class="solution-content">
+                    <pre><code>#!/bin/bash
+# ssl_checker.sh — SSL Certificate Expiry Checker
+# Usage: ./ssl_checker.sh [warn_days]
+
+set -uo pipefail
+
+WARN_DAYS="${1:-30}"
+DOMAINS=(
+    "example.com"
+    "api.example.com"
+    "mail.example.com"
+    "staging.example.com"
+)
+
+RED='\033[0;31m' YEL='\033[0;33m'
+GRN='\033[0;32m' NC='\033[0m'
+
+echo "════════════════════════════════════════════"
+echo "  SSL Certificate Expiry Report"
+echo "  Warning threshold: $WARN_DAYS days"
+echo "  Checked: $(date)"
+echo "════════════════════════════════════════════"
+echo ""
+
+expiring=0
+
+for domain in "${DOMAINS[@]}"; do
+    # Get certificate expiry date
+    expiry=$(echo | openssl s_client -servername "$domain" \
+        -connect "$domain:443" 2&gt;/dev/null \
+        | openssl x509 -noout -enddate 2&gt;/dev/null \
+        | cut -d= -f2)
+
+    if [[ -z "$expiry" ]]; then
+        printf "${RED}  ✗ %-30s UNREACHABLE${NC}\n" "$domain"
+        ((expiring++))
+        continue
+    fi
+
+    # Calculate days until expiry
+    expiry_epoch=$(date -d "$expiry" +%s 2&gt;/dev/null || \
+        date -jf "%b %d %T %Y %Z" "$expiry" +%s)
+    now_epoch=$(date +%s)
+    days_left=$(( (expiry_epoch - now_epoch) / 86400 ))
+
+    if (( days_left &lt;= 0 )); then
+        printf "${RED}  ✗ %-30s EXPIRED (%d days ago)${NC}\n" \
+            "$domain" "$(( -days_left ))"
+        ((expiring++))
+    elif (( days_left &lt;= WARN_DAYS )); then
+        printf "${YEL}  ⚠ %-30s EXPIRING in %d days${NC}\n" \
+            "$domain" "$days_left"
+        ((expiring++))
+    else
+        printf "${GRN}  ✓ %-30s OK (%d days remaining)${NC}\n" \
+            "$domain" "$days_left"
+    fi
+done
+
+echo ""
+echo "════════════════════════════════════════════"
+if (( expiring &gt; 0 )); then
+    echo -e "${RED}  $expiring certificate(s) need attention!${NC}"
+else
+    echo -e "${GRN}  All certificates healthy ✓${NC}"
+fi
+echo "════════════════════════════════════════════"</code></pre>
+                </div>
+
+                <div class="scenario-label best-practices" style="margin-top: 20px;">📌 Best Practices</div>
+                <ul class="bp-list">
+                    <li>Check certificates daily via cron and alert at 30-, 14-, and 7-day marks</li>
+                    <li>Automate renewal with Let's Encrypt / certbot where possible</li>
+                    <li>Include internal services and APIs, not just public-facing domains</li>
+                    <li>Always test with <code>openssl s_client</code> — browser checks aren't enough</li>
+                </ul>
+            </div>
+
+            <!-- Scenario 9 -->
+            <div class="scenario-card" id="scenario-9">
+                <span class="scenario-num">🚨 Scenario 9</span>
+                <h3 class="scenario-title">Incident Response Data Collector</h3>
+
+                <div class="scenario-label situation">🎯 Situation</div>
+                <div class="scenario-situation">A security breach has been detected on a Linux server. The incident response team needs to quickly collect volatile forensic evidence — running processes, network connections, logged-in users, recent file changes, and system info — before the attacker can cover their tracks.</div>
+
+                <div class="scenario-label objective">📋 Objective</div>
+                <div class="scenario-objective">Gather volatile forensic data from a compromised system, hash all evidence files for chain-of-custody integrity, and package everything for analysis.</div>
+
+                <div class="scenario-label solution">💡 Solution</div>
+                <button class="solution-toggle" onclick="toggleSolution(this)">Show Solution ▼</button>
+                <div class="solution-content">
+                    <pre><code>#!/bin/bash
+# ir_collector.sh — Incident Response Data Collector
+# Usage: sudo ./ir_collector.sh
+
+set -uo pipefail
+
+[[ $EUID -eq 0 ]] || { echo "Must run as root!"; exit 1; }
+
+CASE_ID="IR-$(date +%Y%m%d-%H%M%S)"
+EVIDENCE_DIR="/tmp/${CASE_ID}"
+mkdir -p "$EVIDENCE_DIR"
+
+collect() {
+    local name="$1" desc="$2"
+    shift 2
+    echo "  Collecting: $desc..."
+    "$@" &gt; "${EVIDENCE_DIR}/${name}.txt" 2&gt;&amp;1 || true
+}
+
+echo "╔══════════════════════════════════════╗"
+echo "║  Incident Response Data Collector    ║"
+echo "║  Case: $CASE_ID          ║"
+echo "╚══════════════════════════════════════╝"
+echo ""
+
+# System information
+collect "01_hostname"    "Hostname &amp; OS info"   hostnamectl
+collect "02_uptime"      "System uptime"        uptime
+collect "03_uname"       "Kernel information"   uname -a
+collect "04_date"        "Current timestamp"    date -u '+%Y-%m-%d %H:%M:%S UTC'
+
+# User activity
+collect "10_who"         "Currently logged users" who -a
+collect "11_last"        "Recent logins"        last -n 50
+collect "12_lastb"       "Failed logins"        lastb -n 50
+collect "13_auth_log"    "Auth log (last 500)"  tail -n 500 /var/log/auth.log
+
+# Process information
+collect "20_processes"   "Running processes"    ps auxww
+collect "21_pstree"      "Process tree"         pstree -pa
+
+# Network state
+collect "30_connections" "Network connections"  ss -tulpn
+collect "31_established" "Established conns"    ss -tnp state established
+collect "32_routes"      "Routing table"        ip route
+collect "33_arp"         "ARP cache"            ip neigh
+collect "34_dns"         "DNS config"           cat /etc/resolv.conf
+collect "35_iptables"    "Firewall rules"       iptables -L -n -v
+
+# File system
+collect "40_mounts"      "Mounted filesystems"  mount
+collect "41_recent_files" "Files modified &lt;24h" \
+    find /tmp /var/tmp /dev/shm -mtime -1 -ls
+
+# Scheduled tasks
+collect "50_crontab"     "Root crontab"         crontab -l
+collect "51_cron_dirs"   "Cron directories"     ls -la /etc/cron.*
+
+echo ""
+echo "Generating checksums for chain of custody..."
+cd "$EVIDENCE_DIR"
+sha256sum *.txt &gt; checksums.sha256
+echo "  ✓ $(wc -l &lt; checksums.sha256) files hashed"
+
+# Package evidence
+tar -czf "/tmp/${CASE_ID}.tar.gz" -C /tmp "$CASE_ID"
+echo ""
+echo "Evidence package: /tmp/${CASE_ID}.tar.gz"
+echo "SHA256: $(sha256sum "/tmp/${CASE_ID}.tar.gz" | cut -d' ' -f1)"
+echo ""
+echo "=== Collection Complete ==="</code></pre>
+                </div>
+
+                <div class="scenario-label best-practices" style="margin-top: 20px;">📌 Best Practices</div>
+                <ul class="bp-list">
+                    <li>Collect volatile data FIRST (memory, processes, connections) before disk data</li>
+                    <li>Never run tools FROM the compromised system — use trusted binaries from a USB</li>
+                    <li>Hash everything for chain-of-custody and legal admissibility</li>
+                    <li>Document your actions with timestamps — you may need to testify</li>
+                </ul>
+            </div>
+
+            <!-- Scenario 10 -->
+            <div class="scenario-card" id="scenario-10">
+                <span class="scenario-num">🚀 Scenario 10</span>
+                <h3 class="scenario-title">CI/CD Deployment Script with Rollback</h3>
+
+                <div class="scenario-label situation">🎯 Situation</div>
+                <div class="scenario-situation">Your team deploys a web application multiple times per day. Deployments sometimes fail silently, leaving the app in a broken state. You need a deployment script with pre-flight checks, health verification post-deploy, and automatic rollback if the new version is unhealthy.</div>
+
+                <div class="scenario-label objective">📋 Objective</div>
+                <div class="scenario-objective">Build a deployment pipeline that performs pre-deploy validation, deploys the new version, runs health checks, and automatically rolls back to the previous version if the deploy is unhealthy.</div>
+
+                <div class="scenario-label solution">💡 Solution</div>
+                <button class="solution-toggle" onclick="toggleSolution(this)">Show Solution ▼</button>
+                <div class="solution-content">
+                    <pre><code>#!/bin/bash
+# deploy.sh — CI/CD Deployment with Rollback
+# Usage: ./deploy.sh &lt;version&gt;
+
+set -uo pipefail
+
+VERSION="${1:?Usage: $0 &lt;version&gt;}"
+APP_DIR="/var/www/app"
+BACKUP_DIR="/var/www/backups"
+HEALTH_URL="http://localhost:3000/health"
+MAX_HEALTH_CHECKS=10
+LOG="/var/log/deploy.log"
+
+log() { echo "[$(date '+%F %T')] $1" | tee -a "$LOG"; }
+fail() { log "FATAL: $1"; exit 1; }
+
+# ── Pre-flight Checks ──
+log "=== Deploying version $VERSION ==="
+
+[[ -d "$APP_DIR" ]] || fail "App directory not found"
+[[ -f "releases/${VERSION}.tar.gz" ]] || fail "Release artifact not found"
+
+# ── Backup Current Version ──
+current_ver=$(cat "$APP_DIR/VERSION" 2&gt;/dev/null || echo "unknown")
+log "Backing up current version: $current_ver"
+mkdir -p "$BACKUP_DIR"
+cp -a "$APP_DIR" "${BACKUP_DIR}/rollback_${current_ver}_$(date +%s)"
+
+# ── Deploy New Version ──
+log "Deploying version $VERSION..."
+tar -xzf "releases/${VERSION}.tar.gz" -C "$APP_DIR" --strip-components=1
+echo "$VERSION" &gt; "$APP_DIR/VERSION"
+
+# Restart application
+log "Restarting application..."
+systemctl restart app 2&gt;/dev/null || pm2 restart app 2&gt;/dev/null
+
+# ── Health Check ──
+log "Running health checks..."
+healthy=false
+for ((i=1; i&lt;=MAX_HEALTH_CHECKS; i++)); do
+    sleep 3
+    status=$(curl -sf -o /dev/null -w "%{http_code}" \
+        --max-time 5 "$HEALTH_URL" 2&gt;/dev/null || echo "000")
+
+    if [[ "$status" == "200" ]]; then
+        healthy=true
+        log "Health check $i/$MAX_HEALTH_CHECKS: PASS"
+        break
+    fi
+    log "Health check $i/$MAX_HEALTH_CHECKS: FAIL (HTTP $status)"
+done
+
+if $healthy; then
+    log "✅ Deployment successful! Version $VERSION is live."
+    # Clean old backups (keep last 5)
+    ls -dt "${BACKUP_DIR}"/rollback_* 2&gt;/dev/null | \
+        tail -n +6 | xargs rm -rf
+    exit 0
+fi
+
+# ── Rollback ──
+log "❌ Health checks failed — initiating rollback!"
+latest_backup=$(ls -dt "${BACKUP_DIR}"/rollback_* | head -1)
+if [[ -d "$latest_backup" ]]; then
+    rm -rf "$APP_DIR"
+    cp -a "$latest_backup" "$APP_DIR"
+    systemctl restart app 2&gt;/dev/null || pm2 restart app 2&gt;/dev/null
+    log "Rolled back to: $current_ver"
+else
+    fail "No backup found for rollback!"
+fi
+
+exit 1</code></pre>
+                </div>
+
+                <div class="scenario-label best-practices" style="margin-top: 20px;">📌 Best Practices</div>
+                <ul class="bp-list">
+                    <li>Always backup before deploying — never skip this step</li>
+                    <li>Implement health checks with retry logic after every deployment</li>
+                    <li>Automatic rollback prevents extended outages from bad deploys</li>
+                    <li>Keep deployment logs for audit and debugging purposes</li>
+                </ul>
+            </div>
+
+
+            <!-- Real-Life Use Cases -->
+            <h2 id="use-cases">🌐 Real-Life Use Cases</h2>
+            <div class="section">
+                <p>The scripts above map directly to real responsibilities in cybersecurity and DevOps roles:</p>
+                <div class="use-case-grid">
+                    <div class="use-case-item">
+                        <h4>🔒 SOC Analyst</h4>
+                        <p>Automate log monitoring, detect anomalies, collect incident response data, and generate security reports.</p>
+                    </div>
+                    <div class="use-case-item">
+                        <h4>🛡️ Penetration Tester</h4>
+                        <p>Build lightweight recon tools for restricted environments where standard toolkits aren't available.</p>
+                    </div>
+                    <div class="use-case-item">
+                        <h4>⚙️ DevOps Engineer</h4>
+                        <p>Automate deployments with health checks and rollback, manage infrastructure, and monitor services.</p>
+                    </div>
+                    <div class="use-case-item">
+                        <h4>📋 Compliance Officer</h4>
+                        <p>Audit user accounts, firewall rules, and SSL certificates for ISO 27001 and SOC 2 compliance.</p>
+                    </div>
+                    <div class="use-case-item">
+                        <h4>🏗️ SRE / Platform Engineer</h4>
+                        <p>Build self-healing systems with automated health monitoring, log rotation, and backup verification.</p>
+                    </div>
+                    <div class="use-case-item">
+                        <h4>🎓 CyberSec Student</h4>
+                        <p>Practice real-world scripting challenges that mirror actual job responsibilities and interview questions.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="success-box">
+                <strong>🎉 Congratulations!</strong> You've completed all 10 shell scripting practice scenarios!
+                These skills are directly applicable to cybersecurity operations, DevOps pipelines, and system administration.
+                Keep practicing by modifying these scripts for your own environment.
+            </div>
+
+            <!-- Page Navigation -->
+            <nav class="page-nav">
+                <a href="1.7-shell-scripting.html">← Previous: Shell Scripting Basics</a>
+                <a href="../../index.html#resources">Back to Resources →</a>
+            </nav>
+        </div>
+    </main>
+
+    <footer class="notes-footer">
+        <p>&copy; 2026 lokii.tech | <a href="https://github.com/UnExplainableFish52/lokii.tech" target="_blank">Open Source Project</a></p>
+    </footer>
+
+    <script>
+        function toggleSolution(button) {
+            const content = button.nextElementSibling;
+            content.classList.toggle('show');
+            button.textContent = content.classList.contains('show') ? 'Hide Solution ▲' : 'Show Solution ▼';
+        }
+    </script>
+    <script src="../../js/main.js"></script>
+</body>
+</html>
