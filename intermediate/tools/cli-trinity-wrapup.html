@@ -1,0 +1,1404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2.2.6 CLI Trinity Wrapup | lokii.tech</title>
+
+    <meta name="description" content="10 real-world cybersecurity scenarios solved with grep, sed, and awk. Master the CLI trinity through hands-on incident response, forensics, and DevOps challenges.">
+    <meta name="author" content="lokii (UnExplainableFish52)">
+    <meta name="theme-color" content="#0d0d0d">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://lokii.tech/intermediate/tools/cli-trinity-wrapup.html">
+    <meta property="og:title" content="CLI Trinity Wrapup | lokii.tech">
+    <meta property="og:description" content="10 real-world cybersecurity scenarios mastering grep, sed, and awk.">
+    <meta property="og:image" content="https://lokii.tech/preview.jpg">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="CLI Trinity Wrapup | lokii.tech">
+    <meta name="twitter:description" content="10 real-world cybersecurity scenarios mastering grep, sed, and awk.">
+    <meta name="twitter:image" content="https://lokii.tech/preview.jpg">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="icon" href="/favicon.ico">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            background: #050505;
+            color: #EEEEEE;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-size: 17px;
+            line-height: 1.8;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ========== HEADER ========== */
+        .site-header {
+            padding: 14px 24px;
+            border-bottom: 1px solid #1a1a1a;
+            background: rgba(5, 5, 5, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transition: box-shadow 0.3s ease;
+        }
+        .site-header.scrolled { box-shadow: 0 4px 30px rgba(0,0,0,0.5); }
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .branding { text-decoration: none; }
+        .branding .logo {
+            color: #fff;
+            font-size: 1.35rem;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            transition: opacity 0.2s;
+        }
+        .branding:hover .logo { opacity: 0.8; }
+        .site-nav { display: flex; gap: 24px; align-items: center; }
+        .site-nav .nav-link {
+            color: #A1A1AA;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.25s;
+            position: relative;
+        }
+        .site-nav .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #3B82F6;
+            transition: width 0.25s ease;
+        }
+        .site-nav .nav-link:hover { color: #fff; }
+        .site-nav .nav-link:hover::after { width: 100%; }
+
+        /* ========== READING PROGRESS ========== */
+        .reading-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, #3B82F6, #10B981, #F59E0B);
+            z-index: 200;
+            transition: width 0.1s linear;
+        }
+
+        /* ========== CONTAINER ========== */
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ========== HERO ========== */
+        .hero {
+            text-align: center;
+            padding: 80px 0 50px;
+            position: relative;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 400px;
+            background: radial-gradient(ellipse, rgba(59,130,246,0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff 0%, #60A5FA 50%, #10B981 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 12px;
+            line-height: 1.15;
+        }
+        .hero .subtitle {
+            color: #A1A1AA;
+            font-size: 1.15rem;
+            margin-bottom: 0;
+        }
+
+        /* ========== TRINITY CARDS ========== */
+        .trinity-box {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin: 48px 0 16px;
+        }
+        .trinity-item {
+            background: #0F0F0F;
+            border: 1px solid #262626;
+            border-radius: 12px;
+            padding: 28px 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .trinity-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .trinity-item:hover { transform: translateY(-4px); border-color: #404040; }
+        .trinity-item:hover::before { opacity: 1; }
+        .trinity-item h4 { font-size: 1.6em; margin-bottom: 6px; }
+        .trinity-item p { color: #A1A1AA; margin-bottom: 4px; font-size: 0.95rem; }
+        .trinity-item p strong { font-size: 0.8rem; letter-spacing: 0.1em; }
+
+        .trinity-item.grep { border-color: rgba(16,185,129,0.3); }
+        .trinity-item.grep:hover { border-color: #10B981; box-shadow: 0 8px 30px rgba(16,185,129,0.1); }
+        .trinity-item.grep::before { background: #10B981; }
+        .trinity-item.grep h4 { color: #10B981; }
+        .trinity-item.grep p strong { color: #10B981; }
+
+        .trinity-item.sed { border-color: rgba(239,68,68,0.3); }
+        .trinity-item.sed:hover { border-color: #EF4444; box-shadow: 0 8px 30px rgba(239,68,68,0.1); }
+        .trinity-item.sed::before { background: #EF4444; }
+        .trinity-item.sed h4 { color: #EF4444; }
+        .trinity-item.sed p strong { color: #EF4444; }
+
+        .trinity-item.awk { border-color: rgba(245,158,11,0.3); }
+        .trinity-item.awk:hover { border-color: #F59E0B; box-shadow: 0 8px 30px rgba(245,158,11,0.1); }
+        .trinity-item.awk::before { background: #F59E0B; }
+        .trinity-item.awk h4 { color: #F59E0B; }
+        .trinity-item.awk p strong { color: #F59E0B; }
+
+        .trinity-tagline {
+            text-align: center;
+            color: #A1A1AA;
+            font-size: 0.95rem;
+            margin-bottom: 48px;
+        }
+        .trinity-tagline strong { color: #F59E0B; }
+
+        /* ========== DIVIDER ========== */
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #262626, transparent);
+            margin: 48px 0;
+        }
+
+        /* ========== TOC ========== */
+        .toc {
+            background: #0F0F0F;
+            border: 1px solid #262626;
+            border-radius: 12px;
+            padding: 28px 32px;
+            margin-bottom: 48px;
+        }
+        .toc h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #EEEEEE;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .toc ul { list-style: none; margin: 0; padding: 0; columns: 2; column-gap: 32px; }
+        .toc li { margin-bottom: 8px; break-inside: avoid; }
+        .toc a {
+            color: #A1A1AA;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.2s;
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+        }
+        .toc a:hover { color: #3B82F6; }
+        .toc .sn {
+            color: #F59E0B;
+            font-weight: 700;
+            font-size: 0.85rem;
+            min-width: 22px;
+        }
+
+        /* ========== SCENARIO CARDS ========== */
+        .scenario {
+            background: #0F0F0F;
+            border: 1px solid #262626;
+            border-radius: 14px;
+            padding: 36px;
+            margin: 32px 0;
+            transition: border-color 0.3s;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: none;
+        }
+        .scenario.visible {
+            animation: fadeUp 0.5s ease forwards;
+        }
+        @keyframes fadeUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .scenario:hover { border-color: #3B82F6; }
+
+        .scenario-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(59,130,246,0.1);
+            color: #3B82F6;
+            font-weight: 700;
+            font-size: 0.8rem;
+            padding: 4px 14px;
+            border-radius: 20px;
+            border: 1px solid rgba(59,130,246,0.2);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .sc-title {
+            font-size: 1.5em;
+            color: #EEEEEE;
+            font-weight: 700;
+            margin: 0 0 24px;
+            line-height: 1.3;
+        }
+
+        /* Labels */
+        .label {
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .label-situation { color: #F59E0B; }
+        .label-step { color: #10B981; }
+        .label-pipeline { color: #3B82F6; }
+        .label-bp { color: #F97316; }
+
+        /* Situation box */
+        .situation-box {
+            color: #D4D4D8;
+            line-height: 1.8;
+            margin-bottom: 24px;
+            padding: 16px 20px;
+            border-left: 3px solid #F59E0B;
+            background: rgba(245,158,11,0.04);
+            border-radius: 0 8px 8px 0;
+            font-size: 0.95rem;
+        }
+
+        /* Solution toggle */
+        .solution-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 22px;
+            background: #161616;
+            color: #A1A1AA;
+            border: 1px solid #262626;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.25s;
+            margin: 12px 0;
+        }
+        .solution-toggle:hover {
+            background: #1a1a1a;
+            border-color: #3B82F6;
+            color: #3B82F6;
+        }
+        .solution-toggle.active {
+            background: rgba(59,130,246,0.08);
+            border-color: #3B82F6;
+            color: #3B82F6;
+        }
+        .solution-content {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 0.4s ease;
+            margin-top: 8px;
+        }
+        .solution-content.show {
+            grid-template-rows: 1fr;
+        }
+        .solution-inner {
+            overflow: hidden;
+        }
+
+        /* Step cards */
+        .step-card {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid #1a1a1a;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 12px 0;
+            transition: border-color 0.25s;
+        }
+        .step-card:hover { border-color: #333; }
+        .step-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+        .step-num {
+            background: #0F0F0F;
+            color: #A1A1AA;
+            border: 1px solid #262626;
+            font-weight: 700;
+            font-size: 0.75rem;
+            padding: 3px 12px;
+            border-radius: 20px;
+            letter-spacing: 0.02em;
+        }
+
+        /* Tool tags */
+        .tool-tag {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .tool-grep { background: rgba(16,185,129,0.1); color: #10B981; border: 1px solid rgba(16,185,129,0.3); }
+        .tool-sed { background: rgba(239,68,68,0.1); color: #EF4444; border: 1px solid rgba(239,68,68,0.3); }
+        .tool-awk { background: rgba(245,158,11,0.1); color: #F59E0B; border: 1px solid rgba(245,158,11,0.3); }
+        .tool-combo { background: rgba(59,130,246,0.1); color: #3B82F6; border: 1px solid rgba(59,130,246,0.3); }
+
+        .step-why {
+            color: #71717A;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            line-height: 1.7;
+        }
+        .step-why strong { color: #A1A1AA; }
+
+        /* ========== CODE BLOCKS ========== */
+        pre {
+            background: #0a0a0a;
+            border: 1px solid #1a1a1a;
+            border-radius: 8px;
+            padding: 18px 20px;
+            margin: 12px 0;
+            overflow-x: auto;
+            position: relative;
+        }
+        pre code {
+            background: transparent;
+            color: #E4E4E7;
+            padding: 0;
+            font-family: 'JetBrains Mono', 'Consolas', monospace;
+            font-size: 0.85em;
+            line-height: 1.65;
+        }
+        code {
+            background: #18181A;
+            color: #60A5FA;
+            padding: 2px 7px;
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', 'Consolas', monospace;
+            font-size: 0.88em;
+        }
+
+        /* Copy button */
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #161616;
+            color: #71717A;
+            border: 1px solid #262626;
+            border-radius: 6px;
+            padding: 4px 10px;
+            font-size: 0.72rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            opacity: 0;
+            transition: all 0.2s;
+        }
+        pre:hover .copy-btn { opacity: 1; }
+        .copy-btn:hover { background: #1a1a1a; color: #E4E4E7; border-color: #3B82F6; }
+        .copy-btn.copied { color: #10B981; border-color: #10B981; }
+
+        /* ========== BEST PRACTICES ========== */
+        .bp-list {
+            list-style: none;
+            padding: 0;
+            margin: 12px 0 0;
+        }
+        .bp-list li {
+            padding: 10px 16px;
+            border-left: 3px solid #F97316;
+            margin-bottom: 8px;
+            background: rgba(249,115,22,0.03);
+            border-radius: 0 8px 8px 0;
+            color: #A1A1AA;
+            font-size: 0.9rem;
+            transition: border-color 0.2s, background 0.2s;
+        }
+        .bp-list li:hover {
+            border-color: #F59E0B;
+            background: rgba(249,115,22,0.06);
+        }
+
+        /* ========== SUCCESS BOX ========== */
+        .success-box {
+            padding: 24px 28px;
+            border-radius: 12px;
+            margin: 40px 0;
+            background: rgba(16,185,129,0.06);
+            border: 1px solid rgba(16,185,129,0.2);
+        }
+        .success-box strong { color: #10B981; }
+
+        /* ========== PAGE NAV ========== */
+        .page-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 60px;
+            padding-top: 32px;
+            border-top: 1px solid #1a1a1a;
+        }
+        .page-nav a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: #0F0F0F;
+            border: 1px solid #262626;
+            border-radius: 10px;
+            color: #A1A1AA;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.25s;
+        }
+        .page-nav a:hover {
+            border-color: #3B82F6;
+            color: #3B82F6;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(59,130,246,0.1);
+        }
+
+        /* ========== FOOTER ========== */
+        .footer {
+            text-align: center;
+            margin-top: 64px;
+            padding: 28px 24px;
+            border-top: 1px solid #1a1a1a;
+            color: #52525B;
+            font-size: 0.9rem;
+        }
+        .footer a {
+            color: #3B82F6;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .footer a:hover { color: #60A5FA; }
+
+        /* ========== SCROLL TO TOP ========== */
+        .scroll-top {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: #3B82F6;
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(12px);
+            transition: all 0.3s;
+            z-index: 90;
+            box-shadow: 0 4px 20px rgba(59,130,246,0.3);
+        }
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .scroll-top:hover {
+            background: #2563EB;
+            transform: translateY(-2px) scale(1.05);
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            .hero { padding: 48px 0 32px; }
+            .hero h1 { font-size: 2rem; }
+            .trinity-box { grid-template-columns: 1fr; }
+            .toc ul { columns: 1; }
+            .scenario { padding: 24px; }
+            .page-nav { flex-direction: column; gap: 12px; }
+            .page-nav a { width: 100%; justify-content: center; }
+            .container { padding: 0 16px; }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 1.65rem; }
+            .sc-title { font-size: 1.2em; }
+            .step-card { padding: 14px; }
+            pre { padding: 14px; font-size: 0.8em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="reading-progress" id="readingProgress"></div>
+
+    <header class="site-header" id="siteHeader">
+        <div class="header-content">
+            <a href="../../index.html" class="branding"><span class="logo">lokii.tech</span></a>
+            <nav class="site-nav">
+                <a href="../../index.html#about" class="nav-link">About</a>
+                <a href="../../index.html#resources" class="nav-link">Resources</a>
+                <a href="https://github.com/UnExplainableFish52" target="_blank" class="nav-link">GitHub</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <!-- Hero -->
+        <section class="hero">
+            <h1>⚔️ The CLI Trinity — Wrapup</h1>
+            <p class="subtitle">10 Real-World CyberSec Scenarios Solved with grep, sed &amp; awk</p>
+        </section>
+
+        <!-- Trinity Reminder -->
+        <div class="trinity-box">
+            <div class="trinity-item grep">
+                <h4>grep</h4>
+                <p><strong>FILTER</strong></p>
+                <p>Find &amp; extract patterns</p>
+            </div>
+            <div class="trinity-item sed">
+                <h4>sed</h4>
+                <p><strong>TRANSFORM</strong></p>
+                <p>Find, replace &amp; edit</p>
+            </div>
+            <div class="trinity-item awk">
+                <h4>awk</h4>
+                <p><strong>STRUCTURE</strong></p>
+                <p>Column-based processing</p>
+            </div>
+        </div>
+        <p class="trinity-tagline"><strong>Together: Unstoppable data manipulation power.</strong> Master these and you can solve anything from the terminal.</p>
+
+        <div class="divider"></div>
+
+        <!-- TOC -->
+        <div class="toc">
+            <h3>📑 Scenarios</h3>
+            <ul>
+                <li><a href="#scenario-1"><span class="sn">01</span> Web Server Breach Investigation</a></li>
+                <li><a href="#scenario-2"><span class="sn">02</span> Credential Leak Sweep Across Codebase</a></li>
+                <li><a href="#scenario-3"><span class="sn">03</span> DDoS Attack Traffic Analysis</a></li>
+                <li><a href="#scenario-4"><span class="sn">04</span> SSH Brute-Force Forensics &amp; Auto-Defense</a></li>
+                <li><a href="#scenario-5"><span class="sn">05</span> Compliance Audit: PII Detection in Logs</a></li>
+                <li><a href="#scenario-6"><span class="sn">06</span> WAF Log Analysis: Zero-Day Pattern Detection</a></li>
+                <li><a href="#scenario-7"><span class="sn">07</span> Mass Server Config Hardening</a></li>
+                <li><a href="#scenario-8"><span class="sn">08</span> Kubernetes Pod Failure Triage</a></li>
+                <li><a href="#scenario-9"><span class="sn">09</span> Malware Persistence Mechanism Hunt</a></li>
+                <li><a href="#scenario-10"><span class="sn">10</span> CI/CD Pipeline Log Debugging &amp; Optimization</a></li>
+            </ul>
+        </div>
+
+        <!-- ==================== SCENARIO 1 ==================== -->
+        <div class="scenario" id="scenario-1">
+            <span class="scenario-badge">🚨 Scenario 1</span>
+            <h3 class="sc-title">Web Server Breach Investigation</h3>
+
+            <div class="label label-situation">🎯 The Situation</div>
+            <div class="situation-box">At 3 AM, the SIEM alerts fire. Your Apache web server is under attack. Access logs show suspicious activity — potential data exfiltration via encoded URLs. You need to identify the attacker's IP, their attack vector, and what data they targeted — all from the terminal in minutes.</div>
+
+            <div class="label label-step">🔬 Step-by-Step Breakdown</div>
+            <button class="solution-toggle" onclick="toggleSolution(this)">Show Solution ▼</button>
+            <div class="solution-content">
+                <div class="solution-inner">
+                    <div class="step-card">
+                        <div class="step-header">
+                            <span class="step-num">Step 1</span>
+                            <span class="tool-tag tool-grep">grep</span>
+                        </div>
+                        <pre><code>grep -E "(\.\.%2[fF]|union.*select|&lt;script&gt;|/etc/passwd)" /var/log/apache2/access.log</code></pre>
+                        <div class="step-why"><strong>Why this works:</strong> Filter the massive log for attack signatures: path traversal (%2f), SQL injection (union select), XSS (&lt;script&gt;), and LFI (/etc/passwd). This immediately narrows millions of lines to just the malicious requests.</div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-header">
+                            <span class="step-num">Step 2</span>
+                            <span class="tool-tag tool-awk">awk</span>
+                        </div>
+                        <pre><code>awk '{print $1}' suspicious_hits.log | sort | uniq -c | sort -rn | head -20</code></pre>
+                        <div class="step-why"><strong>Why this works:</strong> Extract source IPs from each attack line, count occurrences, sort descending. The top IPs are your prime suspects — the attacker's infrastructure. Normal users don't trigger attack signatures dozens of times.</div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-header">
+                            <span class="step-num">Step 3</span>
+                            <span class="tool-tag tool-grep">grep</span>
+                        </div>
+                        <pre><code>grep "203.0.113.42" /var/log/apache2/access.log | awk '{print $7}'</code></pre>
+                        <div class="step-why"><strong>Why this works:</strong> Zero in on the attacker IP and extract every URL they requested. This reveals their complete attack chain — recon, exploitation, data access — reconstructing the breach timeline.</div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-header">
+                            <span class="step-num">Step 4</span>
+                            <span class="tool-tag tool-awk">awk</span>
+                        </div>
+                        <pre><code>awk '/203.0.113.42/ {print $4, $7, $9}' /var/log/apache2/access.log</code></pre>
+                        <div class="step-why"><strong>Why this works:</strong> Extract timestamps ($4), URLs ($7), and status codes ($9) for the attacker. Status 200 on sensitive paths = successful data access. This defines your breach scope for the incident report.</div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-header">
+                            <span class="step-num">Step 5</span>
+                            <span class="tool-tag tool-sed">sed</span>
+                        </div>
+                        <pre><code>sed -n '/203.0.113.42/s/.*\[\(.*\)\].*/\1/p' /var/log/apache2/access.log | head -1</code></pre>
+                        <div class="step-why"><strong>Why this works:</strong> Extract the exact timestamp of the first malicious request — the breach start time. Critical for legal proceedings, insurance claims, and GDPR's 72-hour notification requirement.</div>
+                    </div>
+
+                    <div class="label label-pipeline" style="margin-top:20px;">🔗 Full Pipeline (One-Liner)</div>
+                    <pre><code>grep -E "(union.*select|&lt;script&gt;|/etc/passwd)" /var/log/apache2/access.log | awk '{print $1}' | sort | uniq -c | sort -rn | head -5</code></pre>
+                </div>
+            </div>
+
+            <div class="label label-bp" style="margin-top:20px;">📌 Best Practices</div>
+            <ul class="bp-list">
+                <li>Preserve original logs before analysis — forensic integrity matters</li>
+                <li>Use grep -c for quick counts before deep-diving</li>
+                <li>Document every command during IR for the post-incident report</li>
+                <li>Correlate timestamps across multiple log sources for full timeline</li>
+            </ul>
+        </div>
+
+        <!-- ==================== SCENARIO 2 ==================== -->
+        <div class="scenario" id="scenario-2">
+            <span class="scenario-badge">🔐 Scenario 2</span>
+            <h3 class="sc-title">Credential Leak Sweep Across Codebase</h3>
+
+            <div class="label label-situation">🎯 The Situation</div>
+            <div class="situation-box">A developer accidentally pushed AWS credentials to a public GitHub repo. It was public for 6 hours before anyone noticed. You need to scan the entire codebase for hardcoded secrets — API keys, passwords, tokens, private keys — across thousands of files, immediately.</div>
+
+            <div class="label label-step">🔬 Step-by-Step Breakdown</div>
+            <button class="solution-toggle" onclick="toggleSolution(this)">Show Solution ▼</button>
+            <div class="solution-content">
+                <div class="solution-inner">
+                    <div class="step-card">
+                        <div class="step-header">
+                            <span class="step-num">Step 1</span>
+                            <span class="tool-tag tool-grep">grep</span>
+                        </div>
+                        <pre><code>grep -rn --include="*.{py,js,yml,yaml,json,env,conf,tf}" -iE "(api[_-]?key|secret[_-]?key|password|token|private[_-]?key|aws_access)\s*[=:]" ./</code></pre>
+                        <div class="step-why"><strong>Why this works:</strong> Recursively search config and source files for secret patterns. The -i catches case variations. The regex matches both = and : assignment styles across all common languages.</div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-header">
+                            <span class="step-num">Step 2</span>
+                            <span class="tool-tag tool-grep">grep</span>
+                        </div>
+                        <pre><code>grep -rnE "AKIA[0-9A-Z]{16}" ./</code></pre>
+                        <div class="step-why"><strong>Why this works:</strong> AWS Access Key IDs always start with AKIA followed by 16 alphanumeric chars. This precise regex is zero false-positives — if it matches, you've found an AWS key. Period.</div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-header">
+                            <span class="step-num">Step 3</span>
+                            <span class="tool-tag tool-awk">awk</span>
+                        </div>
+                        <pre><code>grep -rn "password" --include="*.py" ./ | awk -F: '{print $1}' | sort -u</code></pre>
+                        <div class="step-why"><strong>Why this works:</strong> Extract unique filenames from matches using awk's field separator. This creates your remediation checklist — the exact files that need secrets removed or rotated.</div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-header">
+                            <span class="step-num">Step 4</span>
+                            <span class="tool-tag tool-sed">sed</span>
+                        </div>
+                        <pre><code>sed -i 's/AKIA[0-9A-Z]\{16\}/REDACTED_AWS_KEY/g' config.py</code></pre>
+                        <div class="step-why"><strong>Why this works:</strong> In-place redaction of exposed keys. The -i flag edits files directly — instant remediation. Run this across all flagged files to clean the codebase in seconds.</div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-header">
+                            <span class="step-num">Step 5</span>
+                            <span class="tool-tag tool-grep">grep</span>
+                        </div>
+                        <pre><code>grep -rn --include="*.py" -v "#" ./ | grep -iE "(password|secret)\s*=\s*['\"](?!\$|\{|os\.environ)"</code></pre>
+                        <div class="step-why"><strong>Why this works:</strong> Find hardcoded secrets while excluding comments and env-var references. The negative lookahead skips legitimate patterns like os.environ — dramatically reducing false positives.</div>
+                    </div>
+
+                    <div class="label label-pipeline" style="margin-top:20px;">🔗 Full Pipeline (One-Liner)</div>
+                    <pre><code>grep -rnE "AKIA[0-9A-Z]{16}|ASIA[0-9A-Z]{16}" ./ | awk -F: '{printf "File: %s Line: %s\n", $1, $2}' | tee /tmp/aws_key_audit.log</code></pre>
+                </div>
+            </div>
+
+            <div class="label label-bp" style="margin-top:20px;">📌 Best Practices</div>
+            <ul class="bp-list">
+                <li>Rotate ALL exposed credentials immediately — scanning is step 1, not the fix</li>
+                <li>Add pre-commit hooks with git-secrets or detect-secrets</li>
+                <li>Check git history: git log -p | grep -E 'AKIA[0-9A-Z]{16}'</li>
+                <li>Use AWS IAM Access Analyzer to find unused or exposed keys</li>
+            </ul>
+        </div>
+
+        <!-- ==================== SCENARIO 3 ==================== -->
+        <div class="scenario" id="scenario-3">
+            <span class="scenario-badge">📊 Scenario 3</span>
+            <h3 class="sc-title">DDoS Attack Traffic Analysis</h3>
+
+            <div class="label label-situation">🎯 The Situation</div>
+            <div class="situation-box">Your e-commerce platform is crawling during Black Friday. The NOC suspects a DDoS attack mixed with legitimate traffic. You need to analyze nginx access logs to separate bots from real customers, identify attack patterns, and generate a blocklist — without taking the server offline.</div>
+
+            <div class="label label-step">🔬 Step-by-Step Breakdown</div>
+            <button class="solution-toggle" onclick="toggleSolution(this)">Show Solution ▼</button>
+            <div class="solution-content">
+                <div class="solution-inner">
+                    <div class="step-card">
+                        <div class="step-header">
+                            <span class="step-num">Step 1</span>
+                            <span class="tool-tag tool-awk">awk</span>
+                        </div>
+                        <pre><code>awk '{print $1}' /var/log/nginx/access.log | sort | uniq -c | sort -rn | head -30</code></pre>
+                        <div class="step-why"><strong>Why this works:</strong> Count requests per IP, sort descending. Normal users: 10-50 requests/session. IPs with 10,000+ requests/hour are almost certainly bots. This is your first triage — instant attacker identification.</div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-header">
+                            <span class="step-num">Step 2</span>
+                            <span class="tool-tag tool-awk">awk</span>
+                        </div>
+                        <pre><code>awk '{ips[$1]++} END {for (ip in ips) if (ips[ip] > 1000) print ips[ip], ip}' /var/log/nginx/access.log | sort -rn</code></pre>
+                        <div class="step-why"><strong>Why this works:</strong> Pure awk single-pass solution — faster on massive files. Builds an associative array counting hits per IP, then filters for 1000+ threshold. Your DDoS source list, generated in seconds.</div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-header">
+                            <span class="step-num">Step 3</span>
+                            <span class="tool-tag tool-combo">grep+awk</span>
+                        </div>
+                        <pre><code>grep "203.0.113." /var/log/nginx/access.log | awk -F'"' '{print $6}' | sort | uniq -c | sort -rn</code></pre>
+                        <div class="step-why"><strong>Why this works:</strong> Analyze User-Agent strings from suspects. DDoS bots use identical or empty User-Agents. Legitimate users show diverse browser strings. This confirms bot vs human traffic.</div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-header">
+                            <span class="step-num">Step 4</span>
+                            <span class="tool-tag tool-awk">awk</span>
+                        </div>
+                        <pre><code>awk '{split($4,t,":"); hours[t[2]]++} END {for (h in hours) printf "%s:00 — %d requests\n", h, hours[h]}' /var/log/nginx/access.log | sort</code></pre>
+                        <div class="step-why"><strong>Why this works:</strong> Build hourly traffic histogram. DDoS attacks show dramatic spikes in specific hours. This identifies exact attack windows for your incident timeline and ISP abuse reports.</div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-header">
+                            <span class="step-num">Step 5</span>
+                            <span class="tool-tag tool-combo">awk+sed</span>
+                        </div>
+                        <pre><code>awk '{ips[$1]++} END {for (ip in ips) if (ips[ip] > 1000) print ip}' /var/log/nginx/access.log | sed 's/^/deny /;s/$/;/' > /etc/nginx/blocklist.conf</code></pre>
+                        <div class="step-why"><strong>Why this works:</strong> Generate nginx blocklist directly from analysis. Each offending IP formatted as <code>deny IP;</code> — ready to include in your config. This is analysis-to-mitigation in one pipeline.</div>
+                    </div>
+
+                    <div class="label label-pipeline" style="margin-top:20px;">🔗 Full Pipeline (One-Liner)</div>
+                    <pre><code>awk '{ips[$1]++} END {for (ip in ips) if (ips[ip]>500) print ip}' access.log | sed 's/^/deny /;s/$/;/' > blocklist.conf</code></pre>
+                </div>
+            </div>
+
+            <div class="label label-bp" style="margin-top:20px;">📌 Best Practices</div>
+            <ul class="bp-list">
+                <li>Set up rate limiting in nginx (limit_req_zone) proactively</li>
+                <li>Use fail2ban jails to auto-block repeat offenders</li>
+                <li>Keep 30+ days of access logs for forensic depth</li>
+                <li>Prefer awk over grep for large files — single-pass processing is faster</li>
+            </ul>
+        </div>
+
+        <!-- ==================== SCENARIO 4 ==================== -->
+        <div class="scenario" id="scenario-4">
+            <span class="scenario-badge">🛡️ Scenario 4</span>
+            <h3 class="sc-title">SSH Brute-Force Forensics &amp; Auto-Defense</h3>
+
+            <div class="label label-situation">🎯 The Situation</div>
+            <div class="situation-box">Your dashboard shows 50,000+ failed SSH logins in 24 hours across your fleet. Management wants a full forensic report: attacker IPs, targeted usernames, timing patterns, and an automated defense mechanism — all built with the CLI trinity.</div>
+
+            <div class="label label-step">🔬 Step-by-Step Breakdown</div>
+            <button class="solution-toggle" onclick="toggleSolution(this)">Show Solution ▼</button>
+            <div class="solution-content">
+                <div class="solution-inner">
+                    <div class="step-card">
+                        <div class="step-header">
+                            <span class="step-num">Step 1</span>
+                            <span class="tool-tag tool-grep">grep</span>
+                        </div>
+                        <pre><code>grep "Failed password" /var/log/auth.log | grep -oP "from \K[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+" | sort | uniq -c | sort -rn | head -20</code></pre>
+                        <div class="step-why"><strong>Why this works:</strong> Extract source IPs from failed attempts. PCRE's \K resets the match start, extracting only the IP after 'from'. Top attackers identified instantly — your threat actor list.</div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-header">
+                            <span class="step-num">Step 2</span>
+                            <span class="tool-tag tool-awk">awk</span>
+                        </div>
+                        <pre><code>awk '/Failed password/ {for(i=1;i<=NF;i++) if($i=="for") print $(i+1)}' /var/log/auth.log | sort | uniq -c | sort -rn | head -20</code></pre>
+                        <div class="step-why"><strong>Why this works:</strong> Extract targeted usernames. Awk iterates fields to find the word after 'for'. Common targets: root, admin, ubuntu, test. If they're trying YOUR specific usernames — this is targeted, not opportunistic.</div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-header">
+                            <span class="step-num">Step 3</span>
+                            <span class="tool-tag tool-awk">awk</span>
+                        </div>
+                        <pre><code>awk '/Failed password/ {split($0,a,":"); hour=substr(a[1],length(a[1])-4); hours[hour]++} END {for(h in hours) print h, hours[h]}' /var/log/auth.log | sort</code></pre>
+                        <div class="step-why"><strong>Why this works:</strong> Hourly attack profile. Botnets attack in waves — identifying peak hours helps you decide on stricter controls during high-risk windows or detect coordinated campaigns.</div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-header">
+                            <span class="step-num">Step 4</span>
+                            <span class="tool-tag tool-combo">sed+awk</span>
+                        </div>
+                        <pre><code>grep "Failed password" /var/log/auth.log | awk '{print $1, $2}' | uniq -c | sort -rn | sed 's/^ *//' | head -10</code></pre>
+                        <div class="step-why"><strong>Why this works:</strong> Attack intensity by date. Clean formatting with sed for reporting. Spikes on specific dates correlate with new botnet campaigns or your IP appearing on attacker target lists.</div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-header">
+                            <span class="step-num">Step 5</span>
+                            <span class="tool-tag tool-awk">awk</span>
+                        </div>
+                        <pre><code>awk '/Failed password/ {for(i=1;i<=NF;i++) if($i=="from") ips[$(i+1)]++} END {for(ip in ips) if(ips[ip]>50) printf "iptables -A INPUT -s %s -j DROP\n", ip}' /var/log/auth.log</code></pre>
+                        <div class="step-why"><strong>Why this works:</strong> The ultimate one-liner: parse logs, count per IP, generate iptables block rules for anyone with 50+ failures. Pipe to sh to execute. Forensics + defense in one command.</div>
+                    </div>
+
+                    <div class="label label-pipeline" style="margin-top:20px;">🔗 Full Pipeline (One-Liner)</div>
+                    <pre><code>grep "Failed password" /var/log/auth.log | awk '{for(i=1;i<=NF;i++) if($i=="from") ips[$(i+1)]++} END {for(ip in ips) if(ips[ip]>100) print ip}' | while read ip; do iptables -A INPUT -s $ip -j DROP; echo "Blocked: $ip"; done</code></pre>
+                </div>
+            </div>
+
+            <div class="label label-bp" style="margin-top:20px;">📌 Best Practices</div>
+            <ul class="bp-list">
+                <li>Disable password auth entirely — use SSH keys only</li>
+                <li>Deploy fail2ban for automatic brute-force mitigation</li>
+                <li>Move SSH to a non-standard port to reduce noise</li>
+                <li>Use AllowUsers/AllowGroups in sshd_config to limit access</li>
+            </ul>
+        </div>
+
+        <!-- ==================== SCENARIO 5 ==================== -->
+        <div class="scenario" id="scenario-5">
+            <span class="scenario-badge">📋 Scenario 5</span>
+            <h3 class="sc-title">Compliance Audit: PII Detection in Logs</h3>
+
+            <div class="label label-situation">🎯 The Situation</div>
+            <div class="situation-box">GDPR/CCPA audit incoming. The compliance team suspects application logs contain PII — emails, phone numbers, credit cards, SSNs — violating data protection regulations. You need to scan 200GB+ of log archives across hundreds of files.</div>
+
+            <div class="label label-step">🔬 Step-by-Step Breakdown</div>
+            <button class="solution-toggle" onclick="toggleSolution(this)">Show Solution ▼</button>
+            <div class="solution-content">
+                <div class="solution-inner">
+                    <div class="step-card">
+                        <div class="step-header">
+                            <span class="step-num">Step 1</span>
+                            <span class="tool-tag tool-grep">grep</span>
+                        </div>
+                        <pre><code>grep -rnoP "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" /var/log/app/</code></pre>
+                        <div class="step-why"><strong>Why this works:</strong> Scan for email addresses. The -o prints only matched emails, -n gives line numbers, -P enables Perl regex for accuracy. Every match is a potential GDPR violation that needs redaction.</div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-header">
+                            <span class="step-num">Step 2</span>
+                            <span class="tool-tag tool-grep">grep</span>
+                        </div>
+                        <pre><code>grep -rnoE "\b[0-9]{3}[-.]?[0-9]{2}[-.]?[0-9]{4}\b" /var/log/app/</code></pre>
+                        <div class="step-why"><strong>Why this works:</strong> Detect SSN patterns (123-45-6789, 123.45.6789, 123456789). Word boundaries \b prevent matching random number strings. Every hit requires immediate redaction and breach assessment.</div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-header">
+                            <span class="step-num">Step 3</span>
+                            <span class="tool-tag tool-grep">grep</span>
+                        </div>
+                        <pre><code>grep -rnE "\b[0-9]{13,16}\b" /var/log/app/ | grep -vE "(timestamp|request_id|session)"</code></pre>
+                        <div class="step-why"><strong>Why this works:</strong> Find potential credit card numbers (13-16 digits) while filtering out timestamps and session IDs. This dramatically reduces false positives while catching PCI-DSS violations.</div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-header">
+                            <span class="step-num">Step 4</span>
+                            <span class="tool-tag tool-sed">sed</span>
+                        </div>
+                        <pre><code>sed -i 's/[a-zA-Z0-9._%+-]\+@[a-zA-Z0-9.-]\+\.[a-zA-Z]\{2,\}/[EMAIL_REDACTED]/g' /var/log/app/app.log</code></pre>
+                        <div class="step-why"><strong>Why this works:</strong> In-place PII redaction. Replaces all emails with [EMAIL_REDACTED], bringing logs into compliance without losing the surrounding context. Audit-safe remediation.</div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-header">
+                            <span class="step-num">Step 5</span>
+                            <span class="tool-tag tool-awk">awk</span>
+                        </div>
+                        <pre><code>grep -rnoP "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" /var/log/app/ | awk -F: '{files[$1]++} END {for(f in files) printf "%-50s %d PII instances\n", f, files[f]}' | sort -t" " -k2 -rn</code></pre>
+                        <div class="step-why"><strong>Why this works:</strong> Compliance report: PII count per file, sorted by severity. This gives the audit team a prioritized remediation list — fix worst offenders first.</div>
+                    </div>
+
+                    <div class="label label-pipeline" style="margin-top:20px;">🔗 Full Pipeline (One-Liner)</div>
+                    <pre><code>grep -rlE "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}|[0-9]{3}-[0-9]{2}-[0-9]{4}" /var/log/app/ | tee /tmp/pii_audit.log</code></pre>
+                </div>
+            </div>
+
+            <div class="label label-bp" style="margin-top:20px;">📌 Best Practices</div>
+            <ul class="bp-list">
+                <li>Sanitize PII at the application level — never log it in the first place</li>
+                <li>Implement log masking middleware in your stack</li>
+                <li>Schedule regular automated PII scans as part of CI/CD</li>
+                <li>Maintain audit trail of when PII was discovered and redacted</li>
+            </ul>
+        </div>
+
+        <!-- ==================== SCENARIO 6 ==================== -->
+        <div class="scenario" id="scenario-6">
+            <span class="scenario-badge">🌐 Scenario 6</span>
+            <h3 class="sc-title">WAF Log Analysis: Zero-Day Pattern Detection</h3>
+
+            <div class="label label-situation">🎯 The Situation</div>
+            <div class="situation-box">Your WAF logs show suspicious requests that don't match known signatures. The security team suspects a zero-day exploit targeting your custom API. You need to identify the new attack pattern, decode the payload, and create custom detection rules — fast.</div>
+
+            <div class="label label-step">🔬 Step-by-Step Breakdown</div>
+            <button class="solution-toggle" onclick="toggleSolution(this)">Show Solution ▼</button>
+            <div class="solution-content">
+                <div class="solution-inner">
+                    <div class="step-card">
+                        <div class="step-header">
+                            <span class="step-num">Step 1</span>
+                            <span class="tool-tag tool-combo">grep+awk</span>
+                        </div>
+                        <pre><code>grep -E "(4[0-9]{2}|5[0-9]{2})" /var/log/waf/requests.log | grep -v "404\|499" | awk '{print $7, $9}' | sort | uniq -c | sort -rn | head -20</code></pre>
+                        <div class="step-why"><strong>Why this works:</strong> Filter for error responses (4xx/5xx excluding noise) and extract URL + status code. Unusual error concentrations on specific endpoints reveal exploitation targets.</div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-header">
+                            <span class="step-num">Step 2</span>
+                            <span class="tool-tag tool-awk">awk</span>
+                        </div>
+                        <pre><code>awk -F' ' 'length($7) > 200 {print length($7), $1, $7}' /var/log/waf/requests.log | sort -rn | head -20</code></pre>
+                        <div class="step-why"><strong>Why this works:</strong> Find abnormally long URIs. Zero-day exploits stuff encoded payloads into URLs. Normal: &lt;200 chars. Anything significantly longer is suspicious and needs inspection.</div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-header">
+                            <span class="step-num">Step 3</span>
+                            <span class="tool-tag tool-combo">grep+sed</span>
+                        </div>
+                        <pre><code>grep "/api/v2/upload" /var/log/waf/requests.log | sed 's/%/\n%/g' | grep -oP '(%[0-9a-fA-F]{2})+' | sort | uniq -c | sort -rn</code></pre>
+                        <div class="step-why"><strong>Why this works:</strong> Isolate URL-encoded payloads on the targeted endpoint. Sed breaks URLs at each % encoding for analysis. Repeated encoded sequences reveal the exploit structure.</div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-header">
+                            <span class="step-num">Step 4</span>
+                            <span class="tool-tag tool-awk">awk</span>
+                        </div>
+                        <pre><code>awk '/api\/v2\/upload/ {split($4,t,":"); mins[t[2]":"t[3]]++} END {for(m in mins) if(mins[m]>10) print mins[m], m}' /var/log/waf/requests.log | sort -rn</code></pre>
+                        <div class="step-why"><strong>Why this works:</strong> Minute-by-minute timeline on the target endpoint. Exploit tools produce bursts in tight windows — this confirms automated exploitation vs manual probing.</div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-header">
+                            <span class="step-num">Step 5</span>
+                            <span class="tool-tag tool-combo">sed+awk</span>
+                        </div>
+                        <pre><code>grep "/api/v2/upload" /var/log/waf/requests.log | awk '{print $1}' | sort -u | sed 's/^/SecRule REMOTE_ADDR "@ipMatch /;s/$/" "id:100001,phase:1,deny"/' > custom_rules.conf</code></pre>
+                        <div class="step-why"><strong>Why this works:</strong> Generate ModSecurity WAF rules directly from analysis. Each attacker IP gets a deny rule. Real-time threat intelligence to WAF pipeline — security automation at its best.</div>
+                    </div>
+
+                    <div class="label label-pipeline" style="margin-top:20px;">🔗 Full Pipeline (One-Liner)</div>
+                    <pre><code>awk 'length($7)>200 {print $1}' /var/log/waf/requests.log | sort | uniq -c | sort -rn | awk '$1>50 {print $2}' | sed 's/^/deny /;s/$/;/' > blocklist.conf</code></pre>
+                </div>
+            </div>
+
+            <div class="label label-bp" style="margin-top:20px;">📌 Best Practices</div>
+            <ul class="bp-list">
+                <li>Start WAF in detection mode, switch to blocking after tuning</li>
+                <li>Correlate WAF logs with app logs for full attack context</li>
+                <li>Use OWASP ModSecurity CRS as your baseline ruleset</li>
+                <li>Share IOCs with your ISAC community to help the industry</li>
+            </ul>
+        </div>
+
+        <!-- ==================== SCENARIO 7 ==================== -->
+        <div class="scenario" id="scenario-7">
+            <span class="scenario-badge">🔧 Scenario 7</span>
+            <h3 class="sc-title">Mass Server Config Hardening</h3>
+
+            <div class="label label-situation">🎯 The Situation</div>
+            <div class="situation-box">A pentest report reveals 150 servers have insecure SSH configs: root login enabled, password auth on, weak ciphers. You need to audit and fix every sshd_config simultaneously — without breaking access for your team.</div>
+
+            <div class="label label-step">🔬 Step-by-Step Breakdown</div>
+            <button class="solution-toggle" onclick="toggleSolution(this)">Show Solution ▼</button>
+            <div class="solution-content">
+                <div class="solution-inner">
+                    <div class="step-card">
+                        <div class="step-header">
+                            <span class="step-num">Step 1</span>
+                            <span class="tool-tag tool-grep">grep</span>
+                        </div>
+                        <pre><code>grep -n "PermitRootLogin\|PasswordAuthentication\|ChallengeResponseAuthentication" /etc/ssh/sshd_config</code></pre>
+                        <div class="step-why"><strong>Why this works:</strong> Audit current state. Grep shows which lines contain security directives and their values. The -n flag gives line numbers for precise manual review before making changes.</div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-header">
+                            <span class="step-num">Step 2</span>
+                            <span class="tool-tag tool-sed">sed</span>
+                        </div>
+                        <pre><code>sed -i 's/^#*PermitRootLogin.*/PermitRootLogin no/' /etc/ssh/sshd_config</code></pre>
+                        <div class="step-why"><strong>Why this works:</strong> Disable root login. The ^#* regex handles both commented and active lines, replacing with the secure value. One command handles every possible state of the directive.</div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-header">
+                            <span class="step-num">Step 3</span>
+                            <span class="tool-tag tool-sed">sed</span>
+                        </div>
+                        <pre><code>sed -i 's/^#*PasswordAuthentication.*/PasswordAuthentication no/' /etc/ssh/sshd_config</code></pre>
+                        <div class="step-why"><strong>Why this works:</strong> Force key-based auth by disabling passwords. Same bulletproof pattern. This single change eliminates brute-force attacks entirely — the most impactful SSH hardening step.</div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-header">
+                            <span class="step-num">Step 4</span>
+                            <span class="tool-tag tool-awk">awk</span>
+                        </div>
+                        <pre><code>awk '/^Ciphers/ {print "BEFORE:", $0} /^MACs/ {print "BEFORE:", $0}' /etc/ssh/sshd_config</code></pre>
+                        <div class="step-why"><strong>Why this works:</strong> Audit cipher configs before modifying. The BEFORE: prefix creates clear audit trail documentation. Essential for change management compliance and rollback planning.</div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-header">
+                            <span class="step-num">Step 5</span>
+                            <span class="tool-tag tool-sed">sed</span>
+                        </div>
+                        <pre><code>sed -i '/^Ciphers/d; /^MACs/d' /etc/ssh/sshd_config && echo -e 'Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com\nMACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com' >> /etc/ssh/sshd_config</code></pre>
+                        <div class="step-why"><strong>Why this works:</strong> Remove old ciphers, append modern suites. ChaCha20-Poly1305 and AES-GCM are the 2025 gold standard. ETM-mode MACs prevent padding oracle attacks. This meets CIS Benchmark Level 2.</div>
+                    </div>
+
+                    <div class="label label-pipeline" style="margin-top:20px;">🔗 Full Pipeline (One-Liner)</div>
+                    <pre><code>grep -l 'PermitRootLogin yes' /etc/ssh/sshd_config && sed -i 's/^#*PermitRootLogin.*/PermitRootLogin no/; s/^#*PasswordAuthentication.*/PasswordAuthentication no/' /etc/ssh/sshd_config && sshd -t && systemctl reload sshd</code></pre>
+                </div>
+            </div>
+
+            <div class="label label-bp" style="margin-top:20px;">📌 Best Practices</div>
+            <ul class="bp-list">
+                <li>Always sshd -t to validate config before reloading</li>
+                <li>Keep an active SSH session open while making changes — your safety net</li>
+                <li>Use Ansible/Puppet for fleet-wide config management</li>
+                <li>Follow CIS Benchmark for SSH — it covers everything systematically</li>
+            </ul>
+        </div>
+
+        <!-- ==================== SCENARIO 8 ==================== -->
+        <div class="scenario" id="scenario-8">
+            <span class="scenario-badge">📈 Scenario 8</span>
+            <h3 class="sc-title">Kubernetes Pod Failure Triage</h3>
+
+            <div class="label label-situation">🎯 The Situation</div>
+            <div class="situation-box">Your K8s cluster is experiencing cascading pod failures during a rolling deployment. As the on-call SRE, you need to identify failing pods, parse their JSON logs, determine if it's a code bug or infrastructure issue — all from kubectl output piped through the trinity.</div>
+
+            <div class="label label-step">🔬 Step-by-Step Breakdown</div>
+            <button class="solution-toggle" onclick="toggleSolution(this)">Show Solution ▼</button>
+            <div class="solution-content">
+                <div class="solution-inner">
+                    <div class="step-card">
+                        <div class="step-header">
+                            <span class="step-num">Step 1</span>
+                            <span class="tool-tag tool-awk">awk</span>
+                        </div>
+                        <pre><code>kubectl get pods -A | awk '$4 != "Running" && $4 != "Completed" && NR>1 {print $1, $2, $4, $5}'</code></pre>
+                        <div class="step-why"><strong>Why this works:</strong> Filter non-healthy pods across all namespaces. Awk skips healthy states to show only problems. High restart counts (field $5) = crash loops. This is your instant cluster health overview.</div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-header">
+                            <span class="step-num">Step 2</span>
+                            <span class="tool-tag tool-grep">grep</span>
+                        </div>
+                        <pre><code>kubectl logs deploy/api-server --since=30m | grep -iE "(error|fatal|panic|exception|OOMKilled)" | tail -50</code></pre>
+                        <div class="step-why"><strong>Why this works:</strong> Pull recent logs and filter for error-level messages. OOMKilled = memory exhaustion (infrastructure); NullPointerException = code bug. This immediately categorizes the failure type.</div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-header">
+                            <span class="step-num">Step 3</span>
+                            <span class="tool-tag tool-awk">awk</span>
+                        </div>
+                        <pre><code>kubectl logs deploy/api-server --since=30m | awk -F'"' '/"level":"error"/ {for(i=1;i<=NF;i++) if($i=="message") print $(i+2)}'</code></pre>
+                        <div class="step-why"><strong>Why this works:</strong> Parse JSON logs with awk. Using " as field separator navigates JSON structure to extract error messages. This is the forensic detail behind each failure.</div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-header">
+                            <span class="step-num">Step 4</span>
+                            <span class="tool-tag tool-awk">awk</span>
+                        </div>
+                        <pre><code>kubectl top pods -A | awk 'NR>1 {split($3,cpu,"m"); split($4,mem,"Mi"); if(cpu[1]>500 || mem[1]>1024) printf "%-20s %-30s CPU:%s MEM:%s\n", $1, $2, $3, $4}'</code></pre>
+                        <div class="step-why"><strong>Why this works:</strong> Find resource-hungry pods causing cluster pressure. Parsing metrics with awk filters for pods consuming &gt;500m CPU or &gt;1Gi memory — these are your optimization targets or OOM culprits.</div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-header">
+                            <span class="step-num">Step 5</span>
+                            <span class="tool-tag tool-combo">sed+grep</span>
+                        </div>
+                        <pre><code>kubectl describe pod api-server-7d9f | sed -n '/Events:/,$ p' | grep -v 'Normal' | awk '{$1=$2=""; print}'</code></pre>
+                        <div class="step-why"><strong>Why this works:</strong> Extract Warning events from pod description. Sed captures the Events section, grep removes Normal noise. What remains are actual problems — ImagePullBackOff, CrashLoopBackOff, OOMKilled.</div>
+                    </div>
+
+                    <div class="label label-pipeline" style="margin-top:20px;">🔗 Full Pipeline (One-Liner)</div>
+                    <pre><code>kubectl get pods -A | awk '$4=="CrashLoopBackOff" {print $1, $2}' | while read ns pod; do echo "=== $ns/$pod ==="; kubectl logs -n $ns $pod --tail=5 2>&1 | grep -iE 'error|fatal'; done</code></pre>
+                </div>
+            </div>
+
+            <div class="label label-bp" style="margin-top:20px;">📌 Best Practices</div>
+            <ul class="bp-list">
+                <li>Use structured JSON logging in all containerized apps</li>
+                <li>Set CPU/memory requests AND limits on every pod</li>
+                <li>Use kubectl logs --previous for crashed container logs</li>
+                <li>Implement liveness + readiness probes for early failure detection</li>
+            </ul>
+        </div>
+
+        <!-- ==================== SCENARIO 9 ==================== -->
+        <div class="scenario" id="scenario-9">
+            <span class="scenario-badge">🕵️ Scenario 9</span>
+            <h3 class="sc-title">Malware Persistence Mechanism Hunt</h3>
+
+            <div class="label label-situation">🎯 The Situation</div>
+            <div class="situation-box">An EDR tool flagged a server for suspicious outbound connections. The IR team suspects malware has established persistence — hidden cron jobs, modified binaries, rogue services, unauthorized SSH keys. You need to systematically hunt every persistence vector.</div>
+
+            <div class="label label-step">🔬 Step-by-Step Breakdown</div>
+            <button class="solution-toggle" onclick="toggleSolution(this)">Show Solution ▼</button>
+            <div class="solution-content">
+                <div class="solution-inner">
+                    <div class="step-card">
+                        <div class="step-header">
+                            <span class="step-num">Step 1</span>
+                            <span class="tool-tag tool-grep">grep</span>
+                        </div>
+                        <pre><code>grep -rn --include="*.service" -E "(ExecStart|ExecStartPre)=" /etc/systemd/ /run/systemd/ ~/.config/systemd/ 2>/dev/null | grep -v "usr/"</code></pre>
+                        <div class="step-why"><strong>Why this works:</strong> Search systemd units for execution directives. Filtering out /usr/ removes legitimate system services. What remains are custom or recently added units — potential malware persistence.</div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-header">
+                            <span class="step-num">Step 2</span>
+                            <span class="tool-tag tool-combo">awk+grep</span>
+                        </div>
+                        <pre><code>for user in $(awk -F: '$7 !~ /(nologin|false)/ {print $1}' /etc/passwd); do echo "=== $user ==="; crontab -u $user -l 2>/dev/null | grep -v '^#'; done</code></pre>
+                        <div class="step-why"><strong>Why this works:</strong> Check cron jobs for all users with login shells. Awk extracts usernames from /etc/passwd, then we display each user's crontab minus comments. Attackers love low-privilege cron persistence.</div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-header">
+                            <span class="step-num">Step 3</span>
+                            <span class="tool-tag tool-grep">grep</span>
+                        </div>
+                        <pre><code>grep -rn "curl\|wget\|python.*http\|nc -e\|bash -i\|/dev/tcp" /etc/cron* /var/spool/cron/ 2>/dev/null</code></pre>
+                        <div class="step-why"><strong>Why this works:</strong> Search all cron locations for suspicious commands: downloaders (curl/wget), reverse shells (nc -e, bash -i, /dev/tcp), remote execution. These are classic attack persistence patterns.</div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-header">
+                            <span class="step-num">Step 4</span>
+                            <span class="tool-tag tool-awk">awk</span>
+                        </div>
+                        <pre><code>find /usr/bin /usr/sbin -mtime -7 -type f | while read f; do rpm -qf "$f" 2>/dev/null || dpkg -S "$f" 2>/dev/null || echo "UNPACKAGED: $f"; done | awk '/UNPACKAGED/'</code></pre>
+                        <div class="step-why"><strong>Why this works:</strong> Find recently modified system binaries not belonging to any package. Unpackaged binaries in system paths are strong indicators of trojanized tools replacing legitimate ones.</div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-header">
+                            <span class="step-num">Step 5</span>
+                            <span class="tool-tag tool-combo">sed+grep</span>
+                        </div>
+                        <pre><code>find /home -name 'authorized_keys' -exec sh -c 'echo "=== {} ==="; cat {}' \; | sed '/^$/d' | grep -v '^===' | awk '{print $NF}' | sort -u</code></pre>
+                        <div class="step-why"><strong>Why this works:</strong> Extract SSH key identities from all authorized_keys files. The last field is the key comment (usually email). Unknown identities = unauthorized backdoor access. Immediate revocation required.</div>
+                    </div>
+
+                    <div class="label label-pipeline" style="margin-top:20px;">🔗 Full Pipeline (One-Liner)</div>
+                    <pre><code>grep -rn "curl\|wget\|python.*-c\|nc -e\|/dev/tcp" /etc/cron* /var/spool/cron/ 2>/dev/null | awk -F: '{print "SUSPICIOUS:", $1, "Line:", $2}'</code></pre>
+                </div>
+            </div>
+
+            <div class="label label-bp" style="margin-top:20px;">📌 Best Practices</div>
+            <ul class="bp-list">
+                <li>Deploy AIDE or OSSEC for file integrity monitoring</li>
+                <li>Compare against a known-good baseline image</li>
+                <li>Check /tmp, /dev/shm, /var/tmp for malware staging areas</li>
+                <li>Every finding needs timestamps for the forensic chain of evidence</li>
+            </ul>
+        </div>
+
+        <!-- ==================== SCENARIO 10 ==================== -->
+        <div class="scenario" id="scenario-10">
+            <span class="scenario-badge">🚀 Scenario 10</span>
+            <h3 class="sc-title">CI/CD Pipeline Log Debugging &amp; Optimization</h3>
+
+            <div class="label label-situation">🎯 The Situation</div>
+            <div class="situation-box">Your CI/CD pipeline fails intermittently — sometimes green, sometimes red. Each run produces 50,000+ lines of output. You need to find failure patterns, identify flaky tests, extract timing data, and optimize the slowest build stages.</div>
+
+            <div class="label label-step">🔬 Step-by-Step Breakdown</div>
+            <button class="solution-toggle" onclick="toggleSolution(this)">Show Solution ▼</button>
+            <div class="solution-content">
+                <div class="solution-inner">
+                    <div class="step-card">
+                        <div class="step-header">
+                            <span class="step-num">Step 1</span>
+                            <span class="tool-tag tool-grep">grep</span>
+                        </div>
+                        <pre><code>grep -n -i "error\|failed\|fatal\|exit code [1-9]" build_output.log | grep -v "0 errors\|0 failed\|error_handler"</code></pre>
+                        <div class="step-why"><strong>Why this works:</strong> Find real errors in 50K lines. The second grep excludes false positives ("0 errors", error handling code). This cuts noise to just the 5-10 lines that matter.</div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-header">
+                            <span class="step-num">Step 2</span>
+                            <span class="tool-tag tool-awk">awk</span>
+                        </div>
+                        <pre><code>awk '/FAIL/ {test=$NF; fails[test]++} END {for(t in fails) printf "%3d failures: %s\n", fails[t], t}' test_results_*.log | sort -rn</code></pre>
+                        <div class="step-why"><strong>Why this works:</strong> Aggregate failures across builds to find flaky tests. Awk counts each test's fail frequency. Tests failing intermittently are your pipeline stability killers.</div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-header">
+                            <span class="step-num">Step 3</span>
+                            <span class="tool-tag tool-awk">awk</span>
+                        </div>
+                        <pre><code>awk '/^Stage.*started/ {name=$2; start=systime()} /^Stage.*completed/ {printf "%4ds %s\n", systime()-start, name}' build.log | sort -rn | head</code></pre>
+                        <div class="step-why"><strong>Why this works:</strong> Calculate step durations. Sorting by time reveals your slowest stages — the biggest optimization wins. Often one slow step dominates total build time.</div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-header">
+                            <span class="step-num">Step 4</span>
+                            <span class="tool-tag tool-combo">sed+grep</span>
+                        </div>
+                        <pre><code>sed -n '/npm install/,/npm install.*done/p' build_output.log | grep -E '(WARN|deprecated|vulnerability|added [0-9])'</code></pre>
+                        <div class="step-why"><strong>Why this works:</strong> Extract the dependency install section and filter for issues. Deprecation warnings and vulnerability alerts reveal supply chain risks causing intermittent builds.</div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-header">
+                            <span class="step-num">Step 5</span>
+                            <span class="tool-tag tool-awk">awk</span>
+                        </div>
+                        <pre><code>grep -c 'FAIL' build_run_*.log | awk -F: '$2>0 {printf "%-40s %d failures\n", $1, $2}' | sort -t' ' -k2 -rn</code></pre>
+                        <div class="step-why"><strong>Why this works:</strong> Build failure rate report. Shows which runs had failures and how many. Correlating failure counts with code changes reveals which commits introduced instability.</div>
+                    </div>
+
+                    <div class="label label-pipeline" style="margin-top:20px;">🔗 Full Pipeline (One-Liner)</div>
+                    <pre><code>grep -c 'FAIL' build_run_*.log | awk -F: '$2>0 {printf "%s: %d failures\n", $1, $2}' | sort -t: -k2 -rn</code></pre>
+                </div>
+            </div>
+
+            <div class="label label-bp" style="margin-top:20px;">📌 Best Practices</div>
+            <ul class="bp-list">
+                <li>Implement structured build logging with timestamps</li>
+                <li>Quarantine flaky tests rather than retrying until green</li>
+                <li>Cache dependencies to speed up install stages</li>
+                <li>Set up pipeline analytics dashboards to track failure trends</li>
+            </ul>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="success-box">
+            <strong>🎉 Congratulations!</strong> You've completed all 10 CLI Trinity scenarios! You now have production-ready skills in grep, sed, and awk — the foundational text processing tools that every cybersecurity professional and DevOps engineer relies on daily. These aren't just exercises — they're real techniques used in SOCs, IR teams, and SRE rotations worldwide.
+        </div>
+
+        <!-- Page Navigation -->
+        <nav class="page-nav">
+            <a href="nmap.html">← Previous: Nmap Scanner</a>
+            <a href="../../index.html#resources">Back to Resources →</a>
+        </nav>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2026 <a href="../../index.html">lokii.tech</a> | <a href="https://github.com/UnExplainableFish52/lokii.tech" target="_blank">Open Source Project</a></p>
+    </footer>
+
+    <!-- Scroll to Top -->
+    <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">↑</button>
+
+    <script>
+        // Toggle solution with smooth animation
+        function toggleSolution(btn) {
+            const content = btn.nextElementSibling;
+            content.classList.toggle('show');
+            btn.classList.toggle('active');
+            btn.textContent = content.classList.contains('show') ? 'Hide Solution ▲' : 'Show Solution ▼';
+        }
+
+        // Add copy buttons to all pre elements
+        document.querySelectorAll('pre').forEach(pre => {
+            const btn = document.createElement('button');
+            btn.className = 'copy-btn';
+            btn.textContent = 'Copy';
+            btn.addEventListener('click', () => {
+                const code = pre.querySelector('code');
+                navigator.clipboard.writeText(code.textContent).then(() => {
+                    btn.textContent = 'Copied!';
+                    btn.classList.add('copied');
+                    setTimeout(() => {
+                        btn.textContent = 'Copy';
+                        btn.classList.remove('copied');
+                    }, 2000);
+                });
+            });
+            pre.appendChild(btn);
+        });
+
+        // Reading progress bar
+        window.addEventListener('scroll', () => {
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrolled = (window.scrollY / docHeight) * 100;
+            document.getElementById('readingProgress').style.width = scrolled + '%';
+
+            // Header shadow
+            document.getElementById('siteHeader').classList.toggle('scrolled', window.scrollY > 20);
+
+            // Scroll to top button
+            document.getElementById('scrollTop').classList.toggle('visible', window.scrollY > 400);
+        });
+
+        // Scroll to top
+        document.getElementById('scrollTop').addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Intersection Observer for scenario fade-in
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.scenario').forEach(s => observer.observe(s));
+    </script>
+    <script src="../../js/main.js"></script>
+</body>
+</html>

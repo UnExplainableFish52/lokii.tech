@@ -1,0 +1,25 @@
+The Problem (Life Before VLANs)
+Imagine a traditional network where all the computers, printers, and servers are plugged into a single physical switch. This entire setup creates one massive Broadcast Domain.
+
+Whenever a device needs to find another device (like sending an ARP request), it shouts a broadcast message to everyone on that switch.
+
+The result: Everyone has to stop and listen to that noise. As the network grows, this constant shouting clogs up the network and degrades performance.
+
+The Solution (The Virtual Switch) 802.1q 
+This is where the Virtual Local Area Network (VLAN) steps in. Instead of buying separate, expensive physical switches for the HR department, the IT department, and the Sales department, a VLAN allows you to take one physical switch and logically slice it into multiple "virtual" switches.
+
+
+🕵️ Insider Threats: If everyone is in the same domain, an employee in Sales running a packet sniffer can much more easily capture sensitive traffic meant for HR.
+
+🦠 Malware Spread: Without internal boundaries, a single infected computer can spread worms or ransomware across the entire company network unchecked.
+
+🌪️ Performance Loss: The main performance killer is the risk of a Broadcast Storm. If too many devices broadcast at once, or if a loop is created in the wiring, the switch gets overwhelmed by the noise and the whole network crashes.
+
+There is one slight adjustment we need to make for your guide: VLAN hopping is an attack that specifically targets VLAN configurations. So, threat actors can't do it in our "before" scenario, but it is exactly what they will try to do after we implement our solution! We will definitely tackle how to stop that in your security chapter.
+
+Chapter 2: How It Works Under the Hood
+Now we know we need to separate HR (VLAN 10) and Sales (VLAN 20), even though they are plugged into the exact same physical switch.
+
+
+When a standard computer in HR sends out a piece of data, it has no idea what a VLAN is. As far as the computer knows, it's just sending a standard Ethernet frame. The magic happens the moment that data enters the switch.
+
