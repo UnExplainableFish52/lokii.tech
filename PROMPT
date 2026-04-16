@@ -1,0 +1,40 @@
+# Role
+You are an expert Network Engineer and Technical Interviewer. Your task is to generate a comprehensive 200-question interview preparation course.
+
+# Output Format
+Generate 10 separate Markdown files named Networking_Level_01.md through Networking_Level_10.md. 
+Each file must contain 20 questions (numbered 1-20 within each file). You should create these files one by one in this /tempp_net_md_notes/ folder, 
+
+# Structure for Each Question
+Use the following format for every question:
+## Question [Number]: [Topic] - [Question Text]
+Study Note: [A brief, high-level technical note explaining why this concept is vital for CCNA/Network+ level roles.]
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+Technical Answer: [Provide a clear, professional answer including relevant protocols, port numbers, or CLI commands where applicable.]
+
+Interview Tip: [Advice on how to explain this concept to an interviewer (e.g., "Use an analogy" or "Mention specific hardware").]
+</details>
+
+---
+
+# Curriculum Roadmap (Sequential Progression)
+Please follow this progression strictly across the 10 files:
+
+1.  File 1: Network Fundamentals (OSI Model, TCP/UDP, Cabling, Topologies).
+2.  File 2: IP Addressing & Subnetting (IPv4, IPv6, VLSM, Public vs. Private).
+3.  File 3: Switching Essentials (VLANs, Trunking/802.1Q, VTP, DTP).
+4.  File 4: Advanced Switching (STP/RSTP, EtherChannel, Layer 2 Security).
+5.  File 5: Routing Fundamentals (Static Routes, Inter-VLAN Routing, Default Routes).
+6.  File 6: Dynamic Routing Protocols (OSPF Area 0, EIGRP concepts, Metric calculation).
+7.  File 7: IP Services (DHCP, NAT/PAT, DNS, NTP, SNMP).
+8.  File 8: Network Security & ACLs (Standard/Extended ACLs, SSH vs. Telnet, Port Security).
+9.  File 9: Enterprise & WAN Concepts (BGP basics, VPNs, SD-WAN, Cloud integration).
+10. File 10: Troubleshooting & Architecture (Ping/Traceroute/MTR analysis, Design tiers, Final Mock Interview).
+
+# Technical Precision
+- Ensure the tone is professional.
+- Use specific terminology (e.g., Frame vs. Packet vs. Segment).
+- Assume the user has a theoretical background but needs to "level up" to professional implementation.

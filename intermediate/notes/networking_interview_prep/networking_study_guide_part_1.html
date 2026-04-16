@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Networking Interview Prep, Combined Study Guide (Part 1) | lokii.tech</title>
+  <meta name="description" content="Combined networking study guide part 1 covering fundamentals, subnetting, switching, advanced switching, and routing fundamentals.">
+  <meta name="theme-color" content="#050505">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../css/style.css">
+</head>
+<body class="guide-page">
+  <header class="site-header" id="top">
+    <div class="container">
+      <div class="header-content">
+        <a href="../../../index.html" class="branding">
+          <span class="logo" style="color: #00e5ff; font-size: 1.7rem; font-weight: 800; text-shadow: 0 0 20px rgba(0, 229, 255, 0.4);">lokii.tech</span>
+        </a>
+        <nav class="nav-links" style="gap: 2rem;">
+          <a href="../../../index.html#about" class="nav-link nav-link-enhanced">About</a>
+          <a href="../../../index.html#resources" class="nav-link nav-link-enhanced">Resources</a>
+          <a href="https://github.com/UnExplainableFish52/lokii.tech" target="_blank" class="nav-link nav-link-enhanced">GitHub</a>
+          <a href="https://github.com/UnExplainableFish52/lokii.tech/issues" target="_blank" class="nav-link nav-contribute">Contribute ✨</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="guide-main">
+    <div class="container guide-container">
+      <section class="guide-hero">
+        <h1>Networking Interview Prep, Combined Study Guide (Part 1)</h1>
+        <p class="guide-subtitle">Levels 01-05, Fundamentals through Routing. Optimized for deep interview prep and practical revision.</p>
+        <div class="guide-nav">
+          <a href="networking_study_guide_part_1.html">Open Part 1 (Levels 01-05)</a>
+          <a href="networking_study_guide_part_2.html">Open Part 2 (Levels 06-10)</a>
+          <a href="../../../index.html#resources">Back to Resources</a>
+        </div>
+      </section>
+
+      <section class="toc-box">
+        <h2>Table of Contents</h2>
+        <ul>
+          <li><a href="#level01">Level 01: Network Fundamentals</a></li>
+          <li><a href="#level02">Level 02: IP Addressing and Subnetting</a></li>
+          <li><a href="#level03">Level 03: Switching Essentials</a></li>
+          <li><a href="#level04">Level 04: Advanced Switching</a></li>
+          <li><a href="#level05">Level 05: Routing Fundamentals</a></li>
+        </ul>
+      </section>
+
+      <section class="level-block" id="level01">
+  <h2>Level 01: Network Fundamentals</h2>
+  <article class="qa-card" id="q-1"><h3>Question 1: OSI Model - Why does the OSI model still matter in modern networks?</h3>
+<p class="study-note"><strong>Study Note:</strong> The OSI model gives interview-ready language for fault isolation. It helps you map symptoms to the right layer before touching production devices.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> The OSI model is a conceptual framework with 7 layers: Physical, Data Link, Network, Transport, Session, Presentation, and Application. Even though real stacks often follow TCP/IP, OSI is essential for structured troubleshooting. For example, no link light indicates Layer 1, MAC table issues indicate Layer 2, missing routes indicate Layer 3, and failed TCP three-way handshake indicates Layer 4. Cisco troubleshooting workflows often start by identifying the failing layer and validating with commands like show interfaces, show mac address-table, and show ip route.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Explain that OSI is a diagnostic map, not just theory. Give one practical example from each of the first four layers.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-2"><h3>Question 2: Protocol Data Units - What is the difference between a frame, packet, and segment?</h3>
+<p class="study-note"><strong>Study Note:</strong> Correct PDU terminology shows precision. Interviewers use this to gauge whether you can communicate clearly with operations and engineering teams.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> A segment is the Layer 4 PDU for TCP (UDP uses datagram), a packet is the Layer 3 PDU (IP header plus payload), and a frame is the Layer 2 PDU (Ethernet header/trailer plus Layer 3 packet). As data moves down the stack, each layer encapsulates data with its own header; at the receiver, decapsulation happens in reverse. On Ethernet, the frame includes source and destination MAC addresses and FCS for error detection.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Draw encapsulation quickly on paper. Interviewers value candidates who can explain the data path cleanly.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-3"><h3>Question 3: Layer Mapping - Which devices typically operate at Layers 1, 2, and 3?</h3>
+<p class="study-note"><strong>Study Note:</strong> Device-to-layer mapping is core for role-based interviews, especially when discussing where to enforce policy or isolate faults.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> Layer 1 includes hubs and media repeaters. Layer 2 includes switches and bridges that forward based on MAC addresses and VLAN tags (802.1Q). Layer 3 includes routers and Layer 3 switches that forward based on IP prefixes and routing tables. Modern firewalls can operate across Layers 3-7, but routing decision logic itself is Layer 3.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Mention that multilayer devices can work across layers, but forwarding decisions still map to specific headers.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-4"><h3>Question 4: TCP vs UDP - When do you choose TCP over UDP, and vice versa?</h3>
+<p class="study-note"><strong>Study Note:</strong> This question tests whether you can align protocol behavior with application requirements like reliability, latency, and ordering.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> TCP is connection-oriented and provides reliability, sequencing, acknowledgments, retransmission, and flow control. It suits applications like HTTP/HTTPS (ports 80/443), SSH (22), and SMTP (25). UDP is connectionless with low overhead and no guaranteed delivery, so it suits real-time or lightweight traffic such as DNS queries (53), DHCP (67/68), and voice/video streams. The choice depends on whether the application prefers reliability or minimal latency and overhead.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> State the tradeoff first: reliability vs speed. Then give two concrete protocol examples for each.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-5"><h3>Question 5: TCP Handshake - What happens during the TCP three-way handshake?</h3>
+<p class="study-note"><strong>Study Note:</strong> Handshake knowledge is foundational for analyzing connection failures in packet captures and firewall logs.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> Step 1: client sends SYN with an initial sequence number. Step 2: server replies SYN-ACK with its own sequence number and acknowledgment of client SYN. Step 3: client sends ACK, establishing the session. This process negotiates sequence tracking and confirms bidirectional reachability before application data transfer. If SYNs are sent repeatedly with no SYN-ACK, investigate ACLs, firewalls, routing, or server availability.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Use directional language: client to server, server to client, client to server. It makes your explanation sound operationally mature.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-6"><h3>Question 6: MTU and Fragmentation - Why does MTU matter for performance and troubleshooting?</h3>
+<p class="study-note"><strong>Study Note:</strong> MTU mismatches are common in enterprise and VPN environments, and they create subtle outages that look like random application failures.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> MTU defines the maximum Layer 3 packet size carried without fragmentation. Standard Ethernet MTU is typically 1500 bytes. If packets exceed path MTU and DF (Don't Fragment) is set, devices drop the packet and may send ICMP "Fragmentation Needed". PMTUD relies on these ICMP messages. In tunnel or VPN environments, overhead can reduce effective MTU, requiring MSS clamping or MTU tuning. On Cisco interfaces, you can verify with show interface and adjust with mtu or ip tcp adjust-mss where appropriate.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Mention that blocked ICMP can break PMTUD, leading to "small packets work, large packets fail" symptoms.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-7"><h3>Question 7: Ethernet Cabling - Compare Cat5e, Cat6, and Cat6a for enterprise use.</h3>
+<p class="study-note"><strong>Study Note:</strong> Cabling decisions impact bandwidth ceilings, distance limits, and future-proofing, all of which are relevant in deployment interviews.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> Cat5e supports up to 1 Gbps at 100 meters and can sometimes support 2.5/5G in certain conditions. Cat6 supports 1 Gbps at 100 meters and up to 10 Gbps at shorter distances (commonly up to 55 meters depending on environment). Cat6a is designed for 10 Gbps up to 100 meters with better alien crosstalk performance. For new enterprise horizontal runs targeting 10G readiness, Cat6a is usually preferred.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Tie cable type to use case and budget, not just raw speed specs.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-8"><h3>Question 8: Fiber Basics - When should you use single-mode versus multi-mode fiber?</h3>
+<p class="study-note"><strong>Study Note:</strong> Fiber type selection is a common design interview topic, especially for campus and data center interconnect scenarios.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> Single-mode fiber (SMF) has a small core (about 9 microns), uses laser optics, and is ideal for long-distance links, often kilometers to tens of kilometers. Multi-mode fiber (MMF), usually OM3/OM4/OM5, has larger cores (50 or 62.5 microns), uses VCSEL optics, and is common for shorter data center or building links. SMF optics are typically costlier but scale better over distance.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> State distance first, then optics type. This mirrors real design decision flow.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-9"><h3>Question 9: Duplex and Speed - What issues appear with duplex mismatches?</h3>
+<p class="study-note"><strong>Study Note:</strong> Duplex mismatches create classic intermittent performance degradation cases that interviewers expect you to identify quickly.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> Duplex mismatch occurs when one side uses full duplex and the other side uses half duplex. Symptoms include low throughput, high late collisions/FCS errors, and poor application performance despite link up status. Auto-negotiation should usually be enabled on both sides unless a strict design standard says otherwise. Validate on Cisco with show interfaces and check input errors, CRC, collisions, and duplex/speed status.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Emphasize that "link up" does not mean "healthy link." Mention error counters explicitly.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-10"><h3>Question 10: Network Topologies - What are the strengths and weaknesses of star, mesh, and bus topologies?</h3>
+<p class="study-note"><strong>Study Note:</strong> Topology questions test your ability to connect design choices to resilience, cost, and operational complexity.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> Star topology is simple and common in LANs, with centralized control but potential central-point dependency. Full mesh provides high redundancy and path diversity but is expensive and complex to scale. Bus topology is low-cost and simple historically, but poor fault tolerance and scalability make it rare in modern enterprise LANs. Most real networks use hybrid topologies combining hierarchical star with partial mesh uplinks.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Give one sentence per topology and finish with why hybrid designs are used in practice.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-11"><h3>Question 11: Collision and Broadcast Domains - How do switches and routers affect each domain?</h3>
+<p class="study-note"><strong>Study Note:</strong> Understanding traffic domains is key to segmentation, security boundaries, and performance tuning.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> A switch creates separate collision domains per port, reducing collisions compared with hub-based designs. By default, a VLAN on a switch is one broadcast domain. Routers and Layer 3 interfaces break broadcast domains, because Layer 3 forwarding does not propagate Layer 2 broadcasts across interfaces. VLANs plus routing provide scalable segmentation in enterprise networks.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Keep it crisp: switch separates collisions, router separates broadcasts.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-12"><h3>Question 12: ARP Fundamentals - Why is ARP critical in IPv4 Ethernet networks?</h3>
+<p class="study-note"><strong>Study Note:</strong> ARP is often the missing link between "IP connectivity should work" and "frames are not forwarding correctly." </p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> ARP resolves IPv4 addresses to MAC addresses so hosts can build Ethernet frames for local delivery. If a destination is local subnet, host ARPs for target IP; if remote, host ARPs for default gateway IP. ARP entries are cached temporarily. Problems like stale ARP, spoofing, or duplicate IPs can cause intermittent or misdirected traffic. Verification commands include arp -a on endpoints and show ip arp on Cisco devices.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Mention local-destination ARP versus default-gateway ARP to show practical understanding.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-13"><h3>Question 13: MAC Address Learning - How does a switch learn and forward frames?</h3>
+<p class="study-note"><strong>Study Note:</strong> Interviewers ask this to verify you understand deterministic Layer 2 forwarding and unknown unicast behavior.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> A switch learns source MAC addresses by examining incoming frames and mapping source MAC to ingress port in the CAM table. For known destination MACs, it forwards only out the mapped port. For unknown unicast destinations, it floods within the VLAN except ingress port. Broadcast and multicast handling also depends on VLAN scope and control features like IGMP snooping for multicast optimization.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Use a quick "learn, look up, forward or flood" sequence. It is easy for interviewers to follow.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-14"><h3>Question 14: Error Detection - What does the Ethernet FCS do, and what does it not do?</h3>
+<p class="study-note"><strong>Study Note:</strong> Candidates often confuse detection with correction. Clear distinction reflects strong protocol-level understanding.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> Ethernet Frame Check Sequence (FCS), based on CRC, detects corruption in transmitted frames. The receiver recalculates CRC and compares it to the FCS value. If mismatch occurs, frame is discarded. FCS detects errors, but it does not correct them. Recovery is handled by higher-layer mechanisms, such as TCP retransmission.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Say "detect, discard, recover at higher layer" in that exact order.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-15"><h3>Question 15: Physical Layer Signals - Why is attenuation important in copper and fiber links?</h3>
+<p class="study-note"><strong>Study Note:</strong> Signal integrity knowledge differentiates candidates who can troubleshoot physical instability, not just logical configuration issues.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> Attenuation is signal loss over distance and media characteristics. On copper, attenuation increases with frequency and cable quality issues; on fiber, attenuation depends on wavelength, connector quality, and splice loss. Excessive attenuation can cause bit errors, retransmissions, and flapping links. Validation may include interface optical power readings (on supported transceivers), error counters, and certification testing for structured cabling.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Connect attenuation to business impact: intermittent links and unstable applications.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-16"><h3>Question 16: Common Ports - Which ports should you know cold for entry networking interviews?</h3>
+<p class="study-note"><strong>Study Note:</strong> Fast recall of common ports signals operational readiness for troubleshooting and firewall conversations.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> Key ports include SSH 22, Telnet 23, DNS 53 (TCP/UDP), DHCP 67/68 (UDP), HTTP 80, HTTPS 443, FTP 20/21, TFTP 69 (UDP), SNMP 161/162 (UDP), NTP 123 (UDP), SMTP 25, POP3 110, IMAP 143, RDP 3389. You should also understand when protocols can use both TCP and UDP, such as DNS.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Group ports by function (management, web, infrastructure, email) instead of listing randomly.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-17"><h3>Question 17: Latency, Jitter, and Loss - How do these metrics affect application behavior?</h3>
+<p class="study-note"><strong>Study Note:</strong> Modern roles require translating network metrics into user experience and service quality outcomes.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> Latency is one-way or round-trip delay; high latency impacts interactive apps and transaction response times. Jitter is variation in delay; it degrades real-time audio/video quality. Packet loss forces retransmissions for TCP and can directly degrade UDP streams. Baseline thresholds vary by application, but voice traffic is especially sensitive to jitter and loss. Tools like ping, traceroute, and interface counters help isolate where impairment starts.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Tie each metric to one app type, for example VoIP for jitter and web transactions for latency.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-18"><h3>Question 18: Throughput vs Bandwidth - Why are they not the same thing?</h3>
+<p class="study-note"><strong>Study Note:</strong> This distinction is central when explaining why a 1 Gbps link does not deliver 1 Gbps of application data.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> Bandwidth is theoretical link capacity, while throughput is actual delivered data rate after protocol overhead, contention, latency effects, and device limitations. For example, Ethernet, IP, and TCP headers consume bytes, and retransmissions reduce effective throughput further. Good performance tuning focuses on bottlenecks, error rates, duplex consistency, and end-to-end path behavior, not only link speed.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Give a practical number example: "1 Gbps link, but 930 Mbps real throughput under ideal conditions."</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-19"><h3>Question 19: Baseline Troubleshooting - What is a practical first-response workflow for a link-down incident?</h3>
+<p class="study-note"><strong>Study Note:</strong> Interviewers want a repeatable process, not random commands. Methodical response reduces MTTR in real operations.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> Start with Layer 1 checks: cable seated, link LEDs, transceiver compatibility, interface admin state. Then verify Layer 2 status and errors (show interfaces status, show interfaces counters). Next confirm Layer 3 addressing and gateway (ipconfig/ifconfig, show ip interface brief). Finally test reachability in scope order: local gateway, remote subnet, then application endpoint. Document findings and changes for handoff and incident tracking.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Present this as a top-down checklist. It demonstrates composure under pressure.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-20"><h3>Question 20: Network Documentation - Why are diagrams and interface descriptions interview-worthy topics?</h3>
+<p class="study-note"><strong>Study Note:</strong> Strong documentation habits are a professional multiplier, especially in handoffs, audits, and outage response.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> Accurate diagrams and interface descriptions reduce troubleshooting time, prevent mispatching, and support safer change execution. At minimum, document device names, management IPs, uplinks, VLAN intent, and circuit/provider references. On Cisco devices, interface descriptions can be configured directly with description under each interface. Good documentation also supports root cause analysis and compliance requirements.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Mention that "if it is not documented, it is not operationally complete." Interviewers value this mindset.</p>
+</details>
+
+</article>
+</section>
+<section class="level-block" id="level02">
+  <h2>Level 02: IP Addressing and Subnetting</h2>
+  <article class="qa-card" id="q-1"><h3>Question 1: IPv4 Basics - What are the components of an IPv4 address?</h3>
+<p class="study-note"><strong>Study Note:</strong> You need precise IPv4 language in interviews because most enterprise networks still rely heavily on IPv4 addressing plans.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> An IPv4 address is 32 bits, written as four octets in dotted decimal format, for example 192.168.10.25. It has a network portion and a host portion, defined by the subnet mask or prefix length. Routers forward based on the network prefix, while hosts identify endpoints inside that subnet using the host bits.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Start with "32 bits, 4 octets," then explain network vs host bits with one example.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-2"><h3>Question 2: Subnet Masks - How does a subnet mask determine network boundaries?</h3>
+<p class="study-note"><strong>Study Note:</strong> Subnet mask understanding is the core of route lookup, host communication scope, and interview subnetting exercises.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> A subnet mask marks network bits as 1 and host bits as 0. For example, 255.255.255.0 means /24, so the first 24 bits are network and the last 8 bits are host. Hosts in the same network can communicate directly at Layer 2; traffic to other networks is sent to the default gateway. Incorrect masks can cause local delivery attempts for remote networks or unnecessary gateway usage.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Use one quick example: "10.1.1.10/24 is in network 10.1.1.0."</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-3"><h3>Question 3: CIDR Notation - How do you convert between /prefix and dotted masks?</h3>
+<p class="study-note"><strong>Study Note:</strong> Interviewers test this because CIDR notation appears in route tables, ACL objects, cloud subnets, and firewall rules.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> CIDR /n means n leading 1s in the subnet mask. Common conversions include /24 = 255.255.255.0, /25 = 255.255.255.128, /26 = 255.255.255.192, /27 = 255.255.255.224, /28 = 255.255.255.240, /30 = 255.255.255.252. To convert manually, count full octets of 8 bits, then calculate partial octet values using powers of two.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Memorize /24 through /30 cold. It speeds up whiteboard subnetting dramatically.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-4"><h3>Question 4: Network Math - How do you find network and broadcast addresses for 192.168.50.130/26?</h3>
+<p class="study-note"><strong>Study Note:</strong> Fast network and broadcast identification is expected for routing, ACL design, and troubleshooting host reachability.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> /26 means block size 64 in the last octet (0, 64, 128, 192). Address 192.168.50.130 falls in the 128-191 block. So network address is 192.168.50.128, broadcast address is 192.168.50.191, and usable hosts are 192.168.50.129 to 192.168.50.190.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Say "block size method" and show the ranges quickly. That demonstrates production-ready subnetting speed.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-5"><h3>Question 5: RFC1918 - What are private IPv4 ranges and why are they used?</h3>
+<p class="study-note"><strong>Study Note:</strong> Private addressing is a fundamental enterprise design concept tied directly to NAT, segmentation, and address conservation.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> RFC1918 private ranges are 10.0.0.0/8, 172.16.0.0/12, and 192.168.0.0/16. These addresses are not routable on the public internet and are used inside organizations. Internet access from private hosts typically requires NAT or PAT at the edge firewall or router.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Mention all three ranges from memory and add one practical use case like branch office LANs.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-6"><h3>Question 6: Public vs Private - What is the practical difference in enterprise networks?</h3>
+<p class="study-note"><strong>Study Note:</strong> Interviewers look for operational understanding, not definitions, especially around internet reachability and security boundaries.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> Public IP addresses are globally unique and internet routable. Private IP addresses are internally scoped and require translation for internet connectivity. Enterprises often use private addressing for endpoints and reserve public addresses for edge interfaces, public services, or load balancers. This design reduces public IP consumption and improves internal architecture flexibility.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Frame your answer as "inside addressing strategy plus edge translation strategy."</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-7"><h3>Question 7: APIPA - What does a 169.254.x.x address indicate?</h3>
+<p class="study-note"><strong>Study Note:</strong> APIPA diagnosis is a common support and interview scenario that quickly reveals DHCP troubleshooting maturity.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> 169.254.0.0/16 is link-local IPv4 (APIPA) assigned automatically when a host cannot reach a DHCP server and no static IP is configured. It allows limited local subnet communication but usually indicates DHCP failure in managed networks. Troubleshoot by checking VLAN assignment, DHCP scope availability, relay configuration, and uplink path to DHCP server.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> State that APIPA is a symptom, not the root cause, then list likely DHCP path checks.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-8"><h3>Question 8: Default Gateway - Why is the default gateway essential?</h3>
+<p class="study-note"><strong>Study Note:</strong> Gateway behavior is central to Layer 3 forwarding and one of the first checks in any connectivity issue.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> The default gateway is the Layer 3 next hop a host uses for destinations outside its local subnet. If gateway IP is wrong, unreachable, or in a different subnet, off-subnet traffic fails while same-subnet traffic may still work. On endpoints, verify with ipconfig or ip route. On network devices, validate SVI and routing with show ip interface brief and show ip route.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Use the phrase "same subnet direct, different subnet via gateway" to keep your explanation crisp.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-9"><h3>Question 9: Subnetting Speed - What is a quick method to calculate hosts per subnet?</h3>
+<p class="study-note"><strong>Study Note:</strong> Quick host calculations are heavily tested in CCNA style interviews and practical screening rounds.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> Hosts per subnet in IPv4 are calculated as 2^(host bits) - 2 for traditional subnets (excluding network and broadcast). For example, /27 leaves 5 host bits, so 2^5 - 2 = 30 usable hosts. /30 gives 2 usable hosts, often used on point-to-point links. For /31 links on modern routers, both addresses can be used for point-to-point per RFC 3021.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Explain both formula and one exception like /31 to show depth.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-10"><h3>Question 10: VLSM Purpose - Why is VLSM better than fixed-length subnetting in enterprise design?</h3>
+<p class="study-note"><strong>Study Note:</strong> VLSM demonstrates that you can optimize address utilization across different-sized segments.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> Variable Length Subnet Masking allows different prefix lengths within the same major network block, matching subnet size to actual host needs. This reduces waste compared with fixed-length subnetting. For example, a user VLAN may need /24, a server segment /27, and WAN links /30 or /31. VLSM requires classless routing support and careful planning to avoid overlaps.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Mention "efficiency plus scalability" and provide a simple multi-subnet example.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-11"><h3>Question 11: VLSM Design - How would you subnet 10.10.0.0/24 for 100, 50, and 20-host networks?</h3>
+<p class="study-note"><strong>Study Note:</strong> This is a classic interview task that tests planning order and allocation logic, not just math.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> Allocate largest first. 100 hosts needs /25 (126 usable): 10.10.0.0/25. 50 hosts needs /26 (62 usable): 10.10.0.128/26. 20 hosts needs /27 (30 usable): 10.10.0.192/27. Remaining addresses 10.10.0.224/27 can be reserved for growth. This avoids fragmentation and preserves contiguous blocks.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Always say "largest-to-smallest allocation" before doing calculations.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-12"><h3>Question 12: Route Summarization - What is supernetting and why does it matter?</h3>
+<p class="study-note"><strong>Study Note:</strong> Summarization reduces routing table size and instability propagation, which are key enterprise and service provider concerns.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> Supernetting combines multiple contiguous networks into a shorter prefix summary route. Example: 192.168.0.0/24 through 192.168.3.0/24 can be summarized as 192.168.0.0/22. Benefits include smaller route tables, faster convergence behavior, and reduced update overhead. Summaries must align on binary boundaries and represent only valid contiguous blocks.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Explain one exact summary example and why it improves scalability.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-13"><h3>Question 13: IPv6 Structure - How is an IPv6 address represented and compressed?</h3>
+<p class="study-note"><strong>Study Note:</strong> IPv6 is increasingly required in modern enterprise and cloud environments, and representation mistakes are common in interviews.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> IPv6 is 128 bits, written as eight 16-bit hexadecimal blocks, for example 2001:0db8:0000:0000:02aa:00ff:fe9a:4ca2. Leading zeros in each block can be omitted, and one consecutive run of all-zero blocks can be replaced with :: once per address. So the example can become 2001:db8::2aa:ff:fe9a:4ca2.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Show one expansion and one compression example to prove comfort with notation.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-14"><h3>Question 14: IPv6 Address Types - What are global unicast, link-local, and unique local addresses?</h3>
+<p class="study-note"><strong>Study Note:</strong> Correct IPv6 type identification is essential for neighbor discovery, routing scope, and management reachability.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> Global unicast addresses are internet-routable and generally fall under 2000::/3. Link-local addresses are FE80::/10 and exist on every IPv6 interface for local-link communication and next-hop operations. Unique local addresses are FC00::/7 (commonly FD00::/8 in practice) and are private-like internal addresses. IPv6 also uses multicast extensively, for example FF02::1 for all nodes on the local link.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Emphasize scope: global, local-link, internal-only.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-15"><h3>Question 15: SLAAC vs DHCPv6 - How do hosts get IPv6 addresses?</h3>
+<p class="study-note"><strong>Study Note:</strong> Address assignment behavior in IPv6 is frequently tested because operational models differ from IPv4 DHCP-only expectations.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> Hosts can use SLAAC based on Router Advertisements (ICMPv6) to generate interface addresses from advertised prefixes, typically /64. DHCPv6 can provide stateful assignment and options like DNS settings, depending on RA flags (M and O bits). Many environments use a hybrid model: SLAAC for address plus DHCPv6 for additional options. Core protocols include ICMPv6 Neighbor Discovery rather than ARP.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Mention RA flags and the hybrid pattern, it sounds practical and current.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-16"><h3>Question 16: EUI-64 and Privacy - How is the interface ID formed, and why use privacy addresses?</h3>
+<p class="study-note"><strong>Study Note:</strong> Interviewers use this to test whether you understand IPv6 addressing behavior and endpoint privacy implications.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> With EUI-64, the host interface ID is derived from the 48-bit MAC by inserting FFFE in the middle and flipping the universal/local bit. This can expose hardware identity patterns, so modern systems often use temporary privacy addresses (RFC 4941) for outbound connections. Stable addresses may still be retained for inbound management or policy consistency.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Explain EUI-64 quickly, then highlight privacy addresses as the security-aware improvement.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-17"><h3>Question 17: IPv6 Subnetting - Why is /64 commonly used, and can you use other prefix lengths?</h3>
+<p class="study-note"><strong>Study Note:</strong> Prefix-length decisions affect interoperability with SLAAC and operational consistency across enterprise segments.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> /64 is the standard subnet size for most IPv6 LANs because SLAAC expects a 64-bit interface ID boundary. Shorter or longer prefixes are possible in special cases, but deviating from /64 on user LANs can break expected behavior. Point-to-point links may use /127 in some designs to reduce certain neighbor-related issues. Enterprises usually allocate larger blocks per site, then standardize /64 per VLAN.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Say "standardize /64 for LAN consistency" and mention /127 only as a targeted design choice.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-18"><h3>Question 18: Transition Strategies - Compare dual-stack, tunneling, and translation approaches.</h3>
+<p class="study-note"><strong>Study Note:</strong> Migration strategy questions assess architecture awareness and real-world deployment thinking.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> Dual-stack runs IPv4 and IPv6 simultaneously, providing maximum compatibility but operational complexity. Tunneling (for example GRE or 6in4 variants) encapsulates one protocol over another where native support is missing. Translation methods like NAT64 and DNS64 allow IPv6-only clients to reach IPv4 services. Most enterprises prefer phased dual-stack with selective translation at boundaries.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> State that dual-stack is operationally common, then explain when translation is required.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-19"><h3>Question 19: IP Troubleshooting - How do you isolate wrong mask, wrong gateway, and duplicate IP issues?</h3>
+<p class="study-note"><strong>Study Note:</strong> Structured troubleshooting answers are scored highly because they map directly to incident response performance.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> Start by validating local interface config with ipconfig /all (Windows) or ip a and ip route (Linux). Check subnet mask and whether gateway is in the same subnet. Test path in sequence: ping self, ping gateway, ping remote IP, then test DNS name resolution. For duplicate IP, review ARP behavior (arp -a), look for MAC flapping or gateway ARP instability, and verify DHCP reservation conflicts.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Present checks in fixed order and say what each result means before moving to the next test.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-20"><h3>Question 20: Scenario Drill - A host 172.16.34.77/20 cannot reach 172.16.48.10. What should you check first?</h3>
+<p class="study-note"><strong>Study Note:</strong> Scenario framing demonstrates whether you can convert subnet theory into immediate operational decisions.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> /20 corresponds to mask 255.255.240.0, so subnets increment by 16 in the third octet. Host 172.16.34.77 belongs to 172.16.32.0/20 (range 172.16.32.0-172.16.47.255). Destination 172.16.48.10 is in a different subnet (172.16.48.0/20), so traffic must go via default gateway. First checks: correct gateway config on source host, gateway reachability, and route presence on upstream router for 172.16.48.0/20.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Verbally compute the /20 boundary before troubleshooting steps, it signals confident subnet logic.</p>
+</details>
+
+</article>
+</section>
+<section class="level-block" id="level03">
+  <h2>Level 03: Switching Essentials</h2>
+  <article class="qa-card" id="q-1"><h3>Question 1: VLAN Fundamentals - What problem do VLANs solve in switched networks?</h3>
+<p class="study-note"><strong>Study Note:</strong> VLANs are a core enterprise segmentation tool, and interviewers expect you to connect them to security, broadcast control, and operational scale.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> VLANs create separate Layer 2 broadcast domains on the same physical switching infrastructure. Without VLANs, all hosts share one broadcast domain, increasing noise and security risk. By assigning ports to VLANs, traffic is isolated until routed by a Layer 3 device. Common examples include separate VLANs for users, servers, voice, and management.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Start with "one switch, multiple logical LANs" and then mention broadcast reduction and segmentation.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-2"><h3>Question 2: Access Ports - What is an access port and when should you use it?</h3>
+<p class="study-note"><strong>Study Note:</strong> Correct access port usage is foundational for endpoint onboarding and reducing Layer 2 misconfiguration risk.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> An access port carries traffic for a single VLAN and typically connects end devices such as PCs, printers, or IP phones (with voice VLAN configured separately). Frames on access ports are normally untagged on ingress and egress for data VLAN traffic. Typical Cisco configuration includes switchport mode access and switchport access vlan <id>.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Mention that access mode prevents unintended trunk negotiation in many designs.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-3"><h3>Question 3: Trunk Ports - What is a trunk port and why is it needed?</h3>
+<p class="study-note"><strong>Study Note:</strong> Trunking is central to scaling VLANs across multiple switches and is frequently tested in practical labs.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> A trunk port carries multiple VLANs across one link by adding VLAN tags to frames, most commonly using IEEE 802.1Q. Trunks are used between switches, and between switches and routers/firewalls when multiple VLANs must traverse one physical interface. Typical command is switchport mode trunk, with optional restrictions such as switchport trunk allowed vlan.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Explain trunking as multiplexing multiple VLANs over one cable.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-4"><h3>Question 4: 802.1Q Tagging - What fields are added by 802.1Q, and what is the tag size?</h3>
+<p class="study-note"><strong>Study Note:</strong> Tag-level understanding shows protocol depth and helps in packet analysis discussions.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> 802.1Q inserts a 4-byte tag into the Ethernet frame after source MAC. The tag includes TPID (typically 0x8100) and TCI fields. TCI contains PCP (priority bits), DEI, and VLAN ID (12 bits, supporting VLAN IDs 1-4094 usable). This lets switches identify VLAN membership and QoS priority on trunk links.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Mention "4-byte tag, VLAN ID in 12 bits" to sound precise.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-5"><h3>Question 5: Native VLAN - What is the native VLAN on an 802.1Q trunk?</h3>
+<p class="study-note"><strong>Study Note:</strong> Native VLAN behavior is a common source of mismatches and control-plane exposure in real networks.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> The native VLAN is the VLAN whose frames are sent untagged on an 802.1Q trunk by default. On Cisco devices, VLAN 1 is default native VLAN unless changed. Both trunk ends should agree on native VLAN to avoid traffic leaks and misforwarding. Best practice is to use an unused dedicated native VLAN and avoid carrying user traffic on it.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Call out native VLAN mismatch as a classic troubleshooting and security issue.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-6"><h3>Question 6: Allowed VLAN List - Why should trunks use explicit allowed VLANs?</h3>
+<p class="study-note"><strong>Study Note:</strong> Limiting trunk VLAN scope is a practical control for security hardening and failure domain reduction.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> By default, trunks may carry many VLANs, which can unnecessarily expand broadcast domains and attack surface. Explicitly setting allowed VLANs ensures only required VLANs traverse each trunk. Cisco command example: switchport trunk allowed vlan 10,20,30. This also simplifies troubleshooting because unexpected VLAN propagation is minimized.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> State that least-privilege applies to VLAN carriage too, not only to users.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-7"><h3>Question 7: Voice VLAN - How does a switch handle data VLAN and voice VLAN on one port?</h3>
+<p class="study-note"><strong>Study Note:</strong> Voice plus data access design is common in enterprises and tested for endpoint integration readiness.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> On a phone-plus-PC port, the switchport can use an access VLAN for PC data and a separate voice VLAN for IP phone traffic. The phone tags voice frames (often via 802.1Q), while PC data remains untagged in the access VLAN. Cisco configuration often includes switchport access vlan <data_vlan> and switchport voice vlan <voice_vlan>. QoS policies commonly prioritize voice traffic.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Mention that the switch can logically separate two traffic types on one physical edge port.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-8"><h3>Question 8: VLAN ID Ranges - What VLAN ranges are normal, extended, and reserved?</h3>
+<p class="study-note"><strong>Study Note:</strong> Range awareness prevents design mistakes and helps explain platform behavior differences.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> VLAN IDs are 1-4094 usable in 802.1Q context. Historically on Cisco, normal range is 1-1005 and extended range is 1006-4094. VLAN 1 is default and generally avoided for user traffic. VLANs 1002-1005 are legacy reserved VLANs on many platforms. Exact handling can vary by switch OS version and feature set.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Quote both ranges and then add "avoid user data on VLAN 1" as a practical rule.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-9"><h3>Question 9: Inter-VLAN Communication - Why can hosts in different VLANs not communicate directly?</h3>
+<p class="study-note"><strong>Study Note:</strong> This is a high-frequency interview question that tests Layer 2 versus Layer 3 boundaries.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> Different VLANs are different Layer 2 broadcast domains and subnets. A Layer 2 switch forwards frames within VLAN boundaries but does not route between subnets. Inter-VLAN communication requires a Layer 3 function, such as a router-on-a-stick subinterface or a multilayer switch SVI with routing enabled.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Keep the phrase "switch forwards, router routes" in your answer.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-10"><h3>Question 10: Router-on-a-Stick - How does it provide inter-VLAN routing?</h3>
+<p class="study-note"><strong>Study Note:</strong> This concept appears in CCNA-level labs and validates your understanding of trunking plus Layer 3 handoff.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> Router-on-a-stick uses one physical router interface configured as an 802.1Q trunk with multiple subinterfaces, one per VLAN. Each subinterface has encapsulation dot1Q <vlan-id> and an IP address serving as default gateway for that VLAN. Traffic between VLANs enters the router, gets routed at Layer 3, and exits back out the same physical interface to the trunk.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Mention this is functional but can become a throughput bottleneck at scale.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-11"><h3>Question 11: DTP Overview - What is Dynamic Trunking Protocol and where is it used?</h3>
+<p class="study-note"><strong>Study Note:</strong> DTP knowledge helps prevent accidental trunks, a frequent misconfiguration in campus switching environments.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> DTP is a Cisco proprietary protocol used between switches to negotiate whether a link becomes a trunk. Modes include dynamic desirable, dynamic auto, trunk, access, and nonegotiate. It is useful in controlled Cisco-only environments but often disabled in hardened designs to avoid unintended trunk formation.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Say that DTP is convenience-oriented but explicit static trunk config is safer.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-12"><h3>Question 12: DTP Modes - How do dynamic auto and dynamic desirable differ?</h3>
+<p class="study-note"><strong>Study Note:</strong> Interviewers use this to check precise behavior under negotiation scenarios, not just definitions.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> Dynamic desirable actively attempts to form a trunk, while dynamic auto passively waits for the other side to request trunking. Auto plus auto typically does not form a trunk. Desirable with auto usually forms a trunk. Operational behavior can differ if one side is hard-set to access or trunk.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Use a pairing example like "desirable plus auto equals trunk" to show practical memory.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-13"><h3>Question 13: Disabling Negotiation - When should switchport nonegotiate be used?</h3>
+<p class="study-note"><strong>Study Note:</strong> This setting is a common hardening practice and appears in security-focused switching interviews.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> switchport nonegotiate disables DTP frames on a port. It is typically used when trunk state is statically configured and negotiation is unnecessary, especially on links to non-Cisco devices or security-sensitive uplinks. If used, ensure both sides are manually configured correctly, since auto-negotiation assistance is removed.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Emphasize explicit configuration discipline when negotiation is disabled.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-14"><h3>Question 14: VTP Purpose - What problem does VTP attempt to solve?</h3>
+<p class="study-note"><strong>Study Note:</strong> VTP is tested because it can simplify VLAN administration but also introduce major change risk.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> VLAN Trunking Protocol (VTP) distributes VLAN configuration information across switches in the same VTP domain over trunk links. It reduces repetitive manual VLAN creation on each switch. VTP includes advertisements containing revision numbers, and switches compare revisions to determine database updates.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Mention both benefit and risk in one answer, centralized consistency versus blast radius.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-15"><h3>Question 15: VTP Modes - What are server, client, and transparent modes?</h3>
+<p class="study-note"><strong>Study Note:</strong> You are expected to know VTP operating roles and how they affect VLAN database updates.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> In VTP server mode, a switch can create, modify, and delete VLANs and advertise updates. In client mode, it cannot modify VLANs locally but learns updates from servers. In transparent mode, it does not apply received VTP updates to its own VLAN database in classic behavior, but can forward advertisements. VTP version and platform specifics should always be validated in production.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Explain operational authority clearly: who can edit VLANs and who only listens.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-16"><h3>Question 16: VTP Revision Number - Why can this value cause outages?</h3>
+<p class="study-note"><strong>Study Note:</strong> Revision-number mistakes are infamous and interviewers ask this to test real-world caution.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> A switch with a higher VTP revision number can overwrite VLAN information in the domain if domain name/password/version align. Introducing a previously used switch without resetting revision can propagate stale or incorrect VLAN database entries, potentially removing active VLANs and causing widespread outages. Best practice includes resetting VTP state and validating before connecting to production trunks.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Give a brief cautionary scenario, then explain the preventive checklist.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-17"><h3>Question 17: VTP Pruning - What does it do and what does it not do?</h3>
+<p class="study-note"><strong>Study Note:</strong> Candidates often overstate pruning effects, so interviewers look for precise boundaries.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> VTP pruning reduces unnecessary flooded traffic for VLANs that have no active ports on downstream switches, helping optimize trunk bandwidth. It does not replace allowed VLAN configuration, and it does not block all VLAN traffic types universally. It mainly affects flooded traffic behavior and should be combined with explicit trunk design controls.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Say "optimization feature, not a security boundary" to sound exact.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-18"><h3>Question 18: Verification Commands - Which commands validate VLAN and trunk state on Cisco switches?</h3>
+<p class="study-note"><strong>Study Note:</strong> Operational command fluency is a key interview discriminator for implementation-focused roles.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> Common commands include show vlan brief (VLAN and access-port membership), show interfaces trunk (trunk status, native VLAN, allowed VLANs), show interfaces switchport (per-port mode details), show vtp status (domain, mode, revision), and show dtp interface (if supported) for DTP negotiation details. For MAC learning context, show mac address-table is also useful.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Group commands by purpose: VLAN database, trunk status, negotiation status, forwarding evidence.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-19"><h3>Question 19: Native VLAN Mismatch - What symptoms appear and how do you troubleshoot?</h3>
+<p class="study-note"><strong>Study Note:</strong> This is a common lab and production scenario that tests whether you can diagnose trunk consistency issues quickly.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> Symptoms may include intermittent inter-switch connectivity issues, control-plane warnings, and traffic appearing in wrong VLANs. Troubleshooting starts by checking both trunk ends for encapsulation, mode, native VLAN, and allowed VLAN list. Use show interfaces trunk and review logs for mismatch alerts. Correct by aligning native VLAN and trunk policies on both devices.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Mention configuration parity checks first, not packet capture first.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-20"><h3>Question 20: Design Best Practices - What are practical switching essentials for stable campus VLAN design?</h3>
+<p class="study-note"><strong>Study Note:</strong> Best-practice framing demonstrates readiness to move from exam knowledge into production operations.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> Use explicit access/trunk modes, restrict allowed VLANs, avoid user traffic on VLAN 1, use dedicated management VLANs, document VLAN ID purpose, and standardize trunk/native VLAN templates. Disable unused ports and place them in an unused VLAN. Use consistent naming and verification checks after changes. For environments not using VTP centrally, prefer transparent or off modes to limit unintended propagation.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Present best practices as a repeatable deployment checklist to show operational maturity.</p>
+</details>
+
+</article>
+</section>
+<section class="level-block" id="level04">
+  <h2>Level 04: Advanced Switching</h2>
+  <article class="qa-card" id="q-1"><h3>Question 1: STP Core Purpose - Why is Spanning Tree Protocol mandatory in redundant Layer 2 designs?</h3>
+<p class="study-note"><strong>Study Note:</strong> Redundancy without loop control causes broadcast storms and MAC table instability, which can take down entire campus domains.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> STP (IEEE 802.1D) prevents Layer 2 loops by creating a loop-free logical topology while keeping physical redundancy. It elects a root bridge and blocks selected redundant paths. Without STP, flooded traffic (broadcast, unknown unicast, multicast) can circulate indefinitely, leading to broadcast storms, duplicate frames, and MAC address table flapping.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Explain that STP is not optional in switched redundancy, it is the control-plane safety net.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-2"><h3>Question 2: BPDU Fundamentals - What are BPDUs and how are they used?</h3>
+<p class="study-note"><strong>Study Note:</strong> BPDU behavior is central to understanding root election and topology change handling in enterprise switching.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> Bridge Protocol Data Units (BPDUs) are Layer 2 control frames exchanged by switches to build and maintain the spanning tree. They carry bridge ID, root ID, path cost, and timer information. Switches compare received BPDUs to determine best path to the root bridge and decide which ports forward or block.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Say "BPDUs are STP control messages" first, then mention root ID and path cost fields.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-3"><h3>Question 3: Root Bridge Election - How is the STP root bridge selected?</h3>
+<p class="study-note"><strong>Study Note:</strong> Interviewers expect exact election criteria, because root placement strongly affects traffic flow.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> The root bridge is the switch with the lowest Bridge ID (BID). BID is composed of bridge priority plus MAC address. If priorities are equal, the lower MAC wins. Best practice is to set root bridge intentionally using lower priority values, for example on Cisco: spanning-tree vlan 10 root primary.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Mention "lowest BID wins" and immediately add that production networks should never rely on default election.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-4"><h3>Question 4: STP Port Roles - What are root, designated, and non-designated ports?</h3>
+<p class="study-note"><strong>Study Note:</strong> Port role accuracy shows whether you can read topology diagrams and predict forwarding behavior.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> A root port is each non-root switch's best path toward the root bridge (one per switch). A designated port is the forwarding port for a segment with the best path from that segment toward the root. Non-designated ports are alternate redundant ports placed in blocking state in classic STP to prevent loops.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Use "best path to root" as your anchor phrase for role explanation.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-5"><h3>Question 5: STP Port States - What are the 802.1D states and their purpose?</h3>
+<p class="study-note"><strong>Study Note:</strong> State transition knowledge helps explain convergence delay and temporary outages during topology changes.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> Classic STP states are Blocking, Listening, Learning, Forwarding, and Disabled. In Listening, ports process BPDUs but do not learn MACs. In Learning, MAC learning starts but data forwarding still does not occur. Forwarding allows normal traffic. These staged transitions reduce loop risk but increase convergence time.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Connect states to behavior: "when does it learn, when does it forward."</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-6"><h3>Question 6: RSTP Improvements - How does RSTP improve convergence over classic STP?</h3>
+<p class="study-note"><strong>Study Note:</strong> Fast convergence is a major operational requirement, and RSTP is a standard interview topic for modern campus networks.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> RSTP (802.1w) accelerates convergence by redefining port roles/states and using handshake mechanisms (proposal/agreement) on point-to-point links. It replaces several legacy states with Discarding, Learning, and Forwarding. It also introduces alternate and backup roles to rapidly transition when failures occur, typically much faster than 802.1D timer-based behavior.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Emphasize that RSTP is event-driven and handshake-oriented, not purely timer-driven.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-7"><h3>Question 7: Path Cost Logic - How does STP choose the best path to the root bridge?</h3>
+<p class="study-note"><strong>Study Note:</strong> Path-cost logic appears often in topology design and troubleshooting interviews.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> STP selects the path with the lowest cumulative root path cost. Cost is based on link bandwidth using standardized values, and total path cost is additive hop by hop. If costs tie, STP uses tie-breakers such as lowest upstream BID and then lowest port ID. You can inspect results with show spanning-tree.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Describe the decision order: lowest cost first, then deterministic tie-breakers.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-8"><h3>Question 8: STP Timers - What are Hello, Max Age, and Forward Delay timers?</h3>
+<p class="study-note"><strong>Study Note:</strong> Timer understanding is useful for diagnosing unexpected convergence behavior and legacy interoperability issues.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> In classic STP, Hello timer controls BPDU transmission interval (default 2 seconds), Max Age controls BPDU aging (default 20 seconds), and Forward Delay controls Listening/Learning duration (default 15 seconds each). These defaults contribute to slower convergence in 802.1D. RSTP reduces dependence on these long transitions for many scenarios.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> State defaults confidently, then note that manual timer tuning should be done carefully and consistently.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-9"><h3>Question 9: STP Variants - Compare PVST+, Rapid PVST+, and MST.</h3>
+<p class="study-note"><strong>Study Note:</strong> Variant selection impacts scalability, convergence speed, and operational complexity.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> PVST+ runs a separate STP instance per VLAN (Cisco), allowing per-VLAN root control but higher CPU/control overhead. Rapid PVST+ brings RSTP speed per VLAN. MST (802.1s) maps multiple VLANs into fewer spanning tree instances, reducing overhead while preserving design control. Large campus networks often use MST for scale.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Explain tradeoff in one line: flexibility vs control-plane scale.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-10"><h3>Question 10: PortFast - What does PortFast do and where should it be enabled?</h3>
+<p class="study-note"><strong>Study Note:</strong> PortFast improves user experience at the edge but can be dangerous if applied incorrectly.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> PortFast allows access ports to transition quickly to forwarding, bypassing normal STP delay states. It is intended for edge ports connected to end hosts, not switch-to-switch links. Typical Cisco command: spanning-tree portfast on access interfaces. Misuse on transit links can create loops.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Always pair PortFast with edge-host context and mention risk on inter-switch links.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-11"><h3>Question 11: BPDU Guard - Why is BPDU Guard used with PortFast?</h3>
+<p class="study-note"><strong>Study Note:</strong> This is a common hardening control and a frequent interview check for practical Layer 2 security awareness.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> BPDU Guard protects edge ports by err-disabling a PortFast interface if a BPDU is received, indicating an unexpected switch connection. This prevents accidental or malicious topology influence from edge ports. On Cisco, it can be enabled globally for PortFast ports: spanning-tree portfast bpduguard default.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Phrase it as "trust boundary for edge ports." That framing sounds operational and security-focused.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-12"><h3>Question 12: Root Guard - How does Root Guard protect topology design?</h3>
+<p class="study-note"><strong>Study Note:</strong> Root stability is a design objective, and Root Guard enforces intended control-plane hierarchy.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> Root Guard prevents a port from becoming a root port by blocking superior BPDUs on designated interfaces. If superior BPDUs are seen, the port enters root-inconsistent state until condition clears. This helps ensure access or distribution boundaries do not accidentally replace intended root bridge locations.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Explain Root Guard as policy enforcement for "where root is allowed to exist."</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-13"><h3>Question 13: Loop Guard and UDLD - How do they prevent unidirectional link issues?</h3>
+<p class="study-note"><strong>Study Note:</strong> Unidirectional failures are subtle and can bypass basic link-up checks, causing loop risks and instability.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> Loop Guard prevents non-designated ports from incorrectly moving to forwarding if expected BPDUs stop due to one-way failures. UDLD (Unidirectional Link Detection) actively detects one-way fiber/copper faults by exchanging protocol messages and can err-disable affected interfaces in aggressive mode. Together they reduce risk from partial link failures.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Mention that physical link up does not guarantee bidirectional control-plane health.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-14"><h3>Question 14: EtherChannel Purpose - Why bundle links instead of using STP-blocked redundancy?</h3>
+<p class="study-note"><strong>Study Note:</strong> EtherChannel is a key design method to increase bandwidth while keeping loop-free behavior.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> EtherChannel combines multiple physical links into one logical port-channel. STP treats the bundle as a single logical link, so member links do not get individually blocked for loop prevention. This increases aggregate bandwidth and resiliency. If one member fails, traffic continues over remaining links.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Highlight both benefits together: active-active throughput and fault tolerance.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-15"><h3>Question 15: LACP vs PAgP vs Static - What are key differences in EtherChannel negotiation?</h3>
+<p class="study-note"><strong>Study Note:</strong> Interviewers often test negotiation protocol knowledge and compatibility constraints.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> LACP (IEEE 802.3ad/802.1AX) is standards-based and interoperable across vendors. PAgP is Cisco proprietary. Static "on" mode forms channel without negotiation, requiring exact manual parity on both ends. In LACP, active initiates, passive responds; active-active or active-passive forms channel, passive-passive does not.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Recommend LACP by default in multi-vendor or future-proof designs.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-16"><h3>Question 16: EtherChannel Consistency - Which mismatches prevent channel formation?</h3>
+<p class="study-note"><strong>Study Note:</strong> Configuration consistency is the top practical cause of EtherChannel deployment issues.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> Member interfaces must match in speed, duplex, VLAN mode, allowed VLAN list, native VLAN, and trunk/access configuration. Protocol mode compatibility (LACP/PAgP/static) must also align. Mismatches can place links in suspended or standalone states. Verification commands include show etherchannel summary and show interfaces port-channel.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Answer with "match all Layer 2 characteristics before bundling" to show disciplined implementation mindset.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-17"><h3>Question 17: EtherChannel Load Balancing - How is traffic distributed across member links?</h3>
+<p class="study-note"><strong>Study Note:</strong> This topic checks whether you understand why aggregate bandwidth may not help a single large flow.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> Traffic distribution uses a hash of selected header fields, such as source/destination MAC, IP, or Layer 4 port values depending on platform settings. A single flow usually stays on one member link, while multiple flows can distribute across members. Therefore, throughput gain is best with many conversations, not one elephant flow.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> State clearly that EtherChannel is flow-based load sharing, not per-packet striping in most enterprise switching.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-18"><h3>Question 18: Storm Control - How does storm control protect Layer 2 domains?</h3>
+<p class="study-note"><strong>Study Note:</strong> Broadcast or multicast storms can saturate links and CPU, so defensive controls are expected in production designs.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> Storm control limits broadcast, multicast, and sometimes unknown unicast traffic rates on interfaces. When thresholds are exceeded, the switch can drop excess traffic and optionally generate logs/traps. This mitigates impact from loops, misbehaving hosts, or malware generating excessive flood traffic.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Mention it as a mitigation control, not a replacement for correct STP and topology design.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-19"><h3>Question 19: DHCP Snooping and DAI - How do these features stop common Layer 2 attacks?</h3>
+<p class="study-note"><strong>Study Note:</strong> Layer 2 attack prevention is practical interview territory for campus and branch access network roles.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> DHCP Snooping classifies ports as trusted/untrusted and builds binding tables from valid DHCP exchanges, blocking rogue DHCP server replies on untrusted ports. Dynamic ARP Inspection (DAI) uses those bindings to validate ARP packets and block spoofed ARP responses. Together they reduce man-in-the-middle and address-poisoning risks on access VLANs.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Explain them as a pair: DHCP Snooping builds trust data, DAI enforces ARP integrity.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-20"><h3>Question 20: IP Source Guard - What role does it play in access-layer security?</h3>
+<p class="study-note"><strong>Study Note:</strong> Access edge controls are crucial in interviews because they reflect defense-in-depth at the first hop.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> IP Source Guard filters traffic on untrusted access ports based on DHCP Snooping bindings (IP/MAC/port mapping). It blocks packets with spoofed source IP addresses that do not match learned bindings. This feature is often deployed alongside Port Security, DHCP Snooping, and DAI to harden user-facing switchports.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Present this as first-hop anti-spoofing tied directly to validated endpoint bindings.</p>
+</details>
+
+</article>
+</section>
+<section class="level-block" id="level05">
+  <h2>Level 05: Routing Fundamentals</h2>
+  <article class="qa-card" id="q-1"><h3>Question 1: Routing Basics - What is the core job of a router?</h3>
+<p class="study-note"><strong>Study Note:</strong> Interviewers use this to check whether you can separate Layer 2 switching behavior from Layer 3 forwarding logic.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> A router forwards packets between different IP networks using a routing table. It examines the destination IP address, performs longest prefix match, selects a next hop or exit interface, rewrites Layer 2 headers, and forwards the packet. Unlike switches, routers do not forward Layer 2 broadcasts by default.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Start with "routers connect different subnets" and add longest prefix match for technical depth.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-2"><h3>Question 2: Longest Prefix Match - How does a router choose between multiple matching routes?</h3>
+<p class="study-note"><strong>Study Note:</strong> Route selection order is a common interview test because it directly affects real path outcomes.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> Routers choose the most specific route, meaning the route with the longest prefix length. For example, if both 10.0.0.0/8 and 10.10.20.0/24 exist, traffic to 10.10.20.15 uses /24. If multiple routes have equal prefix length, selection can depend on administrative distance and metric.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Use one clear example with /8 and /24 to demonstrate deterministic matching.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-3"><h3>Question 3: Static Route Definition - What is a static route and why use it?</h3>
+<p class="study-note"><strong>Study Note:</strong> Static routes are still heavily used at edges, stubs, and controlled paths, so practical understanding is expected.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> A static route is a manually configured route that defines destination prefix and next hop or exit interface. Example Cisco command: ip route 192.168.50.0 255.255.255.0 10.0.0.2. Benefits include predictability, low overhead, and security control. Drawbacks include manual scaling and maintenance burden in large topologies.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Explain where static routes are strong, branch stubs and internet edge defaults, not large dynamic cores.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-4"><h3>Question 4: Next Hop vs Exit Interface - What is the difference when configuring static routes?</h3>
+<p class="study-note"><strong>Study Note:</strong> Correct static route style impacts recursive lookup behavior and troubleshooting complexity.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> A static route can point to a next-hop IP, an exit interface, or both. Next-hop routes require recursive lookup to find how to reach the next hop. Exit-interface routes are common on point-to-point links. On multi-access Ethernet, next-hop form is often preferred to avoid excessive ARP behavior tied to interface-only routes.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Mention "point-to-point versus multi-access" to show implementation awareness.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-5"><h3>Question 5: Default Route - What is a default route and when is it used?</h3>
+<p class="study-note"><strong>Study Note:</strong> Default routing is foundational for internet access and stub network design.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> A default route (0.0.0.0/0 in IPv4) matches any destination not found in the routing table. It is used to send unknown traffic toward an upstream router, commonly at branch or access layers. Cisco example: ip route 0.0.0.0 0.0.0.0 203.0.113.1.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Describe it as the "last-resort path" for unknown destinations.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-6"><h3>Question 6: Gateway of Last Resort - What does this phrase mean in routing output?</h3>
+<p class="study-note"><strong>Study Note:</strong> Interviewers often present command output and expect interpretation, not only conceptual definitions.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> Gateway of last resort refers to the next hop used by the default route. In Cisco show ip route output, it indicates where packets go when no specific route matches. If missing in a stub router, off-net traffic can fail even when local routes are correct.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Tie this directly to default route presence and internet reachability checks.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-7"><h3>Question 7: Administrative Distance - How does AD influence static versus dynamic route preference?</h3>
+<p class="study-note"><strong>Study Note:</strong> AD knowledge is required to predict active path selection when multiple route sources exist.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> Administrative Distance is route source trust value; lower is preferred. Connected routes have AD 0, static routes usually AD 1, and dynamic protocols have higher defaults (for example OSPF 110). A static route generally overrides OSPF if prefixes are equal, unless static AD is raised for backup behavior.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Use one sentence: "same prefix, lowest AD wins."</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-8"><h3>Question 8: Floating Static Route - What is it and why deploy it?</h3>
+<p class="study-note"><strong>Study Note:</strong> Backup path design is a practical interview scenario where floating statics are often expected.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> A floating static route is a static route configured with higher AD so it stays inactive until the primary route fails. Example: ip route 192.168.10.0 255.255.255.0 10.1.1.2 200. This creates deterministic failover without running a dynamic protocol on all links.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Emphasize that the route "floats" below the primary due to AD.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-9"><h3>Question 9: Recursive Lookup - What is recursive routing resolution?</h3>
+<p class="study-note"><strong>Study Note:</strong> Recursive resolution appears in troubleshooting when a static route points to an unreachable next hop.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> Recursive lookup happens when a route points to a next-hop IP, and the router must find another route to reach that next-hop address. If that supporting route disappears, the dependent static route becomes unusable. This is why next-hop reachability and connected path validation are critical in static route troubleshooting.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Explain it as "route to route" resolution before forwarding can happen.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-10"><h3>Question 10: Null Route - Why configure a static route to Null0?</h3>
+<p class="study-note"><strong>Study Note:</strong> Null routes are used in summarization and protection against routing loops, which interviewers value as design maturity.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> A static route to Null0 discards matching traffic. It is commonly used with summary routes so packets for unknown sub-prefixes inside the summary are safely dropped instead of looping. Example: ip route 10.10.0.0 255.255.0.0 Null0.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Frame this as controlled discard for stability, not as accidental packet loss.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-11"><h3>Question 11: Inter-VLAN Routing Concept - Why is Layer 3 required between VLANs?</h3>
+<p class="study-note"><strong>Study Note:</strong> Inter-VLAN routing is a core enterprise task and often appears in practical interviews.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> VLANs are separate Layer 2 domains and usually separate IP subnets. Communication between VLANs requires a Layer 3 gateway that can route between those subnets. This can be done using router-on-a-stick or multilayer switch SVIs.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Keep it direct: different VLAN means different subnet, so routing is mandatory.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-12"><h3>Question 12: Router-on-a-Stick Configuration - What are the key commands and checks?</h3>
+<p class="study-note"><strong>Study Note:</strong> Command-level confidence is frequently tested for entry network engineering roles.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> Configure switch uplink as trunk, then create router subinterfaces per VLAN with encapsulation dot1Q and gateway IPs. Example: interface g0/0.10, encapsulation dot1Q 10, ip address 192.168.10.1 255.255.255.0. Validate with show ip interface brief on router and show interfaces trunk on switch.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Mention both sides, switch trunk plus router subinterfaces, to show end-to-end thinking.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-13"><h3>Question 13: SVI-Based Inter-VLAN Routing - How does a multilayer switch perform routing?</h3>
+<p class="study-note"><strong>Study Note:</strong> Modern campus networks commonly use SVIs, so this is a high-value implementation topic.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> A multilayer switch creates Switch Virtual Interfaces for VLANs, assigns gateway IPs, and enables Layer 3 routing with ip routing. Hosts use SVI IP as default gateway. Traffic between VLANs is routed internally in hardware forwarding path, usually faster and simpler than external router-on-a-stick at scale.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Compare it briefly to router-on-a-stick and mention performance and scalability benefits.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-14"><h3>Question 14: Default Gateway for VLAN Hosts - How should host gateways be planned?</h3>
+<p class="study-note"><strong>Study Note:</strong> Bad gateway planning causes large outage domains and migration complexity.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> Each VLAN subnet needs a gateway IP, commonly the first or last usable address, such as .1 or .254 by policy. Consistent standards improve operations and automation. Redundant gateways can use FHRPs like HSRP or VRRP, but the host still points to one virtual default gateway address.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Mention consistency and redundancy together, it signals production design mindset.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-15"><h3>Question 15: Route Table Verification - Which commands confirm static and default routes on Cisco?</h3>
+<p class="study-note"><strong>Study Note:</strong> Interviewers expect command fluency to validate assumptions quickly in live troubleshooting.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> Use show ip route to view installed routes and route codes, show running-config | include ^ip route to view configured static routes, and show ip interface brief for interface status. For path tests, use ping and traceroute from the router with source options when needed.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Give commands in a logical order: table, config, interfaces, active path tests.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-16"><h3>Question 16: Asymmetric Routing - Why can static designs cause asymmetric paths?</h3>
+<p class="study-note"><strong>Study Note:</strong> Asymmetry affects firewalls, troubleshooting clarity, and performance visibility.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> Asymmetric routing occurs when forward and return traffic use different paths due to route preferences or partial static entries. In stateful firewall environments, this can break sessions if return traffic bypasses expected inspection points. Good design uses consistent route policies, complete return routes, and validation with traceroute from both ends.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Mention that asymmetry is not always wrong, but it must be intentional and compatible with security devices.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-17"><h3>Question 17: Stub Network Design - Why are static routes common in branch stubs?</h3>
+<p class="study-note"><strong>Study Note:</strong> Branch design is a common interview scenario where route simplicity and reliability matter.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> Branch stubs often have one upstream path, so a default static route to HQ or ISP is simple and effective. Core side may add specific static routes back to branch subnets or use summarization. This reduces protocol complexity and control-plane overhead on small devices.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Explain static routing as operationally efficient when topology is simple and predictable.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-18"><h3>Question 18: IPv6 Default Route - What is the equivalent of IPv4 0.0.0.0/0 in IPv6?</h3>
+<p class="study-note"><strong>Study Note:</strong> Even in IPv4-focused roles, interviewers often test whether you can map key concepts into IPv6.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> IPv6 default route is ::/0. Cisco example: ipv6 route ::/0 2001:db8:100::1. It functions like IPv4 default route by matching destinations that lack more-specific IPv6 entries.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> State both notations quickly, 0.0.0.0/0 and ::/0, to show dual-stack readiness.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-19"><h3>Question 19: Black Hole Troubleshooting - How can a wrong static route create silent traffic drops?</h3>
+<p class="study-note"><strong>Study Note:</strong> Static route errors are deterministic but severe, and interviewers value candidates who can isolate them methodically.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> A misconfigured static route can send traffic to a dead next hop or incorrect interface, creating a black hole. Symptoms include one-way reachability or total timeout despite link-up states. Troubleshoot using show ip route, next-hop reachability ping, interface status, and traceroute hop analysis.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Explain that static routes do exactly what configured, so verification of intent versus config is critical.</p>
+</details>
+
+</article>
+<article class="qa-card" id="q-20"><h3>Question 20: Practical Scenario - A user in VLAN 20 can reach the gateway but not VLAN 30. What should you check first?</h3>
+<p class="study-note"><strong>Study Note:</strong> Scenario questions test layered reasoning, not memorized definitions.</p>
+
+<details>
+<summary>Click to reveal Answer & Preparation Guide</summary>
+
+<p class="technical-answer"><strong>Technical Answer:</strong> First confirm Layer 3 path between VLAN gateways, including SVI or subinterface status and IP routing enabled on multilayer switch. Then verify VLAN 30 gateway IP/mask, host default gateway correctness, and ACL policies that may block inter-VLAN traffic. On Cisco, use show ip interface brief, show run interface vlan 20, show run interface vlan 30, show ip route, and ACL checks.</p>
+
+<p class="interview-tip"><strong>Interview Tip:</strong> Present checks in sequence: gateway, routing, policy, endpoint config.</p>
+</details>
+
+</article>
+</section>
+
+      <div class="quick-top"><a href="#top">Back to Top</a></div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>lokii.tech</h4>
+          <p>An open-source learning platform by lokii (UnExplainableFish52)</p>
+        </div>
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="../../../index.html#about">About</a></li>
+            <li><a href="../../../index.html#resources">Resources</a></li>
+            <li><a href="https://github.com/UnExplainableFish52/lokii.tech" target="_blank">GitHub</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Networking Interview Prep</h4>
+          <p>Part 1 of 2, Levels 01-05.</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 lokii.tech. Open source and community-driven. <a href="../../../LICENSE">See License</a></p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
