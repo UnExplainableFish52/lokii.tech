@@ -4,33 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>1.4 Introduction to Operating Systems | lokii.tech</title>
-    
+
     <meta name="description" content="Comprehensive guide to operating systems: from the revolutionary GNU/Linux story to practical cybersecurity skills across Windows, Linux, and macOS.">
     <meta name="author" content="lokii (UnExplainableFish52)">
     <meta name="theme-color" content="#0d1117">
-    
+
     <!-- Open Graph -->
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://lokii.tech/intro/notes/1.4-intro-to-os.html">
     <meta property="og:title" content="Introduction to Operating Systems | lokii.tech">
     <meta property="og:description" content="From Richard Stallman and Linus Torvalds to modern OS internals - a comprehensive guide for aspiring security professionals.">
     <meta property="og:image" content="https://lokii.tech/preview.jpg">
-    
+
     <!-- Favicons -->
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="icon" href="/favicon.ico">
-    
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    
+
     <!-- Centralized Styles -->
     <link rel="stylesheet" href="../../css/style.css">
-    
-    <style>
+
+
+    <link rel="stylesheet" href="../../css/global-ui.css">
+<style>
         /* Page-specific styles for OS notes content */
         .notes-header {
             text-align: center;
@@ -392,32 +394,32 @@
 
         <!-- SECTION 1: STORYTIME -->
         <h2 id="storytime">📖 1. Storytime: The Birth of Operating Systems</h2>
-        
+
         <div class="section">
             <p>
-                Before we dive into technical details, let me tell you a story. A story about <span class="highlight">rebellion</span>, 
-                <span class="highlight">genius</span>, and how a couple of stubborn programmers changed the world forever — 
+                Before we dive into technical details, let me tell you a story. A story about <span class="highlight">rebellion</span>,
+                <span class="highlight">genius</span>, and how a couple of stubborn programmers changed the world forever —
                 and in the process, absolutely <span class="cyan">smoked</span> the billion-dollar corporations at their own game.
             </p>
 
             <h3>🏛️ The Dark Ages: Before Personal Computers</h3>
-            
+
             <div class="story-box">
                 <span class="story-year">1960s-1970s</span><br><br>
-                Imagine a world where computers filled entire rooms. Where you couldn't just "use" a computer — 
-                you had to submit punch cards and wait hours (sometimes days) for your results. 
+                Imagine a world where computers filled entire rooms. Where you couldn't just "use" a computer —
+                you had to submit punch cards and wait hours (sometimes days) for your results.
                 These were the mainframe days, and computing was reserved for universities, governments, and massive corporations.
             </div>
 
             <p>
-                In <span class="highlight">1969</span>, at AT&T's Bell Labs, something magical happened. 
-                Ken Thompson and Dennis Ritchie created <span class="cyan">Unix</span> — an operating system written 
-                in the C programming language (which Ritchie also invented). Unix was elegant, portable, and 
+                In <span class="highlight">1969</span>, at AT&T's Bell Labs, something magical happened.
+                Ken Thompson and Dennis Ritchie created <span class="cyan">Unix</span> — an operating system written
+                in the C programming language (which Ritchie also invented). Unix was elegant, portable, and
                 introduced concepts we still use today: hierarchical file systems, pipes, and the shell.
             </p>
 
             <div class="info-box">
-                <strong>💡 Fun Fact:</strong> Unix was originally a play on words from "Multics" (another OS project). 
+                <strong>💡 Fun Fact:</strong> Unix was originally a play on words from "Multics" (another OS project).
                 Where Multics tried to do everything, Unix did just a few things — but did them incredibly well.
             </div>
 
@@ -427,12 +429,12 @@
                 <div class="timeline-item">
                     <span class="timeline-year">September 27, 1983</span>
                     <p>
-                        <span class="highlight">Richard Stallman</span>, a programmer at MIT's AI Lab, was furious. 
-                        Software was becoming proprietary. Companies locked away their code. You couldn't study it, 
+                        <span class="highlight">Richard Stallman</span>, a programmer at MIT's AI Lab, was furious.
+                        Software was becoming proprietary. Companies locked away their code. You couldn't study it,
                         modify it, or share it. For Stallman, this was a moral crisis.
                     </p>
                     <p>
-                        So he did something radical: he announced the <span class="cyan">GNU Project</span>. 
+                        So he did something radical: he announced the <span class="cyan">GNU Project</span>.
                         His mission? Create a complete, free (as in freedom) operating system.
                     </p>
                 </div>
@@ -444,9 +446,9 @@
             </div>
 
             <p>
-                GNU stood for "GNU's Not Unix" — a recursive acronym (programmers love those). 
-                Stallman and his team created <span class="cyan">GCC</span> (the compiler), <span class="cyan">Bash</span> (the shell), 
-                <span class="cyan">Emacs</span> (the text editor), and countless utilities. 
+                GNU stood for "GNU's Not Unix" — a recursive acronym (programmers love those).
+                Stallman and his team created <span class="cyan">GCC</span> (the compiler), <span class="cyan">Bash</span> (the shell),
+                <span class="cyan">Emacs</span> (the text editor), and countless utilities.
                 They built almost everything needed for a complete operating system.
             </p>
 
@@ -460,14 +462,14 @@
                 <div class="timeline-item">
                     <span class="timeline-year">August 25, 1991</span>
                     <p>
-                        A 21-year-old computer science student in Finland named <span class="highlight">Linus Torvalds</span> 
+                        A 21-year-old computer science student in Finland named <span class="highlight">Linus Torvalds</span>
                         posted this message to a Usenet newsgroup:
                     </p>
                 </div>
             </div>
 
             <div class="story-box">
-                "Hello everybody out there using minix — I'm doing a (free) operating system (just a hobby, won't be big and 
+                "Hello everybody out there using minix — I'm doing a (free) operating system (just a hobby, won't be big and
                 professional like gnu) for 386(486) AT clones."
                 <br>— <span class="highlight">Linus Torvalds</span>
             </div>
@@ -477,7 +479,7 @@
             </p>
 
             <p>
-                Linus had created a kernel — the missing piece of GNU. When combined with all the GNU tools 
+                Linus had created a kernel — the missing piece of GNU. When combined with all the GNU tools
                 Stallman's team had built, you had a complete, free operating system: <span class="cyan">GNU/Linux</span>.
             </p>
 
@@ -491,8 +493,8 @@
             </p>
 
             <p>
-                <span class="highlight">Two guys</span> — one driven by moral conviction, one by curiosity — 
-                created an operating system that now powers most of the world. FOR FREE. 
+                <span class="highlight">Two guys</span> — one driven by moral conviction, one by curiosity —
+                created an operating system that now powers most of the world. FOR FREE.
                 That's what I mean when I say they <span class="cyan">absolutely smoked</span> the commercial giants.
             </div>
 
@@ -502,37 +504,37 @@
                 <div class="timeline-item">
                     <span class="timeline-year">1981</span>
                     <p>
-                        IBM needs an OS for their new personal computer. Bill Gates licenses <span class="cyan">MS-DOS</span> 
-                        to them — crucially, he keeps the rights to sell it to other manufacturers. 
+                        IBM needs an OS for their new personal computer. Bill Gates licenses <span class="cyan">MS-DOS</span>
+                        to them — crucially, he keeps the rights to sell it to other manufacturers.
                         This decision makes Microsoft.
                     </p>
                 </div>
                 <div class="timeline-item">
                     <span class="timeline-year">1985</span>
                     <p>
-                        <span class="cyan">Windows 1.0</span> launches — a graphical shell running on top of DOS. 
+                        <span class="cyan">Windows 1.0</span> launches — a graphical shell running on top of DOS.
                         It's clunky, but it's the beginning.
                     </p>
                 </div>
                 <div class="timeline-item">
                     <span class="timeline-year">1995</span>
                     <p>
-                        <span class="cyan">Windows 95</span> changes everything. The Start menu, taskbar, 
+                        <span class="cyan">Windows 95</span> changes everything. The Start menu, taskbar,
                         and 32-bit architecture. Microsoft dominates the desktop.
                     </p>
                 </div>
                 <div class="timeline-item">
                     <span class="timeline-year">2001</span>
                     <p>
-                        <span class="cyan">Windows XP</span> merges the consumer (9x) and business (NT) lines. 
+                        <span class="cyan">Windows XP</span> merges the consumer (9x) and business (NT) lines.
                         It becomes legendary for its stability and longevity.
                     </p>
                 </div>
                 <div class="timeline-item">
                     <span class="timeline-year">2015 → 2021</span>
                     <p>
-                        <span class="cyan">Windows 10</span> brings "Windows as a Service." Then <span class="cyan">Windows 11</span> 
-                        arrives with a modern UI and native Android app support. Oh, and <span class="highlight">WSL</span> — 
+                        <span class="cyan">Windows 10</span> brings "Windows as a Service." Then <span class="cyan">Windows 11</span>
+                        arrives with a modern UI and native Android app support. Oh, and <span class="highlight">WSL</span> —
                         Windows Subsystem for Linux. Microsoft finally embraced Linux.
                     </p>
                 </div>
@@ -544,21 +546,21 @@
                 <div class="timeline-item">
                     <span class="timeline-year">1984</span>
                     <p>
-                        The original <span class="cyan">Macintosh</span> launches with the classic "Mac OS" — 
+                        The original <span class="cyan">Macintosh</span> launches with the classic "Mac OS" —
                         a revolutionary GUI that influenced everything after it.
                     </p>
                 </div>
                 <div class="timeline-item">
                     <span class="timeline-year">2001</span>
                     <p>
-                        Apple releases <span class="cyan">Mac OS X</span> — built on <span class="highlight">Darwin</span>, 
+                        Apple releases <span class="cyan">Mac OS X</span> — built on <span class="highlight">Darwin</span>,
                         a Unix-based kernel derived from BSD and Mach. Suddenly, Macs had the power of Unix under the hood.
                     </p>
                 </div>
                 <div class="timeline-item">
                     <span class="timeline-year">2020</span>
                     <p>
-                        macOS Big Sur arrives alongside Apple's <span class="cyan">M1 chip</span> — ARM-based silicon 
+                        macOS Big Sur arrives alongside Apple's <span class="cyan">M1 chip</span> — ARM-based silicon
                         that fundamentally changes the game for performance and efficiency.
                     </p>
                 </div>
@@ -582,7 +584,7 @@
                 <div class="timeline-item">
                     <span class="timeline-year">2008 → Today</span>
                     <p>
-                        First Android phone launches. Today, Android powers <span class="highlight">72%</span> of all smartphones globally. 
+                        First Android phone launches. Today, Android powers <span class="highlight">72%</span> of all smartphones globally.
                         That's over 2.5 billion active devices — all running Linus's kernel.
                     </p>
                 </div>
@@ -602,7 +604,7 @@
 
         <div class="section">
             <p>
-                Now that you know the history, let's understand <em>what</em> an operating system actually does. 
+                Now that you know the history, let's understand <em>what</em> an operating system actually does.
                 At its core, an OS is the <span class="highlight">layer between you and the hardware</span>.
             </p>
 
@@ -618,12 +620,12 @@
 
             <h3>The OS as a Translator</h3>
             <p>
-                When you click "Save" in a document, you don't manually tell the hard drive to write specific bits 
+                When you click "Save" in a document, you don't manually tell the hard drive to write specific bits
                 to specific sectors. The <span class="highlight">operating system handles that translation</span>.
             </p>
 
             <p>Your application says: <em>"Save this file"</em></p>
-            <p>The OS translates it to: <em>"Write these bytes to sectors 34892-34910 on disk 0, update the file table, 
+            <p>The OS translates it to: <em>"Write these bytes to sectors 34892-34910 on disk 0, update the file table,
             set permissions, record the timestamp..."</em></p>
 
             <h3>Kernel Space vs User Space</h3>
@@ -653,7 +655,7 @@
 
             <h3>System Calls: The Bridge</h3>
             <p>
-                Applications in user space can't directly access hardware. They must request services through 
+                Applications in user space can't directly access hardware. They must request services through
                 <span class="cyan">system calls</span> — the official API between user space and kernel space.
             </p>
 
@@ -671,7 +673,7 @@
 
         <div class="section">
             <p>
-                Modern computing isn't just about one OS on one machine anymore. Understanding these concepts 
+                Modern computing isn't just about one OS on one machine anymore. Understanding these concepts
                 is <span class="highlight">critical</span> for cybersecurity work.
             </p>
 
@@ -735,7 +737,7 @@
 
             <h4>WSL2: A Game Changer</h4>
             <p>
-                Windows Subsystem for Linux 2 runs a real Linux kernel inside Windows. 
+                Windows Subsystem for Linux 2 runs a real Linux kernel inside Windows.
                 You get native Linux performance with full Windows integration.
             </p>
 
@@ -757,13 +759,13 @@ wsl</code></pre>
 
         <div class="section">
             <p>
-                Every operating system handles these five core functions. As a security professional, you need to know 
+                Every operating system handles these five core functions. As a security professional, you need to know
                 how to <span class="highlight">inspect, manage, and manipulate</span> each one across all major platforms.
             </p>
 
             <h3>4.1 Process Management</h3>
             <p>
-                A <span class="cyan">process</span> is a running instance of a program. Every application, service, 
+                A <span class="cyan">process</span> is a running instance of a program. Every application, service,
                 and malware sample runs as a process. Knowing how to find, analyze, and kill processes is fundamental.
             </p>
 
@@ -878,7 +880,7 @@ pkill -f "process name"</code></pre>
 
             <h3>4.2 Memory Management</h3>
             <p>
-                The OS manages RAM allocation, virtual memory, and swap space. Understanding memory is crucial for 
+                The OS manages RAM allocation, virtual memory, and swap space. Understanding memory is crucial for
                 forensics and exploit development.
             </p>
 
@@ -889,12 +891,12 @@ pkill -f "process name"</code></pre>
 systeminfo | findstr Memory
 
 # PowerShell - detailed
-Get-WmiObject Win32_OperatingSystem | 
-  Select FreePhysicalMemory, 
+Get-WmiObject Win32_OperatingSystem |
+  Select FreePhysicalMemory,
          TotalVisibleMemorySize
 
 # Process memory
-Get-Process | Sort WorkingSet -Desc | 
+Get-Process | Sort WorkingSet -Desc |
   Select -First 10</code></pre>
                 </div>
                 <div class="cmd-box linux">
@@ -963,7 +965,7 @@ icacls C:\path\to\file
 # Grant permission
 icacls file.txt /grant User:F
 
-# Remove permission  
+# Remove permission
 icacls file.txt /remove User
 
 # Inheritance
@@ -1119,7 +1121,7 @@ sysadminctl -addUser username</code></pre>
 
         <div class="section">
             <p>
-                Windows is the primary target for most attacks (80% of enterprise endpoints). 
+                Windows is the primary target for most attacks (80% of enterprise endpoints).
                 Understanding its internals is <span class="highlight">non-negotiable</span> for security professionals.
             </p>
 
@@ -1127,7 +1129,7 @@ sysadminctl -addUser username</code></pre>
 
             <h4>Master File Table (MFT)</h4>
             <p>
-                The <span class="cyan">MFT</span> is the heart of NTFS. It's a database containing entries for every file 
+                The <span class="cyan">MFT</span> is the heart of NTFS. It's a database containing entries for every file
                 and directory — including metadata, timestamps, and data locations.
             </p>
 
@@ -1160,7 +1162,7 @@ Get-ChildItem -Recurse | ForEach-Object { Get-Item $_.FullName -Stream * }</code
 
             <h3>Windows Registry</h3>
             <p>
-                The registry is a hierarchical database storing OS and application configuration. 
+                The registry is a hierarchical database storing OS and application configuration.
                 It's a goldmine for forensics and a playground for persistence.
             </p>
 
@@ -1222,12 +1224,12 @@ Get-WmiObject win32_service | Select Name, PathName | Where-Object { $_.PathName
 
             <h3>PowerShell for Security</h3>
             <pre><code># Get running processes with network connections
-Get-NetTCPConnection | Where-Object { $_.State -eq "Established" } | 
-  Select LocalAddress, LocalPort, RemoteAddress, RemotePort, 
+Get-NetTCPConnection | Where-Object { $_.State -eq "Established" } |
+  Select LocalAddress, LocalPort, RemoteAddress, RemotePort,
          @{Name="Process";Expression={(Get-Process -Id $_.OwningProcess).ProcessName}}
 
 # Find recently modified files
-Get-ChildItem -Path C:\ -Recurse -File | 
+Get-ChildItem -Path C:\ -Recurse -File |
   Where-Object { $_.LastWriteTime -gt (Get-Date).AddDays(-1) }
 
 # Check startup programs
@@ -1243,7 +1245,7 @@ Get-SmbShare</code></pre>
 
             <h3>Process Monitor (Sysinternals)</h3>
             <p>
-                <span class="highlight">Process Monitor</span> is the ultimate tool for understanding what processes 
+                <span class="highlight">Process Monitor</span> is the ultimate tool for understanding what processes
                 are doing in real-time: file access, registry changes, network activity.
             </p>
 

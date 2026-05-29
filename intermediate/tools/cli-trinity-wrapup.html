@@ -30,6 +30,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
+    <link rel="stylesheet" href="../../css/global-ui.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
@@ -536,39 +537,6 @@
             transition: color 0.2s;
         }
         .footer a:hover { color: #60A5FA; }
-
-        /* ========== SCROLL TO TOP ========== */
-        .scroll-top {
-            position: fixed;
-            bottom: 24px;
-            right: 24px;
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            background: #3B82F6;
-            color: white;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(12px);
-            transition: all 0.3s;
-            z-index: 90;
-            box-shadow: 0 4px 20px rgba(59,130,246,0.3);
-        }
-        .scroll-top.visible {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-        .scroll-top:hover {
-            background: #2563EB;
-            transform: translateY(-2px) scale(1.05);
-        }
 
         /* ========== RESPONSIVE ========== */
         @media (max-width: 768px) {
@@ -1338,9 +1306,6 @@
         <p>&copy; 2026 <a href="../../index.html">lokii.tech</a> | <a href="https://github.com/UnExplainableFish52/lokii.tech" target="_blank">Open Source Project</a></p>
     </footer>
 
-    <!-- Scroll to Top -->
-    <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">↑</button>
-
     <script>
         // Toggle solution with smooth animation
         function toggleSolution(btn) {
@@ -1377,14 +1342,6 @@
 
             // Header shadow
             document.getElementById('siteHeader').classList.toggle('scrolled', window.scrollY > 20);
-
-            // Scroll to top button
-            document.getElementById('scrollTop').classList.toggle('visible', window.scrollY > 400);
-        });
-
-        // Scroll to top
-        document.getElementById('scrollTop').addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
         // Intersection Observer for scenario fade-in

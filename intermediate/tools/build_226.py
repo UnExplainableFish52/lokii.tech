@@ -170,6 +170,7 @@ head = '''<!DOCTYPE html>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/global-ui.css">
 
     <style>
         body { background: linear-gradient(135deg, #0d0d0d 0%, #1a1a2e 50%, #0d0d0d 100%); color: #fff; font-family: 'Inter', 'Segoe UI', sans-serif; font-size: 17px; line-height: 1.8; padding: 0; min-height: 100vh; }

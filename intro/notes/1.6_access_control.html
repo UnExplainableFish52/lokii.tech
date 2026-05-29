@@ -4,26 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Access Control - ISC2 CC Notes | lokii.tech</title>
-    
+
     <meta name="description" content="Comprehensive guide to Access Control concepts for ISC2 Certified in Cybersecurity exam preparation.">
     <meta name="author" content="lokii (UnExplainableFish52)">
     <meta name="theme-color" content="#0d1117">
-    
+
     <!-- Favicons -->
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="icon" href="/favicon.ico">
-    
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    
+
     <!-- Centralized Styles -->
     <link rel="stylesheet" href="../../css/style.css">
-    
-    <style>
+
+
+    <link rel="stylesheet" href="../../css/global-ui.css">
+<style>
         /* Page-specific styles for Access Control notes */
         .notes-header {
             text-align: center;
@@ -152,14 +154,14 @@
                 <h1>🔐 Access Control</h1>
                 <p class="subtitle">ISC2 Certified in Cybersecurity - Foundation Notes</p>
             </header>
-        
+
         <h2>📖 What is Access Control?</h2>
         <p><span class="highlight">Access Control</span> is a security technique that regulates who or what can view or use resources in a computing environment. It's a fundamental concept of security compliance that determines <span class="highlight">who is allowed to access what</span>.</p>
-        
+
         <div class="note-box">
             <p><strong>Core Purpose:</strong> Access control ensures that only authorized users, processes, or systems can access resources (data, systems, applications) while preventing unauthorized access.</p>
         </div>
-        
+
         <h2>🎯 The CIA Triad Connection</h2>
         <p>Access Control directly supports all three pillars of the CIA Triad: </p>
         <ul>
@@ -167,9 +169,9 @@
             <li><span class="highlight">Integrity:</span> Prevents unauthorized modification of data</li>
             <li><span class="highlight">Availability:</span> Ensures authorized users have access when needed</li>
         </ul>
-        
+
         <h2>🔑 Key Terms & Keywords (ISC2 Exam Focus)</h2>
-        
+
         <table>
             <tr>
                 <th>Term</th>
@@ -208,39 +210,39 @@
                 <td>Authentication, Authorization, and Accounting - the three pillars</td>
             </tr>
         </table>
-        
+
         <h2>🏗️ Access Control Principles (Fundamental Concepts)</h2>
-        
+
         <h3>1. Principle of Least Privilege (PoLP)</h3>
         <p>Users should be granted the <span class="highlight">minimum level of access</span> necessary to perform their job functions — nothing more. </p>
-        
+
         <div class="example-box">
             <p><strong>Example:</strong> A marketing employee needs read-only access to customer data for reports, but NOT edit or delete permissions.  An HR manager needs access to employee records, but NOT to the company's financial databases.</p>
         </div>
-        
+
         <h3>2. Separation of Duties (SoD)</h3>
         <p>Critical tasks should be divided among multiple people to prevent fraud and errors.  <span class="highlight">No single person should have complete control</span> over a critical process.</p>
-        
+
         <div class="example-box">
             <p><strong>Example: </strong> In a financial system, one person submits a payment request, another approves it, and a third executes it. This prevents a single employee from embezzling funds.</p>
         </div>
-        
+
         <h3>3. Need-to-Know</h3>
         <p>Access to sensitive information is granted only to those who <span class="highlight">require it to perform their duties</span>. </p>
-        
+
         <div class="example-box">
             <p><strong>Example:</strong> Only the legal department has access to ongoing lawsuit documents, even though other executives have high clearance levels.</p>
         </div>
-        
+
         <h3>4. Defense in Depth</h3>
         <p>Multiple layers of security controls to protect resources.  If one layer fails, others still provide protection.</p>
-        
+
         <div class="example-box">
             <p><strong>Example:</strong> Firewall → VPN → MFA → Application-level authentication → Database-level permissions</p>
         </div>
-        
+
         <h2>🔐 Types of Access Control Models</h2>
-        
+
         <h3>1. Discretionary Access Control (DAC)</h3>
         <p><span class="highlight">Owner decides</span> who can access their resources.  Flexible but potentially less secure.</p>
         <ul>
@@ -248,11 +250,11 @@
             <li><strong>Example:</strong> Windows file permissions — you can share your folder with whoever you want</li>
             <li><strong>Weakness:</strong> Users might grant excessive permissions</li>
         </ul>
-        
+
         <div class="example-box">
             <p><strong>Real-world: </strong> You create a Word document and decide to share it with 3 colleagues via email. You're using DAC. </p>
         </div>
-        
+
         <h3>2. Mandatory Access Control (MAC)</h3>
         <p><span class="highlight">System-enforced</span> access control based on classification levels. Very rigid and secure.</p>
         <ul>
@@ -261,11 +263,11 @@
             <li><strong>Example: </strong> Military and government systems (SELinux)</li>
             <li><strong>Rule:</strong> Users with "Secret" clearance cannot access "Top Secret" data</li>
         </ul>
-        
+
         <div class="example-box">
             <p><strong>Real-world:</strong> A military officer with "Confidential" clearance tries to open a "Top Secret" file — the system automatically denies access regardless of their rank.</p>
         </div>
-        
+
         <h3>3. Role-Based Access Control (RBAC)</h3>
         <p><span class="highlight">Most common in corporate environments. </span> Access is assigned based on job roles, not individual identities.</p>
         <ul>
@@ -274,22 +276,22 @@
             <li><strong>Example:</strong> "HR Manager" role has access to payroll systems, "Developer" role has access to code repositories</li>
             <li><strong>Advantage:</strong> Easy to manage when employees change positions</li>
         </ul>
-        
+
         <div class="example-box">
             <p><strong>Real-world:</strong> When Sarah moves from Marketing to Sales, the admin removes her "Marketing Analyst" role and assigns the "Sales Representative" role.  Her access rights automatically update.</p>
         </div>
-        
+
         <h3>4. Rule-Based Access Control (RuBAC)</h3>
         <p>Access is granted or denied based on <span class="highlight">specific rules and conditions</span> set by administrators.</p>
         <ul>
             <li><strong>Example:</strong> "Allow access only between 9 AM - 5 PM" or "Deny access from IP addresses outside the US"</li>
             <li><strong>Use case:</strong> Firewall rules, network access control</li>
         </ul>
-        
+
         <div class="example-box">
             <p><strong>Real-world:</strong> A firewall rule:  "Block all incoming traffic on port 23 (Telnet)" — regardless of who is trying to connect.</p>
         </div>
-        
+
         <h3>5. Attribute-Based Access Control (ABAC)</h3>
         <p>Access decisions based on <span class="highlight">attributes</span> of the user, resource, and environment. </p>
         <ul>
@@ -297,13 +299,13 @@
             <li><strong>Example:</strong> "Allow access to financial reports only if:  user is in Finance department AND accessing from corporate network AND during business hours"</li>
             <li><strong>Advantage: </strong> Highly flexible and context-aware</li>
         </ul>
-        
+
         <div class="example-box">
             <p><strong>Real-world:</strong> A cloud application allows employees to access customer data only if they're using a company-issued laptop, connected via VPN, and have completed security training in the past 6 months.</p>
         </div>
-        
+
         <h2>🔧 Access Control Implementation Methods</h2>
-        
+
         <h3>Physical Access Controls</h3>
         <ul>
             <li><span class="code">Badge readers: </span> RFID/NFC cards for building entry</li>
@@ -312,7 +314,7 @@
             <li><span class="code">Mantrap/Turnstiles:</span> Prevent tailgating (unauthorized entry behind authorized person)</li>
             <li><span class="code">Locks and keys:</span> Traditional physical barriers</li>
         </ul>
-        
+
         <h3>Logical/Technical Access Controls</h3>
         <ul>
             <li><span class="code">Passwords/PINs:</span> Something you know</li>
@@ -323,7 +325,7 @@
             <li><span class="code">VPN:</span> Secure remote access</li>
             <li><span class="code">Encryption:</span> Data protection at rest and in transit</li>
         </ul>
-        
+
         <h3>Administrative Access Controls</h3>
         <ul>
             <li><span class="code">Policies and procedures:</span> Written rules</li>
@@ -332,9 +334,9 @@
             <li><span class="code">User access reviews:</span> Periodic audits of who has access to what</li>
             <li><span class="code">Separation of duties:</span> Policy enforcement</li>
         </ul>
-        
+
         <h2>🛡️ Access Control Lifecycle</h2>
-        
+
         <table>
             <tr>
                 <th>Phase</th>
@@ -362,11 +364,11 @@
                 <td>Employee leaves company, all accounts immediately disabled</td>
             </tr>
         </table>
-        
+
         <h2>🔍 Authentication Factors</h2>
-        
+
         <h3>Types of Authentication (ISC2 Exam Critical)</h3>
-        
+
         <table>
             <tr>
                 <th>Factor Type</th>
@@ -399,22 +401,22 @@
                 <td>Typing rhythm, signature dynamics, gait analysis</td>
             </tr>
         </table>
-        
+
         <h3>Multi-Factor Authentication (MFA)</h3>
         <p><span class="highlight">Using TWO OR MORE different types</span> of authentication factors.  Critical for modern security.</p>
-        
+
         <div class="note-box">
             <p><strong>Important Distinction:</strong> Password + Security Question = NOT true MFA (both are "something you know"). Password + SMS code = TRUE MFA (something you know + something you have).</p>
         </div>
-        
+
         <div class="example-box">
             <p><strong>Example:</strong> Logging into your bank account: Password (Type 1) + SMS code sent to your phone (Type 2) = Two-Factor Authentication (2FA)</p>
         </div>
-        
+
         <h2>📊 Access Control Lists (ACLs)</h2>
-        
+
         <p>A list attached to an object that specifies which subjects can access it and what operations they can perform.</p>
-        
+
         <h3>ACL Structure: </h3>
         <div class="example-box">
             <p><span class="code">File:  project_report.docx</span></p>
@@ -424,7 +426,7 @@
             <p><span class="code">Group: Marketing (Read)</span></p>
             <p><span class="code">Everyone Else:  Deny All</span></p>
         </div>
-        
+
         <h3>Common Permissions:</h3>
         <ul>
             <li><span class="code">Read (R):</span> View the content</li>
@@ -433,9 +435,9 @@
             <li><span class="code">Delete (D):</span> Remove the file</li>
             <li><span class="code">Full Control: </span> All permissions including changing permissions</li>
         </ul>
-        
+
         <h2>⚠️ Common Access Control Attacks</h2>
-        
+
         <table>
             <tr>
                 <th>Attack Type</th>
@@ -468,9 +470,9 @@
                 <td>Encryption (HTTPS), session timeout, secure cookies</td>
             </tr>
         </table>
-        
+
         <h2>🎓 Best Practices (Corporate Environment)</h2>
-        
+
         <ol>
             <li><span class="highlight">Implement Least Privilege: </span> Start with minimal access, add as needed</li>
             <li><span class="highlight">Use MFA everywhere:</span> Especially for administrative accounts</li>
@@ -483,9 +485,9 @@
             <li><span class="highlight">Immediate revocation:</span> Disable accounts immediately upon termination</li>
             <li><span class="highlight">Network segmentation:</span> Limit lateral movement if breach occurs</li>
         </ol>
-        
+
         <h2>📝 ISC2 Exam Tips & Focus Areas</h2>
-        
+
         <div class="exam-tip">
             <h3>Key Concepts to Memorize:</h3>
             <ul>
@@ -497,7 +499,7 @@
                 <li>Understand the difference between <span class="code">Subject</span> (requester) and <span class="code">Object</span> (resource)</li>
             </ul>
         </div>
-        
+
         <div class="exam-tip">
             <h3>Common Exam Questions Format:</h3>
             <ul>
@@ -508,9 +510,9 @@
                 <li>"What prevents one person from completing a critical transaction alone?" → <span class="highlight">Separation of Duties</span></li>
             </ul>
         </div>
-        
+
         <h2>🔄 Quick Comparison Table</h2>
-        
+
         <table>
             <tr>
                 <th>Model</th>
@@ -548,31 +550,31 @@
                 <td>Cloud, complex environments</td>
             </tr>
         </table>
-        
+
         <h2>🎯 Practice Scenario Questions</h2>
-        
+
         <div class="example-box">
             <p><strong>Scenario 1:</strong> A company uses badge readers at the entrance (physical), requires username/password to log into workstations (logical), and has a written security policy (administrative). What is this an example of?</p>
             <p><span class="highlight">Answer: </span> Defense in Depth / Layered Security</p>
         </div>
-        
+
         <div class="example-box">
             <p><strong>Scenario 2:</strong> An employee can share their Google Drive folder with anyone they choose.  What type of access control is this? </p>
             <p><span class="highlight">Answer:</span> Discretionary Access Control (DAC)</p>
         </div>
-        
+
         <div class="example-box">
             <p><strong>Scenario 3:</strong> A system requires your fingerprint AND a 6-digit PIN to unlock.  Is this MFA?</p>
             <p><span class="highlight">Answer:</span> YES - Something you are (biometric) + Something you know (PIN) = True MFA</p>
         </div>
-        
+
         <div class="example-box">
             <p><strong>Scenario 4:</strong> In a banking system, one person can initiate a wire transfer, but a different person must approve it before it's sent. What principle is this?</p>
             <p><span class="highlight">Answer:</span> Separation of Duties (SoD)</p>
         </div>
-        
+
         <h2>🔖 Acronyms & Abbreviations Reference</h2>
-        
+
         <ul>
             <li><span class="code">AAA: </span> Authentication, Authorization, Accounting</li>
             <li><span class="code">ACL:</span> Access Control List</li>
@@ -589,9 +591,9 @@
             <li><span class="code">PAM:</span> Privileged Access Management</li>
             <li><span class="code">IAM:</span> Identity and Access Management</li>
         </ul>
-        
+
         <h2>✅ Study Checklist</h2>
-        
+
         <div class="note-box">
             <p><strong>Before your ISC2 CC exam, make sure you can:</strong></p>
             <ul>
@@ -608,7 +610,7 @@
                 <li>☐ Recognize common access control attacks</li>
             </ul>
         </div>
-        
+
             <div style="margin-top: 50px; text-align: center; color: #888; font-size: 0.9em;">
                 <p>Notes prepared for ISC2 Certified in Cybersecurity | Access Control Fundamentals</p>
                 <p>Study smart.  Stay secure.  🔐</p>

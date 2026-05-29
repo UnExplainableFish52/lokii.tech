@@ -4,34 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>1.5.1 Network Fundamentals | Networking | Cybersecurity Beginner Course</title>
-    
+
     <meta name="description" content="Learn networking fundamentals - network types, topologies, IP addressing, MAC addresses, and essential commands for cybersecurity professionals.">
     <meta name="author" content="lokii (UnExplainableFish52)">
     <meta name="theme-color" content="#0d1117">
-    
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://lokii.tech/intro/notes/1.5_networks/1.5.1_network_fundamentals.html">
     <meta property="og:title" content="1.5.1 Network Fundamentals | lokii.tech">
     <meta property="og:description" content="Learn networking fundamentals - network types, topologies, IP addressing, and essential commands.">
     <meta property="og:image" content="https://lokii.tech/preview.jpg">
-    
+
     <!-- Favicons -->
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
     <link rel="icon" href="/favicon.ico">
-    
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    
+
     <!-- Centralized Styles -->
     <link rel="stylesheet" href="../../../css/style.css">
-    
-    <style>
+
+
+    <link rel="stylesheet" href="../../../css/global-ui.css">
+<style>
         /* Page-specific styles for Network Fundamentals notes */
         .notes-header {
             text-align: center;
@@ -67,6 +69,34 @@
         /* Topology Diagrams */
         .diagram { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 25px; margin: 20px 0; text-align: center; font-family: 'JetBrains Mono', monospace; color: #00bcd4; overflow-x: auto; }
         .diagram pre { margin: 0; display: inline-block; text-align: left; }
+        .diagram-label { display: block; color: #00bcd4; font-weight: 800; text-transform: uppercase; }
+        .diagram-subtitle { display: block; color: #8b949e; font-size: 0.85em; margin-top: 4px; }
+        .scope-diagram { max-width: 700px; margin: 0 auto; }
+        .scope-box { border: 2px solid #00bcd4; border-radius: 8px; padding: 18px; background: rgba(0, 188, 212, 0.06); }
+        .scope-box + .scope-box, .scope-box .scope-box { margin-top: 18px; }
+        .scope-extranet { border-color: #4ec9b0; background: rgba(78, 201, 176, 0.06); }
+        .scope-intranet { border-color: #ffd700; background: rgba(255, 215, 0, 0.06); }
+        .intranet-assets { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 16px; }
+        .asset-pill { color: #c9d1d9; border: 1px solid #30363d; border-radius: 6px; padding: 8px 12px; background: #0d1117; }
+        .topology-svg { display: block; width: 100%; max-width: 720px; height: auto; margin: 0 auto; }
+        .topology-svg .link { stroke: #00bcd4; stroke-width: 3; vector-effect: non-scaling-stroke; }
+        .topology-svg .node-box { fill: #0d1117; stroke: #00bcd4; stroke-width: 3; vector-effect: non-scaling-stroke; }
+        .topology-svg .hub-box { fill: rgba(78, 201, 176, 0.08); stroke: #4ec9b0; stroke-width: 3; vector-effect: non-scaling-stroke; }
+        .topology-svg text { fill: #c9d1d9; font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: 22px; font-weight: 800; text-anchor: middle; dominant-baseline: middle; }
+        .topology-svg .hub-text { fill: #4ec9b0; }
+        .bus-diagram { display: grid; grid-template-columns: repeat(5, minmax(70px, 1fr)); gap: 18px; min-height: 155px; align-items: start; padding-top: 8px; }
+        .bus-diagram .bus-node { position: relative; border: 2px solid #00bcd4; border-radius: 8px; background: #0d1117; color: #c9d1d9; padding: 9px 10px; font-weight: 700; }
+        .bus-diagram .bus-node::after { content: ""; position: absolute; left: 50%; top: 100%; width: 2px; height: 38px; transform: translateX(-50%); background: #00bcd4; }
+        .bus-cable { grid-column: 1 / -1; position: relative; height: 42px; margin-top: 24px; color: #8b949e; font-size: 0.9em; }
+        .bus-cable::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 4px; border-radius: 999px; background: #4ec9b0; }
+        .mac-diagram { max-width: 520px; margin: 0 auto; border: 2px solid #00bcd4; border-radius: 8px; overflow: hidden; background: #0d1117; }
+        .mac-header { padding: 18px; border-bottom: 1px solid #30363d; }
+        .mac-value { color: #c9d1d9; margin-top: 8px; font-weight: 700; }
+        .mac-parts { display: grid; grid-template-columns: 1fr 1.2fr; }
+        .mac-part { padding: 16px; border-right: 1px solid #30363d; }
+        .mac-part:last-child { border-right: none; }
+        .mac-part strong { display: block; color: #ffd700; margin-bottom: 8px; }
+        .mac-part span { color: #c9d1d9; }
 
         /* Comparison Cards */
         .compare-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin: 25px 0; }
@@ -111,6 +141,10 @@
             .page-nav { flex-direction: column; gap: 15px; }
             .page-nav a { width: 100%; justify-content: center; }
             .diagram { font-size: 0.8em; }
+            .scope-box { padding: 14px; }
+            .mac-parts { grid-template-columns: 1fr; }
+            .mac-part { border-right: none; border-bottom: 1px solid #30363d; }
+            .mac-part:last-child { border-bottom: none; }
         }
     </style>
 </head>
@@ -141,19 +175,19 @@
 
             <!-- Section 1: What is a Network? -->
         <h2>🌐 1. What is a Network?</h2>
-        
+
         <div class="section">
             <h3>Simple Definition</h3>
             <p>
-                A <span class="highlight">network</span> is a group of two or more devices connected together 
+                A <span class="highlight">network</span> is a group of two or more devices connected together
                 to share resources, exchange data, and communicate with each other.
             </p>
 
             <h3>Technical Definition</h3>
             <p>
-                A computer network is an interconnected collection of computing devices — including computers, 
-                servers, switches, routers, and other hardware — that uses 
-                <span class="highlight">transmission media</span> (wired or wireless) and 
+                A computer network is an interconnected collection of computing devices — including computers,
+                servers, switches, routers, and other hardware — that uses
+                <span class="highlight">transmission media</span> (wired or wireless) and
                 <span class="highlight">communication protocols</span> to enable data exchange and resource sharing.
             </p>
 
@@ -181,7 +215,7 @@
 
         <!-- Section 2: Network vs Internet -->
         <h2>🆚 2. Network vs Internet</h2>
-        
+
         <div class="section">
             <p>
                 Many beginners confuse "network" with "Internet." While related, they're distinctly different concepts.
@@ -225,7 +259,7 @@
             </table>
 
             <h3>Intranet vs Extranet vs Internet</h3>
-            
+
             <div class="compare-grid">
                 <div class="compare-card">
                     <h4>🏢 Intranet</h4>
@@ -236,7 +270,7 @@
                         <li>Protected by firewall</li>
                     </ul>
                 </div>
-                
+
                 <div class="compare-card">
                     <h4>🤝 Extranet</h4>
                     <p>An <span class="highlight">extended intranet</span> that allows limited access to authorized external users.</p>
@@ -246,7 +280,7 @@
                         <li>VPN or secure login</li>
                     </ul>
                 </div>
-                
+
                 <div class="compare-card">
                     <h4>🌍 Internet</h4>
                     <p>The <span class="highlight">global public network</span> connecting billions of devices worldwide.</p>
@@ -259,30 +293,34 @@
             </div>
 
             <div class="diagram">
-                <pre>
-┌─────────────────────────────────────────────────────────────┐
-│                        INTERNET                              │
-│                    (Public Network)                          │
-│  ┌─────────────────────────────────────────────────────┐    │
-│  │                     EXTRANET                         │    │
-│  │              (Authorized Partners)                   │    │
-│  │  ┌─────────────────────────────────────────────┐    │    │
-│  │  │                INTRANET                      │    │    │
-│  │  │          (Internal Employees)                │    │    │
-│  │  │    [Servers] [Workstations] [Printers]      │    │    │
-│  │  └─────────────────────────────────────────────┘    │    │
-│  └─────────────────────────────────────────────────────┘    │
-└─────────────────────────────────────────────────────────────┘
-                </pre>
+                <div class="scope-diagram" role="img" aria-label="Internet contains an extranet, and the extranet contains an intranet for internal employees.">
+                    <div class="scope-box scope-internet">
+                        <span class="diagram-label">Internet</span>
+                        <span class="diagram-subtitle">Public Network</span>
+                        <div class="scope-box scope-extranet">
+                            <span class="diagram-label">Extranet</span>
+                            <span class="diagram-subtitle">Authorized Partners</span>
+                            <div class="scope-box scope-intranet">
+                                <span class="diagram-label">Intranet</span>
+                                <span class="diagram-subtitle">Internal Employees</span>
+                                <div class="intranet-assets">
+                                    <span class="asset-pill">Servers</span>
+                                    <span class="asset-pill">Workstations</span>
+                                    <span class="asset-pill">Printers</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
         <!-- Section 3: Types of Networks -->
         <h2>📊 3. Types of Networks</h2>
-        
+
         <div class="section">
             <h3>Primary Network Types</h3>
-            
+
             <table>
                 <thead>
                     <tr>
@@ -321,7 +359,7 @@
             </table>
 
             <h3>Additional Network Types</h3>
-            
+
             <table>
                 <thead>
                     <tr>
@@ -367,7 +405,7 @@
 
         <!-- Section 4: Network Topologies -->
         <h2>🔗 4. Network Topologies</h2>
-        
+
         <div class="section">
             <p>
                 <span class="highlight">Topology</span> refers to the physical or logical arrangement of devices in a network.
@@ -375,61 +413,78 @@
 
             <h3>Bus Topology</h3>
             <div class="diagram">
-                <pre>
-    [PC1]     [PC2]     [PC3]     [PC4]     [PC5]
-      │         │         │         │         │
-══════╧═════════╧═════════╧═════════╧═════════╧══════
-                    Main Cable (Bus)
-                </pre>
+                <div class="bus-diagram" role="img" aria-label="Five computers connected to one shared main bus cable.">
+                    <span class="bus-node">PC1</span>
+                    <span class="bus-node">PC2</span>
+                    <span class="bus-node">PC3</span>
+                    <span class="bus-node">PC4</span>
+                    <span class="bus-node">PC5</span>
+                    <span class="bus-cable">Main Cable (Bus)</span>
+                </div>
             </div>
             <p>All devices connect to a single backbone cable. Simple but a single point of failure.</p>
 
             <h3>Star Topology</h3>
             <div class="diagram">
-                <pre>
-           [PC1]          [PC2]
-              \            /
-               \          /
-                ┌────────┐
-                │ Switch │
-                │  /Hub  │
-                └────────┘
-               /          \
-              /            \
-           [PC3]          [PC4]
-                </pre>
+                <svg class="topology-svg" viewBox="0 0 700 260" role="img" aria-label="Four computers connected to a central switch or hub.">
+                    <line class="link" x1="185" y1="74" x2="300" y2="118"></line>
+                    <line class="link" x1="515" y1="74" x2="400" y2="118"></line>
+                    <line class="link" x1="185" y1="186" x2="300" y2="142"></line>
+                    <line class="link" x1="515" y1="186" x2="400" y2="142"></line>
+                    <rect class="node-box" x="95" y="50" width="90" height="48" rx="9"></rect>
+                    <rect class="node-box" x="515" y="50" width="90" height="48" rx="9"></rect>
+                    <rect class="node-box" x="95" y="162" width="90" height="48" rx="9"></rect>
+                    <rect class="node-box" x="515" y="162" width="90" height="48" rx="9"></rect>
+                    <rect class="hub-box" x="300" y="90" width="100" height="80" rx="9"></rect>
+                    <text x="140" y="75">PC1</text>
+                    <text x="560" y="75">PC2</text>
+                    <text x="140" y="187">PC3</text>
+                    <text x="560" y="187">PC4</text>
+                    <text class="hub-text" x="350" y="118">Switch</text>
+                    <text class="hub-text" x="350" y="147">/Hub</text>
+                </svg>
             </div>
             <p>All devices connect to a central switch/hub. Most common in modern networks.</p>
 
             <h3>Ring Topology</h3>
             <div class="diagram">
-                <pre>
-        ┌──────[PC1]──────┐
-        │                 │
-     [PC4]             [PC2]
-        │                 │
-        └──────[PC3]──────┘
-                </pre>
+                <svg class="topology-svg" viewBox="0 0 700 260" role="img" aria-label="Four computers connected in a closed ring.">
+                    <path class="link" d="M350 76 H560 V130 M560 130 V184 H350 M350 184 H140 V130 M140 130 V76 H350" fill="none"></path>
+                    <rect class="node-box" x="305" y="52" width="90" height="48" rx="9"></rect>
+                    <rect class="node-box" x="515" y="106" width="90" height="48" rx="9"></rect>
+                    <rect class="node-box" x="305" y="160" width="90" height="48" rx="9"></rect>
+                    <rect class="node-box" x="95" y="106" width="90" height="48" rx="9"></rect>
+                    <text x="350" y="77">PC1</text>
+                    <text x="560" y="131">PC2</text>
+                    <text x="350" y="185">PC3</text>
+                    <text x="140" y="131">PC4</text>
+                </svg>
             </div>
             <p>Each device connects to exactly two other devices, forming a circle.</p>
 
             <h3>Mesh Topology</h3>
             <div class="diagram">
-                <pre>
-           [PC1]─────────[PC2]
-            │ \         / │
-            │   \     /   │
-            │     \ /     │
-            │     / \     │
-            │   /     \   │
-            │ /         \ │
-           [PC3]─────────[PC4]
-                </pre>
+                <svg class="topology-svg" viewBox="0 0 700 260" role="img" aria-label="Four computers with direct connections between every pair of devices.">
+                    <line class="link" x1="185" y1="74" x2="515" y2="74"></line>
+                    <line class="link" x1="185" y1="186" x2="515" y2="186"></line>
+                    <line class="link" x1="140" y1="98" x2="140" y2="162"></line>
+                    <line class="link" x1="560" y1="98" x2="560" y2="162"></line>
+                    <line class="link" x1="185" y1="98" x2="515" y2="162"></line>
+                    <line class="link" x1="515" y1="98" x2="185" y2="162"></line>
+                    <rect class="node-box" x="95" y="50" width="90" height="48" rx="9"></rect>
+                    <rect class="node-box" x="515" y="50" width="90" height="48" rx="9"></rect>
+                    <rect class="node-box" x="95" y="162" width="90" height="48" rx="9"></rect>
+                    <rect class="node-box" x="515" y="162" width="90" height="48" rx="9"></rect>
+                    <text x="140" y="75">PC1</text>
+                    <text x="560" y="75">PC2</text>
+                    <text x="140" y="187">PC3</text>
+                    <text x="560" y="187">PC4</text>
+                </svg>
             </div>
             <p>Every device connects to every other device. Highly redundant but expensive.</p>
 
             <h3>Topology Comparison</h3>
-            
+
             <table>
                 <thead>
                     <tr>
@@ -492,7 +547,7 @@
 
         <!-- Section 5: Transmission Modes -->
         <h2>📡 5. Transmission Modes</h2>
-        
+
         <div class="section">
             <p>
                 Transmission mode defines the <span class="highlight">direction of data flow</span> between devices.
@@ -512,32 +567,32 @@
                         <td><span class="highlight">Simplex</span></td>
                         <td>One-way only</td>
                         <td>Keyboard → Computer, Radio broadcast</td>
-                        <td><span class="code-text">A ──────→ B</span></td>
+                        <td><span class="code-text">A ------&gt; B</span></td>
                     </tr>
                     <tr>
                         <td><span class="highlight">Half-Duplex</span></td>
                         <td>Both ways, one at a time</td>
                         <td>Walkie-talkie, old WiFi</td>
-                        <td><span class="code-text">A ←─────→ B</span></td>
+                        <td><span class="code-text">A &lt;-----&gt; B</span></td>
                     </tr>
                     <tr>
                         <td><span class="highlight">Full-Duplex</span></td>
                         <td>Both ways simultaneously</td>
                         <td>Phone call, modern Ethernet</td>
-                        <td><span class="code-text">A ⇄ B</span></td>
+                        <td><span class="code-text">A &lt;====&gt; B</span></td>
                     </tr>
                 </tbody>
             </table>
 
             <div class="tip-box">
-                <strong>💡 For Security:</strong> Full-duplex connections are harder to monitor since traffic flows 
+                <strong>💡 For Security:</strong> Full-duplex connections are harder to monitor since traffic flows
                 in both directions simultaneously. Half-duplex networks can create bottlenecks that attackers might exploit for DoS.
             </div>
         </div>
 
         <!-- Section 6: Network Architecture -->
         <h2>🏗️ 6. Network Architecture</h2>
-        
+
         <div class="section">
             <div class="compare-grid">
                 <div class="compare-card">
@@ -550,7 +605,7 @@
                         <li>Example: Web servers, file servers</li>
                     </ul>
                 </div>
-                
+
                 <div class="compare-card">
                     <h4>👥 Peer-to-Peer (P2P)</h4>
                     <p>Decentralized model where each device acts as <span class="highlight">both client and server</span>.</p>
@@ -564,7 +619,7 @@
             </div>
 
             <h3>Comparison Table</h3>
-            
+
             <table>
                 <thead>
                     <tr>
@@ -613,10 +668,10 @@
 
         <!-- Section 7: IP Addressing Basics -->
         <h2>🔢 7. IP Addressing Basics</h2>
-        
+
         <div class="section">
             <h3>IPv4 vs IPv6</h3>
-            
+
             <table>
                 <thead>
                     <tr>
@@ -650,7 +705,7 @@
             </table>
 
             <h3>Public vs Private IP Addresses</h3>
-            
+
             <table>
                 <thead>
                     <tr>
@@ -674,7 +729,7 @@
             </table>
 
             <h3>Private IP Address Ranges (RFC 1918)</h3>
-            
+
             <table>
                 <thead>
                     <tr>
@@ -727,11 +782,11 @@
 
         <!-- Section 8: MAC Address -->
         <h2>🏷️ 8. MAC Address</h2>
-        
+
         <div class="section">
             <h3>What is a MAC Address?</h3>
             <p>
-                A <span class="highlight">MAC (Media Access Control) address</span> is a unique hardware identifier 
+                A <span class="highlight">MAC (Media Access Control) address</span> is a unique hardware identifier
                 burned into every network interface card (NIC) by the manufacturer.
             </p>
 
@@ -751,19 +806,26 @@ AABB.CCDD.EEFF      (Cisco notation)
             </ul>
 
             <div class="diagram">
-                <pre>
-┌──────────────────────────────────────────┐
-│              MAC Address                  │
-│           AA:BB:CC:DD:EE:FF              │
-├─────────────────┬────────────────────────┤
-│   OUI (Vendor)  │    Device Specific     │
-│    AA:BB:CC     │       DD:EE:FF         │
-└─────────────────┴────────────────────────┘
-                </pre>
+                <div class="mac-diagram" role="img" aria-label="MAC address AA BB CC DD EE FF split into vendor OUI and device specific parts.">
+                    <div class="mac-header">
+                        <span class="diagram-label">MAC Address</span>
+                        <div class="mac-value">AA:BB:CC:DD:EE:FF</div>
+                    </div>
+                    <div class="mac-parts">
+                        <div class="mac-part">
+                            <strong>OUI (Vendor)</strong>
+                            <span>AA:BB:CC</span>
+                        </div>
+                        <div class="mac-part">
+                            <strong>Device Specific</strong>
+                            <span>DD:EE:FF</span>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <h3>MAC vs IP Address</h3>
-            
+
             <table>
                 <thead>
                     <tr>
@@ -803,7 +865,7 @@ AABB.CCDD.EEFF      (Cisco notation)
 
             <div class="security-box">
                 <strong>🔒 MAC Spoofing</strong><br>
-                Despite being "permanent," MAC addresses can be changed/spoofed using software tools. 
+                Despite being "permanent," MAC addresses can be changed/spoofed using software tools.
                 Attackers use MAC spoofing to:
                 <ul>
                     <li>Bypass MAC-based access controls</li>
@@ -816,7 +878,7 @@ AABB.CCDD.EEFF      (Cisco notation)
 
         <!-- Section 9: Commands -->
         <h2>💻 9. Essential Commands</h2>
-        
+
         <div class="section">
             <div class="code-header">🪟 Windows Commands</div>
             <div class="code-block">
@@ -890,14 +952,14 @@ netstat -an</code></pre>
             </div>
 
             <div class="tip-box">
-                <strong>💡 Pro Tip:</strong> Run these commands on your own machine to see your network configuration. 
+                <strong>💡 Pro Tip:</strong> Run these commands on your own machine to see your network configuration.
                 Understanding command output is crucial for network troubleshooting and security analysis.
             </div>
         </div>
 
         <!-- Section 10: Real-World Use Cases -->
         <h2>🌍 10. Real-World Use Cases</h2>
-        
+
         <div class="section">
             <h3>🏠 Setting Up a Home Network</h3>
             <p>When configuring a home network, you'll apply these concepts:</p>
@@ -930,11 +992,11 @@ netstat -an</code></pre>
 
         <!-- Section 11: Security Corner -->
         <h2>🔒 11. Security Corner</h2>
-        
+
         <div class="section">
             <div class="security-box">
                 <strong>Why Network Fundamentals Matter for Pentesting</strong><br><br>
-                Before exploiting vulnerabilities, pentesters need to understand the target environment. 
+                Before exploiting vulnerabilities, pentesters need to understand the target environment.
                 Network fundamentals enable:
                 <ul>
                     <li><span class="highlight">Reconnaissance:</span> Mapping the target network structure</li>
@@ -945,7 +1007,7 @@ netstat -an</code></pre>
             </div>
 
             <h3>Attack Surface Differences</h3>
-            
+
             <table>
                 <thead>
                     <tr>
@@ -974,15 +1036,15 @@ netstat -an</code></pre>
             </table>
 
             <div class="info-box">
-                <strong>🎯 Key Takeaway:</strong> Understanding network fundamentals is the <span class="highlight">first step</span> 
-                in both attacking and defending networks. Reconnaissance starts with basic network mapping — 
+                <strong>🎯 Key Takeaway:</strong> Understanding network fundamentals is the <span class="highlight">first step</span>
+                in both attacking and defending networks. Reconnaissance starts with basic network mapping —
                 the concepts you learned in this module!
             </div>
         </div>
 
         <!-- Section 12: Quiz -->
         <h2>📝 12. Knowledge Check Quiz</h2>
-        
+
         <div class="section">
             <p>Test your understanding with these 10 questions!</p>
 
@@ -1120,7 +1182,7 @@ netstat -an</code></pre>
         function toggleAnswers() {
             const content = document.getElementById('answersContent');
             const button = document.querySelector('.answers-toggle');
-            
+
             if (content.classList.contains('show')) {
                 content.classList.remove('show');
                 button.textContent = 'Show Answers';

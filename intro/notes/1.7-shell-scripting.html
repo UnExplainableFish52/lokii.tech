@@ -4,33 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>1.7 Shell Scripting Basics | lokii.tech</title>
-    
+
     <meta name="description" content="Complete beginner's guide to shell scripting. Learn variables, loops, conditionals, functions with examples and practice tests.">
     <meta name="author" content="lokii (UnExplainableFish52)">
     <meta name="theme-color" content="#0d1117">
-    
+
     <!-- Open Graph -->
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://lokii.tech/intro/notes/1.7-shell-scripting.html">
     <meta property="og:title" content="Shell Scripting Basics | lokii.tech">
     <meta property="og:description" content="Learn shell scripting from scratch with practical examples and exercises.">
     <meta property="og:image" content="https://lokii.tech/preview.jpg">
-    
+
     <!-- Favicons -->
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="icon" href="/favicon.ico">
-    
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    
+
     <!-- Centralized Styles -->
     <link rel="stylesheet" href="../../css/style.css">
-    
-    <style>
+
+
+    <link rel="stylesheet" href="../../css/global-ui.css">
+<style>
         /* Page-specific styles for Shell Scripting notes */
         .notes-header {
             text-align: center;
@@ -286,11 +288,11 @@
 
         <!-- SECTION 1: WHAT IS SHELL SCRIPTING -->
         <h2 id="what-is">📖 1. What is Shell Scripting?</h2>
-        
+
         <div class="section">
             <p>
-                A <span class="highlight">shell script</span> is a text file containing a sequence of commands 
-                that the shell (command-line interpreter) can execute. Instead of typing commands one by one, 
+                A <span class="highlight">shell script</span> is a text file containing a sequence of commands
+                that the shell (command-line interpreter) can execute. Instead of typing commands one by one,
                 you write them in a file and run them all at once!
             </p>
 
@@ -304,14 +306,14 @@
             </ul>
 
             <div class="info-box">
-                <strong>💡 Fun Fact:</strong> Most Linux systems use <span class="code-text">Bash</span> 
+                <strong>💡 Fun Fact:</strong> Most Linux systems use <span class="code-text">Bash</span>
                 (Bourne Again SHell) as the default shell. It's what we'll focus on in this guide!
             </div>
         </div>
 
         <!-- SECTION 2: GETTING STARTED -->
         <h2 id="getting-started">🚀 2. Getting Started</h2>
-        
+
         <div class="section">
             <h3>Your First Script</h3>
             <p>Let's create a simple "Hello World" script:</p>
@@ -335,7 +337,7 @@ chmod +x hello.sh
 ./hello.sh</code></pre>
 
             <div class="warning-box">
-                <strong>⚠️ The Shebang Line:</strong> The <span class="code-text">#!/bin/bash</span> at the top 
+                <strong>⚠️ The Shebang Line:</strong> The <span class="code-text">#!/bin/bash</span> at the top
                 (called a "shebang" or "hashbang") tells the system which interpreter to use. Always include it!
             </div>
 
@@ -350,10 +352,10 @@ chmod +x hello.sh
 
         <!-- SECTION 3: VARIABLES -->
         <h2 id="variables">📦 3. Variables & Scopes</h2>
-        
+
         <div class="section">
             <p>
-                Variables store data that your script can use. Think of them as labeled containers 
+                Variables store data that your script can use. Think of them as labeled containers
                 for information.
             </p>
 
@@ -371,7 +373,7 @@ echo <span class="cmd-string">"Age: $age"</span>
 echo <span class="cmd-string">"Course: $course"</span></code></pre>
 
             <div class="warning-box">
-                <strong>⚠️ Important:</strong> NO spaces around the <code>=</code> sign! 
+                <strong>⚠️ Important:</strong> NO spaces around the <code>=</code> sign!
                 <code>name="value"</code> ✅ vs <code>name = "value"</code> ❌
             </div>
 
@@ -475,7 +477,7 @@ echo <span class="cmd-string">"Hello ${name}! Processing ${file}..."</span></cod
 
         <!-- SECTION 4: USER INPUT -->
         <h2 id="user-input">⌨️ 4. User Input</h2>
-        
+
         <div class="section">
             <p>Use the <span class="code-text">read</span> command to get input from users:</p>
 
@@ -499,14 +501,14 @@ echo <span class="cmd-string">"Password received!"</span>
 <span class="cmd-keyword">read</span> -t 5 -p <span class="cmd-string">"Quick! Enter something (5 sec): "</span> quick_input</code></pre>
 
             <div class="info-box">
-                <strong>💡 Tip:</strong> Combine flags! <code>read -sp</code> creates a silent prompt 
+                <strong>💡 Tip:</strong> Combine flags! <code>read -sp</code> creates a silent prompt
                 (great for passwords).
             </div>
         </div>
 
         <!-- SECTION 5: CONDITIONALS -->
         <h2 id="conditionals">🔀 5. Conditionals (if/else) & Modern Syntax</h2>
-        
+
         <div class="section">
             <p>Make decisions in your scripts using <span class="code-text">if</span> statements:</p>
 
@@ -652,7 +654,7 @@ echo <span class="cmd-string">"Password received!"</span>
 
         <!-- SECTION 6: CASE STATEMENTS -->
         <h2 id="case-statements">🎯 6. Case Statements</h2>
-        
+
         <div class="section">
             <p>The <span class="code-text">case</span> statement is cleaner than multiple if-elif chains for pattern matching:</p>
 
@@ -725,7 +727,7 @@ echo <span class="cmd-string">"4) Exit"</span>
 
         <!-- SECTION 7: LOOPS -->
         <h2 id="loops">🔄 7. Loops & Nested Loops</h2>
-        
+
         <div class="section">
             <p>Loops let you repeat commands multiple times.</p>
 
@@ -844,7 +846,7 @@ echo <span class="cmd-string">"4) Exit"</span>
 
         <!-- SECTION 8: FUNCTIONS -->
         <h2 id="functions">🔧 8. Functions & Scope</h2>
-        
+
         <div class="section">
             <p>Functions let you organize code into reusable blocks.</p>
 
@@ -890,7 +892,7 @@ demo_scope() {
     <span class="cmd-keyword">local</span> <span class="cmd-variable">local_var</span>=<span class="cmd-string">"I'm local"</span>    <span class="cmd-comment"># Only exists in this function</span>
     <span class="cmd-variable">global_var</span>=<span class="cmd-string">"Modified!"</span>        <span class="cmd-comment"># Modifies the global</span>
     <span class="cmd-variable">new_var</span>=<span class="cmd-string">"Created in func"</span>    <span class="cmd-comment"># Creates a new GLOBAL!</span>
-    
+
     echo <span class="cmd-string">"Inside: local_var=$local_var"</span>
 }
 
@@ -908,13 +910,13 @@ echo <span class="cmd-string">"Outside: local_var=$local_var"</span>     <span c
 
 outer_function() {
     <span class="cmd-keyword">local</span> <span class="cmd-variable">outer_var</span>=<span class="cmd-string">"outer"</span>
-    
+
     <span class="cmd-comment"># Define inner function</span>
     inner_function() {
         <span class="cmd-keyword">local</span> <span class="cmd-variable">inner_var</span>=<span class="cmd-string">"inner"</span>
         echo <span class="cmd-string">"Inner: outer_var=$outer_var, inner_var=$inner_var"</span>
     }
-    
+
     inner_function
     echo <span class="cmd-string">"Outer: outer_var=$outer_var"</span>
 }
@@ -963,7 +965,7 @@ echo <span class="cmd-string">"Name: $_name, Age: $_age"</span></code></pre>
 
         <!-- SECTION 9: ARRAYS -->
         <h2 id="arrays">📝 9. Arrays</h2>
-        
+
         <div class="section">
             <p>Arrays store multiple values in a single variable.</p>
 
@@ -998,7 +1000,7 @@ echo <span class="cmd-string">"Total: ${#fruits[@]}"</span>
 
         <!-- SECTION 10: STRING MANIPULATION -->
         <h2 id="strings">🔤 10. String Manipulation</h2>
-        
+
         <div class="section">
             <p>Bash provides powerful built-in string manipulation features:</p>
 
@@ -1060,7 +1062,7 @@ echo <span class="cmd-string">"${str^}"</span>    <span class="cmd-comment"># He
 
         <!-- SECTION 11: ARITHMETIC OPERATIONS -->
         <h2 id="arithmetic">🔢 11. Arithmetic Operations</h2>
-        
+
         <div class="section">
             <p>Bash supports integer arithmetic with various methods:</p>
 
@@ -1108,10 +1110,10 @@ echo <span class="cmd-string">"$result"</span>  <span class="cmd-comment"># 3.33
 
         <!-- SECTION 12: EXIT CODES -->
         <h2 id="exit-codes">🚪 12. Exit Codes</h2>
-        
+
         <div class="section">
             <p>
-                Every command returns an <span class="highlight">exit code</span>. 
+                Every command returns an <span class="highlight">exit code</span>.
                 <code>0</code> means success, anything else indicates an error.
             </p>
 
@@ -1143,7 +1145,7 @@ echo <span class="cmd-string">"Config loaded successfully!"</span>
 
         <!-- SECTION 13: PRACTICE TESTS -->
         <h2 id="tests">📝 13. Practice Tests</h2>
-        
+
         <div class="section">
             <p>Test your knowledge with these exercises! Click "Show Answer" to check your response.</p>
 
@@ -1315,7 +1317,7 @@ done</code></pre>
             </div>
 
             <div class="success-box">
-                <strong>🎉 Congratulations!</strong> You've completed the Shell Scripting Basics quiz! 
+                <strong>🎉 Congratulations!</strong> You've completed the Shell Scripting Basics quiz!
                 Keep practicing by writing your own scripts. The best way to learn is by doing!
             </div>
         </div>

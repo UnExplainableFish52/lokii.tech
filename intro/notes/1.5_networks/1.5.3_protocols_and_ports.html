@@ -8,58 +8,60 @@
     <meta name="author" content="lokii (UnExplainableFish52)">
     <meta name="theme-color" content="#0d1117">
     <link rel="icon" href="/favicon.ico">
-    
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    
+
     <!-- Centralized Styles -->
     <link rel="stylesheet" href="../../../css/style.css">
-    
-    <style>
+
+
+    <link rel="stylesheet" href="../../../css/global-ui.css">
+<style>
         /* Page-specific styles for Protocols & Ports notes */
         .notes-header { text-align: center; padding: 50px 20px; margin-bottom: 40px; }
         .notes-header h1 { font-size: 2.5em; color: #00bcd4; font-weight: bold; margin-bottom: 15px; border: none; padding: 0; }
         .subtitle { color: #8b949e; font-size: 1.2em; }
-        
+
         h2 { font-size: 1.8em; color: #00bcd4; font-weight: bold; margin: 50px 0 25px; padding-bottom: 10px; border-bottom: 2px solid #30363d; }
         h3 { font-size: 1.4em; color: #00bcd4; font-weight: bold; margin: 30px 0 15px; }
         h4 { font-size: 1.2em; color: #fff; font-weight: bold; margin: 25px 0 12px; }
-        
+
         .section { background: rgba(22,27,34,0.5); border: 1px solid #30363d; border-radius: 12px; padding: 30px; margin-bottom: 30px; }
         .highlight { color: #ffd700; font-weight: bold; }
         .code-text { color: #4ec9b0; font-family: 'JetBrains Mono', monospace; background: rgba(78,201,176,0.1); padding: 2px 6px; border-radius: 4px; }
         .danger { color: #ff6b6b; font-weight: bold; }
-        
+
         .info-box { background: rgba(0,188,212,0.1); border-left: 4px solid #00bcd4; padding: 20px; margin: 25px 0; border-radius: 0 8px 8px 0; }
         .security-box { background: rgba(255,0,85,0.1); border-left: 4px solid #ff0055; padding: 20px; margin: 25px 0; border-radius: 0 8px 8px 0; }
         .tip-box { background: rgba(78,201,176,0.1); border-left: 4px solid #4ec9b0; padding: 20px; margin: 25px 0; border-radius: 0 8px 8px 0; }
         .warning-box { background: rgba(255,107,107,0.1); border-left: 4px solid #ff6b6b; padding: 20px; margin: 25px 0; border-radius: 0 8px 8px 0; }
-        
+
         .vuln-high { background: rgba(255,107,107,0.2) !important; }
         .vuln-high td { color: #ff6b6b; }
-        
+
         .code-block { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 20px; margin: 20px 0; overflow-x: auto; }
         .code-block code { color: #4ec9b0; font-family: 'JetBrains Mono', monospace; font-size: 0.95em; line-height: 1.6; }
         .code-header { background: rgba(78,201,176,0.15); color: #4ec9b0; padding: 8px 15px; border-radius: 8px 8px 0 0; margin: 20px 0 0 0; font-family: 'JetBrains Mono', monospace; font-size: 0.85em; font-weight: bold; }
         .code-header + .code-block { margin-top: 0; border-radius: 0 0 8px 8px; }
         .comment { color: #8b949e; }
-        
+
         .diagram { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 25px; margin: 20px 0; text-align: center; font-family: 'JetBrains Mono', monospace; color: #00bcd4; overflow-x: auto; }
         .diagram pre { margin: 0; display: inline-block; text-align: left; }
-        
+
         .risk-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin: 20px 0; }
         .risk-card { padding: 20px; border-radius: 10px; }
         .risk-critical { background: rgba(255,0,0,0.15); border: 2px solid #ff4444; }
         .risk-high { background: rgba(255,107,107,0.15); border: 2px solid #ff6b6b; }
         .risk-medium { background: rgba(255,193,7,0.15); border: 2px solid #ffc107; }
-        
+
         .quiz-question { background: rgba(22,27,34,0.8); border: 1px solid #30363d; border-radius: 10px; padding: 20px; margin: 15px 0; }
         .quiz-question strong { color: #ffd700; }
         .quiz-options { margin: 15px 0 0 20px; }
         .quiz-options label { display: block; padding: 8px 0; cursor: pointer; }
-        
+
         .answers-toggle { background: rgba(78,201,176,0.15); color: #4ec9b0; border: 2px solid #4ec9b0; padding: 12px 25px; border-radius: 8px; cursor: pointer; font-size: 1em; font-weight: bold; transition: all 0.3s; }
         .answers-toggle:hover { background: rgba(78,201,176,0.25); }
         .answers-content { display: none; background: rgba(22,27,34,0.8); border: 1px solid #30363d; border-radius: 10px; padding: 25px; margin-top: 15px; }
@@ -67,13 +69,13 @@
         .answer-item { padding: 10px 0; border-bottom: 1px solid #30363d; }
         .answer-item:last-child { border-bottom: none; }
         .answer-correct { color: #4ec9b0; font-weight: bold; }
-        
+
         .page-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 60px; padding-top: 30px; border-top: 2px solid #30363d; flex-wrap: wrap; gap: 10px; }
         .page-nav a { display: flex; align-items: center; gap: 10px; color: #00bcd4; text-decoration: none; padding: 15px 25px; border: 2px solid #30363d; border-radius: 10px; transition: all 0.3s; font-weight: 600; }
         .page-nav a:hover { border-color: #00bcd4; background: rgba(0,188,212,0.1); text-decoration: none; }
-        
+
         .notes-footer { text-align: center; padding: 40px 20px; margin-top: 60px; border-top: 1px solid #30363d; color: #8b949e; }
-        
+
         @media (max-width: 768px) {
             .notes-header h1 { font-size: 1.8em; }
             h2 { font-size: 1.5em; }
@@ -111,7 +113,7 @@
         <h2>📡 1. What are Protocols?</h2>
         <div class="section">
             <p><span class="highlight">Definition:</span> A protocol is a set of rules and standards that define how data is transmitted and received across a network.</p>
-            
+
             <h3>Why Standardization Matters</h3>
             <ul>
                 <li><span class="highlight">Interoperability:</span> Devices from different vendors can communicate</li>
@@ -143,7 +145,7 @@
         <h2>🚪 2. What are Ports?</h2>
         <div class="section">
             <p>A <span class="highlight">port</span> is a logical endpoint for network communication. Think of IP as the building address and port as the apartment number.</p>
-            
+
             <div class="info-box">
                 <strong>Socket = IP Address + Port Number</strong><br>
                 Example: <span class="code-text">192.168.1.100:443</span> = IP 192.168.1.100, Port 443 (HTTPS)
@@ -307,7 +309,7 @@
             </div>
 
             <h3>Critical Port Deep Dive</h3>
-            
+
             <h4>Port 445 (SMB) — The Crown Jewel</h4>
             <div class="security-box">
                 <p><strong>Why Dangerous:</strong> SMB is deeply integrated into Windows. One vulnerability = full system compromise.</p>
@@ -415,7 +417,7 @@ lsof -i :445                   <span class="comment"># What's using port 445</sp
         <div class="section">
             <h3>8.1 DNS (Port 53)</h3>
             <p><span class="highlight">How it works:</span> Translates human-readable domain names to IP addresses.</p>
-            
+
             <h4>Resolution Types</h4>
             <ul>
                 <li><span class="highlight">Recursive:</span> DNS server does all the work, returns final answer</li>
@@ -462,7 +464,7 @@ host 142.250.190.46</code>
 
             <h3>8.2 DHCP (Ports 67, 68)</h3>
             <p><span class="highlight">Purpose:</span> Automatically assigns IP addresses to devices on a network.</p>
-            
+
             <h4>DORA Process</h4>
             <div class="diagram">
 <pre>
@@ -489,7 +491,7 @@ Client                           Server
 
             <h3>8.3 ARP (Layer 2)</h3>
             <p><span class="highlight">Purpose:</span> Maps IP addresses to MAC addresses on local network.</p>
-            
+
             <h4>ARP Spoofing/Poisoning</h4>
             <div class="security-box">
                 <p>Attacker sends fake ARP replies claiming to be the gateway → All traffic routes through attacker (MITM)</p>
@@ -510,7 +512,7 @@ ip neighbor show</code>
 
             <h3>8.4 ICMP (Layer 3)</h3>
             <p><span class="highlight">Purpose:</span> Error reporting and diagnostics (ping, traceroute).</p>
-            
+
             <h4>ICMP Types</h4>
             <table>
                 <thead><tr><th>Type</th><th>Name</th><th>Use</th></tr></thead>
@@ -590,7 +592,7 @@ iptables -A INPUT -p tcp --dport 22 -j DROP</code>
 
             <h3>Banner Grabbing</h3>
             <p>Retrieve service information to identify software and versions:</p>
-            
+
             <div class="code-header">Banner Grabbing Techniques</div>
             <div class="code-block">
 <code><span class="comment"># Netcat manual banner grab</span>

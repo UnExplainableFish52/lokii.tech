@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Security Professional Project Guide | Pro Level | lokii.tech</title>
+  <meta name="description" content="A pro-level security project guide covering operating systems, networking, Linux, automation, blue team, web security, cloud, cryptography, identity, and portfolio building.">
+  <meta name="author" content="lokii (UnExplainableFish52)">
+  <meta name="theme-color" content="#050505">
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://lokii.tech/pro/security-professional-project-guide.html">
+  <meta property="og:title" content="Security Professional Project Guide | lokii.tech">
+  <meta property="og:description" content="Build portfolio-grade security projects with clear scope, steps, difficulty, time estimates, deliverables, and lessons learned.">
+  <meta property="og:image" content="https://lokii.tech/preview.jpg">
+  <meta property="og:site_name" content="lokii.tech">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+  <link rel="manifest" href="../site.webmanifest">
+  <link rel="icon" href="../favicon.ico">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+
+  
+    <link rel="stylesheet" href="../css/global-ui.css">
+<style>
+    .pro-guide-page .guide-hero {
+      background: linear-gradient(145deg, rgba(21, 25, 34, 0.94), rgba(14, 18, 26, 0.98));
+    }
+
+    .pro-guide-page .guide-kicker {
+      color: #4ec9b0;
+      font-weight: 800;
+      letter-spacing: 0;
+      margin-bottom: 0.45rem;
+      text-transform: uppercase;
+      font-size: 0.82rem;
+    }
+
+    .pro-guide-page .compact-list {
+      margin: 0.6rem 0 0;
+      padding-left: 1.25rem;
+    }
+
+    .pro-guide-page .compact-list li {
+      margin: 0.45rem 0;
+    }
+
+    .pro-guide-page .guide-note {
+      border-left: 4px solid #38bdf8;
+      background: rgba(56, 189, 248, 0.11);
+      border-radius: 8px;
+      padding: 0.85rem 1rem;
+      color: #dff4ff;
+      margin: 1rem 0;
+    }
+
+    .pro-guide-page .warning-note {
+      border-left-color: #f59e0b;
+      background: rgba(245, 158, 11, 0.12);
+      color: #fde68a;
+    }
+
+    .pro-guide-page .roadmap-grid,
+    .pro-guide-page .checklist-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 0.85rem;
+      margin-top: 1rem;
+    }
+
+    .pro-guide-page .roadmap-card,
+    .pro-guide-page .checklist-card {
+      border: 1px solid #30363d;
+      border-radius: 12px;
+      background: rgba(8, 11, 16, 0.82);
+      padding: 1rem;
+    }
+
+    .pro-guide-page .roadmap-card strong,
+    .pro-guide-page .checklist-card strong {
+      display: block;
+      color: #7dd3fc;
+      margin-bottom: 0.35rem;
+      font-size: 1rem;
+    }
+
+    .pro-guide-page .project-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 0.65rem 0 0.8rem;
+    }
+
+    .pro-guide-page .meta-pill {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid #3d4657;
+      border-radius: 999px;
+      background: rgba(125, 211, 252, 0.08);
+      color: #dbeafe;
+      font-size: 0.88rem;
+      font-weight: 700;
+      padding: 0.35rem 0.7rem;
+    }
+
+    .pro-guide-page .project-card h4 {
+      color: #4ec9b0;
+      margin: 1rem 0 0.45rem;
+      font-size: 1.06rem;
+    }
+
+    .pro-guide-page .project-card details ul,
+    .pro-guide-page .project-card details ol {
+      margin-top: 0.35rem;
+      padding-left: 1.25rem;
+    }
+
+    .pro-guide-page .project-card details li {
+      margin: 0.35rem 0;
+    }
+
+    .pro-guide-page .difficulty-easy {
+      border-color: rgba(52, 211, 153, 0.55);
+      color: #bbf7d0;
+    }
+
+    .pro-guide-page .difficulty-medium {
+      border-color: rgba(251, 191, 36, 0.55);
+      color: #fde68a;
+    }
+
+    .pro-guide-page .difficulty-hard {
+      border-color: rgba(248, 113, 113, 0.6);
+      color: #fecaca;
+    }
+
+    @media (max-width: 600px) {
+      .pro-guide-page .project-meta {
+        gap: 0.4rem;
+      }
+
+      .pro-guide-page .meta-pill {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body class="guide-page pro-guide-page">
+  <header class="site-header" id="top">
+    <div class="container">
+      <div class="header-content">
+        <a href="../index.html" class="branding">
+          <span class="logo">lokii.tech</span>
+        </a>
+        <nav class="nav-links">
+          <a href="../index.html#about" class="nav-link nav-link-enhanced">About</a>
+          <a href="../index.html#resources" class="nav-link nav-link-enhanced">Resources</a>
+          <a href="https://github.com/UnExplainableFish52/lokii.tech" target="_blank" class="nav-link nav-link-enhanced">GitHub</a>
+          <a href="https://github.com/UnExplainableFish52/lokii.tech/issues" target="_blank" class="nav-link nav-contribute">Contribute</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="guide-main">
+    <div class="container guide-container">
+      <section class="guide-hero">
+        <p class="guide-kicker">Pro Level Roadmap</p>
+        <h1>Security Professional Project Guide</h1>
+        <p class="guide-subtitle">A practical guide for turning the roadmap into real projects, useful reports, and portfolio proof.</p>
+        <p>This page is for the stage where learning by reading is no longer enough. Each project below has a clear outcome, expected time, difficulty, general steps, completion tips, and the skills you should be able to explain after finishing it.</p>
+        <div class="guide-nav">
+          <a href="#how-to-use">How to Use</a>
+          <a href="#project-method">Project Method</a>
+          <a href="#project-ladder">Project Ladder</a>
+          <a href="#portfolio-standard">Portfolio Standard</a>
+          <a href="../index.html#resources">Back to Resources</a>
+        </div>
+      </section>
+
+      <section class="toc-box" id="how-to-use">
+        <h2>How to Use This Guide</h2>
+        <p>The time estimates assume 1 to 2 focused hours per day. If you are new to the topic, double the time and treat the first attempt as a learning build, not a final portfolio build.</p>
+        <ul class="compact-list">
+          <li>Complete the projects in order if you want a full security professional path.</li>
+          <li>Pick only one track if you already know your direction, such as blue team, app security, cloud security, or automation.</li>
+          <li>Finish with evidence: screenshots, configs, diagrams, command output, scripts, reports, and a short reflection.</li>
+          <li>Keep the scope legal and controlled. Use your own lab, intentionally vulnerable machines, or systems where you have written permission.</li>
+        </ul>
+        <div class="guide-note warning-note">
+          <strong>Important:</strong> A project is not complete when the tool runs once. It is complete when you can explain the goal, architecture, tests, failures, final result, and what you would improve next.
+        </div>
+      </section>
+
+      <section class="level-block" id="project-method">
+        <h2>The Repeatable Project Method</h2>
+        <p>Use this same pattern for every project. It keeps the work professional and stops the project from becoming random tool usage.</p>
+        <div class="roadmap-grid">
+          <div class="roadmap-card">
+            <strong>1. Define the outcome</strong>
+            Write one sentence that says what the project proves. Example: "This lab detects SSH brute-force activity and produces an incident report."
+          </div>
+          <div class="roadmap-card">
+            <strong>2. Draw the scope</strong>
+            List the machines, networks, users, data sources, tools, and what is intentionally out of scope.
+          </div>
+          <div class="roadmap-card">
+            <strong>3. Build the lab</strong>
+            Create snapshots, baseline configs, and a clean folder structure before changing anything.
+          </div>
+          <div class="roadmap-card">
+            <strong>4. Test with evidence</strong>
+            Run normal tests and failure tests. Save command output, screenshots, logs, and notes as you go.
+          </div>
+          <div class="roadmap-card">
+            <strong>5. Fix and retest</strong>
+            Do not stop at the first working result. Break it, tune it, handle errors, then prove it still works.
+          </div>
+          <div class="roadmap-card">
+            <strong>6. Write the report</strong>
+            Explain the problem, architecture, steps, result, limitations, lessons learned, and next improvements.
+          </div>
+        </div>
+      </section>
+
+      <section class="level-block" id="project-ladder">
+        <h2>Project Ladder</h2>
+
+        <article class="qa-card project-card" id="operating-systems">
+          <h3>01. Operating Systems - Hardened Workstation and Investigation Baseline</h3>
+          <div class="project-meta">
+            <span class="meta-pill">Time: 5 to 7 days</span>
+            <span class="meta-pill difficulty-easy">Difficulty: 2/5</span>
+            <span class="meta-pill">Best for: OS foundations</span>
+          </div>
+          <p class="study-note"><strong>Goal:</strong> Build a Windows or Linux VM, harden the basics, capture a clean baseline, then prove you can notice meaningful changes.</p>
+          <details>
+            <summary>Open project plan</summary>
+            <h4>General steps</h4>
+            <ol>
+              <li>Create a VM, update it, and take a clean snapshot.</li>
+              <li>Document users, groups, running services, startup entries, open ports, installed packages, and firewall state.</li>
+              <li>Apply basic hardening: least privilege, strong passwords, updates, firewall rules, audit logging, and unnecessary service removal.</li>
+              <li>Create a "before and after" baseline using tools such as Task Manager, Event Viewer, PowerShell, systemctl, journalctl, ps, ss, and netstat.</li>
+              <li>Simulate safe changes, such as a new user, a new scheduled task, or a new listening service, then detect and explain the difference.</li>
+              <li>Write a short investigation checklist for this system.</li>
+            </ol>
+            <h4>Tips</h4>
+            <ul>
+              <li>Change one thing at a time so your notes stay readable.</li>
+              <li>Keep the original baseline untouched. If you get lost, restore the snapshot and repeat cleanly.</li>
+              <li>Separate hardening notes from investigation notes. They answer different questions.</li>
+            </ul>
+            <h4>What you learn</h4>
+            <ul>
+              <li>How operating systems expose users, processes, services, logs, and network activity.</li>
+              <li>Why baselines matter in incident response and troubleshooting.</li>
+              <li>How small local changes can create security and reliability risk.</li>
+            </ul>
+          </details>
+        </article>
+
+        <article class="qa-card project-card" id="networking">
+          <h3>02. Networking - Segmented Lab Network with Firewall Rules</h3>
+          <div class="project-meta">
+            <span class="meta-pill">Time: 2 to 3 weeks</span>
+            <span class="meta-pill difficulty-hard">Difficulty: 4/5</span>
+            <span class="meta-pill">Best for: network security</span>
+          </div>
+          <p class="study-note"><strong>Goal:</strong> Build a small lab with separate networks for workstation, server, and guest or attacker traffic, then control access with routing and firewall rules.</p>
+          <details>
+            <summary>Open project plan</summary>
+            <h4>General steps</h4>
+            <ol>
+              <li>Draw the topology first: subnets, gateways, firewall, server, client, and test machine.</li>
+              <li>Create a simple IP plan with gateway addresses, DHCP ranges, static server IPs, and DNS notes.</li>
+              <li>Build the lab with tools such as VirtualBox, VMware, GNS3, Packet Tracer, pfSense, or Linux routing.</li>
+              <li>Configure routing, DHCP or static addressing, DNS, NAT if needed, and default deny firewall rules.</li>
+              <li>Allow only specific traffic, such as workstation to web server on 80/443, and block the rest.</li>
+              <li>Validate with ping, traceroute, curl, nmap, tcpdump, Wireshark, and firewall logs.</li>
+              <li>Document a rule table that explains source, destination, port, action, and reason.</li>
+            </ol>
+            <h4>Tips</h4>
+            <ul>
+              <li>Troubleshoot in layers: link, IP address, gateway, route, firewall, service, DNS.</li>
+              <li>Use default deny and add only the rules you can explain.</li>
+              <li>Save packet captures for both allowed and blocked traffic.</li>
+            </ul>
+            <h4>What you learn</h4>
+            <ul>
+              <li>How segmentation reduces blast radius.</li>
+              <li>How routing, NAT, VLAN-style separation, and ACL thinking fit together.</li>
+              <li>How to prove a network control works instead of assuming it works.</li>
+            </ul>
+          </details>
+        </article>
+
+        <article class="qa-card project-card" id="linux-shell">
+          <h3>03. Linux and Shell - Log Triage Automation Toolkit</h3>
+          <div class="project-meta">
+            <span class="meta-pill">Time: 4 to 7 days</span>
+            <span class="meta-pill difficulty-medium">Difficulty: 3/5</span>
+            <span class="meta-pill">Best for: command-line fluency</span>
+          </div>
+          <p class="study-note"><strong>Goal:</strong> Write shell scripts that parse logs and produce useful security summaries instead of raw noise.</p>
+          <details>
+            <summary>Open project plan</summary>
+            <h4>General steps</h4>
+            <ol>
+              <li>Collect sample logs from auth.log, syslog, web server access logs, or lab-generated logs.</li>
+              <li>Define the questions your script answers: top failed login IPs, unusual usernames, HTTP status spikes, or suspicious command history.</li>
+              <li>Build small pipelines with grep, sed, awk, sort, uniq, cut, head, tail, and date filters.</li>
+              <li>Wrap the useful pipelines into a script with arguments, help text, error messages, and output files.</li>
+              <li>Generate a markdown or text report with findings and timestamps.</li>
+              <li>Test against normal logs, empty logs, malformed lines, and very large files.</li>
+            </ol>
+            <h4>Tips</h4>
+            <ul>
+              <li>Start with one log type. Add more only after the first parser is reliable.</li>
+              <li>Never destroy original logs. Write output to a separate report directory.</li>
+              <li>Make the script useful for future you: add usage examples at the top.</li>
+            </ul>
+            <h4>What you learn</h4>
+            <ul>
+              <li>How to turn raw operational data into quick security answers.</li>
+              <li>How shell tools work together in real response workflows.</li>
+              <li>How to write scripts that survive imperfect input.</li>
+            </ul>
+          </details>
+        </article>
+
+        <article class="qa-card project-card" id="programming-automation">
+          <h3>04. Programming and Automation - Security Automation CLI</h3>
+          <div class="project-meta">
+            <span class="meta-pill">Time: 2 to 3 weeks</span>
+            <span class="meta-pill difficulty-hard">Difficulty: 4/5</span>
+            <span class="meta-pill">Best for: Python and tooling</span>
+          </div>
+          <p class="study-note"><strong>Goal:</strong> Build a small command-line tool that accepts targets, runs safe checks, stores structured results, and creates a readable report.</p>
+          <details>
+            <summary>Open project plan</summary>
+            <h4>General steps</h4>
+            <ol>
+              <li>Choose a safe scope: your own domain, local lab IPs, or offline sample files.</li>
+              <li>Design input and output first. Decide what the tool accepts and what JSON or markdown report it produces.</li>
+              <li>Use modules for collection, parsing, reporting, logging, and configuration.</li>
+              <li>Add defensive behavior: timeouts, clear errors, dry-run mode, and rate limits.</li>
+              <li>Write basic tests for parsers and report generation.</li>
+              <li>Package the tool with a README, examples, and a sample output report.</li>
+            </ol>
+            <h4>Tips</h4>
+            <ul>
+              <li>A boring reliable tool is better than a flashy tool that breaks on the second input.</li>
+              <li>Store raw results and processed results separately.</li>
+              <li>Keep scanning behavior gentle and authorized. Passive checks are enough for a first portfolio project.</li>
+            </ul>
+            <h4>What you learn</h4>
+            <ul>
+              <li>How automation projects should be structured and documented.</li>
+              <li>How to convert security tasks into repeatable workflows.</li>
+              <li>How error handling, logging, and output design make tools professional.</li>
+            </ul>
+          </details>
+        </article>
+
+        <article class="qa-card project-card" id="security-fundamentals">
+          <h3>05. Security Fundamentals - Risk Assessment and Control Plan</h3>
+          <div class="project-meta">
+            <span class="meta-pill">Time: 5 to 10 days</span>
+            <span class="meta-pill difficulty-medium">Difficulty: 3/5</span>
+            <span class="meta-pill">Best for: security thinking</span>
+          </div>
+          <p class="study-note"><strong>Goal:</strong> Build a realistic risk assessment for a fictional small company and propose controls that match the business.</p>
+          <details>
+            <summary>Open project plan</summary>
+            <h4>General steps</h4>
+            <ol>
+              <li>Choose a simple company profile, such as a clinic, school, SaaS startup, or local shop.</li>
+              <li>List assets: users, laptops, servers, cloud accounts, customer data, payment data, backups, and third-party services.</li>
+              <li>Identify threats and vulnerabilities for each major asset.</li>
+              <li>Score likelihood and impact using a simple low, medium, high model.</li>
+              <li>Map controls to the biggest risks: MFA, backups, patching, least privilege, logging, endpoint protection, training, and incident response.</li>
+              <li>Write a 30, 60, and 90 day remediation plan.</li>
+            </ol>
+            <h4>Tips</h4>
+            <ul>
+              <li>Do not recommend expensive controls without explaining why the business needs them.</li>
+              <li>Risk is about tradeoffs. Show cost, difficulty, and expected benefit.</li>
+              <li>Keep language understandable to non-technical readers.</li>
+            </ul>
+            <h4>What you learn</h4>
+            <ul>
+              <li>How security connects to business reality.</li>
+              <li>How to prioritize instead of treating every issue as equally urgent.</li>
+              <li>How governance, risk, and technical controls support each other.</li>
+            </ul>
+          </details>
+        </article>
+
+        <article class="qa-card project-card" id="blue-team-soc-siem">
+          <h3>06. Blue Team, SOC, and SIEM - Mini Detection Lab</h3>
+          <div class="project-meta">
+            <span class="meta-pill">Time: 2 to 4 weeks</span>
+            <span class="meta-pill difficulty-hard">Difficulty: 4/5</span>
+            <span class="meta-pill">Best for: detection engineering</span>
+          </div>
+          <p class="study-note"><strong>Goal:</strong> Send endpoint or server logs into a SIEM, create detections, tune false positives, and write an incident-style report.</p>
+          <details>
+            <summary>Open project plan</summary>
+            <h4>General steps</h4>
+            <ol>
+              <li>Deploy a lab SIEM such as Wazuh, Elastic, Security Onion, Splunk Free, or another safe local setup.</li>
+              <li>Onboard at least one Linux source and one Windows source if possible.</li>
+              <li>Generate controlled events: failed SSH logins, suspicious process execution, web scanning, privilege changes, or blocked firewall traffic.</li>
+              <li>Write detections that explain the logic, data source, condition, severity, and expected false positives.</li>
+              <li>Create a dashboard for authentication, process, network, and alert trends.</li>
+              <li>Write one incident report from detection to triage, evidence, containment recommendation, and lessons learned.</li>
+            </ol>
+            <h4>Tips</h4>
+            <ul>
+              <li>Detection starts with data quality. Confirm logs are arriving before writing rules.</li>
+              <li>Keep normal activity in the lab too. You need it to tune false positives.</li>
+              <li>Every alert should answer: what happened, where, why it matters, and what to do next.</li>
+            </ul>
+            <h4>What you learn</h4>
+            <ul>
+              <li>How telemetry becomes detection logic.</li>
+              <li>Why false positives are an engineering problem, not just an annoyance.</li>
+              <li>How SOC analysts move from alert to evidence-backed conclusion.</li>
+            </ul>
+          </details>
+        </article>
+
+        <article class="qa-card project-card" id="web-app-security">
+          <h3>07. Web and Application Security - Vulnerability Report and Secure Fix</h3>
+          <div class="project-meta">
+            <span class="meta-pill">Time: 2 to 3 weeks</span>
+            <span class="meta-pill difficulty-hard">Difficulty: 4/5</span>
+            <span class="meta-pill">Best for: appsec fundamentals</span>
+          </div>
+          <p class="study-note"><strong>Goal:</strong> Test an intentionally vulnerable app, document findings, fix or mitigate selected issues, and prove the fixes work.</p>
+          <details>
+            <summary>Open project plan</summary>
+            <h4>General steps</h4>
+            <ol>
+              <li>Use a legal lab target such as OWASP Juice Shop, DVWA, WebGoat, or your own small app.</li>
+              <li>Map the app: routes, roles, login flow, forms, API calls, cookies, and trust boundaries.</li>
+              <li>Test common issues: broken access control, injection, XSS, weak sessions, file upload risk, insecure headers, and information leakage.</li>
+              <li>For each confirmed issue, capture the request, response, impact, and reproduction steps.</li>
+              <li>Fix or mitigate selected issues, then retest the exact exploit path.</li>
+              <li>Write a report with severity, evidence, affected component, remediation, and verification.</li>
+            </ol>
+            <h4>Tips</h4>
+            <ul>
+              <li>Do not list theoretical vulnerabilities as findings. Findings need evidence.</li>
+              <li>Use the browser devtools and an intercepting proxy to understand requests before trying tools.</li>
+              <li>Retesting is part of the project. A fix without proof is not finished.</li>
+            </ul>
+            <h4>What you learn</h4>
+            <ul>
+              <li>How HTTP, sessions, authentication, authorization, and input handling work in practice.</li>
+              <li>How to write reports that developers can actually use.</li>
+              <li>How secure coding and testing connect.</li>
+            </ul>
+          </details>
+        </article>
+
+        <article class="qa-card project-card" id="cloud-virtualization-devops">
+          <h3>08. Cloud, Virtualization, and DevOps - Secure Landing Zone</h3>
+          <div class="project-meta">
+            <span class="meta-pill">Time: 3 to 5 weeks</span>
+            <span class="meta-pill difficulty-hard">Difficulty: 5/5</span>
+            <span class="meta-pill">Best for: cloud security</span>
+          </div>
+          <p class="study-note"><strong>Goal:</strong> Build a small cloud or virtualized environment with infrastructure as code, network boundaries, logging, secrets handling, and deployment discipline.</p>
+          <details>
+            <summary>Open project plan</summary>
+            <h4>General steps</h4>
+            <ol>
+              <li>Choose a safe platform: local virtualization, a free-tier cloud account, or a sandbox subscription with strict budget alerts.</li>
+              <li>Design a basic architecture: public entry point, private app or server tier, admin access path, logs, backups, and monitoring.</li>
+              <li>Define infrastructure using Terraform, cloud templates, Docker Compose, Ansible, or another repeatable tool.</li>
+              <li>Apply least privilege for identities, restrict security groups or firewall rules, and avoid hard-coded secrets.</li>
+              <li>Deploy a small app or service, then validate reachability, logging, backup, and recovery behavior.</li>
+              <li>Run a security review: exposed ports, IAM permissions, secret storage, patching, monitoring, and cost risk.</li>
+            </ol>
+            <h4>Tips</h4>
+            <ul>
+              <li>Set budget alerts before creating resources in any paid cloud.</li>
+              <li>Write a destroy or cleanup procedure on day one.</li>
+              <li>Small and repeatable beats large and fragile.</li>
+            </ul>
+            <h4>What you learn</h4>
+            <ul>
+              <li>How cloud networking, identity, deployment, and monitoring interact.</li>
+              <li>Why infrastructure as code improves review and recovery.</li>
+              <li>How security mistakes become operational and cost problems in cloud environments.</li>
+            </ul>
+          </details>
+        </article>
+
+        <article class="qa-card project-card" id="cryptography-identity">
+          <h3>09. Cryptography and Identity - PKI and Access Control Lab</h3>
+          <div class="project-meta">
+            <span class="meta-pill">Time: 2 to 4 weeks</span>
+            <span class="meta-pill difficulty-hard">Difficulty: 4/5</span>
+            <span class="meta-pill">Best for: trust and access</span>
+          </div>
+          <p class="study-note"><strong>Goal:</strong> Build a small trust system with certificates or SSH keys, enforce access rules, rotate credentials, and document the identity flow.</p>
+          <details>
+            <summary>Open project plan</summary>
+            <h4>General steps</h4>
+            <ol>
+              <li>Draw the trust model: users, services, certificate authority or key authority, and protected resources.</li>
+              <li>Create a local CA or key management process in a lab environment.</li>
+              <li>Issue credentials for a server and one or more clients.</li>
+              <li>Configure TLS, mutual TLS, SSH certificate authentication, or role-based access in a small service.</li>
+              <li>Test valid access, invalid access, expired credentials, revoked credentials, and rotated credentials.</li>
+              <li>Write a simple operations guide for issuing, rotating, revoking, and auditing access.</li>
+            </ol>
+            <h4>Tips</h4>
+            <ul>
+              <li>Do not treat keys as magic files. Document who owns them, where they live, and how they are protected.</li>
+              <li>Practice failure cases. Identity systems are judged by how safely they fail.</li>
+              <li>Keep private keys out of screenshots and public repos.</li>
+            </ul>
+            <h4>What you learn</h4>
+            <ul>
+              <li>How encryption, authentication, authorization, and trust chains differ.</li>
+              <li>How certificates and keys are managed over time.</li>
+              <li>Why identity is one of the most important security control planes.</li>
+            </ul>
+          </details>
+        </article>
+
+        <article class="qa-card project-card" id="projects-portfolio">
+          <h3>10. Projects and Portfolio - Capstone Case Study</h3>
+          <div class="project-meta">
+            <span class="meta-pill">Time: 1 to 2 weeks</span>
+            <span class="meta-pill difficulty-medium">Difficulty: 3/5</span>
+            <span class="meta-pill">Best for: professional proof</span>
+          </div>
+          <p class="study-note"><strong>Goal:</strong> Turn one completed project into a polished public case study that proves your thinking, not just your tool usage.</p>
+          <details>
+            <summary>Open project plan</summary>
+            <h4>General steps</h4>
+            <ol>
+              <li>Choose the strongest completed project, preferably one with architecture, testing, and a written result.</li>
+              <li>Clean the repository: remove secrets, remove noisy files, add a license if appropriate, and organize folders.</li>
+              <li>Create a clear README with problem, goals, architecture diagram, setup, usage, tests, screenshots, and limitations.</li>
+              <li>Write a case study that explains what you tried, what failed, what you fixed, and what you learned.</li>
+              <li>Add proof: screenshots, sample reports, config snippets, sanitized logs, and short diagrams.</li>
+              <li>Prepare a 2 minute explanation for interviews.</li>
+            </ol>
+            <h4>Tips</h4>
+            <ul>
+              <li>Do not publish secrets, real personal data, private IPs from someone else's environment, or anything you do not have permission to share.</li>
+              <li>A good portfolio project has a beginning, a decision trail, and a finished result.</li>
+              <li>Interviewers care about what you can explain under questioning.</li>
+            </ul>
+            <h4>What you learn</h4>
+            <ul>
+              <li>How to communicate technical work professionally.</li>
+              <li>How to show judgment, tradeoffs, and evidence.</li>
+              <li>How to turn practice into credible career material.</li>
+            </ul>
+          </details>
+        </article>
+      </section>
+
+      <section class="level-block" id="portfolio-standard">
+        <h2>Portfolio Standard</h2>
+        <p>Use this checklist before calling any project finished. It keeps the work useful for revision, interviews, and future expansion.</p>
+        <div class="checklist-grid">
+          <div class="checklist-card">
+            <strong>README</strong>
+            Problem, scope, prerequisites, setup, usage, screenshots, limitations, and cleanup.
+          </div>
+          <div class="checklist-card">
+            <strong>Architecture</strong>
+            A simple diagram showing machines, networks, data flow, trust boundaries, and tools.
+          </div>
+          <div class="checklist-card">
+            <strong>Evidence</strong>
+            Commands, output, screenshots, logs, configs, reports, or packet captures that prove the result.
+          </div>
+          <div class="checklist-card">
+            <strong>Reflection</strong>
+            What worked, what failed, what you changed, what you learned, and what you would improve.
+          </div>
+          <div class="checklist-card">
+            <strong>Safety</strong>
+            Secrets removed, lab scope explained, legal target confirmed, and cleanup steps included.
+          </div>
+          <div class="checklist-card">
+            <strong>Interview Story</strong>
+            A short explanation of the project goal, your approach, the hardest issue, and the final outcome.
+          </div>
+        </div>
+        <div class="guide-note">
+          <strong>Simple rule:</strong> If someone can rebuild the lab, understand your decisions, and see proof of the outcome, the project is portfolio-ready.
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>lokii.tech</h4>
+          <p>An open-source learning platform by lokii (UnExplainableFish52)</p>
+        </div>
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="../index.html#about">About</a></li>
+            <li><a href="../index.html#resources">Resources</a></li>
+            <li><a href="https://github.com/UnExplainableFish52/lokii.tech" target="_blank">GitHub</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Pro Guide</h4>
+          <p>Project-based roadmap for security professional development.</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 lokii.tech. Open source and community-driven. <a href="../LICENSE">See License</a></p>
+      </div>
+    </div>
+  </footer>
+    <script src="../js/main.js"></script>
+</body>
+</html>

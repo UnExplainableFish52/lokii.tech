@@ -8,42 +8,44 @@
     <meta name="author" content="lokii (UnExplainableFish52)">
     <meta name="theme-color" content="#0d1117">
     <link rel="icon" href="/favicon.ico">
-    
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    
+
     <!-- Centralized Styles -->
     <link rel="stylesheet" href="../../../css/style.css">
-    
-    <style>
+
+
+    <link rel="stylesheet" href="../../../css/global-ui.css">
+<style>
         /* Page-specific styles for OSI/TCP-IP notes */
         .notes-header { text-align: center; padding: 50px 20px; margin-bottom: 40px; }
         .notes-header h1 { font-size: 2.5em; color: #00bcd4; font-weight: bold; margin-bottom: 15px; border: none; padding: 0; }
         .subtitle { color: #8b949e; font-size: 1.2em; }
-        
+
         h2 { font-size: 1.8em; color: #00bcd4; font-weight: bold; margin: 50px 0 25px; padding-bottom: 10px; border-bottom: 2px solid #30363d; }
         h3 { font-size: 1.4em; color: #00bcd4; font-weight: bold; margin: 30px 0 15px; }
         h4 { font-size: 1.2em; color: #fff; font-weight: bold; margin: 25px 0 12px; }
-        
+
         .section { background: rgba(22,27,34,0.5); border: 1px solid #30363d; border-radius: 12px; padding: 30px; margin-bottom: 30px; }
         .highlight { color: #ffd700; font-weight: bold; }
         .code-text { color: #4ec9b0; font-family: 'JetBrains Mono', monospace; background: rgba(78,201,176,0.1); padding: 2px 6px; border-radius: 4px; }
-        
+
         .info-box { background: rgba(0,188,212,0.1); border-left: 4px solid #00bcd4; padding: 20px; margin: 25px 0; border-radius: 0 8px 8px 0; }
         .security-box { background: rgba(255,0,85,0.1); border-left: 4px solid #ff0055; padding: 20px; margin: 25px 0; border-radius: 0 8px 8px 0; }
         .tip-box { background: rgba(78,201,176,0.1); border-left: 4px solid #4ec9b0; padding: 20px; margin: 25px 0; border-radius: 0 8px 8px 0; }
-        
+
         .code-block { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 20px; margin: 20px 0; overflow-x: auto; }
         .code-block code { color: #4ec9b0; font-family: 'JetBrains Mono', monospace; font-size: 0.95em; line-height: 1.6; }
         .code-header { background: rgba(78,201,176,0.15); color: #4ec9b0; padding: 8px 15px; border-radius: 8px 8px 0 0; margin: 20px 0 0 0; font-family: 'JetBrains Mono', monospace; font-size: 0.85em; font-weight: bold; }
         .code-header + .code-block { margin-top: 0; border-radius: 0 0 8px 8px; }
         .comment { color: #8b949e; }
-        
+
         .diagram { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 25px; margin: 20px 0; text-align: center; font-family: 'JetBrains Mono', monospace; color: #00bcd4; overflow-x: auto; }
         .diagram pre { margin: 0; display: inline-block; text-align: left; }
-        
+
         /* OSI Layer Colors */
         .layer-7 { background: rgba(255,107,107,0.2); border-left: 4px solid #ff6b6b; }
         .layer-6 { background: rgba(255,159,67,0.2); border-left: 4px solid #ff9f43; }
@@ -52,18 +54,18 @@
         .layer-3 { background: rgba(116,185,255,0.2); border-left: 4px solid #74b9ff; }
         .layer-2 { background: rgba(162,155,254,0.2); border-left: 4px solid #a29bfe; }
         .layer-1 { background: rgba(253,121,168,0.2); border-left: 4px solid #fd79a8; }
-        
+
         .layer-card { padding: 20px; margin: 15px 0; border-radius: 0 8px 8px 0; }
         .layer-card h4 { margin-top: 0; }
-        
+
         .osi-stack, .tcp-stack { display: flex; flex-direction: column; gap: 5px; margin: 20px 0; }
         .stack-layer { padding: 15px; text-align: center; border-radius: 8px; font-weight: bold; }
-        
+
         .quiz-question { background: rgba(22,27,34,0.8); border: 1px solid #30363d; border-radius: 10px; padding: 20px; margin: 15px 0; }
         .quiz-question strong { color: #ffd700; }
         .quiz-options { margin: 15px 0 0 20px; }
         .quiz-options label { display: block; padding: 8px 0; cursor: pointer; }
-        
+
         .answers-toggle { background: rgba(78,201,176,0.15); color: #4ec9b0; border: 2px solid #4ec9b0; padding: 12px 25px; border-radius: 8px; cursor: pointer; font-size: 1em; font-weight: bold; transition: all 0.3s; }
         .answers-toggle:hover { background: rgba(78,201,176,0.25); }
         .answers-content { display: none; background: rgba(22,27,34,0.8); border: 1px solid #30363d; border-radius: 10px; padding: 25px; margin-top: 15px; }
@@ -71,13 +73,13 @@
         .answer-item { padding: 10px 0; border-bottom: 1px solid #30363d; }
         .answer-item:last-child { border-bottom: none; }
         .answer-correct { color: #4ec9b0; font-weight: bold; }
-        
+
         .page-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 60px; padding-top: 30px; border-top: 2px solid #30363d; flex-wrap: wrap; gap: 10px; }
         .page-nav a { display: flex; align-items: center; gap: 10px; color: #00bcd4; text-decoration: none; padding: 15px 25px; border: 2px solid #30363d; border-radius: 10px; transition: all 0.3s; font-weight: 600; }
         .page-nav a:hover { border-color: #00bcd4; background: rgba(0,188,212,0.1); text-decoration: none; }
-        
+
         .notes-footer { text-align: center; padding: 40px 20px; margin-top: 60px; border-top: 1px solid #30363d; color: #8b949e; }
-        
+
         @media (max-width: 768px) {
             .notes-header h1 { font-size: 1.8em; }
             h2 { font-size: 1.5em; }
@@ -114,7 +116,7 @@
         <h2>🎯 1. Why Networking Models?</h2>
         <div class="section">
             <p>Networking models provide a <span class="highlight">standardized framework</span> for understanding how data moves through networks.</p>
-            
+
             <h3>Purpose of Networking Models</h3>
             <ul>
                 <li><span class="highlight">Interoperability:</span> Devices from different vendors can communicate</li>
@@ -270,7 +272,7 @@
             </div>
 
             <h3>Step-by-Step Journey</h3>
-            
+
             <h4>1️⃣ Application Layer</h4>
             <ul>
                 <li>Browser creates HTTP GET request for "/"</li>
@@ -318,7 +320,7 @@
             <div class="diagram">
 <pre>
     ENCAPSULATION (Sending)                DECAPSULATION (Receiving)
-    
+
     [    DATA    ] ← Application           Application ← [    DATA    ]
          ↓                                                     ↑
     [TCP|  DATA  ] ← Transport             Transport ← [TCP|  DATA  ]

@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>lokii.tech - Break Into CS with Confidence</title>
-    
+
     <meta name="description" content="lokii.tech: An open-source platform providing valuable lessons and guidance to break into Computer Science in today's competitive world.">
     <meta name="author" content="lokii (UnExplainableFish52)">
     <meta name="theme-color" content="#050505">
-    
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://lokii.tech/">
@@ -16,33 +16,35 @@
     <meta property="og:description" content="An open-source platform providing valuable lessons and resources for Computer Science and Cybersecurity. Built by lokii to help the next generation break into tech.">
     <meta property="og:image" content="https://lokii.tech/preview.jpg">
     <meta property="og:site_name" content="lokii.tech">
-    
+
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://lokii.tech/">
     <meta name="twitter:title" content="lokii.tech - Break Into CS with Confidence">
     <meta name="twitter:description" content="An open-source platform providing valuable lessons and resources for Computer Science and Cybersecurity. Built by lokii to help the next generation break into tech.">
     <meta name="twitter:image" content="https://lokii.tech/preview.jpg">
-    
+
     <!-- Favicons -->
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
     <link rel="manifest" href="site.webmanifest">
     <link rel="icon" href="favicon.ico">
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    
+
     <link rel="stylesheet" href="css/style.css">
-    
-    <style>
+
+
+    <link rel="stylesheet" href="css/global-ui.css">
+<style>
         /* Accordion Styles for Notes Sections */
         .notes-accordion {
             margin-top: 30px;
         }
-        
+
         .accordion-section {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
@@ -51,11 +53,11 @@
             overflow: hidden;
             transition: all 0.3s ease;
         }
-        
+
         .accordion-section:hover {
             border-color: var(--accent-primary);
         }
-        
+
         .accordion-header {
             display: flex;
             justify-content: space-between;
@@ -70,64 +72,64 @@
             font-family: inherit;
             transition: background 0.3s ease;
         }
-        
+
         .accordion-header:hover {
             background: var(--bg-card-hover);
         }
-        
+
         .accordion-header-content {
             display: flex;
             align-items: center;
             gap: 15px;
         }
-        
+
         .accordion-icon {
             font-size: 1.8rem;
         }
-        
+
         .accordion-title {
             font-size: 1.4rem;
             font-weight: 700;
             color: #00bcd4;
             margin: 0;
         }
-        
+
         .accordion-subtitle {
             font-size: 0.9rem;
             color: var(--text-secondary);
             margin: 0;
         }
-        
+
         .accordion-arrow {
             font-size: 1.2rem;
             color: var(--text-secondary);
             transition: transform 0.3s ease;
         }
-        
+
         .accordion-section.active .accordion-arrow {
             transform: rotate(180deg);
         }
-        
+
         .accordion-content {
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.4s ease;
         }
-        
+
         .accordion-section.active .accordion-content {
             max-height: 2000px;
         }
-        
+
         .accordion-body {
             padding: 0 25px 25px;
         }
-        
+
         /* Chapter List Styles */
         .chapter-list {
             display: grid;
             gap: 12px;
         }
-        
+
         .chapter-item {
             display: flex;
             align-items: center;
@@ -140,14 +142,14 @@
             text-decoration: none;
             transition: all 0.3s ease;
         }
-        
+
         .chapter-item:hover {
             background: rgba(0, 188, 212, 0.1);
             border-color: #00bcd4;
             transform: translateX(5px);
             text-decoration: none;
         }
-        
+
         .chapter-number {
             background: linear-gradient(135deg, #00bcd4, #0099aa);
             color: #000;
@@ -158,29 +160,29 @@
             min-width: 45px;
             text-align: center;
         }
-        
+
         .chapter-info {
             flex: 1;
         }
-        
+
         .chapter-title {
             font-weight: 600;
             font-size: 1rem;
             margin-bottom: 2px;
         }
-        
+
         .chapter-desc {
             font-size: 0.85rem;
             color: var(--text-secondary);
         }
-        
+
         /* Sub-section styling (for Networking sub-chapters) */
         .chapter-subsection {
             margin-top: 15px;
             padding-left: 20px;
             border-left: 2px solid var(--border-color);
         }
-        
+
         .subsection-title {
             font-size: 0.9rem;
             color: #ffd700;
@@ -190,17 +192,17 @@
             align-items: center;
             gap: 8px;
         }
-        
+
         .chapter-subsection .chapter-item {
             padding: 12px 15px;
         }
-        
+
         .chapter-subsection .chapter-number {
             font-size: 0.7rem;
             padding: 3px 8px;
             min-width: 50px;
         }
-        
+
         /* Coming soon badge */
         .coming-soon {
             background: rgba(255, 193, 7, 0.15);
@@ -210,7 +212,7 @@
             padding: 4px 10px;
             border-radius: 4px;
         }
-        
+
         /* Level badges */
         .level-badge {
             font-size: 0.7rem;
@@ -220,17 +222,17 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
-        
+
         .level-intro {
             background: rgba(16, 185, 129, 0.2);
             color: #10B981;
         }
-        
+
         .level-intermediate {
             background: rgba(59, 130, 246, 0.2);
             color: #3B82F6;
         }
-        
+
         .level-pro {
             background: rgba(239, 68, 68, 0.2);
             color: #EF4444;
@@ -254,9 +256,9 @@
         <div class="container">
             <div class="header-content">
                 <a href="/" class="branding">
-                    <span class="logo" style="color: #00e5ff; font-size: 1.7rem; font-weight: 800; text-shadow: 0 0 20px rgba(0, 229, 255, 0.4);">lokii.tech</span>
+                    <span class="logo">lokii.tech</span>
                 </a>
-                <nav class="nav-links" style="gap: 2rem;">
+                <nav class="nav-links">
                     <a href="#about" class="nav-link nav-link-enhanced">About</a>
                     <a href="#resources" class="nav-link nav-link-enhanced">Resources</a>
                     <a href="https://github.com/UnExplainableFish52/lokii.tech" target="_blank" class="nav-link nav-link-enhanced">GitHub</a>
@@ -313,7 +315,7 @@
             <div class="container">
                 <h2>Available Resources</h2>
                 <p class="text-secondary" style="text-align: center; margin-bottom: 30px;">Click on a section to expand and explore chapters</p>
-                
+
                 <div class="notes-accordion">
                     <!-- INTRO LEVEL -->
                     <div class="accordion-section active">
@@ -358,7 +360,7 @@
                                             <div class="chapter-desc">From Stallman to Linus: OS history and practical skills</div>
                                         </div>
                                     </a>
-                                    
+
                                     <!-- Networking Sub-section -->
                                     <div class="chapter-subsection">
                                         <div class="subsection-title">📡 1.5 Networking</div>
@@ -405,7 +407,7 @@
                                             </div>
                                         </a>
                                     </div>
-                                    
+
                                     <a href="intro/notes/1.6_access_control.html" class="chapter-item">
                                         <span class="chapter-number">1.6</span>
                                         <div class="chapter-info">
@@ -431,7 +433,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <!-- INTERMEDIATE LEVEL -->
                     <div class="accordion-section">
                         <button class="accordion-header" onclick="toggleAccordion(this)">
@@ -454,7 +456,7 @@
                                             <div class="chapter-desc">Complete 17-module Linux command-line and cybersecurity course</div>
                                         </div>
                                     </a>
-                                    
+
                                     <!-- Tools Sub-section -->
                                     <div class="chapter-subsection">
                                         <div class="subsection-title">🛠️ CLI Tools Mastery</div>
@@ -516,7 +518,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <!-- PRO LEVEL -->
                     <div class="accordion-section">
                         <button class="accordion-header" onclick="toggleAccordion(this)">
@@ -524,7 +526,7 @@
                                 <span class="accordion-icon">⚡</span>
                                 <div>
                                     <h3 class="accordion-title">Pro Level <span class="level-badge level-pro">Advanced</span></h3>
-                                    <p class="accordion-subtitle">Higher-level topics and structured notes, with more releases coming soon</p>
+                                    <p class="accordion-subtitle">Project-based roadmap, professional labs, and portfolio-ready security work</p>
                                 </div>
                             </div>
                             <span class="accordion-arrow">▼</span>
@@ -532,9 +534,15 @@
                         <div class="accordion-content">
                             <div class="accordion-body">
                                 <div class="chapter-list">
+                                    <a href="pro/security-professional-project-guide.html" class="chapter-item">
+                                        <span class="chapter-number">3.1</span>
+                                        <div class="chapter-info">
+                                            <div class="chapter-title">Security Professional Project Guide</div>
+                                            <div class="chapter-desc">Operating systems, networking, Linux, automation, blue team, web security, cloud, cryptography, identity, and portfolio projects</div>
+                                        </div>
+                                    </a>
                                     <div class="chapter-item" style="justify-content: center; cursor: default;">
-                                        <span class="coming-soon">🚧 Coming Soon</span>
-                                        <span style="color: var(--text-secondary);">Advanced content is being developed</span>
+                                        <span class="coming-soon">More Pro Guides Coming Soon</span>
                                     </div>
                                 </div>
                             </div>
@@ -587,8 +595,8 @@
             section.classList.toggle('active');
         }
     </script>
-    
-    <script src="/js/main.js"></script>
+
+    <script src="js/main.js"></script>
 
     <!-- Enhanced Matrix/Network Background Animation -->
     <script>
@@ -663,16 +671,16 @@
 
                 matrixDrops.forEach((drop) => {
                     if (!drop.active) return;
-                    
+
                     const char = charArray[Math.floor(Math.random() * charArray.length)];
                     const opacity = 0.2 + Math.random() * 0.2;
-                    
+
                     if (Math.random() > 0.93) {
                         ctx.fillStyle = `rgba(0, 229, 255, ${opacity + 0.4})`;
                     } else {
                         ctx.fillStyle = `rgba(0, 255, 65, ${opacity})`;
                     }
-                    
+
                     ctx.fillText(char, drop.x, drop.y * fontSize);
 
                     if (drop.y * fontSize > height && Math.random() > 0.97) {
@@ -716,7 +724,7 @@
                         const dx = p.x - p2.x;
                         const dy = p.y - p2.y;
                         const distance = Math.sqrt(dx * dx + dy * dy);
-                        
+
                         if (distance < 130) {
                             ctx.beginPath();
                             ctx.moveTo(p.x, p.y);

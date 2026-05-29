@@ -1,0 +1,99 @@
+/**
+ * LOKII.TECH - Global UI Components
+ * Shared floating controls used across content pages.
+ */
+
+.global-floating-actions {
+    --global-ui-size: 52px;
+    --global-ui-gap: 12px;
+    --global-ui-offset: 24px;
+    position: fixed;
+    right: var(--global-ui-offset);
+    bottom: var(--global-ui-offset);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--global-ui-gap);
+    pointer-events: none;
+}
+
+.global-floating-actions .floating-home-btn,
+.global-floating-actions .scroll-to-top-btn {
+    width: var(--global-ui-size);
+    height: var(--global-ui-size);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-family: var(--font-sans, Inter, system-ui, sans-serif);
+    font-size: 1.45rem;
+    font-weight: 800;
+    line-height: 1;
+    text-decoration: none;
+    cursor: pointer;
+    pointer-events: auto;
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.42), 0 0 26px rgba(59, 130, 246, 0.2);
+    transition:
+        opacity 220ms ease,
+        visibility 220ms ease,
+        transform 220ms ease,
+        box-shadow 220ms ease,
+        filter 220ms ease;
+}
+
+.global-floating-actions .floating-home-btn {
+    background: linear-gradient(135deg, #10b981, #0891b2 48%, #3b82f6);
+}
+
+.global-floating-actions .scroll-to-top-btn {
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6 52%, #f59e0b);
+    padding-bottom: 0.12rem;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px) scale(0.92);
+}
+
+.global-floating-actions .scroll-to-top-btn.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+
+.global-floating-actions .floating-home-btn:hover,
+.global-floating-actions .scroll-to-top-btn:hover {
+    filter: saturate(1.15) brightness(1.08);
+    transform: translateY(-2px) scale(1.06);
+    box-shadow: 0 20px 42px rgba(0, 0, 0, 0.48), 0 0 32px rgba(16, 185, 129, 0.26);
+    text-decoration: none;
+}
+
+.global-floating-actions .scroll-to-top-btn.visible:hover {
+    transform: translateY(-2px) scale(1.06);
+}
+
+.global-floating-actions .floating-home-btn:focus-visible,
+.global-floating-actions .scroll-to-top-btn:focus-visible {
+    outline: 3px solid rgba(125, 211, 252, 0.86);
+    outline-offset: 4px;
+}
+
+.global-floating-actions .floating-home-btn:active,
+.global-floating-actions .scroll-to-top-btn:active {
+    transform: scale(0.96);
+}
+
+@media (max-width: 768px) {
+    .global-floating-actions {
+        --global-ui-size: 46px;
+        --global-ui-gap: 10px;
+        --global-ui-offset: 16px;
+    }
+
+    .global-floating-actions .floating-home-btn,
+    .global-floating-actions .scroll-to-top-btn {
+        font-size: 1.25rem;
+    }
+}

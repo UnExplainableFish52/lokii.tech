@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>1.5 Networking — Complete Guide | Module 1 | Cybersecurity Beginner Course</title>
-    
+
     <meta name="description" content="Master networking fundamentals for cybersecurity. From OSI models to protocols, devices, and WiFi security - everything you need to know.">
     <meta name="author" content="lokii (UnExplainableFish52)">
     <meta name="theme-color" content="#0d1117">
-    
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://lokii.tech/intro/notes/1.5_networks.html">
@@ -16,29 +16,31 @@
     <meta property="og:description" content="Master networking fundamentals for cybersecurity. From OSI models to protocols, devices, and WiFi security.">
     <meta property="og:image" content="https://lokii.tech/preview.jpg">
     <meta property="og:site_name" content="lokii.tech">
-    
+
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="1.5 Networking — Complete Guide | lokii.tech">
     <meta name="twitter:description" content="Master networking fundamentals for cybersecurity. From OSI models to protocols, devices, and WiFi security.">
     <meta name="twitter:image" content="https://lokii.tech/preview.jpg">
-    
+
     <!-- Favicons -->
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
     <link rel="icon" href="/favicon.ico">
-    
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    
+
     <!-- Centralized Styles -->
     <link rel="stylesheet" href="../../css/style.css">
-    
-    <style>
+
+
+    <link rel="stylesheet" href="../../css/global-ui.css">
+<style>
         /* Page-specific styles for networking notes */
         .notes-header {
             text-align: center;
@@ -334,13 +336,13 @@
 
         <!-- Introduction -->
         <h2>📡 Introduction</h2>
-        
+
         <div class="section">
             <h3>What is Networking for Security Professionals?</h3>
             <p>
-                Networking is the <span class="highlight">backbone of cybersecurity</span>. Every cyber attack traverses a network — 
-                whether it's a phishing email, a ransomware payload, or data exfiltration. Understanding how data flows between 
-                devices, how protocols work, and where vulnerabilities exist is <span class="highlight">essential</span> for both 
+                Networking is the <span class="highlight">backbone of cybersecurity</span>. Every cyber attack traverses a network —
+                whether it's a phishing email, a ransomware payload, or data exfiltration. Understanding how data flows between
+                devices, how protocols work, and where vulnerabilities exist is <span class="highlight">essential</span> for both
                 offensive and defensive security roles.
             </p>
 
@@ -354,18 +356,18 @@
 
             <div class="tip-box">
                 <strong>💡 Who is This For?</strong><br>
-                This guide is designed for <span class="highlight">beginners to intermediate learners</span> — aspiring pentesters, 
-                SOC analysts, security engineers, and anyone who wants to build a solid networking foundation for cybersecurity. 
+                This guide is designed for <span class="highlight">beginners to intermediate learners</span> — aspiring pentesters,
+                SOC analysts, security engineers, and anyone who wants to build a solid networking foundation for cybersecurity.
                 No prior networking experience required!
             </div>
         </div>
 
         <!-- Table of Contents -->
         <h2>📚 Modules</h2>
-        
+
         <div class="section">
             <p>
-                This networking series is divided into <span class="highlight">five comprehensive modules</span>. 
+                This networking series is divided into <span class="highlight">five comprehensive modules</span>.
                 Each module builds on the previous one, taking you from fundamentals to practical applications.
             </p>
 
@@ -414,7 +416,7 @@
 
         <!-- Quick Glossary -->
         <h2>📖 Quick Glossary</h2>
-        
+
         <div class="section">
             <p>Essential networking terms you'll encounter throughout this course:</p>
 
@@ -423,87 +425,87 @@
                     <div class="glossary-term">Packet</div>
                     <div class="glossary-def">A unit of data transmitted over a network, containing header info and payload.</div>
                 </div>
-                
+
                 <div class="glossary-item">
                     <div class="glossary-term">Frame</div>
                     <div class="glossary-def">A data unit at the Data Link layer (Layer 2), includes MAC addresses.</div>
                 </div>
-                
+
                 <div class="glossary-item">
                     <div class="glossary-term">IP Address</div>
                     <div class="glossary-def">A unique numerical identifier assigned to each device on a network (e.g., 192.168.1.1).</div>
                 </div>
-                
+
                 <div class="glossary-item">
                     <div class="glossary-term">MAC Address</div>
                     <div class="glossary-def">A hardware identifier burned into network interface cards (e.g., AA:BB:CC:DD:EE:FF).</div>
                 </div>
-                
+
                 <div class="glossary-item">
                     <div class="glossary-term">Subnet</div>
                     <div class="glossary-def">A logical subdivision of an IP network, used to segment and organize traffic.</div>
                 </div>
-                
+
                 <div class="glossary-item">
                     <div class="glossary-term">Gateway</div>
                     <div class="glossary-def">A device that routes traffic between different networks (usually a router).</div>
                 </div>
-                
+
                 <div class="glossary-item">
                     <div class="glossary-term">DNS</div>
                     <div class="glossary-def">Domain Name System — translates domain names (google.com) to IP addresses.</div>
                 </div>
-                
+
                 <div class="glossary-item">
                     <div class="glossary-term">DHCP</div>
                     <div class="glossary-def">Dynamic Host Configuration Protocol — automatically assigns IP addresses to devices.</div>
                 </div>
-                
+
                 <div class="glossary-item">
                     <div class="glossary-term">NAT</div>
                     <div class="glossary-def">Network Address Translation — maps private IPs to a public IP for internet access.</div>
                 </div>
-                
+
                 <div class="glossary-item">
                     <div class="glossary-term">Firewall</div>
                     <div class="glossary-def">A security device/software that filters incoming and outgoing network traffic.</div>
                 </div>
-                
+
                 <div class="glossary-item">
                     <div class="glossary-term">Proxy</div>
                     <div class="glossary-def">An intermediary server that forwards requests between clients and servers.</div>
                 </div>
-                
+
                 <div class="glossary-item">
                     <div class="glossary-term">VPN</div>
                     <div class="glossary-def">Virtual Private Network — creates an encrypted tunnel for secure communication.</div>
                 </div>
-                
+
                 <div class="glossary-item">
                     <div class="glossary-term">Latency</div>
                     <div class="glossary-def">The time delay between sending and receiving data (measured in milliseconds).</div>
                 </div>
-                
+
                 <div class="glossary-item">
                     <div class="glossary-term">Bandwidth</div>
                     <div class="glossary-def">Maximum data transfer capacity of a network connection (e.g., 100 Mbps).</div>
                 </div>
-                
+
                 <div class="glossary-item">
                     <div class="glossary-term">Throughput</div>
                     <div class="glossary-def">Actual amount of data successfully transferred over a network per unit time.</div>
                 </div>
-                
+
                 <div class="glossary-item">
                     <div class="glossary-term">Port</div>
                     <div class="glossary-def">A numbered endpoint for network communication (e.g., HTTP uses port 80).</div>
                 </div>
-                
+
                 <div class="glossary-item">
                     <div class="glossary-term">Protocol</div>
                     <div class="glossary-def">A set of rules that define how data is transmitted and received over a network.</div>
                 </div>
-                
+
                 <div class="glossary-item">
                     <div class="glossary-term">TTL</div>
                     <div class="glossary-def">Time To Live — limits a packet's lifespan to prevent infinite loops.</div>
@@ -513,15 +515,15 @@
 
         <!-- Learning Path -->
         <h2>🛣️ Learning Path Recommendation</h2>
-        
+
         <div class="section">
             <div class="info-box">
-                <strong>📋 Prerequisites:</strong> Basic computer literacy and familiarity with using the command line. 
+                <strong>📋 Prerequisites:</strong> Basic computer literacy and familiarity with using the command line.
                 Reading <a href="1.4-intro-to-os.html">Module 1.4: Introduction to Operating Systems</a> is recommended but not required.
             </div>
 
             <h3>Suggested Study Order</h3>
-            
+
             <div class="path-item">
                 <div class="path-step">1</div>
                 <div class="path-content">
@@ -530,7 +532,7 @@
                     <span class="time-badge">⏱️ ~45 minutes</span>
                 </div>
             </div>
-            
+
             <div class="path-item">
                 <div class="path-step">2</div>
                 <div class="path-content">
@@ -539,7 +541,7 @@
                     <span class="time-badge">⏱️ ~60 minutes</span>
                 </div>
             </div>
-            
+
             <div class="path-item">
                 <div class="path-step">3</div>
                 <div class="path-content">
@@ -548,7 +550,7 @@
                     <span class="time-badge">⏱️ ~75 minutes</span>
                 </div>
             </div>
-            
+
             <div class="path-item">
                 <div class="path-step">4</div>
                 <div class="path-content">
@@ -557,7 +559,7 @@
                     <span class="time-badge">⏱️ ~50 minutes</span>
                 </div>
             </div>
-            
+
             <div class="path-item">
                 <div class="path-step">5</div>
                 <div class="path-content">
@@ -568,8 +570,8 @@
             </div>
 
             <div class="tip-box">
-                <strong>💡 Pro Tip:</strong> Don't rush through the modules! Take notes, practice concepts if possible 
-                (set up a home lab), and revisit sections that feel unclear. Total estimated time: <span class="highlight">~5 hours</span> 
+                <strong>💡 Pro Tip:</strong> Don't rush through the modules! Take notes, practice concepts if possible
+                (set up a home lab), and revisit sections that feel unclear. Total estimated time: <span class="highlight">~5 hours</span>
                 for thorough understanding.
             </div>
         </div>

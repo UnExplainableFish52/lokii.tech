@@ -189,6 +189,14 @@ section {
     transition: opacity var(--transition-fast);
 }
 
+.branding .logo {
+    color: #00e5ff;
+    font-size: 1.7rem;
+    font-weight: 800;
+    text-shadow: 0 0 20px rgba(0, 229, 255, 0.4);
+    line-height: 1;
+}
+
 .branding:hover {
     opacity: 0.8;
 }
@@ -201,7 +209,7 @@ section {
 
 .nav-links {
     display: flex;
-    gap: var(--spacing-lg);
+    gap: 2rem;
     align-items: center;
 }
 
@@ -599,89 +607,6 @@ tr:hover {
 }
 
 /* ============================================
-   Floating Home Button
-   ============================================ */
-
-.floating-home-btn {
-    position: fixed;
-    bottom: var(--spacing-lg);
-    right: var(--spacing-lg);
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-color: var(--accent-primary);
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    box-shadow: var(--shadow-lg);
-    transition: all var(--transition-base);
-    z-index: 99;
-    cursor: pointer;
-    text-decoration: none;
-    border: none;
-}
-
-.floating-home-btn:hover {
-    background-color: #2563EB;
-    transform: scale(1.1);
-    box-shadow: 0 15px 30px rgba(59, 130, 246, 0.4);
-    text-decoration: none;
-}
-
-.floating-home-btn:active {
-    transform: scale(0.95);
-}
-
-/* ============================================
-   Scroll to Top Button
-   ============================================ */
-
-.scroll-to-top-btn {
-    position: fixed;
-    bottom: var(--spacing-lg);
-    right: var(--spacing-lg);
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--accent-primary), #2563EB);
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    box-shadow: var(--shadow-lg);
-    transition: all var(--transition-base);
-    z-index: 99;
-    cursor: pointer;
-    border: none;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(20px);
-}
-
-.scroll-to-top-btn.visible {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-}
-
-.scroll-to-top-btn:hover {
-    background: linear-gradient(135deg, #2563EB, #1d4ed8);
-    transform: scale(1.1) translateY(0);
-    box-shadow: 0 15px 30px rgba(59, 130, 246, 0.4);
-}
-
-.scroll-to-top-btn.visible:hover {
-    transform: scale(1.1) translateY(0);
-}
-
-.scroll-to-top-btn:active {
-    transform: scale(0.95);
-}
-
-/* ============================================
    Lists & Blockquotes
    ============================================ */
 
@@ -788,21 +713,6 @@ blockquote {
         font-size: 0.85rem;
     }
 
-    .floating-home-btn {
-        width: 45px;
-        height: 45px;
-        font-size: 1.25rem;
-        bottom: var(--spacing-md);
-        right: var(--spacing-md);
-    }
-
-    .scroll-to-top-btn {
-        width: 45px;
-        height: 45px;
-        font-size: 1.25rem;
-        bottom: var(--spacing-md);
-        right: var(--spacing-md);
-    }
 }
 
 /* ============================================
@@ -1620,17 +1530,6 @@ blockquote {
     margin-bottom: 0;
     font-size: 1.04rem;
 }
-
-.guide-page .quick-top {
-    text-align: right;
-    margin-top: 1rem;
-}
-
-.guide-page .quick-top a {
-    font-size: 0.95rem;
-    color: #9cc6f7;
-}
-
 
 @media (max-width: 900px) {
     .guide-page {

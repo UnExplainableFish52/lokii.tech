@@ -1,25 +1,56 @@
-The Problem (Life Before VLANs)
-Imagine a traditional network where all the computers, printers, and servers are plugged into a single physical switch. This entire setup creates one massive Broadcast Domain.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VLAN Notes | lokii.tech</title>
+    <meta name="description" content="Short notes explaining why VLANs matter, how they reduce broadcast domains, and how 802.1Q tagging works.">
+    <meta name="author" content="lokii (UnExplainableFish52)">
+    <meta name="theme-color" content="#050505">
 
-Whenever a device needs to find another device (like sending an ARP request), it shouts a broadcast message to everyone on that switch.
+    <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
+    <link rel="manifest" href="../../site.webmanifest">
+    <link rel="icon" href="../../favicon.ico">
 
-The result: Everyone has to stop and listen to that noise. As the network grows, this constant shouting clogs up the network and degrades performance.
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/global-ui.css">
+</head>
+<body>
+    <div id="navbar-placeholder"></div>
 
-The Solution (The Virtual Switch) 802.1q 
-This is where the Virtual Local Area Network (VLAN) steps in. Instead of buying separate, expensive physical switches for the HR department, the IT department, and the Sales department, a VLAN allows you to take one physical switch and logically slice it into multiple "virtual" switches.
+    <main class="notes-container">
+        <h1>VLAN Notes</h1>
 
+        <h2>The Problem: Life Before VLANs</h2>
+        <p>Imagine a traditional network where all the computers, printers, and servers are plugged into a single physical switch. This entire setup creates one massive broadcast domain.</p>
+        <p>Whenever a device needs to find another device, such as sending an ARP request, it shouts a broadcast message to everyone on that switch.</p>
+        <p>The result: everyone has to stop and listen to that noise. As the network grows, this constant shouting clogs up the network and degrades performance.</p>
 
-🕵️ Insider Threats: If everyone is in the same domain, an employee in Sales running a packet sniffer can much more easily capture sensitive traffic meant for HR.
+        <h2>The Solution: The Virtual Switch</h2>
+        <p>802.1Q is where the Virtual Local Area Network, or VLAN, steps in. Instead of buying separate, expensive physical switches for HR, IT, and Sales, a VLAN allows you to take one physical switch and logically slice it into multiple virtual switches.</p>
 
-🦠 Malware Spread: Without internal boundaries, a single infected computer can spread worms or ransomware across the entire company network unchecked.
+        <div class="warning">
+            <div class="warning-title">Security Risks Without Segmentation</div>
+            <p><strong>Insider threats:</strong> If everyone is in the same domain, an employee in Sales running a packet sniffer can much more easily capture sensitive traffic meant for HR.</p>
+            <p><strong>Malware spread:</strong> Without internal boundaries, a single infected computer can spread worms or ransomware across the entire company network unchecked.</p>
+            <p><strong>Performance loss:</strong> The main performance killer is the risk of a broadcast storm. If too many devices broadcast at once, or if a loop is created in the wiring, the switch gets overwhelmed and the whole network can crash.</p>
+        </div>
 
-🌪️ Performance Loss: The main performance killer is the risk of a Broadcast Storm. If too many devices broadcast at once, or if a loop is created in the wiring, the switch gets overwhelmed by the noise and the whole network crashes.
+        <div class="tip">
+            <div class="tip-title">Important Adjustment</div>
+            <p>VLAN hopping is an attack that specifically targets VLAN configurations. Threat actors cannot do it in the "before VLANs" scenario, but it is exactly what they may try after VLANs are implemented. A later security chapter should cover how to prevent it.</p>
+        </div>
 
-There is one slight adjustment we need to make for your guide: VLAN hopping is an attack that specifically targets VLAN configurations. So, threat actors can't do it in our "before" scenario, but it is exactly what they will try to do after we implement our solution! We will definitely tackle how to stop that in your security chapter.
+        <h2>How It Works Under the Hood</h2>
+        <p>Now we know we need to separate HR, such as VLAN 10, and Sales, such as VLAN 20, even though they are plugged into the exact same physical switch.</p>
+        <p>When a standard computer in HR sends out data, it has no idea what a VLAN is. As far as the computer knows, it is just sending a standard Ethernet frame. The magic happens the moment that data enters the switch.</p>
+    </main>
 
-Chapter 2: How It Works Under the Hood
-Now we know we need to separate HR (VLAN 10) and Sales (VLAN 20), even though they are plugged into the exact same physical switch.
-
-
-When a standard computer in HR sends out a piece of data, it has no idea what a VLAN is. As far as the computer knows, it's just sending a standard Ethernet frame. The magic happens the moment that data enters the switch.
-
+    <script src="../../js/main.js"></script>
+</body>
+</html>
