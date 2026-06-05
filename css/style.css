@@ -491,6 +491,44 @@ section {
 }
 
 /* ============================================
+   FAQ Section
+   ============================================ */
+
+.faq {
+    background: #050505;
+    padding: var(--spacing-2xl) 0;
+}
+
+.faq h2 {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+}
+
+.faq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: var(--spacing-lg);
+}
+
+.faq-item {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-lg);
+}
+
+.faq-item h3 {
+    color: var(--accent-primary);
+    font-size: 1.1rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.faq-item p {
+    color: var(--text-secondary);
+    margin-bottom: 0;
+}
+
+/* ============================================
    Footer
    ============================================ */
 

@@ -1,6 +1,6 @@
 # lokii.tech
 
-**lokii.tech** is an open-source platform built by **lokii** (aka **UnEliteFish52**) with a vision to provide valuable lessons and guidance to break into Computer Science in today's competitive world.
+**lokii.tech** is an open-source platform built by **lokii** (aka **UnExplainableFish52**) with a vision to provide valuable lessons and guidance to break into Computer Science in today's competitive world.
 
 ## About
 

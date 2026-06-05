@@ -12,15 +12,24 @@
     <!-- Open Graph -->
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://lokii.tech/intro/notes/1.4-intro-to-os.html">
-    <meta property="og:title" content="Introduction to Operating Systems | lokii.tech">
-    <meta property="og:description" content="From Richard Stallman and Linus Torvalds to modern OS internals - a comprehensive guide for aspiring security professionals.">
+    <meta property="og:title" content="1.4 Introduction to Operating Systems | lokii.tech">
+    <meta property="og:description" content="Comprehensive guide to operating systems: from the revolutionary GNU/Linux story to practical cybersecurity skills across Windows, Linux, and macOS.">
     <meta property="og:image" content="https://lokii.tech/preview.jpg">
+    <!-- SEO Metadata -->
+    <link rel="canonical" href="https://lokii.tech/intro/notes/1.4-intro-to-os.html">
+    <meta name="robots" content="index, follow">
+    <meta property="og:site_name" content="lokii.tech">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://lokii.tech/intro/notes/1.4-intro-to-os.html">
+    <meta name="twitter:title" content="1.4 Introduction to Operating Systems | lokii.tech">
+    <meta name="twitter:description" content="Comprehensive guide to operating systems: from the revolutionary GNU/Linux story to practical cybersecurity skills across Windows, Linux, and macOS.">
+    <meta name="twitter:image" content="https://lokii.tech/preview.jpg">
 
-    <!-- Favicons -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="icon" href="/favicon.ico">
+<!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
+    <link rel="icon" href="../../favicon.ico">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -352,6 +361,98 @@
             .os-grid { grid-template-columns: 1fr; }
         }
     </style>
+    <!-- SEO Structured Data -->
+    <script type="application/ld+json" data-seo="lokii">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://lokii.tech/#creator",
+          "name": "lokii (UnExplainableFish52)",
+          "url": "https://lokii.tech/",
+          "sameAs": [
+            "https://github.com/UnExplainableFish52"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://lokii.tech/#website",
+          "url": "https://lokii.tech/",
+          "name": "lokii.tech",
+          "description": "An open-source learning platform for computer science, cybersecurity, Linux, networking, and security project guidance.",
+          "publisher": {
+            "@id": "https://lokii.tech/#creator"
+          },
+          "inLanguage": "en"
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://lokii.tech/intro/notes/1.4-intro-to-os.html#breadcrumbs",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://lokii.tech/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Intro Level",
+              "item": "https://lokii.tech/#resources"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "1.4 Introduction to Operating Systems | lokii.tech",
+              "item": "https://lokii.tech/intro/notes/1.4-intro-to-os.html"
+            }
+          ]
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://lokii.tech/intro/notes/1.4-intro-to-os.html#webpage",
+          "url": "https://lokii.tech/intro/notes/1.4-intro-to-os.html",
+          "name": "1.4 Introduction to Operating Systems | lokii.tech",
+          "description": "Comprehensive guide to operating systems: from the revolutionary GNU/Linux story to practical cybersecurity skills across Windows, Linux, and macOS.",
+          "isPartOf": {
+            "@id": "https://lokii.tech/#website"
+          },
+          "breadcrumb": {
+            "@id": "https://lokii.tech/intro/notes/1.4-intro-to-os.html#breadcrumbs"
+          },
+          "primaryImageOfPage": "https://lokii.tech/preview.jpg",
+          "dateModified": "2026-06-04",
+          "inLanguage": "en"
+        },
+        {
+          "@type": [
+            "TechArticle",
+            "LearningResource"
+          ],
+          "@id": "https://lokii.tech/intro/notes/1.4-intro-to-os.html#article",
+          "headline": "1.4 Introduction to Operating Systems | lokii.tech",
+          "description": "Comprehensive guide to operating systems: from the revolutionary GNU/Linux story to practical cybersecurity skills across Windows, Linux, and macOS.",
+          "url": "https://lokii.tech/intro/notes/1.4-intro-to-os.html",
+          "image": "https://lokii.tech/preview.jpg",
+          "author": {
+            "@id": "https://lokii.tech/#creator"
+          },
+          "publisher": {
+            "@id": "https://lokii.tech/#creator"
+          },
+          "mainEntityOfPage": {
+            "@id": "https://lokii.tech/intro/notes/1.4-intro-to-os.html#webpage"
+          },
+          "educationalLevel": "Beginner",
+          "learningResourceType": "Guide",
+          "dateModified": "2026-06-04",
+          "inLanguage": "en"
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
     <!-- Persistent Navigation (matches index.html) -->
@@ -364,8 +465,8 @@
                 <nav class="nav-links" style="gap: 2rem;">
                     <a href="../../index.html#about" class="nav-link nav-link-enhanced">About</a>
                     <a href="../../index.html#resources" class="nav-link nav-link-enhanced">Resources</a>
-                    <a href="https://github.com/UnExplainableFish52/lokii.tech" target="_blank" class="nav-link nav-link-enhanced">GitHub</a>
-                    <a href="https://github.com/UnExplainableFish52/lokii.tech/issues" target="_blank" class="nav-link nav-contribute">Contribute ✨</a>
+                    <a href="https://github.com/UnExplainableFish52/lokii.tech" target="_blank" class="nav-link nav-link-enhanced" rel="noopener noreferrer">GitHub</a>
+                    <a href="https://github.com/UnExplainableFish52/lokii.tech/issues" target="_blank" class="nav-link nav-contribute" rel="noopener noreferrer">Contribute ✨</a>
                 </nav>
             </div>
         </div>
@@ -1250,7 +1351,7 @@ Get-SmbShare</code></pre>
             </p>
 
             <div class="info-box">
-                <strong>Download:</strong> <a href="https://docs.microsoft.com/en-us/sysinternals/downloads/procmon" target="_blank">Sysinternals Process Monitor</a><br><br>
+                <strong>Download:</strong> <a href="https://docs.microsoft.com/en-us/sysinternals/downloads/procmon" target="_blank" rel="noopener noreferrer">Sysinternals Process Monitor</a><br><br>
                 <strong>Key Filters for Security:</strong><br>
                 • Operation is WriteFile<br>
                 • Path contains Run<br>
@@ -1554,7 +1655,7 @@ lsof -i | grep ESTABLISHED</code></pre>
     </main>
 
     <footer class="notes-footer">
-        <p>© 2026 lokii.tech | <a href="https://github.com/UnExplainableFish52/lokii.tech" target="_blank">Open Source Project</a></p>
+        <p>© 2026 lokii.tech | <a href="https://github.com/UnExplainableFish52/lokii.tech" target="_blank" rel="noopener noreferrer">Open Source Project</a></p>
     </footer>
     <script src="../../js/main.js"></script>
 </body>

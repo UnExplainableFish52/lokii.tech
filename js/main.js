@@ -60,6 +60,7 @@
         const homeLink = buildRootUrl('index.html');
         const aboutLink = onHomePage ? '#about' : buildRootUrl('index.html#about');
         const resourcesLink = onHomePage ? '#resources' : buildRootUrl('index.html#resources');
+        const faqLink = onHomePage ? '#faq' : buildRootUrl('index.html#faq');
 
         // Generate navbar HTML
         const navbarHTML = `
@@ -72,6 +73,7 @@
                         <nav class="nav-links" style="gap: 2rem;">
                             <a href="${aboutLink}" class="nav-link nav-link-enhanced">About</a>
                             <a href="${resourcesLink}" class="nav-link nav-link-enhanced">Resources</a>
+                            <a href="${faqLink}" class="nav-link nav-link-enhanced">FAQ</a>
                             <a href="https://github.com/UnExplainableFish52/lokii.tech" target="_blank" class="nav-link nav-link-enhanced">GitHub</a>
                             <a href="https://github.com/UnExplainableFish52/lokii.tech/issues" target="_blank" class="nav-link nav-contribute">Contribute ✨</a>
                         </nav>
