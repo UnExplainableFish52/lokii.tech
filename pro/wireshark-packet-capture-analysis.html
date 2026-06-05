@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wireshark Packet Capture Analysis | Pro Level | lokii.tech</title>
+  <meta name="description" content="A practical SOC-style Wireshark learning note for reading PCAP files, filtering network traffic, identifying suspicious patterns, and reporting evidence clearly.">
+  <meta name="author" content="lokii (UnExplainableFish52)">
+  <meta name="theme-color" content="#050505">
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://lokii.tech/pro/wireshark-packet-capture-analysis.html">
+  <meta property="og:title" content="Wireshark Packet Capture Analysis | Pro Level | lokii.tech">
+  <meta property="og:description" content="A practical SOC-style Wireshark learning note for reading PCAP files, filtering network traffic, identifying suspicious patterns, and reporting evidence clearly.">
+  <meta property="og:image" content="https://lokii.tech/preview.jpg">
+  <meta property="og:site_name" content="lokii.tech">
+
+  <link rel="canonical" href="https://lokii.tech/pro/wireshark-packet-capture-analysis.html">
+  <meta name="robots" content="index, follow">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://lokii.tech/pro/wireshark-packet-capture-analysis.html">
+  <meta name="twitter:title" content="Wireshark Packet Capture Analysis | Pro Level | lokii.tech">
+  <meta name="twitter:description" content="A practical SOC-style Wireshark learning note for reading PCAP files, filtering network traffic, identifying suspicious patterns, and reporting evidence clearly.">
+  <meta name="twitter:image" content="https://lokii.tech/preview.jpg">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+  <link rel="manifest" href="../site.webmanifest">
+  <link rel="icon" href="../favicon.ico">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/global-ui.css">
+
+  <style>
+    .wireshark-note-page .guide-hero {
+      background: linear-gradient(145deg, rgba(11, 18, 28, 0.96), rgba(8, 12, 19, 0.98));
+    }
+
+    .wireshark-note-page .guide-kicker {
+      color: #4ec9b0;
+      font-weight: 800;
+      letter-spacing: 0;
+      margin-bottom: 0.45rem;
+      text-transform: uppercase;
+      font-size: 0.82rem;
+    }
+
+    .wireshark-note-page .compact-list {
+      margin: 0.6rem 0 0;
+      padding-left: 1.25rem;
+    }
+
+    .wireshark-note-page .compact-list li {
+      margin: 0.45rem 0;
+    }
+
+    .wireshark-note-page .tag-row,
+    .wireshark-note-page .project-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 0.85rem 0 0;
+    }
+
+    .wireshark-note-page .tag-pill,
+    .wireshark-note-page .meta-pill {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid #3d4657;
+      border-radius: 999px;
+      background: rgba(125, 211, 252, 0.08);
+      color: #dbeafe;
+      font-size: 0.88rem;
+      font-weight: 700;
+      padding: 0.35rem 0.7rem;
+    }
+
+    .wireshark-note-page .tag-pill {
+      border-color: rgba(78, 201, 176, 0.42);
+      background: rgba(78, 201, 176, 0.09);
+      color: #c8f7ee;
+    }
+
+    .wireshark-note-page .guide-note {
+      border-left: 4px solid #38bdf8;
+      background: rgba(56, 189, 248, 0.11);
+      border-radius: 8px;
+      padding: 0.85rem 1rem;
+      color: #dff4ff;
+      margin: 1rem 0;
+    }
+
+    .wireshark-note-page .warning-note {
+      border-left-color: #f59e0b;
+      background: rgba(245, 158, 11, 0.12);
+      color: #fde68a;
+    }
+
+    .wireshark-note-page .success-note {
+      border-left-color: #34d399;
+      background: rgba(52, 211, 153, 0.12);
+      color: #d1fae5;
+    }
+
+    .wireshark-note-page .repo-panel {
+      border: 1px solid rgba(78, 201, 176, 0.34);
+      border-radius: 12px;
+      background: linear-gradient(180deg, rgba(78, 201, 176, 0.1), rgba(8, 11, 16, 0.9));
+      padding: 1rem;
+      margin: 1rem 0;
+    }
+
+    .wireshark-note-page .repo-panel strong {
+      display: block;
+      color: #4ec9b0;
+      margin-bottom: 0.35rem;
+    }
+
+    .wireshark-note-page .repo-panel p {
+      margin-bottom: 0.65rem;
+    }
+
+    .wireshark-note-page .source-url,
+    .wireshark-note-page .repo-link {
+      color: #b9d8ff;
+      font-family: var(--font-mono);
+      font-size: 0.92rem;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .wireshark-note-page .repo-action-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 0.85rem;
+    }
+
+    .wireshark-note-page .repo-action-row a,
+    .wireshark-note-page .media-link {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid #3d4657;
+      border-radius: 999px;
+      background: rgba(255, 209, 102, 0.08);
+      color: #ffd166;
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 0.45rem 0.7rem;
+      text-decoration: none;
+    }
+
+    .wireshark-note-page .repo-action-row a:hover,
+    .wireshark-note-page .media-link:hover {
+      background: rgba(255, 209, 102, 0.15);
+      color: #ffefb0;
+      text-decoration: none;
+    }
+
+    .wireshark-note-page .note-grid,
+    .wireshark-note-page .learning-map,
+    .wireshark-note-page .workflow-grid,
+    .wireshark-note-page .evidence-grid,
+    .wireshark-note-page .media-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 0.85rem;
+      margin-top: 1rem;
+    }
+
+    .wireshark-note-page .note-card,
+    .wireshark-note-page .map-card,
+    .wireshark-note-page .workflow-card,
+    .wireshark-note-page .evidence-card {
+      border: 1px solid #30363d;
+      border-radius: 12px;
+      background: rgba(8, 11, 16, 0.82);
+      padding: 1rem;
+    }
+
+    .wireshark-note-page .note-card strong,
+    .wireshark-note-page .map-card strong,
+    .wireshark-note-page .workflow-card strong,
+    .wireshark-note-page .evidence-card strong {
+      display: block;
+      color: #7dd3fc;
+      margin-bottom: 0.35rem;
+      font-size: 1rem;
+    }
+
+    .wireshark-note-page .map-card code,
+    .wireshark-note-page .filter-table code,
+    .wireshark-note-page .filter-stack code,
+    .wireshark-note-page .evidence-card code {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .wireshark-note-page .phase-card h3,
+    .wireshark-note-page .case-card h3 {
+      color: #4ec9b0;
+      margin-top: 0;
+    }
+
+    .wireshark-note-page .filter-table-wrap {
+      overflow-x: auto;
+      margin-top: 1rem;
+      border: 1px solid #30363d;
+      border-radius: 12px;
+      background: rgba(8, 11, 16, 0.82);
+    }
+
+    .wireshark-note-page .filter-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0;
+      min-width: 640px;
+    }
+
+    .wireshark-note-page .filter-table th,
+    .wireshark-note-page .filter-table td {
+      padding: 0.8rem 0.9rem;
+      border-bottom: 1px solid #30363d;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    .wireshark-note-page .filter-table th {
+      color: #ffd166;
+      background: rgba(18, 22, 30, 0.92);
+      font-size: 0.95rem;
+    }
+
+    .wireshark-note-page .filter-table tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .wireshark-note-page .filter-stack {
+      display: grid;
+      gap: 0.65rem;
+      margin-top: 1rem;
+    }
+
+    .wireshark-note-page .filter-line {
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+      border: 1px solid #30363d;
+      border-radius: 10px;
+      background: rgba(8, 11, 16, 0.82);
+      padding: 0.75rem;
+    }
+
+    .wireshark-note-page .filter-line code {
+      flex: 0 1 44%;
+      color: #b9f6ca;
+    }
+
+    .wireshark-note-page .filter-line span {
+      flex: 1;
+      color: #e7ecf2;
+    }
+
+    .wireshark-note-page .finding-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 0.75rem;
+      margin: 1rem 0;
+    }
+
+    .wireshark-note-page .finding-stat {
+      border: 1px solid #3d4657;
+      border-radius: 12px;
+      background: rgba(125, 211, 252, 0.08);
+      padding: 0.85rem;
+    }
+
+    .wireshark-note-page .finding-stat span {
+      display: block;
+      color: #aab8c8;
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    .wireshark-note-page .finding-stat strong {
+      color: #f4f7fb;
+      font-size: 1.12rem;
+    }
+
+    .wireshark-note-page .port-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 0.55rem;
+      margin: 1rem 0;
+    }
+
+    .wireshark-note-page .port-pill {
+      border: 1px solid #30363d;
+      border-radius: 10px;
+      background: rgba(18, 23, 32, 0.82);
+      padding: 0.55rem 0.65rem;
+      color: #e7ecf2;
+      font-size: 0.95rem;
+    }
+
+    .wireshark-note-page .port-pill strong {
+      color: #7dd3fc;
+    }
+
+    .wireshark-note-page .banner-list {
+      columns: 2;
+      column-gap: 2rem;
+      margin-top: 0.6rem;
+      padding-left: 1.25rem;
+    }
+
+    .wireshark-note-page .banner-list li {
+      break-inside: avoid;
+      margin: 0.35rem 0;
+    }
+
+    .wireshark-note-page .media-grid {
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+
+    .wireshark-note-page .media-figure {
+      border: 1px solid #30363d;
+      border-radius: 12px;
+      background: rgba(8, 11, 16, 0.86);
+      margin: 0;
+      overflow: hidden;
+    }
+
+    .wireshark-note-page .media-figure img {
+      display: block;
+      width: 100%;
+      height: auto;
+      background: #050505;
+      border-bottom: 1px solid #30363d;
+    }
+
+    .wireshark-note-page .media-figure figcaption {
+      padding: 0.85rem;
+      color: #dbeafe;
+      font-size: 0.95rem;
+      line-height: 1.65;
+    }
+
+    .wireshark-note-page .media-figure figcaption strong {
+      display: block;
+      color: #7dd3fc;
+      margin-bottom: 0.3rem;
+    }
+
+    .wireshark-note-page .advanced-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .wireshark-note-page .advanced-item {
+      border-left: 4px solid #4ec9b0;
+      background: rgba(78, 201, 176, 0.08);
+      border-radius: 8px;
+      padding: 0.75rem 0.85rem;
+      color: #e7ecf2;
+    }
+
+    .wireshark-note-page .advanced-item strong {
+      display: block;
+      color: #c8f7ee;
+      margin-bottom: 0.25rem;
+    }
+
+    @media (max-width: 720px) {
+      .wireshark-note-page .filter-line {
+        display: block;
+      }
+
+      .wireshark-note-page .filter-line code {
+        display: block;
+        margin-bottom: 0.45rem;
+      }
+
+      .wireshark-note-page .banner-list {
+        columns: 1;
+      }
+
+      .wireshark-note-page .media-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .wireshark-note-page .meta-pill,
+      .wireshark-note-page .tag-pill {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+      }
+    }
+  </style>
+
+  <script type="application/ld+json" data-seo="lokii">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://lokii.tech/#creator",
+        "name": "lokii (UnExplainableFish52)",
+        "url": "https://lokii.tech/",
+        "sameAs": [
+          "https://github.com/UnExplainableFish52"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://lokii.tech/#website",
+        "url": "https://lokii.tech/",
+        "name": "lokii.tech",
+        "description": "An open-source learning platform for computer science, cybersecurity, Linux, networking, and security project guidance.",
+        "publisher": {
+          "@id": "https://lokii.tech/#creator"
+        },
+        "inLanguage": "en"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://lokii.tech/pro/wireshark-packet-capture-analysis.html#breadcrumbs",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://lokii.tech/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Pro Level",
+            "item": "https://lokii.tech/#resources"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Wireshark Packet Capture Analysis | Pro Level | lokii.tech",
+            "item": "https://lokii.tech/pro/wireshark-packet-capture-analysis.html"
+          }
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://lokii.tech/pro/wireshark-packet-capture-analysis.html#webpage",
+        "url": "https://lokii.tech/pro/wireshark-packet-capture-analysis.html",
+        "name": "Wireshark Packet Capture Analysis | Pro Level | lokii.tech",
+        "description": "A practical SOC-style Wireshark learning note for reading PCAP files, filtering network traffic, identifying suspicious patterns, and reporting evidence clearly.",
+        "isPartOf": {
+          "@id": "https://lokii.tech/#website"
+        },
+        "breadcrumb": {
+          "@id": "https://lokii.tech/pro/wireshark-packet-capture-analysis.html#breadcrumbs"
+        },
+        "primaryImageOfPage": "https://lokii.tech/preview.jpg",
+        "dateModified": "2026-06-05",
+        "inLanguage": "en"
+      },
+      {
+        "@type": [
+          "TechArticle",
+          "LearningResource"
+        ],
+        "@id": "https://lokii.tech/pro/wireshark-packet-capture-analysis.html#article",
+        "headline": "Wireshark Packet Capture Analysis",
+        "description": "A practical SOC-style Wireshark learning note for PCAP analysis, display filtering, reconnaissance investigation, and evidence-based reporting.",
+        "url": "https://lokii.tech/pro/wireshark-packet-capture-analysis.html",
+        "image": "https://lokii.tech/preview.jpg",
+        "author": {
+          "@id": "https://lokii.tech/#creator"
+        },
+        "publisher": {
+          "@id": "https://lokii.tech/#creator"
+        },
+        "mainEntityOfPage": {
+          "@id": "https://lokii.tech/pro/wireshark-packet-capture-analysis.html#webpage"
+        },
+        "educationalLevel": "Intermediate to Advanced",
+        "learningResourceType": "Professional Note",
+        "keywords": [
+          "Wireshark",
+          "PCAP",
+          "SOC",
+          "Network Analysis",
+          "Reconnaissance",
+          "Nmap",
+          "Incident Report",
+          "Blue Team"
+        ],
+        "dateModified": "2026-06-05",
+        "inLanguage": "en"
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="guide-page wireshark-note-page">
+  <header class="site-header" id="top">
+    <div class="container">
+      <div class="header-content">
+        <a href="../index.html" class="branding">
+          <span class="logo">lokii.tech</span>
+        </a>
+        <nav class="nav-links">
+          <a href="../index.html#about" class="nav-link nav-link-enhanced">About</a>
+          <a href="../index.html#resources" class="nav-link nav-link-enhanced">Resources</a>
+          <a href="https://github.com/UnExplainableFish52/lokii.tech" target="_blank" class="nav-link nav-link-enhanced" rel="noopener noreferrer">GitHub</a>
+          <a href="https://github.com/UnExplainableFish52/lokii.tech/issues" target="_blank" class="nav-link nav-contribute" rel="noopener noreferrer">Contribute</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="guide-main">
+    <div class="container guide-container">
+      <section class="guide-hero">
+        <p class="guide-kicker">Pro Level Field Note</p>
+        <h1>Wireshark Packet Capture Analysis</h1>
+        <p class="guide-subtitle">A practical SOC-style learning path for reading PCAP files, filtering network traffic, identifying suspicious patterns, and reporting evidence clearly.</p>
+        <p>This project was built from hands-on Wireshark practice, PCAP analysis, filter references, and Nmap reconnaissance investigation. The focus is not memorizing every feature. The focus is learning how to ask useful questions, inspect packets, and support findings with evidence.</p>
+        <div class="tag-row" aria-label="Topic tags">
+          <span class="tag-pill">Wireshark</span>
+          <span class="tag-pill">PCAP</span>
+          <span class="tag-pill">SOC</span>
+          <span class="tag-pill">Network Analysis</span>
+          <span class="tag-pill">Reconnaissance</span>
+          <span class="tag-pill">Nmap</span>
+          <span class="tag-pill">Incident Report</span>
+          <span class="tag-pill">Blue Team</span>
+        </div>
+        <div class="repo-panel">
+          <strong>Source repository</strong>
+          <p>This note is based on the Wireshark learning project repository:</p>
+          <a class="source-url" href="https://github.com/UnExplainableFish52/wireshark" target="_blank" rel="noopener noreferrer">https://github.com/UnExplainableFish52/wireshark</a>
+          <div class="repo-action-row">
+            <a href="https://github.com/UnExplainableFish52/wireshark" target="_blank" rel="noopener noreferrer">Open repository</a>
+            <a href="https://github.com/UnExplainableFish52/wireshark/blob/main/filters.md" target="_blank" rel="noopener noreferrer">Filter reference</a>
+            <a href="https://github.com/UnExplainableFish52/wireshark/blob/main/pcap_analysis_algorithm.md" target="_blank" rel="noopener noreferrer">SOC field guide</a>
+          </div>
+        </div>
+        <div class="guide-nav">
+          <a href="#project-about">About</a>
+          <a href="#learning-path">Learning Path</a>
+          <a href="#visual-references">Screenshots</a>
+          <a href="#filters">Filters</a>
+          <a href="#analyst-method">Analyst Method</a>
+          <a href="#case-study">Case Study</a>
+          <a href="../index.html#resources">Back to Resources</a>
+        </div>
+      </section>
+
+      <section class="toc-box" id="project-about">
+        <h2>What This Project Is About</h2>
+        <p>A PCAP is a saved record of network traffic. It lets an analyst review who talked to whom, which ports were used, which protocols appeared, and what behavior patterns stood out during the capture window.</p>
+        <p>This project trains practical packet analysis instead of theoretical memorization. The main skill is learning how to ask good investigation questions and prove answers from packet evidence.</p>
+        <div class="guide-note">
+          <strong>Working principle:</strong> Treat packets as evidence. A filter helps narrow the view, but the conclusion comes from repeated behavior, timestamps, source and destination context, protocol details, and clearly documented limits.
+        </div>
+      </section>
+
+      <section class="level-block" id="who-this-is-for">
+        <h2>Who This Is For</h2>
+        <p>This note is for learners who already understand basic networking and want to practice analysis in a more professional way. You do not need to be an expert, but the following foundations should already feel familiar.</p>
+        <div class="note-grid">
+          <div class="note-card">
+            <strong>Addressing and ports</strong>
+            IP addresses, source and destination traffic, service ports, and the difference between clients and servers.
+          </div>
+          <div class="note-card">
+            <strong>Network models</strong>
+            TCP/IP model thinking, OSI model basics, and how layers help during troubleshooting.
+          </div>
+          <div class="note-card">
+            <strong>Common protocols</strong>
+            TCP, UDP, DNS, HTTP, HTTPS/TLS, ICMP, and ARP at a beginner-friendly practical level.
+          </div>
+          <div class="note-card">
+            <strong>Suspicious patterns</strong>
+            Scanning, brute force attempts, beaconing, exfiltration, denial of service, and cleartext service exposure.
+          </div>
+        </div>
+      </section>
+
+      <section class="level-block" id="learning-path">
+        <h2>Repository Learning Path</h2>
+        <p>The repository can be treated as a clean learning map. Start with the beginner capture, answer guided questions, then move into the SOC field guide and the Nmap reconnaissance case study.</p>
+        <div class="learning-map">
+          <div class="map-card">
+            <strong><code>pcaps/net_ctf.pcapng</code></strong>
+            Beginner practice capture for learning how to open a PCAP, inspect hosts, and reason from packet behavior.
+            <br><a class="repo-link" href="https://github.com/UnExplainableFish52/wireshark/blob/main/pcaps/net_ctf.pcapng" target="_blank" rel="noopener noreferrer">https://github.com/UnExplainableFish52/wireshark/blob/main/pcaps/net_ctf.pcapng</a>
+          </div>
+          <div class="map-card">
+            <strong><code>practice_analysis/practice_questions.md</code></strong>
+            Guided beginner questions that turn the first capture into a structured investigation exercise.
+            <br><a class="repo-link" href="https://github.com/UnExplainableFish52/wireshark/blob/main/practice_analysis/practice_questions.md" target="_blank" rel="noopener noreferrer">https://github.com/UnExplainableFish52/wireshark/blob/main/practice_analysis/practice_questions.md</a>
+          </div>
+          <div class="map-card">
+            <strong><code>wireshark_window.png</code></strong>
+            Interface reference for understanding the main Wireshark panes and where investigation controls live.
+            <br><a class="repo-link" href="https://github.com/UnExplainableFish52/wireshark/blob/main/wireshark_window.png" target="_blank" rel="noopener noreferrer">https://github.com/UnExplainableFish52/wireshark/blob/main/wireshark_window.png</a>
+          </div>
+          <div class="map-card">
+            <strong><code>capture_properties.png</code></strong>
+            Capture properties reference for learning duration, file metadata, packet counts, and capture context.
+            <br><a class="repo-link" href="https://github.com/UnExplainableFish52/wireshark/blob/main/capture_properties.png" target="_blank" rel="noopener noreferrer">https://github.com/UnExplainableFish52/wireshark/blob/main/capture_properties.png</a>
+          </div>
+          <div class="map-card">
+            <strong><code>pcap_analysis_algorithm.md</code></strong>
+            Deeper SOC analyst PCAP field guide for moving from first look to report-ready findings.
+            <br><a class="repo-link" href="https://github.com/UnExplainableFish52/wireshark/blob/main/pcap_analysis_algorithm.md" target="_blank" rel="noopener noreferrer">https://github.com/UnExplainableFish52/wireshark/blob/main/pcap_analysis_algorithm.md</a>
+          </div>
+          <div class="map-card">
+            <strong><code>filters.md</code></strong>
+            Practical Wireshark filter reference for turning investigation questions into display filters.
+            <br><a class="repo-link" href="https://github.com/UnExplainableFish52/wireshark/blob/main/filters.md" target="_blank" rel="noopener noreferrer">https://github.com/UnExplainableFish52/wireshark/blob/main/filters.md</a>
+          </div>
+          <div class="map-card">
+            <strong><code>pcaps/open_nmap_recon.pcapng</code></strong>
+            Reconnaissance capture used to study Nmap scanning, service enumeration, and packet-level evidence.
+            <br><a class="repo-link" href="https://github.com/UnExplainableFish52/wireshark/blob/main/pcaps/open_nmap_recon.pcapng" target="_blank" rel="noopener noreferrer">https://github.com/UnExplainableFish52/wireshark/blob/main/pcaps/open_nmap_recon.pcapng</a>
+          </div>
+          <div class="map-card">
+            <strong><code>nmap_recon/Network_Packet_Capture_Incident_Analysis_Report.md</code></strong>
+            Written case study report that models evidence, limitations, and cautious conclusions.
+            <br><a class="repo-link" href="https://github.com/UnExplainableFish52/wireshark/blob/main/nmap_recon/Network_Packet_Capture_Incident_Analysis_Report.md" target="_blank" rel="noopener noreferrer">https://github.com/UnExplainableFish52/wireshark/blob/main/nmap_recon/Network_Packet_Capture_Incident_Analysis_Report.md</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="level-block" id="visual-references">
+        <h2>Repository Screenshots and References</h2>
+        <p>These screenshots should be reviewed before the pane-by-pane explanation because they give the reader a real visual anchor for the interface and the capture summary view.</p>
+        <div class="media-grid">
+          <figure class="media-figure">
+            <img src="https://raw.githubusercontent.com/UnExplainableFish52/wireshark/main/wireshark_window.png" alt="Wireshark window interface reference from the Wireshark learning repository" loading="lazy" decoding="async">
+            <figcaption>
+              <strong>Wireshark window reference</strong>
+              The main packet list, packet details, bytes, filter bar, toolbar, and status area in context.
+              <br><a class="media-link" href="https://github.com/UnExplainableFish52/wireshark/blob/main/wireshark_window.png" target="_blank" rel="noopener noreferrer">Open full screenshot</a>
+              <br><a class="source-url" href="https://raw.githubusercontent.com/UnExplainableFish52/wireshark/main/wireshark_window.png" target="_blank" rel="noopener noreferrer">https://raw.githubusercontent.com/UnExplainableFish52/wireshark/main/wireshark_window.png</a>
+            </figcaption>
+          </figure>
+          <figure class="media-figure">
+            <img src="https://raw.githubusercontent.com/UnExplainableFish52/wireshark/main/capture_properties.png" alt="Wireshark capture properties reference from the Wireshark learning repository" loading="lazy" decoding="async">
+            <figcaption>
+              <strong>Capture properties reference</strong>
+              The capture metadata view used to confirm duration, packet count, file details, and analysis context.
+              <br><a class="media-link" href="https://github.com/UnExplainableFish52/wireshark/blob/main/capture_properties.png" target="_blank" rel="noopener noreferrer">Open full screenshot</a>
+              <br><a class="source-url" href="https://raw.githubusercontent.com/UnExplainableFish52/wireshark/main/capture_properties.png" target="_blank" rel="noopener noreferrer">https://raw.githubusercontent.com/UnExplainableFish52/wireshark/main/capture_properties.png</a>
+            </figcaption>
+          </figure>
+        </div>
+        <div class="guide-note warning-note">
+          <strong>Note:</strong> These images are referenced by full GitHub URLs because this website workspace does not currently include local copies of the Wireshark repository screenshots.
+        </div>
+      </section>
+
+      <section class="level-block" id="interface-basics">
+        <h2>Wireshark Interface Basics</h2>
+        <p>This is a short orientation, not a full beginner lesson. The useful habit is knowing which pane answers the current analysis question.</p>
+        <div class="note-grid">
+          <div class="note-card">
+            <strong>Packet List Pane</strong>
+            The timeline of captured packets. Use it to see frame number, time, source, destination, protocol, length, and the short summary.
+          </div>
+          <div class="note-card">
+            <strong>Packet Details Pane</strong>
+            The decoded structure of the selected packet. Expand protocol layers here to inspect headers, flags, fields, and values.
+          </div>
+          <div class="note-card">
+            <strong>Packet Bytes Pane</strong>
+            The raw bytes behind the selected packet. It is useful when payload text, protocol fields, or exact byte evidence matters.
+          </div>
+          <div class="note-card">
+            <strong>Display Filter Bar</strong>
+            The investigation search box. It hides or shows packets after the capture is loaded, which makes it safer for learning.
+          </div>
+          <div class="note-card">
+            <strong>Toolbar and Menus</strong>
+            Shortcuts for opening captures, navigating packets, managing views, and finding protocol statistics.
+          </div>
+          <div class="note-card">
+            <strong>Status Bar</strong>
+            Quick feedback about capture state, packet counts, profile, and whether the current filter is valid.
+          </div>
+        </div>
+      </section>
+
+      <section class="level-block" id="beginner-workflow">
+        <h2>Beginner Workflow</h2>
+        <p>The first goal is not to find every interesting packet. The first goal is to learn a repeatable path that turns an unknown capture into a small set of defensible observations.</p>
+        <div class="repo-panel">
+          <strong>Practice capture for this workflow</strong>
+          <p>Use this exact PCAP when following the beginner workflow:</p>
+          <a class="source-url" href="https://github.com/UnExplainableFish52/wireshark/blob/main/pcaps/net_ctf.pcapng" target="_blank" rel="noopener noreferrer">https://github.com/UnExplainableFish52/wireshark/blob/main/pcaps/net_ctf.pcapng</a>
+        </div>
+        <div class="workflow-grid">
+          <div class="workflow-card">
+            <strong>1. Open Wireshark</strong>
+            Start with a clean view and avoid applying filters before you know what is in the file.
+          </div>
+          <div class="workflow-card">
+            <strong>2. Load the practice capture</strong>
+            Open <code>pcaps/net_ctf.pcapng</code> and let the full packet list load.
+          </div>
+          <div class="workflow-card">
+            <strong>3. Check capture properties</strong>
+            Note the file type, packet count, duration, time format, and any capture comments or metadata.
+          </div>
+          <div class="workflow-card">
+            <strong>4. Review protocol hierarchy</strong>
+            Identify which protocols dominate and whether anything appears unexpectedly often.
+          </div>
+          <div class="workflow-card">
+            <strong>5. Review conversations</strong>
+            Look for top talkers, repeated connections, unusual service ports, and one-sided traffic.
+          </div>
+          <div class="workflow-card">
+            <strong>6. Filter on a host</strong>
+            Use <code>ip.addr == &lt;host-ip&gt;</code> to isolate traffic involving one host without destroying evidence.
+          </div>
+          <div class="workflow-card">
+            <strong>7. Answer guided questions</strong>
+            Work through the practice questions and write down the filter or view used for each answer.
+          </div>
+          <div class="workflow-card">
+            <strong>8. Separate facts from guesses</strong>
+            Facts come from packets. Guesses are allowed in notes, but they must be labeled as interpretations or unknowns.
+          </div>
+        </div>
+      </section>
+
+      <section class="level-block" id="filters">
+        <h2>First Filters To Learn</h2>
+        <p>Good filters are small and question-driven. Start broad, observe the result, then narrow only when the question becomes more specific.</p>
+        <div class="filter-table-wrap">
+          <table class="filter-table">
+            <thead>
+              <tr>
+                <th>Filter</th>
+                <th>What it shows</th>
+                <th>Question it helps answer</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>ip</code></td>
+                <td>All IPv4 traffic in the capture.</td>
+                <td>Which packets are IP-based traffic?</td>
+              </tr>
+              <tr>
+                <td><code>tcp</code></td>
+                <td>All TCP traffic, including connection setup and application sessions.</td>
+                <td>Which hosts are trying to establish reliable connections?</td>
+              </tr>
+              <tr>
+                <td><code>dns</code></td>
+                <td>DNS queries and responses.</td>
+                <td>Which names were looked up, and did responses succeed or fail?</td>
+              </tr>
+              <tr>
+                <td><code>ip.addr == &lt;host-ip&gt;</code></td>
+                <td>Traffic where the selected host is either source or destination.</td>
+                <td>What did this host send or receive during the capture?</td>
+              </tr>
+              <tr>
+                <td><code>tcp.flags.syn == 1 &amp;&amp; tcp.flags.ack == 0</code></td>
+                <td>Initial TCP SYN attempts without SYN/ACK.</td>
+                <td>Is a host initiating many connection attempts, possibly scanning or probing?</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="level-block" id="filter-thinking">
+        <h2>Filter Thinking Guide</h2>
+        <p>Display filters and capture filters are not the same. Display filters are used after a capture is loaded and only hide or show packets. Capture filters are used before or during capture and affect what gets saved.</p>
+        <p>For learning, display filters are safer because they do not remove evidence from the file. A filter should answer a question, not simply make the screen look cleaner.</p>
+        <div class="filter-stack">
+          <div class="filter-line">
+            <code>ip.addr == 10.0.0.5</code>
+            <span>Show all traffic involving one host, whether it sent or received the packet.</span>
+          </div>
+          <div class="filter-line">
+            <code>ip.src == 10.0.0.5</code>
+            <span>Show packets sent by one host.</span>
+          </div>
+          <div class="filter-line">
+            <code>ip.dst == 10.0.0.5</code>
+            <span>Show packets received by one host.</span>
+          </div>
+          <div class="filter-line">
+            <code>dns.flags.response == 1 and dns.flags.rcode != 0</code>
+            <span>Find DNS responses that returned an error code.</span>
+          </div>
+          <div class="filter-line">
+            <code>http.user_agent matches "(?i)(python|curl|wget|nmap|masscan|zgrab|nuclei)"</code>
+            <span>Look for HTTP clients that may indicate scripts, scanners, or automated probes.</span>
+          </div>
+          <div class="filter-line">
+            <code>tls.handshake.type == 1 and tls.handshake.extensions_server_name</code>
+            <span>Show TLS Client Hello packets that include server name information.</span>
+          </div>
+        </div>
+        <div class="guide-note warning-note">
+          <strong>Discipline:</strong> A matching filter is not the same as a finding. It is a starting point for review, comparison, and evidence collection.
+        </div>
+      </section>
+
+      <section class="level-block" id="analyst-method">
+        <h2>Practical Analyst Method</h2>
+        <p>A SOC-style workflow keeps the analysis from becoming random clicking. Move from context to overview, then to hosts, protocols, attack patterns, evidence, and reporting.</p>
+        <article class="qa-card phase-card">
+          <h3>Before analysis, ask</h3>
+          <ul class="compact-list">
+            <li>What is the context of the capture?</li>
+            <li>What do we suspect happened?</li>
+            <li>What is the time window?</li>
+          </ul>
+        </article>
+        <div class="note-grid">
+          <article class="note-card">
+            <strong>Phase 1: Get the big picture</strong>
+            Capture duration, total packets, average packet size, file type, timestamp format, expert information, and protocol hierarchy.
+          </article>
+          <article class="note-card">
+            <strong>Phase 2: Map the network</strong>
+            Internal and external IPs, top talkers, conversations, exposed services, and unusual one-way traffic.
+          </article>
+          <article class="note-card">
+            <strong>Phase 3: Analyze protocols</strong>
+            DNS, TCP, HTTP, TLS, SMB, and Windows services, with each protocol reviewed for behavior and evidence.
+          </article>
+          <article class="note-card">
+            <strong>Phase 4: Recognize attacks</strong>
+            Port scanning, brute force attempts, beaconing, exfiltration, and suspicious cleartext protocol usage.
+          </article>
+          <article class="note-card">
+            <strong>Phase 5: Collect evidence</strong>
+            Filters used, timestamps, source and destination, protocol and port, packet or frame references, and confidence level.
+          </article>
+          <article class="note-card">
+            <strong>Phase 6: Write a report</strong>
+            Summary, scope, key findings, evidence, limitations, and recommendations.
+          </article>
+        </div>
+        <article class="qa-card phase-card">
+          <h3>Useful Wireshark analyst views</h3>
+          <p>After the first pass, the stronger work comes from cross-checking packet behavior with Wireshark's built-in analysis views instead of relying on one filtered packet list.</p>
+          <div class="advanced-list">
+            <div class="advanced-item">
+              <strong>Capture File Properties</strong>
+              Confirm the capture window, packet count, file metadata, and timestamp assumptions before making a timeline claim.
+            </div>
+            <div class="advanced-item">
+              <strong>Protocol Hierarchy</strong>
+              Identify protocol mix and high-volume protocol families before drilling into individual packets.
+            </div>
+            <div class="advanced-item">
+              <strong>Endpoints and Conversations</strong>
+              Find top talkers, repeated client-server pairs, one-sided attempts, and high-volume relationships.
+            </div>
+            <div class="advanced-item">
+              <strong>Follow TCP Stream</strong>
+              Reconstruct cleartext sessions carefully when payload is visible, while avoiding claims beyond the stream evidence.
+            </div>
+            <div class="advanced-item">
+              <strong>Expert Information</strong>
+              Use warnings and notes as leads, then verify the relevant packets manually before reporting.
+            </div>
+            <div class="advanced-item">
+              <strong>IO Graphs and Time Windows</strong>
+              Spot bursts, scanning waves, traffic spikes, and quiet periods that help structure a timeline.
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section class="level-block" id="beginner-finding">
+        <h2>Beginner Practice Finding</h2>
+        <p>The beginner capture shows a clear scanning-style pattern. The evidence is based on packet behavior, not an assumption about the person or tool behind the traffic.</p>
+        <div class="repo-panel">
+          <strong>Source capture being analyzed</strong>
+          <p>This finding refers specifically to this file:</p>
+          <a class="source-url" href="https://github.com/UnExplainableFish52/wireshark/blob/main/pcaps/net_ctf.pcapng" target="_blank" rel="noopener noreferrer">https://github.com/UnExplainableFish52/wireshark/blob/main/pcaps/net_ctf.pcapng</a>
+          <div class="repo-action-row">
+            <a href="https://github.com/UnExplainableFish52/wireshark/blob/main/practice_analysis/practice_questions.md" target="_blank" rel="noopener noreferrer">Practice questions</a>
+          </div>
+        </div>
+        <div class="finding-strip">
+          <div class="finding-stat">
+            <span>Source</span>
+            <strong>192.168.1.111</strong>
+          </div>
+          <div class="finding-stat">
+            <span>Target</span>
+            <strong>192.168.1.9</strong>
+          </div>
+          <div class="finding-stat">
+            <span>Observed behavior</span>
+            <strong>Repeated TCP SYNs</strong>
+          </div>
+          <div class="finding-stat">
+            <span>Phase mapping</span>
+            <strong>Reconnaissance</strong>
+          </div>
+        </div>
+        <p><code>192.168.1.111</code> generated repeated TCP SYN packets toward <code>192.168.1.9</code>. SYN-only packets across multiple destination ports indicate scanning or probing because the source is repeatedly initiating connection attempts instead of having one normal service conversation.</p>
+        <div class="guide-note success-note">
+          <strong>Evidence wording:</strong> The packet pattern supports reconnaissance or probing. It does not, by itself, prove intent, authorization status, compromise, or later exploitation.
+        </div>
+      </section>
+
+      <section class="level-block" id="case-study">
+        <h2>Nmap Reconnaissance Case Study</h2>
+        <p>This case study is reconnaissance and service enumeration. The packet evidence shows scanning, service exposure, HTTP probing, banners, and one interactive shell prompt exposure. It does not prove malicious command execution beyond the scanner sending <code>exit</code> in that observed session.</p>
+        <div class="repo-panel">
+          <strong>Source capture and report being analyzed</strong>
+          <p>The packet findings in this section refer to the Nmap reconnaissance PCAP and its written report:</p>
+          <a class="source-url" href="https://github.com/UnExplainableFish52/wireshark/blob/main/pcaps/open_nmap_recon.pcapng" target="_blank" rel="noopener noreferrer">https://github.com/UnExplainableFish52/wireshark/blob/main/pcaps/open_nmap_recon.pcapng</a>
+          <br><a class="source-url" href="https://github.com/UnExplainableFish52/wireshark/blob/main/nmap_recon/Network_Packet_Capture_Incident_Analysis_Report.md" target="_blank" rel="noopener noreferrer">https://github.com/UnExplainableFish52/wireshark/blob/main/nmap_recon/Network_Packet_Capture_Incident_Analysis_Report.md</a>
+        </div>
+        <div class="finding-strip">
+          <div class="finding-stat">
+            <span>Scanner</span>
+            <strong>192.168.10.100</strong>
+          </div>
+          <div class="finding-stat">
+            <span>Target</span>
+            <strong>192.168.20.100</strong>
+          </div>
+          <div class="finding-stat">
+            <span>Duration</span>
+            <strong>About 7m 11s</strong>
+          </div>
+          <div class="finding-stat">
+            <span>Total packets</span>
+            <strong>3,483</strong>
+          </div>
+        </div>
+
+        <article class="qa-card case-card">
+          <h3>Scanning evidence</h3>
+          <p>The scanner sent <strong>1,180 TCP SYN packets</strong> to the target across <strong>1,000 TCP destination ports</strong>. The target responded with SYN/ACKs on <strong>23 observed open TCP ports</strong>. This is strong packet evidence of broad TCP reconnaissance against one target.</p>
+        </article>
+
+        <article class="qa-card case-card">
+          <h3>Observed open ports</h3>
+          <div class="port-grid">
+            <div class="port-pill"><strong>21</strong> FTP</div>
+            <div class="port-pill"><strong>22</strong> SSH</div>
+            <div class="port-pill"><strong>23</strong> Telnet</div>
+            <div class="port-pill"><strong>25</strong> SMTP</div>
+            <div class="port-pill"><strong>53</strong> DNS</div>
+            <div class="port-pill"><strong>80</strong> HTTP</div>
+            <div class="port-pill"><strong>111</strong> RPCBind</div>
+            <div class="port-pill"><strong>139/445</strong> SMB</div>
+            <div class="port-pill"><strong>512/513/514</strong> r-services</div>
+            <div class="port-pill"><strong>1099</strong> Java RMI</div>
+            <div class="port-pill"><strong>1524</strong> shell/backdoor-like service</div>
+            <div class="port-pill"><strong>2049</strong> NFS</div>
+            <div class="port-pill"><strong>2121</strong> FTP</div>
+            <div class="port-pill"><strong>3306</strong> MySQL</div>
+            <div class="port-pill"><strong>5432</strong> PostgreSQL</div>
+            <div class="port-pill"><strong>5900</strong> VNC</div>
+            <div class="port-pill"><strong>6000</strong> X11</div>
+            <div class="port-pill"><strong>6667</strong> IRC</div>
+            <div class="port-pill"><strong>8009</strong> AJP</div>
+            <div class="port-pill"><strong>8180</strong> Tomcat/HTTP</div>
+          </div>
+        </article>
+
+        <article class="qa-card case-card">
+          <h3>HTTP probe evidence</h3>
+          <p>Nmap NSE HTTP probes were observed through HTTP User-Agent strings containing <code>Nmap Scripting Engine</code>. This supports service enumeration behavior, not just simple port reachability testing.</p>
+        </article>
+
+        <article class="qa-card case-card">
+          <h3>Legacy service banners</h3>
+          <p>The target exposed legacy Metasploitable-style banners and service identities. These banners are valuable to analysts because they show what services were visible on the wire, and valuable to attackers because they can guide follow-up targeting.</p>
+          <ul class="banner-list">
+            <li>vsFTPd 2.3.4</li>
+            <li>OpenSSH_4.7p1 Debian</li>
+            <li>Apache/2.2.8</li>
+            <li>PHP/5.2.4</li>
+            <li>ProFTPD 1.3.1</li>
+            <li>MySQL 5.0.51a</li>
+            <li>Tomcat/Apache-Coyote</li>
+            <li>VNC</li>
+            <li>IRC Metasploitable identity</li>
+          </ul>
+        </article>
+
+        <article class="qa-card case-card">
+          <h3>TCP 1524 shell prompt exposure</h3>
+          <p>TCP <code>1524</code> returned a <code>root@metasploitable:/#</code> prompt, and the scanner sent <code>exit</code>. That proves exposure of an interactive root shell prompt in packet evidence. It does not prove malicious command execution beyond exiting the session, and it does not prove what happened before or after the capture.</p>
+        </article>
+      </section>
+
+      <section class="level-block" id="analyst-judgment">
+        <h2>Analyst Judgment</h2>
+        <p>PCAP evidence can show what happened on the network, but it cannot always prove the full story. Good analysis keeps facts, interpretations, assumptions, and unknowns separate.</p>
+        <div class="evidence-grid">
+          <div class="evidence-card">
+            <strong>PCAP can show</strong>
+            Network conversations, protocol behavior, visible payloads, service banners, timing, ports, and repeated traffic patterns.
+          </div>
+          <div class="evidence-card">
+            <strong>PCAP cannot always prove</strong>
+            User intent, endpoint process names, shell history, prior compromise, or post-capture activity. Authorization status cannot be determined from PCAP alone.
+          </div>
+          <div class="evidence-card">
+            <strong>Reports should separate</strong>
+            Facts from packets, analyst interpretation, assumptions made for context, and unknowns that require more data.
+          </div>
+        </div>
+      </section>
+
+      <section class="level-block" id="security-lessons">
+        <h2>Security Lessons Learned</h2>
+        <p>The project is most useful when the packet analysis becomes general security judgment. These are the lessons that carry into SOC work, incident notes, and defensive reviews.</p>
+        <div class="note-grid">
+          <div class="note-card">
+            <strong>Broad scans are visible</strong>
+            Large numbers of SYN packets across many ports stand out clearly in packet captures.
+          </div>
+          <div class="note-card">
+            <strong>Banners reveal context</strong>
+            Service banners expose version and product clues that help analysts and attackers.
+          </div>
+          <div class="note-card">
+            <strong>Legacy services raise risk</strong>
+            Cleartext protocols and old services increase exposure, especially outside controlled labs.
+          </div>
+          <div class="note-card">
+            <strong>Labs are not production</strong>
+            Metasploitable-style services are expected in training environments but dangerous on real networks.
+          </div>
+          <div class="note-card">
+            <strong>Nmap NSE leaves clues</strong>
+            HTTP User-Agent values and request patterns can identify Nmap scripting activity.
+          </div>
+          <div class="note-card">
+            <strong>Filters are tools</strong>
+            Filters support investigation. They do not replace packet review or evidence-backed reasoning.
+          </div>
+          <div class="note-card">
+            <strong>Patterns matter</strong>
+            One packet rarely proves a full incident. Repeated behavior, context, and corroborating evidence matter.
+          </div>
+        </div>
+        <div class="guide-note warning-note">
+          <strong>Final report habit:</strong> Describe the Nmap case as reconnaissance and service enumeration unless additional evidence proves exploitation, data theft, malware, persistence, or compromise.
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>lokii.tech</h4>
+          <p>An open-source learning platform by lokii (UnExplainableFish52)</p>
+        </div>
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="../index.html#about">About</a></li>
+            <li><a href="../index.html#resources">Resources</a></li>
+            <li><a href="https://github.com/UnExplainableFish52/lokii.tech" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Wireshark Note</h4>
+          <p>Packet analysis, filter thinking, reconnaissance evidence, and SOC-style reporting.</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 lokii.tech. Open source and community-driven. <a href="../LICENSE">See License</a></p>
+      </div>
+    </div>
+  </footer>
+  <script src="../js/main.js"></script>
+</body>
+</html>
