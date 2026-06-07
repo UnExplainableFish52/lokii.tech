@@ -1,0 +1,32 @@
+# OS and editor files
+.DS_Store
+Thumbs.db
+Desktop.ini
+.vscode/
+.idea/
+
+# Runtime and cache files
+__pycache__/
+*.py[cod]
+*.log
+*.tmp
+*.temp
+*.bak
+*.orig
+*~
+
+# Local environment files
+.env
+.env.*
+!.env.example
+
+# One-time content generation sources and reports
+/tempp_net_md_notes/
+/PROMPT
+/grc_foundation.md
+/grc_intermediate.md
+/grc_pro.md
+/tools/build-grc-pages.ps1
+/PROJECT_FIX_REPORT.md
+/WIRESHARK_NOTE_IMPLEMENTATION_SUMMARY.md
+/intermediate/tools/build_226.py
