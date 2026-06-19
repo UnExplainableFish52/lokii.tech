@@ -3,25 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>lokii.tech - Break Into CS with Confidence</title>
+    <title>lokii.tech - Free Cybersecurity and Systems Learning Path</title>
 
-    <meta name="description" content="lokii.tech: An open-source platform providing valuable lessons and guidance to break into Computer Science in today's competitive world.">
+    <meta name="description" content="Built by lokii for learners, open for contributions, and driven by a free quality education movement covering computer science, cybersecurity, Linux, networking, shell, GRC, tools, and security projects.">
     <meta name="author" content="lokii (UnExplainableFish52)">
     <meta name="theme-color" content="#050505">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://lokii.tech/">
-    <meta property="og:title" content="lokii.tech - Break Into CS with Confidence">
-    <meta property="og:description" content="lokii.tech: An open-source platform providing valuable lessons and guidance to break into Computer Science in today's competitive world.">
+    <meta property="og:title" content="lokii.tech - Free Cybersecurity and Systems Learning Path">
+    <meta property="og:description" content="Built by lokii for learners, open for contributions, and driven by a free quality education movement covering computer science, cybersecurity, Linux, networking, shell, GRC, tools, and security projects.">
     <meta property="og:image" content="https://lokii.tech/preview.jpg">
     <meta property="og:site_name" content="lokii.tech">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://lokii.tech/">
-    <meta name="twitter:title" content="lokii.tech - Break Into CS with Confidence">
-    <meta name="twitter:description" content="lokii.tech: An open-source platform providing valuable lessons and guidance to break into Computer Science in today's competitive world.">
+    <meta name="twitter:title" content="lokii.tech - Free Cybersecurity and Systems Learning Path">
+    <meta name="twitter:description" content="Built by lokii for learners, open for contributions, and driven by a free quality education movement covering computer science, cybersecurity, Linux, networking, shell, GRC, tools, and security projects.">
+    <meta name="keywords" content="computer science, cybersecurity, networking, shell, certificate prep, GRC, Linux, tools, sys admin, SOC analyst, awk, sed, grep, Vim, Nmap, Wireshark">
     <meta name="twitter:image" content="https://lokii.tech/preview.jpg">
     <!-- SEO Metadata -->
     <link rel="canonical" href="https://lokii.tech/">
@@ -42,216 +43,6 @@
 
 
     <link rel="stylesheet" href="css/global-ui.css">
-<style>
-        /* Accordion Styles for Notes Sections */
-        .notes-accordion {
-            margin-top: 30px;
-        }
-
-        .accordion-section {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: var(--border-radius-md);
-            margin-bottom: 15px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .accordion-section:hover {
-            border-color: var(--accent-primary);
-        }
-
-        .accordion-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 25px;
-            cursor: pointer;
-            background: transparent;
-            border: none;
-            width: 100%;
-            text-align: left;
-            color: var(--text-primary);
-            font-family: inherit;
-            transition: background 0.3s ease;
-        }
-
-        .accordion-header:hover {
-            background: var(--bg-card-hover);
-        }
-
-        .accordion-header-content {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .accordion-icon {
-            font-size: 1.8rem;
-        }
-
-        .accordion-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: #00bcd4;
-            margin: 0;
-        }
-
-        .accordion-subtitle {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            margin: 0;
-        }
-
-        .accordion-arrow {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            transition: transform 0.3s ease;
-        }
-
-        .accordion-section.active .accordion-arrow {
-            transform: rotate(180deg);
-        }
-
-        .accordion-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease;
-        }
-
-        .accordion-section.active .accordion-content {
-            max-height: 2000px;
-        }
-
-        .accordion-body {
-            padding: 0 25px 25px;
-        }
-
-        /* Chapter List Styles */
-        .chapter-list {
-            display: grid;
-            gap: 12px;
-        }
-
-        .chapter-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 15px 20px;
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid var(--border-color);
-            border-radius: var(--border-radius-sm);
-            color: var(--text-primary);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .chapter-item:hover {
-            background: rgba(0, 188, 212, 0.1);
-            border-color: #00bcd4;
-            transform: translateX(5px);
-            text-decoration: none;
-        }
-
-        .chapter-number {
-            background: linear-gradient(135deg, #00bcd4, #0099aa);
-            color: #000;
-            font-size: 0.75rem;
-            font-weight: 700;
-            padding: 4px 10px;
-            border-radius: 4px;
-            min-width: 45px;
-            text-align: center;
-        }
-
-        .chapter-info {
-            flex: 1;
-        }
-
-        .chapter-title {
-            font-weight: 600;
-            font-size: 1rem;
-            margin-bottom: 2px;
-        }
-
-        .chapter-desc {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-        }
-
-        /* Sub-section styling (for Networking sub-chapters) */
-        .chapter-subsection {
-            margin-top: 15px;
-            padding-left: 20px;
-            border-left: 2px solid var(--border-color);
-        }
-
-        .subsection-title {
-            font-size: 0.9rem;
-            color: #ffd700;
-            font-weight: 600;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .chapter-subsection .chapter-item {
-            padding: 12px 15px;
-        }
-
-        .chapter-subsection .chapter-number {
-            font-size: 0.7rem;
-            padding: 3px 8px;
-            min-width: 50px;
-        }
-
-        /* Coming soon badge */
-        .coming-soon {
-            background: rgba(255, 193, 7, 0.15);
-            color: #ffc107;
-            font-size: 0.75rem;
-            font-weight: 600;
-            padding: 4px 10px;
-            border-radius: 4px;
-        }
-
-        /* Level badges */
-        .level-badge {
-            font-size: 0.7rem;
-            font-weight: 700;
-            padding: 3px 8px;
-            border-radius: 4px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .level-intro {
-            background: rgba(16, 185, 129, 0.2);
-            color: #10B981;
-        }
-
-        .level-intermediate {
-            background: rgba(59, 130, 246, 0.2);
-            color: #3B82F6;
-        }
-
-        .level-pro {
-            background: rgba(239, 68, 68, 0.2);
-            color: #EF4444;
-        }
-
-        /* Matrix/Network Background Canvas */
-        #matrix-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            pointer-events: none;
-        }
-    </style>
     <!-- SEO Structured Data -->
     <script type="application/ld+json" data-seo="lokii">
     {
@@ -263,7 +54,8 @@
           "name": "lokii (UnExplainableFish52)",
           "url": "https://lokii.tech/",
           "sameAs": [
-            "https://github.com/UnExplainableFish52"
+            "https://github.com/UnExplainableFish52",
+            "https://blogs.sakshamsharma.com.np"
           ]
         },
         {
@@ -271,7 +63,7 @@
           "@id": "https://lokii.tech/#website",
           "url": "https://lokii.tech/",
           "name": "lokii.tech",
-          "description": "An open-source learning platform for computer science, cybersecurity, Linux, networking, and security project guidance.",
+          "description": "Built by lokii for learners, open for contributions, and driven by a free quality education movement covering computer science, cybersecurity, Linux, networking, shell, GRC, tools, and security projects.",
           "publisher": {
             "@id": "https://lokii.tech/#creator"
           },
@@ -293,8 +85,8 @@
           "@type": "WebPage",
           "@id": "https://lokii.tech/#webpage",
           "url": "https://lokii.tech/",
-          "name": "lokii.tech - Break Into CS with Confidence",
-          "description": "lokii.tech: An open-source platform providing valuable lessons and guidance to break into Computer Science in today's competitive world.",
+          "name": "lokii.tech - Free Cybersecurity and Systems Learning Path",
+          "description": "Built by lokii for learners, open for contributions, and driven by a free quality education movement covering computer science, cybersecurity, Linux, networking, shell, GRC, tools, and security projects.",
           "isPartOf": {
             "@id": "https://lokii.tech/#website"
           },
@@ -304,9 +96,21 @@
             "cybersecurity",
             "Linux",
             "networking",
+            "shell scripting",
+            "certificate prep",
+            "GRC",
+            "security tools",
+            "system administration",
+            "SOC analyst",
+            "awk",
+            "sed",
+            "grep",
+            "Vim",
+            "Nmap",
+            "Wireshark",
             "security projects"
           ],
-          "dateModified": "2026-06-07",
+          "dateModified": "2026-06-19",
           "inLanguage": "en"
         },
         {
@@ -337,6 +141,12 @@
               "position": 4,
               "name": "GitHub",
               "url": "https://github.com/UnExplainableFish52/lokii.tech"
+            },
+            {
+              "@type": "SiteNavigationElement",
+              "position": 5,
+              "name": "Developer Writings",
+              "url": "https://blogs.sakshamsharma.com.np"
             }
           ]
         },
@@ -346,34 +156,34 @@
           "mainEntity": [
             {
               "@type": "Question",
-              "name": "Who is lokii.tech for?",
+              "name": "Why does lokii.tech exist?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "lokii.tech is for students, self-taught learners, and early security practitioners who want practical computer science and cybersecurity notes without paid course walls."
+                "text": "lokii.tech exists from a free-education belief: quality learning should not be locked away from people who are curious, disciplined, and willing to work. The site focuses on computer science, cybersecurity, Linux, networking, and related technical subjects because that is what the developer knows best."
               }
             },
             {
               "@type": "Question",
-              "name": "Where should beginners start?",
+              "name": "What does the FOSS mindset mean here?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Start with the Intro Level resources, especially the cybersecurity, operating systems, networking, and shell scripting lessons. They are ordered to build foundations before tools."
+                "text": "The project follows the spirit of free and open-source software: share what you know, let others inspect it, improve it, and keep the path open for the next learner. Free education should still be serious, structured, and worth reading."
               }
             },
             {
               "@type": "Question",
-              "name": "Are the resources free?",
+              "name": "Where should a beginner start?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Yes. The site is open source and community driven. You can read the guides, follow the labs, and contribute improvements through GitHub."
+                "text": "Start with the Intro Level resources. Cybersecurity basics, operating systems, networking, access control, and shell scripting are ordered to build the foundation before tools and projects."
               }
             },
             {
               "@type": "Question",
-              "name": "Does the site include project-based learning?",
-              "acceptedAnswer": {       
+              "name": "Where can I read more from the developer?",
+              "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Yes. The Pro Level guide focuses on portfolio-ready security projects with scope, difficulty, time estimates, deliverables, and lessons learned."
+                "text": "For broader writing, reflections, and educational content outside the focused CS notes on this site, read the developer's blog at blogs.sakshamsharma.com.np."
               }
             }
           ]
@@ -382,7 +192,7 @@
     }
     </script>
 </head>
-<body>
+<body class="home-page">
     <!-- Persistent Navigation -->
     <header class="site-header">
         <div class="container">
@@ -390,12 +200,12 @@
                 <a href="index.html" class="branding">
                     <span class="logo">lokii.tech</span>
                 </a>
-                <nav class="nav-links">
+                <nav class="nav-links" aria-label="Primary navigation">
                     <a href="#about" class="nav-link nav-link-enhanced">About</a>
                     <a href="#resources" class="nav-link nav-link-enhanced">Resources</a>
                     <a href="#faq" class="nav-link nav-link-enhanced">FAQ</a>
                     <a href="https://github.com/UnExplainableFish52/lokii.tech" target="_blank" class="nav-link nav-link-enhanced" rel="noopener noreferrer">GitHub</a>
-                    <a href="https://github.com/UnExplainableFish52/lokii.tech/issues" target="_blank" class="nav-link nav-contribute" rel="noopener noreferrer">Contribute ✨</a>
+                    <a href="https://github.com/UnExplainableFish52/lokii.tech/issues" target="_blank" class="nav-link nav-contribute" rel="noopener noreferrer">Contribute</a>
                 </nav>
             </div>
         </div>
@@ -408,36 +218,30 @@
             <canvas id="matrix-bg"></canvas>
             <div class="container">
                 <div class="hero-content">
-                    <h1 class="hero-title">Break Into CS with Confidence</h1>
-                    <p class="hero-subtitle">An open-source platform dedicated to empowering the next generation of tech professionals</p>
-                    <p class="hero-description">Built by <strong>lokii</strong> (UnExplainableFish52) with a vision to provide valuable lessons and guidance to navigate today's competitive world and give back to the community.</p>
+                    <h1 class="hero-title">Learn security, systems, and CS without paywalls.</h1>
+                    <p class="hero-subtitle">Structured notes, labs, and project roadmaps for learners building real technical confidence.</p>
+                    <p class="hero-description">Built by <a href="https://github.com/UnExplainableFish52" class="creator-link" target="_blank" rel="noopener noreferrer">lokii</a> for learners, open for contributions, and part of a movement for free quality education.</p>
+                    <div class="hero-tags" aria-label="Topics covered on lokii.tech">
+                        <span>Compsci</span>
+                        <span>Cybersec</span>
+                        <span>Networking</span>
+                        <span>Shell</span>
+                        <span>Certificate prep</span>
+                        <span>GRC</span>
+                        <span>Linux</span>
+                        <span>Tools</span>
+                        <span>Sys admin</span>
+                        <span>SOC analyst</span>
+                        <span>awk</span>
+                        <span>sed</span>
+                        <span>grep</span>
+                        <span>Vim</span>
+                        <span>Nmap</span>
+                        <span>Wireshark</span>
+                    </div>
                     <div class="cta-buttons">
-                        <a href="#resources" class="btn btn-primary">Explore Resources</a>
-                        <a href="https://github.com/UnExplainableFish52/lokii.tech" target="_blank" class="btn btn-secondary" rel="noopener noreferrer">View on GitHub</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- About Section -->
-        <section class="about" id="about">
-            <div class="container">
-                <h2>About This Project</h2>
-                <div class="about-grid">
-                    <div class="about-card">
-                        <div class="card-icon">📚</div>
-                        <h3>Comprehensive Learning</h3>
-                        <p>High-quality, well-structured guides on Computer Science fundamentals, security, systems, and development tools.</p>
-                    </div>
-                    <div class="about-card">
-                        <div class="card-icon">🎯</div>
-                        <h3>Practical Insights</h3>
-                        <p>Real-world knowledge from industry experience, helping you tackle challenges faced by professional developers.</p>
-                    </div>
-                    <div class="about-card">
-                        <div class="card-icon">🤝</div>
-                        <h3>Community Driven</h3>
-                        <p>Open to contributions and feedback. Together, we're building a better resource ecosystem for everyone.</p>
+                        <a href="#resources" class="btn btn-primary">Browse notes</a>
+                        <a href="pro/security-professional-project-guide.html" class="btn btn-secondary">View project roadmap</a>
                     </div>
                 </div>
             </div>
@@ -446,15 +250,18 @@
         <!-- Resources Section with Accordion -->
         <section class="resources" id="resources">
             <div class="container">
-                <h2>Available Resources</h2>
-                <p class="text-secondary" style="text-align: center; margin-bottom: 30px;">Click on a section to expand and explore chapters</p>
+                <div class="section-heading">
+                    <p class="section-kicker">Learning library</p>
+                    <h2>Available resources</h2>
+                    <p>Each path is grouped by difficulty and built to move from understanding to hands-on practice.</p>
+                </div>
 
                 <div class="notes-accordion">
                     <!-- INTRO LEVEL -->
                     <div class="accordion-section active">
                         <button class="accordion-header" onclick="toggleAccordion(this)">
                             <div class="accordion-header-content">
-                                <span class="accordion-icon">🎓</span>
+                                <span class="accordion-icon">01</span>
                                 <div>
                                     <h3 class="accordion-title">Intro Level <span class="level-badge level-intro">Beginner</span></h3>
                                     <p class="accordion-subtitle">Cybersecurity fundamentals, terminology, and foundations</p>
@@ -468,39 +275,39 @@
                                     <a href="intro/notes/1.1-what-is-cybersecurity.html" class="chapter-item">
                                         <span class="chapter-number">1.1</span>
                                         <div class="chapter-info">
-                                            <div class="chapter-title">🔐 What is Cybersecurity?</div>
+                                            <div class="chapter-title">What is Cybersecurity?</div>
                                             <div class="chapter-desc">Introduction to cybersecurity, the CIA triad, and digital security landscape</div>
                                         </div>
                                     </a>
                                     <a href="intro/notes/1.2-glossary.html" class="chapter-item">
                                         <span class="chapter-number">1.2</span>
                                         <div class="chapter-info">
-                                            <div class="chapter-title">📖 Cybersecurity Glossary</div>
+                                            <div class="chapter-title">Cybersecurity Glossary</div>
                                             <div class="chapter-desc">Comprehensive A-Z reference for terminology and acronyms</div>
                                         </div>
                                     </a>
                                     <a href="intro/notes/1.3-landscape.html" class="chapter-item">
                                         <span class="chapter-number">1.3</span>
                                         <div class="chapter-info">
-                                            <div class="chapter-title">🌐 The Cybersecurity Landscape</div>
+                                            <div class="chapter-title">The Cybersecurity Landscape</div>
                                             <div class="chapter-desc">Threat actors, attack vectors, and defense strategies</div>
                                         </div>
                                     </a>
                                     <a href="intro/notes/1.4-intro-to-os.html" class="chapter-item">
                                         <span class="chapter-number">1.4</span>
                                         <div class="chapter-info">
-                                            <div class="chapter-title">💻 Introduction to Operating Systems</div>
+                                            <div class="chapter-title">Introduction to Operating Systems</div>
                                             <div class="chapter-desc">From Stallman to Linus: OS history and practical skills</div>
                                         </div>
                                     </a>
 
                                     <!-- Networking Sub-section -->
                                     <div class="chapter-subsection">
-                                        <div class="subsection-title">📡 1.5 Networking</div>
+                                        <div class="subsection-title">1.5 Networking</div>
                                         <a href="intro/notes/1.5_networks.html" class="chapter-item">
                                             <span class="chapter-number">1.5</span>
                                             <div class="chapter-info">
-                                                <div class="chapter-title">🌐 Networking Overview</div>
+                                                <div class="chapter-title">Networking Overview</div>
                                                 <div class="chapter-desc">Introduction to networking concepts</div>
                                             </div>
                                         </a>
@@ -544,28 +351,28 @@
                                     <a href="intro/notes/1.6_access_control.html" class="chapter-item">
                                         <span class="chapter-number">1.6</span>
                                         <div class="chapter-info">
-                                            <div class="chapter-title">🔑 Access Control</div>
+                                            <div class="chapter-title">Access Control</div>
                                             <div class="chapter-desc">ISC2 CC Notes - DAC, MAC, RBAC, and authentication</div>
                                         </div>
                                     </a>
                                     <a href="intro/notes/1.7-shell-scripting.html" class="chapter-item">
                                         <span class="chapter-number">1.7</span>
                                         <div class="chapter-info">
-                                            <div class="chapter-title">📜 Shell Scripting Basics</div>
+                                            <div class="chapter-title">Shell Scripting Basics</div>
                                             <div class="chapter-desc">Variables, loops, conditionals, and writing your first scripts</div>
                                         </div>
                                     </a>
                                     <a href="intro/notes/1.8-shell-scripting-practice.html" class="chapter-item">
                                         <span class="chapter-number">1.8</span>
                                         <div class="chapter-info">
-                                            <div class="chapter-title">🛡️ Shell Scripting Practice</div>
+                                            <div class="chapter-title">Shell Scripting Practice</div>
                                             <div class="chapter-desc">10 realistic cybersec & DevOps scenarios with solutions</div>
                                         </div>
                                     </a>
                                     <a href="intro/notes/grc-foundation.html" class="chapter-item">
                                         <span class="chapter-number">1.9</span>
                                         <div class="chapter-info">
-                                            <div class="chapter-title">🧭 GRC Foundation Guide</div>
+                                            <div class="chapter-title">GRC Foundation Guide</div>
                                             <div class="chapter-desc">Governance, risk, compliance, controls, evidence, and risk-register fundamentals</div>
                                         </div>
                                     </a>
@@ -578,7 +385,7 @@
                     <div class="accordion-section">
                         <button class="accordion-header" onclick="toggleAccordion(this)">
                             <div class="accordion-header-content">
-                                <span class="accordion-icon">🚀</span>
+                                <span class="accordion-icon">02</span>
                                 <div>
                                     <h3 class="accordion-title">Intermediate Level <span class="level-badge level-intermediate">Intermediate</span></h3>
                                     <p class="accordion-subtitle">Linux mastery, CLI tools, and expanding system-level courses</p>
@@ -592,64 +399,64 @@
                                     <a href="intermediate/notes/linux_course.html" class="chapter-item">
                                         <span class="chapter-number">2.1</span>
                                         <div class="chapter-info">
-                                            <div class="chapter-title">🐧 Linux Mastery Course</div>
+                                            <div class="chapter-title">Linux Mastery Course</div>
                                             <div class="chapter-desc">Complete 17-module Linux command-line and cybersecurity course</div>
                                         </div>
                                     </a>
 
                                     <!-- Tools Sub-section -->
                                     <div class="chapter-subsection">
-                                        <div class="subsection-title">🛠️ CLI Tools Mastery</div>
+                                        <div class="subsection-title">CLI Tools Mastery</div>
                                         <a href="intermediate/tools/grep.html" class="chapter-item">
                                             <span class="chapter-number">2.2.1</span>
                                             <div class="chapter-info">
-                                                <div class="chapter-title">🔍 grep Mastery Guide</div>
+                                                <div class="chapter-title">grep Mastery Guide</div>
                                                 <div class="chapter-desc">Text processing and pattern matching</div>
                                             </div>
                                         </a>
                                         <a href="intermediate/tools/sed.html" class="chapter-item">
                                             <span class="chapter-number">2.2.2</span>
                                             <div class="chapter-info">
-                                                <div class="chapter-title">✏️ sed Stream Editor</div>
+                                                <div class="chapter-title">sed Stream Editor</div>
                                                 <div class="chapter-desc">Text transformation and data manipulation</div>
                                             </div>
                                         </a>
                                         <a href="intermediate/tools/awk.html" class="chapter-item">
                                             <span class="chapter-number">2.2.3</span>
                                             <div class="chapter-info">
-                                                <div class="chapter-title">⚙️ awk Programming Language</div>
+                                                <div class="chapter-title">awk Programming Language</div>
                                                 <div class="chapter-desc">Data extraction, processing, and reporting</div>
                                             </div>
                                         </a>
                                         <a href="intermediate/tools/vim.html" class="chapter-item">
                                             <span class="chapter-number">2.2.4</span>
                                             <div class="chapter-info">
-                                                <div class="chapter-title">⚡ Vim & Neovim Mastery</div>
+                                                <div class="chapter-title">Vim & Neovim Mastery</div>
                                                 <div class="chapter-desc">Modal editing from zero to lightning speed</div>
                                             </div>
                                         </a>
                                         <a href="intermediate/tools/nmap.html" class="chapter-item">
                                             <span class="chapter-number">2.2.5</span>
                                             <div class="chapter-info">
-                                                <div class="chapter-title">🌐 Nmap Network Scanner</div>
+                                                <div class="chapter-title">Nmap Network Scanner</div>
                                                 <div class="chapter-desc">Network discovery, port scanning, and security auditing</div>
                                             </div>
                                         </a>
                                     </div>
 
                                     <div class="chapter-subsection">
-                                        <div class="subsection-title">📚 Networking Interview Prep</div>
+                                        <div class="subsection-title">Networking Interview Prep</div>
                                         <a href="intermediate/notes/networking_interview_prep/networking_study_guide_part_1.html" class="chapter-item">
                                             <span class="chapter-number">2.3.1</span>
                                             <div class="chapter-info">
-                                                <div class="chapter-title">🧠 Networking Study Guide - Part 1</div>
+                                                <div class="chapter-title">Networking Study Guide - Part 1</div>
                                                 <div class="chapter-desc">Levels 01-05: Fundamentals, subnetting, switching, and routing</div>
                                             </div>
                                         </a>
                                         <a href="intermediate/notes/networking_interview_prep/networking_study_guide_part_2.html" class="chapter-item">
                                             <span class="chapter-number">2.3.2</span>
                                             <div class="chapter-info">
-                                                <div class="chapter-title">🧠 Networking Study Guide - Part 2</div>
+                                                <div class="chapter-title">Networking Study Guide - Part 2</div>
                                                 <div class="chapter-desc">Levels 06-10: Dynamic routing, services, security, WAN, and troubleshooting</div>
                                             </div>
                                         </a>
@@ -657,7 +464,7 @@
                                     <a href="intermediate/notes/grc-intermediate.html" class="chapter-item">
                                         <span class="chapter-number">2.4</span>
                                         <div class="chapter-info">
-                                            <div class="chapter-title">🧭 GRC Intermediate Guide</div>
+                                            <div class="chapter-title">GRC Intermediate Guide</div>
                                             <div class="chapter-desc">Risk registers, control testing, audit readiness, vendor risk, evidence, and reporting</div>
                                         </div>
                                     </a>
@@ -670,7 +477,7 @@
                     <div class="accordion-section">
                         <button class="accordion-header" onclick="toggleAccordion(this)">
                             <div class="accordion-header-content">
-                                <span class="accordion-icon">⚡</span>
+                                <span class="accordion-icon">03</span>
                                 <div>
                                     <h3 class="accordion-title">Pro Level <span class="level-badge level-pro">Advanced</span></h3>
                                     <p class="accordion-subtitle">Project-based roadmap, professional labs, and portfolio-ready security work</p>
@@ -713,36 +520,117 @@
             </div>
         </section>
 
-        <!-- Mission Section -->
-        <section class="mission">
+        <!-- Learning Path Overview -->
+        <section class="path-overview" aria-labelledby="path-overview-title">
             <div class="container">
-                <h2>Our Mission</h2>
-                <p>lokii.tech exists to <strong>give back to the community</strong> by creating accessible, high-quality learning resources. We believe that everyone deserves the opportunity to break into Computer Science, regardless of their background.</p>
-                <p>Whether you're a complete beginner or looking to sharpen your skills, you'll find practical, battle-tested knowledge here.</p>
+                <div class="section-heading">
+                    <p class="section-kicker">A clear route through the material</p>
+                    <h2 id="path-overview-title">Pick the level that matches where you are today.</h2>
+                    <p>The site is organized so you can build fundamentals first, practice real tools next, and then turn the work into stronger security projects.</p>
+                </div>
+                <div class="path-grid">
+                    <a href="#resources" class="path-card">
+                        <span class="path-level">Intro</span>
+                        <h3>Build your base</h3>
+                        <p>Cybersecurity basics, terminology, operating systems, networking, access control, shell scripting, and GRC foundations.</p>
+                    </a>
+                    <a href="#resources" class="path-card">
+                        <span class="path-level">Intermediate</span>
+                        <h3>Practice the tools</h3>
+                        <p>Linux mastery, grep, sed, awk, Vim, Nmap, VLANs, networking interview prep, and applied GRC workflows.</p>
+                    </a>
+                    <a href="#resources" class="path-card">
+                        <span class="path-level">Pro</span>
+                        <h3>Show professional work</h3>
+                        <p>Security project planning, Wireshark packet analysis, professional GRC, portfolio evidence, and reporting discipline.</p>
+                    </a>
+                </div>
             </div>
         </section>
 
         <!-- FAQ Section -->
-        <section class="faq" id="faq">
+        <section class="faq" id="about">
+            <span id="faq" class="section-anchor" aria-hidden="true"></span>
             <div class="container">
-                <h2>Frequently Asked Questions</h2>
-                <div class="faq-grid">
-                    <article class="faq-item">
-                        <h3>Who is lokii.tech for?</h3>
-                        <p>lokii.tech is for students, self-taught learners, and early security practitioners who want practical computer science and cybersecurity notes without paid course walls.</p>
-                    </article>
-                    <article class="faq-item">
-                        <h3>Where should beginners start?</h3>
-                        <p>Start with the Intro Level resources, especially the cybersecurity, operating systems, networking, and shell scripting lessons. They are ordered to build foundations before tools.</p>
-                    </article>
-                    <article class="faq-item">
-                        <h3>Are the resources free?</h3>
-                        <p>Yes. The site is open source and community driven. You can read the guides, follow the labs, and contribute improvements through GitHub.</p>
-                    </article>
-                    <article class="faq-item">
-                        <h3>Does the site include project-based learning?</h3>
-                        <p>Yes. The Pro Level guide focuses on portfolio-ready security projects with scope, difficulty, time estimates, deliverables, and lessons learned.</p>
-                    </article>
+                <div class="section-heading">
+                    <p class="section-kicker">About and FAQ</p>
+                    <h2>The project stays focused on useful learning.</h2>
+                </div>
+                <div class="faq-list">
+                    <details class="faq-item" open>
+                        <summary>
+                            <span>Why does lokii.tech exist?</span>
+                            <span class="faq-toggle" aria-hidden="true"></span>
+                        </summary>
+                        <div class="faq-answer">
+                            <p>lokii.tech is part of a simple free-education belief: quality learning should not be locked away from people who are curious, disciplined, and willing to work. Education becomes stronger when useful material is open, reusable, and improved in public.</p>
+                            <p>The developer knows computer science, cybersecurity, Linux, networking, and related technical subjects best, so that is what this site focuses on. The larger message is broader than CS: good educational content should be accessible to everyone who needs it.</p>
+                        </div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>
+                            <span>What does the FOSS mindset mean here?</span>
+                            <span class="faq-toggle" aria-hidden="true"></span>
+                        </summary>
+                        <div class="faq-answer">
+                            <p>The project follows the spirit of free and open-source software: share what you know, let others inspect it, improve it, and keep the path open for the next learner. It is not anti-quality; it is the opposite. Free education should still be serious, structured, and worth reading.</p>
+                        </div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>
+                            <span>Who should use this site?</span>
+                            <span class="faq-toggle" aria-hidden="true"></span>
+                        </summary>
+                        <div class="faq-answer">
+                            <p>Students, self-taught learners, and early security practitioners who want practical computer science and cybersecurity notes without getting buried in random tutorials or paid course funnels.</p>
+                        </div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>
+                            <span>Where should a beginner start?</span>
+                            <span class="faq-toggle" aria-hidden="true"></span>
+                        </summary>
+                        <div class="faq-answer">
+                            <p>Start with the Intro Level resources. Cybersecurity basics, operating systems, networking, access control, and shell scripting are ordered to build the foundation before tools and projects.</p>
+                        </div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>
+                            <span>How are the notes designed?</span>
+                            <span class="faq-toggle" aria-hidden="true"></span>
+                        </summary>
+                        <div class="faq-answer">
+                            <p>Each guide should explain the concept, show why it matters, connect it to real technical work, and point toward the next useful step. The goal is practical understanding, not filler.</p>
+                        </div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>
+                            <span>What makes the project material useful?</span>
+                            <span class="faq-toggle" aria-hidden="true"></span>
+                        </summary>
+                        <div class="faq-answer">
+                            <p>The Pro Level material focuses on portfolio-ready work: scope, time estimates, deliverables, analysis discipline, reporting, and lessons learned that can prove capability.</p>
+                        </div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>
+                            <span>Where can I read more from the developer?</span>
+                            <span class="faq-toggle" aria-hidden="true"></span>
+                        </summary>
+                        <div class="faq-answer">
+                            <p>For broader writing, reflections, and educational content outside the focused CS notes on this site, read the developer's blog.</p>
+                            <a href="https://blogs.sakshamsharma.com.np" class="faq-action" target="_blank" rel="noopener noreferrer">Read developer writings</a>
+                        </div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>
+                            <span>How can I contribute?</span>
+                            <span class="faq-toggle" aria-hidden="true"></span>
+                        </summary>
+                        <div class="faq-answer">
+                            <p>Open an issue or pull request on GitHub. Good contributions make the material clearer, more accurate, more current, or more useful for learners.</p>
+                        </div>
+                    </details>
                 </div>
             </div>
         </section>
@@ -752,26 +640,40 @@
     <footer class="site-footer">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-section">
-                    <h4>lokii.tech</h4>
-                    <p>An open-source learning platform by lokii (UnExplainableFish52)</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#resources">Resources</a></li>
-                        <li><a href="#faq">FAQ</a></li>
-                        <li><a href="https://github.com/UnExplainableFish52/lokii.tech" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Community</h4>
-                    <p>Contributions welcome! Help us make CS education accessible to everyone.</p>
+                <section class="footer-section footer-brand">
+                    <a href="index.html" class="footer-logo">lokii.tech</a>
+                    <p>Free cybersecurity, systems, Linux, networking, GRC, and security project notes for learners who want a clear technical path.</p>
+                </section>
+                <div class="footer-link-groups">
+                    <section class="footer-section">
+                        <h4>Learn</h4>
+                        <ul>
+                            <li><a href="#resources">All resources</a></li>
+                            <li><a href="intro/notes/1.1-what-is-cybersecurity.html">Beginner path</a></li>
+                            <li><a href="intermediate/notes/linux_course.html">Linux course</a></li>
+                            <li><a href="pro/security-professional-project-guide.html">Project roadmap</a></li>
+                        </ul>
+                    </section>
+                    <section class="footer-section">
+                        <h4>Project</h4>
+                        <ul>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#faq">FAQ</a></li>
+                            <li><a href="https://github.com/UnExplainableFish52/lokii.tech" target="_blank" rel="noopener noreferrer">Source code</a></li>
+                            <li><a href="https://github.com/UnExplainableFish52/lokii.tech/issues" target="_blank" rel="noopener noreferrer">Contribute</a></li>
+                        </ul>
+                    </section>
+                    <section class="footer-section">
+                        <h4>Developer</h4>
+                        <ul>
+                            <li><a href="https://github.com/UnExplainableFish52" target="_blank" rel="noopener noreferrer">GitHub profile</a></li>
+                            <li><a href="https://blogs.sakshamsharma.com.np" target="_blank" rel="noopener noreferrer">Writings and blogs</a></li>
+                        </ul>
+                    </section>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 lokii.tech. Open source and community-driven. <a href="LICENSE">See License</a></p>
+                <p>&copy; 2026 lokii.tech. Open source and community-driven. <a href="LICENSE">See License</a></p>
             </div>
         </div>
     </footer>
