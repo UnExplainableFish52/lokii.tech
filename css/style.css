@@ -766,6 +766,28 @@ section {
     line-height: 1.55;
 }
 
+.resource-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.65rem;
+    max-width: 860px;
+}
+
+.resource-tag {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid rgba(91, 167, 247, 0.22);
+    border-radius: var(--border-radius-sm);
+    background: rgba(91, 167, 247, 0.09);
+    color: #CDE9FF;
+    font-size: 0.72rem;
+    font-weight: 760;
+    line-height: 1;
+    padding: 0.33rem 0.55rem;
+    white-space: nowrap;
+}
+
 .accordion-arrow {
     color: var(--text-secondary);
     font-size: 1rem;
@@ -878,8 +900,7 @@ section {
     font-size: 0.72rem;
 }
 
-.coming-soon,
-.level-badge {
+.coming-soon {
     display: inline-flex;
     align-items: center;
     border-radius: var(--border-radius-sm);
@@ -890,28 +911,6 @@ section {
 }
 
 .coming-soon {
-    background: rgba(244, 184, 96, 0.14);
-    border: 1px solid rgba(244, 184, 96, 0.24);
-    color: #F8D99E;
-}
-
-.level-badge {
-    text-transform: uppercase;
-}
-
-.level-intro {
-    background: rgba(66, 211, 155, 0.14);
-    border: 1px solid rgba(66, 211, 155, 0.24);
-    color: #BDF8D6;
-}
-
-.level-intermediate {
-    background: rgba(91, 167, 247, 0.14);
-    border: 1px solid rgba(91, 167, 247, 0.24);
-    color: #CDE9FF;
-}
-
-.level-pro {
     background: rgba(244, 184, 96, 0.14);
     border: 1px solid rgba(244, 184, 96, 0.24);
     color: #F8D99E;
@@ -3098,7 +3097,7 @@ body.legacy-lesson-page main > .container {
         display: block;
     }
 
-    .level-badge {
+    .resource-tags {
         margin-top: 0.45rem;
     }
 

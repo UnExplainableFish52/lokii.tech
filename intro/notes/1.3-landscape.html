@@ -33,7 +33,12 @@
     <link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
     <link rel="manifest" href="../../site.webmanifest">
     <link rel="icon" href="../../favicon.ico">
-    
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../../css/global-ui.css">
     <style>
         * {
@@ -54,29 +59,6 @@
             max-width: 1100px;
             margin: 0 auto;
             padding: 20px;
-        }
-
-        /* Navigation */
-        .nav-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 0;
-            border-bottom: 1px solid #30363d;
-            margin-bottom: 40px;
-        }
-
-        .nav-link {
-            color: #00bcd4;
-            text-decoration: none;
-            font-weight: bold;
-            padding: 8px 16px;
-            border-radius: 6px;
-            transition: all 0.3s ease;
-        }
-
-        .nav-link:hover {
-            background: rgba(0, 188, 212, 0.15);
         }
 
         .breadcrumb {
@@ -591,51 +573,6 @@
                 padding: 8px;
             }
         }
-        /* Site Header - Homepage Style */
-        .site-header {
-            padding: 15px 20px;
-            border-bottom: 1px solid #30363d;
-            background: rgba(13, 17, 23, 0.95);
-            backdrop-filter: blur(10px);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .header-content {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .branding {
-            text-decoration: none;
-        }
-
-        .branding .logo {
-            color: #00bcd4;
-            font-size: 1.5rem;
-            font-weight: 800;
-        }
-
-        .site-nav {
-            display: flex;
-            gap: 25px;
-            align-items: center;
-        }
-
-        .site-nav .nav-link {
-            color: #8b949e;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .site-nav .nav-link:hover {
-            color: #00bcd4;
-        }
     </style>
     <!-- SEO Structured Data -->
     <script type="application/ld+json" data-seo="lokii">
@@ -730,18 +667,22 @@
     }
     </script>
 </head>
-<body>
+<body class="learning-note-page legacy-lesson-page">
     <!-- Site Header -->
     <header class="site-header">
-        <div class="header-content">
-            <a href="../../index.html" class="branding">
-                <span class="logo">lokii.tech</span>
-            </a>
-            <nav class="site-nav">
-                <a href="../../index.html#about" class="nav-link">About</a>
-                <a href="../../index.html#resources" class="nav-link">Resources</a>
-                <a href="https://github.com/UnExplainableFish52" target="_blank" class="nav-link" rel="noopener noreferrer">GitHub</a>
-            </nav>
+        <div class="container">
+            <div class="header-content">
+                <a href="../../index.html" class="branding">
+                    <span class="logo">lokii.tech</span>
+                </a>
+                <nav class="nav-links" aria-label="Primary navigation">
+                    <a href="../../index.html#about" class="nav-link nav-link-enhanced">About</a>
+                    <a href="../../index.html#resources" class="nav-link nav-link-enhanced">Resources</a>
+                    <a href="../../index.html#faq" class="nav-link nav-link-enhanced">FAQ</a>
+                    <a href="https://github.com/UnExplainableFish52/lokii.tech" target="_blank" class="nav-link nav-link-enhanced" rel="noopener noreferrer">GitHub</a>
+                    <a href="https://github.com/UnExplainableFish52/lokii.tech/issues" target="_blank" class="nav-link nav-contribute" rel="noopener noreferrer">Contribute</a>
+                </nav>
+            </div>
         </div>
     </header>
 
