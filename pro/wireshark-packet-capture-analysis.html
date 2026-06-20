@@ -1,17 +1,18 @@
 <!DOCTYPE html>
+<!-- lokii-note-polish: checked 2026-06-20; aligned metadata, shared navigation source, footer text, and packet-analysis wording with the current practical teaching tone. -->
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wireshark Packet Capture Analysis | Pro Level | lokii.tech</title>
-  <meta name="description" content="A practical SOC-style Wireshark learning note for reading PCAP files, filtering network traffic, identifying suspicious patterns, and reporting evidence clearly.">
+  <title>Wireshark Packet Capture Analysis | Practical PCAP Notes | lokii.tech</title>
+  <meta name="description" content="Practical Wireshark notes for reading PCAPs, building display filters, checking scan evidence, separating facts from guesses, and writing clear SOC-style findings.">
   <meta name="author" content="lokii (UnExplainableFish52)">
   <meta name="theme-color" content="#050505">
 
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://lokii.tech/pro/wireshark-packet-capture-analysis.html">
-  <meta property="og:title" content="Wireshark Packet Capture Analysis | Pro Level | lokii.tech">
-  <meta property="og:description" content="A practical SOC-style Wireshark learning note for reading PCAP files, filtering network traffic, identifying suspicious patterns, and reporting evidence clearly.">
+  <meta property="og:title" content="Wireshark Packet Capture Analysis | Practical PCAP Notes | lokii.tech">
+  <meta property="og:description" content="Practical Wireshark notes for reading PCAPs, building display filters, checking scan evidence, separating facts from guesses, and writing clear SOC-style findings.">
   <meta property="og:image" content="https://lokii.tech/preview.jpg">
   <meta property="og:site_name" content="lokii.tech">
 
@@ -19,8 +20,8 @@
   <meta name="robots" content="index, follow">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://lokii.tech/pro/wireshark-packet-capture-analysis.html">
-  <meta name="twitter:title" content="Wireshark Packet Capture Analysis | Pro Level | lokii.tech">
-  <meta name="twitter:description" content="A practical SOC-style Wireshark learning note for reading PCAP files, filtering network traffic, identifying suspicious patterns, and reporting evidence clearly.">
+  <meta name="twitter:title" content="Wireshark Packet Capture Analysis | Practical PCAP Notes | lokii.tech">
+  <meta name="twitter:description" content="Practical Wireshark notes for reading PCAPs, building display filters, checking scan evidence, separating facts from guesses, and writing clear SOC-style findings.">
   <meta name="twitter:image" content="https://lokii.tech/preview.jpg">
 
   <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
@@ -446,7 +447,7 @@
           {
             "@type": "ListItem",
             "position": 3,
-            "name": "Wireshark Packet Capture Analysis | Pro Level | lokii.tech",
+            "name": "Wireshark Packet Capture Analysis",
             "item": "https://lokii.tech/pro/wireshark-packet-capture-analysis.html"
           }
         ]
@@ -455,8 +456,8 @@
         "@type": "WebPage",
         "@id": "https://lokii.tech/pro/wireshark-packet-capture-analysis.html#webpage",
         "url": "https://lokii.tech/pro/wireshark-packet-capture-analysis.html",
-        "name": "Wireshark Packet Capture Analysis | Pro Level | lokii.tech",
-        "description": "A practical SOC-style Wireshark learning note for reading PCAP files, filtering network traffic, identifying suspicious patterns, and reporting evidence clearly.",
+        "name": "Wireshark Packet Capture Analysis | Practical PCAP Notes | lokii.tech",
+        "description": "Practical Wireshark notes for reading PCAPs, building display filters, checking scan evidence, separating facts from guesses, and writing clear SOC-style findings.",
         "isPartOf": {
           "@id": "https://lokii.tech/#website"
         },
@@ -464,7 +465,7 @@
           "@id": "https://lokii.tech/pro/wireshark-packet-capture-analysis.html#breadcrumbs"
         },
         "primaryImageOfPage": "https://lokii.tech/preview.jpg",
-        "dateModified": "2026-06-05",
+        "dateModified": "2026-06-20",
         "inLanguage": "en"
       },
       {
@@ -474,7 +475,7 @@
         ],
         "@id": "https://lokii.tech/pro/wireshark-packet-capture-analysis.html#article",
         "headline": "Wireshark Packet Capture Analysis",
-        "description": "A practical SOC-style Wireshark learning note for PCAP analysis, display filtering, reconnaissance investigation, and evidence-based reporting.",
+        "description": "Practical Wireshark notes for PCAP analysis, display filtering, reconnaissance investigation, evidence limits, and SOC-style reporting.",
         "url": "https://lokii.tech/pro/wireshark-packet-capture-analysis.html",
         "image": "https://lokii.tech/preview.jpg",
         "author": {
@@ -498,7 +499,7 @@
           "Incident Report",
           "Blue Team"
         ],
-        "dateModified": "2026-06-05",
+        "dateModified": "2026-06-20",
         "inLanguage": "en"
       }
     ]
@@ -506,21 +507,7 @@
   </script>
 </head>
 <body class="guide-page wireshark-note-page">
-  <header class="site-header" id="top">
-    <div class="container">
-      <div class="header-content">
-        <a href="../index.html" class="branding">
-          <span class="logo">lokii.tech</span>
-        </a>
-        <nav class="nav-links">
-          <a href="../index.html#about" class="nav-link nav-link-enhanced">About</a>
-          <a href="../index.html#resources" class="nav-link nav-link-enhanced">Resources</a>
-          <a href="https://github.com/UnExplainableFish52/lokii.tech" target="_blank" class="nav-link nav-link-enhanced" rel="noopener noreferrer">GitHub</a>
-          <a href="https://github.com/UnExplainableFish52/lokii.tech/issues" target="_blank" class="nav-link nav-contribute" rel="noopener noreferrer">Contribute</a>
-        </nav>
-      </div>
-    </div>
-  </header>
+  <div id="navbar-placeholder"></div>
 
   <main class="guide-main">
     <div class="container guide-container">
@@ -1074,7 +1061,7 @@
       <div class="footer-content">
         <div class="footer-section">
           <h4>lokii.tech</h4>
-          <p>An open-source learning platform by lokii (UnExplainableFish52)</p>
+          <p>Free FOSS cybersecurity and systems learning resources for practical security skill building.</p>
         </div>
         <div class="footer-section">
           <h4>Quick Links</h4>
@@ -1090,7 +1077,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; 2025 lokii.tech. Open source and community-driven. <a href="../LICENSE">See License</a></p>
+        <p>&copy; 2026 lokii.tech. Free and open-source learning material for cybersecurity, systems, Linux, networking, GRC, and security project practice. <a href="../LICENSE">See License</a></p>
       </div>
     </div>
   </footer>

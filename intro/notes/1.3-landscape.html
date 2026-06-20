@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+<!-- lokii-note-polish: checked 2026-06-20; removed decorative emoji and em dash usage, converted icon badges to text labels, and cleaned lesson tone. -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>1.3 The Cybersecurity Landscape | Module 1 | Cybersecurity Beginner Course</title>
     
-    <meta name="description" content="Explore the cybersecurity landscape including threat actors, attack vectors, and the evolving security industry.">
+    <meta name="description" content="Beginner-friendly cybersecurity landscape notes covering threat actors, motivations, attack vectors, defender roles, and how the security industry fits together.">
     <meta name="author" content="lokii (UnExplainableFish52)">
     <meta name="theme-color" content="#0d1117">
     
@@ -13,14 +14,14 @@
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://lokii.tech/intro/notes/1.3-landscape.html">
     <meta property="og:title" content="1.3 The Cybersecurity Landscape | Module 1 | Cybersecurity Beginner Course">
-    <meta property="og:description" content="Explore the cybersecurity landscape including threat actors, attack vectors, and the evolving security industry.">
+    <meta property="og:description" content="Beginner-friendly cybersecurity landscape notes covering threat actors, motivations, attack vectors, defender roles, and how the security industry fits together.">
     <meta property="og:image" content="https://lokii.tech/preview.jpg">
     <meta property="og:site_name" content="lokii.tech">
     
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="1.3 The Cybersecurity Landscape | Module 1 | Cybersecurity Beginner Course">
-    <meta name="twitter:description" content="Explore the cybersecurity landscape including threat actors, attack vectors, and the evolving security industry.">
+    <meta name="twitter:description" content="Beginner-friendly cybersecurity landscape notes covering threat actors, motivations, attack vectors, defender roles, and how the security industry fits together.">
     <meta name="twitter:image" content="https://lokii.tech/preview.jpg">
     <!-- SEO Metadata -->
     <link rel="canonical" href="https://lokii.tech/intro/notes/1.3-landscape.html">
@@ -170,8 +171,20 @@
         }
 
         .actor-icon {
-            font-size: 2em;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             margin-bottom: 12px;
+            border: 1px solid rgba(0, 188, 212, 0.28);
+            border-radius: 6px;
+            background: rgba(0, 188, 212, 0.08);
+            color: #b8f5ff;
+            font-size: 0.75em;
+            font-weight: 800;
+            letter-spacing: 0;
+            line-height: 1;
+            padding: 0.42rem 0.58rem;
+            text-transform: uppercase;
         }
 
         .actor-card h4 {
@@ -292,7 +305,7 @@
         }
 
         .kill-chain-step::after {
-            content: "→";
+            content: "->";
             position: absolute;
             right: -20px;
             top: 50%;
@@ -347,9 +360,17 @@
         }
 
         .layer-icon {
-            font-size: 2em;
-            min-width: 50px;
+            min-width: 86px;
+            border: 1px solid rgba(0, 188, 212, 0.24);
+            border-radius: 6px;
+            background: rgba(0, 188, 212, 0.08);
+            color: #b8f5ff;
+            font-size: 0.78em;
+            font-weight: 800;
+            line-height: 1.2;
+            padding: 0.5rem 0.55rem;
             text-align: center;
+            text-transform: uppercase;
         }
 
         .layer-content {
@@ -429,8 +450,33 @@
         }
 
         .team-icon {
-            font-size: 2.5em;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             margin-bottom: 15px;
+            border-radius: 6px;
+            color: #f4f7fa;
+            font-size: 0.8em;
+            font-weight: 900;
+            letter-spacing: 0;
+            line-height: 1;
+            padding: 0.5rem 0.7rem;
+            text-transform: uppercase;
+        }
+
+        .team-card.red .team-icon {
+            background: rgba(244, 67, 54, 0.16);
+            border: 1px solid rgba(244, 67, 54, 0.4);
+        }
+
+        .team-card.blue .team-icon {
+            background: rgba(33, 150, 243, 0.16);
+            border: 1px solid rgba(33, 150, 243, 0.4);
+        }
+
+        .team-card.purple .team-icon {
+            background: rgba(156, 39, 176, 0.16);
+            border: 1px solid rgba(156, 39, 176, 0.4);
         }
 
         .team-card h4 {
@@ -543,7 +589,7 @@
             }
 
             .kill-chain-step::after {
-                content: "↓";
+                content: "|";
                 right: 50%;
                 top: auto;
                 bottom: -15px;
@@ -628,7 +674,7 @@
           "@id": "https://lokii.tech/intro/notes/1.3-landscape.html#webpage",
           "url": "https://lokii.tech/intro/notes/1.3-landscape.html",
           "name": "1.3 The Cybersecurity Landscape | Module 1 | Cybersecurity Beginner Course",
-          "description": "Explore the cybersecurity landscape including threat actors, attack vectors, and the evolving security industry.",
+          "description": "Beginner-friendly cybersecurity landscape notes covering threat actors, motivations, attack vectors, defender roles, and how the security industry fits together.",
           "isPartOf": {
             "@id": "https://lokii.tech/#website"
           },
@@ -636,7 +682,7 @@
             "@id": "https://lokii.tech/intro/notes/1.3-landscape.html#breadcrumbs"
           },
           "primaryImageOfPage": "https://lokii.tech/preview.jpg",
-          "dateModified": "2026-06-04",
+          "dateModified": "2026-06-20",
           "inLanguage": "en"
         },
         {
@@ -646,7 +692,7 @@
           ],
           "@id": "https://lokii.tech/intro/notes/1.3-landscape.html#article",
           "headline": "1.3 The Cybersecurity Landscape | Module 1 | Cybersecurity Beginner Course",
-          "description": "Explore the cybersecurity landscape including threat actors, attack vectors, and the evolving security industry.",
+          "description": "Beginner-friendly cybersecurity landscape notes covering threat actors, motivations, attack vectors, defender roles, and how the security industry fits together.",
           "url": "https://lokii.tech/intro/notes/1.3-landscape.html",
           "image": "https://lokii.tech/preview.jpg",
           "author": {
@@ -660,7 +706,7 @@
           },
           "educationalLevel": "Beginner",
           "learningResourceType": "Guide",
-          "dateModified": "2026-06-04",
+          "dateModified": "2026-06-20",
           "inLanguage": "en"
         }
       ]
@@ -688,12 +734,12 @@
 
     <div class="container">
         <header>
-            <h1>🌐 1.3 The Cybersecurity Landscape</h1>
+            <h1>1.3 The Cybersecurity Landscape</h1>
             <p class="subtitle">Understanding who attacks, why they attack, and how we defend</p>
         </header>
 
         <!-- Threat Actors Section -->
-        <h2>👤 Threat Actors — Who Attacks?</h2>
+        <h2>Threat Actors: Who Attacks?</h2>
 
         <div class="section">
             <p>
@@ -703,7 +749,7 @@
 
             <div class="actor-grid">
                 <div class="actor-card">
-                    <div class="actor-icon">👶</div>
+                    <div class="actor-icon">Entry Level</div>
                     <h4>Script Kiddies</h4>
                     <p>
                         Inexperienced attackers who use pre-made tools and scripts without understanding how they work. 
@@ -717,7 +763,7 @@
                 </div>
 
                 <div class="actor-card">
-                    <div class="actor-icon">✊</div>
+                    <div class="actor-icon">Ideology</div>
                     <h4>Hacktivists</h4>
                     <p>
                         Attackers motivated by political or social causes. Use hacking to promote their ideology, 
@@ -731,7 +777,7 @@
                 </div>
 
                 <div class="actor-card">
-                    <div class="actor-icon">💰</div>
+                    <div class="actor-icon">Financial</div>
                     <h4>Cybercriminals</h4>
                     <p>
                         Attackers motivated by financial gain. Operate like businesses, with specialized roles. 
@@ -745,7 +791,7 @@
                 </div>
 
                 <div class="actor-card">
-                    <div class="actor-icon">🏢</div>
+                    <div class="actor-icon">Insider</div>
                     <h4>Insider Threats</h4>
                     <p>
                         Current or former employees, contractors, or partners with legitimate access. 
@@ -759,7 +805,7 @@
                 </div>
 
                 <div class="actor-card">
-                    <div class="actor-icon">🏛️</div>
+                    <div class="actor-icon">State</div>
                     <h4>Nation-State Actors / APT Groups</h4>
                     <p>
                         State-sponsored hackers with virtually unlimited resources, advanced capabilities, and 
@@ -773,7 +819,7 @@
                 </div>
 
                 <div class="actor-card">
-                    <div class="actor-icon">🏭</div>
+                    <div class="actor-icon">Business</div>
                     <h4>Competitors</h4>
                     <p>
                         Business rivals engaging in corporate espionage to steal trade secrets, customer lists, 
@@ -790,16 +836,16 @@
             <div class="example-box">
                 <h4>Notable APT Groups</h4>
                 <ul>
-                    <li><span class="highlight">APT29 (Cozy Bear)</span> — Russian group behind SolarWinds attack</li>
-                    <li><span class="highlight">APT41</span> — Chinese group conducting espionage and financial crimes</li>
-                    <li><span class="highlight">Lazarus Group</span> — North Korean group, Sony hack, WannaCry ransomware</li>
-                    <li><span class="highlight">APT28 (Fancy Bear)</span> — Russian military intelligence (GRU)</li>
+                    <li><span class="highlight">APT29 (Cozy Bear):</span> Russian group behind the SolarWinds attack</li>
+                    <li><span class="highlight">APT41:</span> Chinese group conducting espionage and financial crimes</li>
+                    <li><span class="highlight">Lazarus Group:</span> North Korean group linked to the Sony hack and WannaCry ransomware</li>
+                    <li><span class="highlight">APT28 (Fancy Bear):</span> Russian military intelligence group (GRU)</li>
                 </ul>
             </div>
         </div>
 
         <!-- Motivations Section -->
-        <h2>💭 Motivations — Why They Attack</h2>
+        <h2>Motivations: Why They Attack</h2>
 
         <div class="section">
             <p>
@@ -818,31 +864,31 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><span class="highlight">💵 Financial Gain</span></td>
+                        <td><span class="highlight">Financial Gain</span></td>
                         <td>Direct monetary profit through theft, extortion, or fraud</td>
                         <td>Banks, healthcare, retail, any organization with valuable data</td>
                         <td>Ransomware, credit card theft, business email compromise</td>
                     </tr>
                     <tr>
-                        <td><span class="highlight">🕵️ Espionage</span></td>
+                        <td><span class="highlight">Espionage</span></td>
                         <td>Stealing state secrets, military intel, or intellectual property</td>
                         <td>Government, defense contractors, research institutions, tech companies</td>
                         <td>APT campaigns, spear phishing, supply chain attacks</td>
                     </tr>
                     <tr>
-                        <td><span class="highlight">✊ Ideology</span></td>
+                        <td><span class="highlight">Ideology</span></td>
                         <td>Promoting political/social causes, making statements</td>
                         <td>Governments, corporations, controversial organizations</td>
                         <td>Website defacement, DDoS, data leaks</td>
                     </tr>
                     <tr>
-                        <td><span class="highlight">😠 Revenge</span></td>
+                        <td><span class="highlight">Revenge</span></td>
                         <td>Retaliation for perceived wrongs, often by insiders</td>
                         <td>Former employers, specific individuals</td>
                         <td>Data destruction, sabotage, data leaks</td>
                     </tr>
                     <tr>
-                        <td><span class="highlight">🏆 Challenge/Fame</span></td>
+                        <td><span class="highlight">Challenge/Fame</span></td>
                         <td>Proving technical skills, gaining recognition in hacker communities</td>
                         <td>"High-value" targets for bragging rights</td>
                         <td>Varies, often public disclosure of exploits</td>
@@ -851,14 +897,14 @@
             </table>
 
             <div class="info-box">
-                <strong>💡 Key Insight:</strong> Most attacks are financially motivated. According to Verizon's 2023 Data Breach 
+                <strong>Key Insight:</strong> Most attacks are financially motivated. According to Verizon's 2023 Data Breach
                 Investigation Report (DBIR), <span class="highlight">86%</span> of breaches are financially motivated. This is why 
-                ransomware has become so prevalent — it's simply very profitable for criminals.
+                ransomware has become so prevalent: it is simply very profitable for criminals.
             </div>
         </div>
 
         <!-- Attack Vectors Section -->
-        <h2>🎯 Attack Vectors — How Attacks Happen</h2>
+        <h2>Attack Vectors: How Attacks Happen</h2>
 
         <div class="section">
             <p>
@@ -876,32 +922,32 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><span class="highlight">📧 Email</span></td>
+                        <td><span class="highlight">Email</span></td>
                         <td>Phishing emails with malicious attachments (PDFs, Office docs with macros) or links to credential harvesting sites</td>
                         <td>91% of cyberattacks start with phishing email</td>
                     </tr>
                     <tr>
-                        <td><span class="highlight">🌐 Web</span></td>
+                        <td><span class="highlight">Web</span></td>
                         <td>Drive-by downloads from compromised/malicious websites, browser exploits, malvertising</td>
                         <td>Watering hole attacks targeting specific industries</td>
                     </tr>
                     <tr>
-                        <td><span class="highlight">💾 Removable Media</span></td>
+                        <td><span class="highlight">Removable Media</span></td>
                         <td>Infected USB drives, external hard drives left in public places or sent as "gifts"</td>
                         <td>Stuxnet spread via USB to air-gapped Iranian nuclear facilities</td>
                     </tr>
                     <tr>
-                        <td><span class="highlight">🗣️ Social Engineering</span></td>
+                        <td><span class="highlight">Social Engineering</span></td>
                         <td>Manipulating humans through phone calls, in-person interactions, pretexting</td>
-                        <td>2020 Twitter hack — employees tricked into providing credentials</td>
+                        <td>2020 Twitter hack, where employees were tricked into providing credentials</td>
                     </tr>
                     <tr>
-                        <td><span class="highlight">🔗 Supply Chain</span></td>
+                        <td><span class="highlight">Supply Chain</span></td>
                         <td>Compromising software vendors to distribute malware through legitimate updates</td>
                         <td>SolarWinds attack compromised 18,000+ organizations</td>
                     </tr>
                     <tr>
-                        <td><span class="highlight">🚪 Physical Access</span></td>
+                        <td><span class="highlight">Physical Access</span></td>
                         <td>Direct access to facilities, servers, or devices through tailgating, social engineering, or breaking in</td>
                         <td>Installing hardware keyloggers, evil maid attacks</td>
                     </tr>
@@ -909,17 +955,17 @@
             </table>
 
             <div class="warning-box">
-                <strong>⚠️ The Human Factor:</strong> People are often called the "weakest link" in security. Technical 
+                <strong>The Human Factor:</strong> People are often called the "weakest link" in security. Technical
                 controls can be bypassed when employees are tricked. This is why <span class="highlight">security awareness 
-                training</span> is essential — even the best technical defenses can be circumvented by social engineering.
+                training</span> is essential: even the best technical defenses can be circumvented by social engineering.
             </div>
         </div>
 
         <!-- Frameworks Section -->
-        <h2>📋 Security Frameworks Introduction</h2>
+        <h2>Security Frameworks Introduction</h2>
 
         <div class="section">
-            <h3>🔪 Cyber Kill Chain</h3>
+            <h3>Cyber Kill Chain</h3>
             <p>
                 Developed by Lockheed Martin, the <span class="highlight">Cyber Kill Chain</span> describes the stages 
                 of a cyberattack from initial reconnaissance to achieving objectives. Understanding this framework 
@@ -1004,7 +1050,7 @@
                 </tbody>
             </table>
 
-            <h3>🎯 MITRE ATT&CK Framework</h3>
+            <h3>MITRE ATT&CK Framework</h3>
             <p>
                 <span class="highlight">MITRE ATT&CK</span> (Adversarial Tactics, Techniques, and Common Knowledge) is a 
                 comprehensive knowledge base of adversary tactics and techniques based on real-world observations. 
@@ -1014,15 +1060,15 @@
             <div class="framework-box">
                 <h4>ATT&CK Structure</h4>
                 <ul>
-                    <li><span class="highlight">Tactics:</span> The "why" — the adversary's goal (e.g., Initial Access, Persistence, Exfiltration)</li>
-                    <li><span class="highlight">Techniques:</span> The "how" — specific methods to achieve tactics (e.g., Phishing, Registry Run Keys)</li>
+                    <li><span class="highlight">Tactics:</span> The "why", or the adversary's goal (e.g., Initial Access, Persistence, Exfiltration)</li>
+                    <li><span class="highlight">Techniques:</span> The "how", or specific methods to achieve tactics (e.g., Phishing, Registry Run Keys)</li>
                     <li><span class="highlight">Sub-techniques:</span> More granular variations of techniques</li>
                     <li><span class="highlight">Procedures:</span> Specific implementations by threat actors</li>
                 </ul>
             </div>
 
             <div class="info-box">
-                <strong>💡 Why ATT&CK Matters:</strong> ATT&CK provides a common language for security teams to describe 
+                <strong>Why ATT&CK Matters:</strong> ATT&CK provides a common language for security teams to describe
                 adversary behavior. It helps organizations:
                 <ul>
                     <li>Identify gaps in detection capabilities</li>
@@ -1037,18 +1083,18 @@
         </div>
 
         <!-- Defense in Depth Section -->
-        <h2>🏰 Defense in Depth (Castle Analogy)</h2>
+        <h2>Defense in Depth</h2>
 
         <div class="section">
             <p>
                 <span class="highlight">Defense in Depth</span> is a security strategy that employs multiple layers of 
-                defense so that if one layer fails, others are in place. Think of it like a medieval castle — you don't 
+                defense so that if one layer fails, others are in place. Think of it like a medieval castle: you don't
                 rely on just the outer wall; you have moats, inner walls, towers, and guards.
             </p>
 
             <div class="info-box">
-                <strong>💡 Core Principle:</strong> No single security control is perfect. By layering multiple defenses, 
-                you create <span class="highlight">redundancy</span> — an attacker must bypass multiple barriers to succeed. 
+                <strong>Core Principle:</strong> No single security control is perfect. By layering multiple defenses,
+                you create <span class="highlight">redundancy</span>: an attacker must bypass multiple barriers to succeed.
                 Each layer increases the time, effort, and likelihood of detection.
             </div>
 
@@ -1056,10 +1102,10 @@
 
             <div class="defense-layers">
                 <div class="layer">
-                    <div class="layer-icon">🏢</div>
+                    <div class="layer-icon">Physical</div>
                     <div class="layer-content">
                         <h4>Physical Security</h4>
-                        <p>The outermost layer — protecting physical access to facilities and hardware.</p>
+                        <p>The outermost layer protects physical access to facilities and hardware.</p>
                         <div class="layer-examples">
                             <span>Access badges</span>
                             <span>Security guards</span>
@@ -1071,7 +1117,7 @@
                 </div>
 
                 <div class="layer">
-                    <div class="layer-icon">🌐</div>
+                    <div class="layer-icon">Network</div>
                     <div class="layer-content">
                         <h4>Network Security</h4>
                         <p>Protecting the network infrastructure and controlling traffic flow.</p>
@@ -1086,7 +1132,7 @@
                 </div>
 
                 <div class="layer">
-                    <div class="layer-icon">💻</div>
+                    <div class="layer-icon">Endpoint</div>
                     <div class="layer-content">
                         <h4>Endpoint Security</h4>
                         <p>Protecting individual devices (laptops, desktops, servers, mobile).</p>
@@ -1101,7 +1147,7 @@
                 </div>
 
                 <div class="layer">
-                    <div class="layer-icon">📱</div>
+                    <div class="layer-icon">App</div>
                     <div class="layer-content">
                         <h4>Application Security</h4>
                         <p>Securing software and applications from vulnerabilities.</p>
@@ -1116,7 +1162,7 @@
                 </div>
 
                 <div class="layer">
-                    <div class="layer-icon">🗄️</div>
+                    <div class="layer-icon">Data</div>
                     <div class="layer-content">
                         <h4>Data Security</h4>
                         <p>Protecting the data itself, regardless of where it resides.</p>
@@ -1131,10 +1177,10 @@
                 </div>
 
                 <div class="layer">
-                    <div class="layer-icon">👤</div>
+                    <div class="layer-icon">People</div>
                     <div class="layer-content">
                         <h4>User Security</h4>
-                        <p>The human layer — training and policies for people.</p>
+                        <p>The human layer covers training and policies for people.</p>
                         <div class="layer-examples">
                             <span>Security awareness</span>
                             <span>Phishing simulations</span>
@@ -1150,18 +1196,18 @@
                 <h4>Castle Analogy in Action</h4>
                 <p>Imagine an attacker trying to breach a medieval castle:</p>
                 <ol>
-                    <li><strong>Moat</strong> (Network Perimeter) — Firewall blocks initial attack</li>
-                    <li><strong>Outer Wall</strong> (IDS/IPS) — Detects the attacker climbing over</li>
-                    <li><strong>Inner Wall</strong> (Segmentation) — Limits attacker's movement</li>
-                    <li><strong>Guards</strong> (EDR/SOC) — Actively hunt and respond</li>
-                    <li><strong>Vault</strong> (Encryption) — Even if reached, treasure is protected</li>
+                    <li><strong>Moat</strong> (Network Perimeter): Firewall blocks the initial attack</li>
+                    <li><strong>Outer Wall</strong> (IDS/IPS): Detects the attacker climbing over</li>
+                    <li><strong>Inner Wall</strong> (Segmentation): Limits the attacker's movement</li>
+                    <li><strong>Guards</strong> (EDR/SOC): Actively hunt and respond</li>
+                    <li><strong>Vault</strong> (Encryption): Even if reached, the data is protected</li>
                 </ol>
                 <p>Each layer makes the attack harder and increases the chance of detection!</p>
             </div>
         </div>
 
         <!-- Security Teams Section -->
-        <h2>🎭 Security Teams</h2>
+        <h2>Security Teams</h2>
 
         <div class="section">
             <p>
@@ -1171,10 +1217,10 @@
 
             <div class="team-grid">
                 <div class="team-card red">
-                    <div class="team-icon">🔴</div>
+                    <div class="team-icon">Red</div>
                     <h4>Red Team</h4>
                     <p>
-                        <strong>Offensive Security</strong> — Simulates real-world attackers to test defenses. 
+                        <strong>Offensive Security:</strong> Simulates real-world attackers to test defenses.
                         Tries to breach security controls using any means necessary, just like actual adversaries.
                     </p>
                     
@@ -1199,10 +1245,10 @@
                 </div>
 
                 <div class="team-card blue">
-                    <div class="team-icon">🔵</div>
+                    <div class="team-icon">Blue</div>
                     <h4>Blue Team</h4>
                     <p>
-                        <strong>Defensive Security</strong> — Monitors, detects, and responds to security threats. 
+                        <strong>Defensive Security:</strong> Monitors, detects, and responds to security threats.
                         Builds and maintains security infrastructure and processes.
                     </p>
                     
@@ -1227,10 +1273,10 @@
                 </div>
 
                 <div class="team-card purple">
-                    <div class="team-icon">🟣</div>
+                    <div class="team-icon">Purple</div>
                     <h4>Purple Team</h4>
                     <p>
-                        <strong>Collaborative Security</strong> — Bridges the gap between Red and Blue teams. 
+                        <strong>Collaborative Security:</strong> Bridges the gap between Red and Blue teams.
                         Facilitates knowledge sharing to improve both offensive and defensive capabilities.
                     </p>
                     
@@ -1258,9 +1304,9 @@
                 <thead>
                     <tr>
                         <th>Aspect</th>
-                        <th>Red Team 🔴</th>
-                        <th>Blue Team 🔵</th>
-                        <th>Purple Team 🟣</th>
+                        <th>Red Team</th>
+                        <th>Blue Team</th>
+                        <th>Purple Team</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -1298,7 +1344,7 @@
             </table>
 
             <div class="info-box">
-                <strong>💡 Career Tip:</strong> Early in your career, most people start on the Blue Team (SOC Analyst) 
+                <strong>Career Tip:</strong> Early in your career, most people start on the Blue Team (SOC Analyst)
                 because organizations need more defenders. As you gain experience and skills, you can specialize in 
                 Red Team (offensive) or move into Purple Team roles that require understanding of both sides.
             </div>
@@ -1307,12 +1353,10 @@
         <!-- Page Navigation -->
         <nav class="page-nav">
             <a href="1.2-glossary.html">
-                <span>←</span>
                 <span>Previous: Cybersecurity Glossary</span>
             </a>
             <a href="../../index.html#resources">
                 <span>Back to Module Hub</span>
-                <span>→</span>
             </a>
         </nav>
 
@@ -1320,7 +1364,7 @@
             <p>Module 1: Introduction to Cybersecurity | Lesson 1.3</p>
             <p>Part of the Cybersecurity Beginner Course at lokii.tech</p>
             <p style="margin-top: 20px;">
-                <strong>🎉 Congratulations!</strong> You've completed Module 1: Introduction to Cybersecurity
+                <strong>Module complete:</strong> You have completed Module 1: Introduction to Cybersecurity
             </p>
         </footer>
     </div>

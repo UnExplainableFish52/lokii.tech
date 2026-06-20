@@ -1,26 +1,27 @@
 <!DOCTYPE html>
+<!-- lokii-note-polish: checked 2026-06-20; removed decorative emoji and em dash usage, cleaned grep wording, and updated metadata. -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>grep Mastery Guide | CyberSec & DevOps</title>
-    
-    <meta name="description" content="Complete grep mastery guide for CyberSec and DevOps. Learn pattern matching, regex, and text searching in Linux.">
+    <title>grep Notes | Intermediate Linux Tools | lokii.tech</title>
+
+    <meta name="description" content="Intermediate grep notes covering pattern matching, recursive search, regex modes, context flags, log analysis, secret hunting, and grep plus awk plus sed pipelines.">
     <meta name="author" content="lokii (UnExplainableFish52)">
     <meta name="theme-color" content="#0d0d0d">
-    
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://lokii.tech/intermediate/tools/grep.html">
-    <meta property="og:title" content="grep Mastery Guide | CyberSec &amp; DevOps">
-    <meta property="og:description" content="Complete grep mastery guide for CyberSec and DevOps. Learn pattern matching, regex, and text searching in Linux.">
+    <meta property="og:title" content="grep Notes | Intermediate Linux Tools | lokii.tech">
+    <meta property="og:description" content="Intermediate grep notes covering pattern matching, recursive search, regex modes, context flags, log analysis, secret hunting, and grep plus awk plus sed pipelines.">
     <meta property="og:image" content="https://lokii.tech/preview.jpg">
     <meta property="og:site_name" content="lokii.tech">
-    
+
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="grep Mastery Guide | CyberSec &amp; DevOps">
-    <meta name="twitter:description" content="Complete grep mastery guide for CyberSec and DevOps. Learn pattern matching, regex, and text searching in Linux.">
+    <meta name="twitter:title" content="grep Notes | Intermediate Linux Tools | lokii.tech">
+    <meta name="twitter:description" content="Intermediate grep notes covering pattern matching, recursive search, regex modes, context flags, log analysis, secret hunting, and grep plus awk plus sed pipelines.">
     <meta name="twitter:image" content="https://lokii.tech/preview.jpg">
     <!-- SEO Metadata -->
     <link rel="canonical" href="https://lokii.tech/intermediate/tools/grep.html">
@@ -33,11 +34,11 @@
     <link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
     <link rel="manifest" href="../../site.webmanifest">
     <link rel="icon" href="../../favicon.ico">
-    
+
     <link rel="stylesheet" href="../../css/global-ui.css">
     <style>
         * {
-            margin:  0;
+            margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
@@ -63,7 +64,7 @@
             font-size: 3em;
             font-weight: 800;
             text-align: center;
-            margin-bottom:  10px;
+            margin-bottom: 10px;
             text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
         }
 
@@ -71,7 +72,7 @@
             color: #888;
             text-align: center;
             font-size: 1.2em;
-            margin-bottom:  40px;
+            margin-bottom: 40px;
         }
 
         h2 {
@@ -89,13 +90,13 @@
             color: #00d4ff;
             font-size: 1.5em;
             font-weight: 600;
-            margin-top:  30px;
-            margin-bottom:  15px;
+            margin-top: 30px;
+            margin-bottom: 15px;
         }
 
         h4 {
             color: #40e0d0;
-            font-size:  1.2em;
+            font-size: 1.2em;
             font-weight: 600;
             margin-top: 20px;
             margin-bottom: 10px;
@@ -117,27 +118,27 @@
         .important {
             background: linear-gradient(90deg, rgba(255, 215, 0, 0.2), transparent);
             border-left: 4px solid #ffd700;
-            padding:  15px 20px;
+            padding: 15px 20px;
             margin: 20px 0;
             border-radius: 0 8px 8px 0;
         }
 
         .important strong {
-            color:  #ffd700;
+            color: #ffd700;
         }
 
         /* CODE - Green Color */
         code {
-            background:  #1e1e1e;
+            background: #1e1e1e;
             color: #00ff88;
-            padding:  3px 8px;
+            padding: 3px 8px;
             border-radius: 4px;
             font-family: 'Consolas', 'Fira Code', monospace;
             font-size: 0.95em;
         }
 
         pre {
-            background:  #0a0a0a;
+            background: #0a0a0a;
             border: 1px solid #333;
             border-left: 4px solid #00ff88;
             border-radius: 8px;
@@ -156,7 +157,7 @@
         }
 
         .code-comment {
-            color:  #6a9955;
+            color: #6a9955;
         }
 
         /* TABLES */
@@ -173,8 +174,8 @@
             background: linear-gradient(135deg, #1a1a2e, #16213e);
             color: #00ffff;
             font-weight: 700;
-            padding:  15px;
-            text-align:  left;
+            padding: 15px;
+            text-align: left;
             border-bottom: 2px solid #00ffff;
         }
 
@@ -205,13 +206,13 @@
         }
 
         li::marker {
-            color:  #00ffff;
+            color: #00ffff;
         }
 
         /* SPECIAL BOXES */
         .tip-box {
             background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(0, 100, 50, 0.1));
-            border:  1px solid #00ff88;
+            border: 1px solid #00ff88;
             border-radius: 10px;
             padding: 20px;
             margin: 20px 0;
@@ -227,7 +228,7 @@
             border: 1px solid #ff6b6b;
             border-radius: 10px;
             padding: 20px;
-            margin:  20px 0;
+            margin: 20px 0;
         }
 
         .warning-box h4 {
@@ -237,7 +238,7 @@
 
         .info-box {
             background: linear-gradient(135deg, rgba(0, 150, 255, 0.1), rgba(0, 50, 100, 0.1));
-            border:  1px solid #00aaff;
+            border: 1px solid #00aaff;
             border-radius: 10px;
             padding: 20px;
             margin: 20px 0;
@@ -255,10 +256,10 @@
             margin: 40px 0;
         }
 
-        /* CHALLENGE SECTION */
+        /* CHallENGE SECTION */
         .challenge {
             background: linear-gradient(135deg, #1a1a2e, #16213e);
-            border:  2px solid #ffd700;
+            border: 2px solid #ffd700;
             border-radius: 12px;
             padding: 25px;
             margin: 25px 0;
@@ -272,14 +273,14 @@
 
         details {
             background: #0a0a0a;
-            border:  1px solid #444;
+            border: 1px solid #444;
             border-radius: 8px;
-            padding:  15px;
+            padding: 15px;
             margin-top: 15px;
         }
 
         summary {
-            color:  #00ffff;
+            color: #00ffff;
             cursor: pointer;
             font-weight: 600;
             padding: 5px;
@@ -327,7 +328,7 @@
 
         .trinity-item.grep h4 { color: #00ff88; }
         .trinity-item.sed h4 { color: #ff6b6b; }
-        .trinity-item.awk h4 { color:  #ffd700; }
+        .trinity-item.awk h4 { color: #ffd700; }
 
         /* CHEATSHEET */
         .cheatsheet {
@@ -338,7 +339,7 @@
         }
 
         .cheat-card {
-            background:  #111;
+            background: #111;
             border: 1px solid #333;
             border-radius: 10px;
             padding: 20px;
@@ -354,7 +355,7 @@
         /* PIPELINE FLOW */
         .pipeline {
             background: #0a0a0a;
-            border:  2px solid #00ffff;
+            border: 2px solid #00ffff;
             border-radius: 12px;
             padding: 25px;
             margin: 25px 0;
@@ -371,7 +372,7 @@
         }
 
         .pipeline-step {
-            background:  #1a1a2e;
+            background: #1a1a2e;
             border: 2px solid #00ff88;
             border-radius: 8px;
             padding: 15px 25px;
@@ -396,12 +397,12 @@
         }
 
         .footer span {
-            color:  #00ffff;
+            color: #00ffff;
         }
 
         /* SCROLLBAR */
         ::-webkit-scrollbar {
-            width:  10px;
+            width: 10px;
             height: 10px;
         }
 
@@ -434,7 +435,7 @@
             }
 
             pre {
-                padding:  15px;
+                padding: 15px;
             }
 
             .trinity-box {
@@ -532,7 +533,7 @@
             {
               "@type": "ListItem",
               "position": 3,
-              "name": "grep Mastery Guide | CyberSec & DevOps",
+              "name": "grep Notes | Intermediate Linux Tools | lokii.tech",
               "item": "https://lokii.tech/intermediate/tools/grep.html"
             }
           ]
@@ -541,8 +542,8 @@
           "@type": "WebPage",
           "@id": "https://lokii.tech/intermediate/tools/grep.html#webpage",
           "url": "https://lokii.tech/intermediate/tools/grep.html",
-          "name": "grep Mastery Guide | CyberSec & DevOps",
-          "description": "Complete grep mastery guide for CyberSec and DevOps. Learn pattern matching, regex, and text searching in Linux.",
+          "name": "grep Notes | Intermediate Linux Tools | lokii.tech",
+          "description": "Intermediate grep notes covering pattern matching, recursive search, regex modes, context flags, log analysis, secret hunting, and grep plus awk plus sed pipelines.",
           "isPartOf": {
             "@id": "https://lokii.tech/#website"
           },
@@ -550,7 +551,7 @@
             "@id": "https://lokii.tech/intermediate/tools/grep.html#breadcrumbs"
           },
           "primaryImageOfPage": "https://lokii.tech/preview.jpg",
-          "dateModified": "2026-06-04",
+          "dateModified": "2026-06-20",
           "inLanguage": "en"
         },
         {
@@ -559,8 +560,8 @@
             "LearningResource"
           ],
           "@id": "https://lokii.tech/intermediate/tools/grep.html#article",
-          "headline": "grep Mastery Guide | CyberSec & DevOps",
-          "description": "Complete grep mastery guide for CyberSec and DevOps. Learn pattern matching, regex, and text searching in Linux.",
+          "headline": "grep Notes | Intermediate Linux Tools | lokii.tech",
+          "description": "Intermediate grep notes covering pattern matching, recursive search, regex modes, context flags, log analysis, secret hunting, and grep plus awk plus sed pipelines.",
           "url": "https://lokii.tech/intermediate/tools/grep.html",
           "image": "https://lokii.tech/preview.jpg",
           "author": {
@@ -574,7 +575,7 @@
           },
           "educationalLevel": "Intermediate",
           "learningResourceType": "Guide",
-          "dateModified": "2026-06-04",
+          "dateModified": "2026-06-20",
           "inLanguage": "en"
         }
       ]
@@ -597,31 +598,31 @@
     </header>
 
     <div class="container">
-        
+
         <!-- HEADER -->
-        <h1>🔍 grep Mastery Guide</h1>
-        <p class="subtitle">For CyberSec & DevOps Professionals | The Ultimate Text Filtering Tool</p>
+        <h1>grep Notes</h1>
+        <p class="subtitle">Pattern matching, recursive search, regex modes, and practical log filtering</p>
 
         <div class="divider"></div>
 
         <!-- SECTION 1: INTRO -->
-        <h2>1. What is grep?  (TL;DR)</h2>
-        
+        <h2>1. What is grep? (TL;DR)</h2>
+
         <p><code>grep</code> = <span class="highlight">G</span>lobal <span class="highlight">R</span>egular <span class="highlight">E</span>xpression <span class="highlight">P</span>rint</p>
-        
+
         <p>A command-line tool that <strong>searches text or files</strong> for lines matching a pattern and <strong>prints them</strong>.</p>
 
         <div class="important">
             <strong>Why grep Matters:</strong>
             <ul>
-                <li><span class="highlight">CyberSec: </span> Hunt threats in logs, extract IPs, find secrets in code, parse tool outputs</li>
+                <li><span class="highlight">Cybersecurity: </span> Review logs, extract IPs, find secrets in code, and parse tool outputs</li>
                 <li><span class="highlight">DevOps:</span> Filter logs, validate configs, monitor systems, automate pipelines</li>
-                <li><span class="highlight">Speed:</span> Processes massive files in seconds — essential for incident response</li>
+                <li><span class="highlight">Speed:</span> Processes large files quickly, which is useful during incident response</li>
             </ul>
         </div>
 
-        <h3>🔥 The Holy Trinity of Text Processing</h3>
-        
+        <h3>The Core Text Processing Trio</h3>
+
         <div class="trinity-box">
             <div class="trinity-item grep">
                 <h4>grep</h4>
@@ -640,7 +641,7 @@
             </div>
         </div>
 
-        <p style="text-align: center;"><span class="highlight">Together:  Unstoppable data manipulation power. </span></p>
+        <p style="text-align: center;"><span class="highlight">Together, these tools let you find lines, extract fields, and transform text in one pipeline.</span></p>
 
         <div class="divider"></div>
 
@@ -656,7 +657,7 @@ grep "error" /var/log/syslog
 <span class="code-comment"># Search in multiple files</span>
 grep "failed" *.log
 
-<span class="code-comment"># Search from command output (PIPE! )</span>
+<span class="code-comment"># Search from command output (pipe)</span>
 cat /etc/passwd | grep "root"
 
 <span class="code-comment"># Better way (no useless cat)</span>
@@ -665,9 +666,9 @@ grep "root" /etc/passwd</code></pre>
         <div class="divider"></div>
 
         <!-- SECTION 3: FLAGS -->
-        <h2>3. Essential Flags — The Core Arsenal</h2>
+        <h2>3. Essential Flags  -  The Core Flags</h2>
 
-        <h3>🎯 Match Control</h3>
+        <h3>Match Control</h3>
         <table>
             <tr>
                 <th>Flag</th>
@@ -705,7 +706,7 @@ grep -v "debug" app.log
 <span class="code-comment"># Match "fail" but not "failed" or "failure"</span>
 grep -w "fail" /var/log/auth.log</code></pre>
 
-        <h3>📍 Output Control</h3>
+        <h3>Output Control</h3>
         <table>
             <tr>
                 <th>Flag</th>
@@ -755,10 +756,10 @@ grep -c "404" /var/log/apache2/access.log
 <span class="code-comment"># Find which config files contain passwords</span>
 grep -l "password" /etc/*. conf
 
-<span class="code-comment"># Extract ONLY the IP addresses from log</span>
+<span class="code-comment"># Extract only the IP addresses from log</span>
 grep -oE "([0-9]{1,3}\.){3}[0-9]{1,3}" access.log</code></pre>
 
-        <h3>🔍 Context Control <span class="highlight">(Super Useful for Log Analysis! )</span></h3>
+        <h3>Context Control <span class="highlight">(Useful for Log Analysis)</span></h3>
         <table>
             <tr>
                 <th>Flag</th>
@@ -782,7 +783,7 @@ grep -oE "([0-9]{1,3}\.){3}[0-9]{1,3}" access.log</code></pre>
             </tr>
         </table>
 
-        <pre><code><span class="code-comment"># Show error + next 5 lines (see the stack trace! )</span>
+        <pre><code><span class="code-comment"># Show error + next 5 lines (see the stack trace)</span>
 grep -A 5 "Exception" app.log
 
 <span class="code-comment"># Show 3 lines before error (see what caused it)</span>
@@ -791,7 +792,7 @@ grep -B 3 "failed" /var/log/auth.log
 <span class="code-comment"># Full context:  2 lines before and after</span>
 grep -C 2 "Connection refused" /var/log/syslog</code></pre>
 
-        <h3>📂 File & Directory Control</h3>
+        <h3>File & Directory Control</h3>
         <table>
             <tr>
                 <th>Flag</th>
@@ -824,12 +825,12 @@ grep -C 2 "Connection refused" /var/log/syslog</code></pre>
 grep -rn --include="*.py" "password\|api_key\|secret" /opt/webapp/
 
 <span class="code-comment"># Search everything except node_modules and .git</span>
-grep -rn --exclude-dir={node_modules,. git} "TODO" ./
+grep -rn --exclude-dir={node_modules,.git} "TODO" ./
 
 <span class="code-comment"># Find PHP files that might have SQL injection vulnerabilities</span>
 grep -rn --include="*. php" "\$_GET\|\$_POST" /var/www/html/</code></pre>
 
-        <h3>⚡ Regex Mode Flags</h3>
+        <h3>Regex Mode Flags</h3>
         <table>
             <tr>
                 <th>Flag</th>
@@ -837,15 +838,15 @@ grep -rn --include="*. php" "\$_GET\|\$_POST" /var/www/html/</code></pre>
             </tr>
             <tr>
                 <td>-E</td>
-                <td><strong>E</strong>xtended regex (ERE) — use <code>+</code>, <code>? </code>, <code>|</code>, <code>()</code> without escaping</td>
+                <td><strong>E</strong>xtended regex (ERE)  -  use <code>+</code>, <code>?</code>, <code>|</code>, <code>()</code> without escaping</td>
             </tr>
             <tr>
                 <td>-P</td>
-                <td><strong>P</strong>erl-compatible regex (PCRE) — most powerful, supports <code>\d</code>, <code>\w</code>, lookahead</td>
+                <td><strong>P</strong>erl-compatible regex (PCRE)  -  most powerful, supports <code>\d</code>, <code>\w</code>, lookahead</td>
             </tr>
             <tr>
                 <td>-F</td>
-                <td><strong>F</strong>ixed strings (no regex, literal match) — fastest! </td>
+                <td><strong>F</strong>ixed strings (no regex, literal match)  -  fastest</td>
             </tr>
         </table>
 
@@ -858,7 +859,7 @@ grep -oP "[\w.-]+@[\w.-]+\.\w+" emails.txt
 <span class="code-comment"># Fixed string: Search for literal "192.168.1.1" (no regex interpretation)</span>
 grep -F "192.168.1.1" access.log</code></pre>
 
-        <h3>🤫 Silent & Script-Friendly</h3>
+        <h3>Silent and Script-Friendly</h3>
         <table>
             <tr>
                 <th>Flag</th>
@@ -874,7 +875,7 @@ grep -F "192.168.1.1" access.log</code></pre>
             </tr>
         </table>
 
-        <pre><code><span class="code-comment"># Use in scripts — check if pattern exists</span>
+        <pre><code><span class="code-comment"># Use in scripts  -  check if pattern exists</span>
 if grep -q "root" /etc/passwd; then
     echo "Root user exists"
 fi
@@ -904,9 +905,9 @@ fi
                 <td><code>+</code></td>
             </tr>
             <tr>
-                <td>? (zero or one)</td>
+                <td>?(zero or one)</td>
                 <td><code>\?</code></td>
-                <td><code>? </code></td>
+                <td><code>?</code></td>
                 <td><code>?</code></td>
             </tr>
             <tr>
@@ -923,32 +924,32 @@ fi
             </tr>
             <tr>
                 <td>\d (digit)</td>
-                <td>❌</td>
-                <td>❌</td>
-                <td>✅</td>
+                <td>No</td>
+                <td>No</td>
+                <td>Yes</td>
             </tr>
             <tr>
                 <td>\w (word char)</td>
-                <td>❌</td>
-                <td>❌</td>
-                <td>✅</td>
+                <td>No</td>
+                <td>No</td>
+                <td>Yes</td>
             </tr>
             <tr>
                 <td>\s (whitespace)</td>
-                <td>❌</td>
-                <td>❌</td>
-                <td>✅</td>
+                <td>No</td>
+                <td>No</td>
+                <td>Yes</td>
             </tr>
             <tr>
                 <td>Lookahead/behind</td>
-                <td>❌</td>
-                <td>❌</td>
-                <td>✅</td>
+                <td>No</td>
+                <td>No</td>
+                <td>Yes</td>
             </tr>
         </table>
 
         <div class="tip-box">
-            <h4>💡 Pro Tip</h4>
+            <h4>Tip</h4>
             <p>Use <code>-E</code> for most cases, <code>-P</code> when you need <code>\d</code>, <code>\w</code>, or lookarounds.</p>
         </div>
 
@@ -1034,7 +1035,7 @@ grep -oE "([0-9]{1,3}\.){3}[0-9]{1,3}" access.log
 grep -oP "[\w. +-]+@[\w.-]+\.[a-zA-Z]{2,}" data. txt
 
 <span class="code-comment"># Match URLs</span>
-grep -oE "https?://[a-zA-Z0-9./? =_-]+" webpage.html
+grep -oE "https?://[a-zA-Z0-9./?=_-]+" webpage.html
 
 <span class="code-comment"># Match MAC addresses</span>
 grep -oE "([0-9A-Fa-f]{2}:){5}[0-9A-Fa-f]{2}" arp.txt
@@ -1045,9 +1046,9 @@ grep -E "^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+.*denied$" firewall.log</code></pre>
         <div class="divider"></div>
 
         <!-- SECTION 5: CYBERSEC -->
-        <h2>5. CyberSec Use Cases</h2>
+        <h2>5. Cybersecurity Use Cases</h2>
 
-        <h3>🔐 Log Analysis on Kali Linux</h3>
+        <h3>Log Analysis on Kali Linux</h3>
 
         <h4>Key Log Locations</h4>
         <table>
@@ -1109,8 +1110,8 @@ grep "sudo:" /var/log/auth.log | grep "COMMAND"
 <span class="code-comment"># New user/group creation (privilege escalation indicator)</span>
 grep -E "useradd|groupadd|usermod" /var/log/auth.log</code></pre>
 
-        <h3>🌐 Web Server Log Analysis</h3>
-        <pre><code><span class="code-comment"># Find all 404 errors (reconnaissance indicator! )</span>
+        <h3>Web Server Log Analysis</h3>
+        <pre><code><span class="code-comment"># Find all 404 errors (reconnaissance indicator)</span>
 grep " 404 " /var/log/apache2/access.log
 
 <span class="code-comment"># Find potential SQL injection attempts</span>
@@ -1125,7 +1126,7 @@ grep -E "\.\./|\.\. %2f|%2e%2e" /var/log/apache2/access.log
 <span class="code-comment"># Top 10 IP addresses hitting your server</span>
 grep -oE "^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+" /var/log/apache2/access.log | sort | uniq -c | sort -rn | head -10</code></pre>
 
-        <h3>🔧 Parsing Security Tool Outputs</h3>
+        <h3>Parsing Security Tool Outputs</h3>
 
         <h4>Nmap Output Parsing</h4>
         <pre><code><span class="code-comment"># Extract open ports from nmap output</span>
@@ -1151,16 +1152,16 @@ grep "+ " nikto.txt | grep -v "Target\|Host"
 <span class="code-comment"># Find specific vulnerability types</span>
 grep -i "injection\|xss\|traversal" nikto.txt</code></pre>
 
-        <h3>🔍 Secret Hunting in Code</h3>
+        <h3>Secret Hunting in Code</h3>
         <pre><code><span class="code-comment"># Find hardcoded credentials</span>
 grep -rnE --include="*.py" --include="*.js" --include="*.php" \
     "password\s*=\s*['\"][^'\"]+['\"]|api_key\s*=\s*['\"][^'\"]+['\"]" /var/www/
 
 <span class="code-comment"># Find AWS keys</span>
-grep -rE "AKIA[0-9A-Z]{16}" . 
+grep -rE "AKIA[0-9A-Z]{16}" .
 
 <span class="code-comment"># Find private keys</span>
-grep -r "BEGIN RSA PRIVATE KEY\|BEGIN OPENSSH PRIVATE KEY" . 
+grep -r "BEGIN RSA PRIVATE KEY\|BEGIN OPENSSH PRIVATE KEY" .
 
 <span class="code-comment"># Find JWT tokens</span>
 grep -oE "eyJ[A-Za-z0-9_-]*\. eyJ[A-Za-z0-9_-]*\.[A-Za-z0-9_-]*" . </code></pre>
@@ -1170,7 +1171,7 @@ grep -oE "eyJ[A-Za-z0-9_-]*\. eyJ[A-Za-z0-9_-]*\.[A-Za-z0-9_-]*" . </code></pre>
         <!-- SECTION 6: DEVOPS -->
         <h2>6. DevOps Use Cases</h2>
 
-        <h3>🐳 Docker & Kubernetes</h3>
+        <h3>Docker & Kubernetes</h3>
         <pre><code><span class="code-comment"># Filter Docker container logs for errors</span>
 docker logs my_container 2>&1 | grep -i "error\|exception\|fatal"
 
@@ -1186,7 +1187,7 @@ kubectl get pods | grep -v "Running"
 <span class="code-comment"># Search across all pods in namespace</span>
 kubectl logs -l app=myapp | grep "connection refused"</code></pre>
 
-        <h3>📊 System Monitoring</h3>
+        <h3>System Monitoring</h3>
         <pre><code><span class="code-comment"># Find processes using high CPU</span>
 ps aux | grep -v grep | awk '$3 > 50 {print}'
 
@@ -1203,7 +1204,7 @@ tail -f /var/log/syslog | grep --line-buffered "error"
 ss -tulpn | grep LISTEN
 netstat -tulpn | grep LISTEN</code></pre>
 
-        <h3>🔧 Config File Management</h3>
+        <h3>Config File Management</h3>
         <pre><code><span class="code-comment"># Find all config files with specific setting</span>
 grep -rn "max_connections" /etc/
 
@@ -1217,7 +1218,7 @@ grep -E "^#.*=" /etc/ssh/sshd_config    <span class="code-comment"># Commented s
 <span class="code-comment"># Check for insecure settings</span>
 grep -E "PermitRootLogin\s+yes|PasswordAuthentication\s+yes" /etc/ssh/sshd_config</code></pre>
 
-        <h3>📈 CI/CD Pipeline Analysis</h3>
+        <h3>CI/CD Pipeline Analysis</h3>
         <pre><code><span class="code-comment"># Filter CI log for failed steps</span>
 cat ci_output.log | grep -E "FAILED|ERROR|error:"
 
@@ -1225,26 +1226,26 @@ cat ci_output.log | grep -E "FAILED|ERROR|error:"
 grep -A 5 "FAILED" test_results.log
 
 <span class="code-comment"># Find deployment issues</span>
-grep -E "timeout|connection refused|permission denied" deploy. log</code></pre>
+grep -E "timeout|connection refused|permission denied" deploy.log</code></pre>
 
         <div class="divider"></div>
 
         <!-- SECTION 7: PIPELINES -->
-        <h2>7. 🔥 The Power Trio: grep + awk + sed Pipelines</h2>
+        <h2>7.  The Tool Trio: grep + awk + sed Pipelines</h2>
 
-        <p style="text-align:  center; font-size: 1.3em;"><span class="highlight">This is where you become DANGEROUS. </span></p>
+        <p style="text-align: center; font-size: 1.3em;"><span class="highlight">This is where pipelines become useful in real work. </span></p>
 
         <div class="pipeline">
             <h4 style="color: #00ffff; margin-top: 0;">Pipeline Flow Pattern</h4>
             <div class="pipeline-flow">
                 <span class="pipeline-step">[INPUT]</span>
-                <span class="pipeline-arrow">→</span>
+                <span class="pipeline-arrow">-></span>
                 <span class="pipeline-step">grep (FILTER)</span>
-                <span class="pipeline-arrow">→</span>
+                <span class="pipeline-arrow">-></span>
                 <span class="pipeline-step">awk (EXTRACT)</span>
-                <span class="pipeline-arrow">→</span>
+                <span class="pipeline-arrow">-></span>
                 <span class="pipeline-step">sed (TRANSFORM)</span>
-                <span class="pipeline-arrow">→</span>
+                <span class="pipeline-arrow">-></span>
                 <span class="pipeline-step">[OUTPUT]</span>
             </div>
         </div>
@@ -1259,12 +1260,12 @@ grep -E "timeout|connection refused|permission denied" deploy. log</code></pre>
     head -10
 
 <span class="code-comment"># BREAKDOWN: </span>
-<span class="code-comment"># grep "Failed password"  → Filter only failed login lines</span>
-<span class="code-comment"># grep -oE "..."          → Extract ONLY IP addresses</span>
-<span class="code-comment"># sort                    → Group identical IPs together</span>
-<span class="code-comment"># uniq -c                 → Count occurrences</span>
-<span class="code-comment"># sort -rn                → Sort by count, descending</span>
-<span class="code-comment"># head -10                → Top 10 offenders</span></code></pre>
+<span class="code-comment"># grep "Failed password"  -> Filter only failed login lines</span>
+<span class="code-comment"># grep -oE "..."          -> Extract only IP addresses</span>
+<span class="code-comment"># sort                    -> Group identical IPs together</span>
+<span class="code-comment"># uniq -c                 -> Count occurrences</span>
+<span class="code-comment"># sort -rn                -> Sort by count, descending</span>
+<span class="code-comment"># head -10                -> Top 10 offenders</span></code></pre>
 
         <h3>Example 2: Apache 404 Analysis with Full Pipeline</h3>
         <p><strong>Goal:</strong> Get top 10 pages returning 404, with request count, formatted nicely.</p>
@@ -1277,12 +1278,12 @@ grep -E "timeout|connection refused|permission denied" deploy. log</code></pre>
     awk '{printf "%-6s %s\n", $1, $2}'
 
 <span class="code-comment"># BREAKDOWN:</span>
-<span class="code-comment"># grep " 404 "      → Filter 404 responses</span>
-<span class="code-comment"># awk '{print $7}'  → Extract URL path (7th field in Apache log)</span>
-<span class="code-comment"># sort | uniq -c    → Count unique URLs</span>
-<span class="code-comment"># sort -rn          → Sort by frequency</span>
-<span class="code-comment"># head -10          → Top 10</span>
-<span class="code-comment"># awk '{printf... }' → Pretty format output</span></code></pre>
+<span class="code-comment"># grep " 404 "      -> Filter 404 responses</span>
+<span class="code-comment"># awk '{print $7}'  -> Extract URL path (7th field in Apache log)</span>
+<span class="code-comment"># sort | uniq -c    -> Count unique URLs</span>
+<span class="code-comment"># sort -rn          -> Sort by frequency</span>
+<span class="code-comment"># head -10          -> Top 10</span>
+<span class="code-comment"># awk '{printf... }' -> Pretty format output</span></code></pre>
 
         <h3>Example 3: Real-Time Log Monitoring with Alert</h3>
         <p><strong>Goal:</strong> Monitor auth.log, alert on brute force attempts.</p>
@@ -1296,7 +1297,7 @@ grep -E "timeout|connection refused|permission denied" deploy. log</code></pre>
 <span class="code-comment"># --line-buffered is CRUCIAL for real-time piping! </span></code></pre>
 
         <div class="warning-box">
-            <h4>⚠️ Important:  --line-buffered</h4>
+            <h4>Warning Important:  --line-buffered</h4>
             <p>Without <code>--line-buffered</code>, grep buffers output and your real-time monitoring won't work!</p>
         </div>
 
@@ -1308,10 +1309,10 @@ grep -E "timeout|connection refused|permission denied" deploy. log</code></pre>
     awk '{if(/HOST/) print; else print "\t" $0}'
 
 <span class="code-comment"># BREAKDOWN:</span>
-<span class="code-comment"># grep -E "..."    → Get only host headers and open port lines</span>
-<span class="code-comment"># sed (first)      → Format host lines with "=== HOST:"</span>
-<span class="code-comment"># sed (second)     → Clean up port info</span>
-<span class="code-comment"># awk              → Indent port lines for readability</span></code></pre>
+<span class="code-comment"># grep -E "..."    -> Get only host headers and open port lines</span>
+<span class="code-comment"># sed (first)      -> Format host lines with "=== HOST:"</span>
+<span class="code-comment"># sed (second)     -> Clean up port info</span>
+<span class="code-comment"># awk              -> Indent port lines for readability</span></code></pre>
 
         <h3>Example 5: Parse CSV with grep + awk</h3>
         <p><strong>Goal:</strong> Find all users from "admin" department, show only name and email.</p>
@@ -1323,7 +1324,7 @@ grep -E "timeout|connection refused|permission denied" deploy. log</code></pre>
 grep ",admin," users.csv | \
     awk -F',' '{print $1, $2}'
 
-<span class="code-comment"># -F',' → Set comma as field separator</span></code></pre>
+<span class="code-comment"># -F',' -> Set comma as field separator</span></code></pre>
 
         <h3>Example 6: Clean and Process Web Server Stats</h3>
         <p><strong>Goal:</strong> Get hourly request count from Apache log. </p>
@@ -1336,12 +1337,12 @@ grep ",admin," users.csv | \
     awk '{print "Hour " $2 ": 00 - " $1 " requests"}'
 
 <span class="code-comment"># BREAKDOWN:</span>
-<span class="code-comment"># awk '{print $4}'    → Extract timestamp field [10/Jan/2024:14:32:01</span>
-<span class="code-comment"># sed 's/\[//.. .'     → Remove [ and split date from time</span>
-<span class="code-comment"># awk '{print $2}'    → Get just time part</span>
-<span class="code-comment"># cut -d':' -f1       → Get just hour</span>
-<span class="code-comment"># sort | uniq -c      → Count per hour</span>
-<span class="code-comment"># awk '{print... }'    → Format output nicely</span></code></pre>
+<span class="code-comment"># awk '{print $4}'    -> Extract timestamp field [10/Jan/2024:14:32:01</span>
+<span class="code-comment"># sed 's/\[//...'     -> Remove [ and split date from time</span>
+<span class="code-comment"># awk '{print $2}'    -> Get just time part</span>
+<span class="code-comment"># cut -d':' -f1       -> Get just hour</span>
+<span class="code-comment"># sort | uniq -c      -> Count per hour</span>
+<span class="code-comment"># awk '{print... }'    -> Format output nicely</span></code></pre>
 
         <h3>Example 7: Security Audit - Find Exposed Secrets</h3>
         <p><strong>Goal:</strong> Scan codebase, find secrets, format as audit report.</p>
@@ -1350,9 +1351,9 @@ grep ",admin," users.csv | \
     sed 's/password/[REDACTED]/gi'
 
 <span class="code-comment"># BREAKDOWN:</span>
-<span class="code-comment"># grep -rnE "..."      → Find secrets recursively with line numbers</span>
-<span class="code-comment"># awk -F: '{... }'      → Format as structured report (split on : )</span>
-<span class="code-comment"># sed 's/password/.. .' → Redact sensitive words in output</span></code></pre>
+<span class="code-comment"># grep -rnE "..."      -> Find secrets recursively with line numbers</span>
+<span class="code-comment"># awk -F: '{... }'      -> Format as structured report (split on : )</span>
+<span class="code-comment"># sed 's/password/...' -> Redact sensitive words in output</span></code></pre>
 
         <h3>Example 8: Process ps output for Monitoring</h3>
         <p><strong>Goal:</strong> Find high-memory processes, extract key info, format as table.</p>
@@ -1363,11 +1364,11 @@ grep ",admin," users.csv | \
     awk 'BEGIN {print "MEM%\tPROCESS\n----\t-------"} {print $1 "%\t" $2}'
 
 <span class="code-comment"># BREAKDOWN:</span>
-<span class="code-comment"># ps aux                → Get all processes</span>
-<span class="code-comment"># awk 'NR>1 && $4>1.0'  → Skip header, filter >1% memory</span>
-<span class="code-comment"># sort -rn              → Sort by memory usage</span>
-<span class="code-comment"># head -10              → Top 10</span>
-<span class="code-comment"># awk 'BEGIN.. .'        → Add header and format</span></code></pre>
+<span class="code-comment"># ps aux                -> Get all processes</span>
+<span class="code-comment"># awk 'NR>1 && $4>1.0'  -> Skip header, filter >1% memory</span>
+<span class="code-comment"># sort -rn              -> Sort by memory usage</span>
+<span class="code-comment"># head -10              -> Top 10</span>
+<span class="code-comment"># awk 'BEGIN...'        -> Add header and format</span></code></pre>
 
         <div class="divider"></div>
 
@@ -1400,7 +1401,7 @@ EOF</code></pre>
 45.33.32.156 - - [04/Jan/2024:10:01:16 +0000] "GET /admin' OR '1'='1 HTTP/1.1" 400 300
 203.0.113.42 - - [04/Jan/2024:10:02:00 +0000] "GET /wp-admin HTTP/1.1" 404 250
 203.0.113.42 - - [04/Jan/2024:10:02:01 +0000] "GET /phpmyadmin HTTP/1.1" 404 250
-203.0.113.42 - - [04/Jan/2024:10:02:02 +0000] "GET /. git/config HTTP/1.1" 404 250
+203.0.113.42 - - [04/Jan/2024:10:02:02 +0000] "GET /.git/config HTTP/1.1" 404 250
 10.0.0.100 - - [04/Jan/2024:10:05:00 +0000] "POST /login HTTP/1.1" 200 100
 10.0.0.100 - - [04/Jan/2024:10:05:30 +0000] "GET /dashboard HTTP/1.1" 200 5000
 192.168.1.100 - - [04/Jan/2024:10:10:00 +0000] "GET /&lt;script&gt;alert(1)&lt;/script&gt; HTTP/1.1" 400 300
@@ -1428,7 +1429,7 @@ EOF</code></pre>
 
         <div class="cheatsheet">
             <div class="cheat-card">
-                <h4>🔍 Search & Display</h4>
+                <h4>Search & Display</h4>
                 <pre><code>grep "pattern" file          <span class="code-comment"># Basic</span>
 grep -i "pattern" file       <span class="code-comment"># Case insensitive</span>
 grep -r "pattern" /path/     <span class="code-comment"># Recursive</span>
@@ -1437,7 +1438,7 @@ grep -c "pattern" file       <span class="code-comment"># Count</span></code></p
             </div>
 
             <div class="cheat-card">
-                <h4>🎯 Advanced Filtering</h4>
+                <h4>Advanced Filtering</h4>
                 <pre><code>grep -v "pattern" file       <span class="code-comment"># Exclude</span>
 grep -E "pat1|pat2" file     <span class="code-comment"># OR</span>
 grep -w "word" file          <span class="code-comment"># Whole word</span>
@@ -1446,30 +1447,30 @@ grep "end$" file             <span class="code-comment"># Ends with</span></code
             </div>
 
             <div class="cheat-card">
-                <h4>📤 Extract Data</h4>
+                <h4>Extract Data</h4>
                 <pre><code>grep -o "pattern" file       <span class="code-comment"># Only match</span>
 grep -oE "[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+"  <span class="code-comment"># IPs</span>
 grep -oP "[\w.-]+@[\w.-]+\.\w+"  <span class="code-comment"># Emails</span></code></pre>
             </div>
 
             <div class="cheat-card">
-                <h4>📋 Context</h4>
+                <h4>Context</h4>
                 <pre><code>grep -A 5 "pattern" file     <span class="code-comment"># 5 after</span>
 grep -B 5 "pattern" file     <span class="code-comment"># 5 before</span>
 grep -C 5 "pattern" file     <span class="code-comment"># 5 both</span></code></pre>
             </div>
 
             <div class="cheat-card">
-                <h4>📁 File Management</h4>
+                <h4>File Management</h4>
                 <pre><code>grep -l "pattern" *.log      <span class="code-comment"># List files</span>
 grep -L "pattern" *. log      <span class="code-comment"># Non-matching</span>
 grep -r --include="*.py" "pattern" . </code></pre>
             </div>
 
             <div class="cheat-card">
-                <h4>📝 Regex Quick</h4>
+                <h4>Regex Quick</h4>
                 <pre><code>.     <span class="code-comment"># Any char</span>     *   <span class="code-comment"># 0+ times</span>
-+    <span class="code-comment"># 1+ times</span>     ?   <span class="code-comment"># 0-1 times</span>
++    <span class="code-comment"># 1+ times</span>     ?  <span class="code-comment"># 0-1 times</span>
 ^    <span class="code-comment"># Start</span>        $   <span class="code-comment"># End</span>
 []   <span class="code-comment"># Class</span>        |   <span class="code-comment"># OR</span>
 \d   <span class="code-comment"># Digit (PCRE)</span> \w  <span class="code-comment"># Word (PCRE)</span></code></pre>
@@ -1478,7 +1479,7 @@ grep -r --include="*.py" "pattern" . </code></pre>
 
         <div class="divider"></div>
 
-                <!-- SECTION 10: CHALLENGES (continued) -->
+                <!-- SECTION 10: CHallENGES (continued) -->
         <div class="challenge">
             <h4>Challenge 1: Basic Filtering</h4>
             <p>Using <code>/tmp/sample_auth. log</code>: </p>
@@ -1488,7 +1489,7 @@ grep -r --include="*.py" "pattern" . </code></pre>
                 <li>Count how many failed password attempts occurred</li>
             </ol>
             <details>
-                <summary>🔓 Click for Solutions</summary>
+                <summary>Show solutions</summary>
                 <pre><code><span class="code-comment"># 1. Find all lines containing "Failed"</span>
 grep "Failed" /tmp/sample_auth.log
 
@@ -1509,7 +1510,7 @@ grep -c "Failed password" /tmp/sample_auth.log</code></pre>
                 <li>Show all activity from IP 45.33.32.156</li>
             </ol>
             <details>
-                <summary>🔓 Click for Solutions</summary>
+                <summary>Show solutions</summary>
                 <pre><code><span class="code-comment"># 1. Extract all unique IP addresses</span>
 grep -oE "([0-9]{1,3}\.){3}[0-9]{1,3}" /tmp/sample_auth.log | sort -u
 
@@ -1533,7 +1534,7 @@ grep "45.33.32.156" /tmp/sample_auth.log</code></pre>
                 <li>Identify potential XSS attempts</li>
             </ol>
             <details>
-                <summary>🔓 Click for Solutions</summary>
+                <summary>Show solutions</summary>
                 <pre><code><span class="code-comment"># 1. Find all 404 responses</span>
 grep " 404 " /tmp/sample_access.log
 
@@ -1549,7 +1550,7 @@ grep -iE "&lt;script|alert\(" /tmp/sample_access.log</code></pre>
         </div>
 
         <div class="challenge">
-            <h4>Challenge 4: Pipeline Mastery</h4>
+            <h4>Challenge 4: Pipeline Practice</h4>
             <p>Using <code>/tmp/sample_tcpdump.log</code>:</p>
             <ol>
                 <li>Extract all destination ports being scanned</li>
@@ -1557,7 +1558,7 @@ grep -iE "&lt;script|alert\(" /tmp/sample_access.log</code></pre>
                 <li>Count packets per source IP and format nicely</li>
             </ol>
             <details>
-                <summary>🔓 Click for Solutions</summary>
+                <summary>Show solutions</summary>
                 <pre><code><span class="code-comment"># 1. Extract all destination ports being scanned by 45.33.32.156</span>
 grep "45.33.32.156" /tmp/sample_tcpdump.log | \
     grep -oE "> [0-9.]+\.[0-9]+:" | \
@@ -1576,7 +1577,7 @@ awk '{print $3}' /tmp/sample_tcpdump.log | \
         </div>
 
         <div class="challenge">
-            <h4>Challenge 5: Full Security Analysis 🏆</h4>
+            <h4>Challenge 5: Full Security Analysis </h4>
             <p><strong>BOSS LEVEL! </strong> Combine everything!  Using all sample logs, create a security report showing:</p>
             <ol>
                 <li>Number of failed SSH attempts per IP</li>
@@ -1584,43 +1585,43 @@ awk '{print $3}' /tmp/sample_tcpdump.log | \
                 <li>Possible port scan detected from which IP</li>
             </ol>
             <details>
-                <summary>🔓 Click for Solution</summary>
+                <summary>Show solution</summary>
                 <pre><code><span class="code-comment">#!/bin/bash</span>
 <span class="code-comment"># Full Security Analysis Report</span>
 
-echo "╔════════════════════════════════════════════════════════════╗"
-echo "║           🔒 SECURITY ANALYSIS REPORT                      ║"
-echo "╚════════════════════════════════════════════════════════════╝"
+echo "+============================================================+"
+echo "|            SECURITY ANALYSIS REPORT                      |"
+echo "+============================================================+"
 echo ""
 
-echo "┌─────────────────────────────────────────────────────────────┐"
-echo "│ 📌 SSH BRUTE FORCE ATTEMPTS                                 │"
-echo "└─────────────────────────────────────────────────────────────┘"
+echo "+-------------------------------------------------------------+"
+echo "|  SSH BRUTE FORCE ATTEMPTS                                 |"
+echo "+-------------------------------------------------------------+"
 grep "Failed password" /tmp/sample_auth.log | \
     grep -oE "([0-9]{1,3}\.){3}[0-9]{1,3}" | \
     sort | uniq -c | sort -rn | \
-    awk '{printf "   ⚠️  %s attempts from %s\n", $1, $2}'
+    awk '{printf "   Warning  %s attempts from %s\n", $1, $2}'
 
 echo ""
-echo "┌─────────────────────────────────────────────────────────────┐"
-echo "│ 🌐 SUSPICIOUS WEB REQUESTS                                  │"
-echo "└─────────────────────────────────────────────────────────────┘"
+echo "+-------------------------------------------------------------+"
+echo "|  SUSPICIOUS WEB REQUESTS                                  |"
+echo "+-------------------------------------------------------------+"
 grep -iE "\.\./|&lt;script|union.*select|'.*=.*'" /tmp/sample_access.log | \
-    awk '{printf "   🚨 %s → %s\n", $1, $7}'
+    awk '{printf "    %s -> %s\n", $1, $7}'
 
 echo ""
-echo "┌─────────────────────────────────────────────────────────────┐"
-echo "│ 🔍 PORT SCAN DETECTION                                      │"
-echo "└─────────────────────────────────────────────────────────────┘"
+echo "+-------------------------------------------------------------+"
+echo "|  PORT SCAN DETECTION                                      |"
+echo "+-------------------------------------------------------------+"
 awk '{print $3}' /tmp/sample_tcpdump.log | \
     awk -F'.' '{print $1"."$2"."$3"."$4}' | \
     sort | uniq -c | \
-    awk '$1 > 3 {printf "   🎯 Possible scan from:  %s (%s packets)\n", $2, $1}'
+    awk '$1 > 3 {printf "    Possible scan from:  %s (%s packets)\n", $2, $1}'
 
 echo ""
-echo "═══════════════════════════════════════════════════════════════"
-echo "                    Report Complete!  🛡️"
-echo "═══════════════════════════════════════════════════════════════"</code></pre>
+echo "==============================================================="
+echo "                    Report complete"
+echo "==============================================================="</code></pre>
             </details>
         </div>
 
@@ -1630,7 +1631,7 @@ echo "════════════════════════�
         <h2>11. Performance Tips & Best Practices</h2>
 
         <div class="tip-box">
-            <h4>⚡ Speed Optimization</h4>
+            <h4>Speed Optimization</h4>
             <table>
                 <tr>
                     <th>Tip</th>
@@ -1639,7 +1640,7 @@ echo "════════════════════════�
                 </tr>
                 <tr>
                     <td>Use <code>-F</code> for literal strings</td>
-                    <td>No regex overhead — fastest mode</td>
+                    <td>No regex overhead  -  fastest mode</td>
                     <td><code>grep -F "192.168.1.1" huge. log</code></td>
                 </tr>
                 <tr>
@@ -1663,9 +1664,9 @@ echo "════════════════════════�
                     <td><code>grep "pattern" huge.log | head -100</code></td>
                 </tr>
                 <tr>
-                    <td>Use <code>LC_ALL=C</code></td>
-                    <td>Byte-level matching — faster on ASCII</td>
-                    <td><code>LC_ALL=C grep "pattern" file</code></td>
+                    <td>Use <code>LC_all=C</code></td>
+                    <td>Byte-level matching  -  faster on ASCII</td>
+                    <td><code>LC_all=C grep "pattern" file</code></td>
                 </tr>
             </table>
         </div>
@@ -1678,7 +1679,7 @@ grep "192.168.1.1" massive_log.txt          <span class="code-comment"># ~2.5s</
 grep -F "192.168.1.1" massive_log.txt       <span class="code-comment"># ~0.8s</span>
 
 <span class="code-comment"># FASTEST: Fixed string + locale bypass</span>
-LC_ALL=C grep -F "192.168.1.1" massive_log. txt  <span class="code-comment"># ~0.3s</span></code></pre>
+LC_all=C grep -F "192.168.1.1" massive_log. txt  <span class="code-comment"># ~0.3s</span></code></pre>
 
         <div class="divider"></div>
 
@@ -1686,7 +1687,7 @@ LC_ALL=C grep -F "192.168.1.1" massive_log. txt  <span class="code-comment"># ~0
         <h2>12. Common Mistakes to Avoid</h2>
 
         <div class="warning-box">
-            <h4>🚫 Don't Make These Errors!</h4>
+            <h4>Common Errors to Avoid</h4>
             <table>
                 <tr>
                     <th>Mistake</th>
@@ -1725,7 +1726,7 @@ LC_ALL=C grep -F "192.168.1.1" massive_log. txt  <span class="code-comment"># ~0
                 </tr>
                 <tr>
                     <td><code>grep -r</code> in <code>/</code></td>
-                    <td>Searches EVERYTHING (slow! )</td>
+                    <td>Searches EVERYTHING (slow)</td>
                     <td>Be specific:  <code>grep -r pattern /var/log/</code></td>
                 </tr>
             </table>
@@ -1739,7 +1740,7 @@ ps aux | grep "nginx"
 <span class="code-comment"># SOLUTION 1: Exclude grep from results</span>
 ps aux | grep "nginx" | grep -v grep
 
-<span class="code-comment"># SOLUTION 2: Use character class trick (cleaner! )</span>
+<span class="code-comment"># SOLUTION 2: Use character class trick (cleaner)</span>
 ps aux | grep "[n]ginx"
 <span class="code-comment"># The regex [n]ginx matches "nginx" but not "[n]ginx"</span>
 
@@ -1748,8 +1749,8 @@ pgrep -a nginx</code></pre>
 
         <div class="divider"></div>
 
-        <!-- SECTION 13: GREP VARIANTS -->
-        <h2>13. grep Variants — Know Your Tools</h2>
+        <!-- SECTION 13: grep VARIANTS -->
+        <h2>13. grep Variants  -  Know Your Tools</h2>
 
         <table>
             <tr>
@@ -1800,11 +1801,11 @@ pgrep -a nginx</code></pre>
         </table>
 
         <div class="tip-box">
-            <h4>💡 Pro Tip:  Searching Compressed Logs</h4>
+            <h4>Tip:  Searching Compressed Logs</h4>
             <pre><code><span class="code-comment"># Search through rotated/compressed logs without extracting! </span>
 zgrep "Failed password" /var/log/auth.log. *. gz
 
-<span class="code-comment"># Search ALL auth logs (current + compressed)</span>
+<span class="code-comment"># Search all auth logs (current + compressed)</span>
 zgrep "Failed password" /var/log/auth.log*</code></pre>
         </div>
 
@@ -1823,7 +1824,7 @@ zgrep "Failed password" /var/log/auth.log*</code></pre>
             </tr>
             <tr>
                 <td><code>ripgrep (rg)</code></td>
-                <td>Blazing fast, respects . gitignore, better defaults</td>
+                <td>Blazing fast, respects.gitignore, better defaults</td>
                 <td><code>apt install ripgrep</code></td>
             </tr>
             <tr>
@@ -1845,37 +1846,37 @@ grep -rn "password" /var/www/
 <span class="code-comment"># ripgrep: Same thing, but faster + smarter defaults</span>
 rg "password" /var/www/
 
-<span class="code-comment"># ripgrep auto-skips:  . git, node_modules, binary files</span>
+<span class="code-comment"># ripgrep auto-skips: .git, node_modules, binary files</span>
 <span class="code-comment"># ripgrep auto-adds: colors, line numbers, file headers</span></code></pre>
 
         <div class="info-box">
-            <h4>🎯 When to Use What</h4>
+            <h4>When to Use What</h4>
             <ul>
                 <li><strong>grep: </strong> Always available, scripts, one-liners, maximum compatibility</li>
                 <li><strong>ripgrep:</strong> Large codebases, daily development, speed matters</li>
-                <li><strong>Learn grep first</strong> — it's the foundation.  Alternatives are optional enhancements. </li>
+                <li><strong>Learn grep first</strong> - it is the foundation. Alternatives are optional enhancements.</li>
             </ul>
         </div>
 
         <div class="divider"></div>
 
         <!-- SUMMARY -->
-        <h2>📚 Summary</h2>
+        <h2>Summary</h2>
 
         <div class="important">
-            <strong>grep is your FILTER tool — it finds the needle in the haystack. </strong>
+            <strong>grep is the filter tool. Use it to find the lines that matter before passing them to awk, sed, sort, or another command.</strong>
         </div>
 
         <h3>Key Takeaways</h3>
         <ul>
             <li><span class="highlight">Core flags:</span> <code>-i</code>, <code>-v</code>, <code>-r</code>, <code>-n</code>, <code>-c</code>, <code>-o</code>, <code>-E</code>, <code>-P</code></li>
             <li><span class="highlight">Context: </span> <code>-A</code>, <code>-B</code>, <code>-C</code> for seeing surrounding lines</li>
-            <li><span class="highlight">Regex modes:</span> BRE (default) → ERE (<code>-E</code>) → PCRE (<code>-P</code>)</li>
+            <li><span class="highlight">Regex modes:</span> BRE (default) -> ERE (<code>-E</code>) -> PCRE (<code>-P</code>)</li>
             <li><span class="highlight">Performance: </span> Use <code>-F</code> for literals, <code>--include</code> to limit scope</li>
-            <li><span class="highlight">Pipelines:</span> <code>grep</code> → <code>awk</code> → <code>sed</code> = Unstoppable power</li>
+            <li><span class="highlight">Pipelines:</span> <code>grep</code> to find lines, <code>awk</code> to extract fields, and <code>sed</code> to transform text</li>
         </ul>
 
-        <h3>The Power Trio Recap</h3>
+        <h3>The Tool Trio Recap</h3>
         <div class="trinity-box">
             <div class="trinity-item grep">
                 <h4>grep</h4>
@@ -1894,23 +1895,23 @@ rg "password" /var/www/
             </div>
         </div>
 
-        <p style="text-align:  center; font-size: 1.2em;">
-            <span class="highlight">Master these three = Master text processing in Linux! </span>
+        <p style="text-align: center; font-size: 1.2em;">
+            <span class="highlight">Learn these three together and Linux text processing becomes much easier.</span>
         </p>
 
         <div class="divider"></div>
 
         <!-- FOOTER -->
         <div class="footer">
-            <p>📝 <strong>grep Mastery Notes</strong></p>
-            <p>Created by <span>Loki</span> & <span>Shelly</span> | January 2026</p>
-            <p style="margin-top:  15px; color: #888;">
-                "In a world of data, grep is your flashlight." 🔦
+            <p><strong>grep notes complete</strong></p>
+            <p>Continue with sed and awk to build practical command-line pipelines.</p>
+            <p style="margin-top: 15px; color: #888;">
+                Use grep to narrow noisy text into the few lines worth reading.
             </p>
             <p style="margin-top: 20px;">
-                <span style="color: #00ff88;">Keep learning</span> | 
-                <span style="color: #ffd700;">Keep hacking (ethically! )</span> | 
-                <span style="color: #00ffff;">Keep growing</span>
+                <span style="color: #00ff88;">Practice with logs</span> |
+                <span style="color: #ffd700;">Combine with awk</span> |
+                <span style="color: #00ffff;">Clean output with sed</span>
             </p>
         </div>
 

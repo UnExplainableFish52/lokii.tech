@@ -1,10 +1,11 @@
 <!DOCTYPE html>
+<!-- lokii-note-polish: checked 2026-06-20; removed decorative emoji and em dash usage, improved protocols-and-ports flow, and updated metadata. -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>1.5.3 Protocols & Ports | Networking | Cybersecurity Course</title>
-    <meta name="description" content="Master network protocols and ports for cybersecurity. Learn TCP vs UDP, vulnerable ports, service enumeration, and pentesting techniques.">
+    <meta name="description" content="Beginner-friendly guide to network protocols and ports, covering TCP, UDP, common services, risky exposed ports, scanning basics, DNS, DHCP, ARP, ICMP, and safe lab practice.">
     <meta name="author" content="lokii (UnExplainableFish52)">
     <meta name="theme-color" content="#0d1117">
 <!-- Fonts -->
@@ -14,13 +15,13 @@
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://lokii.tech/intro/notes/1.5_networks/1.5.3_protocols_and_ports.html">
     <meta property="og:title" content="1.5.3 Protocols &amp; Ports | Networking | Cybersecurity Course">
-    <meta property="og:description" content="Master network protocols and ports for cybersecurity. Learn TCP vs UDP, vulnerable ports, service enumeration, and pentesting techniques.">
+    <meta property="og:description" content="Beginner-friendly guide to network protocols and ports, covering TCP, UDP, common services, risky exposed ports, scanning basics, DNS, DHCP, ARP, ICMP, and safe lab practice.">
     <meta property="og:image" content="https://lokii.tech/preview.jpg">
     <meta property="og:site_name" content="lokii.tech">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://lokii.tech/intro/notes/1.5_networks/1.5.3_protocols_and_ports.html">
     <meta name="twitter:title" content="1.5.3 Protocols &amp; Ports | Networking | Cybersecurity Course">
-    <meta name="twitter:description" content="Master network protocols and ports for cybersecurity. Learn TCP vs UDP, vulnerable ports, service enumeration, and pentesting techniques.">
+    <meta name="twitter:description" content="Beginner-friendly guide to network protocols and ports, covering TCP, UDP, common services, risky exposed ports, scanning basics, DNS, DHCP, ARP, ICMP, and safe lab practice.">
     <meta name="twitter:image" content="https://lokii.tech/preview.jpg">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -37,6 +38,12 @@
         .notes-header { text-align: center; padding: 50px 20px; margin-bottom: 40px; }
         .notes-header h1 { font-size: 2.5em; color: #00bcd4; font-weight: bold; margin-bottom: 15px; border: none; padding: 0; }
         .subtitle { color: #8b949e; font-size: 1.2em; }
+        .lesson-bridge {
+            color: #c9d1d9;
+            max-width: 820px;
+            margin: 16px auto 0;
+            font-size: 1em;
+        }
 
         h2 { font-size: 1.8em; color: #00bcd4; font-weight: bold; margin: 50px 0 25px; padding-bottom: 10px; border-bottom: 2px solid #30363d; }
         h3 { font-size: 1.4em; color: #00bcd4; font-weight: bold; margin: 30px 0 15px; }
@@ -151,7 +158,7 @@
           "@id": "https://lokii.tech/intro/notes/1.5_networks/1.5.3_protocols_and_ports.html#webpage",
           "url": "https://lokii.tech/intro/notes/1.5_networks/1.5.3_protocols_and_ports.html",
           "name": "1.5.3 Protocols & Ports | Networking | Cybersecurity Course",
-          "description": "Master network protocols and ports for cybersecurity. Learn TCP vs UDP, vulnerable ports, service enumeration, and pentesting techniques.",
+          "description": "Beginner-friendly guide to network protocols and ports, covering TCP, UDP, common services, risky exposed ports, scanning basics, DNS, DHCP, ARP, ICMP, and safe lab practice.",
           "isPartOf": {
             "@id": "https://lokii.tech/#website"
           },
@@ -159,7 +166,7 @@
             "@id": "https://lokii.tech/intro/notes/1.5_networks/1.5.3_protocols_and_ports.html#breadcrumbs"
           },
           "primaryImageOfPage": "https://lokii.tech/preview.jpg",
-          "dateModified": "2026-06-04",
+          "dateModified": "2026-06-20",
           "inLanguage": "en"
         },
         {
@@ -169,7 +176,7 @@
           ],
           "@id": "https://lokii.tech/intro/notes/1.5_networks/1.5.3_protocols_and_ports.html#article",
           "headline": "1.5.3 Protocols & Ports | Networking | Cybersecurity Course",
-          "description": "Master network protocols and ports for cybersecurity. Learn TCP vs UDP, vulnerable ports, service enumeration, and pentesting techniques.",
+          "description": "Beginner-friendly guide to network protocols and ports, covering TCP, UDP, common services, risky exposed ports, scanning basics, DNS, DHCP, ARP, ICMP, and safe lab practice.",
           "url": "https://lokii.tech/intro/notes/1.5_networks/1.5.3_protocols_and_ports.html",
           "image": "https://lokii.tech/preview.jpg",
           "author": {
@@ -183,7 +190,7 @@
           },
           "educationalLevel": "Beginner",
           "learningResourceType": "Guide",
-          "dateModified": "2026-06-04",
+          "dateModified": "2026-06-20",
           "inLanguage": "en"
         }
       ]
@@ -201,7 +208,7 @@
                     <a href="../../../index.html#about" class="nav-link nav-link-enhanced">About</a>
                     <a href="../../../index.html#resources" class="nav-link nav-link-enhanced">Resources</a>
                     <a href="https://github.com/UnExplainableFish52/lokii.tech" target="_blank" class="nav-link nav-link-enhanced" rel="noopener noreferrer">GitHub</a>
-                    <a href="https://github.com/UnExplainableFish52/lokii.tech/issues" target="_blank" class="nav-link nav-contribute" rel="noopener noreferrer">Contribute ✨</a>
+                    <a href="https://github.com/UnExplainableFish52/lokii.tech/issues" target="_blank" class="nav-link nav-contribute" rel="noopener noreferrer">Contribute</a>
                 </nav>
             </div>
         </div>
@@ -210,12 +217,13 @@
     <main>
         <div class="container">
             <header class="notes-header">
-                <h1>🔌 1.5.3 Protocols & Ports</h1>
-                <p class="subtitle">The language of network communication & entry points for attackers</p>
+                <h1>1.5.3 Protocols & Ports</h1>
+                <p class="subtitle">Understand the services, conversations, and exposed entry points on a network</p>
+                <p class="lesson-bridge">The OSI and TCP/IP models explain where communication happens. Protocols and ports make that idea practical: a protocol defines the rules of a conversation, and a port shows which service is listening for that conversation.</p>
             </header>
 
             <!-- Section 1: What are Protocols -->
-        <h2>📡 1. What are Protocols?</h2>
+        <h2>1. What are Protocols?</h2>
         <div class="section">
             <p><span class="highlight">Definition:</span> A protocol is a set of rules and standards that define how data is transmitted and received across a network.</p>
 
@@ -228,26 +236,29 @@
             </ul>
 
             <h3>Protocol Stack Concept</h3>
-            <p>Protocols work in <span class="highlight">layers</span> — each layer handles specific tasks and passes data to the next:</p>
+            <p>Protocols work in <span class="highlight">layers</span> - each layer handles specific tasks and passes data to the next:</p>
             <div class="diagram">
 <pre>
-┌─────────────────────────────┐
-│  Application (HTTP, FTP)    │ ← User sees this
-├─────────────────────────────┤
-│  Transport (TCP, UDP)       │ ← Ports, reliability
-├─────────────────────────────┤
-│  Network (IP)               │ ← Routing, addressing
-├─────────────────────────────┤
-│  Data Link (Ethernet)       │ ← Local delivery
-├─────────────────────────────┤
-│  Physical (Cables, WiFi)    │ ← Actual transmission
-└─────────────────────────────┘
++-----------------------------+
+|  Application (HTTP, FTP)    | <- User sees this
++-----------------------------+
+|  Transport (TCP, UDP)       | <- Ports, reliability
++-----------------------------+
+|  Network (IP)               | <- Routing, addressing
++-----------------------------+
+|  Data Link (Ethernet)       | <- Local delivery
++-----------------------------+
+|  Physical (Cables, WiFi)    | <- Actual transmission
++-----------------------------+
 </pre>
             </div>
+            <p>
+                Once you know the rules of communication, the next step is knowing where a service listens. That is where ports come in.
+            </p>
         </div>
 
         <!-- Section 2: What are Ports -->
-        <h2>🚪 2. What are Ports?</h2>
+        <h2>2. What are Ports?</h2>
         <div class="section">
             <p>A <span class="highlight">port</span> is a logical endpoint for network communication. Think of IP as the building address and port as the apartment number.</p>
 
@@ -267,12 +278,15 @@
             </table>
 
             <div class="tip-box">
-                <strong>💡 Total Ports:</strong> 65,536 (0-65535) — that's 2^16 possibilities per IP address!
+                <strong>Total ports:</strong> 65,536 (0-65535), which is 2^16 possibilities per IP address.
             </div>
+            <p>
+                A port tells you which service is involved. TCP and UDP explain how that service sends or receives data.
+            </p>
         </div>
 
         <!-- Section 3: TCP vs UDP -->
-        <h2>⚔️ 3. TCP vs UDP</h2>
+        <h2>3. TCP vs UDP</h2>
         <div class="section">
             <table>
                 <thead><tr><th>Aspect</th><th>TCP</th><th>UDP</th></tr></thead>
@@ -291,15 +305,15 @@
             <div class="diagram">
 <pre>
     Client                    Server
-       │                         │
-       │──── SYN (seq=100) ────▶│  1. Client initiates
-       │                         │
-       │◀─ SYN-ACK (seq=300, ──│  2. Server acknowledges
-       │    ack=101)             │
-       │                         │
-       │──── ACK (ack=301) ────▶│  3. Connection established
-       │                         │
-       │◀════ DATA TRANSFER ═══▶│
+       |                         |
+       |---- SYN (seq=100) ---->|  1. Client initiates
+       |                         |
+       |<--- SYN-ACK (seq=300) --|  2. Server acknowledges
+       |    ack=101)             |
+       |                         |
+       |---- ACK (ack=301) ---->|  3. Connection established
+       |                         |
+       |<==== DATA TRANSFER ===>|
 </pre>
             </div>
 
@@ -307,27 +321,27 @@
             <div class="diagram">
 <pre>
     Client                    Server
-       │                         │
-       │──── FIN ──────────────▶│  1. Client wants to close
-       │◀─── ACK ───────────────│  2. Server acknowledges
-       │                         │
-       │◀─── FIN ───────────────│  3. Server ready to close
-       │──── ACK ──────────────▶│  4. Connection closed
+       |                         |
+       |---- FIN -------------->|  1. Client wants to close
+       |<--- ACK ---------------|  2. Server acknowledges
+       |                         |
+       |<--- FIN ---------------|  3. Server ready to close
+       |---- ACK -------------->|  4. Connection closed
 </pre>
             </div>
 
             <h3>When to Use Which?</h3>
             <ul>
-                <li><span class="highlight">TCP:</span> When data integrity matters — web pages, file transfers, emails</li>
-                <li><span class="highlight">UDP:</span> When speed matters over reliability — live streams, games, DNS queries</li>
+                <li><span class="highlight">TCP:</span> use it when delivery and order matter, such as web pages, file transfers, and email</li>
+                <li><span class="highlight">UDP:</span> use it when speed and low overhead matter, such as live streams, games, and many DNS queries</li>
             </ul>
         </div>
 
-        <!-- Section 4: Master Protocol Table -->
-        <h2>⭐ 4. Master Protocol & Port Table</h2>
+        <!-- Section 4: Protocol Table -->
+        <h2>4. Protocol and Port Reference</h2>
         <div class="section">
             <div class="warning-box">
-                <strong>🔴 Security Note:</strong> Ports marked with ⚠️ HIGH are commonly targeted in attacks. Always secure or disable if not needed!
+                <strong>Security note:</strong> High-risk ports are commonly targeted in attacks. If a service is not needed, disable it. If it is needed, restrict access and monitor it.
             </div>
 
             <table id="protocolTable">
@@ -342,44 +356,44 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="vuln-high"><td>FTP</td><td>20, 21</td><td>TCP</td><td>File Transfer</td><td>⚠️ HIGH</td><td>Cleartext creds, use SFTP/FTPS</td></tr>
+                    <tr class="vuln-high"><td>FTP</td><td>20, 21</td><td>TCP</td><td>File Transfer</td><td>High</td><td>Cleartext credentials, use SFTP/FTPS</td></tr>
                     <tr><td>SSH</td><td>22</td><td>TCP</td><td>Secure Shell</td><td>Medium</td><td>Brute-forceable, use keys + fail2ban</td></tr>
-                    <tr class="vuln-high"><td>Telnet</td><td>23</td><td>TCP</td><td>Remote Access</td><td>⚠️ HIGH</td><td>Cleartext everything, NEVER use</td></tr>
-                    <tr class="vuln-high"><td>SMTP</td><td>25</td><td>TCP</td><td>Email Sending</td><td>⚠️ HIGH</td><td>Open relay abuse, spam source</td></tr>
+                    <tr class="vuln-high"><td>Telnet</td><td>23</td><td>TCP</td><td>Remote Access</td><td>High</td><td>Cleartext traffic, avoid using it</td></tr>
+                    <tr class="vuln-high"><td>SMTP</td><td>25</td><td>TCP</td><td>Email Sending</td><td>High</td><td>Open relay abuse, spam source</td></tr>
                     <tr><td>DNS</td><td>53</td><td>UDP/TCP</td><td>Domain Resolution</td><td>Medium</td><td>Poisoning, amplification DDoS</td></tr>
                     <tr><td>DHCP</td><td>67, 68</td><td>UDP</td><td>IP Assignment</td><td>Medium</td><td>Rogue DHCP, starvation attacks</td></tr>
-                    <tr class="vuln-high"><td>TFTP</td><td>69</td><td>UDP</td><td>Simple File Transfer</td><td>⚠️ HIGH</td><td>No authentication at all</td></tr>
-                    <tr class="vuln-high"><td>HTTP</td><td>80</td><td>TCP</td><td>Web Traffic</td><td>⚠️ HIGH</td><td>Cleartext, MITM, use HTTPS</td></tr>
+                    <tr class="vuln-high"><td>TFTP</td><td>69</td><td>UDP</td><td>Simple File Transfer</td><td>High</td><td>No authentication by default</td></tr>
+                    <tr class="vuln-high"><td>HTTP</td><td>80</td><td>TCP</td><td>Web Traffic</td><td>High</td><td>Cleartext, MITM risk, use HTTPS</td></tr>
                     <tr><td>Kerberos</td><td>88</td><td>TCP/UDP</td><td>Authentication</td><td>Medium</td><td>Pass-the-ticket, golden ticket</td></tr>
-                    <tr class="vuln-high"><td>POP3</td><td>110</td><td>TCP</td><td>Email Retrieval</td><td>⚠️ HIGH</td><td>Cleartext, use POP3S</td></tr>
-                    <tr class="vuln-high"><td>IMAP</td><td>143</td><td>TCP</td><td>Email Retrieval</td><td>⚠️ HIGH</td><td>Cleartext, use IMAPS</td></tr>
-                    <tr class="vuln-high"><td>SNMP</td><td>161, 162</td><td>UDP</td><td>Network Management</td><td>⚠️ HIGH</td><td>Default "public" community string</td></tr>
+                    <tr class="vuln-high"><td>POP3</td><td>110</td><td>TCP</td><td>Email Retrieval</td><td>High</td><td>Cleartext, use POP3S</td></tr>
+                    <tr class="vuln-high"><td>IMAP</td><td>143</td><td>TCP</td><td>Email Retrieval</td><td>High</td><td>Cleartext, use IMAPS</td></tr>
+                    <tr class="vuln-high"><td>SNMP</td><td>161, 162</td><td>UDP</td><td>Network Management</td><td>High</td><td>Default "public" community string</td></tr>
                     <tr><td>LDAP</td><td>389</td><td>TCP/UDP</td><td>Directory Services</td><td>Medium</td><td>LDAP injection attacks</td></tr>
                     <tr><td>HTTPS</td><td>443</td><td>TCP</td><td>Secure Web</td><td>Low</td><td>Verify cert validity</td></tr>
-                    <tr class="vuln-high"><td>SMB</td><td>445</td><td>TCP</td><td>File Sharing</td><td>⚠️ HIGH</td><td>EternalBlue, WannaCry, ransomware</td></tr>
+                    <tr class="vuln-high"><td>SMB</td><td>445</td><td>TCP</td><td>File Sharing</td><td>High</td><td>EternalBlue, WannaCry, ransomware</td></tr>
                     <tr><td>SMTPS</td><td>465</td><td>TCP</td><td>Secure Email</td><td>Low</td><td>Encrypted SMTP</td></tr>
                     <tr><td>LDAPS</td><td>636</td><td>TCP</td><td>Secure LDAP</td><td>Low</td><td>Encrypted directory access</td></tr>
                     <tr><td>IMAPS</td><td>993</td><td>TCP</td><td>Secure IMAP</td><td>Low</td><td>Encrypted email retrieval</td></tr>
                     <tr><td>POP3S</td><td>995</td><td>TCP</td><td>Secure POP3</td><td>Low</td><td>Encrypted email retrieval</td></tr>
-                    <tr class="vuln-high"><td>MSSQL</td><td>1433</td><td>TCP</td><td>SQL Server</td><td>⚠️ HIGH</td><td>SQLi, weak sa credentials</td></tr>
+                    <tr class="vuln-high"><td>MSSQL</td><td>1433</td><td>TCP</td><td>SQL Server</td><td>High</td><td>SQLi, weak sa credentials</td></tr>
                     <tr><td>Oracle</td><td>1521</td><td>TCP</td><td>Oracle DB</td><td>Medium</td><td>TNS listener exploits</td></tr>
-                    <tr class="vuln-high"><td>MySQL</td><td>3306</td><td>TCP</td><td>MySQL Database</td><td>⚠️ HIGH</td><td>Default creds, SQLi, UDF exploits</td></tr>
-                    <tr class="vuln-high"><td>RDP</td><td>3389</td><td>TCP</td><td>Remote Desktop</td><td>⚠️ HIGH</td><td>BlueKeep, brute force, NLA bypass</td></tr>
+                    <tr class="vuln-high"><td>MySQL</td><td>3306</td><td>TCP</td><td>MySQL Database</td><td>High</td><td>Default credentials, SQLi, UDF exploits</td></tr>
+                    <tr class="vuln-high"><td>RDP</td><td>3389</td><td>TCP</td><td>Remote Desktop</td><td>High</td><td>BlueKeep, brute force, NLA bypass</td></tr>
                     <tr><td>PostgreSQL</td><td>5432</td><td>TCP</td><td>PostgreSQL DB</td><td>Medium</td><td>Weak trust authentication</td></tr>
-                    <tr class="vuln-high"><td>VNC</td><td>5900</td><td>TCP</td><td>Remote Desktop</td><td>⚠️ HIGH</td><td>Weak/no authentication</td></tr>
+                    <tr class="vuln-high"><td>VNC</td><td>5900</td><td>TCP</td><td>Remote Desktop</td><td>High</td><td>Weak or missing authentication</td></tr>
                     <tr><td>WinRM</td><td>5985, 5986</td><td>TCP</td><td>Windows Remote Mgmt</td><td>Medium</td><td>Lateral movement pivot</td></tr>
-                    <tr class="vuln-high"><td>Redis</td><td>6379</td><td>TCP</td><td>Cache/Database</td><td>⚠️ HIGH</td><td>Often NO auth, RCE possible</td></tr>
+                    <tr class="vuln-high"><td>Redis</td><td>6379</td><td>TCP</td><td>Cache/Database</td><td>High</td><td>Often has no authentication, RCE possible</td></tr>
                     <tr><td>HTTP Proxy</td><td>8080</td><td>TCP</td><td>Proxy Server</td><td>Medium</td><td>Misconfigured open proxies</td></tr>
                 </tbody>
             </table>
         </div>
 
         <!-- Section 5: Commonly Exploited Ports -->
-        <h2>🎯 5. Commonly Exploited Ports</h2>
+        <h2>5. Commonly Exploited Ports</h2>
         <div class="section">
             <div class="risk-grid">
                 <div class="risk-card risk-critical">
-                    <h4 style="color:#ff4444;">🔴 Critical Risk</h4>
+                    <h4 style="color:#ff4444;">Critical Risk</h4>
                     <p><span class="code-text">21, 23, 25, 445, 3389</span></p>
                     <ul>
                         <li><strong>21 (FTP):</strong> Anonymous access, cleartext</li>
@@ -390,7 +404,7 @@
                     </ul>
                 </div>
                 <div class="risk-card risk-high">
-                    <h4 style="color:#ff6b6b;">🟠 High Risk</h4>
+                    <h4 style="color:#ff6b6b;">High Risk</h4>
                     <p><span class="code-text">80, 110, 143, 161, 1433, 3306, 6379</span></p>
                     <ul>
                         <li><strong>80 (HTTP):</strong> MITM, injection attacks</li>
@@ -401,7 +415,7 @@
                     </ul>
                 </div>
                 <div class="risk-card risk-medium">
-                    <h4 style="color:#ffc107;">🟡 Medium Risk</h4>
+                    <h4 style="color:#ffc107;">Medium Risk</h4>
                     <p><span class="code-text">22, 53, 88, 389, 5432</span></p>
                     <ul>
                         <li><strong>22 (SSH):</strong> Brute force targets</li>
@@ -413,33 +427,33 @@
                 </div>
             </div>
 
-            <h3>Critical Port Deep Dive</h3>
+            <h3>Critical Port Examples</h3>
 
-            <h4>Port 445 (SMB) — The Crown Jewel</h4>
+            <h4>Port 445 (SMB)</h4>
             <div class="security-box">
-                <p><strong>Why Dangerous:</strong> SMB is deeply integrated into Windows. One vulnerability = full system compromise.</p>
+                <p><strong>Why it matters:</strong> SMB is deeply integrated into Windows file sharing and administration. A serious SMB issue can expose sensitive files or lead to full system compromise.</p>
                 <p><strong>Famous Exploits:</strong></p>
                 <ul>
-                    <li><span class="danger">EternalBlue (MS17-010)</span> — WannaCry, NotPetya ransomware</li>
-                    <li>SMBGhost (CVE-2020-0796) — SMBv3 compression bug</li>
+                    <li><span class="danger">EternalBlue (MS17-010)</span> - WannaCry, NotPetya ransomware</li>
+                    <li>SMBGhost (CVE-2020-0796) - SMBv3 compression bug</li>
                 </ul>
-                <p><strong>How to Secure:</strong> Disable SMBv1, block port 445 at firewall, disable if not needed</p>
+                <p><strong>How to reduce risk:</strong> Disable SMBv1, block port 445 at the firewall, and disable SMB where it is not needed.</p>
             </div>
 
-            <h4>Port 3389 (RDP) — Remote Access Goldmine</h4>
+            <h4>Port 3389 (RDP)</h4>
             <div class="security-box">
-                <p><strong>Why Dangerous:</strong> Direct GUI access to Windows machines. Constantly brute-forced.</p>
+                <p><strong>Why it matters:</strong> RDP provides direct GUI access to Windows machines and is frequently targeted by brute-force and credential-stuffing attacks.</p>
                 <p><strong>Famous Exploits:</strong></p>
                 <ul>
-                    <li><span class="danger">BlueKeep (CVE-2019-0708)</span> — Pre-auth RCE, wormable</li>
+                    <li><span class="danger">BlueKeep (CVE-2019-0708)</span> - Pre-auth RCE, wormable</li>
                     <li>Credential stuffing and brute force attacks</li>
                 </ul>
-                <p><strong>How to Secure:</strong> VPN required, NLA enabled, account lockout, change default port</p>
+                <p><strong>How to reduce risk:</strong> Require VPN access, enable NLA, enforce account lockout, and avoid exposing RDP directly to the internet.</p>
             </div>
         </div>
 
         <!-- Section 6: Default Open Ports -->
-        <h2>🖥️ 6. Default Open Ports</h2>
+        <h2>6. Default Open Ports</h2>
         <div class="section">
             <h3>Windows Default Services</h3>
             <table>
@@ -481,9 +495,9 @@ sudo systemctl disable service_name</code>
         </div>
 
         <!-- Section 7: Code Examples -->
-        <h2>💻 7. Port Scanning Commands</h2>
+        <h2>7. Port Scanning Commands</h2>
         <div class="section">
-            <div class="code-header">🔍 Nmap — The Swiss Army Knife</div>
+            <div class="code-header">Nmap Port Scans</div>
             <div class="code-block">
 <code><span class="comment"># TCP connect scan, all 65535 ports</span>
 nmap -sT -p- 192.168.1.1
@@ -504,7 +518,7 @@ sudo nmap -sS -p 1-1000 192.168.1.0/24
 nmap --script vuln target.com</code>
             </div>
 
-            <div class="code-header">📊 Check Local Listening Ports</div>
+            <div class="code-header">Check Local Listening Ports</div>
             <div class="code-block">
 <code><span class="comment"># Windows</span>
 netstat -ano | findstr LISTENING
@@ -518,7 +532,7 @@ lsof -i :445                   <span class="comment"># What's using port 445</sp
         </div>
 
         <!-- Section 8: Protocol Deep Dives -->
-        <h2>🔬 8. Protocol Deep Dives</h2>
+        <h2>8. Protocol Deep Dives</h2>
         <div class="section">
             <h3>8.1 DNS (Port 53)</h3>
             <p><span class="highlight">How it works:</span> Translates human-readable domain names to IP addresses.</p>
@@ -533,13 +547,13 @@ lsof -i :445                   <span class="comment"># What's using port 445</sp
             <table>
                 <thead><tr><th>Type</th><th>Purpose</th><th>Example</th></tr></thead>
                 <tbody>
-                    <tr><td>A</td><td>IPv4 address</td><td>google.com → 142.250.190.46</td></tr>
-                    <tr><td>AAAA</td><td>IPv6 address</td><td>google.com → 2607:f8b0:4004:...</td></tr>
+                    <tr><td>A</td><td>IPv4 address</td><td>google.com -> 142.250.190.46</td></tr>
+                    <tr><td>AAAA</td><td>IPv6 address</td><td>google.com -> 2607:f8b0:4004:...</td></tr>
                     <tr><td>MX</td><td>Mail server</td><td>Priority + mail server hostname</td></tr>
-                    <tr><td>CNAME</td><td>Alias</td><td>www.example.com → example.com</td></tr>
+                    <tr><td>CNAME</td><td>Alias</td><td>www.example.com -> example.com</td></tr>
                     <tr><td>TXT</td><td>Text data</td><td>SPF, DKIM, domain verification</td></tr>
                     <tr><td>NS</td><td>Name servers</td><td>Authoritative DNS servers</td></tr>
-                    <tr><td>PTR</td><td>Reverse lookup</td><td>IP → domain name</td></tr>
+                    <tr><td>PTR</td><td>Reverse lookup</td><td>IP -> domain name</td></tr>
                 </tbody>
             </table>
 
@@ -574,14 +588,14 @@ host 142.250.190.46</code>
             <div class="diagram">
 <pre>
 Client                           Server
-   │                                │
-   │─── Discover (broadcast) ─────▶│  "Who can give me an IP?"
-   │                                │
-   │◀────── Offer ─────────────────│  "I can offer 192.168.1.50"
-   │                                │
-   │─── Request ─────────────────▶│  "I'll take that IP"
-   │                                │
-   │◀────── Acknowledge ───────────│  "Here's your lease info"
+   |                                |
+   |--- Discover (broadcast) ----->|  "Who can give me an IP?"
+   |                                |
+   |<------ Offer -----------------|  "I can offer 192.168.1.50"
+   |                                |
+   |--- Request ------------------>|  "I'll take that IP"
+   |                                |
+   |<------ Acknowledge -----------|  "Here's your lease info"
 </pre>
             </div>
 
@@ -599,7 +613,7 @@ Client                           Server
 
             <h4>ARP Spoofing/Poisoning</h4>
             <div class="security-box">
-                <p>Attacker sends fake ARP replies claiming to be the gateway → All traffic routes through attacker (MITM)</p>
+                <p>An attacker sends fake ARP replies claiming to be the gateway. If the attack works, traffic routes through the attacker as a man-in-the-middle.</p>
                 <p><strong>Defense:</strong> Static ARP entries, Dynamic ARP Inspection (DAI)</p>
             </div>
 
@@ -624,7 +638,7 @@ ip neighbor show</code>
                 <tbody>
                     <tr><td>0</td><td>Echo Reply</td><td>Ping response</td></tr>
                     <tr><td>3</td><td>Destination Unreachable</td><td>Host/port unreachable</td></tr>
-                    <tr><td>5</td><td>Redirect</td><td>Route redirection (attackable!)</td></tr>
+                    <tr><td>5</td><td>Redirect</td><td>Route redirection, which can be abused</td></tr>
                     <tr><td>8</td><td>Echo Request</td><td>Ping</td></tr>
                     <tr><td>11</td><td>Time Exceeded</td><td>TTL expired (traceroute)</td></tr>
                 </tbody>
@@ -641,13 +655,13 @@ ip neighbor show</code>
         </div>
 
         <!-- Section 9: Security Corner -->
-        <h2>🔒 9. Security Corner</h2>
+        <h2>9. Security Corner</h2>
         <div class="section">
             <h3>Port Scanning Ethics & Legality</h3>
             <div class="warning-box">
-                <strong>⚠️ Legal Warning:</strong>
+                <strong>Legal warning:</strong>
                 <ul>
-                    <li>NEVER scan systems you don't own or have written permission for</li>
+                    <li>Do not scan systems you do not own or have written permission to test</li>
                     <li>Port scanning can be illegal in many jurisdictions</li>
                     <li>Always get explicit authorization in writing before testing</li>
                     <li>Use isolated lab environments for learning</li>
@@ -676,15 +690,15 @@ iptables -A INPUT -p tcp --dport 22 -j DROP</code>
 
             <h3>Principle of Least Privilege for Ports</h3>
             <ul>
-                <li><span class="highlight">Only open ports that are needed</span> — every open port is an attack surface</li>
-                <li><span class="highlight">Default deny</span> — block all, then allow specific ports</li>
-                <li><span class="highlight">Regular auditing</span> — check for unexpected listening services</li>
-                <li><span class="highlight">Network segmentation</span> — sensitive services on isolated networks</li>
+                <li><span class="highlight">Only open ports that are needed</span>: every open port is an attack surface</li>
+                <li><span class="highlight">Default deny</span>: block all, then allow specific ports</li>
+                <li><span class="highlight">Regular auditing</span>: check for unexpected listening services</li>
+                <li><span class="highlight">Network segmentation</span>: keep sensitive services on isolated networks</li>
             </ul>
         </div>
 
         <!-- Section 10: Pentesting Relevance -->
-        <h2>🎯 10. Pentesting Relevance</h2>
+        <h2>10. Pentesting Relevance</h2>
         <div class="section">
             <h3>Port Scanning Methodology</h3>
             <ol>
@@ -717,12 +731,12 @@ curl -I http://target.com</code>
             </div>
 
             <div class="tip-box">
-                <strong>💡 Pro Tip:</strong> Banner information often reveals exact software versions, making vulnerability research much easier. Look for CVEs matching those versions!
+                <strong>Practice note:</strong> Banner information often reveals exact software versions, which helps you research relevant CVEs for an authorized lab or assessment.
             </div>
         </div>
 
         <!-- Section 11: Quiz -->
-        <h2>📝 11. Knowledge Check Quiz</h2>
+        <h2>11. Knowledge Check Quiz</h2>
         <div class="section">
             <div class="quiz-question">
                 <strong>Q1:</strong> What port does HTTPS use?
@@ -757,10 +771,10 @@ curl -I http://target.com</code>
             <div class="quiz-question">
                 <strong>Q4:</strong> What is the correct order of TCP 3-way handshake?
                 <div class="quiz-options">
-                    <label><input type="radio" name="q4"> ACK → SYN → SYN-ACK</label>
-                    <label><input type="radio" name="q4"> SYN → SYN-ACK → ACK</label>
-                    <label><input type="radio" name="q4"> SYN → ACK → SYN-ACK</label>
-                    <label><input type="radio" name="q4"> SYN-ACK → SYN → ACK</label>
+                    <label><input type="radio" name="q4"> ACK -> SYN -> SYN-ACK</label>
+                    <label><input type="radio" name="q4"> SYN -> SYN-ACK -> ACK</label>
+                    <label><input type="radio" name="q4"> SYN -> ACK -> SYN-ACK</label>
+                    <label><input type="radio" name="q4"> SYN-ACK -> SYN -> ACK</label>
                 </div>
             </div>
 
@@ -880,7 +894,7 @@ curl -I http://target.com</code>
                     <div class="answer-item"><strong>Q1:</strong> <span class="answer-correct">443</span></div>
                     <div class="answer-item"><strong>Q2:</strong> <span class="answer-correct">UDP</span></div>
                     <div class="answer-item"><strong>Q3:</strong> <span class="answer-correct">Port 445, EternalBlue</span></div>
-                    <div class="answer-item"><strong>Q4:</strong> <span class="answer-correct">SYN → SYN-ACK → ACK</span></div>
+                    <div class="answer-item"><strong>Q4:</strong> <span class="answer-correct">SYN -> SYN-ACK -> ACK</span></div>
                     <div class="answer-item"><strong>Q5:</strong> <span class="answer-correct">0-1023</span></div>
                     <div class="answer-item"><strong>Q6:</strong> <span class="answer-correct">It transmits everything in cleartext</span></div>
                     <div class="answer-item"><strong>Q7:</strong> <span class="answer-correct">UDP primarily (TCP for large transfers)</span></div>
@@ -898,13 +912,13 @@ curl -I http://target.com</code>
 
         <!-- Navigation -->
         <nav class="page-nav">
-            <a href="1.5.2_osi_tcpip_models.html"><span>←</span><span>Previous: OSI & TCP/IP Models</span></a>
-            <a href="../1.5_networks.html"><span>↑</span><span>Networking Hub</span></a>
-            <a href="1.5.4_network_devices.html"><span>Next: Network Devices</span><span>→</span></a>
+            <a href="1.5.2_osi_tcpip_models.html">Previous: OSI & TCP/IP Models</a>
+            <a href="../1.5_networks.html">Networking Hub</a>
+            <a href="1.5.4_network_devices.html">Next: Network Devices</a>
         </nav>
 
         <footer>
-            <p>© 2026 lokii.tech | <a href="https://github.com/UnExplainableFish52/lokii.tech" target="_blank" rel="noopener noreferrer">Open Source Project</a></p>
+            <p>&copy; 2026 lokii.tech | <a href="https://github.com/UnExplainableFish52/lokii.tech" target="_blank" rel="noopener noreferrer">Open Source Project</a></p>
         </footer>
     </div>
 

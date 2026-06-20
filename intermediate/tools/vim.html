@@ -1,18 +1,19 @@
 <!DOCTYPE html>
+<!-- lokii-note-polish: checked 2026-06-20; removed decorative icons, softened speed-focused wording, and reframed Vim as practical daily editing practice. -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vim & Neovim Mastery — From Zero to Lightning Speed</title>
+    <title>Vim and Neovim Notes | Practical Modal Editing | lokii.tech</title>
     
-    <meta name="description" content="Complete Vim/Neovim guide from beginner to pro. Master modal editing, motions, macros, and become lightning fast.">
+    <meta name="description" content="Practical Vim and Neovim notes for learning modes, navigation, editing commands, search, macros, buffers, configuration, and daily practice.">
     <meta name="author" content="lokii (UnExplainableFish52)">
     <meta name="theme-color" content="#0d1117">
     
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://lokii.tech/intermediate/tools/vim.html">
-    <meta property="og:title" content="Vim &amp; Neovim Mastery — From Zero to Lightning Speed">
-    <meta property="og:description" content="Complete Vim/Neovim guide from beginner to pro. Master modal editing, motions, macros, and become lightning fast.">
+    <meta property="og:title" content="Vim and Neovim Notes | Practical Modal Editing | lokii.tech">
+    <meta property="og:description" content="Practical Vim and Neovim notes for learning modes, navigation, editing commands, search, macros, buffers, configuration, and daily practice.">
     <meta property="og:image" content="https://lokii.tech/preview.jpg">
 <!-- Google Fonts -->
     <!-- SEO Metadata -->
@@ -21,9 +22,15 @@
     <meta property="og:site_name" content="lokii.tech">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://lokii.tech/intermediate/tools/vim.html">
-    <meta name="twitter:title" content="Vim &amp; Neovim Mastery — From Zero to Lightning Speed">
-    <meta name="twitter:description" content="Complete Vim/Neovim guide from beginner to pro. Master modal editing, motions, macros, and become lightning fast.">
+    <meta name="twitter:title" content="Vim and Neovim Notes | Practical Modal Editing | lokii.tech">
+    <meta name="twitter:description" content="Practical Vim and Neovim notes for learning modes, navigation, editing commands, search, macros, buffers, configuration, and daily practice.">
     <meta name="twitter:image" content="https://lokii.tech/preview.jpg">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
+    <link rel="manifest" href="../../site.webmanifest">
+    <link rel="icon" href="../../favicon.ico">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -77,7 +84,7 @@
             {
               "@type": "ListItem",
               "position": 3,
-              "name": "Vim & Neovim Mastery — From Zero to Lightning Speed",
+              "name": "Vim and Neovim Notes",
               "item": "https://lokii.tech/intermediate/tools/vim.html"
             }
           ]
@@ -86,8 +93,8 @@
           "@type": "WebPage",
           "@id": "https://lokii.tech/intermediate/tools/vim.html#webpage",
           "url": "https://lokii.tech/intermediate/tools/vim.html",
-          "name": "Vim & Neovim Mastery — From Zero to Lightning Speed",
-          "description": "Complete Vim/Neovim guide from beginner to pro. Master modal editing, motions, macros, and become lightning fast.",
+          "name": "Vim and Neovim Notes | Practical Modal Editing | lokii.tech",
+          "description": "Practical Vim and Neovim notes for learning modes, navigation, editing commands, search, macros, buffers, configuration, and daily practice.",
           "isPartOf": {
             "@id": "https://lokii.tech/#website"
           },
@@ -95,7 +102,7 @@
             "@id": "https://lokii.tech/intermediate/tools/vim.html#breadcrumbs"
           },
           "primaryImageOfPage": "https://lokii.tech/preview.jpg",
-          "dateModified": "2026-06-04",
+          "dateModified": "2026-06-20",
           "inLanguage": "en"
         },
         {
@@ -104,8 +111,8 @@
             "LearningResource"
           ],
           "@id": "https://lokii.tech/intermediate/tools/vim.html#article",
-          "headline": "Vim & Neovim Mastery — From Zero to Lightning Speed",
-          "description": "Complete Vim/Neovim guide from beginner to pro. Master modal editing, motions, macros, and become lightning fast.",
+          "headline": "Vim and Neovim Notes | Practical Modal Editing | lokii.tech",
+          "description": "Practical Vim and Neovim notes for learning modes, navigation, editing commands, search, macros, buffers, configuration, and daily practice.",
           "url": "https://lokii.tech/intermediate/tools/vim.html",
           "image": "https://lokii.tech/preview.jpg",
           "author": {
@@ -119,7 +126,7 @@
           },
           "educationalLevel": "Intermediate",
           "learningResourceType": "Guide",
-          "dateModified": "2026-06-04",
+          "dateModified": "2026-06-20",
           "inLanguage": "en"
         }
       ]
@@ -146,10 +153,10 @@
 
 <div class="notes-container">
 
-<h1>Vim & Neovim Mastery — From Zero to Lightning Speed</h1>
+<h1>Vim and Neovim Notes</h1>
 
 <div class="toc">
-    <div class="toc-title">📑 Table of Contents</div>
+    <div class="toc-title">Table of Contents</div>
     <ul>
         <li><a href="#what-is-vim">1. What is Vim/Neovim?</a></li>
         <li><a href="#which-to-use">2. Which One Should You Use?</a></li>
@@ -157,17 +164,17 @@
         <li><a href="#understanding-modes">4. Understanding Modes</a></li>
         <li><a href="#basic-navigation">5. Basic Navigation</a></li>
         <li><a href="#editing-basics">6. Editing Basics</a></li>
-        <li><a href="#advanced-motions">7. Advanced Motions & Text Objects</a></li>
-        <li><a href="#search-replace">8. Search & Replace</a></li>
-        <li><a href="#visual-mode">9. Visual Mode Mastery</a></li>
+        <li><a href="#advanced-motions">7. Advanced Motions and Text Objects</a></li>
+        <li><a href="#search-replace">8. Search and Replace</a></li>
+        <li><a href="#visual-mode">9. Visual Mode</a></li>
         <li><a href="#registers-yanking">10. Registers & Yanking</a></li>
-        <li><a href="#macros">11. Macros — Record & Replay</a></li>
-        <li><a href="#buffers-windows">12. Buffers, Windows & Tabs</a></li>
+        <li><a href="#macros">11. Macros: Record and Replay</a></li>
+        <li><a href="#buffers-windows">12. Buffers, Windows and Tabs</a></li>
         <li><a href="#configuration">13. Configuration (.vimrc / init.lua)</a></li>
         <li><a href="#plugins">14. Essential Plugins</a></li>
-        <li><a href="#speed-tips">15. ⚡ Pro Speed Tips</a></li>
+        <li><a href="#speed-tips">15. Practical Editing Habits</a></li>
         <li><a href="#practice">16. Practice Exercises</a></li>
-        <li><a href="#cheatsheet">17. Ultimate Cheatsheet</a></li>
+        <li><a href="#cheatsheet">17. Quick Reference</a></li>
     </ul>
 </div>
 
@@ -176,23 +183,23 @@
 <!-- Section 1 -->
 <h2 id="what-is-vim"><span class="section-number">1.</span> What is Vim/Neovim?</h2>
 
-<p><strong>Vim</strong> = <strong>Vi IMproved</strong> — A highly configurable, modal text editor built for efficiency.</p>
+<p><strong>Vim</strong> stands for <strong>Vi IMproved</strong>. It is a modal text editor, which means you use different modes for moving, editing, selecting, and running commands.</p>
 
-<p><strong>Neovim</strong> = A modern fork of Vim with better defaults, Lua scripting, LSP support, and async plugins.</p>
+<p><strong>Neovim</strong> is a modern fork of Vim with cleaner defaults, Lua configuration, built-in LSP support, and strong plugin support. If you are starting today, Neovim is usually the smoother daily editor, while basic Vim is still useful on servers.</p>
 
-<h3>Why Learn Vim?</h3>
+<h3>Where Vim Helps</h3>
 <table>
     <tr><th>Reason</th><th>Explanation</th></tr>
-    <tr><td>Speed</td><td>Edit text at the speed of thought — no mouse needed</td></tr>
+    <tr><td>Editing flow</td><td>Move, change, delete, and repeat edits without leaving the keyboard.</td></tr>
     <tr><td>Ubiquity</td><td>Available on every Unix system, SSH servers, containers</td></tr>
-    <tr><td>Efficiency</td><td>Fewer keystrokes = less RSI, more productivity</td></tr>
-    <tr><td>Extensibility</td><td>Thousands of plugins for any workflow</td></tr>
+    <tr><td>Efficiency</td><td>Useful for config files, logs, scripts, and remote troubleshooting.</td></tr>
+    <tr><td>Extensibility</td><td>Plugins can turn Neovim into a focused coding environment.</td></tr>
     <tr><td>Portability</td><td>Your config travels with you</td></tr>
 </table>
 
 <div class="tip">
-    <div class="tip-title">💡 The Vim Way</div>
-    <p>Vim is a <strong>language</strong>, not just an editor. Commands combine like words: <code>d</code> (delete) + <code>w</code> (word) = <code>dw</code> (delete word). Once you learn the grammar, you can infinitely combine commands.</p>
+    <div class="tip-title">The Vim approach</div>
+    <p>Vim commands combine like a small editing language. For example, <code>d</code> means delete and <code>w</code> means word, so <code>dw</code> deletes a word. Once that idea clicks, the command list starts to feel less random.</p>
 </div>
 
 <hr class="divider">
@@ -211,9 +218,9 @@
 </table>
 
 <div class="tip">
-    <div class="tip-title">🎯 Recommendation</div>
-    <p><strong>Beginners:</strong> Start with <strong>Neovim</strong> — better defaults, modern features, and an amazing plugin ecosystem. <br>
-    <strong>Servers/SSH:</strong> Learn basic <strong>Vim</strong> — it's everywhere by default.</p>
+    <div class="tip-title">Recommendation</div>
+    <p><strong>Beginners:</strong> Start with <strong>Neovim</strong> if you want a modern editor for daily work.<br>
+    <strong>Servers and SSH:</strong> Learn basic <strong>Vim</strong> because it is often available by default when you are editing config files remotely.</p>
 </div>
 
 <hr class="divider">
@@ -256,13 +263,13 @@ nvim --version</code></pre>
 <hr class="divider">
 
 <!-- Section 4 -->
-<h2 id="understanding-modes"><span class="section-number">4.</span> Understanding Modes — The Core Concept</h2>
+<h2 id="understanding-modes"><span class="section-number">4.</span> Understanding Modes: The Core Concept</h2>
 
-<p>Vim is a <strong>modal editor</strong> — different modes for different tasks. This is what makes it powerful!</p>
+<p>Vim is a <strong>modal editor</strong>, which means different modes handle different tasks. Normal mode is for movement and commands, Insert mode is for typing, and Visual mode is for selecting text.</p>
 
 <table>
     <tr><th>Mode</th><th>Purpose</th><th>Enter With</th><th>Exit With</th></tr>
-    <tr><td>Normal</td><td>Navigation, commands</td><td><code>Esc</code></td><td>—</td></tr>
+    <tr><td>Normal</td><td>Navigation, commands</td><td><code>Esc</code></td><td>Already there</td></tr>
     <tr><td>Insert</td><td>Type text</td><td><code>i</code>, <code>a</code>, <code>o</code></td><td><code>Esc</code></td></tr>
     <tr><td>Visual</td><td>Select text</td><td><code>v</code>, <code>V</code>, <code>Ctrl+v</code></td><td><code>Esc</code></td></tr>
     <tr><td>Command</td><td>Ex commands</td><td><code>:</code></td><td><code>Enter</code> or <code>Esc</code></td></tr>
@@ -270,8 +277,8 @@ nvim --version</code></pre>
 </table>
 
 <div class="warning">
-    <div class="warning-title">⚠️ Muscle Memory Alert</div>
-    <p>The #1 beginner mistake: staying in Insert mode. <strong>Normal mode is your home base!</strong> Learn to tap <span class="kbd">Esc</span> (or remap to <span class="kbd">jk</span>) constantly.</p>
+    <div class="warning-title">Beginner note</div>
+    <p>A common beginner mistake is staying in Insert mode. <strong>Normal mode is your home base.</strong> Get used to tapping <span class="kbd">Esc</span>, or remap it to <span class="kbd">jk</span> if that feels better.</p>
 </div>
 
 <h3>Ways to Enter Insert Mode</h3>
@@ -295,10 +302,10 @@ nvim --version</code></pre>
 <h3>Character Movement</h3>
 <table>
     <tr><th>Key</th><th>Action</th><th>Mnemonic</th></tr>
-    <tr><td>h</td><td>Move left</td><td>←</td></tr>
-    <tr><td>j</td><td>Move down</td><td>↓ (j hangs down)</td></tr>
-    <tr><td>k</td><td>Move up</td><td>↑ (k points up)</td></tr>
-    <tr><td>l</td><td>Move right</td><td>→</td></tr>
+    <tr><td>h</td><td>Move left</td><td>left</td></tr>
+    <tr><td>j</td><td>Move down</td><td>down (j hangs down)</td></tr>
+    <tr><td>k</td><td>Move up</td><td>up (k points up)</td></tr>
+    <tr><td>l</td><td>Move right</td><td>right</td></tr>
 </table>
 
 <h3>Word Movement</h3>
@@ -338,7 +345,7 @@ nvim --version</code></pre>
 </table>
 
 <div class="speed-tip">
-    <div class="speed-tip-title">⚡ Speed Tip: Use Counts!</div>
+    <div class="speed-tip-title">Practice tip: use counts</div>
     <p>Prefix any motion with a number: <code>5j</code> = move 5 lines down, <code>3w</code> = move 3 words forward, <code>10G</code> = go to line 10.</p>
 </div>
 
@@ -373,7 +380,7 @@ nvim --version</code></pre>
     <tr><td>ci(</td><td>Change inside parentheses</td></tr>
 </table>
 
-<h3>Copy (Yank) & Paste</h3>
+<h3>Copy (Yank) and Paste</h3>
 <table>
     <tr><th>Command</th><th>Action</th></tr>
     <tr><td>yy</td><td>Yank (copy) line</td></tr>
@@ -384,24 +391,24 @@ nvim --version</code></pre>
     <tr><td>P</td><td>Paste before cursor</td></tr>
 </table>
 
-<h3>Undo & Redo</h3>
+<h3>Undo and Redo</h3>
 <table>
     <tr><th>Command</th><th>Action</th></tr>
     <tr><td>u</td><td>Undo</td></tr>
     <tr><td>Ctrl+r</td><td>Redo</td></tr>
     <tr><td>U</td><td>Undo all changes on line</td></tr>
-    <tr><td>.</td><td>Repeat last command (POWERFUL!)</td></tr>
+    <tr><td>.</td><td>Repeat last command (useful)</td></tr>
 </table>
 
 <div class="speed-tip">
-    <div class="speed-tip-title">⚡ The Dot Command is MAGIC</div>
-    <p>The <code>.</code> command repeats your last change. Example: <code>ciw</code>hello<code>Esc</code> then navigate to another word and press <code>.</code> to replace it with "hello" too!</p>
+    <div class="speed-tip-title">The dot command repeats the last change</div>
+    <p>The <code>.</code> command repeats your last change. Example: <code>ciw</code>hello<code>Esc</code> then navigate to another word and press <code>.</code> to replace it with "hello" too.</p>
 </div>
 
 <hr class="divider">
 
 <!-- Section 7 -->
-<h2 id="advanced-motions"><span class="section-number">7.</span> Advanced Motions & Text Objects</h2>
+<h2 id="advanced-motions"><span class="section-number">7.</span> Advanced Motions and Text Objects</h2>
 
 <h3>The Vim Grammar</h3>
 <p><strong>Operator + Motion = Action</strong></p>
@@ -410,15 +417,15 @@ d = delete
 c = change
 y = yank (copy)
 v = visual select
-> = indent right
-< = indent left
+&gt; = indent right
+&lt; = indent left
 
 <span class="comment"># Formula: operator + [count] + motion</span>
 d2w   = delete 2 words
 c3j   = change 3 lines down
 y5l   = yank 5 characters right</code></pre>
 
-<h3>Text Objects — The PRO Secret</h3>
+<h3>Text Objects: a useful pattern</h3>
 <p>Text objects let you operate on semantic units of text.</p>
 
 <table>
@@ -437,11 +444,11 @@ y5l   = yank 5 characters right</code></pre>
 </table>
 
 <div class="speed-tip">
-    <div class="speed-tip-title">⚡ Text Objects = 10x Speed</div>
-    <p>Instead of navigating: just <code>ci"</code> anywhere inside quotes to change them. <code>dap</code> deletes entire paragraph. This is the secret weapon!</p>
+    <div class="speed-tip-title">Text objects reduce repeated movement</div>
+    <p>Instead of moving character by character, use <code>ci"</code> anywhere inside quotes to change that quoted text. <code>dap</code> deletes a whole paragraph. These are small commands, but they remove a lot of repeated movement.</p>
 </div>
 
-<h3>Find & Till Motions</h3>
+<h3>Find and Till Motions</h3>
 <table>
     <tr><th>Command</th><th>Action</th></tr>
     <tr><td>f{char}</td><td>Jump to next {char} on line</td></tr>
@@ -464,7 +471,7 @@ df,</code></pre>
 <hr class="divider">
 
 <!-- Section 8 -->
-<h2 id="search-replace"><span class="section-number">8.</span> Search & Replace</h2>
+<h2 id="search-replace"><span class="section-number">8.</span> Search and Replace</h2>
 
 <h3>Basic Search</h3>
 <table>
@@ -477,7 +484,7 @@ df,</code></pre>
     <tr><td>#</td><td>Search word under cursor (backward)</td></tr>
 </table>
 
-<h3>Search & Replace (Substitute)</h3>
+<h3>Search and Replace (Substitute)</h3>
 <pre><code><span class="comment"># Basic syntax</span>
 :s/old/new/           <span class="comment"># Replace first on current line</span>
 :s/old/new/g          <span class="comment"># Replace all on current line</span>
@@ -504,14 +511,14 @@ df,</code></pre>
 /\v(pattern1|pattern2)</code></pre>
 
 <div class="tip">
-    <div class="tip-title">💡 Clear Search Highlight</div>
-    <p>After searching, clear the highlight with <code>:noh</code> or <code>:nohlsearch</code>. Pro tip: map this to a key like <code>&lt;leader&gt;h</code>.</p>
+    <div class="tip-title"> Clear search highlight</div>
+    <p>After searching, clear the highlight with <code>:noh</code> or <code>:nohlsearch</code>. If you search often, map this to a key like <code>&lt;leader&gt;h</code>.</p>
 </div>
 
 <hr class="divider">
 
 <!-- Section 9 -->
-<h2 id="visual-mode"><span class="section-number">9.</span> Visual Mode Mastery</h2>
+<h2 id="visual-mode"><span class="section-number">9.</span> Visual Mode</h2>
 
 <h3>Visual Mode Types</h3>
 <table>
@@ -532,8 +539,8 @@ Ctrl+v + 3j + I + // + Esc   <span class="comment"># Comment 4 lines</span>
 Ctrl+v + 3j + $ + A + ; + Esc  <span class="comment"># Add semicolon to 4 lines</span></code></pre>
 
 <div class="speed-tip">
-    <div class="speed-tip-title">⚡ Block Mode is Incredible</div>
-    <p><code>Ctrl+v</code> lets you edit multiple lines at once. Select a column, press <code>I</code> to insert, type text, press <code>Esc</code> — text appears on ALL selected lines!</p>
+    <div class="speed-tip-title"> Block mode for column edits</div>
+    <p><code>Ctrl+v</code> lets you edit multiple lines at once. Select a column, press <code>I</code> to insert, type text, press <code>Esc</code> - text appears on all selected lines.</p>
 </div>
 
 <h3>Useful Visual Commands</h3>
@@ -542,8 +549,8 @@ Ctrl+v + 3j + $ + A + ; + Esc  <span class="comment"># Add semicolon to 4 lines<
     <tr><td>o</td><td>Move to other end of selection</td></tr>
     <tr><td>O</td><td>Move to other corner (block mode)</td></tr>
     <tr><td>gv</td><td>Reselect last visual selection</td></tr>
-    <tr><td>></td><td>Indent selection</td></tr>
-    <tr><td><</td><td>Unindent selection</td></tr>
+    <tr><td>&gt;</td><td>Indent selection</td></tr>
+    <tr><td>&lt;</td><td>Unindent selection</td></tr>
     <tr><td>=</td><td>Auto-indent selection</td></tr>
     <tr><td>~</td><td>Toggle case</td></tr>
     <tr><td>U</td><td>Uppercase</td></tr>
@@ -553,7 +560,7 @@ Ctrl+v + 3j + $ + A + ; + Esc  <span class="comment"># Add semicolon to 4 lines<
 <hr class="divider">
 
 <!-- Section 10 -->
-<h2 id="registers-yanking"><span class="section-number">10.</span> Registers & Advanced Yanking</h2>
+<h2 id="registers-yanking"><span class="section-number">10.</span> Registers and Advanced Yanking</h2>
 
 <p>Vim has multiple "clipboards" called registers.</p>
 
@@ -592,16 +599,16 @@ Ctrl+v + 3j + $ + A + ; + Esc  <span class="comment"># Add semicolon to 4 lines<
 "_dd</code></pre>
 
 <div class="tip">
-    <div class="tip-title">💡 The 0 Register Trick</div>
+    <div class="tip-title"> The 0 Register Trick</div>
     <p>When you yank text, it goes to register <code>0</code>. When you delete, it goes to <code>"</code>. Use <code>"0p</code> to paste your last yank even after deleting!</p>
 </div>
 
 <hr class="divider">
 
 <!-- Section 11 -->
-<h2 id="macros"><span class="section-number">11.</span> Macros — Record & Replay</h2>
+<h2 id="macros"><span class="section-number">11.</span> Macros - Record & Replay</h2>
 
-<p>Macros record keystrokes and replay them. This is <strong>automation gold</strong>!</p>
+<p>Macros record keystrokes and replay them. This is useful when the same edit repeats across many lines.</p>
 
 <h3>Basic Macro Workflow</h3>
 <pre><code><span class="comment"># 1. Start recording to register q</span>
@@ -633,7 +640,7 @@ q           <span class="comment"># Stop recording</span>
 99@q        <span class="comment"># Apply to next 99 lines</span></code></pre>
 
 <div class="speed-tip">
-    <div class="speed-tip-title">⚡ Macro Pro Tips</div>
+    <div class="speed-tip-title"> Macro practice tips</div>
     <p>1. Start macros at line beginning (<code>0</code>) or on a word (<code>b</code>)<br>
     2. Use <code>/pattern&lt;CR&gt;</code> to jump consistently<br>
     3. End with motion to next target for chaining<br>
@@ -643,7 +650,7 @@ q           <span class="comment"># Stop recording</span>
 <hr class="divider">
 
 <!-- Section 12 -->
-<h2 id="buffers-windows"><span class="section-number">12.</span> Buffers, Windows & Tabs</h2>
+<h2 id="buffers-windows"><span class="section-number">12.</span> Buffers, Windows and Tabs</h2>
 
 <h3>Buffers (Open Files)</h3>
 <pre><code><span class="comment"># List buffers</span>
@@ -676,8 +683,8 @@ Ctrl+w w        <span class="comment"># Cycle windows</span>
 
 <span class="comment"># Resize</span>
 Ctrl+w =        <span class="comment"># Equal size</span>
-Ctrl+w >        <span class="comment"># Wider</span>
-Ctrl+w <        <span class="comment"># Narrower</span>
+Ctrl+w &gt;        <span class="comment"># Wider</span>
+Ctrl+w &lt;        <span class="comment"># Narrower</span>
 Ctrl+w +        <span class="comment"># Taller</span>
 Ctrl+w -        <span class="comment"># Shorter</span>
 
@@ -776,7 +783,7 @@ vim.keymap.set('n', '&lt;leader&gt;h', ':noh&lt;CR&gt;')</code></pre>
     <tr><td>lazy.nvim</td><td>Neovim (modern, recommended)</td></tr>
 </table>
 
-<h3>Must-Have Plugins</h3>
+<h3>Useful Plugins</h3>
 <table>
     <tr><th>Plugin</th><th>Purpose</th></tr>
     <tr><td>nvim-treesitter</td><td>Better syntax highlighting</td></tr>
@@ -792,33 +799,33 @@ vim.keymap.set('n', '&lt;leader&gt;h', ':noh&lt;CR&gt;')</code></pre>
 </table>
 
 <div class="tip">
-    <div class="tip-title">💡 Starter Configs</div>
-    <p>Don't build from scratch! Try these preconfigured Neovim distros:<br>
-    • <strong>LazyVim</strong> — Modern, fast, well-maintained<br>
-    • <strong>NvChad</strong> — Beautiful, beginner-friendly<br>
-    • <strong>AstroNvim</strong> — Feature-rich, extensible<br>
-    • <strong>LunarVim</strong> — IDE-like experience</p>
+    <div class="tip-title">Starter configs</div>
+    <p>You do not have to build from scratch. Try these preconfigured Neovim distros:<br>
+    - <strong>LazyVim</strong> - Modern, fast, well-maintained<br>
+    - <strong>NvChad</strong> - Beautiful, beginner-friendly<br>
+    - <strong>AstroNvim</strong> - Feature-rich, extensible<br>
+    - <strong>LunarVim</strong> - IDE-like experience</p>
 </div>
 
 <hr class="divider">
 
 <!-- Section 15 -->
-<h2 id="speed-tips"><span class="section-number">15.</span> ⚡ Pro Speed Tips — Be Lightning Fast</h2>
+<h2 id="speed-tips"><span class="section-number">15.</span>  Practical Editing Habits</h2>
 
-<h3>Mindset Shifts</h3>
+<h3>Editing habits</h3>
 <ol>
-    <li><strong>Stay in Normal mode</strong> — It's your home. Quick edits, back to Normal.</li>
-    <li><strong>Think in text objects</strong> — <code>ciw</code>, <code>dap</code>, <code>yi"</code> instead of selecting</li>
-    <li><strong>Use counts</strong> — <code>5dd</code>, <code>3yy</code>, <code>10j</code></li>
-    <li><strong>Use the dot command</strong> — Repeat with <code>.</code></li>
-    <li><strong>Use macros for repetition</strong> — Record once, replay forever</li>
+    <li><strong>Stay in Normal mode</strong> - Make the edit, then return to Normal mode.</li>
+    <li><strong>Think in text objects</strong> - Use commands like <code>ciw</code>, <code>dap</code>, and <code>yi"</code> instead of selecting manually</li>
+    <li><strong>Use counts</strong> - Try <code>5dd</code>, <code>3yy</code>, or <code>10j</code> when you need repetition</li>
+    <li><strong>Use the dot command</strong> - Repeat the last change with <code>.</code></li>
+    <li><strong>Use macros for repetition</strong> - Record once, replay when the same edit repeats</li>
 </ol>
 
-<h3>Speed Techniques</h3>
+<h3>Practice techniques</h3>
 
 <h4>1. Replace Escape with jk</h4>
 <pre><code>inoremap jk &lt;Esc&gt;</code></pre>
-<p>Your fingers never leave home row!</p>
+<p>This keeps the escape action close to the home row.</p>
 
 <h4>2. Use Leader for Common Actions</h4>
 <pre><code>let mapleader = " "
@@ -826,7 +833,7 @@ nnoremap &lt;leader&gt;w :w&lt;CR&gt;     " Save
 nnoremap &lt;leader&gt;q :q&lt;CR&gt;     " Quit
 nnoremap &lt;leader&gt;e :Ex&lt;CR&gt;    " File explorer</code></pre>
 
-<h4>3. Jump, Don't Scroll</h4>
+<h4>3. Jump Instead of Scrolling</h4>
 <pre><code>/ and ?        <span class="comment"># Search to jump</span>
 *              <span class="comment"># Jump to word under cursor</span>
 f and t        <span class="comment"># Line-level precision</span>
@@ -843,7 +850,7 @@ Ctrl+o Ctrl+i  <span class="comment"># Jump list back/forward</span></code></pre
 '.             <span class="comment"># Jump to last edit</span></code></pre>
 
 <h4>5. Master ciw, ci", ci(</h4>
-<p>These 3 commands will change your life:</p>
+<p>These commands are worth practicing first:</p>
 <pre><code>ciw    <span class="comment"># Change word (anywhere in word)</span>
 ci"    <span class="comment"># Change inside quotes</span>
 ci(    <span class="comment"># Change inside parentheses</span>
@@ -864,14 +871,14 @@ gu{motion}  <span class="comment"># Lowercase</span></code></pre>
 :g/pattern/normal A;  <span class="comment"># Append ; to matching lines</span></code></pre>
 
 <div class="speed-tip">
-    <div class="speed-tip-title">⚡ The Ultimate Speed Hierarchy</div>
+    <div class="speed-tip-title">A practical learning order</div>
     <p><strong>Level 1:</strong> hjkl instead of arrows<br>
     <strong>Level 2:</strong> word motions (w, b, e)<br>
     <strong>Level 3:</strong> text objects (ciw, ci", dap)<br>
     <strong>Level 4:</strong> search/find motions (/, f, t)<br>
     <strong>Level 5:</strong> marks and jumps<br>
     <strong>Level 6:</strong> macros and global commands<br>
-    <strong>Master:</strong> Thinking in Vim grammar</p>
+    <strong>Final step:</strong> Thinking in Vim grammar</p>
 </div>
 
 <hr class="divider">
@@ -883,7 +890,7 @@ gu{motion}  <span class="comment"># Lowercase</span></code></pre>
 
 <div class="question">
     <div class="question-title">Exercise 1: Basic Navigation</div>
-    <p>Open a file with 50+ lines. Navigate using only hjkl for 5 minutes. No arrow keys!</p>
+    <p>Open a file with 50+ lines. Navigate using only hjkl for 5 minutes. Use hjkl only for this drill.</p>
     <p><strong>Goal:</strong> Build muscle memory for basic movement.</p>
 </div>
 
@@ -921,7 +928,7 @@ gu{motion}  <span class="comment"># Lowercase</span></code></pre>
 <div class="question">
     <div class="question-title">Exercise 7: Visual Block</div>
     <p>Add <code>//</code> comment prefix to 10 consecutive lines using <code>Ctrl+v</code></p>
-    <pre><code>Ctrl+v → 9j → I → // → Esc</code></pre>
+    <pre><code>Ctrl+v -> 9j -> I -> // -> Esc</code></pre>
 </div>
 
 <h3>Advanced Exercises</h3>
@@ -955,17 +962,17 @@ n.         <span class="comment"># Repeat...</span></code></pre>
 
 <h3>Practice Resources</h3>
 <ul>
-    <li><strong>vimtutor</strong> — Run <code>vimtutor</code> in terminal (built-in!)</li>
-    <li><strong>Vim Adventures</strong> — vim-adventures.com (game)</li>
-    <li><strong>OpenVim</strong> — openvim.com (interactive)</li>
-    <li><strong>Vim Golf</strong> — vimgolf.com (challenges)</li>
-    <li><strong>ThePrimeagen's YouTube</strong> — Speed editing tutorials</li>
+    <li><strong>vimtutor</strong> - Run <code>vimtutor</code> in terminal (built in)</li>
+    <li><strong>Vim Adventures</strong> - vim-adventures.com (game)</li>
+    <li><strong>OpenVim</strong> - openvim.com (interactive)</li>
+    <li><strong>Vim Golf</strong> - vimgolf.com (challenges)</li>
+    <li><strong>ThePrimeagen's YouTube</strong> - editing tutorials</li>
 </ul>
 
 <hr class="divider">
 
 <!-- Section 17 -->
-<h2 id="cheatsheet"><span class="section-number">17.</span> Ultimate Cheatsheet</h2>
+<h2 id="cheatsheet"><span class="section-number">17.</span> Quick Reference</h2>
 
 <div class="cheatsheet">
     <h3>Survival Kit</h3>
@@ -1021,14 +1028,14 @@ n.         <span class="comment"># Repeat...</span></code></pre>
 </div>
 
 <div class="warning">
-    <div class="warning-title">🎯 Remember</div>
-    <p>Vim mastery takes time. Aim to learn <strong>one new thing per day</strong>. In a month, you'll be significantly faster. In a year, you'll be a wizard.</p>
+    <div class="warning-title">Remember</div>
+    <p>Vim practice takes time. Learn one small command, use it for real edits, and let the habit build slowly. The goal is not to memorize everything at once.</p>
 </div>
 
 <hr class="divider">
 
 <p style="text-align: center; color: #8b949e; margin-top: 40px;">
-    Happy Vimming! ⚡ May your keystrokes be few and your edits be swift.
+    Keep practicing. The goal is controlled, confident editing, not memorizing every command at once.
 </p>
 
 </div>

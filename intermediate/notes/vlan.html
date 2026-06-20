@@ -1,10 +1,11 @@
 <!DOCTYPE html>
+<!-- lokii-note-polish: checked 2026-06-20; improved VLAN flow, added shared styling, removed casual wording, and updated metadata. -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VLAN Notes | lokii.tech</title>
-    <meta name="description" content="Short notes explaining why VLANs matter, how they reduce broadcast domains, and how 802.1Q tagging works.">
+    <title>VLAN Notes | Intermediate Networking | lokii.tech</title>
+    <meta name="description" content="Intermediate VLAN notes covering broadcast domains, access ports, trunks, 802.1Q tagging, native VLANs, segmentation benefits, and common security checks.">
     <meta name="author" content="lokii (UnExplainableFish52)">
     <meta name="theme-color" content="#050505">
     <!-- SEO Metadata -->
@@ -12,15 +13,22 @@
     <meta name="robots" content="index, follow">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://lokii.tech/intermediate/notes/vlan.html">
-    <meta property="og:title" content="VLAN Notes | lokii.tech">
-    <meta property="og:description" content="Short notes explaining why VLANs matter, how they reduce broadcast domains, and how 802.1Q tagging works.">
+    <meta property="og:title" content="VLAN Notes | Intermediate Networking | lokii.tech">
+    <meta property="og:description" content="Intermediate VLAN notes covering broadcast domains, access ports, trunks, 802.1Q tagging, native VLANs, segmentation benefits, and common security checks.">
     <meta property="og:image" content="https://lokii.tech/preview.jpg">
     <meta property="og:site_name" content="lokii.tech">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://lokii.tech/intermediate/notes/vlan.html">
-    <meta name="twitter:title" content="VLAN Notes | lokii.tech">
-    <meta name="twitter:description" content="Short notes explaining why VLANs matter, how they reduce broadcast domains, and how 802.1Q tagging works.">
+    <meta name="twitter:title" content="VLAN Notes | Intermediate Networking | lokii.tech">
+    <meta name="twitter:description" content="Intermediate VLAN notes covering broadcast domains, access ports, trunks, 802.1Q tagging, native VLANs, segmentation benefits, and common security checks.">
     <meta name="twitter:image" content="https://lokii.tech/preview.jpg">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
+    <link rel="manifest" href="../../site.webmanifest">
+    <link rel="icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/global-ui.css">
     <!-- SEO Structured Data -->
     <script type="application/ld+json" data-seo="lokii">
     {
@@ -65,7 +73,7 @@
             {
               "@type": "ListItem",
               "position": 3,
-              "name": "VLAN Notes | lokii.tech",
+              "name": "VLAN Notes | Intermediate Networking | lokii.tech",
               "item": "https://lokii.tech/intermediate/notes/vlan.html"
             }
           ]
@@ -74,8 +82,8 @@
           "@type": "WebPage",
           "@id": "https://lokii.tech/intermediate/notes/vlan.html#webpage",
           "url": "https://lokii.tech/intermediate/notes/vlan.html",
-          "name": "VLAN Notes | lokii.tech",
-          "description": "Short notes explaining why VLANs matter, how they reduce broadcast domains, and how 802.1Q tagging works.",
+          "name": "VLAN Notes | Intermediate Networking | lokii.tech",
+          "description": "Intermediate VLAN notes covering broadcast domains, access ports, trunks, 802.1Q tagging, native VLANs, segmentation benefits, and common security checks.",
           "isPartOf": {
             "@id": "https://lokii.tech/#website"
           },
@@ -83,7 +91,7 @@
             "@id": "https://lokii.tech/intermediate/notes/vlan.html#breadcrumbs"
           },
           "primaryImageOfPage": "https://lokii.tech/preview.jpg",
-          "dateModified": "2026-06-04",
+          "dateModified": "2026-06-20",
           "inLanguage": "en"
         },
         {
@@ -92,8 +100,8 @@
             "LearningResource"
           ],
           "@id": "https://lokii.tech/intermediate/notes/vlan.html#article",
-          "headline": "VLAN Notes | lokii.tech",
-          "description": "Short notes explaining why VLANs matter, how they reduce broadcast domains, and how 802.1Q tagging works.",
+          "headline": "VLAN Notes | Intermediate Networking | lokii.tech",
+          "description": "Intermediate VLAN notes covering broadcast domains, access ports, trunks, 802.1Q tagging, native VLANs, segmentation benefits, and common security checks.",
           "url": "https://lokii.tech/intermediate/notes/vlan.html",
           "image": "https://lokii.tech/preview.jpg",
           "author": {
@@ -107,7 +115,7 @@
           },
           "educationalLevel": "Intermediate",
           "learningResourceType": "Guide",
-          "dateModified": "2026-06-04",
+          "dateModified": "2026-06-20",
           "inLanguage": "en"
         }
       ]
@@ -119,20 +127,22 @@
 
     <main class="notes-container">
         <h1>VLAN Notes</h1>
+        <p class="lesson-bridge">The networking fundamentals page introduced switches and broadcast domains. VLANs are the next step: they let one physical switching infrastructure behave like several smaller networks, which improves performance, security, and troubleshooting.</p>
 
         <h2>The Problem: Life Before VLANs</h2>
         <p>Imagine a traditional network where all the computers, printers, and servers are plugged into a single physical switch. This entire setup creates one massive broadcast domain.</p>
-        <p>Whenever a device needs to find another device, such as sending an ARP request, it shouts a broadcast message to everyone on that switch.</p>
-        <p>The result: everyone has to stop and listen to that noise. As the network grows, this constant shouting clogs up the network and degrades performance.</p>
+        <p>Whenever a device needs to find another device, such as sending an ARP request, it broadcasts that request to every device in the same domain.</p>
+        <p>The result is unnecessary noise. As the network grows, those broadcasts become harder to control, troubleshooting becomes slower, and one faulty device can affect more users than it should.</p>
 
         <h2>The Solution: The Virtual Switch</h2>
         <p>802.1Q is where the Virtual Local Area Network, or VLAN, steps in. Instead of buying separate, expensive physical switches for HR, IT, and Sales, a VLAN allows you to take one physical switch and logically slice it into multiple virtual switches.</p>
+        <p>Devices in VLAN 10 behave as if they are on one switch. Devices in VLAN 20 behave as if they are on another. They can share the same hardware, but they do not share the same Layer 2 broadcast domain unless a Layer 3 device routes between them.</p>
 
         <div class="warning">
             <div class="warning-title">Security Risks Without Segmentation</div>
             <p><strong>Insider threats:</strong> If everyone is in the same domain, an employee in Sales running a packet sniffer can much more easily capture sensitive traffic meant for HR.</p>
             <p><strong>Malware spread:</strong> Without internal boundaries, a single infected computer can spread worms or ransomware across the entire company network unchecked.</p>
-            <p><strong>Performance loss:</strong> The main performance killer is the risk of a broadcast storm. If too many devices broadcast at once, or if a loop is created in the wiring, the switch gets overwhelmed and the whole network can crash.</p>
+            <p><strong>Performance loss:</strong> A broadcast storm can overwhelm a switch and disrupt a whole segment, especially when a loop exists and loop prevention is missing or misconfigured.</p>
         </div>
 
         <div class="tip">
@@ -142,7 +152,20 @@
 
         <h2>How It Works Under the Hood</h2>
         <p>Now we know we need to separate HR, such as VLAN 10, and Sales, such as VLAN 20, even though they are plugged into the exact same physical switch.</p>
-        <p>When a standard computer in HR sends out data, it has no idea what a VLAN is. As far as the computer knows, it is just sending a standard Ethernet frame. The magic happens the moment that data enters the switch.</p>
+        <p>When a standard computer in HR sends data, it usually does not know what a VLAN is. It sends a normal Ethernet frame. The switch assigns that frame to the VLAN configured on the port.</p>
+
+        <h2>Access Ports and Trunk Ports</h2>
+        <p>An <strong>access port</strong> belongs to one VLAN and usually connects to an endpoint such as a laptop, printer, phone, or camera. Frames entering and leaving access ports are normally untagged from the endpoint's point of view.</p>
+        <p>A <strong>trunk port</strong> carries multiple VLANs between switches, routers, firewalls, or hypervisors. To keep traffic separated on the same physical link, the switch adds an 802.1Q tag that identifies the VLAN.</p>
+
+        <div class="tip">
+            <div class="tip-title">Simple mental model</div>
+            <p>Access ports are for one local lane. Trunk ports are shared highways, so every frame needs a VLAN tag that says which lane it belongs to.</p>
+        </div>
+
+        <h2>Native VLANs and Practical Checks</h2>
+        <p>On an 802.1Q trunk, the native VLAN is the VLAN used for untagged traffic. In real networks, native VLAN mismatches can cause confusing reachability and security issues, so both sides of a trunk should be configured intentionally and verified.</p>
+        <p>Useful checks include confirming the access VLAN on endpoint ports, checking allowed VLANs on trunks, validating the native VLAN, and making sure inter-VLAN routing is handled by the correct router, firewall, or Layer 3 switch.</p>
     </main>
 
     <script src="../../js/main.js"></script>

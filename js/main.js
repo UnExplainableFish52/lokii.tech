@@ -146,7 +146,7 @@
                             <span class="footer-logo-mark"><img src="${buildRootUrl('android-chrome-192x192.png')}" alt=""></span>
                             <span>lokii.tech</span>
                         </a>
-                        <p class="footer-summary">Free FOSS cybersecurity and systems learning resources for people building real technical skill through structured notes, practical tools, GRC workflows, and portfolio-ready security projects.</p>
+                        <p class="footer-summary">Free FOSS cybersecurity and systems notes, practical tools, GRC workflows, and project guides for building real technical skill.</p>
                         <div class="footer-topic-row" aria-label="Core topics">
                             <a href="${buildRootUrl('index.html#resources')}">Cybersecurity</a>
                             <a href="${buildRootUrl('index.html#resources')}">Linux</a>
@@ -158,7 +158,7 @@
                     </section>
 
                     <aside class="footer-contribute" aria-label="Open source contribution">
-                        <p>Open source, learner-focused, and built to improve in public. Corrections, clearer explanations, useful examples, and new resources are welcome.</p>
+                        <p>Open source and built to improve in public. Corrections, clearer examples, and useful new resources are welcome.</p>
                         <a href="https://github.com/UnExplainableFish52/lokii.tech/issues" target="_blank" rel="noopener noreferrer">Contribute on GitHub</a>
                     </aside>
 
@@ -206,7 +206,7 @@
                     </nav>
                 </div>
                 <div class="footer-bottom">
-                    <p>&copy; ${year} lokii.tech. Free and open-source learning material for cybersecurity, systems, Linux, networking, GRC, and security project practice. <a href="${buildRootUrl('LICENSE')}">See License</a></p>
+                    <p>&copy; ${year} lokii.tech. Free and open-source cybersecurity, systems, Linux, networking, GRC, and project practice. <a href="${buildRootUrl('LICENSE')}">See License</a></p>
                 </div>
             </div>
         `;

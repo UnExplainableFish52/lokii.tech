@@ -1,10 +1,11 @@
 <!DOCTYPE html>
+<!-- lokii-note-polish: checked 2026-06-20; removed decorative emoji and em dash usage, improved WiFi-security flow, and updated metadata. -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>1.5.5 WiFi Explained | Networking | Cybersecurity Course</title>
-    <meta name="description" content="Complete WiFi security guide. Learn 802.11 standards, WEP/WPA/WPA2/WPA3, WiFi attacks, cracking techniques, and hardening best practices.">
+    <meta name="description" content="Beginner-friendly WiFi security guide covering 802.11 basics, frequency bands, WPA/WPA2/WPA3, common wireless attacks, safe lab tools, hardening, and audit checks.">
     <meta name="author" content="lokii (UnExplainableFish52)">
     <meta name="theme-color" content="#0d1117">
     <!-- SEO Metadata -->
@@ -13,13 +14,13 @@
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://lokii.tech/intro/notes/1.5_networks/1.5.5_wifi_explained.html">
     <meta property="og:title" content="1.5.5 WiFi Explained | Networking | Cybersecurity Course">
-    <meta property="og:description" content="Complete WiFi security guide. Learn 802.11 standards, WEP/WPA/WPA2/WPA3, WiFi attacks, cracking techniques, and hardening best practices.">
+    <meta property="og:description" content="Beginner-friendly WiFi security guide covering 802.11 basics, frequency bands, WPA/WPA2/WPA3, common wireless attacks, safe lab tools, hardening, and audit checks.">
     <meta property="og:image" content="https://lokii.tech/preview.jpg">
     <meta property="og:site_name" content="lokii.tech">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://lokii.tech/intro/notes/1.5_networks/1.5.5_wifi_explained.html">
     <meta name="twitter:title" content="1.5.5 WiFi Explained | Networking | Cybersecurity Course">
-    <meta name="twitter:description" content="Complete WiFi security guide. Learn 802.11 standards, WEP/WPA/WPA2/WPA3, WiFi attacks, cracking techniques, and hardening best practices.">
+    <meta name="twitter:description" content="Beginner-friendly WiFi security guide covering 802.11 basics, frequency bands, WPA/WPA2/WPA3, common wireless attacks, safe lab tools, hardening, and audit checks.">
     <meta name="twitter:image" content="https://lokii.tech/preview.jpg">
 
 <!-- Favicons -->
@@ -44,6 +45,12 @@
         .notes-header { text-align: center; padding: 50px 20px; margin-bottom: 40px; }
         .notes-header h1 { font-size: 2.5em; color: #00bcd4; font-weight: bold; margin-bottom: 15px; border: none; padding: 0; }
         .subtitle { color: #8b949e; font-size: 1.2em; }
+        .lesson-bridge {
+            color: #c9d1d9;
+            max-width: 820px;
+            margin: 16px auto 0;
+            font-size: 1em;
+        }
 
         h2 { font-size: 1.8em; color: #00bcd4; font-weight: bold; margin: 50px 0 25px; padding-bottom: 10px; border-bottom: 2px solid #30363d; }
         h3 { font-size: 1.4em; color: #00bcd4; font-weight: bold; margin: 30px 0 15px; }
@@ -76,7 +83,7 @@
 
         .checklist { list-style: none; padding-left: 0; }
         .checklist li { padding: 10px 15px; margin: 8px 0; background: rgba(22,27,34,0.5); border-radius: 8px; border-left: 3px solid #4ec9b0; }
-        .checklist li::before { content: "☐ "; color: #ffd700; font-weight: bold; }
+        .checklist li::before { content: "[ ] "; color: #ffd700; font-weight: bold; }
 
         .attack-card { background: rgba(255,107,107,0.1); border: 1px solid #ff6b6b; border-radius: 10px; padding: 20px; margin: 20px 0; }
         .attack-card h4 { color: #ff6b6b; margin-top: 0; }
@@ -169,7 +176,7 @@
           "@id": "https://lokii.tech/intro/notes/1.5_networks/1.5.5_wifi_explained.html#webpage",
           "url": "https://lokii.tech/intro/notes/1.5_networks/1.5.5_wifi_explained.html",
           "name": "1.5.5 WiFi Explained | Networking | Cybersecurity Course",
-          "description": "Complete WiFi security guide. Learn 802.11 standards, WEP/WPA/WPA2/WPA3, WiFi attacks, cracking techniques, and hardening best practices.",
+          "description": "Beginner-friendly WiFi security guide covering 802.11 basics, frequency bands, WPA/WPA2/WPA3, common wireless attacks, safe lab tools, hardening, and audit checks.",
           "isPartOf": {
             "@id": "https://lokii.tech/#website"
           },
@@ -177,7 +184,7 @@
             "@id": "https://lokii.tech/intro/notes/1.5_networks/1.5.5_wifi_explained.html#breadcrumbs"
           },
           "primaryImageOfPage": "https://lokii.tech/preview.jpg",
-          "dateModified": "2026-06-04",
+          "dateModified": "2026-06-20",
           "inLanguage": "en"
         },
         {
@@ -187,7 +194,7 @@
           ],
           "@id": "https://lokii.tech/intro/notes/1.5_networks/1.5.5_wifi_explained.html#article",
           "headline": "1.5.5 WiFi Explained | Networking | Cybersecurity Course",
-          "description": "Complete WiFi security guide. Learn 802.11 standards, WEP/WPA/WPA2/WPA3, WiFi attacks, cracking techniques, and hardening best practices.",
+          "description": "Beginner-friendly WiFi security guide covering 802.11 basics, frequency bands, WPA/WPA2/WPA3, common wireless attacks, safe lab tools, hardening, and audit checks.",
           "url": "https://lokii.tech/intro/notes/1.5_networks/1.5.5_wifi_explained.html",
           "image": "https://lokii.tech/preview.jpg",
           "author": {
@@ -201,7 +208,7 @@
           },
           "educationalLevel": "Beginner",
           "learningResourceType": "Guide",
-          "dateModified": "2026-06-04",
+          "dateModified": "2026-06-20",
           "inLanguage": "en"
         }
       ]
@@ -220,7 +227,7 @@
                     <a href="../../../index.html#about" class="nav-link nav-link-enhanced">About</a>
                     <a href="../../../index.html#resources" class="nav-link nav-link-enhanced">Resources</a>
                     <a href="https://github.com/UnExplainableFish52/lokii.tech" target="_blank" class="nav-link nav-link-enhanced" rel="noopener noreferrer">GitHub</a>
-                    <a href="https://github.com/UnExplainableFish52/lokii.tech/issues" target="_blank" class="nav-link nav-contribute" rel="noopener noreferrer">Contribute ✨</a>
+                    <a href="https://github.com/UnExplainableFish52/lokii.tech/issues" target="_blank" class="nav-link nav-contribute" rel="noopener noreferrer">Contribute</a>
                 </nav>
             </div>
         </div>
@@ -229,12 +236,13 @@
     <main>
         <div class="container">
             <header class="notes-header">
-                <h1>📶 1.5.5 WiFi Explained</h1>
-                <p class="subtitle">Wireless security from basics to advanced attacks</p>
+                <h1>1.5.5 WiFi Explained</h1>
+                <p class="subtitle">Understand wireless networks, security protocols, attacks, and hardening</p>
+                <p class="lesson-bridge">The device lesson introduced access points as network devices. WiFi adds a wireless radio layer, so the same networking ideas now need one more question: who can hear the signal, join the network, or interfere with it?</p>
             </header>
 
         <!-- Section 1: Introduction -->
-        <h2>🌐 1. Introduction to WiFi</h2>
+        <h2>1. Introduction to WiFi</h2>
         <div class="section">
             <p><span class="highlight">WiFi</span> (Wireless Fidelity) is a marketing term for wireless networking technology based on the <span class="highlight">IEEE 802.11</span> standards.</p>
 
@@ -253,12 +261,12 @@
             </ul>
 
             <div class="info-box">
-                <strong>💡 Fun Fact:</strong> WiFi doesn't actually stand for anything! It's a play on "Hi-Fi" (High Fidelity) for marketing purposes.
+                <strong>Context:</strong> WiFi does not officially stand for anything. The name was created as a consumer-friendly brand for IEEE 802.11 wireless networking.
             </div>
         </div>
 
         <!-- Section 2: WiFi Standards -->
-        <h2>📊 2. WiFi Standards Evolution</h2>
+        <h2>2. WiFi Standards Evolution</h2>
         <div class="section">
             <table>
                 <thead>
@@ -280,7 +288,7 @@
                     <tr><td><span class="highlight">802.11ac (WiFi 5)</span></td><td>2013</td><td>5 GHz</td><td>6.9 Gbps</td><td>~35m</td><td>MU-MIMO, beamforming</td></tr>
                     <tr class="current"><td><span class="highlight">802.11ax (WiFi 6)</span></td><td>2019</td><td>2.4/5 GHz</td><td>9.6 Gbps</td><td>~35m</td><td>OFDMA, better density</td></tr>
                     <tr class="current"><td><span class="highlight">WiFi 6E</span></td><td>2020</td><td>6 GHz</td><td>9.6 Gbps</td><td>~35m</td><td>6 GHz band added</td></tr>
-                    <tr class="current"><td><span class="highlight">802.11be (WiFi 7)</span></td><td>2024</td><td>2.4/5/6 GHz</td><td>46 Gbps</td><td>—</td><td>MLO, 320 MHz channels</td></tr>
+                    <tr class="current"><td><span class="highlight">802.11be (WiFi 7)</span></td><td>2024</td><td>2.4/5/6 GHz</td><td>46 Gbps</td><td> - </td><td>MLO, 320 MHz channels</td></tr>
                 </tbody>
             </table>
 
@@ -295,7 +303,7 @@
         </div>
 
         <!-- Section 3: Frequency Bands -->
-        <h2>📡 3. WiFi Frequency Bands</h2>
+        <h2>3. WiFi Frequency Bands</h2>
         <div class="section">
             <table>
                 <thead><tr><th>Band</th><th>Range</th><th>Interference</th><th>Channels</th><th>Best For</th></tr></thead>
@@ -310,23 +318,23 @@
             <div class="diagram">
 <pre>
 Channel:    1    2    3    4    5    6    7    8    9   10   11
-         ┌────────────────────┐
-         │    Channel 1       │
-         └────────────────────┘
-                        ┌────────────────────┐
-                        │    Channel 6       │ ← Use these 3!
-                        └────────────────────┘
-                                       ┌────────────────────┐
-                                       │   Channel 11       │
-                                       └────────────────────┘
+         +--------------------+
+         |    Channel 1       |
+         +--------------------+
+                        +--------------------+
+                        |    Channel 6       | <- Use these three
+                        +--------------------+
+                                       +--------------------+
+                                       |   Channel 11       |
+                                       +--------------------+
 
-Only channels 1, 6, 11 don't overlap! Using others causes interference.
+Only channels 1, 6, and 11 do not overlap. Using nearby channels can create interference.
 </pre>
             </div>
         </div>
 
         <!-- Section 4: WiFi Components -->
-        <h2>🔧 4. WiFi Components</h2>
+        <h2>4. WiFi Components</h2>
         <div class="section">
             <table>
                 <thead><tr><th>Component</th><th>Description</th></tr></thead>
@@ -336,34 +344,34 @@ Only channels 1, 6, 11 don't overlap! Using others causes interference.
                     <tr><td><span class="highlight">SSID</span></td><td>Network name (Service Set Identifier)</td></tr>
                     <tr><td><span class="highlight">BSSID</span></td><td>MAC address of the AP</td></tr>
                     <tr><td><span class="highlight">Wireless NIC</span></td><td>Client device interface</td></tr>
-                    <tr><td><span class="highlight">Antenna</span></td><td>Omnidirectional (360°) or Directional (focused)</td></tr>
+                    <tr><td><span class="highlight">Antenna</span></td><td>Omnidirectional (360 degrees) or Directional (focused)</td></tr>
                 </tbody>
             </table>
         </div>
 
         <!-- Section 5: WiFi Security Protocols -->
-        <h2>⭐ 5. WiFi Security Protocols — Deep Dive</h2>
+        <h2>5. WiFi Security Protocols</h2>
         <div class="section">
             <table>
                 <thead>
                     <tr><th>Protocol</th><th>Year</th><th>Encryption</th><th>Key Size</th><th>Status</th><th>Vulnerabilities</th></tr>
                 </thead>
                 <tbody>
-                    <tr class="deprecated"><td>WEP</td><td>1997</td><td>RC4</td><td>40/104-bit</td><td><span class="danger">⛔ DEPRECATED</span></td><td>IV collision, crackable in minutes</td></tr>
-                    <tr class="legacy"><td>WPA</td><td>2003</td><td>TKIP (RC4)</td><td>128-bit</td><td><span class="danger">⚠️ LEGACY</span></td><td>TKIP weaknesses</td></tr>
-                    <tr class="current"><td>WPA2</td><td>2004</td><td>AES-CCMP</td><td>128-bit</td><td><span class="safe">✅ Current</span></td><td>KRACK attack</td></tr>
-                    <tr class="current"><td>WPA3</td><td>2018</td><td>AES-GCMP / SAE</td><td>192/256-bit</td><td><span class="safe">✅ Latest</span></td><td>Dragonblood (patched)</td></tr>
+                    <tr class="deprecated"><td>WEP</td><td>1997</td><td>RC4</td><td>40/104-bit</td><td><span class="danger">Deprecated</span></td><td>IV collision, crackable in minutes</td></tr>
+                    <tr class="legacy"><td>WPA</td><td>2003</td><td>TKIP (RC4)</td><td>128-bit</td><td><span class="danger">Legacy</span></td><td>TKIP weaknesses</td></tr>
+                    <tr class="current"><td>WPA2</td><td>2004</td><td>AES-CCMP</td><td>128-bit</td><td><span class="safe">Current</span></td><td>KRACK attack</td></tr>
+                    <tr class="current"><td>WPA3</td><td>2018</td><td>AES-GCMP / SAE</td><td>192/256-bit</td><td><span class="safe">Current</span></td><td>Dragonblood (patched)</td></tr>
                 </tbody>
             </table>
 
             <h3>5.1 WEP (Wired Equivalent Privacy)</h3>
             <div class="warning-box">
-                <strong>⛔ NEVER USE WEP. EVER.</strong>
+                <strong>Do not use WEP.</strong>
             </div>
 
             <h4>Why WEP is Broken</h4>
             <ul>
-                <li><span class="danger">24-bit IV:</span> Only 16 million combinations → IV reuse inevitable</li>
+                <li><span class="danger">24-bit IV:</span> Only 16 million combinations -> IV reuse inevitable</li>
                 <li><span class="danger">IV transmitted in cleartext:</span> Attacker can collect and analyze</li>
                 <li><span class="danger">Key recovery:</span> With enough packets, key is calculated</li>
                 <li><span class="danger">No mutual authentication:</span> Can't verify AP identity</li>
@@ -393,7 +401,7 @@ aircrack-ng capture-01.cap</code>
                 <li><span class="highlight">TKIP:</span> Temporal Key Integrity Protocol (still uses RC4)</li>
                 <li><span class="highlight">MIC:</span> Message Integrity Check prevents tampering</li>
                 <li>Per-packet key mixing improved security</li>
-                <li>Still deprecated — don't use</li>
+                <li>Still deprecated; avoid it</li>
             </ul>
 
             <h3>5.3 WPA2</h3>
@@ -401,23 +409,23 @@ aircrack-ng capture-01.cap</code>
 
             <h4>Personal (PSK) vs Enterprise</h4>
             <ul>
-                <li><span class="highlight">WPA2-Personal:</span> Pre-Shared Key (password) — home use</li>
-                <li><span class="highlight">WPA2-Enterprise:</span> 802.1X + RADIUS server — corporate</li>
+                <li><span class="highlight">WPA2-Personal:</span> Pre-Shared Key (password) - home use</li>
+                <li><span class="highlight">WPA2-Enterprise:</span> 802.1X + RADIUS server - corporate</li>
             </ul>
 
             <h4>4-Way Handshake</h4>
             <div class="diagram">
 <pre>
     Client                              Access Point
-       │                                     │
-       │◀─────── 1. ANonce ─────────────────│  AP sends nonce
-       │                                     │
-       │────── 2. SNonce + MIC ────────────▶│  Client sends nonce + proof
-       │                                     │
-       │◀─────── 3. GTK + MIC ──────────────│  AP sends Group Key
-       │                                     │
-       │────── 4. ACK ─────────────────────▶│  Connection established
-       │                                     │
+       |                                     |
+       |<------- 1. ANonce -----------------|  AP sends nonce
+       |                                     |
+       |------ 2. SNonce + MIC ------------>|  Client sends nonce + proof
+       |                                     |
+       |<------- 3. GTK + MIC --------------|  AP sends Group Key
+       |                                     |
+       |------ 4. ACK --------------------->|  Connection established
+       |                                     |
 
 PTK (Pairwise Transient Key) = PMK + ANonce + SNonce + MACs
 </pre>
@@ -425,17 +433,17 @@ PTK (Pairwise Transient Key) = PMK + ANonce + SNonce + MACs
 
             <h4>KRACK Attack (2017)</h4>
             <div class="security-box">
-                <p><span class="danger">Key Reinstallation Attack</span> — targets the 4-way handshake</p>
+                <p><span class="danger">Key Reinstallation Attack</span> - targets the 4-way handshake</p>
                 <ul>
                     <li>Attacker forces nonce reuse by replaying handshake messages</li>
                     <li>Can decrypt packets and inject traffic</li>
                     <li>Requires proximity to victim</li>
-                    <li><span class="safe">Most devices patched</span> — update your devices!</li>
+                    <li><span class="safe">Patches are available for most devices</span>; keep devices updated</li>
                 </ul>
             </div>
 
             <h3>5.4 WPA3</h3>
-            <p>Latest and most secure WiFi encryption standard.</p>
+            <p>WPA3 is the current secure WiFi encryption standard.</p>
 
             <h4>Key Improvements</h4>
             <ul>
@@ -447,12 +455,12 @@ PTK (Pairwise Transient Key) = PMK + ANonce + SNonce + MACs
             </ul>
 
             <div class="tip-box">
-                <strong>🔐 Recommendation:</strong> Use WPA3 if devices support it. Otherwise, WPA2-AES with a strong password (12+ random characters).
+                <strong>Recommended setup:</strong> Use WPA3 if devices support it. Otherwise, use WPA2-AES with a strong password of at least 12 random characters.
             </div>
 
             <h3>5.5 WPS (WiFi Protected Setup)</h3>
             <div class="warning-box">
-                <strong>⚠️ MAJOR VULNERABILITY — ALWAYS DISABLE WPS</strong>
+                <strong>Disable WPS.</strong>
                 <ul>
                     <li>8-digit PIN split into two halves (4+4)</li>
                     <li>First half: 10,000 combinations, Second half: 1,000 (last digit is checksum)</li>
@@ -475,11 +483,11 @@ reaver -i wlan0mon -b [BSSID] -K 1</code>
         </div>
 
         <!-- Section 6: WiFi Attacks -->
-        <h2>⭐ 6. WiFi Attacks & Exploits</h2>
+        <h2>6. Common WiFi Attacks</h2>
         <div class="section">
             <div class="attack-card">
                 <h4>6.1 Reconnaissance</h4>
-                <p>First step — discover networks and clients.</p>
+                <p>First step - discover networks and clients.</p>
                 <div class="code-block">
 <code><span class="comment"># Put card in monitor mode</span>
 airmon-ng check kill
@@ -533,7 +541,7 @@ hashcat -m 22000 hash.hc22000 rockyou.txt</code>
 
             <div class="attack-card">
                 <h4>6.4 PMKID Attack</h4>
-                <p>Capture PMKID directly from AP — <span class="danger">no client needed!</span></p>
+                <p>Capture PMKID directly from the AP without needing an active client.</p>
                 <div class="code-block">
 <code><span class="comment"># Capture PMKID</span>
 hcxdumptool -i wlan0mon -o output.pcapng --enable_status=1
@@ -546,7 +554,7 @@ hashcat -m 22000 pmkid.hc22000 wordlist.txt</code>
 
             <div class="attack-card">
                 <h4>6.5 Evil Twin Attack</h4>
-                <p>Create fake AP with same SSID → victims connect to attacker.</p>
+                <p>Create fake AP with same SSID -> victims connect to attacker.</p>
                 <ol>
                     <li>Create fake AP with same name as target</li>
                     <li>Deauth clients from real AP</li>
@@ -558,7 +566,7 @@ hashcat -m 22000 pmkid.hc22000 wordlist.txt</code>
 
             <div class="attack-card">
                 <h4>6.6 Karma Attack</h4>
-                <p>Respond to ALL probe requests — devices looking for saved networks connect to you.</p>
+                <p>Respond to all probe requests from devices looking for saved networks.</p>
                 <ul>
                     <li>Exploits auto-connect behavior</li>
                     <li>Works on devices probing for open networks</li>
@@ -568,7 +576,7 @@ hashcat -m 22000 pmkid.hc22000 wordlist.txt</code>
 
             <div class="attack-card">
                 <h4>6.7 Rogue AP</h4>
-                <p>Unauthorized access point in corporate network → bypasses security.</p>
+                <p>Unauthorized access point in corporate network -> bypasses security.</p>
                 <ul>
                     <li>May be malicious or just employee bringing personal router</li>
                     <li>Enterprise uses WIDS/WIPS for detection</li>
@@ -577,12 +585,12 @@ hashcat -m 22000 pmkid.hc22000 wordlist.txt</code>
         </div>
 
         <!-- Section 7: Attack Tools -->
-        <h2>⭐ 7. WiFi Attack Tools Summary</h2>
+        <h2>7. Authorized Lab Tools</h2>
         <div class="section">
             <div class="tool-grid">
                 <div class="tool-card">
                     <h5>Aircrack-ng</h5>
-                    <p>Complete WiFi audit suite</p>
+                    <p>WiFi audit suite</p>
                 </div>
                 <div class="tool-card">
                     <h5>Wifite</h5>
@@ -624,7 +632,7 @@ hashcat -m 22000 pmkid.hc22000 wordlist.txt</code>
         </div>
 
         <!-- Section 8: Hardening -->
-        <h2>⭐ 8. WiFi Hardening & Prevention</h2>
+        <h2>8. WiFi Hardening & Prevention</h2>
         <div class="section">
             <h3>8.1 For Home Users</h3>
             <ul class="checklist">
@@ -664,7 +672,7 @@ hashcat -m 22000 pmkid.hc22000 wordlist.txt</code>
         </div>
 
         <!-- Section 9: Audit Checklist -->
-        <h2>📋 9. WiFi Security Audit Checklist</h2>
+        <h2>9. WiFi Security Audit Checklist</h2>
         <div class="section">
             <p>For authorized penetration testing engagements:</p>
             <ul class="checklist">
@@ -682,22 +690,22 @@ hashcat -m 22000 pmkid.hc22000 wordlist.txt</code>
         </div>
 
         <!-- Section 10: Legal -->
-        <h2>⚖️ 10. Legal & Ethical Considerations</h2>
+        <h2>10. Legal & Ethical Considerations</h2>
         <div class="section">
             <div class="legal-box">
-                <strong>⚠️ WARNING — READ THIS</strong>
+                <strong>Legal reminder</strong>
                 <ul>
-                    <li><span class="danger">Only test networks you OWN or have WRITTEN permission for</span></li>
+                    <li><span class="danger">Only test networks you own or have written permission to test</span></li>
                     <li>Unauthorized WiFi attacks are illegal (CFAA, Computer Misuse Act, etc.)</li>
                     <li>Even passive scanning can be legally gray in some jurisdictions</li>
-                    <li>Document scope and permissions BEFORE any engagement</li>
+                    <li>Document scope and permissions before any engagement</li>
                     <li>Penalties include fines and imprisonment</li>
                 </ul>
             </div>
         </div>
 
         <!-- Section 11: Code Compilation -->
-        <h2>💻 11. Command Reference</h2>
+        <h2>11. Command Reference</h2>
         <div class="section">
             <div class="code-header">Monitor Mode & Scanning</div>
             <div class="code-block">
@@ -747,7 +755,7 @@ security find-generic-password -wa "NETWORK_NAME"</code>
         </div>
 
         <!-- Section 12: Scenarios -->
-        <h2>🎯 12. Real-World Scenarios</h2>
+        <h2>12. Real-World Scenarios</h2>
         <div class="section">
             <div class="info-box">
                 <h4>Scenario 1: Home Network Audit</h4>
@@ -785,7 +793,7 @@ security find-generic-password -wa "NETWORK_NAME"</code>
         </div>
 
         <!-- Section 13: Quiz -->
-        <h2>📝 13. Knowledge Check Quiz</h2>
+        <h2>13. Knowledge Check Quiz</h2>
         <div class="section">
             <div class="quiz-question">
                 <strong>Q1:</strong> Which WiFi security protocol is completely broken and should never be used?
@@ -960,7 +968,7 @@ security find-generic-password -wa "NETWORK_NAME"</code>
         </div>
 
         <!-- Section 14: Resources -->
-        <h2>📚 14. Additional Resources</h2>
+        <h2>14. Additional Resources</h2>
         <div class="section">
             <ul>
                 <li><a href="https://www.aircrack-ng.org/documentation.html" target="_blank" rel="noopener noreferrer">Aircrack-ng Documentation</a></li>
@@ -972,21 +980,21 @@ security find-generic-password -wa "NETWORK_NAME"</code>
 
         <!-- Navigation -->
         <nav class="page-nav">
-            <a href="1.5.4_network_devices.html"><span>←</span><span>Previous: Network Devices</span></a>
-            <a href="../1.5_networks.html"><span>↑</span><span>Networking Hub</span></a>
-            <a href="../1.5_networks.html"><span>🎉 Series Complete!</span><span>→</span></a>
+            <a href="1.5.4_network_devices.html">Previous: Network Devices</a>
+            <a href="../1.5_networks.html">Networking Hub</a>
+            <a href="../1.5_networks.html">Networking Series Complete</a>
         </nav>
 
         <div style="text-align: center; margin-top: 40px;">
-            <span class="complete-badge">🎉 Networking Series Complete!</span>
-            <p style="margin-top: 15px; color: #8b949e;">You've completed the networking fundamentals. Ready for the next module!</p>
+            <span class="complete-badge">Networking Series Complete</span>
+            <p style="margin-top: 15px; color: #8b949e;">You've completed the networking fundamentals and can move into the next module.</p>
         </div>
 
         </div>
     </main>
 
     <footer class="notes-footer">
-        <p>© 2026 lokii.tech | <a href="https://github.com/UnExplainableFish52/lokii.tech" target="_blank" rel="noopener noreferrer">Open Source Project</a></p>
+        <p>&copy; 2026 lokii.tech | <a href="https://github.com/UnExplainableFish52/lokii.tech" target="_blank" rel="noopener noreferrer">Open Source Project</a></p>
     </footer>
 
     <script>

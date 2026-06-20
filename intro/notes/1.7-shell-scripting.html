@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+<!-- lokii-note-polish: checked 2026-06-20; removed decorative emoji and em dash usage, improved shell-scripting flow, and updated metadata. -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>1.7 Shell Scripting Basics | lokii.tech</title>
 
-    <meta name="description" content="Complete beginner's guide to shell scripting. Learn variables, loops, conditionals, functions with examples and practice tests.">
+    <meta name="description" content="Beginner-friendly shell scripting notes covering Bash basics, variables, input, conditionals, loops, functions, arrays, strings, arithmetic, exit codes, and practice tests.">
     <meta name="author" content="lokii (UnExplainableFish52)">
     <meta name="theme-color" content="#0d1117">
 
@@ -13,7 +14,7 @@
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://lokii.tech/intro/notes/1.7-shell-scripting.html">
     <meta property="og:title" content="1.7 Shell Scripting Basics | lokii.tech">
-    <meta property="og:description" content="Complete beginner's guide to shell scripting. Learn variables, loops, conditionals, functions with examples and practice tests.">
+    <meta property="og:description" content="Beginner-friendly shell scripting notes covering Bash basics, variables, input, conditionals, loops, functions, arrays, strings, arithmetic, exit codes, and practice tests.">
     <meta property="og:image" content="https://lokii.tech/preview.jpg">
     <!-- SEO Metadata -->
     <link rel="canonical" href="https://lokii.tech/intro/notes/1.7-shell-scripting.html">
@@ -22,7 +23,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://lokii.tech/intro/notes/1.7-shell-scripting.html">
     <meta name="twitter:title" content="1.7 Shell Scripting Basics | lokii.tech">
-    <meta name="twitter:description" content="Complete beginner's guide to shell scripting. Learn variables, loops, conditionals, functions with examples and practice tests.">
+    <meta name="twitter:description" content="Beginner-friendly shell scripting notes covering Bash basics, variables, input, conditionals, loops, functions, arrays, strings, arithmetic, exit codes, and practice tests.">
     <meta name="twitter:image" content="https://lokii.tech/preview.jpg">
 
 <!-- Favicons -->
@@ -61,6 +62,13 @@
         .subtitle {
             color: #8b949e;
             font-size: 1.1em;
+        }
+
+        .lesson-bridge {
+            color: #c9d1d9;
+            max-width: 820px;
+            margin: 16px auto 0;
+            font-size: 1em;
         }
 
         h2 {
@@ -303,7 +311,7 @@
           "@id": "https://lokii.tech/intro/notes/1.7-shell-scripting.html#webpage",
           "url": "https://lokii.tech/intro/notes/1.7-shell-scripting.html",
           "name": "1.7 Shell Scripting Basics | lokii.tech",
-          "description": "Complete beginner's guide to shell scripting. Learn variables, loops, conditionals, functions with examples and practice tests.",
+          "description": "Beginner-friendly shell scripting notes covering Bash basics, variables, input, conditionals, loops, functions, arrays, strings, arithmetic, exit codes, and practice tests.",
           "isPartOf": {
             "@id": "https://lokii.tech/#website"
           },
@@ -311,7 +319,7 @@
             "@id": "https://lokii.tech/intro/notes/1.7-shell-scripting.html#breadcrumbs"
           },
           "primaryImageOfPage": "https://lokii.tech/preview.jpg",
-          "dateModified": "2026-06-04",
+          "dateModified": "2026-06-20",
           "inLanguage": "en"
         },
         {
@@ -321,7 +329,7 @@
           ],
           "@id": "https://lokii.tech/intro/notes/1.7-shell-scripting.html#article",
           "headline": "1.7 Shell Scripting Basics | lokii.tech",
-          "description": "Complete beginner's guide to shell scripting. Learn variables, loops, conditionals, functions with examples and practice tests.",
+          "description": "Beginner-friendly shell scripting notes covering Bash basics, variables, input, conditionals, loops, functions, arrays, strings, arithmetic, exit codes, and practice tests.",
           "url": "https://lokii.tech/intro/notes/1.7-shell-scripting.html",
           "image": "https://lokii.tech/preview.jpg",
           "author": {
@@ -335,7 +343,7 @@
           },
           "educationalLevel": "Beginner",
           "learningResourceType": "Guide",
-          "dateModified": "2026-06-04",
+          "dateModified": "2026-06-20",
           "inLanguage": "en"
         }
       ]
@@ -354,7 +362,7 @@
                     <a href="../../index.html#about" class="nav-link nav-link-enhanced">About</a>
                     <a href="../../index.html#resources" class="nav-link nav-link-enhanced">Resources</a>
                     <a href="https://github.com/UnExplainableFish52/lokii.tech" target="_blank" class="nav-link nav-link-enhanced" rel="noopener noreferrer">GitHub</a>
-                    <a href="https://github.com/UnExplainableFish52/lokii.tech/issues" target="_blank" class="nav-link nav-contribute" rel="noopener noreferrer">Contribute ✨</a>
+                    <a href="https://github.com/UnExplainableFish52/lokii.tech/issues" target="_blank" class="nav-link nav-contribute" rel="noopener noreferrer">Contribute</a>
                 </nav>
             </div>
         </div>
@@ -363,13 +371,14 @@
     <main>
         <div class="container">
             <header class="notes-header">
-                <h1>📜 1.7 Shell Scripting Basics</h1>
-                <p class="subtitle">Automate tasks and become a command-line wizard</p>
+                <h1>1.7 Shell Scripting Basics</h1>
+                <p class="subtitle">Turn repeated terminal work into reliable Bash scripts</p>
+                <p class="lesson-bridge">After access control, shell scripting gives you a way to inspect systems, process logs, and automate the small tasks that defenders repeat every day. This page starts with the basics, then builds toward conditions, loops, functions, and safer scripting habits.</p>
             </header>
 
             <!-- Table of Contents -->
             <div class="toc">
-                <h3>📑 Table of Contents</h3>
+                <h3>Table of Contents</h3>
                 <ul>
                     <li><a href="#what-is"><span class="section-num">1.</span> What is Shell Scripting?</a></li>
                     <li><a href="#getting-started"><span class="section-num">2.</span> Getting Started</a></li>
@@ -388,13 +397,13 @@
             </div>
 
         <!-- SECTION 1: WHAT IS SHELL SCRIPTING -->
-        <h2 id="what-is">📖 1. What is Shell Scripting?</h2>
+        <h2 id="what-is">1. What is Shell Scripting?</h2>
 
         <div class="section">
             <p>
                 A <span class="highlight">shell script</span> is a text file containing a sequence of commands
                 that the shell (command-line interpreter) can execute. Instead of typing commands one by one,
-                you write them in a file and run them all at once!
+                you write them in a file and run them all at once.
             </p>
 
             <h3>Why Learn Shell Scripting?</h3>
@@ -407,13 +416,13 @@
             </ul>
 
             <div class="info-box">
-                <strong>💡 Fun Fact:</strong> Most Linux systems use <span class="code-text">Bash</span>
-                (Bourne Again SHell) as the default shell. It's what we'll focus on in this guide!
+                <strong>Context:</strong> Most Linux systems use <span class="code-text">Bash</span>
+                (Bourne Again SHell) as the default shell. It's what this guide focuses on.
             </div>
         </div>
 
         <!-- SECTION 2: GETTING STARTED -->
-        <h2 id="getting-started">🚀 2. Getting Started</h2>
+        <h2 id="getting-started">2. Getting Started</h2>
 
         <div class="section">
             <h3>Your First Script</h3>
@@ -438,8 +447,8 @@ chmod +x hello.sh
 ./hello.sh</code></pre>
 
             <div class="warning-box">
-                <strong>⚠️ The Shebang Line:</strong> The <span class="code-text">#!/bin/bash</span> at the top
-                (called a "shebang" or "hashbang") tells the system which interpreter to use. Always include it!
+                <strong>The Shebang Line:</strong> The <span class="code-text">#!/bin/bash</span> at the top
+                (called a "shebang" or "hashbang") tells the system which interpreter to use. Always include it.
             </div>
 
             <h3>Script File Conventions</h3>
@@ -452,7 +461,7 @@ chmod +x hello.sh
         </div>
 
         <!-- SECTION 3: VARIABLES -->
-        <h2 id="variables">📦 3. Variables & Scopes</h2>
+        <h2 id="variables">3. Variables & Scopes</h2>
 
         <div class="section">
             <p>
@@ -463,7 +472,7 @@ chmod +x hello.sh
             <h3>Declaring Variables</h3>
 <pre><code><span class="cmd-comment">#!/bin/bash</span>
 
-<span class="cmd-comment"># Declaring variables (NO spaces around =)</span>
+<span class="cmd-comment"># Declaring variables (No spaces around =)</span>
 <span class="cmd-variable">name</span>=<span class="cmd-string">"lokii"</span>
 <span class="cmd-variable">age</span>=25
 <span class="cmd-variable">course</span>=<span class="cmd-string">"Shell Scripting"</span>
@@ -474,8 +483,8 @@ echo <span class="cmd-string">"Age: $age"</span>
 echo <span class="cmd-string">"Course: $course"</span></code></pre>
 
             <div class="warning-box">
-                <strong>⚠️ Important:</strong> NO spaces around the <code>=</code> sign!
-                <code>name="value"</code> ✅ vs <code>name = "value"</code> ❌
+                <strong>Important:</strong> No spaces around the <code>=</code> sign.
+                <code>name="value"</code> works; <code>name = "value"</code> fails.
             </div>
 
             <h3>Variable Types</h3>
@@ -499,11 +508,11 @@ echo <span class="cmd-string">"Logged in as: $user"</span></code></pre>
 <pre><code><span class="cmd-comment">#!/bin/bash</span>
 
 <span class="cmd-comment"># Global variable - accessible everywhere in the script</span>
-<span class="cmd-variable">GLOBAL_VAR</span>=<span class="cmd-string">"I'm global!"</span>
+<span class="cmd-variable">GLOBAL_VAR</span>=<span class="cmd-string">"I'm global."</span>
 
 my_function() {
     echo <span class="cmd-string">"Inside function: $GLOBAL_VAR"</span>
-    <span class="cmd-variable">GLOBAL_VAR</span>=<span class="cmd-string">"Modified inside function"</span>  <span class="cmd-comment"># Modifies the global!</span>
+    <span class="cmd-variable">GLOBAL_VAR</span>=<span class="cmd-string">"Modified inside function"</span>  <span class="cmd-comment"># Modifies the global.</span>
 }
 
 my_function
@@ -521,7 +530,7 @@ greet() {
 }
 
 greet
-echo <span class="cmd-string">"Outside: $name"</span>  <span class="cmd-comment"># Prints: Global Alice (unchanged!)</span></code></pre>
+echo <span class="cmd-string">"Outside: $name"</span>  <span class="cmd-comment"># Prints: Global Alice, unchanged</span></code></pre>
 
             <h4>Environment Variables</h4>
 <pre><code><span class="cmd-comment">#!/bin/bash</span>
@@ -537,7 +546,7 @@ echo <span class="cmd-string">"Shell: $SHELL"</span>
 echo <span class="cmd-string">"PWD: $PWD"</span></code></pre>
 
             <div class="success-box">
-                <strong>💡 Best Practice:</strong> Use <code>local</code> for function variables to avoid accidentally modifying global state. Use UPPERCASE for environment/global constants, lowercase for local variables.
+                <strong>Best Practice:</strong> Use <code>local</code> for function variables to avoid accidentally modifying global state. Use UPPERCASE for environment/global constants, lowercase for local variables.
             </div>
 
             <h3>Special Variables</h3>
@@ -577,7 +586,7 @@ echo <span class="cmd-string">"Hello ${name}! Processing ${file}..."</span></cod
         </div>
 
         <!-- SECTION 4: USER INPUT -->
-        <h2 id="user-input">⌨️ 4. User Input</h2>
+        <h2 id="user-input">4. User Input</h2>
 
         <div class="section">
             <p>Use the <span class="code-text">read</span> command to get input from users:</p>
@@ -602,13 +611,13 @@ echo <span class="cmd-string">"Password received!"</span>
 <span class="cmd-keyword">read</span> -t 5 -p <span class="cmd-string">"Quick! Enter something (5 sec): "</span> quick_input</code></pre>
 
             <div class="info-box">
-                <strong>💡 Tip:</strong> Combine flags! <code>read -sp</code> creates a silent prompt
+                <strong>Tip:</strong> Combine flags. <code>read -sp</code> creates a silent prompt
                 (great for passwords).
             </div>
         </div>
 
         <!-- SECTION 5: CONDITIONALS -->
-        <h2 id="conditionals">🔀 5. Conditionals (if/else) & Modern Syntax</h2>
+        <h2 id="conditionals">5. Conditionals (if/else) & Modern Syntax</h2>
 
         <div class="section">
             <p>Make decisions in your scripts using <span class="code-text">if</span> statements:</p>
@@ -624,16 +633,16 @@ echo <span class="cmd-string">"Password received!"</span>
     echo <span class="cmd-string">"You are a minor"</span>
 <span class="cmd-keyword">fi</span></code></pre>
 
-            <h3>🆕 Modern [[ ]] vs Traditional [ ]</h3>
+            <h3>Modern [[ ]] vs Traditional [ ]</h3>
             <p>Modern bash provides <span class="code-text">[[ ]]</span> - a more powerful and safer alternative:</p>
 
             <div class="info-box">
-                <strong>💡 Key Differences:</strong><br>
-                • <code>[[ ]]</code> is a bash keyword (not a command like <code>[ ]</code>)<br>
-                • No word splitting - no need to quote variables inside<br>
-                • Supports <code>&&</code>, <code>||</code> directly inside<br>
-                • Pattern matching with <code>==</code> and regex with <code>=~</code><br>
-                • Safer: won't break with empty variables
+                <strong>Key Differences:</strong><br>
+                - <code>[[ ]]</code> is a bash keyword (not a command like <code>[ ]</code>)<br>
+                - No word splitting - no need to quote variables inside<br>
+                - Supports <code>&&</code>, <code>||</code> directly inside<br>
+                - Pattern matching with <code>==</code> and regex with <code>=~</code><br>
+                - Safer: won't break with empty variables
             </div>
 
 <pre><code><span class="cmd-comment">#!/bin/bash</span>
@@ -641,12 +650,12 @@ echo <span class="cmd-string">"Password received!"</span>
 <span class="cmd-variable">name</span>=<span class="cmd-string">"Alice"</span>
 <span class="cmd-variable">empty_var</span>=<span class="cmd-string">""</span>
 
-<span class="cmd-comment"># Traditional [ ] - MUST quote variables!</span>
+<span class="cmd-comment"># Traditional [ ] - quote variables.</span>
 <span class="cmd-keyword">if</span> [ <span class="cmd-string">"$empty_var"</span> = <span class="cmd-string">""</span> ]; <span class="cmd-keyword">then</span>
     echo <span class="cmd-string">"Empty (traditional)"</span>
 <span class="cmd-keyword">fi</span>
 
-<span class="cmd-comment"># Modern [[ ]] - No quoting needed, safer!</span>
+<span class="cmd-comment"># Modern [[ ]] - No quoting needed, safer</span>
 <span class="cmd-keyword">if</span> [[ $empty_var == "" ]]; <span class="cmd-keyword">then</span>
     echo <span class="cmd-string">"Empty (modern)"</span>
 <span class="cmd-keyword">fi</span>
@@ -668,7 +677,7 @@ echo <span class="cmd-string">"Password received!"</span>
 <span class="cmd-keyword">fi</span></code></pre>
 
             <div class="success-box">
-                <strong>✅ Best Practice:</strong> Use <code>[[ ]]</code> for all string and pattern tests in bash. Use <code>[ ]</code> only when POSIX compatibility is required (e.g., <code>/bin/sh</code> scripts).
+                <strong>Best Practice:</strong> Use <code>[[ ]]</code> for all string and pattern tests in bash. Use <code>[ ]</code> only when POSIX compatibility is required (e.g., <code>/bin/sh</code> scripts).
             </div>
 
             <h3>if / elif / else</h3>
@@ -754,7 +763,7 @@ echo <span class="cmd-string">"Password received!"</span>
         </div>
 
         <!-- SECTION 6: CASE STATEMENTS -->
-        <h2 id="case-statements">🎯 6. Case Statements</h2>
+        <h2 id="case-statements">6. Case Statements</h2>
 
         <div class="section">
             <p>The <span class="code-text">case</span> statement is cleaner than multiple if-elif chains for pattern matching:</p>
@@ -822,12 +831,12 @@ echo <span class="cmd-string">"4) Exit"</span>
 <span class="cmd-keyword">esac</span></code></pre>
 
             <div class="info-box">
-                <strong>💡 Tip:</strong> Use <code>;;&</code> instead of <code>;;</code> to fall through to the next case (bash 4+), or <code>;&</code> to fall through and execute the next case's commands.
+                <strong>Tip:</strong> Use <code>;;&</code> instead of <code>;;</code> to fall through to the next case (bash 4+), or <code>;&</code> to fall through and execute the next case's commands.
             </div>
         </div>
 
         <!-- SECTION 7: LOOPS -->
-        <h2 id="loops">🔄 7. Loops & Nested Loops</h2>
+        <h2 id="loops">7. Loops & Nested Loops</h2>
 
         <div class="section">
             <p>Loops let you repeat commands multiple times.</p>
@@ -937,16 +946,16 @@ echo <span class="cmd-string">"4) Exit"</span>
 <span class="cmd-keyword">done</span></code></pre>
 
             <div class="success-box">
-                <strong>💡 Loop Best Practices:</strong><br>
-                • Use <code>while IFS= read -r</code> for reading files to preserve whitespace<br>
-                • Quote variables inside loops: <code>"$file"</code> not <code>$file</code><br>
-                • Check if glob matches files: <code>[[ -f $file ]]</code> before processing<br>
-                • Use <code>(( ))</code> for arithmetic in loop conditions
+                <strong>Loop Best Practices:</strong><br>
+                - Use <code>while IFS= read -r</code> for reading files to preserve whitespace<br>
+                - Quote variables inside loops: <code>"$file"</code> not <code>$file</code><br>
+                - Check if glob matches files: <code>[[ -f $file ]]</code> before processing<br>
+                - Use <code>(( ))</code> for arithmetic in loop conditions
             </div>
         </div>
 
         <!-- SECTION 8: FUNCTIONS -->
-        <h2 id="functions">🔧 8. Functions & Scope</h2>
+        <h2 id="functions">8. Functions & Scope</h2>
 
         <div class="section">
             <p>Functions let you organize code into reusable blocks.</p>
@@ -983,7 +992,7 @@ greet_user <span class="cmd-string">"Alice"</span> 25
 greet_user <span class="cmd-string">"Bob"</span> 30</code></pre>
 
             <h3>Function Scope</h3>
-            <p>Understanding variable scope inside functions is critical:</p>
+            <p>Understanding variable scope inside functions is important:</p>
 
 <pre><code><span class="cmd-comment">#!/bin/bash</span>
 
@@ -991,19 +1000,19 @@ greet_user <span class="cmd-string">"Bob"</span> 30</code></pre>
 
 demo_scope() {
     <span class="cmd-keyword">local</span> <span class="cmd-variable">local_var</span>=<span class="cmd-string">"I'm local"</span>    <span class="cmd-comment"># Only exists in this function</span>
-    <span class="cmd-variable">global_var</span>=<span class="cmd-string">"Modified!"</span>        <span class="cmd-comment"># Modifies the global</span>
-    <span class="cmd-variable">new_var</span>=<span class="cmd-string">"Created in func"</span>    <span class="cmd-comment"># Creates a new GLOBAL!</span>
+    <span class="cmd-variable">global_var</span>=<span class="cmd-string">"Modified"</span>         <span class="cmd-comment"># Modifies the global</span>
+    <span class="cmd-variable">new_var</span>=<span class="cmd-string">"Created in func"</span>    <span class="cmd-comment"># Creates a new global</span>
 
     echo <span class="cmd-string">"Inside: local_var=$local_var"</span>
 }
 
 demo_scope
-echo <span class="cmd-string">"Outside: global_var=$global_var"</span>   <span class="cmd-comment"># Modified!</span>
-echo <span class="cmd-string">"Outside: new_var=$new_var"</span>         <span class="cmd-comment"># Accessible!</span>
-echo <span class="cmd-string">"Outside: local_var=$local_var"</span>     <span class="cmd-comment"># Empty!</span></code></pre>
+echo <span class="cmd-string">"Outside: global_var=$global_var"</span>   <span class="cmd-comment"># Modified</span>
+echo <span class="cmd-string">"Outside: new_var=$new_var"</span>         <span class="cmd-comment"># Accessible</span>
+echo <span class="cmd-string">"Outside: local_var=$local_var"</span>     <span class="cmd-comment"># Empty</span></code></pre>
 
             <div class="warning-box">
-                <strong>⚠️ Important:</strong> Always use <code>local</code> for function variables to avoid accidentally creating/modifying globals. Without <code>local</code>, variables leak to global scope!
+                <strong>Important:</strong> Always use <code>local</code> for function variables to avoid accidentally creating/modifying globals. Without <code>local</code>, variables leak to global scope.
             </div>
 
             <h3>Nested Functions</h3>
@@ -1023,7 +1032,7 @@ outer_function() {
 }
 
 outer_function
-<span class="cmd-comment"># inner_function  # Error! Only exists inside outer_function</span></code></pre>
+<span class="cmd-comment"># inner_function  # Error: only exists inside outer_function</span></code></pre>
 
             <h3>Return Values</h3>
 <pre><code><span class="cmd-comment">#!/bin/bash</span>
@@ -1055,17 +1064,17 @@ get_user_info <span class="cmd-string">"Alice"</span> 25
 echo <span class="cmd-string">"Name: $_name, Age: $_age"</span></code></pre>
 
             <div class="success-box">
-                <strong>💡 Function Best Practices:</strong><br>
-                • Always use <code>local</code> for variables inside functions<br>
-                • Use POSIX syntax <code>func() { }</code> for portability<br>
-                • Document function parameters with comments<br>
-                • Return 0 for success, non-zero for errors<br>
-                • Use command substitution <code>$(func)</code> to capture output
+                <strong>Function Best Practices:</strong><br>
+                - Always use <code>local</code> for variables inside functions<br>
+                - Use POSIX syntax <code>func() { }</code> for portability<br>
+                - Document function parameters with comments<br>
+                - Return 0 for success, non-zero for errors<br>
+                - Use command substitution <code>$(func)</code> to capture output
             </div>
         </div>
 
         <!-- SECTION 9: ARRAYS -->
-        <h2 id="arrays">📝 9. Arrays</h2>
+        <h2 id="arrays">9. Arrays</h2>
 
         <div class="section">
             <p>Arrays store multiple values in a single variable.</p>
@@ -1100,7 +1109,7 @@ echo <span class="cmd-string">"Total: ${#fruits[@]}"</span>
         </div>
 
         <!-- SECTION 10: STRING MANIPULATION -->
-        <h2 id="strings">🔤 10. String Manipulation</h2>
+        <h2 id="strings">10. String Manipulation</h2>
 
         <div class="section">
             <p>Bash provides powerful built-in string manipulation features:</p>
@@ -1157,12 +1166,12 @@ echo <span class="cmd-string">"${str^^}"</span>   <span class="cmd-comment"># HE
 echo <span class="cmd-string">"${str^}"</span>    <span class="cmd-comment"># Hello World (first char)</span></code></pre>
 
             <div class="info-box">
-                <strong>💡 Tip:</strong> These parameter expansions are much faster than calling external tools like <code>sed</code>, <code>awk</code>, or <code>tr</code> for simple string operations.
+                <strong>Tip:</strong> These parameter expansions are much faster than calling external tools like <code>sed</code>, <code>awk</code>, or <code>tr</code> for simple string operations.
             </div>
         </div>
 
         <!-- SECTION 11: ARITHMETIC OPERATIONS -->
-        <h2 id="arithmetic">🔢 11. Arithmetic Operations</h2>
+        <h2 id="arithmetic">11. Arithmetic Operations</h2>
 
         <div class="section">
             <p>Bash supports integer arithmetic with various methods:</p>
@@ -1197,7 +1206,7 @@ echo <span class="cmd-string">"$result"</span>  <span class="cmd-comment"># 9</s
 <span class="cmd-variable">result</span>=$(expr $a \* $b)  <span class="cmd-comment"># Must escape *</span></code></pre>
 
             <h3>Floating Point with bc</h3>
-<pre><code><span class="cmd-comment"># Bash only does integers! Use bc for decimals</span>
+<pre><code><span class="cmd-comment"># Bash only does integers. Use bc for decimals.</span>
 <span class="cmd-variable">result</span>=$(echo <span class="cmd-string">"scale=2; 10 / 3"</span> | bc)
 echo <span class="cmd-string">"$result"</span>  <span class="cmd-comment"># 3.33</span>
 
@@ -1205,12 +1214,12 @@ echo <span class="cmd-string">"$result"</span>  <span class="cmd-comment"># 3.33
 <span class="cmd-variable">pi</span>=$(echo <span class="cmd-string">"scale=10; 4*a(1)"</span> | bc -l)  <span class="cmd-comment"># Pi approximation</span></code></pre>
 
             <div class="warning-box">
-                <strong>⚠️ Note:</strong> Bash arithmetic only works with integers. For floating-point math, use <code>bc</code>, <code>awk</code>, or Python.
+                <strong>Note:</strong> Bash arithmetic only works with integers. For floating-point math, use <code>bc</code>, <code>awk</code>, or Python.
             </div>
         </div>
 
         <!-- SECTION 12: EXIT CODES -->
-        <h2 id="exit-codes">🚪 12. Exit Codes</h2>
+        <h2 id="exit-codes">12. Exit Codes</h2>
 
         <div class="section">
             <p>
@@ -1226,29 +1235,29 @@ echo <span class="cmd-string">"Exit code: $?"</span>
 
 <span class="cmd-comment"># Exit with custom code</span>
 <span class="cmd-keyword">if</span> [ ! -f <span class="cmd-string">"config.txt"</span> ]; <span class="cmd-keyword">then</span>
-    echo <span class="cmd-string">"Error: config.txt not found!"</span>
+    echo <span class="cmd-string">"Error: config.txt not found."</span>
     <span class="cmd-keyword">exit</span> 1
 <span class="cmd-keyword">fi</span>
 
-echo <span class="cmd-string">"Config loaded successfully!"</span>
+echo <span class="cmd-string">"Config loaded successfully."</span>
 <span class="cmd-keyword">exit</span> 0</code></pre>
 
             <div class="info-box">
-                <strong>💡 Common Exit Codes:</strong><br>
-                • <code>0</code> - Success<br>
-                • <code>1</code> - General error<br>
-                • <code>2</code> - Misuse of command<br>
-                • <code>126</code> - Permission denied<br>
-                • <code>127</code> - Command not found<br>
-                • <code>130</code> - Script terminated by Ctrl+C
+                <strong>Common Exit Codes:</strong><br>
+                - <code>0</code> - Success<br>
+                - <code>1</code> - General error<br>
+                - <code>2</code> - Misuse of command<br>
+                - <code>126</code> - Permission denied<br>
+                - <code>127</code> - Command not found<br>
+                - <code>130</code> - Script terminated by Ctrl+C
             </div>
         </div>
 
         <!-- SECTION 13: PRACTICE TESTS -->
-        <h2 id="tests">📝 13. Practice Tests</h2>
+        <h2 id="tests">13. Practice Tests</h2>
 
         <div class="section">
-            <p>Test your knowledge with these exercises! Click "Show Answer" to check your response.</p>
+            <p>Test your knowledge with these exercises. Click "Show Answer" to check your response.</p>
 
             <!-- Question 1 -->
             <div class="quiz-item">
@@ -1278,7 +1287,7 @@ echo <span class="cmd-string">"Config loaded successfully!"</span>
                 <button class="answer-toggle" onclick="toggleAnswer(this)">Show Answer</button>
                 <div class="answer-content">
                     <strong>Answer: C</strong><br>
-                    In bash, there must be NO spaces around the = sign. The $ is only used when accessing the variable, not declaring it.
+                    In bash, there must be No spaces around the = sign. The $ is only used when accessing the variable, not declaring it.
                 </div>
             </div>
 
@@ -1393,9 +1402,9 @@ fi</code></pre>
                 <button class="answer-toggle" onclick="toggleAnswer(this)">Show Answer</button>
                 <div class="answer-content">
                     <strong>Answer:</strong><br>
-                    • <strong>while</strong>: Runs while the condition is TRUE<br>
-                    • <strong>until</strong>: Runs until the condition becomes TRUE (runs while FALSE)<br><br>
-                    They are essentially opposites of each other!
+                    - <strong>while</strong>: Runs while the condition is true<br>
+                    - <strong>until</strong>: Runs until the condition becomes true (runs while false)<br><br>
+                    They are essentially opposites of each other.
                 </div>
             </div>
 
@@ -1418,21 +1427,21 @@ done</code></pre>
             </div>
 
             <div class="success-box">
-                <strong>🎉 Congratulations!</strong> You've completed the Shell Scripting Basics quiz!
-                Keep practicing by writing your own scripts. The best way to learn is by doing!
+                <strong>Practice complete.</strong> You've completed the Shell Scripting Basics quiz!
+                Keep practicing by writing your own scripts. The best way to learn is by doing.
             </div>
         </div>
 
             <!-- Page Navigation -->
             <nav class="page-nav">
-                <a href="1.6_access_control.html">← Previous: Access Control</a>
-                <a href="1.8-shell-scripting-practice.html">Next: Shell Scripting Practice →</a>
+                <a href="1.6_access_control.html">Previous: Access Control</a>
+                <a href="1.8-shell-scripting-practice.html">Next: Shell Scripting Practice</a>
             </nav>
         </div>
     </main>
 
     <footer class="notes-footer">
-        <p>© 2026 lokii.tech | <a href="https://github.com/UnExplainableFish52/lokii.tech" target="_blank" rel="noopener noreferrer">Open Source Project</a></p>
+        <p>&copy; 2026 lokii.tech | <a href="https://github.com/UnExplainableFish52/lokii.tech" target="_blank" rel="noopener noreferrer">Open Source Project</a></p>
     </footer>
 
     <script>

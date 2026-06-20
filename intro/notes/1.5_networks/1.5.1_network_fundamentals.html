@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+<!-- lokii-note-polish: checked 2026-06-20; removed decorative emoji and em dash usage, improved network-fundamentals flow, and updated metadata. -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>1.5.1 Network Fundamentals | Networking | Cybersecurity Beginner Course</title>
 
-    <meta name="description" content="Learn networking fundamentals - network types, topologies, IP addressing, MAC addresses, and essential commands for cybersecurity professionals.">
+    <meta name="description" content="Beginner-friendly networking fundamentals covering network types, topologies, IP addressing, MAC addresses, transmission modes, core commands, and security context.">
     <meta name="author" content="lokii (UnExplainableFish52)">
     <meta name="theme-color" content="#0d1117">
 
@@ -13,7 +14,7 @@
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://lokii.tech/intro/notes/1.5_networks/1.5.1_network_fundamentals.html">
     <meta property="og:title" content="1.5.1 Network Fundamentals | Networking | Cybersecurity Beginner Course">
-    <meta property="og:description" content="Learn networking fundamentals - network types, topologies, IP addressing, MAC addresses, and essential commands for cybersecurity professionals.">
+    <meta property="og:description" content="Beginner-friendly networking fundamentals covering network types, topologies, IP addressing, MAC addresses, transmission modes, core commands, and security context.">
     <meta property="og:image" content="https://lokii.tech/preview.jpg">
     <!-- SEO Metadata -->
     <link rel="canonical" href="https://lokii.tech/intro/notes/1.5_networks/1.5.1_network_fundamentals.html">
@@ -22,7 +23,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://lokii.tech/intro/notes/1.5_networks/1.5.1_network_fundamentals.html">
     <meta name="twitter:title" content="1.5.1 Network Fundamentals | Networking | Cybersecurity Beginner Course">
-    <meta name="twitter:description" content="Learn networking fundamentals - network types, topologies, IP addressing, MAC addresses, and essential commands for cybersecurity professionals.">
+    <meta name="twitter:description" content="Beginner-friendly networking fundamentals covering network types, topologies, IP addressing, MAC addresses, transmission modes, core commands, and security context.">
     <meta name="twitter:image" content="https://lokii.tech/preview.jpg">
 
 <!-- Favicons -->
@@ -60,6 +61,12 @@
         }
 
         .subtitle { color: #8b949e; font-size: 1.2em; }
+        .lesson-bridge {
+            color: #c9d1d9;
+            max-width: 820px;
+            margin: 16px auto 0;
+            font-size: 1em;
+        }
 
         h2 { font-size: 1.8em; color: #00bcd4; font-weight: bold; margin: 50px 0 25px; padding-bottom: 10px; border-bottom: 2px solid #30363d; }
         h3 { font-size: 1.4em; color: #00bcd4; font-weight: bold; margin: 30px 0 15px; }
@@ -210,7 +217,7 @@
           "@id": "https://lokii.tech/intro/notes/1.5_networks/1.5.1_network_fundamentals.html#webpage",
           "url": "https://lokii.tech/intro/notes/1.5_networks/1.5.1_network_fundamentals.html",
           "name": "1.5.1 Network Fundamentals | Networking | Cybersecurity Beginner Course",
-          "description": "Learn networking fundamentals - network types, topologies, IP addressing, MAC addresses, and essential commands for cybersecurity professionals.",
+          "description": "Beginner-friendly networking fundamentals covering network types, topologies, IP addressing, MAC addresses, transmission modes, core commands, and security context.",
           "isPartOf": {
             "@id": "https://lokii.tech/#website"
           },
@@ -218,7 +225,7 @@
             "@id": "https://lokii.tech/intro/notes/1.5_networks/1.5.1_network_fundamentals.html#breadcrumbs"
           },
           "primaryImageOfPage": "https://lokii.tech/preview.jpg",
-          "dateModified": "2026-06-04",
+          "dateModified": "2026-06-20",
           "inLanguage": "en"
         },
         {
@@ -228,7 +235,7 @@
           ],
           "@id": "https://lokii.tech/intro/notes/1.5_networks/1.5.1_network_fundamentals.html#article",
           "headline": "1.5.1 Network Fundamentals | Networking | Cybersecurity Beginner Course",
-          "description": "Learn networking fundamentals - network types, topologies, IP addressing, MAC addresses, and essential commands for cybersecurity professionals.",
+          "description": "Beginner-friendly networking fundamentals covering network types, topologies, IP addressing, MAC addresses, transmission modes, core commands, and security context.",
           "url": "https://lokii.tech/intro/notes/1.5_networks/1.5.1_network_fundamentals.html",
           "image": "https://lokii.tech/preview.jpg",
           "author": {
@@ -242,7 +249,7 @@
           },
           "educationalLevel": "Beginner",
           "learningResourceType": "Guide",
-          "dateModified": "2026-06-04",
+          "dateModified": "2026-06-20",
           "inLanguage": "en"
         }
       ]
@@ -261,7 +268,7 @@
                     <a href="../../../index.html#about" class="nav-link nav-link-enhanced">About</a>
                     <a href="../../../index.html#resources" class="nav-link nav-link-enhanced">Resources</a>
                     <a href="https://github.com/UnExplainableFish52/lokii.tech" target="_blank" class="nav-link nav-link-enhanced" rel="noopener noreferrer">GitHub</a>
-                    <a href="https://github.com/UnExplainableFish52/lokii.tech/issues" target="_blank" class="nav-link nav-contribute" rel="noopener noreferrer">Contribute ✨</a>
+                    <a href="https://github.com/UnExplainableFish52/lokii.tech/issues" target="_blank" class="nav-link nav-contribute" rel="noopener noreferrer">Contribute</a>
                 </nav>
             </div>
         </div>
@@ -270,12 +277,13 @@
     <main>
         <div class="container">
             <header class="notes-header">
-                <h1>🔌 1.5.1 Network Fundamentals</h1>
-                <p class="subtitle">The foundation of all cybersecurity knowledge</p>
+                <h1>1.5.1 Network Fundamentals</h1>
+                <p class="subtitle">Understand how devices connect, communicate, and expose security risk</p>
+                <p class="lesson-bridge">The networking hub introduced the big picture. This page breaks that picture into the pieces you will keep seeing in security work: network scope, topology, addressing, device identity, traffic direction, and the basic commands used to inspect a system.</p>
             </header>
 
             <!-- Section 1: What is a Network? -->
-        <h2>🌐 1. What is a Network?</h2>
+        <h2>1. What is a Network?</h2>
 
         <div class="section">
             <h3>Simple Definition</h3>
@@ -286,8 +294,8 @@
 
             <h3>Technical Definition</h3>
             <p>
-                A computer network is an interconnected collection of computing devices — including computers,
-                servers, switches, routers, and other hardware — that uses
+                A computer network is an interconnected collection of computing devices, including computers,
+                servers, switches, routers, and other hardware, that uses
                 <span class="highlight">transmission media</span> (wired or wireless) and
                 <span class="highlight">communication protocols</span> to enable data exchange and resource sharing.
             </p>
@@ -302,7 +310,7 @@
             </ul>
 
             <div class="info-box">
-                <strong>📬 Real-World Analogy: The Postal System</strong><br><br>
+                <strong>Simple analogy: the postal system</strong><br><br>
                 Think of a network like a postal system:
                 <ul>
                     <li><span class="highlight">Your Device</span> = Your house (has a unique address)</li>
@@ -312,14 +320,17 @@
                     <li><span class="highlight">Protocols</span> = Rules for addressing and delivering mail</li>
                 </ul>
             </div>
+            <p>
+                Once that basic idea is clear, the next question is scope. A small private network, a company intranet, and the public internet all move data, but they are owned, accessed, and secured in different ways.
+            </p>
         </div>
 
         <!-- Section 2: Network vs Internet -->
-        <h2>🆚 2. Network vs Internet</h2>
+        <h2>2. Network vs Internet</h2>
 
         <div class="section">
             <p>
-                Many beginners confuse "network" with "Internet." While related, they're distinctly different concepts.
+                Many beginners confuse "network" with "internet." They are related, but they are not the same thing.
             </p>
 
             <table>
@@ -363,7 +374,7 @@
 
             <div class="compare-grid">
                 <div class="compare-card">
-                    <h4>🏢 Intranet</h4>
+                    <h4>Intranet</h4>
                     <p>A <span class="highlight">private network</span> accessible only within an organization.</p>
                     <ul>
                         <li>Internal websites and apps</li>
@@ -373,7 +384,7 @@
                 </div>
 
                 <div class="compare-card">
-                    <h4>🤝 Extranet</h4>
+                    <h4>Extranet</h4>
                     <p>An <span class="highlight">extended intranet</span> that allows limited access to authorized external users.</p>
                     <ul>
                         <li>Partner/vendor access</li>
@@ -383,7 +394,7 @@
                 </div>
 
                 <div class="compare-card">
-                    <h4>🌍 Internet</h4>
+                    <h4>Internet</h4>
                     <p>The <span class="highlight">global public network</span> connecting billions of devices worldwide.</p>
                     <ul>
                         <li>Open to everyone</li>
@@ -414,12 +425,18 @@
                     </div>
                 </div>
             </div>
+            <p>
+                With scope defined, it becomes easier to classify networks by size, purpose, and who is allowed to use them.
+            </p>
         </div>
 
         <!-- Section 3: Types of Networks -->
-        <h2>📊 3. Types of Networks</h2>
+        <h2>3. Types of Networks</h2>
 
         <div class="section">
+            <p>
+                Network type describes the size and purpose of the network. A home LAN, a campus network, and a global WAN all need different design and security decisions.
+            </p>
             <h3>Primary Network Types</h3>
 
             <table>
@@ -494,7 +511,7 @@
             </table>
 
             <div class="security-box">
-                <strong>🔒 Security Implications by Network Type</strong>
+                <strong>Security Implications by Network Type</strong>
                 <ul>
                     <li><span class="highlight">PAN:</span> Bluetooth vulnerabilities, device pairing attacks</li>
                     <li><span class="highlight">LAN:</span> ARP spoofing, VLAN hopping, insider threats</li>
@@ -505,7 +522,7 @@
         </div>
 
         <!-- Section 4: Network Topologies -->
-        <h2>🔗 4. Network Topologies</h2>
+        <h2>4. Network Topologies</h2>
 
         <div class="section">
             <p>
@@ -636,18 +653,18 @@
             </table>
 
             <div class="security-box">
-                <strong>🔒 Security Considerations by Topology</strong>
+                <strong>Security Considerations by Topology</strong>
                 <ul>
-                    <li><span class="highlight">Bus:</span> Easy to sniff traffic — all data visible to all devices</li>
-                    <li><span class="highlight">Star:</span> Central switch is target — if compromised, attacker sees all traffic</li>
-                    <li><span class="highlight">Ring:</span> Traffic passes through all nodes — potential for interception</li>
-                    <li><span class="highlight">Mesh:</span> Most secure — multiple paths, harder to disrupt</li>
+                    <li><span class="highlight">Bus:</span> traffic is easy to sniff because all devices share the same path</li>
+                    <li><span class="highlight">Star:</span> the central switch is important because traffic depends on it</li>
+                    <li><span class="highlight">Ring:</span> traffic passes through neighboring nodes, which can create interception points</li>
+                    <li><span class="highlight">Mesh:</span> multiple paths improve resilience and make disruption harder</li>
                 </ul>
             </div>
         </div>
 
         <!-- Section 5: Transmission Modes -->
-        <h2>📡 5. Transmission Modes</h2>
+        <h2>5. Transmission Modes</h2>
 
         <div class="section">
             <p>
@@ -667,7 +684,7 @@
                     <tr>
                         <td><span class="highlight">Simplex</span></td>
                         <td>One-way only</td>
-                        <td>Keyboard → Computer, Radio broadcast</td>
+                        <td>Keyboard to computer, radio broadcast</td>
                         <td><span class="code-text">A ------&gt; B</span></td>
                     </tr>
                     <tr>
@@ -686,18 +703,20 @@
             </table>
 
             <div class="tip-box">
-                <strong>💡 For Security:</strong> Full-duplex connections are harder to monitor since traffic flows
-                in both directions simultaneously. Half-duplex networks can create bottlenecks that attackers might exploit for DoS.
+                <strong>Security note:</strong> On switched full-duplex networks, passive monitoring usually needs a mirror port, TAP, endpoint logs, or sensor placement. Half-duplex bottlenecks can still matter when you are thinking about availability and denial-of-service risk.
             </div>
         </div>
 
         <!-- Section 6: Network Architecture -->
-        <h2>🏗️ 6. Network Architecture</h2>
+        <h2>6. Network Architecture</h2>
 
         <div class="section">
+            <p>
+                After you know how traffic flows, look at who provides services. Architecture explains whether devices depend on central servers or share resources directly with each other.
+            </p>
             <div class="compare-grid">
                 <div class="compare-card">
-                    <h4>🖥️ Client-Server</h4>
+                    <h4>Client-Server</h4>
                     <p>Centralized model where <span class="highlight">servers</span> provide resources and <span class="highlight">clients</span> request them.</p>
                     <ul>
                         <li>Centralized control</li>
@@ -708,7 +727,7 @@
                 </div>
 
                 <div class="compare-card">
-                    <h4>👥 Peer-to-Peer (P2P)</h4>
+                    <h4>Peer-to-Peer (P2P)</h4>
                     <p>Decentralized model where each device acts as <span class="highlight">both client and server</span>.</p>
                     <ul>
                         <li>No central authority</li>
@@ -759,16 +778,16 @@
             </table>
 
             <div class="security-box">
-                <strong>🔒 Security Implications</strong>
+                <strong>Security Implications</strong>
                 <ul>
-                    <li><span class="highlight">Client-Server:</span> Target the server — one breach = access to all data</li>
-                    <li><span class="highlight">P2P:</span> Malware spreads peer-to-peer, harder to track/contain</li>
+                    <li><span class="highlight">Client-Server:</span> a server compromise can expose many clients or shared data</li>
+                    <li><span class="highlight">P2P:</span> malware can spread peer-to-peer and can be harder to track or contain</li>
                 </ul>
             </div>
         </div>
 
         <!-- Section 7: IP Addressing Basics -->
-        <h2>🔢 7. IP Addressing Basics</h2>
+        <h2>7. IP Addressing Basics</h2>
 
         <div class="section">
             <h3>IPv4 vs IPv6</h3>
@@ -843,19 +862,19 @@
                 <tbody>
                     <tr>
                         <td>A</td>
-                        <td><span class="code-text">10.0.0.0 – 10.255.255.255</span></td>
+                        <td><span class="code-text">10.0.0.0 - 10.255.255.255</span></td>
                         <td>10.0.0.0/8</td>
                         <td>Large enterprises</td>
                     </tr>
                     <tr>
                         <td>B</td>
-                        <td><span class="code-text">172.16.0.0 – 172.31.255.255</span></td>
+                        <td><span class="code-text">172.16.0.0 - 172.31.255.255</span></td>
                         <td>172.16.0.0/12</td>
                         <td>Medium networks</td>
                     </tr>
                     <tr>
                         <td>C</td>
-                        <td><span class="code-text">192.168.0.0 – 192.168.255.255</span></td>
+                        <td><span class="code-text">192.168.0.0 - 192.168.255.255</span></td>
                         <td>192.168.0.0/16</td>
                         <td>Home networks</td>
                     </tr>
@@ -864,10 +883,10 @@
 
             <h3>Special IP Addresses</h3>
             <ul>
-                <li><span class="code-text">127.0.0.1</span> — <span class="highlight">Loopback</span> (localhost, refers to your own machine)</li>
-                <li><span class="code-text">0.0.0.0</span> — <span class="highlight">Default route</span> or "all interfaces"</li>
-                <li><span class="code-text">255.255.255.255</span> — <span class="highlight">Broadcast</span> (send to all devices on network)</li>
-                <li><span class="code-text">169.254.x.x</span> — <span class="highlight">APIPA</span> (auto-assigned when DHCP fails)</li>
+                <li><span class="code-text">127.0.0.1</span>: <span class="highlight">Loopback</span> (localhost, refers to your own machine)</li>
+                <li><span class="code-text">0.0.0.0</span>: <span class="highlight">Default route</span> or "all interfaces"</li>
+                <li><span class="code-text">255.255.255.255</span>: <span class="highlight">Broadcast</span> (send to all devices on network)</li>
+                <li><span class="code-text">169.254.x.x</span>: <span class="highlight">APIPA</span> (auto-assigned when DHCP fails)</li>
             </ul>
 
             <h3>CIDR Notation Basics</h3>
@@ -882,7 +901,7 @@
         </div>
 
         <!-- Section 8: MAC Address -->
-        <h2>🏷️ 8. MAC Address</h2>
+        <h2>8. MAC Address</h2>
 
         <div class="section">
             <h3>What is a MAC Address?</h3>
@@ -902,8 +921,8 @@ AABB.CCDD.EEFF      (Cisco notation)
 
             <ul>
                 <li><span class="highlight">48 bits</span> (6 bytes) in total</li>
-                <li>First 3 bytes: <span class="highlight">OUI</span> (Organizationally Unique Identifier) — identifies manufacturer</li>
-                <li>Last 3 bytes: <span class="highlight">NIC Specific</span> — unique to the device</li>
+                <li>First 3 bytes: <span class="highlight">OUI</span> (Organizationally Unique Identifier), identifies manufacturer</li>
+                <li>Last 3 bytes: <span class="highlight">NIC Specific</span>, unique to the device</li>
             </ul>
 
             <div class="diagram">
@@ -965,7 +984,7 @@ AABB.CCDD.EEFF      (Cisco notation)
             </table>
 
             <div class="security-box">
-                <strong>🔒 MAC Spoofing</strong><br>
+                <strong>MAC Spoofing</strong><br>
                 Despite being "permanent," MAC addresses can be changed/spoofed using software tools.
                 Attackers use MAC spoofing to:
                 <ul>
@@ -978,10 +997,10 @@ AABB.CCDD.EEFF      (Cisco notation)
         </div>
 
         <!-- Section 9: Commands -->
-        <h2>💻 9. Essential Commands</h2>
+        <h2>9. Essential Commands</h2>
 
         <div class="section">
-            <div class="code-header">🪟 Windows Commands</div>
+            <div class="code-header">Windows Commands</div>
             <div class="code-block">
                 <pre><code><span class="comment"># View IP configuration and MAC address</span>
 ipconfig /all
@@ -1005,7 +1024,7 @@ arp -a
 route print</code></pre>
             </div>
 
-            <div class="code-header">🐧 Linux Commands</div>
+            <div class="code-header">Linux Commands</div>
             <div class="code-block">
                 <pre><code><span class="comment"># View IP and MAC address (modern)</span>
 ip a
@@ -1029,7 +1048,7 @@ route -n
 cat /etc/resolv.conf</code></pre>
             </div>
 
-            <div class="code-header">🌐 Network Testing (Cross-Platform)</div>
+            <div class="code-header">Network Testing (Cross-Platform)</div>
             <div class="code-block">
                 <pre><code><span class="comment"># Test connectivity (Windows)</span>
 ping 8.8.8.8
@@ -1053,16 +1072,19 @@ netstat -an</code></pre>
             </div>
 
             <div class="tip-box">
-                <strong>💡 Pro Tip:</strong> Run these commands on your own machine to see your network configuration.
-                Understanding command output is crucial for network troubleshooting and security analysis.
+                <strong>Practice note:</strong> Run these commands on your own machine to see your network configuration.
+                Understanding command output is important for network troubleshooting and security analysis.
             </div>
         </div>
 
-        <!-- Section 10: Real-World Use Cases -->
-        <h2>🌍 10. Real-World Use Cases</h2>
+        <!-- Section 10: Real Use Cases -->
+        <h2>10. Real Use Cases</h2>
 
         <div class="section">
-            <h3>🏠 Setting Up a Home Network</h3>
+            <p>
+                The terms above become useful when you can connect them to normal admin and security tasks.
+            </p>
+            <h3>Setting Up a Home Network</h3>
             <p>When configuring a home network, you'll apply these concepts:</p>
             <ul>
                 <li>Your router creates a <span class="highlight">LAN</span> using <span class="highlight">Star topology</span></li>
@@ -1071,28 +1093,28 @@ netstat -an</code></pre>
                 <li>WiFi creates a <span class="highlight">WLAN</span> overlay</li>
             </ul>
 
-            <h3>🏢 Corporate LAN Segmentation</h3>
+            <h3>Corporate LAN Segmentation</h3>
             <p>Enterprise networks use these concepts for security:</p>
             <ul>
                 <li><span class="highlight">VLANs</span> separate departments (HR, Finance, IT)</li>
                 <li>Different <span class="highlight">subnets</span> for different security zones</li>
                 <li><span class="highlight">Client-server</span> architecture with domain controllers</li>
-                <li>Multiple <span class="highlight">Hybrid topology</span> with redundancy</li>
+                <li><span class="highlight">Hybrid topology</span> with redundancy</li>
             </ul>
 
-            <h3>🔍 Security Audit Starting Point</h3>
+            <h3>Security Audit Starting Point</h3>
             <p>When performing a security assessment:</p>
             <ol>
-                <li>Identify network <span class="highlight">topology</span> — how devices are connected</li>
+                <li>Identify network <span class="highlight">topology</span>: how devices are connected</li>
                 <li>Map <span class="highlight">IP ranges</span> and subnets in use</li>
-                <li>Catalog <span class="highlight">network types</span> — wired vs wireless</li>
-                <li>Understand <span class="highlight">architecture</span> — client-server relationships</li>
-                <li>Document <span class="highlight">entry points</span> — internet-facing systems</li>
+                <li>Catalog <span class="highlight">network types</span>: wired vs wireless</li>
+                <li>Understand <span class="highlight">architecture</span>: client-server relationships</li>
+                <li>Document <span class="highlight">entry points</span>: internet-facing systems</li>
             </ol>
         </div>
 
         <!-- Section 11: Security Corner -->
-        <h2>🔒 11. Security Corner</h2>
+        <h2>11. Security Corner</h2>
 
         <div class="section">
             <div class="security-box">
@@ -1137,17 +1159,16 @@ netstat -an</code></pre>
             </table>
 
             <div class="info-box">
-                <strong>🎯 Key Takeaway:</strong> Understanding network fundamentals is the <span class="highlight">first step</span>
-                in both attacking and defending networks. Reconnaissance starts with basic network mapping —
-                the concepts you learned in this module!
+                <strong>Main point:</strong> Network fundamentals make reconnaissance and defense easier to understand.
+                Before you can protect or test a network, you need to know what exists, how it is connected, and where trust boundaries sit.
             </div>
         </div>
 
         <!-- Section 12: Quiz -->
-        <h2>📝 12. Knowledge Check Quiz</h2>
+        <h2>12. Knowledge Check Quiz</h2>
 
         <div class="section">
-            <p>Test your understanding with these 10 questions!</p>
+            <p>Test your understanding with these 10 questions.</p>
 
             <div class="quiz-question">
                 <strong>Q1:</strong> What does LAN stand for?
@@ -1249,11 +1270,11 @@ netstat -an</code></pre>
                 <div class="answers-content" id="answersContent">
                     <div class="answer-item"><strong>Q1:</strong> <span class="answer-correct">Local Area Network</span></div>
                     <div class="answer-item"><strong>Q2:</strong> <span class="answer-correct">Mesh</span></div>
-                    <div class="answer-item"><strong>Q3:</strong> <span class="answer-correct">False</span> — MAC addresses are assigned by the manufacturer, not DHCP</div>
+                    <div class="answer-item"><strong>Q3:</strong> <span class="answer-correct">False</span>, MAC addresses are assigned by the manufacturer, not DHCP</div>
                     <div class="answer-item"><strong>Q4:</strong> <span class="answer-correct">192.168.0.0/16</span></div>
                     <div class="answer-item"><strong>Q5:</strong> <span class="answer-correct">127.0.0.1</span></div>
                     <div class="answer-item"><strong>Q6:</strong> <span class="answer-correct">Full-Duplex</span></div>
-                    <div class="answer-item"><strong>Q7:</strong> <span class="answer-correct">False</span> — An Intranet is private and internal to an organization</div>
+                    <div class="answer-item"><strong>Q7:</strong> <span class="answer-correct">False</span>, an intranet is private and internal to an organization</div>
                     <div class="answer-item"><strong>Q8:</strong> <span class="answer-correct">48 bits</span></div>
                     <div class="answer-item"><strong>Q9:</strong> <span class="answer-correct">ipconfig</span></div>
                     <div class="answer-item"><strong>Q10:</strong> <span class="answer-correct">All clients lose access to server resources</span></div>
@@ -1263,20 +1284,14 @@ netstat -an</code></pre>
 
         <!-- Page Navigation -->
         <nav class="page-nav">
-            <a href="../1.5_networks.html">
-                <span>←</span>
-                <span>Back to Networking Hub</span>
-            </a>
-            <a href="1.5.2_osi_tcpip_models.html" class="next">
-                <span>Next: OSI & TCP/IP Models</span>
-                <span>→</span>
-            </a>
+            <a href="../1.5_networks.html">Back to Networking Hub</a>
+            <a href="1.5.2_osi_tcpip_models.html" class="next">Next: OSI & TCP/IP Models</a>
         </nav>
         </div>
     </main>
 
     <footer class="notes-footer">
-        <p>© 2026 lokii.tech | <a href="https://github.com/UnExplainableFish52/lokii.tech" target="_blank" rel="noopener noreferrer">Open Source Project</a></p>
+        <p>&copy; 2026 lokii.tech | <a href="https://github.com/UnExplainableFish52/lokii.tech" target="_blank" rel="noopener noreferrer">Open Source Project</a></p>
     </footer>
 
     <script>

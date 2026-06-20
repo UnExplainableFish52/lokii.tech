@@ -1,27 +1,28 @@
 <!DOCTYPE html>
 <!-- lokii-style-audit: checked 2026-06-19; shared navbar/footer normalization and mobile reading-width layer applied. -->
+<!-- lokii-note-polish: checked 2026-06-20; rewritten for friendly practical flow, authorized scanning context, and connected Nmap learning steps. -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nmap Mastery Guide | Network Scanner for CyberSec Pros</title>
+    <title>Nmap Notes | Intermediate Network Scanning | lokii.tech</title>
     
-    <meta name="description" content="Complete Nmap mastery guide for CyberSec professionals. Learn network scanning, port discovery, service enumeration, and security auditing.">
+    <meta name="description" content="Friendly practical Nmap notes for learning host discovery, port scanning, service detection, NSE scripts, timing, output files, and safe authorized lab workflows.">
     <meta name="author" content="lokii (UnExplainableFish52)">
     <meta name="theme-color" content="#0d0d0d">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://lokii.tech/intermediate/tools/nmap.html">
-    <meta property="og:title" content="Nmap Mastery Guide | Network Scanner for CyberSec Pros">
-    <meta property="og:description" content="Complete Nmap mastery guide for CyberSec professionals. Learn network scanning, port discovery, service enumeration, and security auditing.">
+    <meta property="og:title" content="Nmap Notes | Intermediate Network Scanning | lokii.tech">
+    <meta property="og:description" content="Friendly practical Nmap notes for learning host discovery, port scanning, service detection, NSE scripts, timing, output files, and safe authorized lab workflows.">
     <meta property="og:image" content="https://lokii.tech/preview.jpg">
     <meta property="og:site_name" content="lokii.tech">
     
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Nmap Mastery Guide | Network Scanner for CyberSec Pros">
-    <meta name="twitter:description" content="Complete Nmap mastery guide for CyberSec professionals. Learn network scanning, port discovery, service enumeration, and security auditing.">
+    <meta name="twitter:title" content="Nmap Notes | Intermediate Network Scanning | lokii.tech">
+    <meta name="twitter:description" content="Friendly practical Nmap notes for learning host discovery, port scanning, service detection, NSE scripts, timing, output files, and safe authorized lab workflows.">
     <meta name="twitter:image" content="https://lokii.tech/preview.jpg">
     <!-- SEO Metadata -->
     <link rel="canonical" href="https://lokii.tech/intermediate/tools/nmap.html">
@@ -35,6 +36,7 @@
     <link rel="manifest" href="../../site.webmanifest">
     <link rel="icon" href="../../favicon.ico">
     
+    <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../../css/global-ui.css">
     <style>
         * {
@@ -49,13 +51,17 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             font-size: 18px;
             line-height: 1.8;
-            padding: 40px;
+            padding: 0;
             min-height: 100vh;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
+        }
+
+        body > .container {
+            padding: 40px;
         }
 
         h1 {
@@ -334,8 +340,12 @@
 
         @media (max-width: 768px) {
             body {
-                padding: 20px;
+                padding: 0;
                 font-size: 16px;
+            }
+
+            body > .container {
+                padding: 20px;
             }
 
             h1 {
@@ -482,7 +492,7 @@
             {
               "@type": "ListItem",
               "position": 3,
-              "name": "Nmap Mastery Guide | Network Scanner for CyberSec Pros",
+              "name": "Nmap Notes",
               "item": "https://lokii.tech/intermediate/tools/nmap.html"
             }
           ]
@@ -491,8 +501,8 @@
           "@type": "WebPage",
           "@id": "https://lokii.tech/intermediate/tools/nmap.html#webpage",
           "url": "https://lokii.tech/intermediate/tools/nmap.html",
-          "name": "Nmap Mastery Guide | Network Scanner for CyberSec Pros",
-          "description": "Complete Nmap mastery guide for CyberSec professionals. Learn network scanning, port discovery, service enumeration, and security auditing.",
+          "name": "Nmap Notes | Intermediate Network Scanning | lokii.tech",
+          "description": "Friendly practical Nmap notes for learning host discovery, port scanning, service detection, NSE scripts, timing, output files, and safe authorized lab workflows.",
           "isPartOf": {
             "@id": "https://lokii.tech/#website"
           },
@@ -500,7 +510,7 @@
             "@id": "https://lokii.tech/intermediate/tools/nmap.html#breadcrumbs"
           },
           "primaryImageOfPage": "https://lokii.tech/preview.jpg",
-          "dateModified": "2026-06-04",
+          "dateModified": "2026-06-20",
           "inLanguage": "en"
         },
         {
@@ -509,8 +519,8 @@
             "LearningResource"
           ],
           "@id": "https://lokii.tech/intermediate/tools/nmap.html#article",
-          "headline": "Nmap Mastery Guide | Network Scanner for CyberSec Pros",
-          "description": "Complete Nmap mastery guide for CyberSec professionals. Learn network scanning, port discovery, service enumeration, and security auditing.",
+          "headline": "Nmap Notes | Intermediate Network Scanning | lokii.tech",
+          "description": "Friendly practical Nmap notes for learning host discovery, port scanning, service detection, NSE scripts, timing, output files, and safe authorized lab workflows.",
           "url": "https://lokii.tech/intermediate/tools/nmap.html",
           "image": "https://lokii.tech/preview.jpg",
           "author": {
@@ -524,7 +534,7 @@
           },
           "educationalLevel": "Intermediate",
           "learningResourceType": "Guide",
-          "dateModified": "2026-06-04",
+          "dateModified": "2026-06-20",
           "inLanguage": "en"
         }
       ]
@@ -549,63 +559,71 @@
     <div class="container">
         
         <!-- HEADER -->
-        <h1>🌐 Nmap Mastery Guide</h1>
-        <p class="subtitle">The Network Mapper — Essential for Every Security Professional</p>
+        <h1>Nmap Notes</h1>
+        <p class="subtitle">A practical walkthrough for asking better questions about a network you are allowed to test</p>
 
         <div class="divider"></div>
 
         <!-- TABLE OF CONTENTS -->
         <div class="toc">
-            <h3>📑 Table of Contents</h3>
+            <h3>Table of Contents</h3>
             <ol>
-                <li><a href="#intro">What is Nmap? (Theory & Foundation)</a></li>
-                <li><a href="#install">Installation & Getting Started</a></li>
-                <li><a href="#syntax">Basic Syntax & Your First Scan</a></li>
+                <li><a href="#intro">What is Nmap? (Theory and Foundation)</a></li>
+                <li><a href="#install">Installation and Getting Started</a></li>
+                <li><a href="#syntax">Basic Syntax and Your First Scan</a></li>
                 <li><a href="#discovery">Host Discovery Techniques</a></li>
                 <li><a href="#scan-types">Port Scanning Types</a></li>
-                <li><a href="#service">Service & Version Detection</a></li>
-                <li><a href="#os">OS Detection & Fingerprinting</a></li>
+                <li><a href="#service">Service and Version Detection</a></li>
+                <li><a href="#os">OS Detection and Fingerprinting</a></li>
                 <li><a href="#nse">Nmap Scripting Engine (NSE)</a></li>
-                <li><a href="#timing">Timing & Performance</a></li>
+                <li><a href="#timing">Timing and Performance</a></li>
                 <li><a href="#output">Output Formats</a></li>
-                <li><a href="#evasion">Firewall Evasion & Stealth</a></li>
-                <li><a href="#scenarios">Real-World Scenarios</a></li>
-                <li><a href="#cheatsheet">Quick Reference Cheatsheet</a></li>
-                <li><a href="#quiz">Knowledge Quiz</a></li>
+                <li><a href="#firewall">Firewall Testing and Scan Behavior</a></li>
+                <li><a href="#scenarios">Practice Scenarios</a></li>
+                <li><a href="#cheatsheet">Quick Reference</a></li>
+                <li><a href="#quiz">Knowledge Check</a></li>
             </ol>
+        </div>
+
+        <div class="info-box">
+            <h4>Read this like a workflow</h4>
+            <p>Nmap is easiest to learn when you treat it as a set of questions. Is the host alive? Which ports answer? What service is behind each port? Does the output give you enough evidence to investigate further? This page follows that order so the commands feel connected instead of random.</p>
+            <p>Use these examples only on systems you own, administer, or have written permission to test. A home lab, a VM network, TryHackMe, Hack The Box, or <code>scanme.nmap.org</code> is the right place to practice.</p>
         </div>
 
         <div class="divider"></div>
 
         <!-- SECTION 1: INTRO -->
-        <h2 id="intro">1. What is Nmap? (Theory & Foundation)</h2>
+        <h2 id="intro">1. What is Nmap? (Theory and Foundation)</h2>
         
-        <p><code>Nmap</code> (Network Mapper) is a <span class="highlight">free and open-source</span> network discovery and security auditing tool. Created by Gordon "Fyodor" Lyon in 1997, it has become the industry standard for network exploration.</p>
+        <p><code>Nmap</code> is a network question tool. You give it a target, and it helps you learn what is reachable, which ports respond, and what services might be running there. It does not automatically prove "this system is hacked" or "this server is safe." It gives you evidence so you can decide what to check next.</p>
+        <p>In real work, that evidence is useful everywhere: a SOC analyst might review a suspicious internal host, a sysadmin might confirm which services are exposed after a change, and a learner might map a small home lab to understand how networking actually looks from the terminal.</p>
 
         <div class="important">
-            <strong>Why Nmap is Essential:</strong>
+            <strong>The basic Nmap mindset:</strong>
             <ul>
-                <li><span class="highlight">Network Discovery:</span> Find live hosts, open ports, and services</li>
-                <li><span class="highlight">Security Auditing:</span> Identify vulnerabilities before attackers do</li>
-                <li><span class="highlight">Inventory Management:</span> Map your entire network infrastructure</li>
-                <li><span class="highlight">Compliance:</span> Meet PCI-DSS, HIPAA, and other regulatory requirements</li>
+                <li><span class="highlight">Find the target:</span> Is the device reachable from where you are?</li>
+                <li><span class="highlight">Check the doors:</span> Which ports are open, closed, or filtered?</li>
+                <li><span class="highlight">Identify the service:</span> Is port 80 really a web server, or something else?</li>
+                <li><span class="highlight">Write down evidence:</span> Save output so you can compare, report, or repeat the scan later.</li>
             </ul>
         </div>
 
-        <h3>👥 Who Uses Nmap?</h3>
+        <h3>Who Uses Nmap?</h3>
+        <p>Different people use Nmap for different reasons, but the workflow is similar: start broad, narrow down, then verify. This is the part beginners usually miss. Nmap is not the whole investigation. It is the first clean map before you decide where to spend attention.</p>
         <ul>
-            <li><strong>Penetration Testers:</strong> Reconnaissance phase of ethical hacking</li>
-            <li><strong>System Administrators:</strong> Network inventory and troubleshooting</li>
-            <li><strong>Security Engineers:</strong> Vulnerability assessment and compliance</li>
-            <li><strong>SOC Analysts:</strong> Incident response and threat hunting</li>
-            <li><strong>Network Engineers:</strong> Service monitoring and configuration verification</li>
-            <li><strong>Red Team Operators:</strong> Attack surface mapping</li>
+            <li><strong>System administrators</strong> use it to confirm what is running on servers they manage.</li>
+            <li><strong>SOC analysts</strong> use it carefully when a host looks suspicious and they need quick network context.</li>
+            <li><strong>Security engineers</strong> use it to check exposed services before deeper vulnerability review.</li>
+            <li><strong>Students</strong> use it to connect theory with what real hosts and ports look like.</li>
+            <li><strong>Penetration testers</strong> use it during authorized reconnaissance to plan the next step.</li>
         </ul>
 
-        <h3>🔑 Core Concepts to Understand</h3>
+        <h3>Core Concepts to Understand</h3>
 
         <h4>What is a Port?</h4>
-        <p>A port is a virtual endpoint for network communication. Think of it like apartment numbers in a building — the IP address is the building, and ports are individual apartments where different services live.</p>
+        <p>A port is a numbered place where a service can listen for network traffic. Think of the IP address as the building, and ports as the doors for different services. SSH often listens on port 22, web traffic often uses 80 or 443, and DNS often uses 53.</p>
+        <p>Why does this matter? Because an open port tells you where a system is willing to talk. It does not prove a vulnerability by itself, but it tells you where to look next.</p>
         <ul>
             <li><strong>Port Range:</strong> 0-65535 (total 65,536 ports)</li>
             <li><strong>Well-Known Ports:</strong> 0-1023 (reserved for common services)</li>
@@ -614,6 +632,7 @@
         </ul>
 
         <h4>Port States in Nmap</h4>
+        <p>When Nmap scans a port, it reports a state. Read the state before jumping to conclusions. In real work, <code>filtered</code> often means "a firewall or network device is affecting the answer," not "nothing exists there."</p>
         <table>
             <tr>
                 <th>State</th>
@@ -645,12 +664,21 @@
             </tr>
         </table>
 
+        <div class="tip-box">
+            <h4>Small example</h4>
+            <pre><code>nmap 192.168.56.10</code></pre>
+            <p>Look for the <code>PORT</code>, <code>STATE</code>, and <code>SERVICE</code> columns. If you see <code>22/tcp open ssh</code>, the useful takeaway is simple: this host is reachable and SSH is accepting connections. The next step is not guessing passwords. The next step is confirming whether SSH should be exposed there.</p>
+        </div>
+
         <div class="divider"></div>
 
         <!-- SECTION 2: INSTALLATION -->
-        <h2 id="install">2. Installation & Getting Started</h2>
+        <h2 id="install">2. Installation and Getting Started</h2>
 
-        <h3>🐧 Linux (Debian/Ubuntu)</h3>
+        <p>Install Nmap from a trusted package source and verify that the command works before you start scanning. This sounds boring, but it saves time later. A broken install or an old version can make you chase scan behavior that is really just a local setup problem.</p>
+        <p>In a lab, install it on the machine you will scan from. That could be Kali, Ubuntu, Windows with Nmap installed, or any admin workstation you control.</p>
+
+        <h3>Linux (Debian/Ubuntu)</h3>
         <pre><code><span class="code-comment"># Update and install</span>
 sudo apt update
 sudo apt install nmap
@@ -658,15 +686,15 @@ sudo apt install nmap
 <span class="code-comment"># Verify installation</span>
 nmap --version</code></pre>
 
-        <h3>🐧 Linux (RHEL/CentOS/Fedora)</h3>
+        <h3>Linux (RHEL/CentOS/Fedora)</h3>
         <pre><code>sudo dnf install nmap    <span class="code-comment"># Fedora</span>
 sudo yum install nmap    <span class="code-comment"># CentOS/RHEL</span></code></pre>
 
-        <h3>🍎 macOS</h3>
+        <h3>macOS</h3>
         <pre><code><span class="code-comment"># Using Homebrew</span>
 brew install nmap</code></pre>
 
-        <h3>🪟 Windows</h3>
+        <h3>Windows</h3>
         <p>Download the installer from <a href="https://nmap.org/download.html" target="_blank" style="color: #00ffff;" rel="noopener noreferrer">nmap.org</a> or use:</p>
         <pre><code><span class="code-comment"># Using Chocolatey</span>
 choco install nmap
@@ -675,19 +703,23 @@ choco install nmap
 winget install nmap</code></pre>
 
         <div class="tip-box">
-            <h4>💡 Pro Tip: Zenmap</h4>
-            <p>Nmap comes with <strong>Zenmap</strong>, a graphical user interface. While learning, use the CLI — but Zenmap is great for visualizing network topology and saving scan profiles.</p>
+            <h4>What to check after installing</h4>
+            <p>Run <code>nmap --version</code>. You should see the Nmap version and compiled features. If the command is not found, fix your PATH or installation before moving on.</p>
+            <p>Zenmap exists as a graphical interface, but learn the CLI first. Commands are easier to save in notes, repeat during labs, and paste into a report.</p>
         </div>
 
         <div class="divider"></div>
 
         <!-- SECTION 3: BASIC SYNTAX -->
-        <h2 id="syntax">3. Basic Syntax & Your First Scan</h2>
+        <h2 id="syntax">3. Basic Syntax and Your First Scan</h2>
+
+        <p>The basic shape is simple: choose scan options, then give Nmap a target. The target might be one IP, a hostname, a subnet, or a file of hosts. The skill is not memorizing every flag. The skill is knowing what question you are asking before you run the command.</p>
 
         <h3>General Syntax</h3>
         <pre><code>nmap [Scan Type] [Options] {target specification}</code></pre>
 
         <h3>Target Specification</h3>
+        <p>Targets tell Nmap where to send probes. In a home lab, this might be your test VM. In a company environment, this should be a written scope from your team. Never guess the scope.</p>
         <table>
             <tr>
                 <th>Format</th>
@@ -731,12 +763,13 @@ winget install nmap</code></pre>
             </tr>
         </table>
 
-        <h3>Your First Scan — Try It!</h3>
+        <h3>Your first authorized scan</h3>
         <div class="info-box">
-            <h4>ℹ️ Legal Notice</h4>
-            <p>Always get <strong>written permission</strong> before scanning networks you don't own. Unauthorized scanning is illegal in most jurisdictions. Use <code>scanme.nmap.org</code> for practice — it's specifically set up for testing!</p>
+            <h4>Legal notice</h4>
+            <p>Get <strong>written permission</strong> before scanning networks you do not own or administer. Unauthorized scanning can be illegal and can also look hostile to monitoring teams. Use <code>scanme.nmap.org</code> for public practice because it is specifically set up for Nmap testing.</p>
         </div>
 
+        <p>Start small. A basic scan checks the most common TCP ports and gives you a first view of what the host exposes.</p>
         <pre><code><span class="code-comment"># Basic scan (scans 1000 most common ports)</span>
 nmap scanme.nmap.org
 
@@ -746,20 +779,27 @@ nmap -p 22,80,443 scanme.nmap.org
 <span class="code-comment"># Scan port range</span>
 nmap -p 1-1000 scanme.nmap.org
 
-<span class="code-comment"># Scan ALL ports (takes longer)</span>
+<span class="code-comment"># Scan all ports (takes longer)</span>
 nmap -p- scanme.nmap.org
 
 <span class="code-comment"># Fast scan (top 100 ports)</span>
 nmap -F scanme.nmap.org</code></pre>
+
+        <div class="tip-box">
+            <h4>What to look for</h4>
+            <p>Focus on open ports first. If you see <code>80/tcp open http</code>, that means a web service answered. If you see <code>22/tcp open ssh</code>, SSH answered. A beginner mistake is treating the service name as a guarantee. It is Nmap's best guess until you do version detection.</p>
+        </div>
 
         <div class="divider"></div>
 
         <!-- SECTION 4: HOST DISCOVERY -->
         <h2 id="discovery">4. Host Discovery Techniques</h2>
 
-        <p>Before scanning ports, Nmap needs to know which hosts are <span class="highlight">alive</span>. This is called host discovery or "ping scanning".</p>
+        <p>Before you care about ports, you need to know which hosts are alive from your point of view. Host discovery is the sweep step. It asks, "Which devices on this range respond at all?"</p>
+        <p>In real work, this is useful for inventory, lab mapping, and sanity checks. For example, if your home lab subnet is <code>192.168.56.0/24</code>, discovery tells you which VMs are currently online before you run deeper scans.</p>
 
         <h3>Host Discovery Flags</h3>
+        <p>Different networks answer different probe types. On a local subnet, ARP discovery is often reliable. Across routed networks, ICMP or TCP probes may work better. If a host is known to exist but blocks discovery probes, <code>-Pn</code> tells Nmap to skip the "are you alive?" step and scan anyway.</p>
         <table>
             <tr>
                 <th>Flag</th>
@@ -779,12 +819,12 @@ nmap -F scanme.nmap.org</code></pre>
             <tr>
                 <td>-PS</td>
                 <td>TCP SYN ping</td>
-                <td>Firewall evasion</td>
+                <td>Hosts that respond on common TCP ports</td>
             </tr>
             <tr>
                 <td>-PA</td>
                 <td>TCP ACK ping</td>
-                <td>Stateful firewall evasion</td>
+                <td>Firewall behavior testing in labs</td>
             </tr>
             <tr>
                 <td>-PU</td>
@@ -814,6 +854,7 @@ nmap -F scanme.nmap.org</code></pre>
         </table>
 
         <h3>Practical Examples</h3>
+        <p>Run discovery first when you are not sure what is online. The output should show hosts that are up. If nothing appears, do not immediately assume the network is empty. Check your subnet, VPN, interface, and permission scope.</p>
         <pre><code><span class="code-comment"># Find all live hosts on your network (no port scan)</span>
 nmap -sn 192.168.1.0/24
 
@@ -830,13 +871,14 @@ nmap -PR 192.168.1.0/24
 nmap -PE -PS22,80,443 -PA80 192.168.1.0/24</code></pre>
 
         <div class="scenario-box">
-            <h4>🎯 Real Scenario: Network Inventory</h4>
-            <p><strong>Task:</strong> You're a sysadmin and need to find all devices on the 10.0.0.0/24 network.</p>
+            <h4>Practice scenario: Network Inventory</h4>
+            <p><strong>Task:</strong> You manage a small lab network and want a quick list of live devices on <code>10.0.0.0/24</code>.</p>
             <pre><code><span class="code-comment"># Quick discovery scan</span>
 nmap -sn 10.0.0.0/24 -oG - | grep "Up" | awk '{print $2}'
 
 <span class="code-comment"># With hostnames</span>
 nmap -sn 10.0.0.0/24</code></pre>
+            <p>Look for IPs marked as up. If a hostname appears, note it, but do not treat hostnames as proof of ownership or purpose. They are hints.</p>
         </div>
 
         <div class="divider"></div>
@@ -844,49 +886,52 @@ nmap -sn 10.0.0.0/24</code></pre>
         <!-- SECTION 5: SCAN TYPES -->
         <h2 id="scan-types">5. Port Scanning Types</h2>
 
-        <p>Different scan types use different TCP flags and techniques. Choosing the right scan depends on your goal: <span class="highlight">stealth</span>, <span class="highlight">speed</span>, or <span class="highlight">accuracy</span>.</p>
+        <p>Once you know a host is reachable, the next question is: which ports are listening? Nmap can ask that question in different ways. Some scan types are quick and common, some need admin privileges, and some are mainly useful when you are testing firewall behavior in a lab.</p>
+        <p>For learning, start with the default scan or SYN scan. Do not jump into unusual scan types until you understand what <code>open</code>, <code>closed</code>, and <code>filtered</code> mean in the output.</p>
 
         <h3>TCP Scans</h3>
+        <p>TCP scans are the normal starting point because most familiar services use TCP: SSH, HTTP, HTTPS, SMB, databases, and many admin panels. In real work, this is where you build your first attack surface list or inventory list.</p>
         <table>
             <tr>
                 <th>Flag</th>
                 <th>Scan Type</th>
                 <th>How It Works</th>
-                <th>Stealth</th>
+                <th>Typical Use</th>
             </tr>
             <tr>
                 <td>-sS</td>
                 <td>SYN Scan (Half-open)</td>
                 <td>Sends SYN, waits for SYN/ACK, sends RST</td>
-                <td>⭐⭐⭐</td>
+                <td>Common default when running with privileges</td>
             </tr>
             <tr>
                 <td>-sT</td>
                 <td>Connect Scan</td>
                 <td>Full TCP connection (3-way handshake)</td>
-                <td>⭐</td>
+                <td>Works without admin privileges</td>
             </tr>
             <tr>
                 <td>-sA</td>
                 <td>ACK Scan</td>
                 <td>Sends ACK to detect firewall rules</td>
-                <td>⭐⭐</td>
+                <td>Firewall rule testing</td>
             </tr>
             <tr>
                 <td>-sW</td>
                 <td>Window Scan</td>
                 <td>Like ACK but examines window field</td>
-                <td>⭐⭐</td>
+                <td>Specialized firewall testing</td>
             </tr>
             <tr>
                 <td>-sM</td>
                 <td>Maimon Scan</td>
                 <td>FIN/ACK probe</td>
-                <td>⭐⭐</td>
+                <td>Rare edge cases</td>
             </tr>
         </table>
 
-        <h3>Stealth Scans (NULL, FIN, Xmas)</h3>
+        <h3>NULL, FIN, and Xmas Scans</h3>
+        <p>These scans send unusual TCP flag combinations and then watch how the target responds. They are worth knowing because they teach you how TCP behavior affects scanning, but they are not reliable on every system.</p>
         <table>
             <tr>
                 <th>Flag</th>
@@ -906,16 +951,18 @@ nmap -sn 10.0.0.0/24</code></pre>
             <tr>
                 <td>-sX</td>
                 <td>Xmas Scan</td>
-                <td>FIN + PSH + URG (like a Christmas tree)</td>
+                <td>FIN + PSH + URG</td>
             </tr>
         </table>
 
         <div class="info-box">
-            <h4>ℹ️ How Stealth Scans Work</h4>
-            <p>According to RFC 793, when a closed port receives packets without SYN, RST, or ACK, it should respond with RST. An open port will simply drop the packet silently. This allows detection without completing connections — but doesn't work on Windows (which ignores the RFC).</p>
+            <h4>What to notice</h4>
+            <p>These scans often produce <code>open|filtered</code> results. That means Nmap cannot cleanly separate an open port from a filtered one. In real work, this is where you slow down and verify with another scan type before reporting anything confidently.</p>
         </div>
 
         <h3>UDP Scan</h3>
+        <p>UDP is different because it does not have the same connection handshake as TCP. DNS, SNMP, DHCP, and some VPN services use UDP, so ignoring UDP can leave gaps in your understanding of a host.</p>
+        <p>UDP scans are slower and often need privileges. Start with a small port list instead of scanning every UDP port at once.</p>
         <pre><code><span class="code-comment"># UDP scan (slower because no handshake)</span>
 nmap -sU 192.168.1.1
 
@@ -926,6 +973,7 @@ nmap -sU -p 53,67,68,161,500 192.168.1.1
 nmap -sS -sU -p T:22,80,443,U:53,161 192.168.1.1</code></pre>
 
         <h3>Practical Examples</h3>
+        <p>Use these examples in a lab to compare how the output changes. The useful skill is not running every scan type. The useful skill is seeing when one scan gives you uncertainty and another scan gives you a clearer answer.</p>
         <pre><code><span class="code-comment"># Default SYN scan (requires root/admin)</span>
 sudo nmap -sS 192.168.1.1
 
@@ -938,14 +986,21 @@ sudo nmap -sX 192.168.1.1
 <span class="code-comment"># ACK scan to map firewall rules</span>
 sudo nmap -sA 192.168.1.1</code></pre>
 
+        <div class="tip-box">
+            <h4>Beginner tip</h4>
+            <p>Do not treat <code>filtered</code> as boring. A filtered port tells you something about network controls. It might be a firewall, host-based filtering, a security group, or a path issue between you and the target.</p>
+        </div>
+
         <div class="divider"></div>
 
         <!-- SECTION 6: SERVICE DETECTION -->
-        <h2 id="service">6. Service & Version Detection</h2>
+        <h2 id="service">6. Service and Version Detection</h2>
 
-        <p>Finding open ports is just the beginning. <span class="highlight">Version detection</span> tells you exactly what's running — crucial for vulnerability assessment.</p>
+        <p>An open port only tells you that something answered. Version detection tries to learn what that "something" is. This is where Nmap becomes more useful for security work, because "port 80 is open" is vague, while "Apache httpd 2.4.18 is responding" gives you something concrete to verify.</p>
+        <p>In real work, service detection helps with patch review, asset inventory, suspicious host triage, and deciding which logs or owners to check next.</p>
 
         <h3>Version Detection Flags</h3>
+        <p>The <code>-sV</code> flag sends extra probes and reads the responses. Higher intensity can produce better detail, but it can also take longer and create more traffic. Start with the default version detection, then increase intensity only when the result is unclear.</p>
         <table>
             <tr>
                 <th>Flag</th>
@@ -972,15 +1027,15 @@ sudo nmap -sA 192.168.1.1</code></pre>
         <pre><code><span class="code-comment"># Basic version detection</span>
 nmap -sV 192.168.1.1
 
-<span class="code-comment"># Aggressive version detection</span>
+<span class="code-comment"># More detailed version detection</span>
 nmap -sV --version-all 192.168.1.1
 
 <span class="code-comment"># Combined with service scripts</span>
 nmap -sV -sC 192.168.1.1</code></pre>
 
         <div class="scenario-box">
-            <h4>🎯 Real Scenario: Vulnerability Assessment</h4>
-            <p><strong>Task:</strong> Find outdated services on a web server.</p>
+            <h4>Practice scenario: Service review</h4>
+            <p><strong>Task:</strong> You found a lab web server and want to know which service versions are visible before checking vendor advisories.</p>
             <pre><code><span class="code-comment"># Detailed version scan on common ports</span>
 nmap -sV --version-all -p 21,22,80,443,3306,8080 webserver.local
 
@@ -990,17 +1045,19 @@ nmap -sV --version-all -p 21,22,80,443,3306,8080 webserver.local
 # 80/tcp   open  http     Apache httpd 2.4.18
 # 443/tcp  open  ssl/http Apache httpd 2.4.18
 # 3306/tcp open  mysql    MySQL 5.5.62</code></pre>
-            <p>Now you can check these versions against CVE databases!</p>
+            <p>Look for service names and versions. Then verify with vendor advisories, package manager data, or authenticated inventory. Banners can be wrong, customized, or hidden.</p>
         </div>
 
         <div class="divider"></div>
 
         <!-- SECTION 7: OS DETECTION -->
-        <h2 id="os">7. OS Detection & Fingerprinting</h2>
+        <h2 id="os">7. OS Detection and Fingerprinting</h2>
 
-        <p>Nmap can identify operating systems by analyzing how targets respond to specially crafted probes.</p>
+        <p>OS detection tries to guess the target operating system by looking at tiny differences in network responses. It is useful context, not a courtroom-level fact. A result like "Linux 4.x" can help you choose the right admin team or log source, but you should verify it before making decisions.</p>
+        <p>In a home lab, try this against a Linux VM and a Windows VM. Seeing the difference makes the feature easier to understand than reading the flag alone.</p>
 
         <h3>OS Detection Flags</h3>
+        <p>OS detection usually works best when Nmap can see at least one open port and one closed port. If every port is filtered, the fingerprint may be weak or missing.</p>
         <table>
             <tr>
                 <th>Flag</th>
@@ -1027,16 +1084,17 @@ nmap -sV --version-all -p 21,22,80,443,3306,8080 webserver.local
         <pre><code><span class="code-comment"># Basic OS detection</span>
 sudo nmap -O 192.168.1.1
 
-<span class="code-comment"># Aggressive OS guessing</span>
+<span class="code-comment"># More detailed OS guessing</span>
 sudo nmap -O --osscan-guess 192.168.1.1
 
 <span class="code-comment"># Combined with version detection (common combo)</span>
 sudo nmap -O -sV 192.168.1.1</code></pre>
 
         <div class="tip-box">
-            <h4>💡 The "Aggressive" Shortcut: -A</h4>
-            <p>The <code>-A</code> flag enables: OS detection (-O) + Version detection (-sV) + Script scanning (-sC) + Traceroute (--traceroute). Perfect for comprehensive reconnaissance!</p>
+            <h4>The -A shortcut</h4>
+            <p>The <code>-A</code> flag enables OS detection (-O), version detection (-sV), default scripts (-sC), and traceroute (--traceroute). Use it when you have permission for a broader inventory scan and you want one command that gathers several kinds of detail.</p>
             <pre><code>sudo nmap -A 192.168.1.1</code></pre>
+            <p>What to look for: OS guesses, service versions, script output, and traceroute hops. Common beginner mistake: running <code>-A</code> everywhere just because it is convenient. Use it when the scope and network impact make sense.</p>
         </div>
 
         <div class="divider"></div>
@@ -1044,9 +1102,11 @@ sudo nmap -O -sV 192.168.1.1</code></pre>
         <!-- SECTION 8: NSE -->
         <h2 id="nse">8. Nmap Scripting Engine (NSE)</h2>
 
-        <p>NSE is what makes Nmap <span class="highlight">truly powerful</span>. It's a Lua-based scripting engine with 600+ scripts for vulnerability detection, exploitation, and more.</p>
+        <p>NSE is Nmap's scripting layer. Think of it as a library of small checks that can ask more specific questions after you know which services exist. For example, a script can read an HTTP title, check TLS certificate details, list supported SMB information, or look for a known vulnerability pattern.</p>
+        <p>This is useful in real work because it turns a port list into a more readable set of clues. Still, scripts are not all equal. Some are safe information gathering. Others are intrusive and should stay in labs unless you have explicit written permission.</p>
 
         <h3>Script Categories</h3>
+        <p>Categories help you choose scripts without memorizing every script name. Beginners should spend most of their time with <code>default</code>, <code>safe</code>, <code>discovery</code>, and focused service scripts. Save intrusive categories for controlled labs.</p>
         <table>
             <tr>
                 <th>Category</th>
@@ -1062,7 +1122,7 @@ sudo nmap -O -sV 192.168.1.1</code></pre>
             </tr>
             <tr>
                 <td>brute</td>
-                <td>Brute force attacks</td>
+                <td>Password guessing checks, labs only unless explicitly authorized</td>
             </tr>
             <tr>
                 <td>default</td>
@@ -1074,11 +1134,11 @@ sudo nmap -O -sV 192.168.1.1</code></pre>
             </tr>
             <tr>
                 <td>dos</td>
-                <td>Denial of Service (use carefully!)</td>
+                <td>Denial of Service checks (authorized labs only)</td>
             </tr>
             <tr>
                 <td>exploit</td>
-                <td>Active exploitation</td>
+                <td>Active exploitation checks, labs only unless explicitly authorized</td>
             </tr>
             <tr>
                 <td>fuzzer</td>
@@ -1107,6 +1167,7 @@ sudo nmap -O -sV 192.168.1.1</code></pre>
         </table>
 
         <h3>Using NSE Scripts</h3>
+        <p>Start with one script or one safe category. If you run too many scripts at once, the output gets noisy and you will not learn which result came from which check.</p>
         <pre><code><span class="code-comment"># Run default scripts</span>
 nmap -sC 192.168.1.1
 
@@ -1129,7 +1190,8 @@ nmap --script="vuln and safe" 192.168.1.1
 nmap --script="default and not intrusive" 192.168.1.1</code></pre>
 
         <h3>Essential Security Scripts</h3>
-        <pre><code><span class="code-comment"># Check for vulnerabilities</span>
+        <p>These examples show the style of NSE usage. Read the script name out loud and ask what it is checking. <code>http-security-headers</code> checks web headers. <code>ssh-auth-methods</code> checks SSH authentication methods. That simple habit keeps the output connected to the goal.</p>
+        <pre><code><span class="code-comment"># Check for vulnerabilities in an authorized lab</span>
 nmap --script vuln 192.168.1.1
 
 <span class="code-comment"># SSL/TLS vulnerability check</span>
@@ -1151,18 +1213,20 @@ nmap --script ftp-anon -p 21 192.168.1.1
 nmap --script ssh-auth-methods -p 22 192.168.1.1</code></pre>
 
         <div class="warning-box">
-            <h4>⚠️ Warning: Intrusive Scripts</h4>
-            <p>Scripts in the <code>intrusive</code>, <code>dos</code>, <code>exploit</code>, and <code>brute</code> categories can crash services or trigger security alerts. Only use with explicit permission!</p>
+            <h4>Warning: Intrusive Scripts</h4>
+            <p>Scripts in the <code>intrusive</code>, <code>dos</code>, <code>exploit</code>, and <code>brute</code> categories can crash services, trigger security alerts, or behave like an attack. In real work, this is where you slow down and verify scope before running anything.</p>
         </div>
 
         <div class="divider"></div>
 
         <!-- SECTION 9: TIMING -->
-        <h2 id="timing">9. Timing & Performance</h2>
+        <h2 id="timing">9. Timing and Performance</h2>
 
-        <p>Balance between <span class="highlight">speed</span> and <span class="highlight">stealth</span>. Faster scans are noisier; slower scans evade detection.</p>
+        <p>Timing controls how fast Nmap sends probes and how patient it is while waiting for replies. Faster scans feel nice in a lab, but they can miss results on slow networks or create unnecessary noise. Slower scans take longer, but they are easier on fragile systems and monitored environments.</p>
+        <p>In real work, timing is not about being clever. It is about matching the scan to the network. A small home lab can handle faster scans. A production subnet, a VPN link, or old equipment deserves more patience.</p>
 
         <h3>Timing Templates</h3>
+        <p>The <code>-T</code> templates are shortcuts. <code>-T3</code> is the default. <code>-T4</code> is common on reliable internal networks. <code>-T5</code> is usually too aggressive for serious work because speed can cost accuracy.</p>
         <table>
             <tr>
                 <th>Flag</th>
@@ -1171,13 +1235,13 @@ nmap --script ssh-auth-methods -p 22 192.168.1.1</code></pre>
             </tr>
             <tr>
                 <td>-T0</td>
-                <td>Paranoid</td>
-                <td>IDS evasion (very slow)</td>
+                <td>Slowest</td>
+                <td>Very slow, low-traffic testing</td>
             </tr>
             <tr>
                 <td>-T1</td>
-                <td>Sneaky</td>
-                <td>IDS evasion</td>
+                <td>Very slow</td>
+                <td>Slow testing on monitored networks</td>
             </tr>
             <tr>
                 <td>-T2</td>
@@ -1191,17 +1255,18 @@ nmap --script ssh-auth-methods -p 22 192.168.1.1</code></pre>
             </tr>
             <tr>
                 <td>-T4</td>
-                <td>Aggressive</td>
+                <td>Fast</td>
                 <td>Fast scan on reliable network</td>
             </tr>
             <tr>
                 <td>-T5</td>
-                <td>Insane</td>
+                <td>Very fast</td>
                 <td>Very fast, may miss ports</td>
             </tr>
         </table>
 
         <h3>Fine-Tuned Timing Options</h3>
+        <p>Fine-tuned options are useful when you need more control than a template gives you. For example, <code>--max-rate</code> can stop a scan from sending probes too quickly, and <code>--host-timeout</code> prevents one stubborn host from holding up the whole run.</p>
         <pre><code><span class="code-comment"># Set max outstanding probes</span>
 nmap --min-parallelism 100 192.168.1.0/24
 
@@ -1212,17 +1277,24 @@ nmap --host-timeout 30m 192.168.1.0/24
 nmap --min-rate 1000 192.168.1.0/24
 nmap --max-rate 500 192.168.1.0/24
 
-<span class="code-comment"># Set scan delay (for IDS evasion)</span>
+<span class="code-comment"># Set scan delay for monitored networks</span>
 nmap --scan-delay 1s 192.168.1.1</code></pre>
+
+        <div class="tip-box">
+            <h4>What to watch for</h4>
+            <p>If a fast scan finds fewer ports than a normal scan, trust the slower verified result. Beginners often assume faster means better. With scanning, faster just means faster.</p>
+        </div>
 
         <div class="divider"></div>
 
         <!-- SECTION 10: OUTPUT -->
         <h2 id="output">10. Output Formats</h2>
 
-        <p>Save your scans for documentation, parsing, and reporting.</p>
+        <p>If a scan matters, save it. Terminal output disappears, scrollback gets messy, and reports need evidence. Output files let you compare before and after changes, share results with a teammate, or parse the scan later with tools.</p>
+        <p>In real work, this is a habit that separates casual scanning from useful notes. Name files clearly so future you knows what was scanned and why.</p>
 
         <h3>Output Options</h3>
+        <p>Nmap can save human-readable text, XML for tools, grepable output for quick parsing, or all common formats at once. Most of the time, <code>-oA</code> is the clean choice because it writes several useful formats with one base name.</p>
         <table>
             <tr>
                 <th>Flag</th>
@@ -1246,8 +1318,8 @@ nmap --scan-delay 1s 192.168.1.1</code></pre>
             </tr>
             <tr>
                 <td>-oS file.txt</td>
-                <td>Script Kiddie</td>
-                <td>Just for fun (leet speak)</td>
+                <td>Novelty</td>
+                <td>Novelty output, rarely useful</td>
             </tr>
             <tr>
                 <td>-oA basename</td>
@@ -1265,270 +1337,276 @@ nmap --append-output -oN results.txt 192.168.1.1
 <span class="code-comment"># Verbose output to screen + file</span>
 nmap -v -sV -oN scan.txt 192.168.1.1</code></pre>
 
+        <div class="tip-box">
+            <h4>Practical naming</h4>
+            <p>A useful filename might be <code>2026-06-20_home-lab_webserver_sV</code> or <code>internal-inventory_weekly_001</code>. The goal is simple: when you open the folder later, the scan names should still make sense.</p>
+        </div>
+
         <div class="divider"></div>
 
-        <!-- SECTION 11: EVASION -->
-        <h2 id="evasion">11. Firewall Evasion & Stealth</h2>
+        <!-- SECTION 11: FIREWALL TESTING -->
+        <h2 id="firewall">11. Firewall Testing and Scan Behavior</h2>
 
-        <h3>Evasion Techniques</h3>
+        <p>Firewalls change what Nmap can see. Sometimes a port is open, but a firewall blocks your probe. Sometimes the host is alive, but it does not answer ping. This section is about reading those clues, not trying random tricks until something works.</p>
+        <p>In real work, firewall testing should be scoped and documented. If you are checking a lab firewall, change one thing at a time and compare the output. That way you learn what the control is doing instead of creating confusing noise.</p>
+
+        <h3>Scan Behavior Options</h3>
+        <p>These options help you understand scan behavior and firewall responses. Use them in authorized labs, and write down what changed between each run.</p>
         <table>
             <tr>
                 <th>Flag</th>
-                <th>Technique</th>
+                <th>What It Helps You Learn</th>
             </tr>
             <tr>
-                <td>-f</td>
-                <td>Fragment packets</td>
+                <td>-Pn</td>
+                <td>Scan a known host even when discovery probes are blocked</td>
             </tr>
             <tr>
-                <td>--mtu [size]</td>
-                <td>Set specific MTU</td>
+                <td>--reason</td>
+                <td>Show why Nmap chose a port state</td>
             </tr>
             <tr>
-                <td>-D decoy1,decoy2,ME</td>
-                <td>Decoy scan (hide among fake IPs)</td>
+                <td>-sA</td>
+                <td>Check whether packets are filtered by firewall rules</td>
             </tr>
             <tr>
-                <td>-S [IP]</td>
-                <td>Spoof source IP</td>
+                <td>--packet-trace</td>
+                <td>Show sent and received packets for learning and troubleshooting</td>
             </tr>
             <tr>
-                <td>-e [interface]</td>
-                <td>Use specific interface</td>
+                <td>--traceroute</td>
+                <td>Show the network path Nmap sees to the target</td>
             </tr>
             <tr>
-                <td>--source-port [port]</td>
-                <td>Use specific source port</td>
-            </tr>
-            <tr>
-                <td>--data-length [len]</td>
-                <td>Append random data to packets</td>
-            </tr>
-            <tr>
-                <td>--randomize-hosts</td>
-                <td>Randomize target order</td>
-            </tr>
-            <tr>
-                <td>--badsum</td>
-                <td>Send packets with bad checksums</td>
+                <td>--max-retries [n]</td>
+                <td>Control how patient Nmap is with missing replies</td>
             </tr>
         </table>
 
-        <pre><code><span class="code-comment"># Fragment packets to bypass simple firewalls</span>
-sudo nmap -f 192.168.1.1
+        <pre><code><span class="code-comment"># Scan a known host even if ping-style discovery is blocked</span>
+nmap -Pn -p 22,80,443 192.168.56.10
 
-<span class="code-comment"># Decoy scan - your IP hidden among decoys</span>
-sudo nmap -D 10.0.0.1,10.0.0.2,ME 192.168.1.1
+<span class="code-comment"># Ask Nmap to explain why it chose each state</span>
+nmap --reason -p 22,80,443 192.168.56.10
 
-<span class="code-comment"># Randomize host order in large scans</span>
-nmap --randomize-hosts 192.168.1.0/24
+<span class="code-comment"># Check firewall filtering behavior in a lab</span>
+sudo nmap -sA -p 22,80,443 192.168.56.10
 
-<span class="code-comment"># Combine multiple evasion techniques</span>
-sudo nmap -sS -T2 -f --source-port 53 --randomize-hosts 192.168.1.0/24</code></pre>
+<span class="code-comment"># Show packets while learning or troubleshooting</span>
+sudo nmap --packet-trace -p 80 192.168.56.10</code></pre>
+
+        <div class="tip-box">
+            <h4>What to look for</h4>
+            <p>Pay attention to <code>filtered</code>, <code>unfiltered</code>, and the reason field. If <code>-Pn</code> finds ports after a discovery scan found nothing, the host may simply be blocking discovery probes. That is a useful finding, but it still needs context.</p>
+        </div>
 
         <div class="divider"></div>
 
         <!-- SECTION 12: SCENARIOS -->
-        <h2 id="scenarios">12. Real-World Scenarios</h2>
+        <h2 id="scenarios">12. Practice Scenarios</h2>
+
+        <p>The best way to learn Nmap is to practice small workflows. Each scenario below starts with a simple question, uses a command that matches that question, and points out what to notice in the result.</p>
 
         <div class="scenario-box">
-            <h4>🎯 Scenario 1: Initial Reconnaissance</h4>
-            <p><strong>Task:</strong> As a pentester, do initial recon on a target network.</p>
+            <h4>Scenario 1: Map a home lab subnet</h4>
+            <p><strong>Question:</strong> Which lab machines are online right now?</p>
             <pre><code><span class="code-comment"># Step 1: Find live hosts</span>
-nmap -sn 10.10.10.0/24 -oG hosts.gnmap
+nmap -sn 192.168.56.0/24 -oG lab-hosts.gnmap
 
-<span class="code-comment"># Step 2: Quick port scan on live hosts</span>
-nmap -iL live_hosts.txt -F -oA quick_scan
+<span class="code-comment"># Step 2: Scan the common ports on hosts you own</span>
+nmap -iL live_hosts.txt -F -oA lab-quick-scan
 
-<span class="code-comment"># Step 3: Detailed scan on interesting hosts</span>
-nmap -sV -sC -O -p- -oA detailed_scan 10.10.10.50</code></pre>
+<span class="code-comment"># Step 3: Take a closer look at one interesting host</span>
+nmap -sV -sC -O -p 22,80,443 -oA lab-webserver 192.168.56.10</code></pre>
+            <p><strong>What to notice:</strong> Start with live hosts, then narrow down. Beginners often run a heavy scan first and then wonder why the output feels overwhelming.</p>
         </div>
 
         <div class="scenario-box">
-            <h4>🎯 Scenario 2: Web Server Assessment</h4>
-            <p><strong>Task:</strong> Assess security of a web server.</p>
+            <h4>Scenario 2: Check a web server you administer</h4>
+            <p><strong>Question:</strong> Which web ports are open, and what does the server reveal?</p>
             <pre><code><span class="code-comment"># Full web scan</span>
 nmap -sV -sC -p 80,443,8080,8443 \
   --script http-enum,http-headers,http-methods,http-security-headers \
-  -oA web_scan target.com</code></pre>
+  -oA web-review webserver.local</code></pre>
+            <p><strong>What to notice:</strong> Look for unexpected ports, missing security headers, unusual HTTP methods, and version banners that need verification.</p>
         </div>
 
         <div class="scenario-box">
-            <h4>🎯 Scenario 3: SMB Vulnerability Check</h4>
-            <p><strong>Task:</strong> Check for SMB vulnerabilities (WannaCry, EternalBlue).</p>
-            <pre><code><span class="code-comment"># SMB vulnerability scan</span>
-nmap -p 445 --script smb-vuln-ms17-010,smb-vuln-ms08-067 192.168.1.0/24</code></pre>
+            <h4>Scenario 3: Review a suspicious internal host</h4>
+            <p><strong>Question:</strong> A host appeared in an alert. What network services are visible from your analyst workstation?</p>
+            <pre><code><span class="code-comment"># Visible service review</span>
+nmap -sV -sC -p 22,80,135,139,445,3389 -oA suspicious-host 10.10.20.45</code></pre>
+            <p><strong>What to notice:</strong> RDP, SMB, SSH, and web admin panels are good places to verify ownership, patch state, and logs. Do not jump from "port open" to "host compromised" without evidence.</p>
         </div>
 
         <div class="scenario-box">
-            <h4>🎯 Scenario 4: Network Inventory for Sysadmin</h4>
-            <p><strong>Task:</strong> Create inventory of all devices and services.</p>
+            <h4>Scenario 4: Build a basic service inventory</h4>
+            <p><strong>Question:</strong> What services are exposed across a small authorized subnet?</p>
             <pre><code><span class="code-comment"># Comprehensive network inventory</span>
-nmap -sV -O --top-ports 1000 -oX inventory.xml 192.168.1.0/24
+nmap -sV --top-ports 1000 -oA weekly-inventory 192.168.1.0/24
 
-<span class="code-comment"># Parse and view results</span>
-xsltproc inventory.xml -o inventory.html</code></pre>
+<span class="code-comment"># Quickly list hosts with open ports from grepable output</span>
+grep "Ports:" weekly-inventory.gnmap</code></pre>
+            <p><strong>What to notice:</strong> Save the output so you can compare it next week. New services, missing services, and changed banners are usually more interesting than one scan by itself.</p>
         </div>
 
         <div class="divider"></div>
 
         <!-- SECTION 13: CHEATSHEET -->
-        <h2 id="cheatsheet">13. Quick Reference Cheatsheet</h2>
+        <h2 id="cheatsheet">13. Quick Reference</h2>
+
+        <p>Use this section as a reminder, not as a replacement for understanding the output. Pick the flag that matches your question, run a small scan, read the result, then decide the next step.</p>
 
         <div class="cheatsheet">
             <div class="cheat-card">
-                <h4>🎯 Target Selection</h4>
+                <h4>Target Selection</h4>
                 <pre><code>nmap 192.168.1.1         <span class="code-comment"># Single IP</span>
 nmap 192.168.1.0/24      <span class="code-comment"># Subnet</span>
 nmap -iL targets.txt     <span class="code-comment"># From file</span>
 nmap 192.168.1.1-100     <span class="code-comment"># Range</span></code></pre>
             </div>
             <div class="cheat-card">
-                <h4>📡 Discovery</h4>
+                <h4>Discovery</h4>
                 <pre><code>nmap -sn                 <span class="code-comment"># Ping scan</span>
 nmap -Pn                 <span class="code-comment"># Skip discovery</span>
 nmap -PS22               <span class="code-comment"># TCP SYN ping</span>
 nmap -PR                 <span class="code-comment"># ARP ping</span></code></pre>
             </div>
             <div class="cheat-card">
-                <h4>🔍 Scan Types</h4>
+                <h4>Scan Types</h4>
                 <pre><code>nmap -sS                 <span class="code-comment"># SYN scan</span>
 nmap -sT                 <span class="code-comment"># Connect scan</span>
 nmap -sU                 <span class="code-comment"># UDP scan</span>
 nmap -sA                 <span class="code-comment"># ACK scan</span></code></pre>
             </div>
             <div class="cheat-card">
-                <h4>🔢 Port Selection</h4>
+                <h4>Port Selection</h4>
                 <pre><code>nmap -p 22               <span class="code-comment"># Single port</span>
 nmap -p 1-1000           <span class="code-comment"># Range</span>
 nmap -p-                 <span class="code-comment"># All ports</span>
 nmap -F                  <span class="code-comment"># Fast (100)</span></code></pre>
             </div>
             <div class="cheat-card">
-                <h4>🔬 Detection</h4>
+                <h4>Detection</h4>
                 <pre><code>nmap -sV                 <span class="code-comment"># Version</span>
 nmap -O                  <span class="code-comment"># OS detect</span>
-nmap -A                  <span class="code-comment"># Aggressive</span>
+nmap -A                  <span class="code-comment"># OS, version, scripts, route</span>
 nmap -sC                 <span class="code-comment"># Scripts</span></code></pre>
             </div>
             <div class="cheat-card">
-                <h4>⏱️ Timing</h4>
-                <pre><code>nmap -T0                 <span class="code-comment"># Paranoid</span>
+                <h4>Timing</h4>
+                <pre><code>nmap -T0                 <span class="code-comment"># Slowest</span>
 nmap -T3                 <span class="code-comment"># Normal</span>
-nmap -T4                 <span class="code-comment"># Aggressive</span>
-nmap -T5                 <span class="code-comment"># Insane</span></code></pre>
+nmap -T4                 <span class="code-comment"># Fast</span>
+nmap -T5                 <span class="code-comment"># Very fast</span></code></pre>
             </div>
             <div class="cheat-card">
-                <h4>💾 Output</h4>
+                <h4>Output</h4>
                 <pre><code>nmap -oN file.txt        <span class="code-comment"># Normal</span>
 nmap -oX file.xml        <span class="code-comment"># XML</span>
 nmap -oG file.gnmap      <span class="code-comment"># Grepable</span>
 nmap -oA basename        <span class="code-comment"># All</span></code></pre>
             </div>
             <div class="cheat-card">
-                <h4>🛡️ Evasion</h4>
-                <pre><code>nmap -f                  <span class="code-comment"># Fragment</span>
-nmap -D decoy,ME         <span class="code-comment"># Decoy</span>
-nmap --source-port 53    <span class="code-comment"># Src port</span>
-nmap --randomize-hosts   <span class="code-comment"># Random</span></code></pre>
+                <h4>Firewall Behavior</h4>
+                <pre><code>nmap -Pn                 <span class="code-comment"># Skip discovery</span>
+nmap --reason            <span class="code-comment"># Explain states</span>
+nmap -sA                 <span class="code-comment"># Check filtering</span>
+nmap --packet-trace      <span class="code-comment"># Show packets</span></code></pre>
             </div>
         </div>
 
         <div class="divider"></div>
 
         <!-- SECTION 14: QUIZ -->
-        <h2 id="quiz">14. Knowledge Quiz</h2>
+        <h2 id="quiz">14. Knowledge Check</h2>
 
-        <p>Test your Nmap knowledge! Try to answer before revealing the solution.</p>
+        <p>Use these as quick self-checks. The goal is not to memorize every command. The goal is to recognize which Nmap question you are asking.</p>
 
         <div class="challenge">
-            <h4>🧠 Quiz 1: Basic Scanning</h4>
+            <h4>Quiz 1: Basic Scanning</h4>
             <p>How would you scan the top 100 ports on 192.168.1.50?</p>
             <details>
-                <summary>Click to reveal answer</summary>
+                <summary>Show answer</summary>
                 <pre><code>nmap -F 192.168.1.50</code></pre>
-                <p>The <code>-F</code> flag performs a "Fast" scan of the top 100 most common ports.</p>
+                <p>The <code>-F</code> flag performs a fast scan of the top 100 most common ports. Look for open ports first, then decide whether a deeper scan is needed.</p>
             </details>
         </div>
 
         <div class="challenge">
-            <h4>🧠 Quiz 2: Stealth Scanning</h4>
-            <p>You need to scan a host while avoiding detection. What scan type and timing would you use?</p>
+            <h4>Quiz 2: Low-traffic scanning</h4>
+            <p>You are scanning an authorized lab host and want to keep traffic low. What scan type and timing would you use?</p>
             <details>
-                <summary>Click to reveal answer</summary>
+                <summary>Show answer</summary>
                 <pre><code>sudo nmap -sS -T2 192.168.1.50</code></pre>
-                <p>SYN scan (<code>-sS</code>) is stealthier than connect scan, and <code>-T2</code> (Polite) slows down to reduce detection risk.</p>
+                <p>SYN scan (<code>-sS</code>) avoids completing the full TCP connection, and <code>-T2</code> slows the scan down. In real work, verify that the slower timing still gives complete enough results.</p>
             </details>
         </div>
 
         <div class="challenge">
-            <h4>🧠 Quiz 3: Full Enumeration</h4>
+            <h4>Quiz 3: Full Enumeration</h4>
             <p>You found a web server and want to: detect OS, find service versions, run default scripts, and save in all formats as "webserver_scan".</p>
             <details>
-                <summary>Click to reveal answer</summary>
+                <summary>Show answer</summary>
                 <pre><code>sudo nmap -A -oA webserver_scan target.com</code></pre>
                 <p>Or more explicitly:</p>
                 <pre><code>sudo nmap -O -sV -sC --traceroute -oA webserver_scan target.com</code></pre>
+                <p>Look for service versions, script output, and OS guesses. Treat the result as evidence to verify, not a final report by itself.</p>
             </details>
         </div>
 
         <div class="challenge">
-            <h4>🧠 Quiz 4: Vulnerability Scanning</h4>
-            <p>How do you check if a Windows machine is vulnerable to EternalBlue?</p>
+            <h4>Quiz 4: Service Review</h4>
+            <p>You need to identify the service and version on ports 22, 80, and 443 for a host you manage. What command would you run?</p>
             <details>
-                <summary>Click to reveal answer</summary>
-                <pre><code>nmap -p 445 --script smb-vuln-ms17-010 192.168.1.50</code></pre>
-                <p>This runs the specific NSE script that checks for MS17-010 (EternalBlue) vulnerability.</p>
+                <summary>Show answer</summary>
+                <pre><code>nmap -sV -p 22,80,443 192.168.1.50</code></pre>
+                <p>Check the <code>SERVICE</code> and <code>VERSION</code> columns. If the version looks old, verify it with the system owner or package data before reporting it.</p>
             </details>
         </div>
 
         <div class="challenge">
-            <h4>🧠 Quiz 5: Network Discovery</h4>
+            <h4>Quiz 5: Network Discovery</h4>
             <p>Find all live hosts on 10.0.0.0/24 without port scanning, saving results to live_hosts.txt.</p>
             <details>
-                <summary>Click to reveal answer</summary>
+                <summary>Show answer</summary>
                 <pre><code>nmap -sn 10.0.0.0/24 -oG live_hosts.txt</code></pre>
-                <p><code>-sn</code> does ping sweep only (no port scan), and <code>-oG</code> saves in grepable format for easy parsing.</p>
+                <p><code>-sn</code> does discovery only, and <code>-oG</code> saves grepable output. If expected hosts are missing, check whether they block discovery probes.</p>
             </details>
         </div>
 
         <div class="challenge">
-            <h4>🧠 Quiz 6: Firewall Evasion</h4>
-            <p>A firewall is blocking your scans. Try scanning with fragmented packets, using DNS source port, with random host order.</p>
+            <h4>Quiz 6: Firewall behavior</h4>
+            <p>A host is known to exist, but your discovery scan reports nothing. What command helps you scan it anyway and see why Nmap chooses each state?</p>
             <details>
-                <summary>Click to reveal answer</summary>
-                <pre><code>sudo nmap -sS -f --source-port 53 --randomize-hosts 192.168.1.0/24</code></pre>
-                <p>Combines fragmentation, DNS port (often allowed through firewalls), and randomization to evade detection.</p>
+                <summary>Show answer</summary>
+                <pre><code>nmap -Pn --reason -p 22,80,443 192.168.1.50</code></pre>
+                <p><code>-Pn</code> skips host discovery, and <code>--reason</code> explains the state decisions. This is useful when discovery probes are filtered.</p>
             </details>
         </div>
 
         <div class="challenge">
-            <h4>🧠 Quiz 7: Service Identification</h4>
+            <h4>Quiz 7: Service Identification</h4>
             <p>Port 8080 is open. Get detailed version info with maximum intensity.</p>
             <details>
-                <summary>Click to reveal answer</summary>
+                <summary>Show answer</summary>
                 <pre><code>nmap -sV --version-all -p 8080 192.168.1.50</code></pre>
-                <p>Or use <code>--version-intensity 9</code> for the same effect.</p>
+                <p>Or use <code>--version-intensity 9</code> for the same effect. Look for the service name, product, and version, then verify anything important.</p>
             </details>
         </div>
 
         <div class="challenge">
-            <h4>🧠 Quiz 8: UDP Services</h4>
+            <h4>Quiz 8: UDP Services</h4>
             <p>Check for SNMP (161) and DNS (53) UDP services on a network segment.</p>
             <details>
-                <summary>Click to reveal answer</summary>
+                <summary>Show answer</summary>
                 <pre><code>sudo nmap -sU -p 53,161 192.168.1.0/24</code></pre>
-                <p>UDP scans require root/admin privileges and are slower than TCP scans.</p>
+                <p>UDP scans require root/admin privileges and are slower than TCP scans. Keep the port list small when you are learning.</p>
             </details>
         </div>
 
         <div class="divider"></div>
 
-        <!-- FOOTER -->
-        <div class="footer">
-            <p>© 2026 lokii.tech | <a href="https://github.com/UnExplainableFish52/lokii.tech" target="_blank" rel="noopener noreferrer">Open Source Project</a></p>
-            <p>Happy scanning! 🌐 Remember: <span>Always get permission before scanning!</span></p>
-        </div>
     </div>
     <script src="../../js/main.js"></script>
 </body>

@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+<!-- lokii-note-polish: checked 2026-06-20; removed decorative emoji and em dash usage, improved operating-system flow, and updated metadata. -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>1.4 Introduction to Operating Systems | lokii.tech</title>
 
-    <meta name="description" content="Comprehensive guide to operating systems: from the revolutionary GNU/Linux story to practical cybersecurity skills across Windows, Linux, and macOS.">
+    <meta name="description" content="Beginner-friendly operating systems notes covering OS history, kernels, system calls, virtualization, processes, file systems, logs, and Windows, Linux, and macOS security basics.">
     <meta name="author" content="lokii (UnExplainableFish52)">
     <meta name="theme-color" content="#0d1117">
 
@@ -13,7 +14,7 @@
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://lokii.tech/intro/notes/1.4-intro-to-os.html">
     <meta property="og:title" content="1.4 Introduction to Operating Systems | lokii.tech">
-    <meta property="og:description" content="Comprehensive guide to operating systems: from the revolutionary GNU/Linux story to practical cybersecurity skills across Windows, Linux, and macOS.">
+    <meta property="og:description" content="Beginner-friendly operating systems notes covering OS history, kernels, system calls, virtualization, processes, file systems, logs, and Windows, Linux, and macOS security basics.">
     <meta property="og:image" content="https://lokii.tech/preview.jpg">
     <!-- SEO Metadata -->
     <link rel="canonical" href="https://lokii.tech/intro/notes/1.4-intro-to-os.html">
@@ -22,7 +23,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://lokii.tech/intro/notes/1.4-intro-to-os.html">
     <meta name="twitter:title" content="1.4 Introduction to Operating Systems | lokii.tech">
-    <meta name="twitter:description" content="Comprehensive guide to operating systems: from the revolutionary GNU/Linux story to practical cybersecurity skills across Windows, Linux, and macOS.">
+    <meta name="twitter:description" content="Beginner-friendly operating systems notes covering OS history, kernels, system calls, virtualization, processes, file systems, logs, and Windows, Linux, and macOS security basics.">
     <meta name="twitter:image" content="https://lokii.tech/preview.jpg">
 
 <!-- Favicons -->
@@ -61,6 +62,13 @@
         .subtitle {
             color: #8b949e;
             font-size: 1.1em;
+        }
+
+        .lesson-bridge {
+            color: #c9d1d9;
+            max-width: 820px;
+            margin: 16px auto 0;
+            font-size: 1em;
         }
 
         /* Content headings */
@@ -215,8 +223,16 @@
         .os-card.macos { border-top: 4px solid #ff6b6b; }
 
         .os-icon {
-            font-size: 2em;
+            display: inline-flex;
+            align-items: center;
+            min-height: 30px;
+            padding: 5px 10px;
             margin-bottom: 15px;
+            border-radius: 999px;
+            background: rgba(0, 188, 212, 0.12);
+            color: #00bcd4;
+            font-size: 0.78em;
+            font-weight: 700;
         }
 
         /* Layer Diagram */
@@ -415,7 +431,7 @@
           "@id": "https://lokii.tech/intro/notes/1.4-intro-to-os.html#webpage",
           "url": "https://lokii.tech/intro/notes/1.4-intro-to-os.html",
           "name": "1.4 Introduction to Operating Systems | lokii.tech",
-          "description": "Comprehensive guide to operating systems: from the revolutionary GNU/Linux story to practical cybersecurity skills across Windows, Linux, and macOS.",
+          "description": "Beginner-friendly operating systems notes covering OS history, kernels, system calls, virtualization, processes, file systems, logs, and Windows, Linux, and macOS security basics.",
           "isPartOf": {
             "@id": "https://lokii.tech/#website"
           },
@@ -423,7 +439,7 @@
             "@id": "https://lokii.tech/intro/notes/1.4-intro-to-os.html#breadcrumbs"
           },
           "primaryImageOfPage": "https://lokii.tech/preview.jpg",
-          "dateModified": "2026-06-04",
+          "dateModified": "2026-06-20",
           "inLanguage": "en"
         },
         {
@@ -433,7 +449,7 @@
           ],
           "@id": "https://lokii.tech/intro/notes/1.4-intro-to-os.html#article",
           "headline": "1.4 Introduction to Operating Systems | lokii.tech",
-          "description": "Comprehensive guide to operating systems: from the revolutionary GNU/Linux story to practical cybersecurity skills across Windows, Linux, and macOS.",
+          "description": "Beginner-friendly operating systems notes covering OS history, kernels, system calls, virtualization, processes, file systems, logs, and Windows, Linux, and macOS security basics.",
           "url": "https://lokii.tech/intro/notes/1.4-intro-to-os.html",
           "image": "https://lokii.tech/preview.jpg",
           "author": {
@@ -447,7 +463,7 @@
           },
           "educationalLevel": "Beginner",
           "learningResourceType": "Guide",
-          "dateModified": "2026-06-04",
+          "dateModified": "2026-06-20",
           "inLanguage": "en"
         }
       ]
@@ -466,7 +482,7 @@
                     <a href="../../index.html#about" class="nav-link nav-link-enhanced">About</a>
                     <a href="../../index.html#resources" class="nav-link nav-link-enhanced">Resources</a>
                     <a href="https://github.com/UnExplainableFish52/lokii.tech" target="_blank" class="nav-link nav-link-enhanced" rel="noopener noreferrer">GitHub</a>
-                    <a href="https://github.com/UnExplainableFish52/lokii.tech/issues" target="_blank" class="nav-link nav-contribute" rel="noopener noreferrer">Contribute ✨</a>
+                    <a href="https://github.com/UnExplainableFish52/lokii.tech/issues" target="_blank" class="nav-link nav-contribute" rel="noopener noreferrer">Contribute</a>
                 </nav>
             </div>
         </div>
@@ -475,13 +491,14 @@
     <main>
         <div class="container">
             <header class="notes-header">
-                <h1>💻 1.4 Introduction to Operating Systems</h1>
-                <p class="subtitle">From rebellious hackers to the software that runs the world</p>
+                <h1>1.4 Introduction to Operating Systems</h1>
+                <p class="subtitle">How the OS sits between your apps, your hardware, and your security work</p>
+                <p class="lesson-bridge">The previous lesson showed who attacks and how security work is organized. This page moves closer to the machine itself, because defenders need to understand what the operating system controls before they can inspect processes, files, logs, and permissions properly.</p>
             </header>
 
         <!-- Table of Contents -->
         <div class="toc">
-            <h3>📑 Table of Contents</h3>
+            <h3>Table of Contents</h3>
             <ul>
                 <li><a href="#storytime"><span class="section-num">1.</span> Storytime: The Birth of Operating Systems</a></li>
                 <li><a href="#what-is-os"><span class="section-num">2.</span> What is an Operating System?</a></li>
@@ -494,37 +511,37 @@
         </div>
 
         <!-- SECTION 1: STORYTIME -->
-        <h2 id="storytime">📖 1. Storytime: The Birth of Operating Systems</h2>
+        <h2 id="storytime">1. Storytime: The Birth of Operating Systems</h2>
 
         <div class="section">
             <p>
-                Before we dive into technical details, let me tell you a story. A story about <span class="highlight">rebellion</span>,
-                <span class="highlight">genius</span>, and how a couple of stubborn programmers changed the world forever —
-                and in the process, absolutely <span class="cyan">smoked</span> the billion-dollar corporations at their own game.
+                Before we dive into commands and internals, it helps to know where modern operating systems came from.
+                The story matters because the design choices behind Unix, GNU, Linux, Windows, and macOS still shape
+                the tools defenders use every day.
             </p>
 
-            <h3>🏛️ The Dark Ages: Before Personal Computers</h3>
+            <h3>Before Personal Computers</h3>
 
             <div class="story-box">
                 <span class="story-year">1960s-1970s</span><br><br>
-                Imagine a world where computers filled entire rooms. Where you couldn't just "use" a computer —
+                Imagine a world where computers filled entire rooms. You could not just sit down and "use" a computer:
                 you had to submit punch cards and wait hours (sometimes days) for your results.
                 These were the mainframe days, and computing was reserved for universities, governments, and massive corporations.
             </div>
 
             <p>
-                In <span class="highlight">1969</span>, at AT&T's Bell Labs, something magical happened.
-                Ken Thompson and Dennis Ritchie created <span class="cyan">Unix</span> — an operating system written
+                In <span class="highlight">1969</span>, at AT&T's Bell Labs, an important shift happened.
+                Ken Thompson and Dennis Ritchie created <span class="cyan">Unix</span>, an operating system written
                 in the C programming language (which Ritchie also invented). Unix was elegant, portable, and
                 introduced concepts we still use today: hierarchical file systems, pipes, and the shell.
             </p>
 
             <div class="info-box">
-                <strong>💡 Fun Fact:</strong> Unix was originally a play on words from "Multics" (another OS project).
-                Where Multics tried to do everything, Unix did just a few things — but did them incredibly well.
+                <strong>Context:</strong> Unix was originally a play on words from "Multics" (another OS project).
+                Where Multics tried to do everything, Unix focused on a few ideas and did them well.
             </div>
 
-            <h3>✊ The Rebellion: Enter Richard Stallman (1983)</h3>
+            <h3>Enter Richard Stallman (1983)</h3>
 
             <div class="timeline">
                 <div class="timeline-item">
@@ -543,11 +560,11 @@
 
             <div class="story-box">
                 "I consider that the Golden Rule requires that if I like a program I must share it with other people who like it."
-                <br>— <span class="highlight">Richard Stallman</span>, GNU Manifesto (1985)
+                <br><span class="highlight">Richard Stallman</span>, GNU Manifesto (1985)
             </div>
 
             <p>
-                GNU stood for "GNU's Not Unix" — a recursive acronym (programmers love those).
+                GNU stood for "GNU's Not Unix", a recursive acronym.
                 Stallman and his team created <span class="cyan">GCC</span> (the compiler), <span class="cyan">Bash</span> (the shell),
                 <span class="cyan">Emacs</span> (the text editor), and countless utilities.
                 They built almost everything needed for a complete operating system.
@@ -557,7 +574,7 @@
                 <em>Almost.</em> They were missing one critical piece: <span class="highlight">the kernel</span>.
             </p>
 
-            <h3>🐧 The Finnish Student Who Changed Everything (1991)</h3>
+            <h3>The Finnish Student Who Changed Everything (1991)</h3>
 
             <div class="timeline">
                 <div class="timeline-item">
@@ -570,50 +587,49 @@
             </div>
 
             <div class="story-box">
-                "Hello everybody out there using minix — I'm doing a (free) operating system (just a hobby, won't be big and
-                professional like gnu) for 386(486) AT clones."
-                <br>— <span class="highlight">Linus Torvalds</span>
+                Linus described his project as a free operating system for 386/486 AT clones and called it "just a hobby."
+                <br><span class="highlight">Linus Torvalds</span>, Usenet announcement (1991)
             </div>
 
             <p>
-                "Won't be big." <em>Right.</em>
+                That small hobby project became one of the most important kernels in modern computing.
             </p>
 
             <p>
-                Linus had created a kernel — the missing piece of GNU. When combined with all the GNU tools
+                Linus had created a kernel, the missing piece of GNU. When combined with all the GNU tools
                 Stallman's team had built, you had a complete, free operating system: <span class="cyan">GNU/Linux</span>.
             </p>
 
             <div class="warning-box">
-                <strong>⚡ The Impact Today:</strong><br>
-                • Linux runs <span class="highlight">96.3%</span> of the top 1 million web servers<br>
-                • All of the world's top 500 supercomputers run Linux<br>
-                • Android (2.5 billion devices) is built on the Linux kernel<br>
-                • Most of the internet's infrastructure runs on Linux<br>
-                • NASA, SpaceX, and the ISS run Linux
-            </p>
-
-            <p>
-                <span class="highlight">Two guys</span> — one driven by moral conviction, one by curiosity —
-                created an operating system that now powers most of the world. FOR FREE.
-                That's what I mean when I say they <span class="cyan">absolutely smoked</span> the commercial giants.
+                <strong>The Impact Today:</strong><br>
+                - Linux is a standard platform for servers, cloud infrastructure, and security tooling<br>
+                - Many high-performance computing systems use Linux because it is flexible and scriptable<br>
+                - Android is built on the Linux kernel<br>
+                - Network appliances, lab machines, and incident response environments often rely on Linux<br>
+                - Learning Linux helps you understand logs, permissions, processes, and networking at a practical level
             </div>
 
-            <h3>🪟 Meanwhile, in the Corporate World: Microsoft's Journey</h3>
+            <p>
+                Two different efforts, GNU's userland tools and Linux's kernel, came together into a system that now
+                powers servers, cloud platforms, Android devices, security labs, and a huge part of modern infrastructure.
+                That is why Linux keeps showing up in cybersecurity training.
+            </p>
+
+            <h3>Meanwhile, in the Corporate World: Microsoft's Journey</h3>
 
             <div class="timeline">
                 <div class="timeline-item">
                     <span class="timeline-year">1981</span>
                     <p>
                         IBM needs an OS for their new personal computer. Bill Gates licenses <span class="cyan">MS-DOS</span>
-                        to them — crucially, he keeps the rights to sell it to other manufacturers.
+                        to them and keeps the rights to sell it to other manufacturers.
                         This decision makes Microsoft.
                     </p>
                 </div>
                 <div class="timeline-item">
                     <span class="timeline-year">1985</span>
                     <p>
-                        <span class="cyan">Windows 1.0</span> launches — a graphical shell running on top of DOS.
+                        <span class="cyan">Windows 1.0</span> launches as a graphical shell running on top of DOS.
                         It's clunky, but it's the beginning.
                     </p>
                 </div>
@@ -632,42 +648,42 @@
                     </p>
                 </div>
                 <div class="timeline-item">
-                    <span class="timeline-year">2015 → 2021</span>
+                    <span class="timeline-year">2015 -> 2021</span>
                     <p>
                         <span class="cyan">Windows 10</span> brings "Windows as a Service." Then <span class="cyan">Windows 11</span>
-                        arrives with a modern UI and native Android app support. Oh, and <span class="highlight">WSL</span> —
+                        arrives with a modern UI and native Android app support, plus <span class="highlight">WSL</span>:
                         Windows Subsystem for Linux. Microsoft finally embraced Linux.
                     </p>
                 </div>
             </div>
 
-            <h3>🍎 Apple's Transformation: From Mac OS to macOS</h3>
+            <h3>Apple's Transformation: From Mac OS to macOS</h3>
 
             <div class="timeline">
                 <div class="timeline-item">
                     <span class="timeline-year">1984</span>
                     <p>
-                        The original <span class="cyan">Macintosh</span> launches with the classic "Mac OS" —
+                        The original <span class="cyan">Macintosh</span> launches with the classic "Mac OS",
                         a revolutionary GUI that influenced everything after it.
                     </p>
                 </div>
                 <div class="timeline-item">
                     <span class="timeline-year">2001</span>
                     <p>
-                        Apple releases <span class="cyan">Mac OS X</span> — built on <span class="highlight">Darwin</span>,
+                        Apple releases <span class="cyan">Mac OS X</span>, built on <span class="highlight">Darwin</span>,
                         a Unix-based kernel derived from BSD and Mach. Suddenly, Macs had the power of Unix under the hood.
                     </p>
                 </div>
                 <div class="timeline-item">
                     <span class="timeline-year">2020</span>
                     <p>
-                        macOS Big Sur arrives alongside Apple's <span class="cyan">M1 chip</span> — ARM-based silicon
+                        macOS Big Sur arrives alongside Apple's <span class="cyan">M1 chip</span>, ARM-based silicon
                         that fundamentally changes the game for performance and efficiency.
                     </p>
                 </div>
             </div>
 
-            <h3>📱 The Mobile Revolution: Android's Linux Heart</h3>
+            <h3>The Mobile Revolution: Android's Linux Heart</h3>
 
             <div class="timeline">
                 <div class="timeline-item">
@@ -683,25 +699,27 @@
                     </p>
                 </div>
                 <div class="timeline-item">
-                    <span class="timeline-year">2008 → Today</span>
+                    <span class="timeline-year">2008 -> Today</span>
                     <p>
-                        First Android phone launches. Today, Android powers <span class="highlight">72%</span> of all smartphones globally.
-                        That's over 2.5 billion active devices — all running Linus's kernel.
+                        First Android phone launches. Today, Android is one of the dominant smartphone operating systems globally,
+                        and its Linux base matters when you study mobile security.
                     </p>
                 </div>
             </div>
 
             <div class="info-box">
-                <strong>🔐 Why This Matters for Cybersecurity:</strong><br><br>
-                • <strong>Open Source = Auditable Code</strong> — You can verify what Linux is doing. With proprietary OS, you trust the vendor.<br>
-                • <strong>Understanding Lineage = Understanding Vulnerabilities</strong> — Windows vulnerabilities differ from Unix ones.<br>
-                • <strong>Attack Surfaces Vary</strong> — Servers (Linux) vs Endpoints (Windows) vs Mobile (Android/iOS)<br>
-                • <strong>80% of enterprise breaches</strong> involve Windows endpoints — know thy target.
+                <strong>Why This Matters for Cybersecurity:</strong>
+                <ul>
+                    <li><strong>Open source means auditable code:</strong> you can inspect what Linux is doing instead of only trusting a vendor.</li>
+                    <li><strong>Lineage affects vulnerabilities:</strong> Windows issues often look different from Unix-style issues.</li>
+                    <li><strong>Attack surfaces vary:</strong> servers, endpoints, and mobile devices expose different services and defaults.</li>
+                    <li><strong>Windows endpoints are common enterprise targets:</strong> defenders need to know that environment well.</li>
+                </ul>
             </div>
         </div>
 
         <!-- SECTION 2: WHAT IS AN OS -->
-        <h2 id="what-is-os">🖥️ 2. What is an Operating System?</h2>
+        <h2 id="what-is-os">2. What is an Operating System?</h2>
 
         <div class="section">
             <p>
@@ -710,13 +728,13 @@
             </p>
 
             <div class="layer-diagram">
-                <div class="layer layer-user">👤 USER (You)</div>
-                <div class="layer-arrow">↕</div>
-                <div class="layer layer-apps">📱 APPLICATIONS (Browsers, Tools, Games)</div>
-                <div class="layer-arrow">↕</div>
-                <div class="layer layer-os">⚙️ OPERATING SYSTEM (Kernel + System Services)</div>
-                <div class="layer-arrow">↕</div>
-                <div class="layer layer-hardware">🔧 HARDWARE (CPU, RAM, Disk, Network)</div>
+                <div class="layer layer-user">USER (You)</div>
+                <div class="layer-arrow">|</div>
+                <div class="layer layer-apps">APPLICATIONS (Browsers, Tools, Games)</div>
+                <div class="layer-arrow">|</div>
+                <div class="layer layer-os">OPERATING SYSTEM (Kernel + System Services)</div>
+                <div class="layer-arrow">|</div>
+                <div class="layer layer-hardware">HARDWARE (CPU, RAM, Disk, Network)</div>
             </div>
 
             <h3>The OS as a Translator</h3>
@@ -757,20 +775,20 @@
             <h3>System Calls: The Bridge</h3>
             <p>
                 Applications in user space can't directly access hardware. They must request services through
-                <span class="cyan">system calls</span> — the official API between user space and kernel space.
+                <span class="cyan">system calls</span>, the official API between user space and kernel space.
             </p>
 
             <div class="info-box">
                 <strong>Common System Calls:</strong><br>
-                • <code>open()</code>, <code>read()</code>, <code>write()</code>, <code>close()</code> — File operations<br>
-                • <code>fork()</code>, <code>exec()</code>, <code>exit()</code> — Process management<br>
-                • <code>socket()</code>, <code>bind()</code>, <code>connect()</code> — Networking<br>
-                • <code>mmap()</code>, <code>brk()</code> — Memory management
+                - <code>open()</code>, <code>read()</code>, <code>write()</code>, <code>close()</code>: file operations<br>
+                - <code>fork()</code>, <code>exec()</code>, <code>exit()</code>: process management<br>
+                - <code>socket()</code>, <code>bind()</code>, <code>connect()</code>: networking<br>
+                - <code>mmap()</code>, <code>brk()</code>: memory management
             </div>
         </div>
 
         <!-- SECTION 3: VIRTUALIZATION -->
-        <h2 id="virtualization">🔧 3. Virtualization & Modern Concepts</h2>
+        <h2 id="virtualization">3. Virtualization & Modern Concepts</h2>
 
         <div class="section">
             <p>
@@ -820,17 +838,17 @@
 
             <div class="os-grid">
                 <div class="os-card">
-                    <div class="os-icon">🔬</div>
+                    <div class="os-icon">Lab Safety</div>
                     <h4>Malware Analysis</h4>
                     <p>Detonate malware safely in isolated VMs. Take snapshots. Analyze behavior. Restore. Repeat.</p>
                 </div>
                 <div class="os-card">
-                    <div class="os-icon">🧪</div>
+                    <div class="os-icon">Practice Range</div>
                     <h4>Penetration Testing Labs</h4>
                     <p>Build vulnerable networks (DVWA, Metasploitable) without risking real systems.</p>
                 </div>
                 <div class="os-card">
-                    <div class="os-icon">🔄</div>
+                    <div class="os-icon">Forensics</div>
                     <h4>Incident Response</h4>
                     <p>Capture and analyze disk images in isolated environments for forensics.</p>
                 </div>
@@ -856,7 +874,7 @@ wsl</code></pre>
         </div>
 
         <!-- SECTION 4: CORE OS FUNCTIONS -->
-        <h2 id="core-functions">⚙️ 4. Core OS Functions (Practical Skills)</h2>
+        <h2 id="core-functions">4. Core OS Functions (Practical Skills)</h2>
 
         <div class="section">
             <p>
@@ -874,7 +892,7 @@ wsl</code></pre>
 
             <div class="cmd-compare">
                 <div class="cmd-box windows">
-                    <h5>🪟 Windows</h5>
+                    <h5>Windows</h5>
                     <pre><code># Task Manager (GUI)
 taskmgr
 
@@ -891,7 +909,7 @@ Get-Process -Name "chrome"
 Get-Process -Id 1234</code></pre>
                 </div>
                 <div class="cmd-box linux">
-                    <h5>🐧 Linux</h5>
+                    <h5>Linux</h5>
                     <pre><code># List all processes
 ps aux
 
@@ -909,7 +927,7 @@ pstree
 ls /proc/[PID]/</code></pre>
                 </div>
                 <div class="cmd-box macos">
-                    <h5>🍎 macOS</h5>
+                    <h5>macOS</h5>
                     <pre><code># Activity Monitor (GUI)
 open -a "Activity Monitor"
 
@@ -928,7 +946,7 @@ ps aux | grep Safari</code></pre>
 
             <div class="cmd-compare">
                 <div class="cmd-box windows">
-                    <h5>🪟 Windows</h5>
+                    <h5>Windows</h5>
                     <pre><code># Kill by name
 taskkill /IM notepad.exe
 
@@ -943,7 +961,7 @@ Stop-Process -Name "chrome" -Force
 Stop-Process -Id 1234 -Force</code></pre>
                 </div>
                 <div class="cmd-box linux">
-                    <h5>🐧 Linux</h5>
+                    <h5>Linux</h5>
                     <pre><code># Graceful terminate (SIGTERM)
 kill 1234
 
@@ -958,7 +976,7 @@ pkill nginx
 pkill -u username</code></pre>
                 </div>
                 <div class="cmd-box macos">
-                    <h5>🍎 macOS</h5>
+                    <h5>macOS</h5>
                     <pre><code># Same as Linux
 kill 1234
 kill -9 1234
@@ -972,11 +990,13 @@ pkill -f "process name"</code></pre>
             </div>
 
             <div class="warning-box">
-                <strong>🔐 Security Relevance:</strong><br>
-                • Malware often spawns multiple processes — learn to identify and kill process trees<br>
-                • Look for unusual parent-child relationships (e.g., Word spawning PowerShell)<br>
-                • Check for processes with high privileges (SYSTEM, root) that shouldn't have them<br>
-                • Tools like <span class="code-text">Process Monitor</span> (Windows) reveal what processes do
+                <strong>Security Relevance:</strong>
+                <ul>
+                    <li>Malware often spawns multiple processes, so learn to identify and kill process trees.</li>
+                    <li>Look for unusual parent-child relationships, such as Word spawning PowerShell.</li>
+                    <li>Check for processes with high privileges, such as SYSTEM or root, when they should not have them.</li>
+                    <li>Tools like <span class="code-text">Process Monitor</span> on Windows reveal what processes are doing.</li>
+                </ul>
             </div>
 
             <h3>4.2 Memory Management</h3>
@@ -987,7 +1007,7 @@ pkill -f "process name"</code></pre>
 
             <div class="cmd-compare">
                 <div class="cmd-box windows">
-                    <h5>🪟 Windows</h5>
+                    <h5>Windows</h5>
                     <pre><code># System memory info
 systeminfo | findstr Memory
 
@@ -1001,7 +1021,7 @@ Get-Process | Sort WorkingSet -Desc |
   Select -First 10</code></pre>
                 </div>
                 <div class="cmd-box linux">
-                    <h5>🐧 Linux</h5>
+                    <h5>Linux</h5>
                     <pre><code># Memory info
 free -h
 
@@ -1015,7 +1035,7 @@ pmap [PID]
 top -o %MEM</code></pre>
                 </div>
                 <div class="cmd-box macos">
-                    <h5>🍎 macOS</h5>
+                    <h5>macOS</h5>
                     <pre><code># Memory pressure
 vm_stat
 
@@ -1059,7 +1079,7 @@ system_profiler SPHardwareDataType</code></pre>
 
             <div class="cmd-compare">
                 <div class="cmd-box windows">
-                    <h5>🪟 Windows (NTFS ACLs)</h5>
+                    <h5>Windows (NTFS ACLs)</h5>
                     <pre><code># View permissions
 icacls C:\path\to\file
 
@@ -1073,7 +1093,7 @@ icacls file.txt /remove User
 icacls folder /inheritance:r</code></pre>
                 </div>
                 <div class="cmd-box linux">
-                    <h5>🐧 Linux (Unix Permissions)</h5>
+                    <h5>Linux (Unix Permissions)</h5>
                     <pre><code># View permissions
 ls -la
 
@@ -1090,7 +1110,7 @@ chmod g+s folder   # SGID
 chmod +t folder    # Sticky</code></pre>
                 </div>
                 <div class="cmd-box macos">
-                    <h5>🍎 macOS</h5>
+                    <h5>macOS</h5>
                     <pre><code># Same as Linux
 chmod 755 script.sh
 chown user:group file
@@ -1111,7 +1131,7 @@ chmod +a "user:admin allow write" file</code></pre>
 
             <div class="cmd-compare">
                 <div class="cmd-box windows">
-                    <h5>🪟 Windows</h5>
+                    <h5>Windows</h5>
                     <pre><code># Event Viewer GUI
 eventvwr.msc
 
@@ -1126,7 +1146,7 @@ Get-EventLog -LogName Security -Newest 50
 Get-WinEvent -LogName Microsoft-Windows-Sysmon/Operational</code></pre>
                 </div>
                 <div class="cmd-box linux">
-                    <h5>🐧 Linux</h5>
+                    <h5>Linux</h5>
                     <pre><code># Main log directory
 /var/log/
 
@@ -1142,7 +1162,7 @@ journalctl -u nginx
 journalctl --since "1 hour ago"</code></pre>
                 </div>
                 <div class="cmd-box macos">
-                    <h5>🍎 macOS</h5>
+                    <h5>macOS</h5>
                     <pre><code># Console app (GUI)
 open -a Console
 
@@ -1164,7 +1184,7 @@ log show --predicate 'process == "sshd"'
 
             <div class="cmd-compare">
                 <div class="cmd-box windows">
-                    <h5>🪟 Windows</h5>
+                    <h5>Windows</h5>
                     <pre><code># Local users
 net user
 net user username /add
@@ -1181,7 +1201,7 @@ whoami /all
 secpol.msc</code></pre>
                 </div>
                 <div class="cmd-box linux">
-                    <h5>🐧 Linux</h5>
+                    <h5>Linux</h5>
                     <pre><code># Users
 cat /etc/passwd
 useradd username
@@ -1200,7 +1220,7 @@ id
 whoami</code></pre>
                 </div>
                 <div class="cmd-box macos">
-                    <h5>🍎 macOS</h5>
+                    <h5>macOS</h5>
                     <pre><code># Users (GUI)
 System Preferences > Users & Groups
 
@@ -1218,12 +1238,12 @@ sysadminctl -addUser username</code></pre>
         </div>
 
         <!-- SECTION 5: WINDOWS INTERNALS -->
-        <h2 id="windows-internals">🪟 5. Windows Internals Deep Dive</h2>
+        <h2 id="windows-internals">5. Windows Internals Deep Dive</h2>
 
         <div class="section">
             <p>
-                Windows is the primary target for most attacks (80% of enterprise endpoints).
-                Understanding its internals is <span class="highlight">non-negotiable</span> for security professionals.
+                Windows is common across business endpoints, so attackers study it closely.
+                Understanding its internals is <span class="highlight">important</span> for security professionals.
             </p>
 
             <h3>NTFS: The Windows File System</h3>
@@ -1231,21 +1251,21 @@ sysadminctl -addUser username</code></pre>
             <h4>Master File Table (MFT)</h4>
             <p>
                 The <span class="cyan">MFT</span> is the heart of NTFS. It's a database containing entries for every file
-                and directory — including metadata, timestamps, and data locations.
+                and directory, including metadata, timestamps, and data locations.
             </p>
 
             <div class="info-box">
                 <strong>MACB Timestamps:</strong><br>
-                • <strong>M</strong>odified — Content last changed<br>
-                • <strong>A</strong>ccessed — File last opened<br>
-                • <strong>C</strong>hanged (MFT) — Metadata last changed<br>
-                • <strong>B</strong>orn — File creation time<br><br>
+                - <strong>M</strong>odified: content last changed<br>
+                - <strong>A</strong>ccessed: file last opened<br>
+                - <strong>C</strong>hanged (MFT): metadata last changed<br>
+                - <strong>B</strong>orn: file creation time<br><br>
                 <em>Attackers often try to modify these (timestomping) to hide activity!</em>
             </div>
 
             <h4>Alternate Data Streams (ADS)</h4>
             <p>
-                NTFS allows multiple data streams per file. Malware loves this for hiding payloads.
+                NTFS allows multiple data streams per file. Attackers can abuse this feature to hide payloads.
             </p>
 
             <pre><code># Create hidden stream
@@ -1264,7 +1284,7 @@ Get-ChildItem -Recurse | ForEach-Object { Get-Item $_.FullName -Stream * }</code
             <h3>Windows Registry</h3>
             <p>
                 The registry is a hierarchical database storing OS and application configuration.
-                It's a goldmine for forensics and a playground for persistence.
+                It matters for forensics because it records settings, startup entries, user activity, and persistence points.
             </p>
 
             <table>
@@ -1346,26 +1366,26 @@ Get-SmbShare</code></pre>
 
             <h3>Process Monitor (Sysinternals)</h3>
             <p>
-                <span class="highlight">Process Monitor</span> is the ultimate tool for understanding what processes
-                are doing in real-time: file access, registry changes, network activity.
+                <span class="highlight">Process Monitor</span> is useful for understanding what processes
+                are doing in real time: file access, registry changes, and network activity.
             </p>
 
             <div class="info-box">
                 <strong>Download:</strong> <a href="https://docs.microsoft.com/en-us/sysinternals/downloads/procmon" target="_blank" rel="noopener noreferrer">Sysinternals Process Monitor</a><br><br>
                 <strong>Key Filters for Security:</strong><br>
-                • Operation is WriteFile<br>
-                • Path contains Run<br>
-                • Process Name is powershell.exe or cmd.exe<br>
-                • Event Class is Network
+                - Operation is WriteFile<br>
+                - Path contains Run<br>
+                - Process Name is powershell.exe or cmd.exe<br>
+                - Event Class is Network
             </div>
         </div>
 
         <!-- SECTION 6: LINUX INTERNALS -->
-        <h2 id="linux-internals">🐧 6. Linux Internals Deep Dive</h2>
+        <h2 id="linux-internals">6. Linux Internals Deep Dive</h2>
 
         <div class="section">
             <p>
-                Linux powers most servers, cloud infrastructure, and security tools. Mastering it is essential.
+                Linux powers a large share of servers, cloud infrastructure, and security tools. Learning its internals gives you practical visibility into real systems.
             </p>
 
             <h3>File System Hierarchy</h3>
@@ -1437,7 +1457,7 @@ Get-SmbShare</code></pre>
                 </tr>
             </table>
 
-            <pre><code># Find SUID binaries (privilege escalation goldmine)
+            <pre><code># Find SUID binaries (common privilege escalation target)
 find / -perm -4000 -type f 2>/dev/null
 
 # Find SGID binaries
@@ -1515,7 +1535,7 @@ ip neighbor</code></pre>
         </div>
 
         <!-- SECTION 7: MACOS INTERNALS -->
-        <h2 id="macos-internals">🍎 7. macOS Internals Deep Dive</h2>
+        <h2 id="macos-internals">7. macOS Internals Deep Dive</h2>
 
         <div class="section">
             <p>
@@ -1527,8 +1547,8 @@ ip neighbor</code></pre>
                 macOS uses the <span class="cyan">XNU</span> kernel (X is Not Unix), a hybrid of:
             </p>
             <ul>
-                <li><strong>Mach</strong> — Microkernel handling low-level tasks (IPC, memory)</li>
-                <li><strong>BSD</strong> — Unix layer providing POSIX compatibility, file systems, networking</li>
+                <li><strong>Mach</strong>, a microkernel handling low-level tasks such as IPC and memory.</li>
+                <li><strong>BSD</strong>, a Unix layer providing POSIX compatibility, file systems, and networking.</li>
             </ul>
 
             <h3>launchd: The macOS Init System</h3>
@@ -1648,14 +1668,14 @@ lsof -i | grep ESTABLISHED</code></pre>
 
             <!-- Page Navigation -->
             <div class="page-nav">
-                <a href="1.3-landscape.html">← Previous: The Cybersecurity Landscape</a>
-                <a href="../../index.html#resources">Back to Resources →</a>
+                <a href="1.3-landscape.html">Previous: The Cybersecurity Landscape</a>
+                <a href="../../index.html#resources">Back to Resources</a>
             </div>
         </div>
     </main>
 
     <footer class="notes-footer">
-        <p>© 2026 lokii.tech | <a href="https://github.com/UnExplainableFish52/lokii.tech" target="_blank" rel="noopener noreferrer">Open Source Project</a></p>
+        <p>&copy; 2026 lokii.tech | <a href="https://github.com/UnExplainableFish52/lokii.tech" target="_blank" rel="noopener noreferrer">Open Source Project</a></p>
     </footer>
     <script src="../../js/main.js"></script>
 </body>

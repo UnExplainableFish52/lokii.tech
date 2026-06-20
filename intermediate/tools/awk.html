@@ -1,26 +1,27 @@
 <!DOCTYPE html>
+<!-- lokii-note-polish: checked 2026-06-20; removed decorative emoji and em dash usage, cleaned AWK wording, fixed sample filename typos, and updated metadata. -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AWK Mastery Notes — From Zero to Pro</title>
-    
-    <meta name="description" content="Master AWK from zero to pro. Complete guide to text processing, pattern matching, and data extraction in Linux.">
+    <title>AWK Notes | Intermediate Linux Tools | lokii.tech</title>
+
+    <meta name="description" content="Intermediate AWK notes covering fields, patterns, actions, delimiters, variables, arrays, functions, CSV processing, log analysis, and practical drills.">
     <meta name="author" content="lokii (UnExplainableFish52)">
     <meta name="theme-color" content="#0d1117">
-    
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://lokii.tech/intermediate/tools/awk.html">
-    <meta property="og:title" content="AWK Mastery Notes — From Zero to Pro">
-    <meta property="og:description" content="Master AWK from zero to pro. Complete guide to text processing, pattern matching, and data extraction in Linux.">
+    <meta property="og:title" content="AWK Notes | Intermediate Linux Tools | lokii.tech">
+    <meta property="og:description" content="Intermediate AWK notes covering fields, patterns, actions, delimiters, variables, arrays, functions, CSV processing, log analysis, and practical drills.">
     <meta property="og:image" content="https://lokii.tech/preview.jpg">
     <meta property="og:site_name" content="lokii.tech">
-    
+
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="AWK Mastery Notes — From Zero to Pro">
-    <meta name="twitter:description" content="Master AWK from zero to pro. Complete guide to text processing, pattern matching, and data extraction in Linux.">
+    <meta name="twitter:title" content="AWK Notes | Intermediate Linux Tools | lokii.tech">
+    <meta name="twitter:description" content="Intermediate AWK notes covering fields, patterns, actions, delimiters, variables, arrays, functions, CSV processing, log analysis, and practical drills.">
     <meta name="twitter:image" content="https://lokii.tech/preview.jpg">
     <!-- SEO Metadata -->
     <link rel="canonical" href="https://lokii.tech/intermediate/tools/awk.html">
@@ -33,18 +34,18 @@
     <link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
     <link rel="manifest" href="../../site.webmanifest">
     <link rel="icon" href="../../favicon.ico">
-    
+
     <link rel="stylesheet" href="../../css/global-ui.css">
     <style>
         * {
-            margin:  0;
+            margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
         body {
             background-color: #0d1117;
-            color:  #e6edf3;
+            color: #e6edf3;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             font-size: 18px;
             line-height: 1.7;
@@ -73,9 +74,9 @@
         }
 
         h3 {
-            color:  #ffa500;
+            color: #ffa500;
             font-size: 1.4em;
-            font-weight:  600;
+            font-weight: 600;
             margin-top: 30px;
             margin-bottom: 15px;
         }
@@ -87,14 +88,14 @@
         }
 
         strong {
-            color:  #ffd700;
+            color: #ffd700;
             font-weight: 700;
         }
 
         code {
             background-color: #161b22;
             color: #7ee787;
-            padding:  3px 8px;
+            padding: 3px 8px;
             border-radius: 5px;
             font-family: 'Consolas', 'Courier New', monospace;
             font-size: 0.95em;
@@ -117,13 +118,13 @@
         }
 
         .comment {
-            color:  #8b949e;
+            color: #8b949e;
         }
 
         table {
-            width:  100%;
+            width: 100%;
             border-collapse: collapse;
-            margin:  20px 0 30px 0;
+            margin: 20px 0 30px 0;
         }
 
         th {
@@ -132,14 +133,14 @@
             font-weight: 700;
             text-align: left;
             padding: 15px;
-            border:  1px solid #30363d;
+            border: 1px solid #30363d;
         }
 
         td {
             background-color: #161b22;
             color: #e6edf3;
             padding: 12px 15px;
-            border:  1px solid #30363d;
+            border: 1px solid #30363d;
         }
 
         td:first-child {
@@ -152,7 +153,7 @@
         }
 
         ul, ol {
-            margin:  15px 0 20px 30px;
+            margin: 15px 0 20px 30px;
         }
 
         li {
@@ -176,7 +177,7 @@
 
         .tip-title {
             color: #58a6ff;
-            font-weight:  700;
+            font-weight: 700;
             margin-bottom: 8px;
         }
 
@@ -189,16 +190,16 @@
         }
 
         .warning-title {
-            color:  #ffa500;
+            color: #ffa500;
             font-weight: 700;
             margin-bottom:  8px;
         }
 
         .question {
             background-color: #1a1a2e;
-            border:  1px solid #4a4a6a;
+            border: 1px solid #4a4a6a;
             border-radius: 8px;
-            padding:  20px;
+            padding: 20px;
             margin: 20px 0;
         }
 
@@ -211,14 +212,14 @@
 
         .divider {
             border: 0;
-            height:  1px;
-            background:  linear-gradient(to right, transparent, #30363d, transparent);
+            height: 1px;
+            background: linear-gradient(to right, transparent, #30363d, transparent);
             margin: 40px 0;
         }
 
         .cheatsheet {
             background-color: #0f1419;
-            border:  2px solid #00ffff;
+            border: 2px solid #00ffff;
             border-radius: 10px;
             padding: 25px;
             margin: 30px 0;
@@ -228,7 +229,7 @@
             background-color: #1a1a1a;
             border: 1px solid #444;
             border-radius: 8px;
-            padding:  15px;
+            padding: 15px;
             font-family: 'Consolas', monospace;
             font-size: 0.85em;
             color: #aaa;
@@ -237,7 +238,7 @@
         }
 
         .section-number {
-            color:  #ff79c6;
+            color: #ff79c6;
         }
         /* Site Header - Homepage Style */
         .site-header {
@@ -330,7 +331,7 @@
             {
               "@type": "ListItem",
               "position": 3,
-              "name": "AWK Mastery Notes — From Zero to Pro",
+              "name": "AWK Notes | Intermediate Linux Tools | lokii.tech",
               "item": "https://lokii.tech/intermediate/tools/awk.html"
             }
           ]
@@ -339,8 +340,8 @@
           "@type": "WebPage",
           "@id": "https://lokii.tech/intermediate/tools/awk.html#webpage",
           "url": "https://lokii.tech/intermediate/tools/awk.html",
-          "name": "AWK Mastery Notes — From Zero to Pro",
-          "description": "Master AWK from zero to pro. Complete guide to text processing, pattern matching, and data extraction in Linux.",
+          "name": "AWK Notes | Intermediate Linux Tools | lokii.tech",
+          "description": "Intermediate AWK notes covering fields, patterns, actions, delimiters, variables, arrays, functions, CSV processing, log analysis, and practical drills.",
           "isPartOf": {
             "@id": "https://lokii.tech/#website"
           },
@@ -348,7 +349,7 @@
             "@id": "https://lokii.tech/intermediate/tools/awk.html#breadcrumbs"
           },
           "primaryImageOfPage": "https://lokii.tech/preview.jpg",
-          "dateModified": "2026-06-04",
+          "dateModified": "2026-06-20",
           "inLanguage": "en"
         },
         {
@@ -357,8 +358,8 @@
             "LearningResource"
           ],
           "@id": "https://lokii.tech/intermediate/tools/awk.html#article",
-          "headline": "AWK Mastery Notes — From Zero to Pro",
-          "description": "Master AWK from zero to pro. Complete guide to text processing, pattern matching, and data extraction in Linux.",
+          "headline": "AWK Notes | Intermediate Linux Tools | lokii.tech",
+          "description": "Intermediate AWK notes covering fields, patterns, actions, delimiters, variables, arrays, functions, CSV processing, log analysis, and practical drills.",
           "url": "https://lokii.tech/intermediate/tools/awk.html",
           "image": "https://lokii.tech/preview.jpg",
           "author": {
@@ -372,7 +373,7 @@
           },
           "educationalLevel": "Intermediate",
           "learningResourceType": "Guide",
-          "dateModified": "2026-06-04",
+          "dateModified": "2026-06-20",
           "inLanguage": "en"
         }
       ]
@@ -395,12 +396,13 @@
         </div>
     </header>
 
-    <h1>AWK Mastery Notes — From Zero to Pro</h1>
+    <h1>AWK Notes</h1>
+    <p class="tip">AWK fits naturally after grep and sed. Grep finds matching lines, sed edits streams, and AWK lets you work with columns, conditions, totals, and reports without opening a spreadsheet or writing a full script.</p>
 
     <!-- Section 1 -->
     <h2><span class="section-number">1.</span> What is AWK? </h2>
     <p><strong>AWK</strong> = Pattern scanning and text processing language. </p>
-    <p><strong>Full Form:</strong> Named after creators — <strong>A</strong>ho, <strong>W</strong>einberger, <strong>K</strong>ernighan (1977, Bell Labs).</p>
+    <p><strong>Full Form:</strong> Named after creators <strong>A</strong>ho, <strong>W</strong>einberger, and <strong>K</strong>ernighan (1977, Bell Labs).</p>
     <p><strong>One-liner definition:</strong><br>
     AWK reads files line-by-line, splits each line into fields, and lets you process/filter/transform data using patterns and actions.</p>
 
@@ -410,10 +412,10 @@
     <h2><span class="section-number">2.</span> Why AWK? </h2>
     <table>
         <tr><th>Reason</th><th>Explanation</th></tr>
-        <tr><td>Text processing</td><td>Parse logs, configs, CSVs instantly</td></tr>
+        <tr><td>Text processing</td><td>Parse logs, configs, and CSV files quickly</td></tr>
         <tr><td>Data extraction</td><td>Pull specific columns without loading into Excel</td></tr>
-        <tr><td>Quick calculations</td><td>Sum, average, count — no Python script needed</td></tr>
-        <tr><td>One-liners</td><td>Do in 1 line what takes 20 lines in other languages</td></tr>
+        <tr><td>Quick calculations</td><td>Sum, average, and count without writing a separate script</td></tr>
+        <tr><td>One-liners</td><td>Handle small reporting tasks without opening a larger scripting workflow</td></tr>
         <tr><td>Universally available</td><td>Pre-installed on Linux, macOS, WSL</td></tr>
     </table>
 
@@ -458,7 +460,7 @@
 
     <div class="tip">
         <div class="tip-title">Rule of Thumb</div>
-        <p>Search → <code>grep</code> | Replace → <code>sed</code> | Columns + Math → <code>awk</code></p>
+        <p>Search -> <code>grep</code> | Replace -> <code>sed</code> | Columns + Math -> <code>awk</code></p>
     </div>
 
     <hr class="divider">
@@ -584,7 +586,7 @@ awk -F, '$3 ! ~ /marketing/' emp.csv</code></pre>
 
     <!-- Section 12 -->
     <h2><span class="section-number">12.</span> Associative Arrays</h2>
-    <p>Key-value storage — like Python dictionaries.</p>
+    <p>Key-value storage  -  like Python dictionaries.</p>
 
     <pre><code><span class="comment"># Count per department</span>
 awk -F, 'NR>1 {dept[$3]++} END {for(d in dept) print d, dept[d]}' emp.csv
@@ -608,7 +610,7 @@ for(var in array)     <span class="comment"># loop through keys</span></code></p
         <tr><td>length(s)</td><td>String length</td><td><code>length($2)</code></td></tr>
         <tr><td>toupper(s)</td><td>Uppercase</td><td><code>toupper($2)</code></td></tr>
         <tr><td>tolower(s)</td><td>Lowercase</td><td><code>tolower($2)</code></td></tr>
-        <tr><td>substr(s,start,len)</td><td>Substring</td><td><code>substr($2,1,3)</code> → first 3 chars</td></tr>
+        <tr><td>substr(s,start,len)</td><td>Substring</td><td><code>substr($2,1,3)</code> -> first 3 chars</td></tr>
         <tr><td>gsub(regex,replace,target)</td><td>Global substitute</td><td><code>gsub(/old/,"new",$0)</code></td></tr>
         <tr><td>sub(regex,replace,target)</td><td>Substitute first match</td><td><code>sub(/old/,"new",$0)</code></td></tr>
         <tr><td>split(s,array,sep)</td><td>Split string into array</td><td><code>split($0,arr,",")</code></td></tr>
@@ -645,7 +647,7 @@ for(var in array)     <span class="comment"># loop through keys</span></code></p
         <tr><td>%f</td><td>Float</td></tr>
         <tr><td>%-10s</td><td>Left-align, 10 chars wide</td></tr>
         <tr><td>%10s</td><td>Right-align, 10 chars wide</td></tr>
-        <tr><td>%. 2f</td><td>Float with 2 decimals</td></tr>
+        <tr><td>%.2f</td><td>Float with 2 decimals</td></tr>
         <tr><td>\n</td><td>Newline</td></tr>
         <tr><td>\t</td><td>Tab</td></tr>
     </table>
@@ -653,7 +655,7 @@ for(var in array)     <span class="comment"># loop through keys</span></code></p
     <hr class="divider">
 
     <!-- Section 15 -->
-    <h2><span class="section-number">15.</span> Sample Data:  employees. csv</h2>
+    <h2><span class="section-number">15.</span> Sample Data: employees.csv</h2>
     <div class="csv-data">id,name,department,salary,city,status
 101,john,engineering,75000,newyork,active
 102,sara,marketing,62000,chicago,active
@@ -694,7 +696,7 @@ for(var in array)     <span class="comment"># loop through keys</span></code></p
     <hr class="divider">
 
     <!-- Section 16 -->
-    <h2><span class="section-number">16.</span> Practice Drills — Q&A</h2>
+    <h2><span class="section-number">16.</span> Practice Drills  -  Q&A</h2>
 
     <h3>Basic Extraction</h3>
 
@@ -732,7 +734,7 @@ for(var in array)     <span class="comment"># loop through keys</span></code></p
 
     <div class="question">
         <div class="question-title">Q7: Print employees from engineering department.</div>
-        <pre><code>awk -F, '$3=="engineering"' emp. csv</code></pre>
+        <pre><code>awk -F, '$3=="engineering"' emp.csv</code></pre>
     </div>
 
     <div class="question">
@@ -783,7 +785,7 @@ for(var in array)     <span class="comment"># loop through keys</span></code></p
     </div>
 
     <div class="question">
-        <div class="question-title">Q17: Print formatted table — name left-aligned 12 chars, salary right-aligned 8 chars.</div>
+        <div class="question-title">Q17: Print formatted table  -  name left-aligned 12 chars, salary right-aligned 8 chars.</div>
         <pre><code>awk -F, 'NR>1 {printf "%-12s %8d\n", $2, $4}' emp.csv</code></pre>
     </div>
 
@@ -801,7 +803,7 @@ for(var in array)     <span class="comment"># loop through keys</span></code></p
 
     <div class="question">
         <div class="question-title">Q20: Count employees per city. </div>
-        <pre><code>awk -F, 'NR>1 {city[$5]++} END {for(c in city) print c, city[c]}' emp. csv</code></pre>
+        <pre><code>awk -F, 'NR>1 {city[$5]++} END {for(c in city) print c, city[c]}' emp.csv</code></pre>
     </div>
 
     <div class="question">
@@ -850,7 +852,7 @@ for(var in array)     <span class="comment"># loop through keys</span></code></p
 
     <div class="question">
         <div class="question-title">Q29: Print employees with salary above average.</div>
-        <pre><code>awk -F, 'NR>1 {sal[NR]=$4; name[NR]=$2; sum+=$4; count++} END {avg=sum/count; for(i in sal) if(sal[i]>avg) print name[i], sal[i]}' emp. csv</code></pre>
+        <pre><code>awk -F, 'NR>1 {sal[NR]=$4; name[NR]=$2; sum+=$4; count++} END {avg=sum/count; for(i in sal) if(sal[i]>avg) print name[i], sal[i]}' emp.csv</code></pre>
     </div>
 
     <div class="question">
@@ -860,7 +862,7 @@ for(var in array)     <span class="comment"># loop through keys</span></code></p
 
     <div class="question">
         <div class="question-title">Q31: Print department with highest total salary.</div>
-        <pre><code>awk -F, 'NR>1 {dept[$3]+=$4} END {for(d in dept) if(dept[d]>max){max=dept[d]; top=d} print top, max}' emp. csv</code></pre>
+        <pre><code>awk -F, 'NR>1 {dept[$3]+=$4} END {for(d in dept) if(dept[d]>max){max=dept[d]; top=d} print top, max}' emp.csv</code></pre>
     </div>
 
     <div class="question">
@@ -914,13 +916,13 @@ for(var in array)     <span class="comment"># loop through keys</span></code></p
     <h2><span class="section-number">18.</span> Common Mistakes to Avoid</h2>
 
     <div class="warning">
-        <div class="warning-title">Watch Out!</div>
+        <div class="warning-title">Common fixes</div>
         <table>
             <tr><th>Mistake</th><th>Fix</th></tr>
-            <tr><td>Forgetting -F, for CSV</td><td>Always specify delimiter</td></tr>
+            <tr><td>Forgetting -F, for CSV</td><td>Specify the delimiter</td></tr>
             <tr><td>Using = instead of ==</td><td><code>=</code> assigns, <code>==</code> compares</td></tr>
             <tr><td>Spaces around -F</td><td><code>-F,</code> not <code>-F ,</code></td></tr>
-            <tr><td>Wrong quotes</td><td>Use single quotes <code>'.. .'</code> around awk program</td></tr>
+            <tr><td>Wrong quotes</td><td>Use single quotes <code>'...'</code> around awk program</td></tr>
             <tr><td>Forgetting $ for fields</td><td><code>$3</code> not <code>3</code></td></tr>
             <tr><td>Multiple END blocks</td><td>Only one <code>END {}</code> allowed</td></tr>
         </table>
@@ -957,18 +959,18 @@ awk -F, 'NR>1 {sum+=$5; count++; data[NR]=$0} END {avg=sum/count; for(i in data)
     <!-- Section 20 -->
     <h2><span class="section-number">20.</span> Next Steps</h2>
     <ol>
-        <li>Practice all 35 drills until muscle memory</li>
+        <li>Practice the drills until the common patterns feel familiar</li>
         <li>Create your own sample files and queries</li>
         <li>Combine with <code>grep</code> and <code>sed</code> in pipelines</li>
         <li>Apply to real logs on your Kali VM</li>
-        <li>Move to <code>sed</code> mastery next</li>
+        <li>Move to the <code>sed</code> notes next</li>
     </ol>
 
     <hr class="divider">
 
-    <p style="text-align:  center; color: #8b949e; margin-top: 40px;">
-        <strong>End of AWK Mastery Notes</strong><br>
-        Built for Loki by Shelly 🔥
+    <p style="text-align: center; color: #8b949e; margin-top: 40px;">
+        <strong>AWK notes complete</strong><br>
+        Continue with grep, sed, and shell pipelines to make the examples more useful.
     </p>
 
     <script src="../../js/main.js"></script>

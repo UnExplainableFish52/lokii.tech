@@ -1,26 +1,27 @@
 <!DOCTYPE html>
+<!-- lokii-note-polish: checked 2026-06-20; removed decorative emoji and em dash usage, cleaned Linux course wording markers, and updated metadata. -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Linux Mastery Course · Notes</title>
-    
-    <meta name="description" content="Complete Linux command-line and cybersecurity mastery course notes. Learn bash, system administration, security, and more.">
+    <title>Linux Practical Course | Intermediate Notes | lokii.tech</title>
+
+    <meta name="description" content="Intermediate Linux course notes covering the shell, filesystems, permissions, users, packages, networking, scripting, monitoring, and security workflows.">
     <meta name="author" content="lokii (UnExplainableFish52)">
     <meta name="theme-color" content="#050505">
-    
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://lokii.tech/intermediate/notes/linux_course.html">
-    <meta property="og:title" content="Linux Mastery Course · Notes">
-    <meta property="og:description" content="Complete Linux command-line and cybersecurity mastery course notes. Learn bash, system administration, security, and more.">
+    <meta property="og:title" content="Linux Practical Course | Intermediate Notes | lokii.tech">
+    <meta property="og:description" content="Intermediate Linux course notes covering the shell, filesystems, permissions, users, packages, networking, scripting, monitoring, and security workflows.">
     <meta property="og:image" content="https://lokii.tech/preview.jpg">
     <meta property="og:site_name" content="lokii.tech">
-    
+
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Linux Mastery Course · Notes">
-    <meta name="twitter:description" content="Complete Linux command-line and cybersecurity mastery course notes. Learn bash, system administration, security, and more.">
+    <meta name="twitter:title" content="Linux Practical Course | Intermediate Notes | lokii.tech">
+    <meta name="twitter:description" content="Intermediate Linux course notes covering the shell, filesystems, permissions, users, packages, networking, scripting, monitoring, and security workflows.">
     <meta name="twitter:image" content="https://lokii.tech/preview.jpg">
     <!-- SEO Metadata -->
     <link rel="canonical" href="https://lokii.tech/intermediate/notes/linux_course.html">
@@ -33,11 +34,11 @@
     <link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
     <link rel="manifest" href="../../site.webmanifest">
     <link rel="icon" href="../../favicon.ico">
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    
+
     <!-- Highlight.js for syntax coloring -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/base16/tomorrow-night.min.css">
     <link rel="stylesheet" href="../../css/global-ui.css">
@@ -378,7 +379,7 @@
             {
               "@type": "ListItem",
               "position": 3,
-              "name": "Linux Mastery Course · Notes",
+              "name": "Linux Practical Course | Intermediate Notes | lokii.tech",
               "item": "https://lokii.tech/intermediate/notes/linux_course.html"
             }
           ]
@@ -387,8 +388,8 @@
           "@type": "WebPage",
           "@id": "https://lokii.tech/intermediate/notes/linux_course.html#webpage",
           "url": "https://lokii.tech/intermediate/notes/linux_course.html",
-          "name": "Linux Mastery Course · Notes",
-          "description": "Complete Linux command-line and cybersecurity mastery course notes. Learn bash, system administration, security, and more.",
+          "name": "Linux Practical Course | Intermediate Notes | lokii.tech",
+          "description": "Intermediate Linux course notes covering the shell, filesystems, permissions, users, packages, networking, scripting, monitoring, and security workflows.",
           "isPartOf": {
             "@id": "https://lokii.tech/#website"
           },
@@ -396,7 +397,7 @@
             "@id": "https://lokii.tech/intermediate/notes/linux_course.html#breadcrumbs"
           },
           "primaryImageOfPage": "https://lokii.tech/preview.jpg",
-          "dateModified": "2026-06-04",
+          "dateModified": "2026-06-20",
           "inLanguage": "en"
         },
         {
@@ -405,8 +406,8 @@
             "LearningResource"
           ],
           "@id": "https://lokii.tech/intermediate/notes/linux_course.html#article",
-          "headline": "Linux Mastery Course · Notes",
-          "description": "Complete Linux command-line and cybersecurity mastery course notes. Learn bash, system administration, security, and more.",
+          "headline": "Linux Practical Course | Intermediate Notes | lokii.tech",
+          "description": "Intermediate Linux course notes covering the shell, filesystems, permissions, users, packages, networking, scripting, monitoring, and security workflows.",
           "url": "https://lokii.tech/intermediate/notes/linux_course.html",
           "image": "https://lokii.tech/preview.jpg",
           "author": {
@@ -420,7 +421,7 @@
           },
           "educationalLevel": "Intermediate",
           "learningResourceType": "Guide",
-          "dateModified": "2026-06-04",
+          "dateModified": "2026-06-20",
           "inLanguage": "en"
         }
       ]
@@ -452,34 +453,36 @@
             <div id="md-target">Loading...</div>
         </article>
     </main>
-    
+
     <!-- Markdown scripts helper (Merging existing script logic) -->
     <script id="md-source" type="text/markdown">
-# 🐧 Linux Mastery Course
+# Linux Practical Course
 
-### By [UnExplainableFish52](https://github.com/UnExplainableFish52) (Loki) 
+### By [UnExplainableFish52](https://github.com/UnExplainableFish52) (Loki)
 
 ---
 
-> **Course Focus:** Beginner to Intermediate+ Linux for CyberSecurity  
-> **Target Audience:** CSIT Students, Aspiring Ethical Hackers, SysAdmins  
-> **Total Modules:** 17  
+> **Course Focus:** Beginner to Intermediate+ Linux for Cybersecurity
+> **Target Audience:** CSIT students, aspiring security learners, and system administrators
+> **Total Modules:** 17
+
+This course starts with the Linux mental model, then moves into daily command-line work, filesystems, permissions, users, packages, networking, scripting, monitoring, and security operations. Treat each module as one layer on top of the previous one.
 
 ---
 
 # Module 1: Foundation & Philosophy
 
-## 📘 Introduction
+## Introduction
 
-Linux is a **Unix-like operating system** built around the Linux kernel. It powers everything from servers to smartphones, and is the **backbone of cybersecurity** operations worldwide. Understanding the **kernel**, **shell**, and **user space** is critical before diving into commands.  Without this foundation, you'll struggle with advanced topics.
+Linux is a **Unix-like operating system** built around the Linux kernel. It powers everything from servers to smartphones, and it shows up constantly in cybersecurity work. Understanding the **kernel**, **shell**, and **user space** first makes the command-line sections much easier to follow.
 
-This module covers what Linux actually is, why it's the go-to OS for security professionals, and how to set up your own hacking lab.
+This module explains what Linux is, why security teams use it so often, and how to set up a safe practice lab.
 
 ---
 
 ## 1.1 What is Linux?
 
-Linux is not just an operating system — it's a **kernel** combined with **GNU utilities** to form a complete OS. 
+Linux is not just an operating system - it's a **kernel** combined with **GNU utilities** to form a complete OS.
 
 | Component | Description |
 |-----------|-------------|
@@ -488,21 +491,21 @@ Linux is not just an operating system — it's a **kernel** combined with **GNU 
 | **User Space** | Where applications and user processes run, isolated from kernel space |
 | **GNU Tools** | Essential utilities (grep, sed, awk, tar) that make Linux functional |
 
-> 💡 **GNU/Linux:** The technically correct term — GNU provides the tools, Linux provides the kernel.
+> **GNU/Linux:** When people say Linux, they usually mean the Linux kernel plus GNU utilities and other system tools.
 
 ---
 
-## 1.2 Why Linux for CyberSecurity?
+## 1.2 Why Linux for Cybersecurity?
 
-Linux dominates the cybersecurity landscape: 
+Linux dominates the cybersecurity landscape:
 
 | Reason | Explanation |
 |--------|-------------|
-| **Open Source** | Full transparency — audit every line of code |
+| **Open Source** | Full transparency - audit every line of code |
 | **Flexibility** | Customize everything from kernel to desktop |
 | **Security** | Multi-user security model, strong permissions |
 | **Tool Ecosystem** | Most security tools are Linux-native (Metasploit, Nmap, Burp Suite) |
-| **Server Dominance** | 96%+ of web servers run Linux — mandatory knowledge for pentesting |
+| **Server Dominance** | Linux is common on internet-facing servers, so it is important for security testing and administration |
 | **Scripting Power** | Bash scripting enables automation of complex tasks |
 
 ---
@@ -520,41 +523,41 @@ Linux dominates the cybersecurity landscape:
 | **Filesystem** | ext4, xfs, btrfs | NTFS, FAT32 | APFS, HFS+ |
 | **Pentesting Distros** | Kali, Parrot, BlackArch | None | None |
 
-> ⚠️ **Warning:** Windows is the target, Linux is the weapon. Know both. 
+> **Security context:** You may assess Windows, Linux, and cloud systems from a Linux workstation. Knowing both desktop and server environments helps you understand what your tools are really touching.
 
 ---
 
 ## 1.4 Architecture Overview
 
 ```
-┌─────────────────────────────────────────────────────────┐
-│                      USER SPACE                    │
-│  ┌─────────────────────────────────────────────────┐   │
-│  │   Applications (Firefox, Nmap, Metasploit)  │   │
-│  └─────────────────────────────────────────────────┘   │
-│  ┌─────────────────────────────────────────────────┐   │
-│  │   Shell (bash, zsh, sh)                     │   │
-│  └─────────────────────────────────────────────────┘   │
-│  ┌─────────────────────────────────────────────────┐   │
-│  │   System Libraries (glibc, libssl)          |   │   
-│  └─────────────────────────────────────────────────┘   │
-├─────────────────────────────────────────────────────────┤
-│                    KERNEL SPACE                    │
-│  ┌─────────────────────────────────────────────────┐   │
-│  │   System Call Interface                         │   
-│  └─────────────────────────────────────────────────┘   │
-│  ┌─────────────────────────────────────────────────┐   │
-│  │   Kernel (Process, Memory, Device, FS, Network) │   
-│  └─────────────────────────────────────────────────┘   │
-├─────────────────────────────────────────────────────────┤
-│                      HARDWARE                      │
-│         CPU  |  RAM  |  Disk  |  NIC  |  GPU       │
-└─────────────────────────────────────────────────────────┘
++---------------------------------------------------------+
+|                      USER SPACE                    |
+|  +-------------------------------------------------+   |
+| |   Applications (Firefox, Nmap, Metasploit)  |   |
+|  +-------------------------------------------------+   |
+|  +-------------------------------------------------+   |
+| |   Shell (bash, zsh, sh)                     |   |
+|  +-------------------------------------------------+   |
+|  +-------------------------------------------------+   |
+| |   System Libraries (glibc, libssl)          |   |
+|  +-------------------------------------------------+   |
++---------------------------------------------------------+
+|                    KERNEL SPACE                    |
+|  +-------------------------------------------------+   |
+| |   System Call Interface                         |
+|  +-------------------------------------------------+   |
+|  +-------------------------------------------------+   |
+| |   Kernel (Process, Memory, Device, FS, Network) |
+|  +-------------------------------------------------+   |
++---------------------------------------------------------+
+|                      HARDWARE                      |
+|         CPU  |  RAM  |  Disk  |  NIC  |  GPU       |
++---------------------------------------------------------+
 ```
 
 **Key Layers:**
-- **User Space:** Where you (and hackers) operate — running applications and commands
-- **Kernel Space:** Protected memory where the OS core runs — handles hardware abstraction
+- **User Space:** Where users, tools, and applications run
+- **Kernel Space:** Protected memory where the OS core runs - handles hardware abstraction
 - **Hardware:** Physical components the kernel manages
 
 ---
@@ -572,7 +575,7 @@ Linux dominates the cybersecurity landscape:
 | **CentOS/RHEL** | Independent | yum/dnf | Enterprise servers |
 | **BlackArch** | Arch | pacman | Advanced Pentesting (2800+ tools) |
 
-> 💡 **For CyberSec:** Start with **Kali Linux** — 600+ pre-installed security tools.
+> **For security labs:** Kali Linux is convenient because many common testing tools are already installed.
 
 ---
 
@@ -613,57 +616,56 @@ lsb_release -a
 |---------------|--------------|
 | `fresh-install` | Right after OS installation |
 | `base-configured` | After updates + guest additions |
-| `pre-engagement` | Before starting any pentest lab |
+| `pre-engagement` | Before starting any security lab |
 
-> ⚠️ **Warning:** Always snapshot before experiments.  Breaking your VM is part of learning — recovering should be instant.
+> **Warning:** Take a snapshot before experiments. Breaking a VM is part of learning, but recovery should be quick.
 
 ---
 
-## 🔑 Key Terms
+## Key Terms
 
 | Term | Definition |
 |------|------------|
-| **Kernel** | Core of the OS — manages hardware, memory, processes.  Direct communication with CPU. |
-| **Shell** | Command interpreter — translates your commands into kernel actions. Examples: bash, zsh.  |
-| **Distro** | Distribution — a complete OS package built around the Linux kernel (Kali, Ubuntu, Arch). |
-| **GNU** | "GNU's Not Unix" — collection of free software tools that complement the Linux kernel. |
-| **User Space** | Memory area where applications run — isolated from kernel for security. |
-| **Kernel Space** | Protected memory where OS core operates — only kernel code runs here. |
+| **Kernel** | Core of the OS - manages hardware, memory, processes.  Direct communication with CPU. |
+| **Shell** | Command interpreter - translates your commands into kernel actions. Examples: bash, zsh.  |
+| **Distro** | Distribution - a complete OS package built around the Linux kernel (Kali, Ubuntu, Arch). |
+| **GNU** | "GNU's Not Unix" - collection of free software tools that complement the Linux kernel. |
+| **User Space** | Memory area where applications run - isolated from kernel for security. |
+| **Kernel Space** | Protected memory where OS core operates - only kernel code runs here. |
 | **Package Manager** | Tool for installing/updating software (apt, yum, pacman). |
 | **Rolling Release** | Continuous updates without major version upgrades (Arch, Kali). |
-| **LTS** | Long Term Support — stable releases with extended security updates (Ubuntu LTS). |
+| **LTS** | Long Term Support - stable releases with extended security updates (Ubuntu LTS). |
 
 ---
 
-## ❓ FAQs
+## FAQs
 
-**Q: Why use Kali Linux instead of Ubuntu for CyberSec?**  
-> Kali comes pre-installed with **600+ penetration testing tools** — Metasploit, Nmap, Burp Suite, John the Ripper, etc. Ubuntu is general-purpose and requires manual installation of each tool.  For learning, Kali gets you hacking faster.
+**Q: Why use Kali Linux instead of Ubuntu for cybersecurity?**
+> Kali comes pre-installed with many penetration testing tools, including Metasploit, Nmap, Burp Suite, and John the Ripper. Ubuntu is general-purpose and requires manual installation of each tool. For learning security tooling, Kali lets you start with the common tools already installed.
 
-**Q:  Is Kali Linux illegal?**  
-> No.  Kali is legal to download and use. **How you use it** determines legality.  Scanning/attacking systems without permission is illegal.  Always get written authorization. 
+**Q:  Is Kali Linux illegal?**
+> No.  Kali is legal to download and use. **How you use it** determines legality.  Scanning/attacking systems without permission is illegal.  Always get written authorization.
 
-**Q: Should I dual-boot or use a VM?**  
-> **Start with VM. ** Reasons:
+**Q: Should I dual-boot or use a VM?**
+> **Start with a VM.** Reasons:
 > - Snapshots save you from breaking things
 > - Isolated network for safe lab practice
 > - Easy to reset and experiment
 > - No risk to your main Windows installation
->
-> Dual-boot later when you need bare-metal performance for specific tasks.
+> > Dual-boot later when you need bare-metal performance for specific tasks.
 
-**Q: What's the difference between bash and zsh?**  
+**Q: What's the difference between bash and zsh?**
 > Both are shells.  **bash** (Bourne Again Shell) is the default on most systems. **zsh** has better autocompletion, themes, and plugins. Kali uses zsh by default since 2020.  Core commands work the same in both.
 
-**Q: Can I run Linux tools on Windows directly?**  
+**Q: Can I run Linux tools on Windows directly?**
 > Yes, via **WSL2** (Windows Subsystem for Linux). However, some low-level network tools (raw sockets, packet injection) don't work properly. For serious pentesting, use a full VM or bare-metal.
 
 ---
 
-## 📝 Practice Tasks
+## Practice Tasks
 
 ### Task 1: Install Kali Linux on VirtualBox
-**Objective:** Set up your hacking lab
+**Objective:** Set up your security lab
 
 **Steps:**
 1. Download Kali Linux VirtualBox image from [kali.org](https://www.kali.org/get-kali/)
@@ -690,7 +692,7 @@ lsb_release -a    # Distribution details
 cat /etc/os-release  # Alternative distro info
 ```
 
-**Deliverable:** Document your findings in this format: 
+**Deliverable:** Document your findings in this format:
 ```
 Kernel Version: ___________
 Architecture:  ___________
@@ -718,7 +720,7 @@ Codename: ___________
 
 ---
 
-## ✅ Module 1 Checkpoint
+## Module 1 Checkpoint
 
 Before moving to Module 2, confirm:
 
@@ -732,11 +734,11 @@ Before moving to Module 2, confirm:
 ---
 ---
 
-# Module 2: Getting Started — The Shell
+# Module 2: Getting Started - The Shell
 
-## 📘 Introduction
+## Introduction
 
-The shell is your **primary interface** to Linux. Every command you type, every script you run, every hack you execute — it all goes through the shell.  Mastering shell navigation and basic file operations is **non-negotiable** for any security professional.
+The shell is your **primary interface** to Linux. Every command you type, every script you run, and every task you automate goes through the shell. Shell navigation and basic file operations are core skills for any security professional.
 
 This module covers terminal fundamentals, navigation commands, and essential file operations. By the end, you'll move through the Linux filesystem like second nature.
 
@@ -750,11 +752,11 @@ These terms are often confused.  Here's the clarity:
 |------|------------|
 | **Terminal** | Application/window that displays the shell (GNOME Terminal, Konsole, xterm) |
 | **Shell** | The actual command interpreter running inside the terminal (bash, zsh) |
-| **Console** | Physical/system-level terminal (Ctrl+Alt+F1 on Linux) — no GUI |
-| **TTY** | Teletypewriter — legacy term for terminal devices (`/dev/tty`) |
-| **Prompt** | The text indicating the shell is ready for input (`┌──(kali㉿kali)-[~]`) |
+| **Console** | Physical/system-level terminal (Ctrl+Alt+F1 on Linux) - no GUI |
+| **TTY** | Teletypewriter - legacy term for terminal devices (`/dev/tty`) |
+| **Prompt** | The text indicating the shell is ready for input (`+--(kali@kali)-[~]`) |
 
-> 💡 **Think of it this way:** Terminal is the TV, Shell is the channel, Console is the antenna.
+> **Simple distinction:** The terminal is the window, the shell is the program reading your commands, and the console is the lower-level system interface.
 
 ---
 
@@ -781,7 +783,7 @@ chsh -s /bin/bash     # Switch to bash
 chsh -s /bin/zsh      # Switch to zsh
 ```
 
-> ⚠️ **For scripting:** Always use `#!/bin/bash` or `#!/bin/sh` for portability.  zsh-specific scripts may not work on other systems.
+> **For scripting:** Always use `#!/bin/bash` or `#!/bin/sh` for portability.  zsh-specific scripts may not work on other systems.
 
 ---
 
@@ -799,7 +801,7 @@ chsh -s /bin/zsh      # Switch to zsh
 | Symbol | Meaning | Example |
 |--------|---------|---------|
 | `/` | Root directory (top of filesystem) | `cd /` |
-| `~` | Home directory | `cd ~` → `/home/kali` |
+| `~` | Home directory | `cd ~` -> `/home/kali` |
 | `.` | Current directory | `./script.sh` |
 | `..` | Parent directory (one level up) | `cd ..` |
 | `-` | Previous directory | `cd -` |
@@ -809,7 +811,7 @@ chsh -s /bin/zsh      # Switch to zsh
 ## 2.4 Navigation Commands
 
 ### Command:  `pwd`
-**Print Working Directory** — shows your current location
+**Print Working Directory** - shows your current location
 
 **Syntax:**
 ```bash
@@ -818,12 +820,12 @@ pwd [OPTIONS]
 
 **Example:**
 ```bash
-┌──(kali㉿kali)-[~]
-└─$ pwd
++--(kali@kali)-[~]
++-$ pwd
 /home/kali
 
-┌──(kali㉿kali)-[/etc/network]
-└─$ pwd
++--(kali@kali)-[/etc/network]
++-$ pwd
 /etc/network
 ```
 
@@ -833,13 +835,13 @@ pwd [OPTIONS]
 | `-L` | Print logical path (default, follows symlinks) |
 | `-P` | Print physical path (resolves symlinks) |
 
-**Real-Life Use Case:**  
+**Real-Life Use Case:**
 When writing scripts that need to reference files relative to the script's location, `pwd` helps establish the base path.  During pentesting, knowing exactly where you are prevents accidentally modifying wrong files.
 
 ---
 
 ### Command: `cd`
-**Change Directory** — navigate the filesystem
+**Change Directory** - navigate the filesystem
 
 **Syntax:**
 ```bash
@@ -859,17 +861,17 @@ cd -                 # Go to previous directory
 
 **Pro Techniques:**
 ```bash
-cd /etc/netw[TAB]    # Tab completion → /etc/network
+cd /etc/netw[TAB]    # Tab completion -> /etc/network
 cd ~/Do[TAB][TAB]    # Double-tab shows:  Documents/ Downloads/
 ```
 
-**Real-Life Use Case:**  
+**Real-Life Use Case:**
 Navigating to `/var/log` to analyze system logs during incident response, or moving to `/etc` to review configuration files during system enumeration.
 
 ---
 
 ### Command: `ls`
-**List directory contents** — most used command in Linux
+**List directory contents** - most used command in Linux
 
 **Syntax:**
 ```bash
@@ -892,23 +894,23 @@ ls [OPTIONS] [PATH]
 
 **Examples:**
 ```bash
-┌──(kali㉿kali)-[~]
-└─$ ls
++--(kali@kali)-[~]
++-$ ls
 Desktop  Documents  Downloads  Music  Pictures  Public
 
-┌──(kali㉿kali)-[~]
-└─$ ls -la
++--(kali@kali)-[~]
++-$ ls -la
 total 120
 drwxr-xr-x 15 kali kali 4096 Dec 25 10:30 .
 drwxr-xr-x  3 root root 4096 Dec 20 09:15 ..
 -rw-------  1 kali kali  220 Dec 20 09:15 .bash_history
 -rw-r--r--  1 kali kali  220 Dec 20 09:15 . bash_logout
--rw-r--r--  1 kali kali 3526 Dec 20 09:15 . bashrc
+-rw-r--r--  1 kali kali 3526 Dec 20 09:15 .bashrc
 drwxr-xr-x  2 kali kali 4096 Dec 20 09:15 Desktop
 drwxr-xr-x  2 kali kali 4096 Dec 25 10:30 Documents
 
-┌──(kali㉿kali)-[~]
-└─$ ls -lhS /var/log | head -5
++--(kali@kali)-[~]
++-$ ls -lhS /var/log | head -5
 total 15M
 -rw-r-----  1 root adm  5.2M Dec 25 10:00 syslog
 -rw-r-----  1 root adm  2.1M Dec 25 09:00 auth.log
@@ -918,18 +920,18 @@ total 15M
 **Understanding `ls -l` Output:**
 ```
 -rw-r--r--  1  kali  kali  4096  Dec 25 10:30  file.txt
-│└──┬───┘  │   │     │     │         │           │
-│   │      │   │     │     │         │           └── Filename
-│   │      │   │     │     │         └── Modification date
-│   │      │   │     │     └── Size in bytes
-│   │      │   │     └── Group owner
-│   │      │   └── User owner
-│   │      └── Hard link count
-│   └── Permissions (rwx for user, group, others)
-└── File type (- = file, d = directory, l = symlink)
+|+--+---+  |   |     |     |         |           |
+| |      |   |     |     |         |           +-- Filename
+| |      |   |     |     |         +-- Modification date
+| |      |   |     |     +-- Size in bytes
+| |      |   |     +-- Group owner
+| |      |   +-- User owner
+| |      +-- Hard link count
+|   +-- Permissions (rwx for user, group, others)
++-- File type (- = file, d = directory, l = symlink)
 ```
 
-**Real-Life Use Case:**  
+**Real-Life Use Case:**
 During enumeration, `ls -la /home` reveals all users on a system.  `ls -la` in any directory exposes hidden config files (like `.bashrc`, `.ssh`) that may contain credentials or useful information.
 
 ---
@@ -942,7 +944,7 @@ During enumeration, `ls -la /home` reveals all users on a system.  `ls -la` in a
 tree [OPTIONS] [PATH]
 ```
 
-> ⚠️ **Note:** May need installation:  `sudo apt install tree`
+> **Note:** May need installation:  `sudo apt install tree`
 
 **Common Options:**
 | Option | Description |
@@ -956,33 +958,33 @@ tree [OPTIONS] [PATH]
 
 **Examples:**
 ```bash
-┌──(kali㉿kali)-[~]
-└─$ tree -L 2
++--(kali@kali)-[~]
++-$ tree -L 2
 .
-├── Desktop
-│   └── tools
-├── Documents
-│   ├── notes
-│   └── reports
-├── Downloads
-│   ├── exploits
-│   └── wordlists
-└── scripts
-    ├── recon. sh
-    └── scan.sh
++-- Desktop
+|   +-- tools
++-- Documents
+|   +-- notes
+|   +-- reports
++-- Downloads
+|   +-- exploits
+|   +-- wordlists
++-- scripts
+    +-- recon.sh
+    +-- scan.sh
 
-┌──(kali㉿kali)-[~]
-└─$ tree -L 1 -d /etc
++--(kali@kali)-[~]
++-$ tree -L 1 -d /etc
 /etc
-├── alternatives
-├── apache2
-├── apt
-├── bash_completion. d
-├── network
-... 
++-- alternatives
++-- apache2
++-- apt
++-- bash_completion.d
++-- network
+...
 ```
 
-**Real-Life Use Case:**  
+**Real-Life Use Case:**
 Quickly visualizing web application structures after gaining access.  `tree -L 3 /var/www/html` instantly shows the application layout, helping identify config files, upload directories, and potential targets.
 
 ---
@@ -1002,7 +1004,7 @@ touch [OPTIONS] FILENAME(S)
 touch newfile.txt                    # Create single file
 touch file1.txt file2.txt file3.txt  # Create multiple files
 touch /tmp/test.log                  # Create file in specific location
-touch {a,b,c}.txt                    # Create a. txt, b.txt, c.txt
+touch {a,b,c}.txt                    # Create a.txt, b.txt, c.txt
 touch file{1..10}.txt                # Create file1.txt through file10.txt
 ```
 
@@ -1013,7 +1015,7 @@ touch file{1..10}.txt                # Create file1.txt through file10.txt
 | `-m` | Change modification time only |
 | `-t STAMP` | Use specific timestamp (format: [[CC]YY]MMDDhhmm[. ss]) |
 
-**Real-Life Use Case:**  
+**Real-Life Use Case:**
 Creating log files before running scans, or updating timestamps to cover tracks (note: this is detectable with forensic analysis of inode data).
 
 ---
@@ -1042,8 +1044,8 @@ mkdir -p project/{src,bin,docs,logs}  # Create project structure
 | `-m MODE` | Set permissions (like chmod) |
 | `-v` | Verbose output |
 
-**Real-Life Use Case:**  
-Setting up organized pentest project structures: 
+**Real-Life Use Case:**
+Setting up organized pentest project structures:
 ```bash
 mkdir -p ~/pentests/client_name/{recon,scans,exploits,loot,reports}
 ```
@@ -1060,7 +1062,7 @@ cp [OPTIONS] SOURCE DESTINATION
 
 **Examples:**
 ```bash
-cp file. txt backup. txt               # Copy file
+cp file.txt backup.txt               # Copy file
 cp file.txt /tmp/                    # Copy to directory
 cp file1.txt file2.txt /backup/      # Copy multiple files to directory
 cp -r directory/ backup_dir/         # Copy directory recursively
@@ -1079,7 +1081,7 @@ cp -v *.txt /backup/                 # Verbose output
 | `-n` | No clobber (don't overwrite existing) |
 | `-u` | Update (copy only if source is newer) |
 
-**Real-Life Use Case:**  
+**Real-Life Use Case:**
 Backing up configuration files before modifying them during system hardening:
 ```bash
 cp -p /etc/ssh/sshd_config /etc/ssh/sshd_config.bak
@@ -1097,9 +1099,9 @@ mv [OPTIONS] SOURCE DESTINATION
 
 **Examples:**
 ```bash
-mv oldname.txt newname. txt           # Rename file
-mv file. txt /tmp/                    # Move to directory
-mv file. txt /tmp/newname.txt         # Move and rename
+mv oldname.txt newname.txt           # Rename file
+mv file.txt /tmp/                    # Move to directory
+mv file.txt /tmp/newname.txt         # Move and rename
 mv *.log /var/log/archive/           # Move multiple files
 mv -i important.txt /backup/         # Interactive mode
 mv -n file.txt /existing/            # Don't overwrite
@@ -1113,7 +1115,7 @@ mv -n file.txt /existing/            # Don't overwrite
 | `-v` | Verbose |
 | `-u` | Update only (move if source is newer) |
 
-**Real-Life Use Case:**  
+**Real-Life Use Case:**
 Organizing captured data during a pentest:
 ```bash
 mv *.pcap ~/pentests/client/captures/
@@ -1134,7 +1136,7 @@ rm [OPTIONS] FILE(S)
 ```bash
 rm file.txt                          # Remove single file
 rm file1.txt file2.txt               # Remove multiple files
-rm *.log                             # Remove all . log files
+rm *.log                             # Remove all .log files
 rm -r directory/                     # Remove directory recursively
 rm -rf directory/                    # Force remove (no prompts, no errors)
 rm -i sensitive.txt                  # Interactive (confirm before delete)
@@ -1149,11 +1151,11 @@ rm -v *.tmp                          # Verbose output
 | `-i` | Interactive (prompt before each removal) |
 | `-v` | Verbose |
 
-> ⚠️ **DANGER:** `rm -rf /` or `rm -rf /*` will destroy your entire system.  There is NO undo.  Always double-check paths. 
+> **Warning:** `rm -rf /` or `rm -rf /*` can destroy your entire system. There is no undo, so double-check paths before running destructive commands.
 
-> 💡 **Safe Practice:** Use `rm -i` or create an alias:  `alias rm='rm -i'`
+> **Safe Practice:** Use `rm -i` or create an alias:  `alias rm='rm -i'`
 
-**Real-Life Use Case:**  
+**Real-Life Use Case:**
 Cleaning up temporary files after a scan:
 ```bash
 rm -rf /tmp/scan_*
@@ -1183,7 +1185,7 @@ rmdir -p a/b/c                       # Remove nested empty directories
 | `-p` | Remove parent directories if they become empty |
 | `-v` | Verbose |
 
-> 💡 **Note:** `rmdir` only works on EMPTY directories. For non-empty, use `rm -r`.
+> **Note:** `rmdir` only works on EMPTY directories. For non-empty, use `rm -r`.
 
 ---
 
@@ -1199,7 +1201,7 @@ cat [OPTIONS] FILE(S)
 
 **Examples:**
 ```bash
-cat file. txt                         # Display file
+cat file.txt                         # Display file
 cat file1.txt file2.txt              # Display multiple files
 cat file1.txt file2.txt > merged.txt # Concatenate into new file
 cat -n file.txt                      # Show line numbers
@@ -1214,7 +1216,7 @@ cat -A file.txt                      # Show hidden characters
 | `-A` | Show all (tabs, line endings) |
 | `-s` | Squeeze multiple blank lines |
 
-**Real-Life Use Case:**  
+**Real-Life Use Case:**
 Quickly viewing configuration files or combining log files:
 ```bash
 cat /etc/passwd                      # View user accounts
@@ -1252,7 +1254,7 @@ less +F /var/log/syslog              # Follow mode (like tail -f)
 less -N /etc/passwd                  # Show line numbers
 ```
 
-**Real-Life Use Case:**  
+**Real-Life Use Case:**
 Analyzing large log files during incident response:
 ```bash
 less /var/log/auth.log               # Review authentication attempts
@@ -1269,7 +1271,7 @@ less /var/log/auth.log               # Review authentication attempts
 more [OPTIONS] FILE
 ```
 
-> 💡 **Tip:** `less` is superior to `more` — it supports backward scrolling.  Saying:  "less is more"
+> **Tip:** `less` is superior to `more` - it supports backward scrolling.  Saying:  "less is more"
 
 ---
 
@@ -1296,7 +1298,7 @@ head -n -5 file.txt                  # All except last 5 lines
 | `-n NUM` | Print first NUM lines |
 | `-c NUM` | Print first NUM bytes |
 
-**Real-Life Use Case:**  
+**Real-Life Use Case:**
 Quickly previewing files without loading entire content:
 ```bash
 head -n 1 /etc/passwd                # Get root user info
@@ -1330,8 +1332,8 @@ tail -n +5 file.txt                  # Everything from line 5 onwards
 | `-F` | Follow + retry (handles log rotation) |
 | `-c NUM` | Print last NUM bytes |
 
-**Real-Life Use Case:**  
-Real-time log monitoring during attacks or troubleshooting: 
+**Real-Life Use Case:**
+Real-time log monitoring during attacks or troubleshooting:
 ```bash
 tail -f /var/log/auth.log            # Watch login attempts
 tail -f /var/log/apache2/access.log  # Watch web traffic
@@ -1340,7 +1342,7 @@ tail -n 50 /var/log/syslog | grep -i error  # Recent errors
 
 ---
 
-## 🔑 Key Terms
+## Key Terms
 
 | Term | Definition |
 |------|------------|
@@ -1349,24 +1351,24 @@ tail -n 50 /var/log/syslog | grep -i error  # Recent errors
 | **Prompt** | Text string indicating shell is ready for input.  Shows user, host, and current directory |
 | **Absolute Path** | Full path from root directory (`/home/kali/file.txt`) |
 | **Relative Path** | Path relative to current directory (`./file.txt`, `../folder/`) |
-| **Hidden File** | File starting with `.` — hidden from normal `ls` but visible with `ls -a` |
+| **Hidden File** | File starting with `.` - hidden from normal `ls` but visible with `ls -a` |
 | **Recursive** | Operation that applies to directory and all its subdirectories (`-r` or `-R` flag) |
 | **Glob/Wildcard** | Pattern matching characters (`*` = any chars, `?` = single char) |
-| **Symlink** | Symbolic link — shortcut pointing to another file or directory |
+| **Symlink** | Symbolic link - shortcut pointing to another file or directory |
 | **Inode** | Data structure storing file metadata (permissions, timestamps, location on disk) |
 
 ---
 
-## ❓ FAQs
+## FAQs
 
-**Q: What's the difference between `rm` and `rmdir`?**  
-> `rmdir` removes **empty directories only** — a safety feature.  `rm -r` removes directories and all contents recursively.  Use `rmdir` when you want to ensure you're not accidentally deleting data.
+**Q: What's the difference between `rm` and `rmdir`?**
+> `rmdir` removes **empty directories only** - a safety feature.  `rm -r` removes directories and all contents recursively.  Use `rmdir` when you want to ensure you're not accidentally deleting data.
 
-**Q:  How do I view hidden files?**  
+**Q:  How do I view hidden files?**
 > Use `ls -a` or `ls -la`. Hidden files start with a dot (`.bashrc`, `.ssh`, `.config`). These are often configuration files or sensitive directories.
 
-**Q:  What does `cd -` do?**  
-> It returns you to your **previous directory**.  Useful for toggling between two locations: 
+**Q:  What does `cd -` do?**
+> It returns you to your **previous directory**.  Useful for toggling between two locations:
 > ```bash
 > cd /var/log
 > cd /etc/network
@@ -1374,25 +1376,25 @@ tail -n 50 /var/log/syslog | grep -i error  # Recent errors
 > cd -          # Back to /etc/network
 > ```
 
-**Q: How can I create a complex directory structure quickly?**  
-> Use brace expansion: 
+**Q: How can I create a complex directory structure quickly?**
+> Use brace expansion:
 > ```bash
 > mkdir -p project/{src/{main,test},docs,config,logs}
 > ```
 > This creates `project/src/main`, `project/src/test`, `project/docs`, `project/config`, and `project/logs` in one command.
 
-**Q: What's safer — `rm` or moving to trash?**  
-> Linux CLI has no trash by default — `rm` is permanent. Options:
+**Q: What's safer - `rm` or moving to trash?**
+> Linux CLI has no trash by default - `rm` is permanent. Options:
 > - Use `rm -i` for interactive prompts
 > - Install `trash-cli`: `sudo apt install trash-cli` then use `trash` instead of `rm`
 > - Create alias: `alias rm='rm -i'`
 
-**Q: Why does `tail -f` stop updating when a log file rotates?**  
-> Log rotation replaces the file with a new one (different inode). `tail -f` follows the inode, not the filename. Use `tail -F` instead — it follows the filename and retries when rotation occurs.
+**Q: Why does `tail -f` stop updating when a log file rotates?**
+> Log rotation replaces the file with a new one (different inode). `tail -f` follows the inode, not the filename. Use `tail -F` instead - it follows the filename and retries when rotation occurs.
 
 ---
 
-## 📝 Practice Tasks
+## Practice Tasks
 
 ### Task 1: Navigate to `/etc` and List Network Configs
 **Objective:** Practice navigation and filtered listing
@@ -1416,20 +1418,20 @@ find . -name "*network*" -type f 2>/dev/null
 **Create this structure in one command:**
 ```
 ~/pentests/
-└── project_alpha/
-    ├── recon/
-    │   ├── passive/
-    │   └── active/
-    ├── scanning/
-    │   ├── nmap/
-    │   └── vuln/
-    ├── exploitation/
-    ├── post-exploitation/
-    ├── loot/
-    │   ├── credentials/
-    │   ├── hashes/
-    │   └── files/
-    └── reports/
++-- project_alpha/
+    +-- recon/
+    |   +-- passive/
+    |   +-- active/
+    +-- scanning/
+    |   +-- nmap/
+    |   +-- vuln/
+    +-- exploitation/
+    +-- post-exploitation/
+    +-- loot/
+    |   +-- credentials/
+    |   +-- hashes/
+    |   +-- files/
+    +-- reports/
 ```
 
 **Solution:**
@@ -1466,15 +1468,15 @@ tree ~/pentests/project_alpha
 ```bash
 tail -f /var/log/auth.log | grep -i "failed\|invalid"
 ```
-This monitors for failed login attempts in real-time. 
+This monitors for failed login attempts in real-time.
 
 **Deliverable:** Screenshot showing real-time log entries appearing
 
 ---
 
-## ✅ Module 2 Checkpoint
+## Module 2 Checkpoint
 
-Before moving to Module 3, confirm you can: 
+Before moving to Module 3, confirm you can:
 
 - [ ] Navigate filesystem using `cd` with absolute and relative paths
 - [ ] List files with various `ls` options (`-la`, `-lh`, `-R`)
@@ -1490,9 +1492,9 @@ Before moving to Module 3, confirm you can:
 ---
 ---
 
-# Module 3: File System Mastery
+# Module 3: File System Practice
 
-## 📘 Introduction
+## Introduction
 
 The Linux filesystem is a **hierarchical tree structure** starting from the root `/`. Unlike Windows with its drive letters (C:\, D:\), Linux mounts everything under a single unified tree. Understanding this structure is essential for navigation, troubleshooting, and **privilege escalation** during penetration testing.
 
@@ -1506,47 +1508,47 @@ Everything in Linux starts from `/` (root). Here's the complete breakdown:
 
 ```
 /
-├── bin/       → Essential user binaries (ls, cp, cat)
-├── boot/      → Boot loader files (kernel, grub)
-├── dev/       → Device files (disks, terminals)
-├── etc/       → System configuration files
-├── home/      → User home directories
-├── lib/       → Essential shared libraries
-├── lib64/     → 64-bit libraries
-├── media/     → Mount point for removable media
-├── mnt/       → Temporary mount points
-├── opt/       → Optional/third-party software
-├── proc/      → Virtual filesystem (process info)
-├── root/      → Root user's home directory
-├── run/       → Runtime data (PID files, sockets)
-├── sbin/      → System binaries (admin commands)
-├── srv/       → Service data (web, ftp)
-├── sys/       → Virtual filesystem (kernel/hardware info)
-├── tmp/       → Temporary files (cleared on reboot)
-├── usr/       → User programs and data
-│   ├── bin/   → User binaries
-│   ├── lib/   → Libraries
-│   ├── local/ → Locally installed software
-│   └── share/ → Shared data (docs, icons)
-└── var/       → Variable data (logs, mail, spool)
-    ├── log/   → Log files
-    ├── www/   → Web server files
-    └── tmp/   → Persistent temp files
++-- bin/       -> Essential user binaries (ls, cp, cat)
++-- boot/      -> Boot loader files (kernel, grub)
++-- dev/       -> Device files (disks, terminals)
++-- etc/       -> System configuration files
++-- home/      -> User home directories
++-- lib/       -> Essential shared libraries
++-- lib64/     -> 64-bit libraries
++-- media/     -> Mount point for removable media
++-- mnt/       -> Temporary mount points
++-- opt/       -> Optional/third-party software
++-- proc/      -> Virtual filesystem (process info)
++-- root/      -> Root user's home directory
++-- run/       -> Runtime data (PID files, sockets)
++-- sbin/      -> System binaries (admin commands)
++-- srv/       -> Service data (web, ftp)
++-- sys/       -> Virtual filesystem (kernel/hardware info)
++-- tmp/       -> Temporary files (cleared on reboot)
++-- usr/       -> User programs and data
+|   +-- bin/   -> User binaries
+|   +-- lib/   -> Libraries
+|   +-- local/ -> Locally installed software
+|   +-- share/ -> Shared data (docs, icons)
++-- var/       -> Variable data (logs, mail, spool)
+    +-- log/   -> Log files
+    +-- www/   -> Web server files
+    +-- tmp/   -> Persistent temp files
 ```
 
-### Critical Directories for CyberSecurity
+### Critical Directories for Cybersecurity
 
 | Directory | Security Relevance |
 |-----------|-------------------|
 | `/etc/passwd` | User account information (readable by all) |
-| `/etc/shadow` | Password hashes (root only — prime target) |
+| `/etc/shadow` | Password hashes (root only - prime target) |
 | `/etc/sudoers` | Sudo privileges configuration |
-| `/var/log/` | System logs — evidence, audit trails |
-| `/tmp/` | World-writable — malware staging area |
+| `/var/log/` | System logs - evidence, audit trails |
+| `/tmp/` | World-writable - malware staging area |
 | `/home/*/` | User data, SSH keys, bash history |
-| `/root/` | Root user's home — highest value target |
+| `/root/` | Root user's home - highest value target |
 | `/proc/` | Live process info, memory dumps |
-| `/dev/` | Device access — raw disk reads possible |
+| `/dev/` | Device access - raw disk reads possible |
 
 ### Key Commands for Exploration
 
@@ -1569,13 +1571,13 @@ cat /etc/fstab
 
 ## 3.2 File Types
 
-Linux treats everything as a file — even devices and processes. 
+Linux treats everything as a file - even devices and processes.
 
 | Symbol | Type | Description | Example |
 |--------|------|-------------|---------|
 | `-` | Regular File | Normal files (text, binary, scripts) | `/etc/passwd` |
 | `d` | Directory | Folder containing other files | `/home/kali/` |
-| `l` | Symbolic Link | Pointer to another file | `/bin/sh → /bin/dash` |
+| `l` | Symbolic Link | Pointer to another file | `/bin/sh -> /bin/dash` |
 | `c` | Character Device | Character-by-character I/O | `/dev/tty` (terminal) |
 | `b` | Block Device | Block-based I/O (storage) | `/dev/sda` (hard disk) |
 | `p` | Named Pipe (FIFO) | Inter-process communication | Created with `mkfifo` |
@@ -1594,7 +1596,7 @@ file /etc/passwd
 # /etc/passwd: ASCII text
 
 file /bin/ls
-# /bin/ls: ELF 64-bit LSB pie executable... 
+# /bin/ls: ELF 64-bit LSB pie executable...
 
 file /dev/null
 # /dev/null: character special (1/3)
@@ -1613,7 +1615,7 @@ file /dev/null
 
 ## 3.3 Hidden Files & Dotfiles
 
-Files starting with `.` are hidden from normal `ls` output. 
+Files starting with `.` are hidden from normal `ls` output.
 
 ### Common Dotfiles
 
@@ -1636,7 +1638,7 @@ Files starting with `.` are hidden from normal `ls` output.
 ls -la ~
 
 # Find all .bashrc files on system
-find /home -name ". bashrc" 2>/dev/null
+find /home -name ".bashrc" 2>/dev/null
 
 # Search for SSH keys
 find / -name "id_rsa" 2>/dev/null
@@ -1656,12 +1658,12 @@ Linux uses a **permission matrix** for access control.
 
 ```
 -rwxr-xr--  1  kali  kali  4096  Dec 25 10:30  script.sh
-│├─┤├─┤├─┤
-│ │  │  │
-│ │  │  └── Others (everyone else): r-- (read only)
-│ │  └───── Group (kali group): r-x (read + execute)
-│ └──────── User/Owner (kali): rwx (read + write + execute)
-└────────── File type (- = regular file)
+|+-++-++-+
+| |  |  |
+| |  |  +-- Others (everyone else): r-- (read only)
+| |  +----- Group (kali group): r-x (read + execute)
+| +-------- User/Owner (kali): rwx (read + write + execute)
++---------- File type (- = regular file)
 ```
 
 ### Permission Values
@@ -1696,7 +1698,7 @@ chmod [OPTIONS] MODE FILE(S)
 
 **Numeric Method:**
 ```bash
-chmod 755 script. sh      # rwxr-xr-x
+chmod 755 script.sh      # rwxr-xr-x
 chmod 600 id_rsa         # rw------- (SSH private key)
 chmod 644 config.txt     # rw-r--r--
 chmod 777 /tmp/share     # Full access (dangerous)
@@ -1707,7 +1709,7 @@ chmod 777 /tmp/share     # Full access (dangerous)
 chmod u+x script.sh      # Add execute for user
 chmod g-w file.txt       # Remove write from group
 chmod o-rwx secret.txt   # Remove all from others
-chmod a+r public. txt     # Add read for all
+chmod a+r public.txt     # Add read for all
 chmod u=rwx,g=rx,o= file # Set exact permissions
 ```
 
@@ -1728,7 +1730,7 @@ chmod -R 755 /var/www/html/   # Apply to all files/subdirs
 ```
 
 **Real-Life Use Case:**
-Making a script executable before running: 
+Making a script executable before running:
 ```bash
 chmod +x exploit.sh
 ./exploit.sh
@@ -1752,7 +1754,7 @@ chown : developers file.txt       # Change group only
 chown -R www-data:www-data /var/www/   # Recursive
 ```
 
-> ⚠️ **Note:** Only root can change file ownership. 
+> **Note:** Only root can change file ownership.
 
 **Real-Life Use Case:**
 Web server files need correct ownership:
@@ -1787,9 +1789,9 @@ Every file has an **owner** and a **group**.
 ```bash
 ls -l file.txt
 # -rw-r--r-- 1 kali kali 4096 Dec 25 10:30 file.txt
-#              │    │
-#              │    └── Group
-#              └── Owner
+# |    |
+# |    +-- Group
+# +-- Owner
 
 stat file.txt   # Detailed information
 ```
@@ -1827,7 +1829,7 @@ groups kali
 
 ## 3.6 Special Permissions (SUID, SGID, Sticky Bit)
 
-Beyond rwx, Linux has **special permission bits** — major privilege escalation vectors. 
+Beyond rwx, Linux has **special permission bits** - major privilege escalation vectors.
 
 ### SUID (Set User ID)
 When executed, runs with **owner's privileges** instead of executor's.
@@ -1840,7 +1842,7 @@ When executed, runs with **owner's privileges** instead of executor's.
 # Example: passwd command
 ls -la /usr/bin/passwd
 # -rwsr-xr-x 1 root root 68208 Dec 25 10:30 /usr/bin/passwd
-#    ^-- 's' = SUID bit set
+# ^-- 's' = SUID bit set
 ```
 
 **Why it matters:** Regular users can change their password, but `/etc/shadow` is root-only.  SUID makes `passwd` run as root temporarily.
@@ -1866,7 +1868,7 @@ chmod 4755 binary        # Numeric
 ```bash
 ls -la /usr/bin/wall
 # -rwxr-sr-x 1 root tty 14488 Dec 25 10:30 /usr/bin/wall
-#        ^-- 's' = SGID bit set
+# ^-- 's' = SGID bit set
 ```
 
 **Set SGID:**
@@ -1887,10 +1889,10 @@ On directories:  Only file **owner** can delete their files (even if others have
 ```bash
 ls -ld /tmp
 # drwxrwxrwt 15 root root 4096 Dec 25 10:30 /tmp
-#          ^-- 't' = sticky bit
+# ^-- 't' = sticky bit
 ```
 
-**Why `/tmp` has sticky bit:** Everyone can write, but users can't delete each other's files. 
+**Why `/tmp` has sticky bit:** Everyone can write, but users can't delete each other's files.
 
 **Set Sticky Bit:**
 ```bash
@@ -1903,7 +1905,7 @@ chmod 1777 directory/    # Numeric
 ### Finding SUID/SGID Binaries (Privilege Escalation)
 
 ```bash
-# Find all SUID binaries (CRITICAL for pentesting)
+# Find all SUID binaries during a permission review
 find / -perm -4000 -type f 2>/dev/null
 
 # Find all SGID binaries
@@ -1915,21 +1917,21 @@ find / -perm /6000 -type f 2>/dev/null
 # Find SUID binaries owned by root
 find / -user root -perm -4000 -type f 2>/dev/null
 
-# Common exploitable SUID binaries: 
+# Common exploitable SUID binaries:
 # /usr/bin/find, /usr/bin/vim, /usr/bin/awk
 # /usr/bin/python, /usr/bin/perl, /usr/bin/less
 ```
 
-> 💡 **GTFOBins** (https://gtfobins.github.io/) — Database of Unix binaries that can be exploited for privilege escalation. 
+> **GTFOBins** (https://gtfobins.github.io/) - Database of Unix binaries that can be exploited for privilege escalation.
 
 ---
 
 ## 3.7 Links (Hard vs Symbolic)
 
-Links create references to files. 
+Links create references to files.
 
 ### Symbolic (Soft) Links
-**Pointer to a filename** — like a shortcut. 
+**Pointer to a filename** - like a shortcut.
 
 ```bash
 ln -s /path/to/original /path/to/link
@@ -1946,7 +1948,7 @@ ln -s /path/to/original /path/to/link
 **Example:**
 ```bash
 ln -s /usr/share/wordlists/rockyou.txt ~/rockyou.txt
-ls -la ~/rockyou. txt
+ls -la ~/rockyou.txt
 # lrwxrwxrwx 1 kali kali 35 Dec 25 10:30 rockyou.txt -> /usr/share/wordlists/rockyou.txt
 ```
 
@@ -1973,7 +1975,7 @@ ln important.txt backup_important.txt
 ls -li important.txt backup_important.txt
 # 12345 -rw-r--r-- 2 kali kali 1000 Dec 25 important.txt
 # 12345 -rw-r--r-- 2 kali kali 1000 Dec 25 backup_important.txt
-#  ^-- Same inode         ^-- Link count = 2
+# ^-- Same inode         ^-- Link count = 2
 ```
 
 ---
@@ -1983,53 +1985,53 @@ ls -li important.txt backup_important.txt
 | Feature | Symbolic Link | Hard Link |
 |---------|---------------|-----------|
 | Points to | Filename (path) | Inode (data) |
-| Cross filesystem | ✅ Yes | ❌ No |
-| Link to directories | ✅ Yes | ❌ No |
-| Original deleted | ❌ Breaks (dangling) | ✅ Data preserved |
+| Cross filesystem |  Yes |  No |
+| Link to directories |  Yes |  No |
+| Original deleted |  Breaks (dangling) |  Data preserved |
 | Inode | Different | Same |
 | File type | `l` (link) | `-` (regular) |
 | Command | `ln -s target link` | `ln target link` |
 
 ---
 
-## 🔑 Key Terms
+## Key Terms
 
 | Term | Definition |
 |------|------------|
 | **Inode** | Data structure storing file metadata (permissions, timestamps, disk location). Each file has unique inode number. |
-| **SUID** | Set User ID — executable runs with owner's privileges. Numeric:  4000. |
-| **SGID** | Set Group ID — executable runs with group's privileges, or directory inherits group.  Numeric: 2000. |
+| **SUID** | Set User ID - executable runs with owner's privileges. Numeric:  4000. |
+| **SGID** | Set Group ID - executable runs with group's privileges, or directory inherits group.  Numeric: 2000. |
 | **Sticky Bit** | On directories, only file owner can delete their files. Numeric: 1000. |
 | **Symbolic Link** | Soft link pointing to a filename.  Breaks if target deleted. |
 | **Hard Link** | Direct reference to inode. Survives original deletion. |
 | **Octal Notation** | Numeric permission representation (755 = rwxr-xr-x). |
-| **umask** | Default permission mask for new files (usually 022 → files get 644, dirs get 755). |
-| **ACL** | Access Control Lists — extended permissions beyond standard user/group/others. |
+| **umask** | Default permission mask for new files (usually 022 -> files get 644, dirs get 755). |
+| **ACL** | Access Control Lists - extended permissions beyond standard user/group/others. |
 
 ---
 
-## ❓ FAQs
+## FAQs
 
 **Q: Why can't I delete a file even though I have write permission on it?**
 > You need **write permission on the directory**, not the file.  Directory write permission controls adding/removing files.  File write permission controls modifying content.
 
 **Q:  What's the difference between `s` and `S` in permissions?**
-> Lowercase `s` means SUID/SGID **and** execute permission are set.   
-> Uppercase `S` means SUID/SGID is set but execute is **not** — usually a misconfiguration.  
+> Lowercase `s` means SUID/SGID **and** execute permission are set.
+> Uppercase `S` means SUID/SGID is set but execute is **not** - usually a misconfiguration.
 > `rwSr--r--` = SUID set but not executable (useless).
 
 **Q: Why should SSH keys be chmod 600?**
 > SSH refuses to use keys with loose permissions. `600` (owner read+write only) prevents other users from reading your private key.  SSH will error:  "Permissions are too open" if not set correctly.
 
-**Q: How do SUID binaries lead to privilege escalation? **
+**Q: How do SUID binaries lead to privilege escalation?**
 > If a SUID binary owned by root has a vulnerability (command injection, buffer overflow) or allows shell escape (vim, less, find), attackers can spawn a root shell.  Check GTFOBins for exploitable binaries.
 
 **Q: What happens when I delete the original file of a hard link?**
-> Nothing — the data remains accessible through the hard link. Data is only deleted when **all** hard links (link count = 0) are removed.  That's because hard links point to the inode, not the filename.
+> Nothing - the data remains accessible through the hard link. Data is only deleted when **all** hard links (link count = 0) are removed.  That's because hard links point to the inode, not the filename.
 
 ---
 
-## 📝 Practice Tasks
+## Practice Tasks
 
 ### Task 1: Find All SUID Binaries on Your System
 **Objective:** Identify potential privilege escalation vectors
@@ -2047,7 +2049,7 @@ find / -user root -perm -4000 -type f 2>/dev/null
 /usr/bin/find .  -exec /bin/sh -p \; -quit
 ```
 
-**Deliverable:** 
+**Deliverable:**
 - List of SUID binaries on your Kali system
 - Identify at least 3 binaries listed on GTFOBins
 - Document their exploitation method
@@ -2077,7 +2079,7 @@ ls ~/nmap-scripts | head
 
 ---
 
-### Task 3: Set Permissions — Executable Only by You
+### Task 3: Set Permissions - Executable Only by You
 **Objective:** Practice chmod for security
 
 **Steps:**
@@ -2087,36 +2089,36 @@ echo '#!/bin/bash' > ~/myscript.sh
 echo 'echo "This is my private script"' >> ~/myscript.sh
 
 # View current permissions
-ls -la ~/myscript. sh
+ls -la ~/myscript.sh
 
 # Set:  owner=rwx, group=none, others=none
 chmod 700 ~/myscript.sh
 # OR
-chmod u=rwx,go= ~/myscript. sh
+chmod u=rwx,go= ~/myscript.sh
 
 # Verify
 ls -la ~/myscript.sh
 # -rwx------ 1 kali kali 52 Dec 25 myscript.sh
 
 # Execute
-./myscript. sh
+./myscript.sh
 ```
 
 **Bonus Challenge:**
 ```bash
 # Set SUID on the script (educational only)
-sudo chmod u+s ~/myscript. sh
+sudo chmod u+s ~/myscript.sh
 ls -la ~/myscript.sh
 # What changed? Why is SUID on scripts ignored by Linux?
 ```
 
-**Deliverable:** 
+**Deliverable:**
 - Screenshot of script with `700` permissions
 - Answer:  Why doesn't SUID work on bash scripts?
 
 ---
 
-## ✅ Module 3 Checkpoint
+## Module 3 Checkpoint
 
 Before moving to Module 4, confirm:
 
@@ -2133,11 +2135,11 @@ Before moving to Module 4, confirm:
 
 # Module 4: Text Processing & Manipulation
 
-## 📘 Introduction
+## Introduction
 
-Text processing is the **backbone of Linux administration and hacking**. Log analysis, data extraction, credential parsing, configuration modification — all rely on text manipulation tools.  Mastering `grep`, `sed`, `awk`, and friends transforms you from a Linux user into a Linux power user.
+Text processing is the **backbone of Linux administration and hacking**. Log analysis, data extraction, credential parsing, configuration modification - all rely on text manipulation tools.  Mastering `grep`, `sed`, `awk`, and friends transforms you from a Linux user into a Linux power user.
 
-This module covers essential text processing commands that every security professional uses daily for parsing scan results, extracting sensitive data, and automating reconnaissance. 
+This module covers essential text processing commands that every security professional uses daily for parsing scan results, extracting sensitive data, and automating reconnaissance.
 
 ---
 
@@ -2146,7 +2148,7 @@ This module covers essential text processing commands that every security profes
 ### Command: `cat`
 **Concatenate and display file contents**
 
-Covered in Module 2.  Additional advanced uses: 
+Covered in Module 2.  Additional advanced uses:
 
 ```bash
 # Create file with cat (heredoc)
@@ -2233,7 +2235,7 @@ echo "new config" | sudo tee /etc/somefile
 **Real-Life Use Case:**
 Save scan results while watching progress:
 ```bash
-nmap -sV target. com | tee nmap_scan.txt
+nmap -sV target.com | tee nmap_scan.txt
 ```
 
 ---
@@ -2241,7 +2243,7 @@ nmap -sV target. com | tee nmap_scan.txt
 ## 4.2 Searching with grep
 
 ### Command: `grep`
-**Search for patterns in text** — one of the most important Linux commands. 
+**Search for patterns in text** - one of the most important Linux commands.
 
 **Syntax:**
 ```bash
@@ -2299,8 +2301,8 @@ grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' log.txt
 **Basic Regex:**
 | Pattern | Meaning | Example |
 |---------|---------|---------|
-| `.` | Any single character | `a.c` → abc, aXc |
-| `*` | Zero or more of previous | `ab*c` → ac, abc, abbc |
+| `.` | Any single character | `a.c` -> abc, aXc |
+| `*` | Zero or more of previous | `ab*c` -> ac, abc, abbc |
 | `^` | Start of line | `^Error` |
 | `$` | End of line | `failed$` |
 | `[ ]` | Character class | `[aeiou]` |
@@ -2310,12 +2312,12 @@ grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' log.txt
 **Extended Regex (grep -E or egrep):**
 | Pattern | Meaning | Example |
 |---------|---------|---------|
-| `+` | One or more of previous | `ab+c` → abc, abbc |
-| `?` | Zero or one of previous | `ab?c` → ac, abc |
-| `{n}` | Exactly n times | `a{3}` → aaa |
-| `{n,m}` | Between n and m times | `a{2,4}` → aa, aaa, aaaa |
+| `+` | One or more of previous | `ab+c` -> abc, abbc |
+| `?` | Zero or one of previous | `ab?c` -> ac, abc |
+| `{n}` | Exactly n times | `a{3}` -> aaa |
+| `{n,m}` | Between n and m times | `a{2,4}` -> aa, aaa, aaaa |
 | `\|` | OR | `cat\|dog` |
-| `( )` | Grouping | `(ab)+` → ab, abab |
+| `( )` | Grouping | `(ab)+` -> ab, abab |
 
 **Security-Focused Examples:**
 ```bash
@@ -2326,7 +2328,7 @@ grep -E -o '([0-9]{1,3}\.){3}[0-9]{1,3}' access.log
 grep -E -o '[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}' file.txt
 
 # Find URLs
-grep -E -o 'https?://[^ ]+' file. txt
+grep -E -o 'https?://[^ ]+' file.txt
 
 # Find failed SSH logins
 grep "Failed password" /var/log/auth.log
@@ -2404,7 +2406,7 @@ uniq [OPTIONS] [INPUT [OUTPUT]]
 sort file.txt | uniq             # Remove duplicate lines
 sort file.txt | uniq -c          # Count occurrences
 sort file.txt | uniq -d          # Show only duplicates
-sort file. txt | uniq -u          # Show only unique lines
+sort file.txt | uniq -u          # Show only unique lines
 ```
 
 **Options:**
@@ -2415,14 +2417,14 @@ sort file. txt | uniq -u          # Show only unique lines
 | `-u` | Only print unique lines |
 | `-i` | Case-insensitive |
 
-> ⚠️ **Critical:** `uniq` only removes **adjacent** duplicates. Always `sort` first!
+> **Critical:** `uniq` only removes **adjacent** duplicates. Always `sort` first!
 
 ```bash
-# WRONG: 
+# WRONG:
 cat file.txt | uniq
 
 # CORRECT:
-cat file. txt | sort | uniq
+cat file.txt | sort | uniq
 ```
 
 ---
@@ -2486,7 +2488,7 @@ cut -d "," -f 2,4 data.csv       # 2nd and 4th columns
 | `--complement` | Invert selection |
 
 **Real-Life Use Case:**
-Extract usernames and shells from passwd: 
+Extract usernames and shells from passwd:
 ```bash
 cut -d ":" -f 1,7 /etc/passwd
 # root:/bin/bash
@@ -2558,7 +2560,7 @@ cat windows.txt | tr -d '\r' > unix.txt
 ## 4.4 Stream Editing with sed
 
 ### Command: `sed`
-**Stream Editor** — powerful text transformation tool
+**Stream Editor** - powerful text transformation tool
 
 **Syntax:**
 ```bash
@@ -2579,18 +2581,18 @@ sed 's/old/new/gi' file.txt
 
 # Replace and save to file
 sed -i 's/old/new/g' file.txt        # Edit in-place (careful!)
-sed -i. bak 's/old/new/g' file.txt    # Backup before edit
+sed -i.bak 's/old/new/g' file.txt    # Backup before edit
 ```
 
 ### Sed Command Structure
 
 ```
 sed 's/pattern/replacement/flags'
-     │  │       │           │
-     │  │       │           └── g=global, i=case-insensitive, p=print
-     │  │       └── Replacement string
-     │  └── Pattern to match (regex)
-     └── Substitute command
+| |       |           |
+| |       |           +-- g=global, i=case-insensitive, p=print
+| |       +-- Replacement string
+     |  +-- Pattern to match (regex)
+     +-- Substitute command
 ```
 
 ### Common sed Operations
@@ -2600,17 +2602,17 @@ sed 's/pattern/replacement/flags'
 sed '/pattern/d' file.txt            # Delete lines matching pattern
 sed '5d' file.txt                    # Delete line 5
 sed '1,5d' file.txt                  # Delete lines 1-5
-sed '/^$/d' file. txt                 # Delete empty lines
-sed '/^#/d' file. txt                 # Delete comment lines
+sed '/^$/d' file.txt                 # Delete empty lines
+sed '/^#/d' file.txt                 # Delete comment lines
 
 # Print specific lines
 sed -n '10p' file.txt                # Print only line 10
 sed -n '5,10p' file.txt              # Print lines 5-10
-sed -n '/error/p' file. txt           # Print lines with "error"
+sed -n '/error/p' file.txt           # Print lines with "error"
 
 # Insert/Append
 sed '3i\New line above' file.txt     # Insert before line 3
-sed '3a\New line below' file. txt     # Append after line 3
+sed '3a\New line below' file.txt     # Append after line 3
 sed '1i\Header line' file.txt        # Add header
 
 # Multiple commands
@@ -2623,7 +2625,7 @@ sed 's/foo/bar/g; s/baz/qux/g' file.txt
 ```bash
 # Use capture groups
 sed 's/\(.*\)@\(.*\)/User:  \1, Domain: \2/' emails.txt
-# bob@example.com → User: bob, Domain: example.com
+# bob@example.com -> User: bob, Domain: example.com
 
 # Extended regex (-E)
 sed -E 's/([0-9]+)/[\1]/g' file.txt
@@ -2676,7 +2678,7 @@ sed '/pattern/s/^/#/' file.txt
 ## 4.5 Pattern Matching with awk
 
 ### Command:  `awk`
-**Pattern scanning and processing language** — extremely powerful for data extraction. 
+**Pattern scanning and processing language** - extremely powerful for data extraction.
 
 **Syntax:**
 ```bash
@@ -2702,7 +2704,7 @@ awk [OPTIONS] 'PATTERN { ACTION }' [FILE]
 # Print specific columns
 awk '{print $1}' file.txt            # First column
 awk '{print $1, $3}' file.txt        # First and third columns
-awk '{print $NF}' file. txt           # Last column
+awk '{print $NF}' file.txt           # Last column
 
 # Custom delimiter
 awk -F ":" '{print $1}' /etc/passwd  # Usernames
@@ -2713,7 +2715,7 @@ awk '{print "User:", $1}' file.txt
 awk -F ":" '{print $1 " -> " $7}' /etc/passwd
 
 # Line numbers
-awk '{print NR, $0}' file. txt        # Prefix with line number
+awk '{print NR, $0}' file.txt        # Prefix with line number
 ```
 
 ### Pattern Matching
@@ -2736,13 +2738,13 @@ awk '!/comment/' file.txt            # Lines NOT containing "comment"
 
 ```bash
 # BEGIN and END blocks
-awk 'BEGIN {print "Header"} {print $0} END {print "Footer"}' file. txt
+awk 'BEGIN {print "Header"} {print $0} END {print "Footer"}' file.txt
 
 # Variables and calculations
 awk '{sum += $1} END {print "Total:", sum}' numbers.txt
 
 # Count lines
-awk 'END {print NR}' file. txt
+awk 'END {print NR}' file.txt
 
 # Average
 awk '{sum += $1; count++} END {print sum/count}' numbers.txt
@@ -2781,7 +2783,7 @@ awk '{printf "%-10s %5d\n", $1, $2}' file.txt
 # Extract usernames and emails from CSV
 awk -F "," '{print $1, $3}' users.csv
 
-# Parse Apache logs — count requests per IP
+# Parse Apache logs - count requests per IP
 awk '{print $1}' access.log | sort | uniq -c | sort -rn | head
 
 # Find users with bash shell
@@ -2866,7 +2868,7 @@ comm -23 file1.txt file2.txt         # Only in file1 (suppress 2,3)
 comm -13 file1.txt file2.txt         # Only in file2 (suppress 1,3)
 ```
 
-> ⚠️ **Files must be sorted! ** Use `sort file.txt` first. 
+> **Files must be sorted.** Use `sort file.txt` first.
 
 ---
 
@@ -2889,23 +2891,23 @@ cmp -s file1.bin file2.bin           # Silent (exit code only)
 
 ---
 
-## 🔑 Key Terms
+## Key Terms
 
 | Term | Definition |
 |------|------------|
-| **Regex** | Regular Expression — pattern language for text matching.  Basic (BRE) vs Extended (ERE). |
-| **Pipe** | `\|` character — connects stdout of one command to stdin of another. |
+| **Regex** | Regular Expression - pattern language for text matching.  Basic (BRE) vs Extended (ERE). |
+| **Pipe** | `\|` character - connects stdout of one command to stdin of another. |
 | **stdin/stdout/stderr** | Standard input (0), output (1), and error (2) streams. |
 | **Stream** | Continuous flow of text data passed between commands. |
 | **Field** | Column/section of text separated by delimiter (space, comma, colon). |
 | **Delimiter** | Character that separates fields (`:` in /etc/passwd, `,` in CSV). |
 | **In-place Edit** | Modifying file directly with `sed -i` (dangerous without backup). |
 | **Capture Group** | Regex pattern in `\( \)` that can be referenced with `\1, \2`. |
-| **Glob** | Shell wildcard patterns (`*`, `?`, `[ ]`) — NOT regex. |
+| **Glob** | Shell wildcard patterns (`*`, `?`, `[ ]`) - NOT regex. |
 
 ---
 
-## ❓ FAQs
+## FAQs
 
 **Q: What's the difference between grep regex and sed regex?**
 > Both use Basic Regular Expressions (BRE) by default. Use `-E` for Extended Regular Expressions (ERE) with both.  Key difference: `grep` searches and filters, `sed` searches and transforms.
@@ -2916,21 +2918,19 @@ cmp -s file1.bin file2.bin           # Silent (exit code only)
 **Q: When should I use awk vs sed?**
 > - **sed:** Simple substitutions, delete lines, text transformations
 > - **awk:** Column-based data, calculations, complex conditionals, CSV parsing
-> 
-> Rule:  If you're working with columns/fields, use awk.
+> > Rule:  If you're working with columns/fields, use awk.
 
 **Q:  How do I match literal special characters in regex?**
 > Escape them with backslash: `\.` for period, `\*` for asterisk, `\$` for dollar sign.  Or use `fgrep` (grep -F) for literal matching.
 
 **Q:  What's the difference between `*` in glob vs regex?**
-> - **Glob (shell):** `*` = any characters (including none) → `*.txt` matches all . txt files
-> - **Regex:** `*` = zero or more of *previous* character → `a*` matches "", "a", "aa"
-> 
-> In regex, "any characters" is `.*` (dot = any char, star = any amount).
+> - **Glob (shell):** `*` = any characters (including none) -> `*.txt` matches all .txt files
+> - **Regex:** `*` = zero or more of *previous* character -> `a*` matches "", "a", "aa"
+> > In regex, "any characters" is `.*` (dot = any char, star = any amount).
 
 ---
 
-## 📝 Practice Tasks
+## Practice Tasks
 
 ### Task 1: Extract All IP Addresses from a Log File
 **Objective:** Practice grep with regex
@@ -2950,7 +2950,7 @@ EOF
 **Solution:**
 ```bash
 # Extract IPs
-grep -E -o '([0-9]{1,3}\. ){3}[0-9]{1,3}' access. log
+grep -E -o '([0-9]{1,3}\. ){3}[0-9]{1,3}' access.log
 
 # Get unique IPs sorted by frequency
 grep -E -o '([0-9]{1,3}\.){3}[0-9]{1,3}' access.log | sort | uniq -c | sort -rn
@@ -2960,17 +2960,17 @@ grep -E -o '([0-9]{1,3}\.){3}[0-9]{1,3}' access.log | sort | uniq -c | sort -rn
 
 ---
 
-### Task 2: Parse CSV — Extract Usernames and Emails
+### Task 2: Parse CSV - Extract Usernames and Emails
 **Objective:** Practice awk field extraction
 
 **Setup:**
 ```bash
 cat << 'EOF' > users.csv
 id,username,email,role,created
-1,john_doe,john@example. com,admin,2024-01-15
+1,john_doe,john@example.com,admin,2024-01-15
 2,jane_smith,jane@example.com,user,2024-02-20
 3,bob_wilson,bob@company.org,user,2024-03-10
-4,alice_jones,alice@example. com,moderator,2024-04-05
+4,alice_jones,alice@example.com,moderator,2024-04-05
 EOF
 ```
 
@@ -3010,20 +3010,20 @@ EOF
 sed 's|http://|https://|g' urls.txt
 
 # Apply changes
-sed -i. bak 's|http://|https://|g' urls. txt
+sed -i.bak 's|http://|https://|g' urls.txt
 
 # Verify
 cat urls.txt
-diff urls.txt. bak urls.txt
+diff urls.txt.bak urls.txt
 ```
 
-**Deliverable:** 
+**Deliverable:**
 - Modified urls.txt with all http:// replaced
 - Screenshot showing diff output
 
 ---
 
-## ✅ Module 4 Checkpoint
+## Module 4 Checkpoint
 
 Before moving to Module 5, confirm:
 
@@ -3043,11 +3043,11 @@ Before moving to Module 5, confirm:
 
 # Module 5: Redirection & Piping
 
-## 📘 Introduction
+## Introduction
 
-Redirection and piping are the **plumbing of Linux** — they control how data flows between commands, files, and the terminal.  Mastering these concepts transforms isolated commands into powerful automated workflows.
+Redirection and piping are the **plumbing of Linux** - they control how data flows between commands, files, and the terminal.  Mastering these concepts transforms isolated commands into powerful automated workflows.
 
-In cybersecurity, you'll constantly chain tools together:  scanning with nmap, filtering with grep, sorting with awk, and saving results — all in one line. This module teaches you to control data flow like a pro.
+In cybersecurity, you'll constantly chain tools together:  scanning with nmap, filtering with grep, sorting with awk, and saving results - all in one line. This module teaches you to control data flow like a pro.
 
 ---
 
@@ -3056,24 +3056,24 @@ In cybersecurity, you'll constantly chain tools together:  scanning with nmap, f
 Every Linux process has three default communication channels:
 
 ```
-                    ┌─────────────────────┐
-   stdin (0)  ───►  │                     │  ───►  stdout (1)
-   (keyboard)       │      PROCESS        │        (terminal)
-                    │                     │
-                    └─────────┬───────────┘
-                              │
-                              ▼
+                    +---------------------+
+   stdin (0)  ---  |                     |  ---  stdout (1)
+   (keyboard)       |      PROCESS        |        (terminal)
+| |
+                    +---------+-----------+
+                              |
+
                          stderr (2)
                          (terminal)
 ```
 
 | Stream | File Descriptor | Default | Description |
 |--------|-----------------|---------|-------------|
-| **stdin** | 0 | Keyboard | Standard input — data fed into command |
-| **stdout** | 1 | Terminal | Standard output — normal command output |
-| **stderr** | 2 | Terminal | Standard error — error messages |
+| **stdin** | 0 | Keyboard | Standard input - data fed into command |
+| **stdout** | 1 | Terminal | Standard output - normal command output |
+| **stderr** | 2 | Terminal | Standard error - error messages |
 
-### Why Separate Streams? 
+### Why Separate Streams?
 
 Separating stdout and stderr allows you to:
 - Save output while still seeing errors
@@ -3118,10 +3118,10 @@ cat log.txt
 
 # Save command output
 ps aux > processes.txt
-nmap -sV target. com > scan_results.txt
+nmap -sV target.com > scan_results.txt
 ```
 
-> ⚠️ **Warning:** `>` overwrites without confirmation!  Use `>>` when you want to preserve existing content.
+> **Warning:** `>` overwrites without confirmation!  Use `>>` when you want to preserve existing content.
 
 ---
 
@@ -3158,7 +3158,7 @@ find / -name "*.conf" 2>/dev/null
 command > output.txt 2> errors.txt
 
 # Method 2: Both to same file (order matters!)
-command > all. txt 2>&1
+command > all.txt 2>&1
 
 # Method 3: Shorthand (bash 4+)
 command &> all.txt
@@ -3206,7 +3206,7 @@ wc -l < /etc/passwd
 sort < unsorted.txt
 
 # Mail content from file
-mail -s "Report" admin@example.com < report. txt
+mail -s "Report" admin@example.com < report.txt
 
 # Use with while loop
 while read line; do
@@ -3251,7 +3251,7 @@ wc -w <<< "count these words"
 
 | Destination | Description |
 |-------------|-------------|
-| `/dev/null` | Black hole — discards all input |
+| `/dev/null` | Black hole - discards all input |
 | `/dev/zero` | Produces infinite null bytes |
 | `/dev/urandom` | Produces random data |
 | `/dev/stdin` | Symbolic link to stdin |
@@ -3281,10 +3281,10 @@ command1 | command2 | command3
 ```
 
 ```
-┌──────────┐    stdout    ┌──────────┐    stdout    ┌──────────┐
-│ command1 │ ──────────►  │ command2 │ ──────────►  │ command3 │
-└──────────┘      │       └──────────┘      │       └──────────┘
-                  │                         │
++----------+    stdout    +----------+    stdout    +----------+
+| command1 | ----------  | command2 | ----------  | command3 |
++----------+      |       +----------+      |       +----------+
+| |
                (stdin)                   (stdin)
 ```
 
@@ -3362,7 +3362,7 @@ find .  -name "*.bak" | xargs -p rm
 
 ```bash
 # Rename files using -I
-find . -name "*.txt" | xargs -I {} mv {} {}. bak
+find . -name "*.txt" | xargs -I {} mv {} {}.bak
 
 # Download list of URLs
 cat urls.txt | xargs -n 1 wget
@@ -3450,10 +3450,10 @@ command1 || command2
 cat file.txt || echo "File not found"
 
 # Default value
-grep "pattern" file. txt || echo "No match found"
+grep "pattern" file.txt || echo "No match found"
 
 # Error handling
-ping -c 1 server. com || echo "Server unreachable"
+ping -c 1 server.com || echo "Server unreachable"
 
 # Create if doesn't exist
 [ -d /backup ] || mkdir /backup
@@ -3481,11 +3481,11 @@ pgrep nginx && echo "Running" || sudo systemctl start nginx
 **Use parentheses `()` or braces `{}`:**
 
 ```bash
-# Subshell (parentheses) — runs in new shell
+# Subshell (parentheses) - runs in new shell
 (cd /tmp && ls)    # Original directory unchanged
 pwd                # Still in original directory
 
-# Current shell (braces) — runs in same shell
+# Current shell (braces) - runs in same shell
 { cd /tmp && ls; }  # Directory changes persist
 pwd                 # Now in /tmp
 
@@ -3551,7 +3551,7 @@ cat $(find .  -name "*.conf")     # Cat all config files
     export VAR="value"
     echo $VAR
 )
-echo $VAR    # Empty — variable didn't persist
+echo $VAR    # Empty - variable didn't persist
 
 # Background subshell
 (sleep 60 && echo "Done") &
@@ -3579,7 +3579,7 @@ paste <(cut -f1 file1) <(cut -f2 file2)
 
 ---
 
-## 🔑 Key Terms
+## Key Terms
 
 | Term | Definition |
 |------|------------|
@@ -3595,17 +3595,17 @@ paste <(cut -f1 file1) <(cut -f2 file2)
 
 ---
 
-## ❓ FAQs
+## FAQs
 
 **Q: What's the difference between `>` and `>>`?**
-> `>` **overwrites** the file (creates new or replaces content).  
-> `>>` **appends** to the file (adds to end, preserves existing content).  
+> `>` **overwrites** the file (creates new or replaces content).
+> `>>` **appends** to the file (adds to end, preserves existing content).
 > Common mistake: Using `>` in a loop wipes the file each iteration.
 
 **Q:  Why doesn't `command > file 2>&1` work when written as `command 2>&1 > file`?**
-> Order matters!  Redirections are processed left to right.   
-> - `> file 2>&1`: stdout goes to file, then stderr goes wherever stdout is (file).  
-> - `2>&1 > file`: stderr goes wherever stdout is (terminal), then stdout goes to file.  
+> Order matters!  Redirections are processed left to right.
+> - `> file 2>&1`: stdout goes to file, then stderr goes wherever stdout is (file).
+> - `2>&1 > file`: stderr goes wherever stdout is (terminal), then stdout goes to file.
 > The second form sends stderr to terminal, not file.
 
 **Q: How do I check if a command succeeded?**
@@ -3617,24 +3617,23 @@ paste <(cut -f1 file1) <(cut -f2 file2)
 > Or use `&&` and `||` for conditional execution.
 
 **Q: What's the difference between `;` and `&&`?**
-> `;` runs commands sequentially **regardless** of success.  
-> `&&` runs next command **only if** previous succeeded.  
+> `;` runs commands sequentially **regardless** of success.
+> `&&` runs next command **only if** previous succeeded.
 > Use `&&` when commands depend on each other, `;` for independent commands.
 
 **Q:  When should I use `xargs` vs a simple pipe?**
-> Use `xargs` when the receiving command doesn't read from stdin but expects arguments: 
+> Use `xargs` when the receiving command doesn't read from stdin but expects arguments:
 > ```bash
 > # rm doesn't read stdin, needs arguments
 > find . -name "*. tmp" | xargs rm     # Works
 > find . -name "*.tmp" | rm           # Fails
-> 
-> # grep reads stdin
+> > # grep reads stdin
 > cat file | grep pattern             # Works
 > ```
 
 ---
 
-## 📝 Practice Tasks
+## Practice Tasks
 
 ### Task 1: Redirect stdout and stderr Separately
 
@@ -3650,7 +3649,7 @@ echo "=== Success (stdout) ==="
 cat success.txt
 
 echo "=== Errors (stderr) ==="
-cat errors. txt
+cat errors.txt
 ```
 
 **Alternative with find:**
@@ -3659,7 +3658,7 @@ find /etc -name "*.conf" > found_configs.txt 2> permission_errors.txt
 wc -l found_configs.txt permission_errors.txt
 ```
 
-**Deliverable:** 
+**Deliverable:**
 - Two files: one with successful output, one with errors
 - Screenshot showing contents of both files
 
@@ -3724,16 +3723,16 @@ sudo du -ah /var 2>/dev/null | sort -rh | head -5 | tee /tmp/large_files.txt
 **Expected Output:**
 ```
 1.2G    /var/log/journal/abc123/system.journal
-500M    /var/cache/apt/archives/package. deb
-256M    /var/lib/docker/overlay2/... 
-... 
+500M    /var/cache/apt/archives/package.deb
+256M    /var/lib/docker/overlay2/...
+...
 ```
 
 **Deliverable:** List of top 5 largest files with sizes
 
 ---
 
-## ✅ Module 5 Checkpoint
+## Module 5 Checkpoint
 
 Before moving to Module 6, confirm:
 
@@ -3750,17 +3749,17 @@ Before moving to Module 6, confirm:
 
 # Module 6: Process Management
 
-## 📘 Introduction
+## Introduction
 
-A **process** is any running instance of a program. Understanding processes is crucial for system administration, troubleshooting, and cybersecurity — you need to identify malicious processes, manage resource-hungry applications, and control background tasks.
+A **process** is any running instance of a program. Understanding processes is crucial for system administration, troubleshooting, and cybersecurity - you need to identify malicious processes, manage resource-hungry applications, and control background tasks.
 
-This module covers viewing, controlling, and terminating processes — essential skills for incident response and system optimization.
+This module covers viewing, controlling, and terminating processes - essential skills for incident response and system optimization.
 
 ---
 
-## 6.1 What is a Process? 
+## 6.1 What is a Process?
 
-When you execute a program, the kernel creates a **process** — an instance of that program in memory with its own: 
+When you execute a program, the kernel creates a **process** - an instance of that program in memory with its own:
 - **PID (Process ID):** Unique identifier
 - **PPID (Parent PID):** ID of the process that spawned it
 - **UID:** User who owns the process
@@ -3769,22 +3768,22 @@ When you execute a program, the kernel creates a **process** — an instance of 
 - **Priority:** CPU scheduling priority
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                         init/systemd (PID 1)                │
-│                              │                              │
-│         ┌────────────────────┼────────────────────┐         │
-│         │                    │                    │         │
-│    ┌────▼────┐         ┌─────▼─────┐        ┌─────▼─────┐   │
-│    │  sshd   │         │  apache2  │        │   bash    │   │
-│    │ PID: 500 │         │ PID:1200  │        │ PID:2500  │   │
-│    └─────────┘         └───────────┘        └─────┬─────┘   │
-│                              │                    │         │
-│                    ┌─────────┼─────────┐    ┌─────▼─────┐   │
-│                    │         │         │    │   nmap    │   │
-│                ┌───▼───┐ ┌───▼───┐ ┌───▼─┐  │ PID:2501  │   │
-│                │worker1│ │worker2│ │worker│ └───────────┘   │
-│                └───────┘ └───────┘ └──────┘                 │
-└─────────────────────────────────────────────────────────────┘
++-------------------------------------------------------------+
+|                         init/systemd (PID 1)                |
+| |                              |
+|         +--------------------+--------------------+         |
+| |                    |                    |         |
+|    +--------+         +----------+        +----------+   |
+| |  sshd   |         |  apache2  |        |   bash    |   |
+| | PID: 500 |         | PID:1200  |        | PID:2500  |   |
+|    +---------+         +-----------+        +-----+-----+   |
+| |                    |         |
+|                    +---------+---------+    +----------+   |
+| |         |         |    |   nmap    |   |
+|                +------+ +------+ +----+  | PID:2501  |   |
+| |worker1| |worker2| |worker| +-----------+   |
+|                +-------+ +-------+ +------+                 |
++-------------------------------------------------------------+
 ```
 
 ### Process States
@@ -3802,7 +3801,7 @@ When you execute a program, the kernel creates a **process** — an instance of 
 ## 6.2 Viewing Processes
 
 ### Command:  `ps`
-**Process Status** — snapshot of current processes
+**Process Status** - snapshot of current processes
 
 **Syntax:**
 ```bash
@@ -3812,11 +3811,11 @@ ps [OPTIONS]
 ### Common ps Usages
 
 ```bash
-# Basic — processes in current terminal
+# Basic - processes in current terminal
 ps
-#   PID TTY          TIME CMD
-#  2500 pts/0    00:00:00 bash
-#  2501 pts/0    00:00:00 ps
+# PID TTY          TIME CMD
+# 2500 pts/0    00:00:00 bash
+# 2501 pts/0    00:00:00 ps
 
 # All processes for current user
 ps -u $(whoami)
@@ -3851,7 +3850,7 @@ ps aux
 | `%CPU` | CPU usage percentage |
 | `%MEM` | Memory usage percentage |
 | `VSZ` | Virtual memory size (KB) |
-| `RSS` | Resident Set Size — actual RAM used (KB) |
+| `RSS` | Resident Set Size - actual RAM used (KB) |
 | `TTY` | Terminal (?  = no terminal) |
 | `STAT` | Process state |
 | `START` | Start time |
@@ -3973,11 +3972,11 @@ pstree -c
 
 **Sample Output:**
 ```
-systemd─┬─ModemManager───2*[{ModemManager}]
-        ├─NetworkManager───2*[{NetworkManager}]
-        ├─apache2───5*[apache2]
-        ├─sshd───sshd───bash───pstree
-        └─systemd-journal
+systemd-+-ModemManager---2*[{ModemManager}]
+        +-NetworkManager---2*[{NetworkManager}]
+        +-apache2---5*[apache2]
+        +-sshd---sshd---bash---pstree
+        +-systemd-journal
 ```
 
 ---
@@ -4015,13 +4014,13 @@ pgrep -c bash            # Count bash processes
 ```bash
 # Start in background
 nmap -sV target.com &
-# [1] 12345       ← Job number [1], PID 12345
+# [1] 12345       <- Job number [1], PID 12345
 
 # Long-running task in background
 ./scan_network.sh &
 
 # Redirect output when backgrounding
-nmap -sV target.com > scan. txt 2>&1 &
+nmap -sV target.com > scan.txt 2>&1 &
 ```
 
 ---
@@ -4068,7 +4067,7 @@ fg %nmap     # Bring job starting with "nmap"
 vim file.txt
 
 # 2. Suspend with Ctrl+Z
-# [1]+  Stopped                 vim file. txt
+# [1]+  Stopped                 vim file.txt
 
 # 3. Resume in background
 bg %1
@@ -4091,7 +4090,7 @@ bg %1
 ```bash
 # Prevent job from dying when terminal closes
 nohup ./long_script.sh &
-# Output goes to nohup. out
+# Output goes to nohup.out
 
 # Disown a running job (remove from shell's job table)
 ./script.sh &
@@ -4106,7 +4105,7 @@ disown -a
 
 ## 6.4 Signals
 
-Signals are **software interrupts** sent to processes.  
+Signals are **software interrupts** sent to processes.
 
 ### Common Signals
 
@@ -4153,9 +4152,9 @@ kill -CONT 1234      # Resume process
 kill -l
 ```
 
-> ⚠️ **SIGTERM vs SIGKILL:**  
-> - `SIGTERM (15)`: Asks process to terminate gracefully — process can clean up  
-> - `SIGKILL (9)`: Forces immediate termination — process cannot catch or ignore
+> **SIGTERM vs SIGKILL:**
+> - `SIGTERM (15)`: Asks process to terminate gracefully - process can clean up
+> - `SIGKILL (9)`: Forces immediate termination - process cannot catch or ignore
 
 ---
 
@@ -4321,7 +4320,7 @@ journalctl -u nginx --since "1 hour ago"
 journalctl -u nginx -f    # Follow logs
 ```
 
-### Common Services for CyberSec
+### Common Services for Cybersecurity
 
 | Service | Description | Port |
 |---------|-------------|------|
@@ -4330,18 +4329,18 @@ journalctl -u nginx -f    # Follow logs
 | `nginx` | Web server / reverse proxy | 80, 443 |
 | `mysql` / `mariadb` | Database | 3306 |
 | `postgresql` | Database | 5432 |
-| `docker` | Container engine | — |
+| `docker` | Container engine | - |
 | `smbd` | Samba file sharing | 445 |
 
 ---
 
-## 🔑 Key Terms
+## Key Terms
 
 | Term | Definition |
 |------|------------|
 | **Process** | Running instance of a program with its own memory space and PID.  |
-| **PID** | Process ID — unique identifier for each process. |
-| **PPID** | Parent Process ID — PID of the process that spawned this one. |
+| **PID** | Process ID - unique identifier for each process. |
+| **PPID** | Parent Process ID - PID of the process that spawned this one. |
 | **Daemon** | Background process running continuously, usually started at boot. |
 | **Signal** | Software interrupt sent to process (SIGTERM, SIGKILL, etc.). |
 | **Zombie** | Process finished but parent hasn't collected exit status. |
@@ -4352,12 +4351,12 @@ journalctl -u nginx -f    # Follow logs
 
 ---
 
-## ❓ FAQs
+## FAQs
 
 **Q: What's the difference between kill and kill -9?**
-> `kill` sends SIGTERM (15) — asks process to terminate gracefully, allowing cleanup.   
-> `kill -9` sends SIGKILL — forces immediate termination, cannot be caught or ignored.  
-> Always try SIGTERM first; use SIGKILL only if process won't stop. 
+> `kill` sends SIGTERM (15) - asks process to terminate gracefully, allowing cleanup.
+> `kill -9` sends SIGKILL - forces immediate termination, cannot be caught or ignored.
+> Always try SIGTERM first; use SIGKILL only if process won't stop.
 
 **Q: How do I find which process is using a specific port?**
 > Multiple methods:
@@ -4369,13 +4368,13 @@ journalctl -u nginx -f    # Follow logs
 > ```
 
 **Q: What's a zombie process and how do I kill it?**
-> Zombie is a finished process whose parent hasn't collected its exit status. You can't kill zombies directly — they're already dead!  Either: 
+> Zombie is a finished process whose parent hasn't collected its exit status. You can't kill zombies directly - they're already dead!  Either:
 > 1. Kill the parent process (zombie will be cleaned up)
-> 2. Wait for parent to call `wait()` 
+> 2. Wait for parent to call `wait()`
 > 3. Reboot if zombies are orphaned
 
 **Q:  Why can't I use nice values below 0?**
-> Negative nice values (higher priority) require root privileges.  This prevents regular users from starving others of CPU time. 
+> Negative nice values (higher priority) require root privileges.  This prevents regular users from starving others of CPU time.
 > ```bash
 > sudo nice -n -10 ./important_task
 > ```
@@ -4383,7 +4382,7 @@ journalctl -u nginx -f    # Follow logs
 **Q: How do I keep a process running after I close SSH?**
 > Several methods:
 > ```bash
-> nohup ./script. sh &           # Ignores hangup signal
+> nohup ./script.sh &           # Ignores hangup signal
 > screen -S session ./script.sh # Screen session
 > tmux new -s session           # Tmux session
 > disown %1                     # Remove from shell job control
@@ -4391,7 +4390,7 @@ journalctl -u nginx -f    # Follow logs
 
 ---
 
-## 📝 Practice Tasks
+## Practice Tasks
 
 ### Task 1: Identify and Kill a High CPU Process
 
@@ -4424,7 +4423,7 @@ kill -9 12345
 ps aux | grep 12345
 ```
 
-**Alternative — One-liner:**
+**Alternative - One-liner:**
 ```bash
 # Find and kill highest CPU process (careful!)
 kill $(ps aux --sort=-%cpu | awk 'NR==2 {print $2}')
@@ -4441,7 +4440,7 @@ kill $(ps aux --sort=-%cpu | awk 'NR==2 {print $2}')
 **Steps:**
 ```bash
 # Start nmap scan in background
-nmap -sV -p 1-1000 scanme.nmap. org > scan_results.txt 2>&1 &
+nmap -sV -p 1-1000 scanme.nmap.org > scan_results.txt 2>&1 &
 # [1] 15678
 
 # Check job status
@@ -4464,7 +4463,7 @@ bg %1
 jobs -l
 ```
 
-**Deliverable:** Screenshot showing job transitions (Running → Stopped → Running)
+**Deliverable:** Screenshot showing job transitions (Running -> Stopped -> Running)
 
 ---
 
@@ -4496,7 +4495,7 @@ top -u kali
 ps aux | awk '$1=="root"' | wc -l
 ```
 
-**For incident response — find suspicious processes:**
+**For incident response - find suspicious processes:**
 ```bash
 # Processes with network connections
 lsof -i -u kali
@@ -4512,7 +4511,7 @@ ps aux | grep " \./\."
 
 ---
 
-## ✅ Module 6 Checkpoint
+## Module 6 Checkpoint
 
 Before moving to Module 7, confirm:
 
@@ -4532,11 +4531,11 @@ Before moving to Module 7, confirm:
 
 # Module 7: User & Group Management
 
-## 📘 Introduction
+## Introduction
 
-Linux is a **multi-user operating system** — multiple users can work simultaneously with isolated environments and permissions.  Understanding user and group management is essential for system administration, access control, and **privilege escalation** during penetration testing.
+Linux is a **multi-user operating system** - multiple users can work simultaneously with isolated environments and permissions.  Understanding user and group management is essential for system administration, access control, and **privilege escalation** during penetration testing.
 
-This module covers creating users, managing groups, configuring sudo access, and understanding the files that control authentication — critical knowledge for both defenders and attackers. 
+This module covers creating users, managing groups, configuring sudo access, and understanding the files that control authentication - critical knowledge for both defenders and attackers.
 
 ---
 
@@ -4546,7 +4545,7 @@ This module covers creating users, managing groups, configuring sudo access, and
 
 | Type | UID Range | Description |
 |------|-----------|-------------|
-| **Root** | 0 | Superuser — unrestricted access to everything |
+| **Root** | 0 | Superuser - unrestricted access to everything |
 | **System Users** | 1-999 | Service accounts (apache, mysql, nobody) |
 | **Regular Users** | 1000+ | Normal human users |
 
@@ -4574,14 +4573,14 @@ cat /etc/passwd
 **Format:**
 ```
 username:password: UID:GID: GECOS:home_directory:shell
-    │        │     │   │    │         │           │
-    │        │     │   │    │         │           └── Login shell
-    │        │     │   │    │         └── Home directory
-    │        │     │   │    └── Comment (full name, phone, etc.)
-    │        │     │   └── Primary Group ID
-    │        │     └── User ID
-    │        └── 'x' means password in /etc/shadow
-    └── Username
+| |     |   |    |         |           |
+| |     |   |    |         |           +-- Login shell
+| |     |   |    |         +-- Home directory
+| |     |   |    +-- Comment (full name, phone, etc.)
+| |     |   +-- Primary Group ID
+| |     +-- User ID
+    |        +-- 'x' means password in /etc/shadow
+    +-- Username
 ```
 
 **Extract Useful Info:**
@@ -4605,22 +4604,22 @@ grep "^kali:" /etc/passwd | cut -d: -f7
 
 ```bash
 sudo cat /etc/shadow
-# root:$y$j9T$abc123.. .:19500:0:99999:7::: 
+# root:$y$j9T$abc123.. .:19500:0:99999:7:::
 # kali: $y$j9T$xyz789...:19520:0:99999:7:::
 ```
 
 **Format:**
 ```
 username:password_hash:lastchange:min: max:warn:inactive:expire: reserved
-    │         │            │       │   │    │      │        │
-    │         │            │       │   │    │      │        └── Account expiry
-    │         │            │       │   │    │      └── Days after expire until disabled
-    │         │            │       │   │    └── Days before expire to warn
-    │         │            │       │   └── Max days between changes
-    │         │            │       └── Min days between changes
-    │         │            └── Days since Jan 1, 1970 of last change
-    │         └── Encrypted password (or !, *, empty)
-    └── Username
+| |            |       |   |    |      |        |
+| |            |       |   |    |      |        +-- Account expiry
+| |            |       |   |    |      +-- Days after expire until disabled
+| |            |       |   |    +-- Days before expire to warn
+| |            |       |   +-- Max days between changes
+| |            |       +-- Min days between changes
+| |            +-- Days since Jan 1, 1970 of last change
+    |         +-- Encrypted password (or !, *, empty)
+    +-- Username
 ```
 
 **Password Field Values:**
@@ -4658,10 +4657,10 @@ sudo useradd testuser
 
 # Full user setup
 sudo useradd -m -s /bin/bash -c "Test User" testuser
-#             │    │           │
-#             │    │           └── Comment (full name)
-#             │    └── Shell
-#             └── Create home directory
+# |    |           |
+# |    |           +-- Comment (full name)
+# |    +-- Shell
+# +-- Create home directory
 
 # Specify UID and GID
 sudo useradd -m -u 1500 -g users testuser
@@ -4690,7 +4689,7 @@ sudo useradd -r -s /usr/sbin/nologin serviceuser
 | `-e DATE` | Account expiry (YYYY-MM-DD) |
 | `-r` | Create system account |
 
-> ⚠️ **Note:** `useradd` does NOT set a password.  Use `passwd` afterward. 
+> **Note:** `useradd` does NOT set a password.  Use `passwd` afterward.
 
 ---
 
@@ -4699,7 +4698,7 @@ sudo useradd -r -s /usr/sbin/nologin serviceuser
 
 ```bash
 sudo adduser newuser
-# Prompts for password, full name, etc. 
+# Prompts for password, full name, etc.
 # Automatically creates home directory
 ```
 
@@ -4720,12 +4719,12 @@ sudo usermod -s /bin/zsh kali
 
 # Change home directory
 sudo usermod -d /home/newhome -m kali
-#                             └── Move contents to new home
+# +-- Move contents to new home
 
 # Add to group (append!)
 sudo usermod -aG sudo kali
 sudo usermod -aG docker,wireshark kali
-#             └── IMPORTANT: -a = append, without it replaces all groups! 
+# +-- IMPORTANT: -a = append, without it replaces all groups!
 
 # Change username
 sudo usermod -l newname oldname
@@ -4746,7 +4745,7 @@ sudo usermod -e "" username
 **Critical Options:**
 | Option | Description |
 |--------|-------------|
-| `-aG GROUP` | **Append** to supplementary group(s) — ALWAYS use `-a` with `-G`! |
+| `-aG GROUP` | **Append** to supplementary group(s) - ALWAYS use `-a` with `-G`! |
 | `-g GROUP` | Change primary group |
 | `-l NAME` | Change login name |
 | `-L` | Lock account |
@@ -4756,7 +4755,7 @@ sudo usermod -e "" username
 | `-m` | Move home contents (use with `-d`) |
 | `-e DATE` | Set expiry date |
 
-> ⚠️ **Warning:** `usermod -G group user` WITHOUT `-a` **replaces** all supplementary groups!
+> **Warning:** `usermod -G group user` WITHOUT `-a` **replaces** all supplementary groups!
 
 ---
 
@@ -4844,7 +4843,7 @@ sudo groupadd -r appgroup
 sudo groupdel developers
 ```
 
-> ⚠️ Cannot delete a group that is a user's primary group. 
+> Cannot delete a group that is a user's primary group.
 
 ---
 
@@ -4922,7 +4921,7 @@ su -c "whoami" kali
 | Command | Environment |
 |---------|-------------|
 | `su user` | Keeps current environment |
-| `su - user` | Full login shell (loads . bashrc, .profile) |
+| `su - user` | Full login shell (loads .bashrc, .profile) |
 
 ---
 
@@ -4980,7 +4979,7 @@ sudo -k
 
 **Location:** `/etc/sudoers`
 
-> ⚠️ **NEVER edit directly! ** Use `visudo` — it validates syntax before saving.
+> **Important:** Use `visudo` instead of editing this file directly. It validates syntax before saving.
 
 ```bash
 sudo visudo
@@ -5018,7 +5017,7 @@ kali    ALL=(ALL) NOPASSWD: ALL
 **Include Files:**
 ```bash
 # /etc/sudoers.d/ directory for custom rules
-sudo visudo -f /etc/sudoers. d/custom_rules
+sudo visudo -f /etc/sudoers.d/custom_rules
 ```
 
 ---
@@ -5030,10 +5029,10 @@ sudo visudo -f /etc/sudoers. d/custom_rules
 # What can current user run?
 sudo -l
 
-# Example output revealing escalation path: 
+# Example output revealing escalation path:
 # User kali may run the following commands:
-#     (ALL) NOPASSWD: /usr/bin/vim
-#     (ALL) NOPASSWD:  /usr/bin/find
+# (ALL) NOPASSWD: /usr/bin/vim
+# (ALL) NOPASSWD:  /usr/bin/find
 ```
 
 **Exploitable sudo entries:**
@@ -5049,7 +5048,7 @@ sudo less /etc/passwd
 # Then type: ! sh
 ```
 
-> 💡 **GTFOBins** lists sudo exploitation techniques for many binaries.
+> **GTFOBins** lists sudo exploitation techniques for many binaries.
 
 ---
 
@@ -5148,32 +5147,32 @@ sudo useradd -m -p $(openssl passwd -6 "password") newuser
 
 ---
 
-## 🔑 Key Terms
+## Key Terms
 
 | Term | Definition |
 |------|------------|
-| **UID** | User ID — unique number identifying a user.  Root = 0. |
-| **GID** | Group ID — unique number identifying a group.  |
+| **UID** | User ID - unique number identifying a user.  Root = 0. |
+| **GID** | Group ID - unique number identifying a group.  |
 | **Primary Group** | User's main group (from /etc/passwd). New files get this group. |
 | **Supplementary Groups** | Additional groups user belongs to (from /etc/group). |
-| **Shadow File** | `/etc/shadow` — stores encrypted passwords, readable only by root. |
+| **Shadow File** | `/etc/shadow` - stores encrypted passwords, readable only by root. |
 | **Sudoers** | Configuration file controlling who can use sudo and how. |
-| **PAM** | Pluggable Authentication Modules — framework for authentication. |
+| **PAM** | Pluggable Authentication Modules - framework for authentication. |
 | **GECOS** | Comment field in /etc/passwd (historically:  General Electric Comprehensive Operating System). |
 
 ---
 
-## ❓ FAQs
+## FAQs
 
 **Q: What's the difference between `useradd` and `adduser`?**
-> `useradd` is the low-level command — requires explicit options for home directory, shell, etc.    
-> `adduser` (Debian/Ubuntu) is a friendly wrapper — interactive, creates home, sets password.   
+> `useradd` is the low-level command - requires explicit options for home directory, shell, etc.
+> `adduser` (Debian/Ubuntu) is a friendly wrapper - interactive, creates home, sets password.
 > In scripts, use `useradd` for precise control.
 
 **Q: Why use `sudo` instead of logging in as root?**
-> - **Accountability:** sudo logs who ran what command  
-> - **Granularity:** Grant specific permissions, not full root  
-> - **Security:** No need to share root password  
+> - **Accountability:** sudo logs who ran what command
+> - **Granularity:** Grant specific permissions, not full root
+> - **Security:** No need to share root password
 > - **Accident prevention:** Commands require explicit `sudo` prefix
 
 **Q: I added a user to a group but it's not showing.  Why?**
@@ -5189,25 +5188,24 @@ sudo useradd -m -p $(openssl passwd -6 "password") newuser
 > ```bash
 > sudo usermod -aG sudo username
 > ```
-> Or add explicit entry in sudoers: 
+> Or add explicit entry in sudoers:
 > ```bash
 > sudo visudo
 > # Add: username ALL=(ALL:ALL) ALL
 > ```
 
 **Q: What's the difference between locking an account with `usermod -L` vs `passwd -l`?**
-> Both add `!` prefix to password hash, but: 
+> Both add `!` prefix to password hash, but:
 > - `usermod -L`: Only locks password auth
 > - `passwd -l`: Locks password auth
-> 
-> Both still allow SSH key authentication!  To fully disable: 
+> > Both still allow SSH key authentication!  To fully disable:
 > ```bash
 > sudo usermod -s /usr/sbin/nologin username
 > ```
 
 ---
 
-## 📝 Practice Tasks
+## Practice Tasks
 
 ### Task 1: Create a Restricted Pentesting User
 
@@ -5236,7 +5234,7 @@ pwd
 exit
 ```
 
-**Optional — Add specific sudo permissions:**
+**Optional - Add specific sudo permissions:**
 ```bash
 sudo visudo -f /etc/sudoers.d/pentester
 # Add:  pentester ALL=(ALL) NOPASSWD:  /usr/bin/nmap, /usr/bin/nikto
@@ -5298,7 +5296,7 @@ exit
 # Check account status
 sudo passwd -S locktest
 # locktest P 12/25/2024 0 99999 7 -1
-#          ^-- P = Password set
+# ^-- P = Password set
 
 # Lock the account
 sudo passwd -l locktest
@@ -5308,12 +5306,12 @@ sudo usermod -L locktest
 # Check status again
 sudo passwd -S locktest
 # locktest L 12/25/2024 0 99999 7 -1
-#          ^-- L = Locked
+# ^-- L = Locked
 
 # Verify shadow file
 sudo grep locktest /etc/shadow
-# locktest:!$y$j9T$.. .: ... 
-#          ^-- ! prefix = locked
+# locktest:!$y$j9T$.. .: ...
+# ^-- ! prefix = locked
 
 # Try to login (should fail)
 su - locktest
@@ -5326,17 +5324,17 @@ sudo usermod -U locktest
 
 # Verify unlocked
 sudo passwd -S locktest
-# locktest P ... 
+# locktest P ...
 
 # Cleanup
 sudo userdel -r locktest
 ```
 
-**Deliverable:** Screenshots showing account status changes (P → L → P)
+**Deliverable:** Screenshots showing account status changes (P -> L -> P)
 
 ---
 
-## ✅ Module 7 Checkpoint
+## Module 7 Checkpoint
 
 Before moving to Module 8, confirm:
 
@@ -5354,11 +5352,11 @@ Before moving to Module 8, confirm:
 
 # Module 8: Disk & Storage Management
 
-## 📘 Introduction
+## Introduction
 
 Understanding disk and storage management is crucial for system administration, forensics, and incident response. You need to know how Linux organizes storage, how to mount external devices, analyze disk usage, and recover from filesystem errors.
 
-This module covers partitions, filesystems, mounting, disk usage analysis, and swap — essential skills for managing Linux systems and handling forensic evidence.
+This module covers partitions, filesystems, mounting, disk usage analysis, and swap - essential skills for managing Linux systems and handling forensic evidence.
 
 ---
 
@@ -5368,10 +5366,10 @@ This module covers partitions, filesystems, mounting, disk usage analysis, and s
 
 ```
 Physical Disk (/dev/sda)
-     │
-     ├── Partition 1 (/dev/sda1) → Filesystem (ext4) → Mount Point (/boot)
-     ├── Partition 2 (/dev/sda2) → Filesystem (ext4) → Mount Point (/)
-     └── Partition 3 (/dev/sda3) → Filesystem (swap) → [Swap Space]
+     |
+     +-- Partition 1 (/dev/sda1) -> Filesystem (ext4) -> Mount Point (/boot)
+     +-- Partition 2 (/dev/sda2) -> Filesystem (ext4) -> Mount Point (/)
+     +-- Partition 3 (/dev/sda3) -> Filesystem (swap) -> [Swap Space]
 ```
 
 ### Device Naming
@@ -5394,10 +5392,10 @@ Physical Disk (/dev/sda)
 # List all block devices
 lsblk
 # NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
-# sda      8:0    0   100G  0 disk 
-# ├─sda1   8:1    0   512M  0 part /boot
-# ├─sda2   8:2    0    95G  0 part /
-# └─sda3   8:3    0   4.5G  0 part [SWAP]
+# sda      8:0    0   100G  0 disk
+# +-sda1   8:1    0   512M  0 part /boot
+# +-sda2   8:2    0    95G  0 part /
+# +-sda3   8:3    0   4.5G  0 part [SWAP]
 
 # Detailed disk info
 lsblk -f
@@ -5544,7 +5542,7 @@ sudo umount /mnt/usb
 
 ---
 
-### `/etc/fstab` — Persistent Mounts
+### `/etc/fstab` - Persistent Mounts
 
 **The fstab file defines filesystems to mount at boot.**
 
@@ -5569,10 +5567,10 @@ tmpfs           /tmp           tmpfs      defaults,noexec 0     0
 | `mount_point` | Directory to mount on |
 | `fs_type` | Filesystem type |
 | `options` | Mount options (comma-separated) |
-| `dump` | Backup flag (0=no, 1=yes) — rarely used |
+| `dump` | Backup flag (0=no, 1=yes) - rarely used |
 | `pass` | fsck order (0=skip, 1=root first, 2=others) |
 
-**Best Practice — Use UUID:**
+**Best Practice - Use UUID:**
 ```bash
 # Get UUID
 blkid /dev/sdb1
@@ -5596,7 +5594,7 @@ sudo findmnt --verify
 ## 8.3 Disk Usage
 
 ### Command: `df`
-**Disk Free — filesystem space usage**
+**Disk Free - filesystem space usage**
 
 **Syntax:**
 ```bash
@@ -5634,12 +5632,12 @@ df -h -x tmpfs -x devtmpfs
 | `Use%` | Percentage used |
 | `Mounted on` | Mount point |
 
-> ⚠️ **Alert Level:** Investigate when filesystem exceeds 80% usage. 
+> **Alert Level:** Investigate when filesystem exceeds 80% usage.
 
 ---
 
 ### Command: `du`
-**Disk Usage — estimate file/directory space**
+**Disk Usage - estimate file/directory space**
 
 **Syntax:**
 ```bash
@@ -5686,7 +5684,7 @@ find / -type f -size +100M -exec ls -lh {} \; 2>/dev/null
 ---
 
 ### Command: `ncdu`
-**NCurses Disk Usage — interactive disk analyzer**
+**NCurses Disk Usage - interactive disk analyzer**
 
 ```bash
 # Install
@@ -5696,14 +5694,14 @@ sudo apt install ncdu
 ncdu /var
 
 # Scan and save for later
-ncdu -o scan. json /
+ncdu -o scan.json /
 ncdu -f scan.json      # Load saved scan
 ```
 
 **ncdu Navigation:**
 | Key | Action |
 |-----|--------|
-| `↑/↓` | Navigate |
+| `up/down` | Navigate |
 | `Enter` | Enter directory |
 | `d` | Delete selected |
 | `n` | Sort by name |
@@ -5711,21 +5709,21 @@ ncdu -f scan.json      # Load saved scan
 | `g` | Show percentage graph |
 | `q` | Quit |
 
-> 💡 **ncdu is excellent for finding what's consuming disk space interactively!**
+> **ncdu is excellent for finding what's consuming disk space interactively!**
 
 ---
 
 ## 8.4 Filesystem Checks
 
 ### Command: `fsck`
-**Filesystem Check — repair filesystem errors**
+**Filesystem Check - repair filesystem errors**
 
 **Syntax:**
 ```bash
 fsck [OPTIONS] DEVICE
 ```
 
-> ⚠️ **CRITICAL:** NEVER run fsck on mounted filesystems!  Unmount first or boot to recovery mode.
+> **Warning:** Do not run `fsck` on mounted filesystems. Unmount first or boot to recovery mode.
 
 **Examples:**
 ```bash
@@ -5784,7 +5782,7 @@ sudo badblocks -v /dev/sdb
 
 ## 8.5 Swap Management
 
-**Swap** is disk space used as virtual memory when RAM is full. 
+**Swap** is disk space used as virtual memory when RAM is full.
 
 ### View Swap Status
 
@@ -5838,7 +5836,7 @@ sudo mkswap /swapfile
 # Enable
 sudo swapon /swapfile
 
-# Make permanent — add to fstab
+# Make permanent - add to fstab
 echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
 
 # Verify
@@ -5864,31 +5862,31 @@ sudo swapon -p 100 /swapfile    # Higher priority used first
 
 ---
 
-## 🔑 Key Terms
+## Key Terms
 
 | Term | Definition |
 |------|------------|
 | **Partition** | Logical division of a physical disk.  |
 | **Filesystem** | Structure organizing data on a partition (ext4, NTFS, XFS). |
 | **Mount Point** | Directory where a filesystem is attached to the directory tree. |
-| **UUID** | Universally Unique Identifier — unique ID for a filesystem. |
+| **UUID** | Universally Unique Identifier - unique ID for a filesystem. |
 | **Inode** | Data structure storing file metadata.  Finite per filesystem. |
 | **Block** | Smallest unit of storage on disk (usually 4KB). |
 | **Swap** | Disk space used as virtual memory extension. |
-| **fstab** | File System Table — defines mounts at boot time. |
+| **fstab** | File System Table - defines mounts at boot time. |
 | **fsck** | Filesystem check utility for repairs. |
 
 ---
 
-## ❓ FAQs
+## FAQs
 
 **Q: What's the difference between `df` and `du`?**
-> - `df` shows **filesystem** space usage (total, used, available)  
-> - `du` shows **directory/file** space usage (what's consuming space)  
+> - `df` shows **filesystem** space usage (total, used, available)
+> - `du` shows **directory/file** space usage (what's consuming space)
 > Use `df` to see if a filesystem is full, `du` to find what's using the space.
 
 **Q: Why does `df` show different "available" than total minus used?**
-> Linux reserves ~5% of ext filesystems for root to prevent complete fill. This prevents system lockup if disk fills.  Reduce with: 
+> Linux reserves ~5% of ext filesystems for root to prevent complete fill. This prevents system lockup if disk fills.  Reduce with:
 > ```bash
 > sudo tune2fs -m 1 /dev/sda1    # Reserve only 1%
 > ```
@@ -5899,13 +5897,13 @@ sudo swapon -p 100 /swapfile    # Higher priority used first
 > lsof +D /mnt/usb     # Open files
 > fuser -mv /mnt/usb   # Processes using mount
 > ```
-> Then either close those programs or: 
+> Then either close those programs or:
 > ```bash
 > sudo umount -l /mnt/usb    # Lazy unmount
 > ```
 
 **Q: Should I use UUID or device name in fstab?**
-> **Always use UUID. ** Device names (`/dev/sdb1`) can change if you add/remove drives or change port order. UUIDs are permanent: 
+> **Use UUIDs.** Device names (`/dev/sdb1`) can change if you add/remove drives or change port order. UUIDs are permanent:
 > ```bash
 > UUID=abc123...  /mnt/data ext4 defaults 0 2
 > ```
@@ -5914,18 +5912,17 @@ sudo swapon -p 100 /swapfile    # Higher priority used first
 > General guidelines:
 > | RAM | Swap (No Hibernate) | Swap (With Hibernate) |
 > |-----|---------------------|----------------------|
-> | ≤2GB | 2x RAM | 3x RAM |
+> | <=2GB | 2x RAM | 3x RAM |
 > | 2-8GB | Equal to RAM | 2x RAM |
 > | 8-64GB | 4-8GB | RAM + 2GB |
 > | >64GB | 4GB minimum | Not recommended |
->
-> For 16GB RAM (your system): 4-8GB swap is sufficient. 
+> > For 16GB RAM (your system): 4-8GB swap is sufficient.
 
 ---
 
-## 📝 Practice Tasks
+## Practice Tasks
 
-### Task 1: Check Disk Usage — Find Space Hogs
+### Task 1: Check Disk Usage - Find Space Hogs
 
 **Objective:** Identify largest directories consuming space
 
@@ -5948,13 +5945,13 @@ sudo ncdu /var
 sudo du -sh /var/log/*  2>/dev/null | sort -rh | head -5
 ```
 
-**Deliverable:** 
+**Deliverable:**
 - List of top 5 largest directories
 - Screenshot of ncdu interface
 
 ---
 
-### Task 2: Mount USB Drive — Forensic Evidence Collection
+### Task 2: Mount USB Drive - Forensic Evidence Collection
 
 **Objective:** Practice mounting external media read-only
 
@@ -5991,7 +5988,7 @@ cd /
 sudo umount /mnt/evidence
 ```
 
-**Deliverable:** 
+**Deliverable:**
 - Screenshot of read-only mount
 - Hash file of evidence
 
@@ -6012,7 +6009,7 @@ cat /etc/fstab
 **Sample fstab Analysis:**
 
 ```
-# /etc/fstab — Filesystem Table
+# /etc/fstab - Filesystem Table
 
 # Line 1: Root filesystem
 UUID=abc123... / ext4 errors=remount-ro 0 1
@@ -6052,13 +6049,13 @@ sudo mount -a
 echo $?   # 0 = success
 ```
 
-**Deliverable:** 
+**Deliverable:**
 - Your annotated fstab with explanations for each line
 - Output of `findmnt --verify`
 
 ---
 
-## ✅ Module 8 Checkpoint
+## Module 8 Checkpoint
 
 Before moving to Module 9, confirm:
 
@@ -6078,15 +6075,15 @@ Before moving to Module 9, confirm:
 
 # Module 9: Package Management
 
-## 📘 Introduction
+## Introduction
 
-Package management is how Linux systems install, update, and remove software.   Unlike Windows where you download `.exe` files from random websites, Linux uses **repositories** — trusted sources of pre-compiled software managed by your distribution. 
+Package management is how Linux systems install, update, and remove software.   Unlike Windows where you download `.exe` files from random websites, Linux uses **repositories** - trusted sources of pre-compiled software managed by your distribution.
 
 Understanding package management is essential for setting up pentesting tools, maintaining system security, and troubleshooting dependency issues.  This module covers Debian/Kali's APT system (your primary focus), plus alternatives for broader Linux knowledge.
 
 ---
 
-## 9.1 What are Packages? 
+## 9.1 What are Packages?
 
 A **package** is a bundled archive containing:
 - Compiled program binaries
@@ -6101,42 +6098,42 @@ A **package** is a bundled archive containing:
 |--------|-----------|---------------|
 | **DEB** | `.deb` | Debian, Ubuntu, Kali, Mint |
 | **RPM** | `.rpm` | Fedora, RHEL, CentOS, openSUSE |
-| **Pacman** | `.pkg. tar.zst` | Arch, Manjaro |
+| **Pacman** | `.pkg.tar.zst` | Arch, Manjaro |
 | **Source** | `.tar.gz` | Universal (compile yourself) |
 
 ### Package Management Layers
 
 ```
-┌─────────────────────────────────────────────────┐
-│              High-Level Tools                    │
-│         apt, apt-get, aptitude                   │
-│    (Handle dependencies, repositories)           │
-├─────────────────────────────────────────────────┤
-│              Low-Level Tools                     │
-│                   dpkg                           │
-│     (Install/remove individual packages)         │
-├─────────────────────────────────────────────────┤
-│              Package Files                       │
-│                 . deb files                       │
-└─────────────────────────────────────────────────┘
++-------------------------------------------------+
+|              High-Level Tools                    |
+|         apt, apt-get, aptitude                   |
+|    (Handle dependencies, repositories)           |
++-------------------------------------------------+
+|              Low-Level Tools                     |
+|                   dpkg                           |
+|     (Install/remove individual packages)         |
++-------------------------------------------------+
+|              Package Files                       |
+|                 .deb files                       |
++-------------------------------------------------+
 ```
 
 ---
 
 ## 9.2 APT (Debian/Kali/Ubuntu)
 
-**APT (Advanced Package Tool)** is the primary package manager for Debian-based systems. 
+**APT (Advanced Package Tool)** is the primary package manager for Debian-based systems.
 
 ### `apt` vs `apt-get`
 
 | Feature | `apt` | `apt-get` |
 |---------|-------|-----------|
 | **Purpose** | End-user friendly | Scripting, backward compatibility |
-| **Progress bar** | ✅ Yes | ❌ No |
-| **Colored output** | ✅ Yes | ❌ No |
+| **Progress bar** |  Yes |  No |
+| **Colored output** |  Yes |  No |
 | **Recommended for** | Interactive use | Scripts, automation |
 
-> 💡 **Use `apt` for daily work, `apt-get` in scripts for stability.**
+> **Use `apt` for daily work, `apt-get` in scripts for stability.**
 
 ---
 
@@ -6152,7 +6149,7 @@ sudo apt update
 - Checks for available updates
 - Does NOT install anything
 
-> ⚠️ **Always run before installing or upgrading! **
+> **Run before installing or upgrading.**
 
 ---
 
@@ -6199,7 +6196,7 @@ sudo apt install -y nmap
 # Fix broken dependencies during install
 sudo apt install -f
 
-# Install . deb file (uses apt for dependencies)
+# Install .deb file (uses apt for dependencies)
 sudo apt install ./package.deb
 
 # Install recommended packages too
@@ -6243,9 +6240,9 @@ sudo apt autoremove
 **Difference:**
 | Command | Binaries | Config Files | Dependencies |
 |---------|----------|--------------|--------------|
-| `remove` | ✅ Removed | ❌ Kept | ❌ Kept |
-| `purge` | ✅ Removed | ✅ Removed | ❌ Kept |
-| `autoremove` | — | — | ✅ Removed |
+| `remove` |  Removed |  Kept |  Kept |
+| `purge` |  Removed |  Removed |  Kept |
+| `autoremove` | - | - |  Removed |
 
 ---
 
@@ -6330,13 +6327,13 @@ apt-mark showhold
 
 ## 9.3 DPKG (Low-Level)
 
-**dpkg** handles individual `.deb` files directly — no dependency resolution.
+**dpkg** handles individual `.deb` files directly - no dependency resolution.
 
 ### Command: `dpkg`
 **Debian Package manager**
 
 ```bash
-# Install . deb file
+# Install .deb file
 sudo dpkg -i package.deb
 
 # Remove package
@@ -6359,7 +6356,7 @@ dpkg -S /usr/bin/nmap
 dpkg -s nmap
 
 # Extract without installing
-dpkg -x package. deb /tmp/extracted/
+dpkg -x package.deb /tmp/extracted/
 
 # Reconfigure package
 sudo dpkg-reconfigure package_name
@@ -6387,7 +6384,7 @@ sudo apt install -f
 
 ## 9.4 YUM/DNF (Fedora/RHEL)
 
-For reference when working with Red Hat-based systems: 
+For reference when working with Red Hat-based systems:
 
 ### DNF (Modern - Fedora 22+, RHEL 8+)
 
@@ -6426,24 +6423,24 @@ yum search nmap
 
 ### APT Repository Configuration
 
-**Main configuration:** `/etc/apt/sources.list`  
-**Additional repos:** `/etc/apt/sources.list. d/*. list`
+**Main configuration:** `/etc/apt/sources.list`
+**Additional repos:** `/etc/apt/sources.list.d/*.list`
 
 ```bash
 # View current sources
 cat /etc/apt/sources.list
-ls /etc/apt/sources.list. d/
+ls /etc/apt/sources.list.d/
 ```
 
-### Sources. list Format
+### Sources.list Format
 
 ```
 deb http://http.kali.org/kali kali-rolling main contrib non-free non-free-firmware
-│   │                         │            │
-│   │                         │            └── Components (sections)
-│   │                         └── Distribution/codename
-│   └── Repository URL
-└── Type (deb = binary, deb-src = source)
+| |                         |            |
+| |                         |            +-- Components (sections)
+| |                         +-- Distribution/codename
+|   +-- Repository URL
++-- Type (deb = binary, deb-src = source)
 ```
 
 **Components:**
@@ -6462,13 +6459,13 @@ sudo add-apt-repository ppa: user/repo
 sudo apt update
 
 # Method 2: Add custom repo manually
-echo "deb http://example.com/repo stable main" | sudo tee /etc/apt/sources.list. d/custom.list
+echo "deb http://example.com/repo stable main" | sudo tee /etc/apt/sources.list.d/custom.list
 
 # Method 3: Add GPG key for repo
 wget -qO - https://example.com/key.gpg | sudo apt-key add -
 # Or modern method:
 wget -qO - https://example.com/key.gpg | sudo gpg --dearmor -o /usr/share/keyrings/example.gpg
-echo "deb [signed-by=/usr/share/keyrings/example.gpg] https://example.com/repo stable main" | sudo tee /etc/apt/sources. list.d/example.list
+echo "deb [signed-by=/usr/share/keyrings/example.gpg] https://example.com/repo stable main" | sudo tee /etc/apt/sources.list.d/example.list
 
 # Update after adding
 sudo apt update
@@ -6481,7 +6478,7 @@ sudo apt update
 sudo add-apt-repository --remove ppa:user/repo
 
 # Or manually delete file
-sudo rm /etc/apt/sources. list.d/custom.list
+sudo rm /etc/apt/sources.list.d/custom.list
 sudo apt update
 ```
 
@@ -6489,7 +6486,7 @@ sudo apt update
 
 ## 9.6 Installing from Source
 
-When a tool isn't in repositories, compile from source. 
+When a tool isn't in repositories, compile from source.
 
 ### Standard Compilation Process
 
@@ -6542,13 +6539,13 @@ git clone https://github.com/user/python-tool.git
 cd python-tool
 
 # Method 1: pip install
-pip install . 
+pip install .
 # Or
 pip install -r requirements.txt
 python setup.py install
 
 # Method 2: pipx (isolated environments)
-pipx install . 
+pipx install .
 
 # Method 3: Run directly
 python3 tool.py
@@ -6626,37 +6623,37 @@ flatpak update
 flatpak uninstall org.app.Name
 ```
 
-> 💡 **For pentesting:** Stick with APT and native packages.   Snap/Flatpak sandboxing can interfere with security tools.
+> **For pentesting:** Stick with APT and native packages.   Snap/Flatpak sandboxing can interfere with security tools.
 
 ---
 
-## 🔑 Key Terms
+## Key Terms
 
 | Term | Definition |
 |------|------------|
 | **Package** | Bundled software archive with binaries, configs, and metadata.  |
 | **Repository** | Server hosting packages for a distribution. |
 | **Dependency** | Package required by another package to function. |
-| **APT** | Advanced Package Tool — high-level package manager for Debian. |
-| **dpkg** | Low-level Debian package manager — handles individual .deb files. |
+| **APT** | Advanced Package Tool - high-level package manager for Debian. |
+| **dpkg** | Low-level Debian package manager - handles individual .deb files. |
 | **Sources.list** | Configuration file listing package repositories.  |
-| **PPA** | Personal Package Archive — third-party Ubuntu repositories. |
+| **PPA** | Personal Package Archive - third-party Ubuntu repositories. |
 | **Cache** | Local storage of downloaded packages (`/var/cache/apt/archives/`). |
 
 ---
 
-## ❓ FAQs
+## FAQs
 
 **Q: What's the difference between `apt` and `apt-get`?**
 > `apt` is the modern, user-friendly tool with progress bars and colors. `apt-get` is the traditional tool, preferred in scripts for backward compatibility.  For interactive use, prefer `apt`.
 
 **Q: Why does `apt update` not install updates?**
-> `apt update` only refreshes the package list (metadata). It tells APT what's available.  `apt upgrade` actually downloads and installs the updates.  Always run both: 
+> `apt update` only refreshes the package list (metadata). It tells APT what's available.  `apt upgrade` actually downloads and installs the updates.  Always run both:
 > ```bash
 > sudo apt update && sudo apt upgrade
 > ```
 
-**Q: How do I install a . deb file with dependencies?**
+**Q: How do I install a .deb file with dependencies?**
 > Use `apt` instead of `dpkg`:
 > ```bash
 > sudo apt install ./package.deb
@@ -6676,17 +6673,15 @@ flatpak uninstall org.app.Name
 > ```bash
 > # List available versions
 > apt list -a package_name
-> 
-> # Install specific version
+> > # Install specific version
 > sudo apt install package_name=version
-> 
-> # Hold to prevent upgrade
+> > # Hold to prevent upgrade
 > sudo apt-mark hold package_name
 > ```
 
 ---
 
-## 📝 Practice Tasks
+## Practice Tasks
 
 ### Task 1: Install a Pentesting Tool from Kali Repos
 
@@ -6718,9 +6713,9 @@ apt-cache depends gobuster
 ```
 
 **Alternative Tools to Try:**
-- `feroxbuster` — Fast content discovery
-- `subfinder` — Subdomain enumeration
-- `httpx` — HTTP probing tool
+- `feroxbuster` - Fast content discovery
+- `subfinder` - Subdomain enumeration
+- `httpx` - HTTP probing tool
 
 **Deliverable:** Screenshot of tool running with `--help` or `version`
 
@@ -6741,13 +6736,13 @@ export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 
 # Method 1: Using go install
-go install github. com/ffuf/ffuf/v2@latest
+go install github.com/ffuf/ffuf/v2@latest
 
 # Verify
 ffuf -V
 
 # Method 2: Clone and build manually
-git clone https://github.com/ffuf/ffuf. git
+git clone https://github.com/ffuf/ffuf.git
 cd ffuf
 go build
 sudo mv ffuf /usr/local/bin/
@@ -6757,7 +6752,7 @@ which ffuf
 ffuf -h
 ```
 
-**Alternative — Python Tool (sqlmap update):**
+**Alternative - Python Tool (sqlmap update):**
 ```bash
 # Clone latest version
 git clone --depth 1 https://github.com/sqlmapproject/sqlmap.git ~/tools/sqlmap
@@ -6817,13 +6812,13 @@ sudo apt install debsecan
 debsecan --suite kali-rolling
 ```
 
-**Deliverable:** 
+**Deliverable:**
 - List of outdated packages needing upgrade
 - Count of total installed packages
 
 ---
 
-## ✅ Module 9 Checkpoint
+## Module 9 Checkpoint
 
 Before moving to Module 10, confirm:
 
@@ -6840,11 +6835,11 @@ Before moving to Module 10, confirm:
 
 # Module 10: Networking Basics
 
-## 📘 Introduction
+## Introduction
 
 Networking is the **heart of cybersecurity**.  Every attack, every defense, every piece of reconnaissance happens over a network. Understanding Linux networking commands is mandatory for penetration testing, network analysis, and system administration.
 
-This module covers network configuration, connectivity testing, DNS enumeration, port analysis, SSH, and file transfers — the essential toolkit for any security professional.
+This module covers network configuration, connectivity testing, DNS enumeration, port analysis, SSH, and file transfers - the essential toolkit for any security professional.
 
 ---
 
@@ -6858,7 +6853,7 @@ This module covers network configuration, connectivity testing, DNS enumeration,
 | Status | Deprecated | Current standard |
 | Features | Basic | Advanced (namespaces, etc.) |
 
-> 💡 **Learn `ip` — it's the future.  Know `ifconfig` — you'll see it everywhere.**
+> **Learn `ip` - it's the future.  Know `ifconfig` - you'll see it everywhere.**
 
 ---
 
@@ -7003,10 +6998,10 @@ cat /etc/hostname
 cat /etc/resolv.conf
 
 # Modify DNS (temporary)
-echo "nameserver 8.8.8.8" | sudo tee /etc/resolv. conf
+echo "nameserver 8.8.8.8" | sudo tee /etc/resolv.conf
 
 # Modern systems:  NetworkManager manages resolv.conf
-# Edit connections instead: 
+# Edit connections instead:
 nmcli con mod "Wired connection 1" ipv4.dns "8.8.8.8 8.8.4.4"
 nmcli con up "Wired connection 1"
 ```
@@ -7056,13 +7051,13 @@ sudo ping -f google.com
 ping -s 1000 google.com     # 1000 bytes
 
 # Quiet mode (summary only)
-ping -c 5 -q google. com
+ping -c 5 -q google.com
 
 # Set timeout
 ping -W 2 google.com        # 2 second timeout
 
 # Use specific interface
-ping -I eth0 google. com
+ping -I eth0 google.com
 ```
 
 ---
@@ -7093,7 +7088,7 @@ traceroute -m 20 google.com
 traceroute -n google.com
 
 # Set timeout
-traceroute -w 3 google. com
+traceroute -w 3 google.com
 ```
 
 ---
@@ -7233,7 +7228,7 @@ host 142.250.185.78
 host google.com 8.8.8.8
 
 # Verbose
-host -v google. com
+host -v google.com
 ```
 
 ---
@@ -7246,7 +7241,7 @@ dig axfr @ns1.target.com target.com
 
 # Brute force subdomains
 for sub in www mail ftp admin; do
-    host $sub. target.com
+    host $sub.target.com
 done
 
 # Using dnsrecon tool
@@ -7415,7 +7410,7 @@ lsof /var/log/syslog
 
 ## 10.6 SSH Basics
 
-**SSH (Secure Shell)** — encrypted remote access protocol. 
+**SSH (Secure Shell)** - encrypted remote access protocol.
 
 ### Connecting
 
@@ -7472,7 +7467,7 @@ ssh-keygen -t rsa -b 4096
 
 # Key locations
 ls -la ~/.ssh/
-# id_ed25519      <- Private key (NEVER share)
+# id_ed25519      <- Private key (keep private)
 # id_ed25519.pub  <- Public key (share freely)
 
 # Copy public key to remote
@@ -7531,7 +7526,7 @@ ssh web.internal    # Jumps through jumphost
 ## 10.7 File Transfer
 
 ### Command: `scp`
-**Secure Copy** — transfer files over SSH
+**Secure Copy** - transfer files over SSH
 
 **Syntax:**
 ```bash
@@ -7570,7 +7565,7 @@ scp -C largefile.tar user@host:/path/
 ---
 
 ### Command: `rsync`
-**Remote sync** — efficient file synchronization
+**Remote sync** - efficient file synchronization
 
 **Syntax:**
 ```bash
@@ -7619,7 +7614,7 @@ rsync -av --bwlimit=1000 folder/ user@host:/path/  # KB/s
 | `--delete` | Delete extra files at destination |
 | `-e` | Specify remote shell |
 
-> 💡 **rsync is superior to scp** — it only transfers changed portions of files.  
+> **rsync is superior to scp** - it only transfers changed portions of files.
 
 ---
 
@@ -7637,13 +7632,13 @@ wget [OPTIONS] URL
 wget https://example.com/file.zip
 
 # Save with different name
-wget -O output.zip https://example.com/file. zip
+wget -O output.zip https://example.com/file.zip
 
 # Download to directory
-wget -P /tmp/ https://example.com/file. zip
+wget -P /tmp/ https://example.com/file.zip
 
 # Continue interrupted download
-wget -c https://example.com/large. iso
+wget -c https://example.com/large.iso
 
 # Quiet mode
 wget -q https://example.com/file.zip
@@ -7684,7 +7679,7 @@ curl [OPTIONS] URL
 curl https://example.com
 
 # Save output
-curl -o file.zip https://example.com/file. zip
+curl -o file.zip https://example.com/file.zip
 curl -O https://example.com/file.zip    # Keep original name
 
 # Follow redirects
@@ -7737,7 +7732,7 @@ curl --connect-timeout 5 -m 30 https://example.com
 
 ---
 
-## 🔑 Key Terms
+## Key Terms
 
 | Term | Definition |
 |------|------------|
@@ -7745,29 +7740,29 @@ curl --connect-timeout 5 -m 30 https://example.com
 | **IP Address** | Unique identifier on a network (IPv4: 192.168.1.1). |
 | **Subnet Mask** | Defines network/host portions of IP (/24 = 255.255.255.0). |
 | **Gateway** | Router that forwards traffic to other networks. |
-| **DNS** | Domain Name System — translates names to IPs. |
+| **DNS** | Domain Name System - translates names to IPs. |
 | **Port** | Logical endpoint for network services (22=SSH, 80=HTTP). |
 | **Socket** | Combination of IP + Port + Protocol. |
-| **SSH** | Secure Shell — encrypted remote access protocol. |
+| **SSH** | Secure Shell - encrypted remote access protocol. |
 | **ICMP** | Internet Control Message Protocol (ping uses this). |
-| **ARP** | Address Resolution Protocol — maps IP to MAC address. |
+| **ARP** | Address Resolution Protocol - maps IP to MAC address. |
 
 ---
 
-## ❓ FAQs
+## FAQs
 
 **Q: Should I use `ifconfig` or `ip`?**
-> Use `ip` — it's the modern standard and provides more features.  Know `ifconfig` for older systems, but `ip` should be your default.
+> Use `ip` - it's the modern standard and provides more features.  Know `ifconfig` for older systems, but `ip` should be your default.
 
 **Q:   Why can't I ping a host but can access it via HTTP?**
-> The host may be blocking ICMP (ping) packets via firewall while allowing TCP port 80/443.  Many servers block ping for security.  Try: 
+> The host may be blocking ICMP (ping) packets via firewall while allowing TCP port 80/443.  Many servers block ping for security.  Try:
 > ```bash
 > curl -I http://host
 > nc -zv host 80
 > ```
 
 **Q: What's the difference between netstat and ss?**
-> `ss` is faster and provides more features — it reads directly from kernel.  `netstat` is older and slower.  Use `ss -tulpn` instead of `netstat -tulpn`.
+> `ss` is faster and provides more features - it reads directly from kernel.  `netstat` is older and slower.  Use `ss -tulpn` instead of `netstat -tulpn`.
 
 **Q: How do I check what's using a specific port?**
 > ```bash
@@ -7779,12 +7774,11 @@ curl --connect-timeout 5 -m 30 https://example.com
 **Q: What's the difference between `scp` and `rsync`?**
 > - `scp`: Simple file copy over SSH, copies everything every time
 > - `rsync`: Syncs files, only transfers differences, supports resume
->
-> Use `rsync` for large files, backups, and repeated transfers.  Use `scp` for quick one-off copies.
+> > Use `rsync` for large files, backups, and repeated transfers.  Use `scp` for quick one-off copies.
 
 ---
 
-## 📝 Practice Tasks
+## Practice Tasks
 
 ### Task 1: DNS Reconnaissance on Target Domain
 
@@ -7793,7 +7787,7 @@ curl --connect-timeout 5 -m 30 https://example.com
 **Steps:**
 ```bash
 # Choose a test target (legally!)
-TARGET="scanme.nmap. org"
+TARGET="scanme.nmap.org"
 
 # Basic lookups
 echo "=== A Records ==="
@@ -7902,9 +7896,9 @@ cat ~/.ssh/transfer_key.pub
 # Copy to remote (if you have another machine/VM)
 # ssh-copy-id -i ~/.ssh/transfer_key.pub user@remote
 
-# For local practice — setup local SSH
+# For local practice - setup local SSH
 sudo systemctl start ssh
-ssh-copy-id -i ~/. ssh/transfer_key.pub localhost
+ssh-copy-id -i ~/.ssh/transfer_key.pub localhost
 
 # Create test file
 echo "Confidential data for transfer" > /tmp/evidence.txt
@@ -7930,9 +7924,9 @@ rsync -av -e "ssh -i ~/.ssh/transfer_key" /tmp/case_files/ localhost:/tmp/synced
 
 ---
 
-## ✅ Module 10 Checkpoint
+## Module 10 Checkpoint
 
-Before moving to Module 11, confirm: 
+Before moving to Module 11, confirm:
 
 - [ ] Can view and configure network interfaces with `ip` command
 - [ ] Can test connectivity with ping, traceroute, mtr
@@ -7950,11 +7944,11 @@ Before moving to Module 11, confirm:
 
 # Module 11: Shell Scripting Essentials
 
-## 📘 Introduction
+## Introduction
 
-Shell scripting transforms you from a Linux user into a **Linux automator**.   Instead of typing commands repeatedly, you write scripts that do the work for you — reconnaissance automation, log analysis, backup routines, and custom tools.
+Shell scripting transforms you from a Linux user into a **Linux automator**.   Instead of typing commands repeatedly, you write scripts that do the work for you - reconnaissance automation, log analysis, backup routines, and custom tools.
 
-In cybersecurity, scripting is non-negotiable.   Custom scripts fill gaps between existing tools, automate tedious tasks, and enable rapid response during engagements.  This module covers bash scripting from fundamentals to practical pentesting scripts.
+In cybersecurity, scripting is a practical skill you will use often. Custom scripts fill gaps between existing tools, automate tedious tasks, and enable rapid response during engagements. This module covers bash scripting from fundamentals to practical security scripts.
 
 ---
 
@@ -7962,7 +7956,7 @@ In cybersecurity, scripting is non-negotiable.   Custom scripts fill gaps betwee
 
 ### The Shebang (`#!`)
 
-The **shebang** tells the system which interpreter to use: 
+The **shebang** tells the system which interpreter to use:
 
 ```bash
 #!/bin/bash          # Use bash
@@ -7996,20 +7990,17 @@ bash myscript.sh        # Explicit interpreter
 
 ```bash
 #!/bin/bash
-#
-# Script Name:  example. sh
+# # Script Name:  example.sh
 # Description:  Brief description of what this script does
 # Author:  Loki
 # Date: 2024-12-26
 # Usage: ./example.sh [options] <arguments>
-#
-
-# Exit on error
+# # Exit on error
 set -e
 
 # Variables
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-LOG_FILE="/tmp/script. log"
+LOG_FILE="/tmp/script.log"
 
 # Functions
 usage() {
@@ -8052,7 +8043,7 @@ name="Loki"
 age=20
 path=/home/kali
 
-# WRONG: 
+# WRONG:
 name = "Loki"    # Error: command not found
 
 # Using variables
@@ -8132,11 +8123,11 @@ echo ${str/World/Loki}    # Hello Loki (first match)
 echo ${str//l/L}          # HeLLo WorLd (all matches)
 
 # Remove pattern
-file="document.txt. bak"
-echo ${file%. bak}         # document. txt (remove suffix)
-echo ${file%.*}           # document. txt (remove last .*)
+file="document.txt.bak"
+echo ${file%.bak}         # document.txt (remove suffix)
+echo ${file%.*}           # document.txt (remove last .*)
 echo ${file%%.*}          # document (remove all . *)
-echo ${file#*.}           # txt. bak (remove prefix)
+echo ${file#*.}           # txt.bak (remove prefix)
 echo ${file##*.}          # bak (remove longest prefix)
 
 # Default values
@@ -8231,7 +8222,7 @@ echo
 # Read from file
 while read line; do
     echo "Processing: $line"
-done < file. txt
+done < file.txt
 ```
 
 **Common Options:**
@@ -8252,19 +8243,19 @@ done < file. txt
 
 while true; do
     read -p "Enter a number (1-100): " num
-    
+
     # Check if number
     if !  [[ "$num" =~ ^[0-9]+$ ]]; then
         echo "Error: Not a number"
         continue
     fi
-    
+
     # Check range
     if (( num < 1 || num > 100 )); then
         echo "Error: Out of range"
         continue
     fi
-    
+
     break
 done
 
@@ -8366,7 +8357,7 @@ if [ "$var" = "value" ]; then echo "match"; fi
 # [[ ]] - Bash extended, more features
 if [[ "$var" == "value" ]]; then echo "match"; fi
 
-# [[ ]] supports: 
+# [[ ]] supports:
 # - Pattern matching
 if [[ "$file" == *.txt ]]; then echo "Text file"; fi
 
@@ -8421,7 +8412,7 @@ esac
 **Pattern Matching in case:**
 ```bash
 case $file in
-    *. txt)     echo "Text file" ;;
+    *.txt)     echo "Text file" ;;
     *.sh)      echo "Shell script" ;;
     *.tar.gz)  echo "Compressed archive" ;;
     [0-9]*)    echo "Starts with number" ;;
@@ -8701,7 +8692,7 @@ source ./lib/utils.sh
 
 require_root
 log_info "Script started"
-# ... 
+# ...
 ```
 
 ---
@@ -8809,12 +8800,9 @@ debug "Variable x = $x"
 
 ```bash
 #!/bin/bash
-#
-# subdomain_enum.sh - Automated subdomain enumeration
+# # subdomain_enum.sh - Automated subdomain enumeration
 # Usage: ./subdomain_enum.sh <domain>
-#
-
-set -euo pipefail
+# set -euo pipefail
 
 # Colors
 RED='\033[0;31m'
@@ -8869,7 +8857,7 @@ done
 # Method 3: Certificate Transparency (if curl available)
 if command -v curl &> /dev/null; then
     echo -e "${YELLOW}[*] Checking Certificate Transparency logs...${NC}"
-    curl -s "https://crt.sh/? q=%. ${DOMAIN}&output=json" 2>/dev/null | \
+    curl -s "https://crt.sh/?q=%. ${DOMAIN}&output=json" 2>/dev/null | \
         grep -oP '"name_value": "\K[^"]+' | \
         sort -u | \
         while read subdomain; do
@@ -8893,12 +8881,9 @@ fi
 
 ```bash
 #!/bin/bash
-#
-# backup. sh - Automated backup with compression and rotation
+# # backup.sh - Automated backup with compression and rotation
 # Usage: ./backup.sh <source_dir> [backup_dir]
-#
-
-set -euo pipefail
+# set -euo pipefail
 
 # Configuration
 SOURCE_DIR="${1:? Usage: $0 <source_dir> [backup_dir]}"
@@ -8930,9 +8915,9 @@ tar -czf "$BACKUP_FILE" -C "$(dirname "$SOURCE_DIR")" "$(basename "$SOURCE_DIR")
 if [ -f "$BACKUP_FILE" ]; then
     SIZE=$(du -h "$BACKUP_FILE" | cut -f1)
     echo "[+] Backup created successfully: $SIZE"
-    
+
     # Create checksum
-    sha256sum "$BACKUP_FILE" > "${BACKUP_FILE}. sha256"
+    sha256sum "$BACKUP_FILE" > "${BACKUP_FILE}.sha256"
     echo "[+] Checksum saved:  ${BACKUP_FILE}.sha256"
 else
     echo "[-] Backup failed!"
@@ -8941,7 +8926,7 @@ fi
 
 # Rotate old backups
 echo "[*] Rotating old backups (keeping last $MAX_BACKUPS)..."
-ls -t "${BACKUP_DIR}/${HOSTNAME}_${SOURCE_NAME}_"*. tar.gz 2>/dev/null | \
+ls -t "${BACKUP_DIR}/${HOSTNAME}_${SOURCE_NAME}_"*.tar.gz 2>/dev/null | \
     tail -n +$((MAX_BACKUPS + 1)) | \
     while read old_backup; do
         echo "    Removing: $(basename "$old_backup")"
@@ -8953,19 +8938,16 @@ echo "[*] Backup complete!"
 # Show current backups
 echo ""
 echo "Current backups:"
-ls -lh "${BACKUP_DIR}/${HOSTNAME}_${SOURCE_NAME}_"*.tar. gz 2>/dev/null || echo "  None"
+ls -lh "${BACKUP_DIR}/${HOSTNAME}_${SOURCE_NAME}_"*.tar.gz 2>/dev/null || echo "  None"
 ```
 
 ### Script 3: Port Scanner
 
 ```bash
 #!/bin/bash
-#
-# portscan.sh - Simple bash port scanner
+# # portscan.sh - Simple bash port scanner
 # Usage: ./portscan.sh <target> [port_range]
-#
-
-set -uo pipefail
+# set -uo pipefail
 
 # Colors
 RED='\033[0;31m'
@@ -9011,13 +8993,13 @@ for ((port=START_PORT; port<=END_PORT; port++)); do
     if (( port % 100 == 0 )); then
         echo -ne "\r[*] Progress: $port / $END_PORT   "
     fi
-    
+
     # TCP connect scan using /dev/tcp (bash built-in)
     if timeout 1 bash -c "echo >/dev/tcp/$TARGET/$port" 2>/dev/null; then
         # Get service name if possible
         service=$(grep -w "$port/tcp" /etc/services 2>/dev/null | head -1 | awk '{print $1}')
         service=${service:-"unknown"}
-        
+
         echo -e "\r${GREEN}[+] Port $port OPEN ($service)${NC}          "
         OPEN_PORTS+=("$port")
     fi
@@ -9039,7 +9021,7 @@ fi
 
 ---
 
-## 🔑 Key Terms
+## Key Terms
 
 | Term | Definition |
 |------|------------|
@@ -9054,35 +9036,34 @@ fi
 
 ---
 
-## ❓ FAQs
+## FAQs
 
 **Q: Why does my script work when run with `bash script.sh` but not `./script.sh`?**
-> Either missing shebang or not executable: 
+> Either missing shebang or not executable:
 > ```bash
 > chmod +x script.sh
 > # Ensure first line is:  #!/bin/bash
 > ```
 
-**Q: How do I pass arguments to a script? **
+**Q: How do I pass arguments to a script?**
 > Use positional parameters:
 > ```bash
 > ./script.sh arg1 arg2
 > # In script:  $1 = arg1, $2 = arg2, $@ = all args
 > ```
 
-**Q: Why do I need quotes around variables? **
-> Without quotes, word splitting occurs: 
+**Q: Why do I need quotes around variables?**
+> Without quotes, word splitting occurs:
 > ```bash
 > file="my file.txt"
 > cat $file    # Error:  tries cat "my" and "file.txt"
-> cat "$file"  # Correct:  cat "my file. txt"
+> cat "$file"  # Correct:  cat "my file.txt"
 > ```
 
 **Q: What's the difference between `$@` and `$*`?**
 > - `"$@"` expands to separate quoted arguments:  `"arg1" "arg2" "arg3"`
 > - `"$*"` expands to single string: `"arg1 arg2 arg3"`
-> 
-> Use `"$@"` to preserve argument boundaries in loops. 
+> > Use `"$@"` to preserve argument boundaries in loops.
 
 **Q: How do I debug a bash script?**
 > ```bash
@@ -9093,13 +9074,13 @@ fi
 
 ---
 
-## 📝 Practice Tasks
+## Practice Tasks
 
 ### Task 1: Subdomain Enumeration Script
 
 **Objective:** Automate subdomain discovery
 
-**Use the script from Section 11.8** or create your own: 
+**Use the script from Section 11.8** or create your own:
 
 ```bash
 # Test with safe domain
@@ -9128,7 +9109,7 @@ chmod +x backup.sh
 
 # Verify backup
 ls -la /tmp/backups/
-tar -tzf /tmp/backups/*. tar.gz
+tar -tzf /tmp/backups/*.tar.gz
 ```
 
 **Deliverable:** Screenshot showing backup creation and contents listing
@@ -9154,7 +9135,7 @@ chmod +x portscan.sh
 
 ---
 
-## ✅ Module 11 Checkpoint
+## Module 11 Checkpoint
 
 Before moving to Module 12, confirm:
 
@@ -9172,11 +9153,11 @@ Before moving to Module 12, confirm:
 
 # Module 12: System Monitoring & Logs
 
-## 📘 Introduction
+## Introduction
 
 System monitoring and log analysis are essential for **system administration, security monitoring, and incident response**.   Understanding system health, resource usage, and log files allows you to detect anomalies, troubleshoot issues, and identify security incidents.
 
-This module covers system information commands, resource monitoring, log file analysis, and task scheduling — the foundation for maintaining healthy and secure systems.
+This module covers system information commands, resource monitoring, log file analysis, and task scheduling - the foundation for maintaining healthy and secure systems.
 
 ---
 
@@ -9244,14 +9225,14 @@ sudo hostnamectl set-hostname newhostname
 
 ```bash
 hostnamectl
-#    Static hostname: kali
-#          Icon name: computer-vm
-#            Chassis: vm
-#         Machine ID: abc123... 
-#            Boot ID: def456...
-#   Operating System: Kali GNU/Linux Rolling
-#             Kernel: Linux 6.1.0-kali5-amd64
-#       Architecture: x86-64
+# Static hostname: kali
+# Icon name: computer-vm
+# Chassis: vm
+# Machine ID: abc123...
+# Boot ID: def456...
+# Operating System: Kali GNU/Linux Rolling
+# Kernel: Linux 6.1.0-kali5-amd64
+# Architecture: x86-64
 ```
 
 ---
@@ -9275,10 +9256,10 @@ uptime -s
 **Load Average Explained:**
 ```
 load average: 0.15, 0.10, 0.05
-              │     │     │
-              │     │     └── 15-minute average
-              │     └── 5-minute average
-              └── 1-minute average
+| |     |
+| |     +-- 15-minute average
+              |     +-- 5-minute average
+              +-- 1-minute average
 
 # Load = number of processes waiting for CPU
 # For 4-core system: load < 4. 0 is healthy
@@ -9347,7 +9328,7 @@ timedatectl
 ```bash
 # Human-readable
 free -h
-#                total        used        free      shared  buff/cache   available
+# total        used        free      shared  buff/cache   available
 # Mem:            15Gi       3.2Gi        10Gi       256Mi       2.0Gi        11Gi
 # Swap:          2. 0Gi          0B       2.0Gi
 
@@ -9371,7 +9352,7 @@ free -hw
 | `buff/cache` | Buffer + cache memory |
 | `available` | Memory available for new processes |
 
-> 💡 **Focus on `available`, not `free`**. Linux uses free RAM for cache, which is released when needed.
+> **Focus on `available`, not `free`**. Linux uses free RAM for cache, which is released when needed.
 
 ---
 
@@ -9394,10 +9375,10 @@ vmstat -d
 # Active/inactive memory
 vmstat -a
 
-# Output: 
+# Output:
 # procs -----------memory---------- ---swap-- -----io---- -system-- ------cpu-----
-#  r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st
-#  1  0      0 10240000 128000 2048000  0    0     5    10  100  200  2  1 97  0  0
+# r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st
+# 1  0      0 10240000 128000 2048000  0    0     5    10  100  200  2  1 97  0  0
 ```
 
 **vmstat Fields:**
@@ -9517,7 +9498,7 @@ btop
 | `/var/log/apache2/` | Apache web server logs |
 | `/var/log/nginx/` | Nginx web server logs |
 | `/var/log/mysql/` | MySQL database logs |
-| `/var/log/fail2ban. log` | Fail2ban logs |
+| `/var/log/fail2ban.log` | Fail2ban logs |
 | `/var/log/ufw.log` | UFW firewall logs |
 
 ### Log Viewing Commands
@@ -9535,7 +9516,7 @@ tail -f /var/log/syslog
 tail -F /var/log/auth.log    # Follows rotations
 
 # Multiple files
-tail -f /var/log/syslog /var/log/auth. log
+tail -f /var/log/syslog /var/log/auth.log
 
 # Filter while watching
 tail -f /var/log/auth.log | grep "Failed"
@@ -9638,10 +9619,10 @@ grep "sudo" /var/log/auth.log
 grep "COMMAND=" /var/log/auth.log
 
 # User creation/modification
-grep -E "useradd|usermod|userdel" /var/log/auth. log
+grep -E "useradd|usermod|userdel" /var/log/auth.log
 
 # SSH connections
-grep "sshd" /var/log/auth. log
+grep "sshd" /var/log/auth.log
 
 # Count failed attempts by IP
 grep "Failed password" /var/log/auth.log | \
@@ -9658,17 +9639,17 @@ journalctl -u ssh --since "1 hour ago" | grep "Failed" | wc -l
 
 ### Understanding Cron
 
-**Cron** runs scheduled tasks automatically. 
+**Cron** runs scheduled tasks automatically.
 
 ### Cron Syntax
 
 ```
-# ┌───────────── minute (0-59)
-# │ ┌───────────── hour (0-23)
-# │ │ ┌───────────── day of month (1-31)
-# │ │ │ ┌───────────── month (1-12)
-# │ │ │ │ ┌───────────── day of week (0-6, Sunday=0)
-# │ │ │ │ │
+# +------------- minute (0-59)
+# | +------------- hour (0-23)
+# | | +------------- day of month (1-31)
+# | | | +------------- month (1-12)
+# | | | | +------------- day of week (0-6, Sunday=0)
+# | | | | |
 # * * * * * command to execute
 ```
 
@@ -9711,13 +9692,13 @@ sudo crontab -l -u username
 # Edit crontab
 crontab -e
 
-# Add these lines: 
+# Add these lines:
 
 # Daily backup at 2 AM
 0 2 * * * /home/kali/scripts/backup.sh >> /var/log/backup.log 2>&1
 
 # Every 15 minutes - check disk space
-*/15 * * * * /home/kali/scripts/check_disk. sh
+*/15 * * * * /home/kali/scripts/check_disk.sh
 
 # Weekly security scan on Sunday at 3 AM
 0 3 * * 0 /home/kali/scripts/weekly_scan.sh
@@ -9726,7 +9707,7 @@ crontab -e
 0 * * * * rsync -av /var/log/ /backup/logs/ 2>/dev/null
 
 # Monthly report on 1st at 8 AM
-0 8 1 * * /home/kali/scripts/monthly_report. sh | mail -s "Monthly Report" admin@example.com
+0 8 1 * * /home/kali/scripts/monthly_report.sh | mail -s "Monthly Report" admin@example.com
 ```
 
 ### Special Cron Strings
@@ -9760,7 +9741,7 @@ crontab -e
 
 ```bash
 # Redirect output to log
-* * * * * /script. sh >> /var/log/script.log 2>&1
+* * * * * /script.sh >> /var/log/script.log 2>&1
 
 # Discard output
 * * * * * /script.sh > /dev/null 2>&1
@@ -9812,7 +9793,7 @@ at -c JOB_NUMBER
 
 ---
 
-## 🔑 Key Terms
+## Key Terms
 
 | Term | Definition |
 |------|------------|
@@ -9827,7 +9808,7 @@ at -c JOB_NUMBER
 
 ---
 
-## ❓ FAQs
+## FAQs
 
 **Q: Why does `free` show very little "free" memory?**
 > Linux uses free RAM for disk caching, which improves performance.   This memory is released when applications need it.  Look at the **`available`** column, not `free`, for usable memory.
@@ -9835,8 +9816,7 @@ at -c JOB_NUMBER
 **Q: What's the difference between /var/log/syslog and journalctl?**
 > - `syslog`: Traditional text log file, managed by rsyslog/syslog-ng
 > - `journalctl`: Systemd journal, binary format with better querying
-> 
-> Modern systems use both.  Some services log only to journal.  
+> > Modern systems use both.  Some services log only to journal.
 
 **Q: How do I make a cron job run with environment variables?**
 > Cron runs with minimal environment.   Options:
@@ -9845,10 +9825,9 @@ at -c JOB_NUMBER
 > PATH=/usr/local/bin:/usr/bin:/bin
 > HOME=/home/kali
 > 0 * * * * /script.sh
-> 
-> # Or source profile in script
+> > # Or source profile in script
 > #!/bin/bash
-> source /home/kali/. bashrc
+> source /home/kali/.bashrc
 > # rest of script
 > ```
 
@@ -9857,24 +9836,22 @@ at -c JOB_NUMBER
 > 1. Script not executable: `chmod +x script.sh`
 > 2. Wrong path: Use absolute paths
 > 3. Environment:  Cron has minimal env
-> 4. Output hidden: Add `>> /tmp/cron. log 2>&1`
+> 4. Output hidden: Add `>> /tmp/cron.log 2>&1`
 > 5. Check logs: `grep CRON /var/log/syslog`
 
 **Q: How do I monitor a specific process's resource usage?**
 > ```bash
 > # Using top
 > top -p $(pgrep process_name)
-> 
-> # Using ps
+> > # Using ps
 > ps -p PID -o pid,%cpu,%mem,cmd
-> 
-> # Using watch
+> > # Using watch
 > watch -n 1 'ps -p PID -o %cpu,%mem'
 > ```
 
 ---
 
-## 📝 Practice Tasks
+## Practice Tasks
 
 ### Task 1: Monitor Failed Login Attempts in Real-Time
 
@@ -9896,7 +9873,7 @@ echo "[*] Monitoring failed login attempts..."
 echo "[*] Press Ctrl+C to stop"
 echo ""
 
-sudo tail -f /var/log/auth. log | while read line; do
+sudo tail -f /var/log/auth.log | while read line; do
     if echo "$line" | grep -q "Failed password"; then
         timestamp=$(echo "$line" | awk '{print $1, $2, $3}')
         ip=$(echo "$line" | grep -oE '[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+')
@@ -9942,15 +9919,15 @@ nmap -sV -F "$TARGET" > "$LOGDIR/nmap_${TIMESTAMP}.txt" 2>&1
 find /usr -perm -4000 -type f 2>/dev/null > "$LOGDIR/suid_${TIMESTAMP}.txt"
 
 # Check listening services
-ss -tulpn > "$LOGDIR/services_${TIMESTAMP}. txt" 2>&1
+ss -tulpn > "$LOGDIR/services_${TIMESTAMP}.txt" 2>&1
 
-echo "[*] Scan complete at $(date)" >> "$LOGDIR/daily_scan. log"
+echo "[*] Scan complete at $(date)" >> "$LOGDIR/daily_scan.log"
 echo "[*] Results saved to $LOGDIR" >> "$LOGDIR/daily_scan.log"
 ```
 
 **2. Make executable:**
 ```bash
-chmod +x ~/scripts/daily_scan. sh
+chmod +x ~/scripts/daily_scan.sh
 ```
 
 **3. Test script:**
@@ -9964,7 +9941,7 @@ cat ~/scan_logs/daily_scan.log
 crontab -e
 
 # Add line for daily scan at 3 AM
-0 3 * * * /home/kali/scripts/daily_scan. sh >> /home/kali/scan_logs/cron.log 2>&1
+0 3 * * * /home/kali/scripts/daily_scan.sh >> /home/kali/scan_logs/cron.log 2>&1
 ```
 
 **5.  Verify cron entry:**
@@ -9972,7 +9949,7 @@ crontab -e
 crontab -l
 ```
 
-**Deliverable:** 
+**Deliverable:**
 - Screenshot of crontab -l showing scheduled task
 - Screenshot of scan output files
 
@@ -10013,7 +9990,7 @@ stress --cpu 2 --vm 1 --vm-bytes 256M --io 1 --timeout 60s
 
 **3. Document observations:**
 ```bash
-# During stress, run these: 
+# During stress, run these:
 free -h
 vmstat 1 5
 iostat -x 1 5
@@ -10050,13 +10027,13 @@ echo "=== Top 5 Memory Processes ==="
 ps aux --sort=-%mem | head -6
 ```
 
-**Deliverable:** 
+**Deliverable:**
 - Screenshots of htop during stress test
 - Resource analysis report before and during stress
 
 ---
 
-## ✅ Module 12 Checkpoint
+## Module 12 Checkpoint
 
 Before moving to Module 13, confirm:
 
@@ -10076,9 +10053,9 @@ Before moving to Module 13, confirm:
 
 # Module 13: Security Fundamentals
 
-## 📘 Introduction
+## Introduction
 
-Security isn't an add-on — it's **built into Linux from the ground up**.  Understanding Linux security mechanisms is essential for both defending systems and finding their weaknesses during penetration tests. 
+Security isn't an add-on - it's **built into Linux from the ground up**.  Understanding Linux security mechanisms is essential for both defending systems and finding their weaknesses during penetration tests.
 
 This module covers permissions, firewalls, SSH hardening, privilege management, and mandatory access control systems. These are the fundamentals every security professional must master.
 
@@ -10093,10 +10070,10 @@ Recap from Module 3 with security focus:
 ```bash
 ls -la /etc/shadow
 # -rw-r----- 1 root shadow 1234 Dec 25 10:00 /etc/shadow
-#  │││ │││ │││
-#  │││ │││ └── Others:  --- (no access)
-#  │││ └── Group (shadow): r-- (read only)
-#  └── Owner (root): rw- (read + write)
+# ||| ||| |||
+# ||| ||| +-- Others:  --- (no access)
+# ||| +-- Group (shadow): r-- (read only)
+# +-- Owner (root): rw- (read + write)
 ```
 
 ### Critical Security Permissions
@@ -10140,10 +10117,10 @@ stat -c "%a %U:%G %n" /etc/shadow /etc/passwd /etc/sudoers
 
 ```bash
 # Lock down SSH directory
-chmod 700 ~/. ssh
+chmod 700 ~/.ssh
 chmod 600 ~/.ssh/id_rsa
 chmod 644 ~/.ssh/id_rsa.pub
-chmod 600 ~/. ssh/authorized_keys
+chmod 600 ~/.ssh/authorized_keys
 chmod 644 ~/.ssh/known_hosts
 
 # Lock down sensitive configs
@@ -10165,7 +10142,7 @@ echo "umask 027" >> ~/.bashrc
 
 ### UFW (Uncomplicated Firewall)
 
-**UFW** is the standard firewall interface for Debian/Ubuntu systems — a user-friendly frontend for iptables. 
+**UFW** is the standard firewall interface for Debian/Ubuntu systems - a user-friendly frontend for iptables.
 
 ### UFW Basic Commands
 
@@ -10288,18 +10265,18 @@ sudo ufw status verbose
 
 ### iptables (Advanced)
 
-**iptables** is the underlying netfilter interface — more powerful but complex.
+**iptables** is the underlying netfilter interface - more powerful but complex.
 
 ### iptables Structure
 
 ```
-Tables → Chains → Rules
-         │
-         ├── INPUT    (incoming to this host)
-         ├── OUTPUT   (outgoing from this host)
-         ├── FORWARD  (passing through, routing)
-         ├── PREROUTING  (before routing decision)
-         └── POSTROUTING (after routing decision)
+Tables -> Chains -> Rules
+         |
+         +-- INPUT    (incoming to this host)
+         +-- OUTPUT   (outgoing from this host)
+         +-- FORWARD  (passing through, routing)
+         +-- PREROUTING  (before routing decision)
+         +-- POSTROUTING (after routing decision)
 ```
 
 ### Basic iptables Commands
@@ -10417,7 +10394,7 @@ Protocol 2
 KexAlgorithms curve25519-sha256@libssh.org,ecdh-sha2-nistp521,ecdh-sha2-nistp384
 
 # Disable weak ciphers
-Ciphers chacha20-poly1305@openssh. com,aes256-gcm@openssh. com,aes128-gcm@openssh. com
+Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com
 
 # Strong MACs
 MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com
@@ -10455,7 +10432,7 @@ ssh-keygen -p -f ~/.ssh/id_ed25519
 
 # Use SSH agent for convenience
 eval $(ssh-agent)
-ssh-add ~/. ssh/id_ed25519
+ssh-add ~/.ssh/id_ed25519
 ```
 
 ### Fail2Ban Integration
@@ -10483,7 +10460,7 @@ banaction = ufw
 enabled = true
 port = 2222
 filter = sshd
-logpath = /var/log/auth. log
+logpath = /var/log/auth.log
 maxretry = 3
 ```
 
@@ -10594,7 +10571,7 @@ sudo mv /var/lib/aide/aide.db.new /var/lib/aide/aide.db
 
 MONITOR_DIR="/etc"
 HASH_FILE="/var/lib/integrity/hashes.txt"
-CHANGES_LOG="/var/log/integrity_changes. log"
+CHANGES_LOG="/var/log/integrity_changes.log"
 
 mkdir -p /var/lib/integrity
 
@@ -10605,7 +10582,7 @@ if [ "$1" = "init" ]; then
 elif [ "$1" = "check" ]; then
     # Check for changes
     echo "=== Integrity Check $(date) ===" >> "$CHANGES_LOG"
-    
+
     find "$MONITOR_DIR" -type f -exec sha256sum {} \; 2>/dev/null | \
         while read hash file; do
             orig_hash=$(grep "$file" "$HASH_FILE" | awk '{print $1}')
@@ -10652,21 +10629,21 @@ done
 sudo aa-status
 
 # List profiles
-ls /etc/apparmor. d/
+ls /etc/apparmor.d/
 
-# Profile modes: 
+# Profile modes:
 # - enforce: Actively blocks violations
 # - complain: Logs violations but allows
 # - disable: Profile not loaded
 
 # Put profile in complain mode
-sudo aa-complain /etc/apparmor. d/usr.bin.program
+sudo aa-complain /etc/apparmor.d/usr.bin.program
 
 # Put profile in enforce mode
 sudo aa-enforce /etc/apparmor.d/usr. bin.program
 
 # Disable profile
-sudo ln -s /etc/apparmor. d/usr.bin.program /etc/apparmor. d/disable/
+sudo ln -s /etc/apparmor.d/usr.bin.program /etc/apparmor.d/disable/
 sudo apparmor_parser -R /etc/apparmor.d/usr.bin.program
 
 # Reload all profiles
@@ -10718,32 +10695,32 @@ sudo sealert -a /var/log/audit/audit.log
 
 ---
 
-## 🔑 Key Terms
+## Key Terms
 
 | Term | Definition |
 |------|------------|
 | **Firewall** | Network security system controlling incoming/outgoing traffic.   |
-| **UFW** | Uncomplicated Firewall — user-friendly iptables frontend.  |
+| **UFW** | Uncomplicated Firewall - user-friendly iptables frontend.  |
 | **iptables** | Linux kernel firewall with powerful rule-based filtering. |
 | **SSH Hardening** | Securing SSH by disabling weak features and enforcing strong auth. |
 | **Fail2Ban** | Intrusion prevention scanning logs and banning malicious IPs. |
 | **Least Privilege** | Principle of giving minimum necessary permissions. |
-| **MAC** | Mandatory Access Control (SELinux, AppArmor) — kernel-enforced security. |
-| **DAC** | Discretionary Access Control — traditional Unix permissions. |
+| **MAC** | Mandatory Access Control (SELinux, AppArmor) - kernel-enforced security. |
+| **DAC** | Discretionary Access Control - traditional Unix permissions. |
 
 ---
 
-## ❓ FAQs
+## FAQs
 
 **Q: Should I use UFW or iptables?**
-> Use **UFW** for simple setups and ease of management.   Learn **iptables** for advanced scenarios, scripting, and understanding how firewalls actually work.  UFW generates iptables rules under the hood. 
+> Use **UFW** for simple setups and ease of management.   Learn **iptables** for advanced scenarios, scripting, and understanding how firewalls actually work.  UFW generates iptables rules under the hood.
 
 **Q: Is changing SSH port from 22 really secure?**
-> It's "security through obscurity" — doesn't stop determined attackers but reduces noise from automated scanners.  Always combine with key-based auth, fail2ban, and proper firewall rules. 
+> It's "security through obscurity" - doesn't stop determined attackers but reduces noise from automated scanners.  Always combine with key-based auth, fail2ban, and proper firewall rules.
 
 **Q: How do I recover if I lock myself out with firewall rules?**
-> Prevention:  Always test rules before making permanent, keep a console session open. 
-> Recovery: Access via console/KVM, boot into recovery mode, or use cloud provider's console. 
+> Prevention:  Always test rules before making permanent, keep a console session open.
+> Recovery: Access via console/KVM, boot into recovery mode, or use cloud provider's console.
 > ```bash
 > # Before enabling, ensure SSH is allowed
 > sudo ufw allow ssh
@@ -10763,15 +10740,14 @@ sudo sealert -a /var/log/audit/audit.log
 > # Check for CVEs in installed packages
 > sudo apt install debsecan
 > debsecan
-> 
-> # Use Lynis for security audit
+> > # Use Lynis for security audit
 > sudo apt install lynis
 > sudo lynis audit system
 > ```
 
 ---
 
-## 📝 Practice Tasks
+## Practice Tasks
 
 ### Task 1: Configure UFW for Web Server
 
@@ -10789,7 +10765,7 @@ sudo ufw --force reset
 sudo ufw default deny incoming
 sudo ufw default allow outgoing
 
-# Allow SSH (CRITICAL - do this first!)
+# Allow SSH first so you do not lock yourself out
 sudo ufw allow 22/tcp
 
 # Limit SSH (rate limiting)
@@ -10887,7 +10863,7 @@ sudo ufw delete allow 22/tcp
 ssh -p 2222 kali@localhost
 ```
 
-**Deliverable:** 
+**Deliverable:**
 - Screenshot of `sshd -t` (no errors)
 - Screenshot of successful connection on new port
 
@@ -10912,7 +10888,7 @@ echo "Found:  $(wc -l < /tmp/world_writable.txt) world-writable files"
 sudo find / -type d -perm -o+w !  -perm -1000 \
     -not -path "/proc/*" \
     -not -path "/sys/*" \
-    2>/dev/null | tee /tmp/world_writable_dirs. txt
+    2>/dev/null | tee /tmp/world_writable_dirs.txt
 
 # Analyze results
 echo "=== Potentially Dangerous Files ==="
@@ -10955,7 +10931,7 @@ sudo chmod +t /path/to/directory
 
 ---
 
-## ✅ Module 13 Checkpoint
+## Module 13 Checkpoint
 
 Before moving to Module 14, confirm:
 
@@ -10973,7 +10949,7 @@ Before moving to Module 14, confirm:
 
 # Module 14: Advanced Commands & Tricks
 
-## 📘 Introduction
+## Introduction
 
 This module covers power-user commands and techniques that separate beginners from experts.   These tools and tricks enable efficient file finding, data compression, powerful pattern matching, and shell customization.
 
@@ -10984,7 +10960,7 @@ Master these, and you'll work faster, script better, and handle complex tasks wi
 ## 14.1 Finding Files
 
 ### Command:  `find`
-**Search for files in directory hierarchy** — most powerful file finder
+**Search for files in directory hierarchy** - most powerful file finder
 
 **Syntax:**
 ```bash
@@ -11006,7 +10982,7 @@ find /etc -name "*.conf"
 find .  -name "*backup*"
 
 # Multiple names
-find / -name "*. txt" -o -name "*.log"
+find / -name "*.txt" -o -name "*.log"
 ```
 
 ### Finding by Type
@@ -11067,7 +11043,7 @@ find .  -newer reference_file.txt
 # Modified in last 24 hours (forensics)
 find / -type f -mtime 0 2>/dev/null
 
-# Time options: 
+# Time options:
 # -mtime n: modified n*24 hours ago
 # -atime n: accessed n*24 hours ago
 # -ctime n:  status changed n*24 hours ago
@@ -11141,7 +11117,7 @@ find /var -type f -size +50M -mtime -7
 find /etc -name "*.conf" -exec grep -l "password" {} \;
 
 # Find files, exclude directories
-find /var -path "/var/cache" -prune -o -name "*. log" -print
+find /var -path "/var/cache" -prune -o -name "*.log" -print
 
 # Forensic:  files modified in last hour by root
 find / -user root -mmin -60 -type f 2>/dev/null
@@ -11165,7 +11141,7 @@ sudo updatedb
 
 # Basic search
 locate filename
-locate "*. conf"
+locate "*.conf"
 
 # Case-insensitive
 locate -i FileName
@@ -11177,10 +11153,10 @@ locate -n 10 "*.log"
 locate -c "*.txt"
 
 # Match whole path
-locate -r "/home/.*\. txt$"
+locate -r "/home/.*\.txt$"
 ```
 
-> 💡 **locate vs find:** `locate` is faster (uses database) but may not find recent files. `find` is real-time but slower. 
+> **locate vs find:** `locate` is faster (uses database) but may not find recent files. `find` is real-time but slower.
 
 ---
 
@@ -11232,7 +11208,7 @@ type -a python    # All locations
 ## 14.2 Archiving & Compression
 
 ### Command: `tar`
-**Tape Archive — create/extract archives**
+**Tape Archive - create/extract archives**
 
 **Syntax:**
 ```bash
@@ -11282,7 +11258,7 @@ tar -czvf "backup_$(date +%Y%m%d_%H%M%S).tar.gz" folder/
 
 ```bash
 # Extract tar
-tar -xvf archive. tar
+tar -xvf archive.tar
 
 # Extract gzip
 tar -xzvf archive.tar.gz
@@ -11291,7 +11267,7 @@ tar -xzvf archive.tar.gz
 tar -xzvf archive.tar.gz -C /target/dir/
 
 # Extract specific files
-tar -xzvf archive.tar. gz file1.txt folder/file2.txt
+tar -xzvf archive.tar.gz file1.txt folder/file2.txt
 
 # List contents without extracting
 tar -tzvf archive.tar.gz
@@ -11306,21 +11282,21 @@ tar -tzvf archive.tar.gz
 ```bash
 # Compress (replaces original)
 gzip file.txt
-# Creates file.txt. gz
+# Creates file.txt.gz
 
 # Keep original
 gzip -k file.txt
 
 # Decompress
-gunzip file.txt. gz
-gzip -d file. txt.gz
+gunzip file.txt.gz
+gzip -d file.txt.gz
 
 # Compress with level (1-9)
 gzip -9 file.txt    # Best compression
 gzip -1 file.txt    # Fastest
 
 # View compressed file
-zcat file.txt. gz
+zcat file.txt.gz
 zless file.txt.gz
 ```
 
@@ -11328,14 +11304,14 @@ zless file.txt.gz
 
 ```bash
 # Compress (better ratio than gzip)
-bzip2 file. txt
+bzip2 file.txt
 
 # Decompress
 bunzip2 file.txt.bz2
 bzip2 -d file.txt. bz2
 
 # Keep original
-bzip2 -k file. txt
+bzip2 -k file.txt
 
 # View
 bzcat file.txt.bz2
@@ -11345,11 +11321,11 @@ bzcat file.txt.bz2
 
 ```bash
 # Compress (best ratio)
-xz file. txt
+xz file.txt
 
 # Decompress
 unxz file.txt.xz
-xz -d file.txt. xz
+xz -d file.txt.xz
 
 # Keep original
 xz -k file.txt
@@ -11369,7 +11345,7 @@ zip archive.zip file1.txt file2.txt
 zip -r archive.zip folder/
 
 # With password
-zip -e secure.zip file. txt
+zip -e secure.zip file.txt
 
 # Compression level
 zip -9 archive.zip folder/
@@ -11398,7 +11374,7 @@ unzip -t archive.zip
 
 ---
 
-## 14.3 Regex Mastery
+## 14.3 Regex Practice
 
 ### Basic vs Extended Regex
 
@@ -11452,7 +11428,7 @@ grep -E '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$' file.txt
 grep -E '\b([0-9]{1,3}\.){3}[0-9]{1,3}\b' file.txt
 
 # URL
-grep -E 'https?://[^ ]+' file. txt
+grep -E 'https?://[^ ]+' file.txt
 
 # Phone number (US)
 grep -E '\(? [0-9]{3}\)?[-. ]?[0-9]{3}[-. ]?[0-9]{4}' file.txt
@@ -11464,7 +11440,7 @@ grep -E '^[a-zA-Z0-9_]{3,16}$' file.txt
 grep -E '([0-9A-Fa-f]{2}: ){5}[0-9A-Fa-f]{2}' file.txt
 
 # Empty lines
-grep -E '^$' file. txt
+grep -E '^$' file.txt
 
 # Lines starting with #
 grep -E '^#' file.txt
@@ -11473,7 +11449,7 @@ grep -E '^#' file.txt
 grep -E '^[^#]' file.txt
 
 # Extract between quotes
-grep -oE '"[^"]*"' file. txt
+grep -oE '"[^"]*"' file.txt
 
 # Password pattern (8+ chars, upper, lower, digit)
 grep -E '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}$' file.txt
@@ -11580,7 +11556,7 @@ alias reload='source ~/.bashrc'
 
 ### Shell Functions
 
-More powerful than aliases — accept arguments, contain logic:
+More powerful than aliases - accept arguments, contain logic:
 
 ```bash
 # Add to ~/.bashrc
@@ -11685,7 +11661,7 @@ unset MY_VAR
 **User-level:** Add to `~/.bashrc` or `~/.profile`
 
 ```bash
-# ~/. bashrc
+# ~/.bashrc
 export EDITOR="nano"
 export VISUAL="nano"
 export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
@@ -11698,7 +11674,7 @@ export MY_TOOLS="$HOME/tools"
 export WORDLISTS="/usr/share/wordlists"
 ```
 
-**System-level:** Add to `/etc/environment` or `/etc/profile. d/*. sh`
+**System-level:** Add to `/etc/environment` or `/etc/profile.d/*.sh`
 
 ```bash
 # /etc/environment
@@ -11712,8 +11688,8 @@ export SYSTEM_PATH="/opt/tools/bin"
 
 **Bash:**
 ```
-Login Shell:   /etc/profile → ~/.bash_profile → ~/.bash_login → ~/.profile
-Non-Login:     /etc/bash.bashrc → ~/. bashrc
+Login Shell:   /etc/profile -> ~/.bash_profile -> ~/.bash_login -> ~/.profile
+Non-Login:     /etc/bash.bashrc -> ~/.bashrc
 ```
 
 **Best Practice:**
@@ -11758,7 +11734,7 @@ cat /dev/null > ~/. bash_history  # Clear file
 ### History Configuration
 
 ```bash
-# ~/. bashrc
+# ~/.bashrc
 
 # History size
 HISTSIZE=10000           # Commands in memory
@@ -11801,27 +11777,26 @@ set +o history
 
 ---
 
-## 🔑 Key Terms
+## Key Terms
 
 | Term | Definition |
 |------|------------|
-| **Regex** | Regular Expression — pattern language for matching text.   |
+| **Regex** | Regular Expression - pattern language for matching text.   |
 | **Alias** | Shortcut name for command or command sequence.  |
 | **Environment Variable** | Named value accessible to all child processes. |
 | **Archive** | Single file containing multiple files/directories. |
 | **Compression** | Reducing file size using algorithms (gzip, bzip2, xz). |
-| **Glob** | Shell wildcard patterns (`*`, `?`, `[]`) — not regex. |
+| **Glob** | Shell wildcard patterns (`*`, `?`, `[]`) - not regex. |
 | **History** | Record of previously executed commands. |
 
 ---
 
-## ❓ FAQs
+## FAQs
 
 **Q: What's the difference between `find` and `locate`?**
 > - `find`: Real-time search, always current, more options, slower
 > - `locate`: Uses database, very fast, may miss recent files
-> 
-> Use `locate` for quick searches, `find` for precise or recent file searches.
+> > Use `locate` for quick searches, `find` for precise or recent file searches.
 
 **Q:  How do I find files modified in the last 24 hours?**
 > ```bash
@@ -11833,13 +11808,12 @@ set +o history
 **Q: What's the difference between `.bashrc` and `.bash_profile`?**
 > - `.bash_profile`: Loaded for **login** shells (SSH, terminal login)
 > - `.bashrc`: Loaded for **non-login** interactive shells (new terminal tab)
-> 
-> Best practice: Put everything in `.bashrc` and source it from `.bash_profile`.
+> > Best practice: Put everything in `.bashrc` and source it from `.bash_profile`.
 
 **Q: How do I make an alias persistent?**
 > Add it to `~/.bashrc`:
 > ```bash
-> echo "alias ll='ls -la'" >> ~/. bashrc
+> echo "alias ll='ls -la'" >> ~/.bashrc
 > source ~/.bashrc
 > ```
 
@@ -11851,7 +11825,7 @@ set +o history
 
 ---
 
-## 📝 Practice Tasks
+## Practice Tasks
 
 ### Task 1: Find Files Modified in Last 24 Hours (Forensics)
 
@@ -11929,7 +11903,7 @@ mkdir -p "$BACKUP_DIR"
 
 # Create archive name
 SOURCE_NAME=$(basename "$SOURCE")
-ARCHIVE="${BACKUP_DIR}/${HOSTNAME}_${SOURCE_NAME}_${TIMESTAMP}. tar.gz"
+ARCHIVE="${BACKUP_DIR}/${HOSTNAME}_${SOURCE_NAME}_${TIMESTAMP}.tar.gz"
 
 # Create backup
 echo "[*] Creating backup: $ARCHIVE"
@@ -11939,11 +11913,11 @@ tar -czvf "$ARCHIVE" -C "$(dirname "$SOURCE")" "$(basename "$SOURCE")"
 if [ -f "$ARCHIVE" ]; then
     SIZE=$(du -h "$ARCHIVE" | cut -f1)
     echo "[+] Backup created:  $SIZE"
-    
+
     # Create checksum
     sha256sum "$ARCHIVE" > "${ARCHIVE}.sha256"
     echo "[+] Checksum: ${ARCHIVE}.sha256"
-    
+
     # List contents
     echo "[*] Archive contents:"
     tar -tzvf "$ARCHIVE"
@@ -11960,7 +11934,7 @@ chmod +x ~/scripts/backup.sh
 
 # Verify
 ls -la /tmp/backups/
-cat /tmp/backups/*. sha256
+cat /tmp/backups/*.sha256
 ```
 
 **Deliverable:** Screenshot showing backup file with timestamp and checksum
@@ -12071,7 +12045,7 @@ pwd
 
 ---
 
-## ✅ Module 14 Checkpoint
+## Module 14 Checkpoint
 
 Before moving to Module 15, confirm:
 
@@ -12090,11 +12064,11 @@ Before moving to Module 15, confirm:
 
 # Module 15: Troubleshooting & Best Practices
 
-## 📘 Introduction
+## Introduction
 
-Every Linux user encounters errors, broken scripts, and mysterious system behavior. The difference between a beginner and an expert is knowing **how to systematically diagnose and fix problems**. 
+Every Linux user encounters errors, broken scripts, and mysterious system behavior. The difference between a beginner and an expert is knowing **how to systematically diagnose and fix problems**.
 
-This module covers reading error messages, debugging techniques, common pitfalls, performance optimization, backup strategies, and using documentation effectively — essential skills for self-sufficient Linux mastery.
+This module covers reading error messages, debugging techniques, common pitfalls, performance optimization, backup strategies, and using documentation effectively - essential skills for self-sufficient Linux work.
 
 ---
 
@@ -12262,10 +12236,10 @@ my_function() {
     trace
     local input=$1
     debug "Input value: $input"
-    
+
     # Your code here
     result=$((input * 2))
-    
+
     debug "Result:  $result"
     echo $result
 }
@@ -12288,7 +12262,7 @@ print_stack() {
 ```bash
 # Bug 1: Unquoted variables with spaces
 file="my file.txt"
-cat $file       # WRONG:  tries to cat "my" and "file. txt"
+cat $file       # WRONG:  tries to cat "my" and "file.txt"
 cat "$file"     # CORRECT
 
 # Bug 2: Missing space in test
@@ -12377,7 +12351,7 @@ safe_run mkdir /some/directory
 # bash: ./script.sh: Permission denied
 
 # Fix
-chmod +x script. sh
+chmod +x script.sh
 # Or run with interpreter
 bash script.sh
 
@@ -12386,7 +12360,7 @@ ssh user@host
 # Permissions 0644 for 'id_rsa' are too open
 
 # Fix
-chmod 600 ~/. ssh/id_rsa
+chmod 600 ~/.ssh/id_rsa
 chmod 700 ~/.ssh
 ```
 
@@ -12438,7 +12412,7 @@ find /var/log -name "*.gz" -delete  # Remove compressed logs
 ```bash
 # Bad: Reading file in loop
 while read line; do
-    grep "pattern" file.txt   # Opens file each iteration! 
+    grep "pattern" file.txt   # Opens file each iteration!
 done < input.txt
 
 # Good: Single operation
@@ -12604,7 +12578,7 @@ log "Backup complete"
 
 ```bash
 # Daily backup at 2 AM
-0 2 * * * /home/kali/scripts/backup_system. sh >> /var/log/backup_cron.log 2>&1
+0 2 * * * /home/kali/scripts/backup_system.sh >> /var/log/backup_cron.log 2>&1
 
 # Weekly full backup on Sunday
 0 3 * * 0 /home/kali/scripts/full_backup.sh
@@ -12618,7 +12592,7 @@ log "Backup complete"
 ## 15.6 Documentation
 
 ### Command:  `man`
-**Manual pages — comprehensive documentation**
+**Manual pages - comprehensive documentation**
 
 ```bash
 # Read manual
@@ -12686,15 +12660,13 @@ tldr tar
 tldr find
 tldr rsync
 
-# Example output: 
+# Example output:
 # tar
-# Archiving utility. 
-# 
-# - Create an archive from files: 
-#   tar -cvf archive.tar file1 file2
-# 
-# - Extract an archive:
-#   tar -xvf archive.tar
+# Archiving utility.
+# # - Create an archive from files:
+# tar -cvf archive.tar file1 file2
+# # - Extract an archive:
+# tar -xvf archive.tar
 ```
 
 ### Other Documentation Sources
@@ -12724,7 +12696,7 @@ type -a python
 
 ---
 
-## 🔑 Key Terms
+## Key Terms
 
 | Term | Definition |
 |------|------------|
@@ -12733,11 +12705,11 @@ type -a python
 | **Trap** | Signal handler that executes code on signals/errors. |
 | **Incremental Backup** | Backup that only copies changed files since last backup. |
 | **Man Pages** | Traditional Unix documentation accessed via `man` command. |
-| **RTFM** | "Read The Fine Manual" — reminder to check documentation first. |
+| **RTFM** | "Read The Fine Manual" - reminder to check documentation first. |
 
 ---
 
-## ❓ FAQs
+## FAQs
 
 **Q: How do I find out why a command failed?**
 > 1. Check the error message carefully
@@ -12751,14 +12723,11 @@ type -a python
 > ```bash
 > # 1. Use full paths
 > /usr/bin/python3 instead of python3
-> 
-> # 2. Set PATH in crontab
+> > # 2. Set PATH in crontab
 > PATH=/usr/local/bin:/usr/bin:/bin
-> 
-> # 3. Source profile in script
+> > # 3. Source profile in script
 > source /home/user/.bashrc
-> 
-> # 4. Log output for debugging
+> > # 4. Log output for debugging
 > * * * * * /script.sh >> /tmp/cron.log 2>&1
 > ```
 
@@ -12770,14 +12739,14 @@ type -a python
 > - Recovery: Restore from backup or use recovery tools
 
 **Q: What's the best way to learn a new command?**
-> 1. `tldr command` — Quick practical examples
-> 2. `command --help` — Brief options overview
-> 3. `man command` — Comprehensive documentation
+> 1. `tldr command` - Quick practical examples
+> 2. `command --help` - Brief options overview
+> 3. `man command` - Comprehensive documentation
 > 4. Practice in a test environment
 
 ---
 
-## 📝 Practice Tasks
+## Practice Tasks
 
 ### Task 1: Debug a Failing Script
 
@@ -12787,7 +12756,7 @@ type -a python
 ```bash
 cat << 'EOF' > /tmp/buggy_script.sh
 #!/bin/bash
-# This script has multiple bugs - find and fix them! 
+# This script has multiple bugs - find and fix them!
 
 echo "Starting backup process"
 
@@ -12882,12 +12851,12 @@ sudo apt install testdisk
 mkdir /tmp/recovery_test
 cd /tmp/recovery_test
 echo "Important data that was deleted" > important.txt
-echo "Another critical file" > critical. txt
+echo "Another critical file" > critical.txt
 
 # Simulate deletion (in real scenario)
 rm important.txt critical.txt
 
-# Recovery options: 
+# Recovery options:
 # 1. Check trash (GUI systems)
 ls ~/. local/share/Trash/files/
 
@@ -12920,7 +12889,7 @@ cat << 'EOF' > /tmp/slow_script.sh
 #!/bin/bash
 # Inefficient script - optimize it!
 
-# Count lines in all . txt files
+# Count lines in all .txt files
 total=0
 for file in $(find /var/log -name "*.log" 2>/dev/null); do
     count=$(cat $file | wc -l)
@@ -12965,7 +12934,7 @@ time bash /tmp/fast_script.sh
 
 ---
 
-## ✅ Module 15 Checkpoint
+## Module 15 Checkpoint
 
 Before moving to Module 16, confirm:
 
@@ -12981,18 +12950,18 @@ Before moving to Module 16, confirm:
 
 # Module 16: FAQs & Real-World Scenarios
 
-## 📘 Introduction
+## Introduction
 
 This module addresses the most common questions and real-world situations Linux users and security professionals face. These are practical, scenario-based solutions you'll use throughout your career.
 
 ---
 
-## 16.1 How to Recover Deleted Files? 
+## 16.1 How to Recover Deleted Files?
 
 ### Immediate Actions
 
 ```bash
-# STOP writing to the disk immediately! 
+# STOP writing to the disk immediately!
 # The more you write, the less recoverable data becomes
 
 # Check trash first (GUI systems)
@@ -13035,7 +13004,7 @@ sudo apt install testdisk  # Includes photorec
 # Run recovery
 sudo photorec /dev/sdb
 
-# Interactive menu: 
+# Interactive menu:
 # 1. Select disk
 # 2. Select partition
 # 3. Select filesystem type
@@ -13163,7 +13132,7 @@ sudo usermod -aG group_name $USER
 
 # 5. Check for immutable attribute
 lsattr file.txt
-# If shows 'i' flag: 
+# If shows 'i' flag:
 sudo chattr -i file.txt
 
 # 6. Check SELinux/AppArmor
@@ -13206,10 +13175,10 @@ crontab -e
 
 # Examples
 # Every day at 2 AM
-0 2 * * * /home/kali/scripts/backup. sh
+0 2 * * * /home/kali/scripts/backup.sh
 
 # Every hour
-0 * * * * /home/kali/scripts/check. sh
+0 * * * * /home/kali/scripts/check.sh
 
 # Every 15 minutes
 */15 * * * * /home/kali/scripts/monitor.sh
@@ -13281,7 +13250,7 @@ dig "$TARGET" +short > "$OUTPUT_DIR/dns.txt"
 echo "[*] Checking subdomains..."
 for sub in www mail ftp admin api; do
     ip=$(dig +short "$sub.$TARGET")
-    [ -n "$ip" ] && echo "$sub.$TARGET: $ip" >> "$OUTPUT_DIR/subdomains. txt"
+    [ -n "$ip" ] && echo "$sub.$TARGET: $ip" >> "$OUTPUT_DIR/subdomains.txt"
 done
 
 # Port scan
@@ -13336,8 +13305,8 @@ sudo apt install auditd -y
 sudo systemctl enable auditd
 
 # 9. Set file permissions
-chmod 700 ~/. ssh
-chmod 600 ~/. ssh/authorized_keys
+chmod 700 ~/.ssh
+chmod 600 ~/.ssh/authorized_keys
 
 # 10. Create non-root user
 # sudo adduser admin
@@ -13368,13 +13337,13 @@ journalctl -f -p warning
 ### Preparation
 
 ```bash
-# 1. Backup important data FIRST! 
+# 1. Backup important data FIRST!
 
 # 2. Create Windows recovery drive
 # 3. Disable Fast Startup in Windows
-#    Control Panel → Power Options → Choose what power buttons do
-#    → Change settings currently unavailable
-#    → Uncheck "Turn on fast startup"
+# Control Panel -> Power Options -> Choose what power buttons do
+# -> Change settings currently unavailable
+# -> Uncheck "Turn on fast startup"
 
 # 4. Disable Secure Boot in BIOS (if needed)
 # 5.  Shrink Windows partition from Windows Disk Management
@@ -13409,7 +13378,7 @@ sudo nano /etc/default/grub
 sudo update-grub
 
 # Fix GRUB if broken
-# Boot from Linux live USB: 
+# Boot from Linux live USB:
 sudo mount /dev/sda4 /mnt
 sudo mount /dev/sda1 /mnt/boot/efi
 sudo mount --bind /dev /mnt/dev
@@ -13424,7 +13393,7 @@ sudo reboot
 
 ---
 
-## 📝 Practice Tasks
+## Practice Tasks
 
 ### Task 1: Simulate and Troubleshoot Disk-Full Scenario
 
@@ -13550,7 +13519,7 @@ for sub in www mail ftp ssh admin api dev staging test blog shop; do
     result=$(dig +short "$sub.$TARGET" 2>/dev/null)
     if [ -n "$result" ]; then
         echo -e "${GREEN}[+] Found: $sub.$TARGET${NC}"
-        echo "$sub.$TARGET -> $result" >> "$OUTPUT_DIR/subdomains. txt"
+        echo "$sub.$TARGET -> $result" >> "$OUTPUT_DIR/subdomains.txt"
     fi
 done
 
@@ -13575,7 +13544,7 @@ ls -la "$OUTPUT_DIR"
 
 ---
 
-## ✅ Module 16 Checkpoint
+## Module 16 Checkpoint
 
 Before moving to Module 17, confirm:
 
@@ -13591,9 +13560,9 @@ Before moving to Module 17, confirm:
 
 # Module 17: Master Cheat Sheet
 
-## 📘 Introduction
+## Introduction
 
-This is your **quick reference guide** — organized one-liners, essential flags, and critical commands grouped by category. Print it, bookmark it, and memorize the key commands. 
+This is your **quick reference guide** - organized one-liners, essential flags, and critical commands grouped by category. Print it, bookmark it, and memorize the key commands.
 
 ---
 
@@ -13819,7 +13788,7 @@ cat /etc/fstab                          # Permanent mounts
 # Tar
 tar -czvf archive.tar.gz dir/           # Create gzip archive
 tar -cjvf archive.tar.bz2 dir/          # Create bzip2 archive
-tar -xzvf archive.tar. gz                # Extract gzip
+tar -xzvf archive.tar.gz                # Extract gzip
 tar -xjvf archive.tar. bz2               # Extract bzip2
 tar -tvf archive.tar                    # List contents
 
@@ -13832,7 +13801,7 @@ unzip archive.zip                       # Extract zip
 
 ---
 
-## 17.10 CyberSec-Specific Commands
+## 17.10 Cybersecurity-Specific Commands
 
 ### Reconnaissance
 
@@ -13977,7 +13946,7 @@ sudo systemctl restart sshd
 
 ---
 
-## 📝 Practice Tasks
+## Practice Tasks
 
 ### Task 1: Create Your Personal Cheat Sheet
 
@@ -14022,7 +13991,7 @@ find / -type f -size +100M 2>/dev/null
 EOF
 
 # View and edit
-nano ~/notes/my_cheatsheet. md
+nano ~/notes/my_cheatsheet.md
 ```
 
 **Deliverable:** Your personalized cheat sheet file
@@ -14079,7 +14048,7 @@ grep "Failed\|Accepted" /var/log/auth.log
 **Objective:** Create ready-to-use IR card
 
 ```bash
-cat << 'EOF' > ~/notes/incident_response. md
+cat << 'EOF' > ~/notes/incident_response.md
 # Incident Response Quick Reference
 
 ## Initial Triage
@@ -14112,7 +14081,7 @@ pstree -p > /evidence/pstree_$(date +%s).txt
 ```bash
 w > /evidence/users_$(date +%s).txt
 last > /evidence/last_$(date +%s).txt
-cat /var/log/auth. log > /evidence/auth_$(date +%s).txt
+cat /var/log/auth.log > /evidence/auth_$(date +%s).txt
 ```
 
 ### 5.  Persistence Mechanisms
@@ -14126,7 +14095,7 @@ find / -perm -4000 2>/dev/null
 
 ### 6. Recent File Changes
 ```bash
-find / -mtime -1 -type f 2>/dev/null > /evidence/recent_files. txt
+find / -mtime -1 -type f 2>/dev/null > /evidence/recent_files.txt
 find / -ctime -1 -type f 2>/dev/null > /evidence/changed_files.txt
 ```
 
@@ -14139,17 +14108,17 @@ mkdir -p /evidence
 find /evidence -type f -exec sha256sum {} \; > /evidence/hashes.txt
 
 # Create memory dump (if possible)
-sudo dd if=/dev/mem of=/evidence/memory. dump bs=1M
+sudo dd if=/dev/mem of=/evidence/memory.dump bs=1M
 
 # Create disk image
-sudo dd if=/dev/sda of=/evidence/disk. img bs=4M status=progress
+sudo dd if=/dev/sda of=/evidence/disk.img bs=4M status=progress
 ```
 
 ## Common IOC Locations
 - /tmp (world-writable)
 - /dev/shm (tmpfs, often missed)
 - /var/tmp (persistent temp)
-- ~/. ssh/authorized_keys
+- ~/.ssh/authorized_keys
 - /etc/cron.d/
 - /etc/systemd/system/
 
@@ -14159,9 +14128,9 @@ EOF
 **Deliverable:** Completed IR quick reference document
 
 
-## ✅ Module 17 Checkpoint — Course Complete! 
+## Module 17 Checkpoint - Course Complete!
 
-Congratulations! You've completed the Linux Mastery Course. 
+You have completed the Linux Practical Course.
 
 ### Final Checklist
 
@@ -14178,15 +14147,15 @@ Congratulations! You've completed the Linux Mastery Course.
 
 ---
 
-## 🎓 Course Completion
+## Course Completion
 
-### What's Next? 
+### What's Next?
 
-1. **Practice Daily** — Use Linux as your primary OS
-2. **Build Projects** — Automate real tasks
-3. **CTF Challenges** — TryHackMe, HackTheBox, OverTheWire
-4. **Certifications** — LPIC-1, CompTIA Linux+, OSCP
-5. **Specialize** — Choose your path (pentesting, admin, DevOps)
+1. **Practice Daily** - Use Linux as your primary OS
+2. **Build Projects** - Automate real tasks
+3. **CTF Challenges** - TryHackMe, HackTheBox, OverTheWire
+4. **Certifications** - LPIC-1, CompTIA Linux+, OSCP
+5. **Specialize** - Choose your path (pentesting, admin, DevOps)
 
 ### Resources
 
@@ -14196,15 +14165,15 @@ Congratulations! You've completed the Linux Mastery Course.
 - **Security:** [GTFOBins](https://gtfobins.github.io), [PayloadsAllTheThings](https://github.com/swisskyrepo/PayloadsAllTheThings)
 
 
-# 🏆 Course Complete!
+# Course Complete!
 
-**Linux Mastery Course by [UnExplainableFish52](https://github.com/UnExplainableFish52) (Loki)**
+**Linux Practical Course by [UnExplainableFish52](https://github.com/UnExplainableFish52) (Loki)**
 
-You've covered 17 modules, from foundation to mastery. The commands and concepts in this course form the backbone of Linux administration and cybersecurity operations.
+You've covered 17 modules, from foundation to hands-on practice. The commands and concepts in this course form the backbone of Linux administration and cybersecurity operations.
 
-**Remember:** The best way to learn is to practice. Break things, fix them, automate everything, and never stop exploring. 
+**Remember:** The best way to learn is to practice. Break things, fix them, automate everything, and never stop exploring.
 
-**Happy Hacking!** 🐧
+Keep practicing. The real skill comes from using these commands until they feel normal.
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
@@ -14239,8 +14208,8 @@ You've covered 17 modules, from foundation to mastery. The commands and concepts
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('/sw.js')
                     .then((registration) => {
-                        console.log('🚀 Service Worker registered:', registration.scope);
-                        
+                        console.log('Service Worker registered:', registration.scope);
+
                         // Check for updates
                         registration.addEventListener('updatefound', () => {
                             const newWorker = registration.installing;
@@ -14256,7 +14225,7 @@ You've covered 17 modules, from foundation to mastery. The commands and concepts
                         });
                     })
                     .catch((error) => {
-                        console.error('❌ Service Worker registration failed:', error);
+                        console.error('Service Worker registration failed:', error);
                     });
             });
         }
@@ -14276,8 +14245,8 @@ You've covered 17 modules, from foundation to mastery. The commands and concepts
             resizeCanvas();
             window.addEventListener('resize', resizeCanvas);
 
-            // Matrix characters - mix of Japanese katakana, numbers, and Linux/bash symbols
-            const chars = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789$#~/|><{}[]@&*;:=+-_.abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            // Matrix characters - ASCII numbers, letters, and shell symbols
+            const chars = '0123456789$#~/|><{}[]@&*;:=+-_.abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
             const charArray = chars.split('');
 
             const fontSize = 14;
@@ -14307,7 +14276,7 @@ You've covered 17 modules, from foundation to mastery. The commands and concepts
                 for (let i = 0; i < drops.length; i++) {
                     // Random character
                     const char = charArray[Math.floor(Math.random() * charArray.length)];
-                    
+
                     // Vary the green shade slightly for depth
                     const shade = Math.random();
                     if (shade > 0.95) {
