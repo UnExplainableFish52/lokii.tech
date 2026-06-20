@@ -1,7 +1,7 @@
 {
-  "name": "lokii.tech - Break Into CS with Confidence",
+  "name": "lokii.tech - Free Cybersecurity and Systems Learning Path",
   "short_name": "lokii.tech",
-  "description": "An open-source platform providing valuable lessons and resources for Computer Science and Cybersecurity. Built by lokii to help the next generation break into tech.",
+  "description": "Free FOSS cybersecurity and systems learning path by lokii with structured notes on computer science, Linux, networking, shell scripting, GRC, security tools, and portfolio projects.",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",

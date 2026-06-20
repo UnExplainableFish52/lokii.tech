@@ -141,18 +141,46 @@
         return `
             <div class="container">
                 <div class="footer-content">
-                    <section class="footer-section footer-brand">
-                        <a href="${buildRootUrl('index.html')}" class="footer-logo">lokii.tech</a>
-                        <p>Free cybersecurity, systems, Linux, networking, GRC, and security project notes for learners who want a clear technical path.</p>
+                    <section class="footer-brand" aria-label="lokii.tech summary">
+                        <a href="${buildRootUrl('index.html')}" class="footer-logo" aria-label="lokii.tech home">
+                            <span class="footer-logo-mark"><img src="${buildRootUrl('android-chrome-192x192.png')}" alt=""></span>
+                            <span>lokii.tech</span>
+                        </a>
+                        <p class="footer-summary">Free FOSS cybersecurity and systems learning resources for people building real technical skill through structured notes, practical tools, GRC workflows, and portfolio-ready security projects.</p>
+                        <div class="footer-topic-row" aria-label="Core topics">
+                            <a href="${buildRootUrl('index.html#resources')}">Cybersecurity</a>
+                            <a href="${buildRootUrl('index.html#resources')}">Linux</a>
+                            <a href="${buildRootUrl('index.html#resources')}">Networking</a>
+                            <a href="${buildRootUrl('index.html#resources')}">Shell scripting</a>
+                            <a href="${buildRootUrl('index.html#resources')}">GRC</a>
+                            <a href="${buildRootUrl('index.html#resources')}">Security projects</a>
+                        </div>
                     </section>
-                    <div class="footer-link-groups">
+
+                    <aside class="footer-contribute" aria-label="Open source contribution">
+                        <p>Open source, learner-focused, and built to improve in public. Corrections, clearer explanations, useful examples, and new resources are welcome.</p>
+                        <a href="https://github.com/UnExplainableFish52/lokii.tech/issues" target="_blank" rel="noopener noreferrer">Contribute on GitHub</a>
+                    </aside>
+
+                    <nav class="footer-link-groups" aria-label="Footer navigation">
                         <section class="footer-section">
                             <h4>Learn</h4>
                             <ul>
                                 <li><a href="${buildRootUrl('index.html#resources')}">All resources</a></li>
-                                <li><a href="${buildRootUrl('intro/notes/1.1-what-is-cybersecurity.html')}">Beginner path</a></li>
+                                <li><a href="${buildRootUrl('intro/notes/1.1-what-is-cybersecurity.html')}">Cybersecurity foundation</a></li>
+                                <li><a href="${buildRootUrl('intro/notes/1.5_networks.html')}">Networking basics</a></li>
                                 <li><a href="${buildRootUrl('intermediate/notes/linux_course.html')}">Linux course</a></li>
                                 <li><a href="${buildRootUrl('pro/security-professional-project-guide.html')}">Project roadmap</a></li>
+                            </ul>
+                        </section>
+                        <section class="footer-section">
+                            <h4>Topics</h4>
+                            <ul>
+                                <li><a href="${buildRootUrl('intro/notes/1.2-glossary.html')}">Cybersecurity glossary</a></li>
+                                <li><a href="${buildRootUrl('intro/notes/1.7-shell-scripting.html')}">Shell scripting</a></li>
+                                <li><a href="${buildRootUrl('intro/notes/grc-foundation.html')}">GRC foundation</a></li>
+                                <li><a href="${buildRootUrl('intermediate/tools/nmap.html')}">Nmap scanning</a></li>
+                                <li><a href="${buildRootUrl('pro/wireshark-packet-capture-analysis.html')}">Wireshark analysis</a></li>
                             </ul>
                         </section>
                         <section class="footer-section">
@@ -161,20 +189,24 @@
                                 <li><a href="${buildRootUrl('index.html#about')}">About</a></li>
                                 <li><a href="${buildRootUrl('index.html#faq')}">FAQ</a></li>
                                 <li><a href="https://github.com/UnExplainableFish52/lokii.tech" target="_blank" rel="noopener noreferrer">Source code</a></li>
-                                <li><a href="https://github.com/UnExplainableFish52/lokii.tech/issues" target="_blank" rel="noopener noreferrer">Contribute</a></li>
+                                <li><a href="https://github.com/UnExplainableFish52/lokii.tech/issues" target="_blank" rel="noopener noreferrer">Issues and suggestions</a></li>
+                                <li><a href="${buildRootUrl('sitemap.xml')}">Sitemap</a></li>
                             </ul>
                         </section>
                         <section class="footer-section">
                             <h4>Developer</h4>
                             <ul>
                                 <li><a href="https://github.com/UnExplainableFish52" target="_blank" rel="noopener noreferrer">GitHub profile</a></li>
-                                <li><a href="https://blogs.sakshamsharma.com.np" target="_blank" rel="noopener noreferrer">Writings and blogs</a></li>
+                                <li><a href="https://blogs.sakshamsharma.com.np/" target="_blank" rel="noopener noreferrer">Writings and reflections</a></li>
+                                <li><a href="https://saksham.info.np/" target="_blank" rel="noopener noreferrer">Professional profile</a></li>
+                                <li><a href="https://github.com/UnExplainableFish52/Fumic" target="_blank" rel="noopener noreferrer">Fumic media player</a></li>
+                                <li><a href="https://github.com/UnExplainableFish52/Frodigy" target="_blank" rel="noopener noreferrer">Frodigy productivity app</a></li>
                             </ul>
                         </section>
-                    </div>
+                    </nav>
                 </div>
                 <div class="footer-bottom">
-                    <p>&copy; ${year} lokii.tech. Open source and community-driven. <a href="${buildRootUrl('LICENSE')}">See License</a></p>
+                    <p>&copy; ${year} lokii.tech. Free and open-source learning material for cybersecurity, systems, Linux, networking, GRC, and security project practice. <a href="${buildRootUrl('LICENSE')}">See License</a></p>
                 </div>
             </div>
         `;
