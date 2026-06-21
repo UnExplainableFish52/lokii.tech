@@ -4,17 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>1.4 Introduction to Operating Systems | lokii.tech</title>
+    <title>Operating Systems: Hardware, Applications, and Security | lokii.tech</title>
 
-    <meta name="description" content="Beginner-friendly operating systems notes covering OS history, kernels, system calls, virtualization, processes, file systems, logs, and Windows, Linux, and macOS security basics.">
+    <meta name="description" content="Beginner-friendly operating systems notes covering OS purpose, history, components, Windows, Linux, macOS, updates, process monitoring, boot flow, and cybersecurity connections.">
     <meta name="author" content="lokii (UnExplainableFish52)">
     <meta name="theme-color" content="#0d1117">
 
     <!-- Open Graph -->
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://lokii.tech/intro/notes/1.4-intro-to-os.html">
-    <meta property="og:title" content="1.4 Introduction to Operating Systems | lokii.tech">
-    <meta property="og:description" content="Beginner-friendly operating systems notes covering OS history, kernels, system calls, virtualization, processes, file systems, logs, and Windows, Linux, and macOS security basics.">
+    <meta property="og:title" content="Operating Systems: Hardware, Applications, and Security | lokii.tech">
+    <meta property="og:description" content="Beginner-friendly operating systems notes covering OS purpose, history, components, Windows, Linux, macOS, updates, process monitoring, boot flow, and cybersecurity connections.">
     <meta property="og:image" content="https://lokii.tech/preview.jpg">
     <!-- SEO Metadata -->
     <link rel="canonical" href="https://lokii.tech/intro/notes/1.4-intro-to-os.html">
@@ -22,8 +22,8 @@
     <meta property="og:site_name" content="lokii.tech">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://lokii.tech/intro/notes/1.4-intro-to-os.html">
-    <meta name="twitter:title" content="1.4 Introduction to Operating Systems | lokii.tech">
-    <meta name="twitter:description" content="Beginner-friendly operating systems notes covering OS history, kernels, system calls, virtualization, processes, file systems, logs, and Windows, Linux, and macOS security basics.">
+    <meta name="twitter:title" content="Operating Systems: Hardware, Applications, and Security | lokii.tech">
+    <meta name="twitter:description" content="Beginner-friendly operating systems notes covering OS purpose, history, components, Windows, Linux, macOS, updates, process monitoring, boot flow, and cybersecurity connections.">
     <meta name="twitter:image" content="https://lokii.tech/preview.jpg">
 
 <!-- Favicons -->
@@ -421,7 +421,7 @@
             {
               "@type": "ListItem",
               "position": 3,
-              "name": "1.4 Introduction to Operating Systems | lokii.tech",
+              "name": "Operating Systems: Hardware, Applications, and Security | lokii.tech",
               "item": "https://lokii.tech/intro/notes/1.4-intro-to-os.html"
             }
           ]
@@ -430,8 +430,8 @@
           "@type": "WebPage",
           "@id": "https://lokii.tech/intro/notes/1.4-intro-to-os.html#webpage",
           "url": "https://lokii.tech/intro/notes/1.4-intro-to-os.html",
-          "name": "1.4 Introduction to Operating Systems | lokii.tech",
-          "description": "Beginner-friendly operating systems notes covering OS history, kernels, system calls, virtualization, processes, file systems, logs, and Windows, Linux, and macOS security basics.",
+          "name": "Operating Systems: Hardware, Applications, and Security | lokii.tech",
+          "description": "Beginner-friendly operating systems notes covering OS purpose, history, components, Windows, Linux, macOS, updates, process monitoring, boot flow, and cybersecurity connections.",
           "isPartOf": {
             "@id": "https://lokii.tech/#website"
           },
@@ -439,7 +439,7 @@
             "@id": "https://lokii.tech/intro/notes/1.4-intro-to-os.html#breadcrumbs"
           },
           "primaryImageOfPage": "https://lokii.tech/preview.jpg",
-          "dateModified": "2026-06-20",
+          "dateModified": "2026-06-21",
           "inLanguage": "en"
         },
         {
@@ -448,8 +448,8 @@
             "LearningResource"
           ],
           "@id": "https://lokii.tech/intro/notes/1.4-intro-to-os.html#article",
-          "headline": "1.4 Introduction to Operating Systems | lokii.tech",
-          "description": "Beginner-friendly operating systems notes covering OS history, kernels, system calls, virtualization, processes, file systems, logs, and Windows, Linux, and macOS security basics.",
+          "headline": "Operating Systems: The Control Layer Between Hardware, Applications, and Security",
+          "description": "Beginner-friendly operating systems notes covering OS purpose, history, components, Windows, Linux, macOS, updates, process monitoring, boot flow, and cybersecurity connections.",
           "url": "https://lokii.tech/intro/notes/1.4-intro-to-os.html",
           "image": "https://lokii.tech/preview.jpg",
           "author": {
@@ -463,7 +463,7 @@
           },
           "educationalLevel": "Beginner",
           "learningResourceType": "Guide",
-          "dateModified": "2026-06-20",
+          "dateModified": "2026-06-21",
           "inLanguage": "en"
         }
       ]
@@ -491,1181 +491,419 @@
     <main>
         <div class="container">
             <header class="notes-header">
-                <h1>1.4 Introduction to Operating Systems</h1>
-                <p class="subtitle">How the OS sits between your apps, your hardware, and your security work</p>
-                <p class="lesson-bridge">The previous lesson showed who attacks and how security work is organized. This page moves closer to the machine itself, because defenders need to understand what the operating system controls before they can inspect processes, files, logs, and permissions properly.</p>
+                <h1>Operating Systems: The Control Layer Between Hardware, Applications, and Security</h1>
+                <p class="subtitle">A practical intro for computer science, cybersecurity, Linux, SOC, and system administration learners</p>
+                <p class="lesson-bridge">The previous lessons introduced cybersecurity roles, threats, and the bigger technical landscape. This page moves closer to the machine itself. If you want to investigate malware, monitor suspicious activity, harden a laptop, manage a server, or understand Linux properly, you need a clear mental map of what the operating system actually does.</p>
             </header>
 
-        <!-- Table of Contents -->
-        <div class="toc">
-            <h3>Table of Contents</h3>
-            <ul>
-                <li><a href="#storytime"><span class="section-num">1.</span> Storytime: The Birth of Operating Systems</a></li>
-                <li><a href="#what-is-os"><span class="section-num">2.</span> What is an Operating System?</a></li>
-                <li><a href="#virtualization"><span class="section-num">3.</span> Virtualization & Modern Concepts</a></li>
-                <li><a href="#core-functions"><span class="section-num">4.</span> Core OS Functions (Practical Skills)</a></li>
-                <li><a href="#windows-internals"><span class="section-num">5.</span> Windows Internals Deep Dive</a></li>
-                <li><a href="#linux-internals"><span class="section-num">6.</span> Linux Internals Deep Dive</a></li>
-                <li><a href="#macos-internals"><span class="section-num">7.</span> macOS Internals Deep Dive</a></li>
-            </ul>
-        </div>
-
-        <!-- SECTION 1: STORYTIME -->
-        <h2 id="storytime">1. Storytime: The Birth of Operating Systems</h2>
-
-        <div class="section">
-            <p>
-                Before we dive into commands and internals, it helps to know where modern operating systems came from.
-                The story matters because the design choices behind Unix, GNU, Linux, Windows, and macOS still shape
-                the tools defenders use every day.
-            </p>
-
-            <h3>Before Personal Computers</h3>
-
-            <div class="story-box">
-                <span class="story-year">1960s-1970s</span><br><br>
-                Imagine a world where computers filled entire rooms. You could not just sit down and "use" a computer:
-                you had to submit punch cards and wait hours (sometimes days) for your results.
-                These were the mainframe days, and computing was reserved for universities, governments, and massive corporations.
-            </div>
-
-            <p>
-                In <span class="highlight">1969</span>, at AT&T's Bell Labs, an important shift happened.
-                Ken Thompson and Dennis Ritchie created <span class="cyan">Unix</span>, an operating system written
-                in the C programming language (which Ritchie also invented). Unix was elegant, portable, and
-                introduced concepts we still use today: hierarchical file systems, pipes, and the shell.
-            </p>
-
-            <div class="info-box">
-                <strong>Context:</strong> Unix was originally a play on words from "Multics" (another OS project).
-                Where Multics tried to do everything, Unix focused on a few ideas and did them well.
-            </div>
-
-            <h3>Enter Richard Stallman (1983)</h3>
-
-            <div class="timeline">
-                <div class="timeline-item">
-                    <span class="timeline-year">September 27, 1983</span>
-                    <p>
-                        <span class="highlight">Richard Stallman</span>, a programmer at MIT's AI Lab, was furious.
-                        Software was becoming proprietary. Companies locked away their code. You couldn't study it,
-                        modify it, or share it. For Stallman, this was a moral crisis.
-                    </p>
-                    <p>
-                        So he did something radical: he announced the <span class="cyan">GNU Project</span>.
-                        His mission? Create a complete, free (as in freedom) operating system.
-                    </p>
-                </div>
-            </div>
-
-            <div class="story-box">
-                "I consider that the Golden Rule requires that if I like a program I must share it with other people who like it."
-                <br><span class="highlight">Richard Stallman</span>, GNU Manifesto (1985)
-            </div>
-
-            <p>
-                GNU stood for "GNU's Not Unix", a recursive acronym.
-                Stallman and his team created <span class="cyan">GCC</span> (the compiler), <span class="cyan">Bash</span> (the shell),
-                <span class="cyan">Emacs</span> (the text editor), and countless utilities.
-                They built almost everything needed for a complete operating system.
-            </p>
-
-            <p>
-                <em>Almost.</em> They were missing one critical piece: <span class="highlight">the kernel</span>.
-            </p>
-
-            <h3>The Finnish Student Who Changed Everything (1991)</h3>
-
-            <div class="timeline">
-                <div class="timeline-item">
-                    <span class="timeline-year">August 25, 1991</span>
-                    <p>
-                        A 21-year-old computer science student in Finland named <span class="highlight">Linus Torvalds</span>
-                        posted this message to a Usenet newsgroup:
-                    </p>
-                </div>
-            </div>
-
-            <div class="story-box">
-                Linus described his project as a free operating system for 386/486 AT clones and called it "just a hobby."
-                <br><span class="highlight">Linus Torvalds</span>, Usenet announcement (1991)
-            </div>
-
-            <p>
-                That small hobby project became one of the most important kernels in modern computing.
-            </p>
-
-            <p>
-                Linus had created a kernel, the missing piece of GNU. When combined with all the GNU tools
-                Stallman's team had built, you had a complete, free operating system: <span class="cyan">GNU/Linux</span>.
-            </p>
-
-            <div class="warning-box">
-                <strong>The Impact Today:</strong><br>
-                - Linux is a standard platform for servers, cloud infrastructure, and security tooling<br>
-                - Many high-performance computing systems use Linux because it is flexible and scriptable<br>
-                - Android is built on the Linux kernel<br>
-                - Network appliances, lab machines, and incident response environments often rely on Linux<br>
-                - Learning Linux helps you understand logs, permissions, processes, and networking at a practical level
-            </div>
-
-            <p>
-                Two different efforts, GNU's userland tools and Linux's kernel, came together into a system that now
-                powers servers, cloud platforms, Android devices, security labs, and a huge part of modern infrastructure.
-                That is why Linux keeps showing up in cybersecurity training.
-            </p>
-
-            <h3>Meanwhile, in the Corporate World: Microsoft's Journey</h3>
-
-            <div class="timeline">
-                <div class="timeline-item">
-                    <span class="timeline-year">1981</span>
-                    <p>
-                        IBM needs an OS for their new personal computer. Bill Gates licenses <span class="cyan">MS-DOS</span>
-                        to them and keeps the rights to sell it to other manufacturers.
-                        This decision makes Microsoft.
-                    </p>
-                </div>
-                <div class="timeline-item">
-                    <span class="timeline-year">1985</span>
-                    <p>
-                        <span class="cyan">Windows 1.0</span> launches as a graphical shell running on top of DOS.
-                        It's clunky, but it's the beginning.
-                    </p>
-                </div>
-                <div class="timeline-item">
-                    <span class="timeline-year">1995</span>
-                    <p>
-                        <span class="cyan">Windows 95</span> changes everything. The Start menu, taskbar,
-                        and 32-bit architecture. Microsoft dominates the desktop.
-                    </p>
-                </div>
-                <div class="timeline-item">
-                    <span class="timeline-year">2001</span>
-                    <p>
-                        <span class="cyan">Windows XP</span> merges the consumer (9x) and business (NT) lines.
-                        It becomes legendary for its stability and longevity.
-                    </p>
-                </div>
-                <div class="timeline-item">
-                    <span class="timeline-year">2015 -> 2021</span>
-                    <p>
-                        <span class="cyan">Windows 10</span> brings "Windows as a Service." Then <span class="cyan">Windows 11</span>
-                        arrives with a modern UI and native Android app support, plus <span class="highlight">WSL</span>:
-                        Windows Subsystem for Linux. Microsoft finally embraced Linux.
-                    </p>
-                </div>
-            </div>
-
-            <h3>Apple's Transformation: From Mac OS to macOS</h3>
-
-            <div class="timeline">
-                <div class="timeline-item">
-                    <span class="timeline-year">1984</span>
-                    <p>
-                        The original <span class="cyan">Macintosh</span> launches with the classic "Mac OS",
-                        a revolutionary GUI that influenced everything after it.
-                    </p>
-                </div>
-                <div class="timeline-item">
-                    <span class="timeline-year">2001</span>
-                    <p>
-                        Apple releases <span class="cyan">Mac OS X</span>, built on <span class="highlight">Darwin</span>,
-                        a Unix-based kernel derived from BSD and Mach. Suddenly, Macs had the power of Unix under the hood.
-                    </p>
-                </div>
-                <div class="timeline-item">
-                    <span class="timeline-year">2020</span>
-                    <p>
-                        macOS Big Sur arrives alongside Apple's <span class="cyan">M1 chip</span>, ARM-based silicon
-                        that fundamentally changes the game for performance and efficiency.
-                    </p>
-                </div>
-            </div>
-
-            <h3>The Mobile Revolution: Android's Linux Heart</h3>
-
-            <div class="timeline">
-                <div class="timeline-item">
-                    <span class="timeline-year">2003</span>
-                    <p>
-                        Android Inc. is founded. Their secret weapon? Building on the <span class="cyan">Linux kernel</span>.
-                    </p>
-                </div>
-                <div class="timeline-item">
-                    <span class="timeline-year">2005</span>
-                    <p>
-                        Google acquires Android. They see the future of mobile.
-                    </p>
-                </div>
-                <div class="timeline-item">
-                    <span class="timeline-year">2008 -> Today</span>
-                    <p>
-                        First Android phone launches. Today, Android is one of the dominant smartphone operating systems globally,
-                        and its Linux base matters when you study mobile security.
-                    </p>
-                </div>
-            </div>
-
-            <div class="info-box">
-                <strong>Why This Matters for Cybersecurity:</strong>
+            <div class="toc">
+                <h3>Table of Contents</h3>
                 <ul>
-                    <li><strong>Open source means auditable code:</strong> you can inspect what Linux is doing instead of only trusting a vendor.</li>
-                    <li><strong>Lineage affects vulnerabilities:</strong> Windows issues often look different from Unix-style issues.</li>
-                    <li><strong>Attack surfaces vary:</strong> servers, endpoints, and mobile devices expose different services and defaults.</li>
-                    <li><strong>Windows endpoints are common enterprise targets:</strong> defenders need to know that environment well.</li>
+                    <li><a href="#what-is-os"><span class="section-num">1.</span> What is an Operating System?</a></li>
+                    <li><a href="#why-computers-need-os"><span class="section-num">2.</span> Why Do Computers Need an Operating System?</a></li>
+                    <li><a href="#os-history"><span class="section-num">3.</span> A Short History of Operating Systems</a></li>
+                    <li><a href="#basic-components"><span class="section-num">4.</span> Basic OS Components Students Must Know</a></li>
+                    <li><a href="#popular-operating-systems"><span class="section-num">5.</span> Popular Operating Systems and Where They Fit Best</a></li>
+                    <li><a href="#linux-distributions"><span class="section-num">6.</span> Linux Distributions</a></li>
+                    <li><a href="#installation-setup"><span class="section-num">7.</span> Basic Installation and Setup Awareness</a></li>
+                    <li><a href="#updates-package-management"><span class="section-num">8.</span> Updates and Package Management</a></li>
+                    <li><a href="#process-monitoring"><span class="section-num">9.</span> Process Monitoring Basics</a></li>
+                    <li><a href="#boot-process"><span class="section-num">10.</span> What Happens When You Press the Power Button?</a></li>
+                    <li><a href="#security-features"><span class="section-num">11.</span> Security Features Students Should Know Early</a></li>
+                    <li><a href="#cybersecurity-connection"><span class="section-num">12.</span> Cybersecurity Connection</a></li>
+                    <li><a href="#mini-tasks"><span class="section-num">13.</span> Practical Mini Tasks for Students</a></li>
+                    <li><a href="#what-comes-next"><span class="section-num">14.</span> What Comes Next in Intermediate Level</a></li>
                 </ul>
             </div>
-        </div>
 
-        <!-- SECTION 2: WHAT IS AN OS -->
-        <h2 id="what-is-os">2. What is an Operating System?</h2>
-
-        <div class="section">
-            <p>
-                Now that you know the history, let's understand <em>what</em> an operating system actually does.
-                At its core, an OS is the <span class="highlight">layer between you and the hardware</span>.
-            </p>
-
-            <div class="layer-diagram">
-                <div class="layer layer-user">USER (You)</div>
-                <div class="layer-arrow">|</div>
-                <div class="layer layer-apps">APPLICATIONS (Browsers, Tools, Games)</div>
-                <div class="layer-arrow">|</div>
-                <div class="layer layer-os">OPERATING SYSTEM (Kernel + System Services)</div>
-                <div class="layer-arrow">|</div>
-                <div class="layer layer-hardware">HARDWARE (CPU, RAM, Disk, Network)</div>
+            <h2 id="what-is-os">1. What is an Operating System?</h2>
+            <div class="section">
+                <p>An operating system is the main control layer between the computer's hardware and the applications you use every day. It sits between the physical machine and programs like Chrome, VS Code, Discord, Wireshark, games, terminals, and security tools.</p>
+                <p>The OS manages CPU time, memory, storage, users, files, devices, drivers, network connections, applications, permissions, and security boundaries. When several programs run at once, the OS decides who gets resources, which actions are allowed, and what should be blocked.</p>
+                <div class="info-box"><strong>Important idea:</strong> The OS is not just the desktop screen. The real operating system includes the kernel, services, drivers, file systems, user accounts, logs, security settings, and background processes.</div>
+                <p>Imagine Chrome, VS Code, Discord, Wireshark, and an antivirus are open at the same time. The OS gives each one CPU time, memory, disk access, network access, and permission to do certain actions. Without the OS, every application would have to fight for hardware directly.</p>
+                <p>For cybersecurity learners, this matters because malware runs as processes, stolen files live in file systems, suspicious activity creates logs, and privilege escalation targets user and admin boundaries.</p>
             </div>
 
-            <h3>The OS as a Translator</h3>
-            <p>
-                When you click "Save" in a document, you don't manually tell the hard drive to write specific bits
-                to specific sectors. The <span class="highlight">operating system handles that translation</span>.
-            </p>
-
-            <p>Your application says: <em>"Save this file"</em></p>
-            <p>The OS translates it to: <em>"Write these bytes to sectors 34892-34910 on disk 0, update the file table,
-            set permissions, record the timestamp..."</em></p>
-
-            <h3>Kernel Space vs User Space</h3>
-
-            <table>
-                <tr>
-                    <th>Kernel Space</th>
-                    <th>User Space</th>
-                </tr>
-                <tr>
-                    <td>Full hardware access</td>
-                    <td>Limited, controlled access</td>
-                </tr>
-                <tr>
-                    <td>Operating system core (kernel)</td>
-                    <td>Applications, user programs</td>
-                </tr>
-                <tr>
-                    <td>Device drivers</td>
-                    <td>Browsers, games, tools</td>
-                </tr>
-                <tr>
-                    <td>Crash here = system crash (BSOD, kernel panic)</td>
-                    <td>Crash here = app closes, system continues</td>
-                </tr>
-            </table>
-
-            <h3>System Calls: The Bridge</h3>
-            <p>
-                Applications in user space can't directly access hardware. They must request services through
-                <span class="cyan">system calls</span>, the official API between user space and kernel space.
-            </p>
-
-            <div class="info-box">
-                <strong>Common System Calls:</strong><br>
-                - <code>open()</code>, <code>read()</code>, <code>write()</code>, <code>close()</code>: file operations<br>
-                - <code>fork()</code>, <code>exec()</code>, <code>exit()</code>: process management<br>
-                - <code>socket()</code>, <code>bind()</code>, <code>connect()</code>: networking<br>
-                - <code>mmap()</code>, <code>brk()</code>: memory management
+            <h2 id="why-computers-need-os">2. Why Do Computers Need an Operating System?</h2>
+            <div class="section">
+                <p>Computers need operating systems because raw hardware is difficult, limited, and dangerous to expose directly to every application. The OS gives people and programs a controlled way to use the machine.</p>
+                <h3>Abstraction</h3>
+                <p>Abstraction hides hardware complexity behind simpler actions. When you save a file, you do not manually control the SSD. You click Save or run a command, and the OS handles the low-level work.</p>
+                <p>This matters because users and applications do not need to directly control the CPU, RAM, keyboard, screen, disk, or network card. A useful tip: abstraction makes work easier, but the hidden details still matter in security.</p>
+                <h3>Resource Management</h3>
+                <p>The OS shares limited resources such as CPU, RAM, storage, battery, disk speed, and network bandwidth. A video call, browser, editor, download, and antivirus scan can run together because the OS schedules and balances work.</p>
+                <p>In security work, resource monitoring helps you notice abnormal behavior. A strange process using high CPU, heavy disk writes, or constant network traffic deserves attention.</p>
+                <h3>Protection</h3>
+                <p>Protection means the OS stops applications from freely damaging each other, reading private files, or controlling hardware without permission. Modern systems separate normal applications from sensitive system areas.</p>
+                <p>When an app asks for admin or root permission, pause and ask why it needs that level of control.</p>
+                <h3>User Management</h3>
+                <p>User accounts identify people or services. Groups let administrators apply permissions to many accounts. Admin accounts can make system-wide changes, while standard users are safer for daily work.</p>
+                <p>Attackers often try to move from a normal account to admin or root. That is why user management is a core cybersecurity topic.</p>
+                <h3>Convenience</h3>
+                <p>The OS gives you a GUI, shell, file explorer, settings, app installation, updates, device support, and background services. Learn both the friendly interface and the command line, because real troubleshooting often uses both.</p>
             </div>
-        </div>
 
-        <!-- SECTION 3: VIRTUALIZATION -->
-        <h2 id="virtualization">3. Virtualization & Modern Concepts</h2>
+            <h2 id="os-history">3. A Short History of Operating Systems</h2>
+            <div class="section">
+                <p>History matters here because operating systems did not all grow from the same design choices. Unix-style systems, Windows, macOS, Android, and iOS feel different today because they came from different technical and business paths.</p>
+                <p>In the early mainframe era, computers were huge, expensive, and shared by universities, governments, and large companies. Users did not casually sit down and open apps. They submitted jobs, waited for results, and depended on early operating systems to schedule work fairly on very limited hardware.</p>
 
-        <div class="section">
-            <p>
-                Modern computing isn't just about one OS on one machine anymore. Understanding these concepts
-                is <span class="highlight">critical</span> for cybersecurity work.
-            </p>
+                <h3>Unix and the Ideas That Stayed</h3>
+                <p>In 1969, Ken Thompson and Dennis Ritchie at Bell Labs created Unix. Unix became influential because it had a clean design: files were organized in a hierarchy, tools could be chained together, and users could control the system through a shell.</p>
+                <p>Those ideas still matter. Linux, BSD, and macOS all carry Unix-style thinking in different ways. When you learn paths like <span class="code-text">/home</span>, permissions like read/write/execute, shells like Bash or Zsh, and small tools connected with pipes, you are learning ideas with Unix roots.</p>
 
-            <table>
-                <tr>
-                    <th>Concept</th>
-                    <th>What It Is</th>
-                    <th>Use Case</th>
-                </tr>
-                <tr>
-                    <td><span class="highlight">Bare Metal</span></td>
-                    <td>OS installed directly on physical hardware</td>
-                    <td>Daily driver, production servers, gaming</td>
-                </tr>
-                <tr>
-                    <td><span class="highlight">Virtualization</span></td>
-                    <td>OS running on virtual hardware (VMs)</td>
-                    <td>Labs, malware analysis, testing</td>
-                </tr>
-                <tr>
-                    <td><span class="highlight">Type 1 Hypervisor</span></td>
-                    <td>Runs directly on hardware (ESXi, Hyper-V)</td>
-                    <td>Enterprise servers, data centers</td>
-                </tr>
-                <tr>
-                    <td><span class="highlight">Type 2 Hypervisor</span></td>
-                    <td>Runs on host OS (VirtualBox, VMware Workstation)</td>
-                    <td>Home labs, development</td>
-                </tr>
-                <tr>
-                    <td><span class="highlight">WSL / WSL2</span></td>
-                    <td>Linux kernel running inside Windows</td>
-                    <td>Best of both worlds, development</td>
-                </tr>
-                <tr>
-                    <td><span class="highlight">Containers</span></td>
-                    <td>Isolated processes sharing the host kernel (Docker)</td>
-                    <td>Deployment, microservices, CI/CD</td>
-                </tr>
-            </table>
+                <h3>GNU, Free Software, and Linux</h3>
+                <p>In 1983, Richard Stallman announced the GNU Project because he wanted users to have the freedom to study, modify, and share software. GNU created many important tools, including GCC, Bash, Emacs, and core command-line utilities.</p>
+                <p>GNU still needed a working kernel. In 1991, Linus Torvalds released the Linux kernel as a hobby project. When the Linux kernel was combined with GNU tools and other software, it became the base for complete Linux systems.</p>
+                <p>This is why Linux matters so much in cybersecurity. It powers servers, cloud infrastructure, containers, network appliances, Android devices, security labs, and many incident response environments. Learning Linux is not just learning one desktop. It is learning a huge part of modern infrastructure.</p>
 
-            <h3>Why Virtualization Matters for Security</h3>
+                <h3>Microsoft and the Windows World</h3>
+                <p>Microsoft grew through the personal computer market. MS-DOS became important in the 1980s, Windows added a graphical interface, and later Windows NT gave Microsoft a stronger foundation for business and enterprise systems.</p>
+                <p>Windows became dominant on office desktops and enterprise networks. That is why defenders need to understand Windows accounts, services, the registry, PowerShell, Event Viewer, Active Directory environments, startup locations, and common malware persistence paths.</p>
 
-            <div class="os-grid">
-                <div class="os-card">
-                    <div class="os-icon">Lab Safety</div>
-                    <h4>Malware Analysis</h4>
-                    <p>Detonate malware safely in isolated VMs. Take snapshots. Analyze behavior. Restore. Repeat.</p>
-                </div>
-                <div class="os-card">
-                    <div class="os-icon">Practice Range</div>
-                    <h4>Penetration Testing Labs</h4>
-                    <p>Build vulnerable networks (DVWA, Metasploitable) without risking real systems.</p>
-                </div>
-                <div class="os-card">
-                    <div class="os-icon">Forensics</div>
-                    <h4>Incident Response</h4>
-                    <p>Capture and analyze disk images in isolated environments for forensics.</p>
+                <h3>Apple, macOS, and Unix Under the Hood</h3>
+                <p>The original Macintosh made graphical computing feel friendly and visual. Later, Apple rebuilt its desktop operating system around a Unix-based foundation. Modern macOS is built on Darwin, which includes BSD and Mach technology.</p>
+                <p>This is why macOS can feel polished like a consumer desktop while still giving developers and security learners a Unix-like terminal. It is not Linux, but many command-line habits transfer.</p>
+
+                <h3>Mobile Operating Systems</h3>
+                <p>Android was built on the Linux kernel and became one of the most widely used operating systems in the world through phones, tablets, TVs, and embedded devices. iOS took a more locked-down Apple-controlled approach with strong sandboxing and strict app rules.</p>
+                <p>For cybersecurity, mobile history matters because phones are now personal computers with cameras, location data, messages, tokens, banking apps, work accounts, and private files. Mobile OS security is not a side topic anymore.</p>
+
+                <div class="info-box">
+                    <strong>Why this history helps:</strong> Unix explains many Linux and macOS ideas. Windows explains enterprise endpoint security. Android shows how Linux moved into mobile devices. These roots help you predict where logs, permissions, services, and security boundaries may look similar or completely different.
                 </div>
             </div>
 
-            <h4>WSL2: A Game Changer</h4>
-            <p>
-                Windows Subsystem for Linux 2 runs a real Linux kernel inside Windows.
-                You get native Linux performance with full Windows integration.
-            </p>
+            <h2 id="basic-components">4. Basic OS Components Students Must Know</h2>
+            <div class="section">
+                <p>These terms appear constantly in Linux, Windows administration, cybersecurity labs, SOC investigations, and computer science courses.</p>
+                <h3>Kernel</h3><p>The kernel is the core of the OS. It controls low-level access to CPU, memory, storage, devices, and processes. Applications request work from the kernel through controlled interfaces instead of touching hardware directly.</p>
+                <h3>User Space</h3><p>User space is where normal applications run. Browsers, editors, terminals, games, and most tools run outside the kernel. This separation helps prevent one crashing app from taking down the whole system.</p>
+                <h3>System Calls</h3><p>System calls are controlled requests from a program to the kernel. A program uses them to open files, start processes, allocate memory, or use the network. Applications usually communicate with the kernel using system calls and OS APIs, not through the shell.</p>
+                <h3>Shell</h3><p>A shell is a command-line interface that lets users send commands to the operating system. Bash, Zsh, PowerShell, and Command Prompt are examples. The shell is for users and scripts, not the normal path every application uses to talk to the kernel.</p>
+                <h3>GUI</h3><p>GUI means graphical user interface. It includes windows, buttons, menus, icons, settings panels, and file managers. GUIs are easier for many tasks, but they can hide details that matter during troubleshooting.</p>
+                <h3>CLI</h3><p>CLI means command-line interface. It lets you type commands instead of clicking through menus. The CLI is powerful for automation, remote administration, scripting, and investigation.</p>
+                <h3>File System</h3><p>A file system is how the OS organizes data on storage. It handles files, folders, names, metadata, permissions, and where data lives on disk. Examples include NTFS, ext4, APFS, FAT32, and exFAT.</p>
+                <h3>Driver</h3><p>A driver helps the OS communicate with hardware such as GPUs, Wi-Fi adapters, printers, keyboards, webcams, and storage controllers. Bad or malicious drivers can be dangerous because drivers often run with high privileges.</p>
+                <h3>Service</h3><p>A service is a background program that provides a function without you opening a visible app. Web servers, update agents, VPN clients, databases, and security tools often run as services. Services can also become persistence points for attackers.</p>
+                <h3>Daemon</h3><p>A daemon is the Unix/Linux/macOS word for a background service. Names often end with d, such as sshd for the SSH daemon. Unknown or misconfigured daemons should be investigated.</p>
+                <h3>Process</h3><p>A process is a running program. Each process has an ID, owner, resource usage, permissions, and sometimes network connections. Process monitoring is a basic troubleshooting and security skill.</p>
+                <h3>Thread</h3><p>A thread is a smaller unit of work inside a process. One process can have multiple threads handling tasks such as user input, network activity, and background work. You do not need deep thread theory yet, but you should know the word.</p>
+                <h3>Memory</h3><p>Memory usually means RAM, the fast temporary space programs use while running. Running out of RAM slows systems down. In security, memory can contain passwords, malware code, process data, and forensic evidence.</p>
+                <h3>Logs</h3><p>Logs are records of system and application activity. They can show logins, errors, service starts, crashes, updates, security alerts, and suspicious behavior. A defender who knows where logs live has a real advantage.</p>
+                <h3>Permissions</h3><p>Permissions decide who can read, write, execute, delete, or modify files and system resources. Weak permissions can expose secrets or let attackers change important files.</p>
+                <h3>Updates</h3><p>Updates install newer OS, driver, application, or package versions. They often fix security vulnerabilities, bugs, stability issues, and compatibility problems. Keep backups and do not interrupt updates halfway.</p>
+                <h3>Package Manager</h3><p>A package manager installs, updates, and removes software from trusted sources. Examples include apt, dnf, pacman, winget, and Homebrew. Package managers are usually safer than random install scripts from the internet.</p>
+            </div>
 
-            <pre><code># Install WSL2 from PowerShell (Admin)
-wsl --install
+            <h2 id="popular-operating-systems">5. Popular Operating Systems and Where They Fit Best</h2>
+            <div class="section">
+                <p>No operating system is perfect for everything. Each one makes trade-offs between usability, control, security, compatibility, performance, cost, and ecosystem.</p>
+                <h3>Windows</h3><p>Windows is widely used for personal computers, gaming, office work, enterprise environments, Active Directory networks, and business software. It is easy for general users, has excellent software and gaming support, is common in workplaces, and has a strong enterprise ecosystem.</p><p>Its weaknesses matter too. Windows is heavily targeted by malware, has many background services and telemetry components, updates can sometimes introduce issues, and users often run as admin too casually.</p>
+                <h3>Linux</h3><p>Linux is popular among developers, cybersecurity learners, servers, cloud systems, DevOps, embedded devices, and power users. It is open source, powerful in the terminal, popular on servers, flexible, lightweight, and strong for cybersecurity labs.</p><p>Linux can be confusing for beginners. Hardware support can vary, some commercial software and games may not work easily, and user responsibility is higher.</p>
+                <h3>macOS</h3><p>macOS is Apple's desktop operating system. It has a Unix-based foundation and is common among developers, designers, creators, and Apple ecosystem users. It has a polished user experience, strong Apple integration, a Unix-like terminal, and good development support.</p><p>The downsides are expensive hardware, less hardware choice, more lock-down than Linux, and weaker fit for some cybersecurity labs.</p>
+                <h3>Android</h3><p>Android is a mobile operating system based on Linux. It is used on phones, tablets, TVs, and embedded devices. Android matters because mobile devices store personal data, tokens, messages, location history, and app data.</p>
+                <h3>iOS</h3><p>iOS is Apple's mobile OS. It has strong app sandboxing and security restrictions, but limited customization. That lock-down reduces some risks while limiting user control.</p>
+                <h3>BSD</h3><p>BSD systems are Unix-like operating systems often used in networking, firewalls, appliances, and stability-focused environments. FreeBSD and OpenBSD are common names you may see.</p>
+                <h3>RTOS</h3><p>Real-time operating systems are used in embedded systems, cars, medical devices, industrial machines, and devices where timing is critical. The key idea is predictable timing, not a fancy desktop.</p>
+                <div class="info-box"><strong>Bottom line:</strong> No operating system is best for everything. Each OS has trade-offs between usability, control, security, compatibility, performance, cost, and ecosystem.</div>
+            </div>
+            <h2 id="linux-distributions">6. Linux Distributions</h2>
+            <div class="section">
+                <p>Linux itself is technically the kernel. A Linux distribution combines the Linux kernel with tools, package managers, desktop environments, repositories, default settings, installers, documentation, and software.</p>
+                <p>This is why Ubuntu, Debian, Fedora, Arch, Kali, Mint, CachyOS, Rocky, and AlmaLinux can all be Linux but still feel different. They share the kernel idea, but they make different choices about stability, updates, defaults, desktop polish, gaming, security tools, and how much control the user gets.</p>
+                <p>The beginner mistake is asking, "Which Linux distro is the best?" A better question is, "What am I trying to learn or do?" Pick the distro that matches your current goal, not the one with the loudest fanbase.</p>
 
-# List available Linux distros
-wsl --list --online
+                <h3>Quick Distro Chooser</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>If you are this learner</th>
+                            <th>Start here</th>
+                            <th>Why</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>New CS learner who is still getting comfortable</td>
+                            <td>Ubuntu</td>
+                            <td>Friendly setup, huge community, easy tutorials, good for development and server basics.</td>
+                        </tr>
+                        <tr>
+                            <td>Windows user who wants freedom without too much complexity</td>
+                            <td>Linux Mint</td>
+                            <td>Simple desktop, familiar layout, low drama, good first daily-driver Linux.</td>
+                        </tr>
+                        <tr>
+                            <td>Learner who wants a modern Linux desktop</td>
+                            <td>Fedora</td>
+                            <td>Clean defaults, newer Linux technologies, good balance between freshness and reliability.</td>
+                        </tr>
+                        <tr>
+                            <td>Gaming-focused Linux user</td>
+                            <td>CachyOS</td>
+                            <td>Arch-based, performance-focused, and popular with users who want a modern desktop tuned for speed and gaming.</td>
+                        </tr>
+                        <tr>
+                            <td>Nerdy learner who wants to understand Linux deeply</td>
+                            <td>Arch Linux</td>
+                            <td>You build more of the system yourself, so you learn how Linux pieces fit together.</td>
+                        </tr>
+                        <tr>
+                            <td>Normal penetration testing learner</td>
+                            <td>Kali Linux</td>
+                            <td>Comes with security tooling and is common in labs, CTFs, and pentest training.</td>
+                        </tr>
+                        <tr>
+                            <td>Advanced security learner who wants a massive tool collection</td>
+                            <td>BlackArch</td>
+                            <td>Arch-based security distribution and repository with many pentesting tools. Powerful, but not beginner-friendly.</td>
+                        </tr>
+                        <tr>
+                            <td>Future sysadmin, cloud, DevOps, or enterprise security learner</td>
+                            <td>RHEL, Rocky Linux, or AlmaLinux</td>
+                            <td>These match many professional server and enterprise environments.</td>
+                        </tr>
+                    </tbody>
+                </table>
 
-# Install Ubuntu
-wsl --install -d Ubuntu
+                <h3>Ubuntu</h3>
+                <p>Ubuntu is usually the safest recommendation for a new CS learner. It is beginner-friendly, well documented, and useful for general desktop use, programming, server learning, Linux basics, and cybersecurity foundations.</p>
+                <p>If a tutorial says "install this on Linux," there is a good chance it has Ubuntu instructions. That makes Ubuntu useful when you are still building confidence.</p>
 
-# Enter your Linux environment
-wsl</code></pre>
-        </div>
+                <h3>Linux Mint</h3>
+                <p>Linux Mint is a great choice for someone who wants to move away from Windows without turning their computer into a full-time puzzle. The desktop feels familiar, the defaults are practical, and the learning curve is gentle.</p>
+                <p>If your goal is "I want Linux freedom, but I still need my laptop to feel normal," Mint is a strong starting point.</p>
 
-        <!-- SECTION 4: CORE OS FUNCTIONS -->
-        <h2 id="core-functions">4. Core OS Functions (Practical Skills)</h2>
+                <h3>Fedora</h3>
+                <p>Fedora is modern and clean. It is good for learners who want newer Linux technologies without going fully into Arch-style manual setup.</p>
+                <p>Fedora is also useful if you want exposure to ideas used around the Red Hat ecosystem, which matters in professional Linux and enterprise environments.</p>
 
-        <div class="section">
-            <p>
-                Every operating system handles these five core functions. As a security professional, you need to know
-                how to <span class="highlight">inspect, manage, and manipulate</span> each one across all major platforms.
-            </p>
+                <h3>Debian</h3>
+                <p>Debian is stable, reliable, and used as the base for many other distributions, including Ubuntu and Kali. It is a good choice when you care more about dependability than always having the newest packages.</p>
+                <p>Many servers and serious Linux users respect Debian because it is boring in a good way: predictable, conservative, and stable.</p>
 
-            <h3>4.1 Process Management</h3>
-            <p>
-                A <span class="cyan">process</span> is a running instance of a program. Every application, service,
-                and malware sample runs as a process. Knowing how to find, analyze, and kill processes is fundamental.
-            </p>
+                <h3>CachyOS</h3>
+                <p>CachyOS is an Arch-based distribution that focuses on performance and a polished desktop experience. It is attractive for users who want modern Linux, gaming, and speed without starting from plain Arch.</p>
+                <p>For gaming, Linux has improved a lot because of tools like Proton, Steam, Mesa drivers, and better GPU support. Still, game compatibility can vary, so check your favorite games before fully switching.</p>
 
-            <h4>Viewing Processes</h4>
+                <h3>Arch Linux</h3>
+                <p>Arch is minimal, customizable, and powerful, but not beginner-friendly. It teaches users how Linux works because you build and configure more of the system yourself.</p>
+                <p>If you enjoy reading documentation, fixing your own system, and learning why things work, Arch can teach you a lot. If you just want a calm first Linux experience, start somewhere easier.</p>
 
-            <div class="cmd-compare">
-                <div class="cmd-box windows">
-                    <h5>Windows</h5>
-                    <pre><code># Task Manager (GUI)
-taskmgr
+                <h3>Kali Linux</h3>
+                <p>Kali is built for penetration testing and cybersecurity tools. It is useful in labs, CTFs, training environments, and controlled security practice.</p>
+                <p>Kali is not recommended as a normal daily OS for beginners. Use it in a virtual machine or lab until you understand Linux fundamentals, permissions, updates, networking, and safe tool usage.</p>
 
-# Command line - list all processes
-tasklist
+                <h3>BlackArch</h3>
+                <p>BlackArch is an Arch-based security distribution and tool repository. It is aimed at advanced security users who want access to a very large collection of penetration testing tools.</p>
+                <p>BlackArch is powerful, but it can overwhelm beginners. If you are still learning basic Linux commands, start with Ubuntu, Mint, or Kali in a VM before touching BlackArch.</p>
 
-# PowerShell - detailed process info
-Get-Process
+                <h3>Red Hat Enterprise Linux, Rocky Linux, and AlmaLinux</h3>
+                <p>These are used in enterprise, servers, and professional environments. Learn this family if you are interested in system administration, cloud, DevOps, compliance-heavy environments, or enterprise security.</p>
+                <p>Rocky Linux and AlmaLinux are useful for practicing enterprise-style Linux without needing a paid Red Hat setup.</p>
 
-# Find process by name
-Get-Process -Name "chrome"
+                <h3>macOS as a Linux-Like Learning Environment</h3>
+                <p>macOS is not a Linux distribution. It is Apple's Unix-based desktop operating system. Still, it gives you a polished desktop plus a Unix-like terminal, so many shell habits transfer well.</p>
+                <p>If you have the budget and want premium hardware, strong battery life, creative tooling, and a good terminal experience, macOS can be a comfortable learning machine. Just remember that Linux server behavior and macOS behavior are similar in some areas, but not identical.</p>
 
-# Find by PID
-Get-Process -Id 1234</code></pre>
-                </div>
-                <div class="cmd-box linux">
-                    <h5>Linux</h5>
-                    <pre><code># List all processes
-ps aux
+                <h3>Package Managers</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Distribution family</th>
+                            <th>Package manager</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Debian, Ubuntu, Linux Mint, Kali</td>
+                            <td><span class="code-text">apt</span></td>
+                        </tr>
+                        <tr>
+                            <td>Fedora, RHEL, Rocky Linux, AlmaLinux</td>
+                            <td><span class="code-text">dnf</span></td>
+                        </tr>
+                        <tr>
+                            <td>Arch Linux, CachyOS, BlackArch</td>
+                            <td><span class="code-text">pacman</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p>The Arch User Repository, or AUR, is community-maintained. It is not the same as official repositories. Read package details and be careful before installing AUR packages.</p>
+                <p>A simple rule: if you are new, choose boring and stable. If you are learning deeply, choose flexible. If you are doing security labs, use a lab distro in a VM. Do not make your first Linux experience harder than it needs to be.</p>
+            </div>
 
-# Interactive process viewer
+            <h2 id="installation-setup">7. Basic Installation and Setup Awareness</h2>
+            <div class="section">
+                <p>Installing an operating system teaches you how computers start, how disks are prepared, and how an OS becomes the main system on the machine. Beginners should practice inside a virtual machine before installing on their real machine.</p>
+                <p>A normal installation starts with an ISO file, which is a disk image containing the installer. You write it to a bootable USB using tools like Rufus or Ventoy, then boot from it using the BIOS/UEFI boot menu.</p>
+                <p>During setup, the installer may ask about disk partitioning, file system selection, user account creation, driver setup, updates, and network connection. A disk partition is a section of a storage drive. Formatting prepares that partition with a file system.</p>
+                <p>A live USB lets you try some Linux distributions without installing them permanently. This is useful for testing hardware support or recovering files.</p>
+                <div class="warning-box"><strong>Beginner warning:</strong> Back up important files before installing an OS on real hardware. Dual boot can be useful, but mistakes during partitioning can delete data or break an existing installation.</div>
+                <p>For safe practice, use VirtualBox or VMware. A virtual machine gives you a fake computer inside your real computer, so you can install Linux, test updates, break things, and learn without risking your main machine.</p>
+            </div>
+
+            <h2 id="updates-package-management">8. Updates and Package Management</h2>
+            <div class="section">
+                <p>Updates are necessary for security, bug fixes, stability, driver support, and application compatibility. Many real attacks succeed because systems are missing patches that already exist.</p>
+                <p>At the same time, serious users stay aware. Occasionally an update can introduce a bug, break a driver, or change behavior. Keep backups, avoid interrupting updates, and learn where update history is shown.</p>
+                <h3>Windows Updates</h3>
+                <p>Windows updates are managed from <span class="code-text">Settings &gt; Windows Update</span>. Learn to check update history, pause updates when necessary, create restore points, and avoid shutting down during installation.</p>
+                <p>Windows apps can also be updated using Microsoft Store or <span class="code-text">winget</span>.</p>
+                <pre><code>winget upgrade
+winget upgrade --all</code></pre>
+                <h3>Linux Updates</h3>
+                <p>Linux systems usually use package managers and repositories. A repository is a trusted software source configured for your distribution.</p>
+                <p>On Debian, Ubuntu, Linux Mint, and Kali:</p>
+                <pre><code>sudo apt update
+sudo apt upgrade</code></pre>
+                <p><span class="code-text">update</span> refreshes package information. <span class="code-text">upgrade</span> installs available newer versions.</p>
+                <p>On Fedora:</p><pre><code>sudo dnf upgrade</code></pre>
+                <p>On Arch Linux:</p><pre><code>sudo pacman -Syu</code></pre>
+                <p>Official repositories are generally safer than random third-party scripts. Use the AUR carefully because it is community-maintained.</p>
+                <h3>macOS Updates</h3>
+                <p>macOS updates are usually handled from <span class="code-text">System Settings &gt; General &gt; Software Update</span>.</p>
+                <pre><code>softwareupdate -l
+sudo softwareupdate -ia</code></pre>
+                <p>If Homebrew is installed, update third-party Homebrew packages with:</p>
+                <pre><code>brew update
+brew upgrade</code></pre>
+                <p>Homebrew updates packages installed through Homebrew. It does not update the entire macOS system.</p>
+            </div>
+
+            <h2 id="process-monitoring">9. Process Monitoring Basics</h2>
+            <div class="section">
+                <p>A process is a running program. Every browser, terminal, text editor, background updater, antivirus component, or system service usually runs as one or more processes.</p>
+                <p>Process monitoring helps users understand what is using CPU, RAM, disk, and network. In cybersecurity, it helps identify suspicious programs, malware behavior, persistence, and abnormal system activity.</p>
+                <h3>Windows Process Monitoring</h3>
+                <p>Press <span class="code-text">Ctrl + Shift + Esc</span> to open Task Manager. Look at running apps, background processes, CPU usage, memory usage, disk usage, startup apps, suspicious names, and unknown programs running from strange locations.</p>
+                <p>Advanced tools include Resource Monitor, Process Explorer, Autoruns, PowerShell <span class="code-text">Get-Process</span>, and Windows Event Viewer.</p>
+                <p>Scheduled tasks are jobs configured to run automatically at a certain time, during login, during startup, or after a trigger. Legitimate apps use scheduled tasks, but malware can also abuse them for persistence. Autoruns from Microsoft Sysinternals is useful for reviewing startup items, scheduled tasks, services, drivers, and persistence locations.</p>
+                <h3>Linux Process Monitoring</h3>
+                <pre><code>ps aux
 top
-htop  # Better version
-
-# Find process by name
-ps aux | grep nginx
-
-# Process tree
+htop
 pstree
-
-# View /proc filesystem
-ls /proc/[PID]/</code></pre>
-                </div>
-                <div class="cmd-box macos">
-                    <h5>macOS</h5>
-                    <pre><code># Activity Monitor (GUI)
-open -a "Activity Monitor"
-
-# Command line
-ps aux
-
-# Top processes
-top
-
-# Find process
-ps aux | grep Safari</code></pre>
-                </div>
+systemctl
+journalctl</code></pre>
+                <p><span class="code-text">ps aux</span> shows running processes. <span class="code-text">top</span> and <span class="code-text">htop</span> show live resource usage. <span class="code-text">pstree</span> shows parent-child relationships. <span class="code-text">systemctl</span> shows systemd services. <span class="code-text">journalctl</span> shows system logs.</p>
+                <p>Each process has a PID, or process ID. A PID is a unique number used to identify and manage a process.</p>
+                <pre><code>kill 1234
+kill -15 1234
+kill -9 1234</code></pre>
+                <p><span class="code-text">SIGTERM</span> is signal 15 and politely asks a process to stop. <span class="code-text">SIGKILL</span> is signal 9 and forcefully kills a process. Use SIGTERM first and SIGKILL only when needed.</p>
+                <div class="warning-box"><strong>Do not randomly kill system processes.</strong> If you do not understand what a process does, investigate before stopping it.</div>
+                <h3>macOS Process Monitoring</h3>
+                <p>macOS has Activity Monitor for a graphical view of processes, CPU, memory, disk, energy, and network usage.</p>
+                <pre><code>ps aux
+top</code></pre>
+                <p>macOS uses <span class="code-text">launchd</span> and <span class="code-text">launchctl</span> for many background services and startup jobs, similar in purpose to Windows services and Linux systemd units.</p>
+            </div>
+            <h2 id="boot-process">10. What Happens When You Press the Power Button?</h2>
+            <div class="section">
+                <p>The time between pressing the power button and seeing the desktop feels simple, but many layers are involved. Understanding this flow helps you understand boot errors, disk encryption prompts, Secure Boot, bootloaders, and startup malware.</p>
+                <ol>
+                    <li>The power button is pressed.</li>
+                    <li>The power supply provides stable power.</li>
+                    <li>The CPU starts executing firmware code.</li>
+                    <li>BIOS or UEFI initializes hardware.</li>
+                    <li>POST checks basic hardware.</li>
+                    <li>Firmware checks boot order.</li>
+                    <li>The bootloader is loaded from disk.</li>
+                    <li>The bootloader loads the operating system kernel.</li>
+                    <li>The kernel initializes memory, drivers, CPU scheduling, storage, and core services.</li>
+                    <li>The init system starts services.</li>
+                    <li>The login screen appears.</li>
+                    <li>The user logs in.</li>
+                    <li>The desktop environment or shell starts.</li>
+                    <li>Startup apps and background services load.</li>
+                </ol>
+                <h3>Power Supply</h3><p>The power supply gives stable electrical power to the computer. On desktops this is the PSU, and on laptops power comes from the battery or charger circuitry. If power is unstable, the system may fail to start or shut down randomly.</p>
+                <h3>Firmware</h3><p>Firmware is low-level software stored on the device itself. It starts before the operating system and prepares hardware for boot. Firmware settings can control boot order, Secure Boot, virtualization support, and hardware behavior.</p>
+                <h3>BIOS</h3><p>BIOS is the older PC firmware system. It initializes hardware and starts the boot process. Many people still say BIOS when they really mean firmware settings.</p>
+                <h3>UEFI</h3><p>UEFI is the modern replacement for BIOS. It supports newer boot features, larger disks, graphical firmware menus, Secure Boot, and flexible boot management.</p>
+                <h3>POST</h3><p>POST means Power-On Self-Test. It checks basic hardware like memory, CPU, keyboard, and display initialization. If POST fails, the machine may beep, blink LEDs, or refuse to continue booting.</p>
+                <h3>Boot Order</h3><p>Boot order decides which device the firmware tries first. It might check the internal SSD, USB drive, network boot, or another disk. This matters when installing an OS from USB.</p>
+                <h3>Bootloader</h3><p>A bootloader is a small program that starts the operating system kernel. Windows commonly uses Windows Boot Manager. Many Linux systems use GRUB.</p>
+                <h3>Kernel</h3><p>The kernel is loaded by the bootloader and becomes the core of the running OS. It initializes memory, CPU scheduling, drivers, storage, and essential system control.</p>
+                <h3>Init System</h3><p>The init system starts and manages background services after the kernel is running. It brings the system from basic kernel startup to a usable environment.</p>
+                <h3>systemd</h3><p>systemd is a common Linux init and service management system. It starts services, manages dependencies, records logs through journald, and is controlled with <span class="code-text">systemctl</span> and <span class="code-text">journalctl</span>.</p>
+                <h3>Windows Boot Manager</h3><p>Windows Boot Manager finds and starts the Windows loader so the Windows kernel can load. If Windows boot files are damaged, this area may need repair.</p>
+                <h3>GRUB</h3><p>GRUB is a common Linux bootloader. It can show a menu where you choose a kernel, recovery mode, or another installed OS.</p>
+                <h3>Login Manager</h3><p>The login manager shows the login screen and starts a user session after authentication. On servers, you may log in through a terminal or SSH instead.</p>
+                <h3>Desktop Environment</h3><p>A desktop environment is the graphical workspace: panels, windows, menus, settings, file manager, and desktop behavior. Linux can use GNOME, KDE Plasma, XFCE, Cinnamon, and others.</p>
             </div>
 
-            <h4>Killing Processes</h4>
-
-            <div class="cmd-compare">
-                <div class="cmd-box windows">
-                    <h5>Windows</h5>
-                    <pre><code># Kill by name
-taskkill /IM notepad.exe
-
-# Force kill by PID
-taskkill /F /PID 1234
-
-# Kill and all child processes
-taskkill /F /T /PID 1234
-
-# PowerShell
-Stop-Process -Name "chrome" -Force
-Stop-Process -Id 1234 -Force</code></pre>
-                </div>
-                <div class="cmd-box linux">
-                    <h5>Linux</h5>
-                    <pre><code># Graceful terminate (SIGTERM)
-kill 1234
-
-# Force kill (SIGKILL)
-kill -9 1234
-
-# Kill by name
-killall nginx
-pkill nginx
-
-# Kill all processes of user
-pkill -u username</code></pre>
-                </div>
-                <div class="cmd-box macos">
-                    <h5>macOS</h5>
-                    <pre><code># Same as Linux
-kill 1234
-kill -9 1234
-
-# Kill by name
-killall Safari
-
-# Using pkill
-pkill -f "process name"</code></pre>
-                </div>
+            <h2 id="security-features">11. Security Features Students Should Know Early</h2>
+            <div class="section">
+                <p>Operating systems are not just convenience layers. They also enforce security boundaries. You do not need to master every feature now, but you should recognize the names and understand why they matter.</p>
+                <h3>Secure Boot</h3><p>Secure Boot helps ensure that trusted boot software loads during startup. It can reduce the risk of bootkits and unauthorized bootloaders, although it is not perfect protection.</p>
+                <h3>TPM</h3><p>TPM means Trusted Platform Module. It is a hardware security chip or firmware-based feature used to store sensitive cryptographic information. It is used by features like BitLocker and Windows security.</p>
+                <h3>Disk Encryption</h3><p>Disk encryption protects stored data if a device is lost or stolen. Examples include BitLocker on Windows, FileVault on macOS, and LUKS on Linux.</p>
+                <h3>Firewall</h3><p>A firewall controls network traffic entering or leaving the system. It can block unwanted connections and reduce attack surface.</p>
+                <h3>User Account Control</h3><p>User Account Control, or UAC, is a Windows protection mechanism that asks for confirmation before allowing high-privilege actions. Treat UAC prompts as warnings, not annoyances.</p>
+                <h3>Permissions</h3><p>Permissions decide who can read, write, execute, or modify files and system resources. Bad permissions can expose sensitive files or allow unauthorized changes.</p>
+                <h3>Antivirus and EDR</h3><p>Antivirus and endpoint detection tools monitor files, processes, behavior, and suspicious activity. EDR tools usually provide deeper enterprise monitoring and response features.</p>
+                <h3>Logs</h3><p>Logs are records of system activity. They are important for troubleshooting, security monitoring, and incident investigation.</p>
             </div>
 
-            <div class="warning-box">
-                <strong>Security Relevance:</strong>
+            <h2 id="cybersecurity-connection">12. Cybersecurity Connection</h2>
+            <div class="section">
+                <p>Operating system knowledge matters because many security events happen through normal OS features. Attackers often abuse processes, permissions, services, startup locations, scheduled tasks, logs, and unpatched software.</p>
                 <ul>
-                    <li>Malware often spawns multiple processes, so learn to identify and kill process trees.</li>
-                    <li>Look for unusual parent-child relationships, such as Word spawning PowerShell.</li>
-                    <li>Check for processes with high privileges, such as SYSTEM or root, when they should not have them.</li>
-                    <li>Tools like <span class="code-text">Process Monitor</span> on Windows reveal what processes are doing.</li>
+                    <li>Malware runs as processes.</li>
+                    <li>Attackers try to gain admin or root privileges.</li>
+                    <li>Persistence often uses startup apps, services, scheduled tasks, cron jobs, or launch agents.</li>
+                    <li>Logs help detect attacks.</li>
+                    <li>Open ports and services create attack surface.</li>
+                    <li>Weak permissions can expose sensitive files.</li>
+                    <li>Unpatched systems are easier to compromise.</li>
+                    <li>Disk encryption protects stolen devices.</li>
+                    <li>Secure Boot and TPM help protect the boot chain.</li>
+                    <li>Process monitoring helps identify suspicious behavior.</li>
+                </ul>
+                <p>If a user says, "my laptop is slow and something suspicious is running," a cybersecurity learner should know how to check processes, startup apps, scheduled tasks, services, network connections, and logs. That is OS knowledge turning into practical investigation skill.</p>
+            </div>
+
+            <h2 id="mini-tasks">13. Practical Mini Tasks for Students</h2>
+            <div class="section">
+                <p>Do these tasks slowly. The point is not to finish fast. The point is to connect the lesson to a real machine in front of you.</p>
+                <h3>Windows Tasks</h3>
+                <ul>
+                    <li>Open Task Manager using <span class="code-text">Ctrl + Shift + Esc</span>.</li>
+                    <li>Check CPU and memory usage.</li>
+                    <li>Review startup apps.</li>
+                    <li>Open Windows Update history.</li>
+                    <li>Open Event Viewer.</li>
+                    <li>Check Windows Defender status.</li>
+                </ul>
+                <h3>Linux Tasks</h3>
+                <ul>
+                    <li>Run <span class="code-text">ps aux</span>.</li>
+                    <li>Run <span class="code-text">top</span> or <span class="code-text">htop</span>.</li>
+                    <li>Check system uptime.</li>
+                    <li>Check running services with <span class="code-text">systemctl</span>.</li>
+                    <li>Update the system using the correct package manager.</li>
+                    <li>View logs using <span class="code-text">journalctl</span>.</li>
+                </ul>
+                <h3>macOS Tasks</h3>
+                <ul>
+                    <li>Open Activity Monitor.</li>
+                    <li>Check Software Update.</li>
+                    <li>Use <span class="code-text">ps aux</span> in Terminal.</li>
+                    <li>Check FileVault status.</li>
+                    <li>Review login items.</li>
                 </ul>
             </div>
 
-            <h3>4.2 Memory Management</h3>
-            <p>
-                The OS manages RAM allocation, virtual memory, and swap space. Understanding memory is crucial for
-                forensics and exploit development.
-            </p>
-
-            <div class="cmd-compare">
-                <div class="cmd-box windows">
-                    <h5>Windows</h5>
-                    <pre><code># System memory info
-systeminfo | findstr Memory
-
-# PowerShell - detailed
-Get-WmiObject Win32_OperatingSystem |
-  Select FreePhysicalMemory,
-         TotalVisibleMemorySize
-
-# Process memory
-Get-Process | Sort WorkingSet -Desc |
-  Select -First 10</code></pre>
-                </div>
-                <div class="cmd-box linux">
-                    <h5>Linux</h5>
-                    <pre><code># Memory info
-free -h
-
-# Detailed from proc
-cat /proc/meminfo
-
-# Process memory map
-pmap [PID]
-
-# Memory top
-top -o %MEM</code></pre>
-                </div>
-                <div class="cmd-box macos">
-                    <h5>macOS</h5>
-                    <pre><code># Memory pressure
-vm_stat
-
-# Memory usage
-top -o mem
-
-# System profiler
-system_profiler SPHardwareDataType</code></pre>
-                </div>
+            <h2 id="what-comes-next">14. What Comes Next in Intermediate Level</h2>
+            <div class="section">
+                <p>This intro level gives you the mental map. You now know what an operating system is, why computers need one, what components to recognize, how major OS families differ, how updates and process monitoring work, what happens during boot, and why OS knowledge matters for cybersecurity.</p>
+                <p>The intermediate level goes deeper into kernel vs user space, processes and threads, CPU scheduling, memory management, file systems, permissions, system calls, drivers, networking inside the OS, logs and monitoring, virtualization, containers, OS hardening, and incident investigation basics.</p>
+                <p>Keep the simple picture in your head: hardware at the bottom, applications at the top, and the operating system in the middle enforcing rules, sharing resources, recording activity, and making the computer usable. That picture will help you in Linux, Windows, SOC work, system administration, malware analysis, and almost every serious cybersecurity path.</p>
             </div>
-
-            <h3>4.3 File System Management</h3>
-            <p>
-                File systems determine how data is stored, organized, and secured on disk.
-            </p>
-
-            <table>
-                <tr>
-                    <th>OS</th>
-                    <th>Primary File System</th>
-                    <th>Key Features</th>
-                </tr>
-                <tr>
-                    <td>Windows</td>
-                    <td>NTFS</td>
-                    <td>ACLs, Alternate Data Streams, journaling, encryption (EFS)</td>
-                </tr>
-                <tr>
-                    <td>Linux</td>
-                    <td>ext4 / xfs / btrfs</td>
-                    <td>Unix permissions, ACLs, extended attributes</td>
-                </tr>
-                <tr>
-                    <td>macOS</td>
-                    <td>APFS</td>
-                    <td>Snapshots, encryption, space sharing, clones</td>
-                </tr>
-            </table>
-
-            <h4>File Permissions</h4>
-
-            <div class="cmd-compare">
-                <div class="cmd-box windows">
-                    <h5>Windows (NTFS ACLs)</h5>
-                    <pre><code># View permissions
-icacls C:\path\to\file
-
-# Grant permission
-icacls file.txt /grant User:F
-
-# Remove permission
-icacls file.txt /remove User
-
-# Inheritance
-icacls folder /inheritance:r</code></pre>
-                </div>
-                <div class="cmd-box linux">
-                    <h5>Linux (Unix Permissions)</h5>
-                    <pre><code># View permissions
-ls -la
-
-# Change permissions (rwx)
-chmod 755 script.sh
-chmod u+x file
-
-# Change owner
-chown user:group file
-
-# Special bits
-chmod u+s program  # SUID
-chmod g+s folder   # SGID
-chmod +t folder    # Sticky</code></pre>
-                </div>
-                <div class="cmd-box macos">
-                    <h5>macOS</h5>
-                    <pre><code># Same as Linux
-chmod 755 script.sh
-chown user:group file
-
-# Extended attributes
-xattr -l file
-xattr -d attr file
-
-# ACLs
-chmod +a "user:admin allow write" file</code></pre>
-                </div>
-            </div>
-
-            <h3>4.4 Log Locations</h3>
-            <p>
-                Logs are your best friend in security. Know where to find them.
-            </p>
-
-            <div class="cmd-compare">
-                <div class="cmd-box windows">
-                    <h5>Windows</h5>
-                    <pre><code># Event Viewer GUI
-eventvwr.msc
-
-# PowerShell query
-Get-EventLog -LogName Security -Newest 50
-
-# Key logs:
-# Security, System, Application
-# Path: C:\Windows\System32\winevt\Logs\
-
-# Sysmon (if installed)
-Get-WinEvent -LogName Microsoft-Windows-Sysmon/Operational</code></pre>
-                </div>
-                <div class="cmd-box linux">
-                    <h5>Linux</h5>
-                    <pre><code># Main log directory
-/var/log/
-
-# Key files:
-/var/log/auth.log    # Auth attempts
-/var/log/syslog      # System events
-/var/log/messages    # General
-/var/log/secure      # RHEL auth
-
-# Systemd journal
-journalctl
-journalctl -u nginx
-journalctl --since "1 hour ago"</code></pre>
-                </div>
-                <div class="cmd-box macos">
-                    <h5>macOS</h5>
-                    <pre><code># Console app (GUI)
-open -a Console
-
-# Unified logging
-log show --last 1h
-
-# Filter by process
-log show --predicate 'process == "sshd"'
-
-# Traditional logs
-/var/log/system.log
-/var/log/install.log</code></pre>
-                </div>
-            </div>
-
-            <h3>4.5 Security & Access Control</h3>
-
-            <h4>User & Group Management</h4>
-
-            <div class="cmd-compare">
-                <div class="cmd-box windows">
-                    <h5>Windows</h5>
-                    <pre><code># Local users
-net user
-net user username /add
-net user username /delete
-
-# Groups
-net localgroup
-net localgroup Administrators user /add
-
-# Current user info
-whoami /all
-
-# Security policy
-secpol.msc</code></pre>
-                </div>
-                <div class="cmd-box linux">
-                    <h5>Linux</h5>
-                    <pre><code># Users
-cat /etc/passwd
-useradd username
-userdel username
-
-# Groups
-cat /etc/group
-groupadd groupname
-usermod -aG sudo username
-
-# Password hashes
-cat /etc/shadow  # root only
-
-# Current user
-id
-whoami</code></pre>
-                </div>
-                <div class="cmd-box macos">
-                    <h5>macOS</h5>
-                    <pre><code># Users (GUI)
-System Preferences > Users & Groups
-
-# Command line
-dscl . -list /Users
-dscl . -read /Users/username
-
-# Groups
-dscl . -list /Groups
-
-# Create user
-sysadminctl -addUser username</code></pre>
-                </div>
-            </div>
-        </div>
-
-        <!-- SECTION 5: WINDOWS INTERNALS -->
-        <h2 id="windows-internals">5. Windows Internals Deep Dive</h2>
-
-        <div class="section">
-            <p>
-                Windows is common across business endpoints, so attackers study it closely.
-                Understanding its internals is <span class="highlight">important</span> for security professionals.
-            </p>
-
-            <h3>NTFS: The Windows File System</h3>
-
-            <h4>Master File Table (MFT)</h4>
-            <p>
-                The <span class="cyan">MFT</span> is the heart of NTFS. It's a database containing entries for every file
-                and directory, including metadata, timestamps, and data locations.
-            </p>
-
-            <div class="info-box">
-                <strong>MACB Timestamps:</strong><br>
-                - <strong>M</strong>odified: content last changed<br>
-                - <strong>A</strong>ccessed: file last opened<br>
-                - <strong>C</strong>hanged (MFT): metadata last changed<br>
-                - <strong>B</strong>orn: file creation time<br><br>
-                <em>Attackers often try to modify these (timestomping) to hide activity!</em>
-            </div>
-
-            <h4>Alternate Data Streams (ADS)</h4>
-            <p>
-                NTFS allows multiple data streams per file. Attackers can abuse this feature to hide payloads.
-            </p>
-
-            <pre><code># Create hidden stream
-echo "hidden data" > normal.txt:hidden.txt
-
-# View streams
-dir /R
-Get-Item .\normal.txt -Stream *
-
-# Read hidden stream
-Get-Content .\normal.txt -Stream hidden.txt
-
-# Check all files in directory for streams
-Get-ChildItem -Recurse | ForEach-Object { Get-Item $_.FullName -Stream * }</code></pre>
-
-            <h3>Windows Registry</h3>
-            <p>
-                The registry is a hierarchical database storing OS and application configuration.
-                It matters for forensics because it records settings, startup entries, user activity, and persistence points.
-            </p>
-
-            <table>
-                <tr>
-                    <th>Hive</th>
-                    <th>Content</th>
-                    <th>File Location</th>
-                </tr>
-                <tr>
-                    <td>HKEY_LOCAL_MACHINE (HKLM)</td>
-                    <td>System-wide settings</td>
-                    <td>C:\Windows\System32\config\</td>
-                </tr>
-                <tr>
-                    <td>HKEY_CURRENT_USER (HKCU)</td>
-                    <td>Current user settings</td>
-                    <td>C:\Users\{user}\NTUSER.DAT</td>
-                </tr>
-                <tr>
-                    <td>HKEY_USERS (HKU)</td>
-                    <td>All user profiles</td>
-                    <td>Aggregated from user hives</td>
-                </tr>
-            </table>
-
-            <h4>Common Persistence Locations</h4>
-            <pre><code># Run keys (execute at login)
-HKCU\Software\Microsoft\Windows\CurrentVersion\Run
-HKLM\Software\Microsoft\Windows\CurrentVersion\Run
-HKLM\Software\Microsoft\Windows\CurrentVersion\RunOnce
-
-# Services
-HKLM\SYSTEM\CurrentControlSet\Services
-
-# Scheduled Tasks
-C:\Windows\System32\Tasks\
-
-# Query via PowerShell
-Get-ItemProperty "HKLM:\Software\Microsoft\Windows\CurrentVersion\Run"
-Get-ItemProperty "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run"</code></pre>
-
-            <h3>Windows Services</h3>
-            <pre><code># List services
-Get-Service
-sc query
-
-# Start/Stop service
-Start-Service -Name "ServiceName"
-Stop-Service -Name "ServiceName"
-net start ServiceName
-net stop ServiceName
-
-# Service details
-sc qc ServiceName
-
-# Find service executable path
-Get-WmiObject win32_service | Select Name, PathName | Where-Object { $_.PathName -like "*suspicious*" }</code></pre>
-
-            <h3>PowerShell for Security</h3>
-            <pre><code># Get running processes with network connections
-Get-NetTCPConnection | Where-Object { $_.State -eq "Established" } |
-  Select LocalAddress, LocalPort, RemoteAddress, RemotePort,
-         @{Name="Process";Expression={(Get-Process -Id $_.OwningProcess).ProcessName}}
-
-# Find recently modified files
-Get-ChildItem -Path C:\ -Recurse -File |
-  Where-Object { $_.LastWriteTime -gt (Get-Date).AddDays(-1) }
-
-# Check startup programs
-Get-CimInstance Win32_StartupCommand | Select Name, Command, Location
-
-# Get logged-in users
-query user
-Get-WmiObject Win32_LoggedOnUser
-
-# Network shares
-net share
-Get-SmbShare</code></pre>
-
-            <h3>Process Monitor (Sysinternals)</h3>
-            <p>
-                <span class="highlight">Process Monitor</span> is useful for understanding what processes
-                are doing in real time: file access, registry changes, and network activity.
-            </p>
-
-            <div class="info-box">
-                <strong>Download:</strong> <a href="https://docs.microsoft.com/en-us/sysinternals/downloads/procmon" target="_blank" rel="noopener noreferrer">Sysinternals Process Monitor</a><br><br>
-                <strong>Key Filters for Security:</strong><br>
-                - Operation is WriteFile<br>
-                - Path contains Run<br>
-                - Process Name is powershell.exe or cmd.exe<br>
-                - Event Class is Network
-            </div>
-        </div>
-
-        <!-- SECTION 6: LINUX INTERNALS -->
-        <h2 id="linux-internals">6. Linux Internals Deep Dive</h2>
-
-        <div class="section">
-            <p>
-                Linux powers a large share of servers, cloud infrastructure, and security tools. Learning its internals gives you practical visibility into real systems.
-            </p>
-
-            <h3>File System Hierarchy</h3>
-
-            <table>
-                <tr>
-                    <th>Directory</th>
-                    <th>Purpose</th>
-                    <th>Security Relevance</th>
-                </tr>
-                <tr>
-                    <td><code>/etc</code></td>
-                    <td>System configuration</td>
-                    <td>User accounts, services, cron jobs</td>
-                </tr>
-                <tr>
-                    <td><code>/var</code></td>
-                    <td>Variable data (logs, mail, spool)</td>
-                    <td>Logs for forensics</td>
-                </tr>
-                <tr>
-                    <td><code>/home</code></td>
-                    <td>User home directories</td>
-                    <td>User data, ~/.ssh keys, history files</td>
-                </tr>
-                <tr>
-                    <td><code>/tmp</code></td>
-                    <td>Temporary files</td>
-                    <td>Malware staging area, world-writable</td>
-                </tr>
-                <tr>
-                    <td><code>/proc</code></td>
-                    <td>Virtual filesystem (process info)</td>
-                    <td>Live process analysis</td>
-                </tr>
-                <tr>
-                    <td><code>/root</code></td>
-                    <td>Root user's home</td>
-                    <td>High-value target</td>
-                </tr>
-            </table>
-
-            <h3>Special Permission Bits</h3>
-
-            <table>
-                <tr>
-                    <th>Bit</th>
-                    <th>Numeric</th>
-                    <th>Effect</th>
-                    <th>Security Impact</th>
-                </tr>
-                <tr>
-                    <td>SUID</td>
-                    <td>4000</td>
-                    <td>Execute as file owner</td>
-                    <td>Privilege escalation if misconfigured</td>
-                </tr>
-                <tr>
-                    <td>SGID</td>
-                    <td>2000</td>
-                    <td>Execute as group owner</td>
-                    <td>Similar risk, check group privileges</td>
-                </tr>
-                <tr>
-                    <td>Sticky</td>
-                    <td>1000</td>
-                    <td>Only owner can delete files</td>
-                    <td>Important for /tmp</td>
-                </tr>
-            </table>
-
-            <pre><code># Find SUID binaries (common privilege escalation target)
-find / -perm -4000 -type f 2>/dev/null
-
-# Find SGID binaries
-find / -perm -2000 -type f 2>/dev/null
-
-# Find world-writable files
-find / -perm -o+w -type f 2>/dev/null
-
-# Find files with no owner
-find / -nouser -type f 2>/dev/null</code></pre>
-
-            <h3>systemd: The Init System</h3>
-            <pre><code># List all services
-systemctl list-units --type=service
-
-# Service status
-systemctl status nginx
-
-# Start/Stop/Restart
-systemctl start nginx
-systemctl stop nginx
-systemctl restart nginx
-
-# Enable at boot
-systemctl enable nginx
-
-# View service configuration
-systemctl cat nginx
-
-# View logs for service
-journalctl -u nginx -f</code></pre>
-
-            <h3>Critical Files for Security</h3>
-
-            <pre><code># User accounts
-/etc/passwd      # User info (readable by all)
-/etc/shadow      # Password hashes (root only)
-/etc/group       # Group memberships
-
-# Sudoers configuration
-/etc/sudoers
-/etc/sudoers.d/*
-
-# SSH configuration
-/etc/ssh/sshd_config
-~/.ssh/authorized_keys
-~/.ssh/known_hosts
-
-# Cron jobs (persistence)
-/etc/crontab
-/etc/cron.d/*
-/var/spool/cron/crontabs/*
-
-# Bash history
-~/.bash_history
-~/.zsh_history</code></pre>
-
-            <h3>Network Investigation</h3>
-            <pre><code># Active connections
-ss -tunapl
-netstat -tunapl
-
-# Listening ports
-ss -tlnp
-
-# Connection associated with PID
-lsof -i -P -n
-
-# Which process is using a port
-lsof -i :80
-
-# ARP table
-arp -a
-ip neighbor</code></pre>
-        </div>
-
-        <!-- SECTION 7: MACOS INTERNALS -->
-        <h2 id="macos-internals">7. macOS Internals Deep Dive</h2>
-
-        <div class="section">
-            <p>
-                macOS is Unix-based (Darwin kernel = BSD + Mach). Many Linux commands work, but there are unique aspects.
-            </p>
-
-            <h3>Darwin/XNU Kernel</h3>
-            <p>
-                macOS uses the <span class="cyan">XNU</span> kernel (X is Not Unix), a hybrid of:
-            </p>
-            <ul>
-                <li><strong>Mach</strong>, a microkernel handling low-level tasks such as IPC and memory.</li>
-                <li><strong>BSD</strong>, a Unix layer providing POSIX compatibility, file systems, and networking.</li>
-            </ul>
-
-            <h3>launchd: The macOS Init System</h3>
-            <p>
-                Unlike Linux's systemd, macOS uses <span class="cyan">launchd</span> for service management.
-            </p>
-
-            <table>
-                <tr>
-                    <th>Location</th>
-                    <th>Purpose</th>
-                    <th>Runs As</th>
-                </tr>
-                <tr>
-                    <td><code>~/Library/LaunchAgents/</code></td>
-                    <td>Current user agents</td>
-                    <td>User</td>
-                </tr>
-                <tr>
-                    <td><code>/Library/LaunchAgents/</code></td>
-                    <td>All users agents</td>
-                    <td>User</td>
-                </tr>
-                <tr>
-                    <td><code>/Library/LaunchDaemons/</code></td>
-                    <td>System daemons</td>
-                    <td>Root</td>
-                </tr>
-                <tr>
-                    <td><code>/System/Library/LaunchDaemons/</code></td>
-                    <td>Apple system daemons</td>
-                    <td>Root</td>
-                </tr>
-            </table>
-
-            <pre><code># List launch services
-launchctl list
-
-# Load/Unload a service
-launchctl load /Library/LaunchAgents/com.example.plist
-launchctl unload /Library/LaunchAgents/com.example.plist
-
-# Start/Stop
-launchctl start com.example.service
-launchctl stop com.example.service
-
-# Check for suspicious items
-ls -la ~/Library/LaunchAgents/
-ls -la /Library/LaunchAgents/
-ls -la /Library/LaunchDaemons/</code></pre>
-
-            <h3>macOS Security Features</h3>
-
-            <table>
-                <tr>
-                    <th>Feature</th>
-                    <th>What It Does</th>
-                    <th>Bypass Implications</th>
-                </tr>
-                <tr>
-                    <td><strong>SIP (System Integrity Protection)</strong></td>
-                    <td>Protects system files from modification, even by root</td>
-                    <td>Disabling requires recovery mode boot</td>
-                </tr>
-                <tr>
-                    <td><strong>Gatekeeper</strong></td>
-                    <td>Blocks unsigned/untrusted apps</td>
-                    <td>Check app notarization status</td>
-                </tr>
-                <tr>
-                    <td><strong>TCC (Transparency, Consent, Control)</strong></td>
-                    <td>Controls app access to camera, mic, files</td>
-                    <td>TCC.db manipulation is common malware target</td>
-                </tr>
-                <tr>
-                    <td><strong>XProtect</strong></td>
-                    <td>Built-in malware signatures</td>
-                    <td>Basic AV, signature-based only</td>
-                </tr>
-            </table>
-
-            <pre><code># Check SIP status
-csrutil status
-
-# Gatekeeper status
-spctl --status
-
-# List TCC permissions
-# Database at ~/Library/Application Support/com.apple.TCC/TCC.db
-
-# Check code signing
-codesign -dv --verbose=4 /path/to/app
-
-# Verify notarization
-spctl -a -v /path/to/app</code></pre>
-
-            <h3>Useful Security Commands</h3>
-            <pre><code># List all users
-dscl . -list /Users
-
-# Get user details
-dscl . -read /Users/username
-
-# Check sudo access
-sudo -l
-
-# Find recently modified files
-find / -mtime -1 -type f 2>/dev/null
-
-# Network connections
-lsof -i -P
-netstat -an
-
-# Running processes with network
-lsof -i | grep ESTABLISHED</code></pre>
-        </div>
-
             <!-- Page Navigation -->
             <div class="page-nav">
                 <a href="1.3-landscape.html">Previous: The Cybersecurity Landscape</a>

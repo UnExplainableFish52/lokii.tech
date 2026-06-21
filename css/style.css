@@ -1430,12 +1430,27 @@ section {
     line-height: 1.6;
 }
 
+.footer-legal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.35rem 0.65rem;
+}
+
+.footer-legal span {
+    color: rgba(186, 205, 218, 0.42);
+}
+
 .footer-bottom a {
     color: var(--text-muted);
+    font-weight: 650;
+    transition: color var(--transition-fast);
 }
 
 .footer-bottom a:hover {
     color: #CDE9FF;
+    text-decoration: none;
 }
 
 /* ============================================

@@ -264,23 +264,29 @@
                                 <li><a href="${buildRootUrl('index.html#faq')}">FAQ</a></li>
                                 <li><a href="https://github.com/UnExplainableFish52/lokii.tech" target="_blank" rel="noopener noreferrer">Source code</a></li>
                                 <li><a href="https://github.com/UnExplainableFish52/lokii.tech/issues" target="_blank" rel="noopener noreferrer">Issues and suggestions</a></li>
-                                <li><a href="${buildRootUrl('sitemap.xml')}">Sitemap</a></li>
+                                <li><a href="https://sakshamsharma.com.np/#contact" target="_blank" rel="noopener noreferrer" aria-label="Contact Saksham Sharma">Contact</a></li>
                             </ul>
                         </section>
                         <section class="footer-section">
                             <h4>Developer</h4>
                             <ul>
                                 <li><a href="https://github.com/UnExplainableFish52" target="_blank" rel="noopener noreferrer">GitHub profile</a></li>
-                                <li><a href="https://blogs.sakshamsharma.com.np/" target="_blank" rel="noopener noreferrer">Writings and reflections</a></li>
                                 <li><a href="https://saksham.info.np/" target="_blank" rel="noopener noreferrer">Professional profile</a></li>
-                                <li><a href="https://github.com/UnExplainableFish52/Fumic" target="_blank" rel="noopener noreferrer">Fumic media player</a></li>
-                                <li><a href="https://github.com/UnExplainableFish52/Frodigy" target="_blank" rel="noopener noreferrer">Frodigy productivity app</a></li>
+                                <li><a href="https://blogs.sakshamsharma.com.np/" target="_blank" rel="noopener noreferrer" aria-label="Fisholophy, writings and reflections">Fisholophy</a></li>
+                                <li><a href="https://github.com/UnExplainableFish52/Fumic" target="_blank" rel="noopener noreferrer" aria-label="Fumic media player">Fumic</a></li>
+                                <li><a href="https://github.com/UnExplainableFish52/Frodigy" target="_blank" rel="noopener noreferrer" aria-label="Frodigy productivity app">Frodigy</a></li>
                             </ul>
                         </section>
                     </nav>
                 </div>
                 <div class="footer-bottom">
-                    <p>&copy; ${year} lokii.tech. Free and open-source cybersecurity, systems, Linux, networking, GRC, and project practice. <a href="${buildRootUrl('LICENSE')}">See License</a></p>
+                    <p class="footer-legal">
+                        <a href="${buildRootUrl('index.html')}">&copy; ${year} lokii.tech</a>
+                        <span aria-hidden="true">|</span>
+                        <a href="https://github.com/UnExplainableFish52" target="_blank" rel="noopener noreferrer">Saksham Sharma</a>
+                        <span aria-hidden="true">|</span>
+                        <a href="${buildRootUrl('LICENSE')}">LICENSE</a>
+                    </p>
                 </div>
             </div>
         `;
