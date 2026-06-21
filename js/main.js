@@ -111,7 +111,12 @@
                         <a href="${homeLink}" class="branding">
                             <span class="logo">lokii.tech</span>
                         </a>
-                        <nav class="nav-links" aria-label="Primary navigation">
+                        <button class="nav-toggle" type="button" aria-controls="primary-navigation" aria-expanded="false" aria-label="Open navigation menu">
+                            <span class="nav-toggle-line"></span>
+                            <span class="nav-toggle-line"></span>
+                            <span class="nav-toggle-line"></span>
+                        </button>
+                        <nav class="nav-links" id="primary-navigation" aria-label="Primary navigation">
                             <a href="${aboutLink}" class="nav-link nav-link-enhanced">About</a>
                             <a href="${resourcesLink}" class="nav-link nav-link-enhanced">Resources</a>
                             <a href="${faqLink}" class="nav-link nav-link-enhanced">FAQ</a>
@@ -133,6 +138,75 @@
         } else {
             document.body.insertAdjacentHTML('afterbegin', navbarHTML);
         }
+    }
+
+    function initMobileNav() {
+        const header = document.querySelector('.site-header');
+        const toggle = header ? header.querySelector('.nav-toggle') : null;
+        const nav = header ? header.querySelector('.nav-links') : null;
+        const mobileNavQuery = window.matchMedia('(max-width: 860px)');
+
+        if (!header || !toggle || !nav) {
+            return;
+        }
+
+        function syncNavAccessibility(isOpen) {
+            if (!mobileNavQuery.matches) {
+                nav.removeAttribute('aria-hidden');
+                nav.inert = false;
+                return;
+            }
+
+            nav.setAttribute('aria-hidden', String(!isOpen));
+            nav.inert = !isOpen;
+        }
+
+        function setMenuState(isOpen, returnFocus) {
+            const shouldOpen = Boolean(isOpen) && mobileNavQuery.matches;
+
+            header.classList.toggle('nav-open', shouldOpen);
+            toggle.setAttribute('aria-expanded', String(shouldOpen));
+            toggle.setAttribute('aria-label', shouldOpen ? 'Close navigation menu' : 'Open navigation menu');
+            syncNavAccessibility(shouldOpen);
+
+            if (!shouldOpen && returnFocus && nav.contains(document.activeElement)) {
+                toggle.focus();
+            }
+        }
+
+        toggle.addEventListener('click', function () {
+            setMenuState(!header.classList.contains('nav-open'));
+        });
+
+        nav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', function () {
+                setMenuState(false);
+            });
+        });
+
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape' && header.classList.contains('nav-open')) {
+                setMenuState(false, true);
+            }
+        });
+
+        document.addEventListener('click', function (event) {
+            if (header.classList.contains('nav-open') && !header.contains(event.target)) {
+                setMenuState(false);
+            }
+        });
+
+        if (typeof mobileNavQuery.addEventListener === 'function') {
+            mobileNavQuery.addEventListener('change', function () {
+                setMenuState(false);
+            });
+        } else if (typeof mobileNavQuery.addListener === 'function') {
+            mobileNavQuery.addListener(function () {
+                setMenuState(false);
+            });
+        }
+
+        setMenuState(false);
     }
 
     function buildFooterHTML() {
@@ -343,6 +417,7 @@
     function init() {
         initThemeLayer();
         initNavbar();
+        initMobileNav();
         initFooter();
         initFloatingHomeButton();
         initScrollToTopButton();
