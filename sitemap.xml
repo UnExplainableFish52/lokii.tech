@@ -3,7 +3,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://lokii.tech/</loc>
-    <lastmod>2026-06-07</lastmod>
+    <lastmod>2026-06-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -57,7 +57,13 @@
   </url>
   <url>
     <loc>https://lokii.tech/intermediate/tools/nmap.html</loc>
-    <lastmod>2026-06-04</lastmod>
+    <lastmod>2026-06-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://lokii.tech/intermediate/tools/nmap-cheatsheet.html</loc>
+    <lastmod>2026-06-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -178,6 +184,18 @@
   <url>
     <loc>https://lokii.tech/pro/wireshark-packet-capture-analysis.html</loc>
     <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://lokii.tech/pro/incident-response-vendor-vpn-data-exfiltration.html</loc>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://lokii.tech/pro/incident-response-nagarik-app-env-exposure.html</loc>
+    <lastmod>2026-06-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

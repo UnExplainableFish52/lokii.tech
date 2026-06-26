@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<!-- lokii-pro-report: checked 2026-06-26; converted from Markdown report draft into structured Pro incident-response reading page. -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nagarik App Environment File Exposure and Database Exfiltration | lokii.tech</title>
+  <meta name="description" content="A structured incident response report about exposed production environment files, leaked secrets, unauthorized database access, and data exfiltration response practice.">
+  <meta name="author" content="lokii (UnExplainableFish52)">
+  <meta name="theme-color" content="#050505">
+  <meta name="keywords" content="Incident Response, Secrets Exposure, Nagarik App, Database Exfiltration, Secure Deployment, MITRE ATT&amp;CK">
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://lokii.tech/pro/incident-response-nagarik-app-env-exposure.html">
+  <meta property="og:title" content="Nagarik App Environment File Exposure and Database Exfiltration | lokii.tech">
+  <meta property="og:description" content="A structured incident response report about exposed production environment files, leaked secrets, unauthorized database access, and data exfiltration response practice.">
+  <meta property="og:image" content="https://lokii.tech/preview.jpg">
+  <meta property="og:site_name" content="lokii.tech">
+
+  <link rel="canonical" href="https://lokii.tech/pro/incident-response-nagarik-app-env-exposure.html">
+  <meta name="robots" content="index, follow">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://lokii.tech/pro/incident-response-nagarik-app-env-exposure.html">
+  <meta name="twitter:title" content="Nagarik App Environment File Exposure and Database Exfiltration | lokii.tech">
+  <meta name="twitter:description" content="A structured incident response report about exposed production environment files, leaked secrets, unauthorized database access, and data exfiltration response practice.">
+  <meta name="twitter:image" content="https://lokii.tech/preview.jpg">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+  <link rel="manifest" href="../site.webmanifest">
+  <link rel="icon" href="../favicon.ico">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/global-ui.css">
+
+
+  <style>
+    .ir-report-page .guide-hero {
+      background: linear-gradient(145deg, rgba(13, 20, 30, 0.96), rgba(7, 10, 16, 0.99));
+    }
+
+    .ir-report-page .guide-kicker {
+      color: #4ec9b0;
+      font-weight: 800;
+      letter-spacing: 0;
+      margin-bottom: 0.45rem;
+      text-transform: uppercase;
+      font-size: 0.82rem;
+    }
+
+    .ir-report-page .report-snapshot {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0.8rem;
+      margin: 1.1rem 0 0;
+      padding: 0;
+    }
+
+    .ir-report-page .report-snapshot div {
+      border-top: 1px solid rgba(125, 211, 252, 0.36);
+      padding-top: 0.7rem;
+    }
+
+    .ir-report-page .report-snapshot dt {
+      color: #7dd3fc;
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .ir-report-page .report-snapshot dd {
+      color: #edf1f5;
+      margin: 0.25rem 0 0;
+      line-height: 1.55;
+    }
+
+    .ir-report-page .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 1rem 0 0;
+    }
+
+    .ir-report-page .tag-pill {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid rgba(78, 201, 176, 0.42);
+      border-radius: 999px;
+      background: rgba(78, 201, 176, 0.09);
+      color: #c8f7ee;
+      font-size: 0.88rem;
+      font-weight: 700;
+      padding: 0.35rem 0.7rem;
+    }
+
+    .ir-report-page .toc-box strong {
+      color: #ffd166;
+    }
+
+    .ir-report-page .report-section {
+      scroll-margin-top: 6.5rem;
+    }
+
+    .ir-report-page .report-section h2 {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .ir-report-page .section-index {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.1rem;
+      min-width: 2.1rem;
+      height: 2.1rem;
+      border: 1px solid rgba(78, 201, 176, 0.55);
+      border-radius: 999px;
+      color: #4ec9b0;
+      font-family: var(--font-mono);
+      font-size: 0.95rem;
+    }
+
+    .ir-report-page .report-section h3 {
+      color: #7dd3fc;
+      margin-top: 1.5rem;
+      margin-bottom: 0.65rem;
+    }
+
+    .ir-report-page .report-section p {
+      max-width: 920px;
+    }
+
+    .ir-report-page .report-section ul,
+    .ir-report-page .report-section ol {
+      margin: 0.75rem 0 1.1rem;
+      padding-left: 1.35rem;
+    }
+
+    .ir-report-page .report-section li {
+      margin: 0.5rem 0;
+    }
+
+    .ir-report-page .report-section li p {
+      margin: 0.45rem 0 0.15rem;
+    }
+
+    .ir-report-page .report-section code,
+    .ir-report-page .report-table code {
+      color: #4ec9b0;
+      font-family: var(--font-mono);
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .ir-report-page .report-table-wrap {
+      overflow-x: auto;
+      margin: 1rem 0 1.35rem;
+      border: 1px solid #30363d;
+      border-radius: 12px;
+      background: rgba(8, 11, 16, 0.82);
+    }
+
+    .ir-report-page .report-table {
+      width: 100%;
+      min-width: 700px;
+      border-collapse: collapse;
+      margin: 0;
+    }
+
+    .ir-report-page .report-table th,
+    .ir-report-page .report-table td {
+      border-bottom: 1px solid #30363d;
+      padding: 0.85rem 0.95rem;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .ir-report-page .report-table th {
+      background: rgba(56, 189, 248, 0.12);
+      color: #7dd3fc;
+      font-weight: 800;
+    }
+
+    .ir-report-page .report-table tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .ir-report-page .report-disclaimer {
+      border-color: rgba(245, 158, 11, 0.5);
+      background: rgba(245, 158, 11, 0.08);
+    }
+
+    .ir-report-page .report-disclaimer h2 {
+      color: #facc15;
+    }
+
+    @media (max-width: 720px) {
+      .ir-report-page .report-section h2 {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 0.45rem;
+      }
+
+      .ir-report-page .report-table {
+        min-width: 620px;
+      }
+    }
+  </style>
+
+  <script type="application/ld+json" data-seo="lokii">
+{
+      "@context": "https://schema.org",
+      "@graph": [
+            {
+                  "@type": "Person",
+                  "@id": "https://lokii.tech/#creator",
+                  "name": "lokii (UnExplainableFish52)",
+                  "url": "https://lokii.tech/",
+                  "sameAs": [
+                        "https://github.com/UnExplainableFish52"
+                  ]
+            },
+            {
+                  "@type": "WebSite",
+                  "@id": "https://lokii.tech/#website",
+                  "url": "https://lokii.tech/",
+                  "name": "lokii.tech",
+                  "description": "An open-source learning platform for computer science, cybersecurity, Linux, networking, and security project guidance.",
+                  "publisher": {
+                        "@id": "https://lokii.tech/#creator"
+                  },
+                  "inLanguage": "en"
+            },
+            {
+                  "@type": "BreadcrumbList",
+                  "@id": "https://lokii.tech/pro/incident-response-nagarik-app-env-exposure.html#breadcrumbs",
+                  "itemListElement": [
+                        {
+                              "@type": "ListItem",
+                              "position": 1,
+                              "name": "Home",
+                              "item": "https://lokii.tech/"
+                        },
+                        {
+                              "@type": "ListItem",
+                              "position": 2,
+                              "name": "Pro Level",
+                              "item": "https://lokii.tech/#resources"
+                        },
+                        {
+                              "@type": "ListItem",
+                              "position": 3,
+                              "name": "Nagarik App Production Environment File Exposure and Database Exfiltration",
+                              "item": "https://lokii.tech/pro/incident-response-nagarik-app-env-exposure.html"
+                        }
+                  ]
+            },
+            {
+                  "@type": "WebPage",
+                  "@id": "https://lokii.tech/pro/incident-response-nagarik-app-env-exposure.html#webpage",
+                  "url": "https://lokii.tech/pro/incident-response-nagarik-app-env-exposure.html",
+                  "name": "Nagarik App Environment File Exposure and Database Exfiltration | lokii.tech",
+                  "description": "A structured incident response report about exposed production environment files, leaked secrets, unauthorized database access, and data exfiltration response practice.",
+                  "isPartOf": {
+                        "@id": "https://lokii.tech/#website"
+                  },
+                  "breadcrumb": {
+                        "@id": "https://lokii.tech/pro/incident-response-nagarik-app-env-exposure.html#breadcrumbs"
+                  },
+                  "primaryImageOfPage": "https://lokii.tech/preview.jpg",
+                  "dateModified": "2026-06-26",
+                  "inLanguage": "en"
+            },
+            {
+                  "@type": [
+                        "TechArticle",
+                        "LearningResource"
+                  ],
+                  "@id": "https://lokii.tech/pro/incident-response-nagarik-app-env-exposure.html#article",
+                  "headline": "Nagarik App Production Environment File Exposure and Database Exfiltration",
+                  "description": "SOC-style incident report for exposed environment files, leaked credentials, unauthorized database access, and critical data exfiltration response practice.",
+                  "url": "https://lokii.tech/pro/incident-response-nagarik-app-env-exposure.html",
+                  "image": "https://lokii.tech/preview.jpg",
+                  "author": {
+                        "@id": "https://lokii.tech/#creator"
+                  },
+                  "publisher": {
+                        "@id": "https://lokii.tech/#creator"
+                  },
+                  "mainEntityOfPage": {
+                        "@id": "https://lokii.tech/pro/incident-response-nagarik-app-env-exposure.html#webpage"
+                  },
+                  "educationalLevel": "Advanced",
+                  "learningResourceType": "Incident Response Report",
+                  "keywords": [
+                        "Incident Response",
+                        "Secrets Exposure",
+                        "Nagarik App",
+                        "Database Exfiltration",
+                        "Secure Deployment",
+                        "MITRE ATT&CK"
+                  ],
+                  "dateModified": "2026-06-26",
+                  "inLanguage": "en"
+            }
+      ]
+}
+  </script>
+</head>
+<body class="guide-page ir-report-page">
+  <div id="navbar-placeholder"></div>
+
+  <main class="guide-main">
+    <div class="container guide-container">
+      <section class="guide-hero">
+        <p class="guide-kicker">Pro Level Incident Response Report</p>
+        <h1>Nagarik App Production Environment File Exposure and Database Exfiltration</h1>
+        <p class="guide-subtitle">A structured incident response report for exposed production environment files, leaked secrets, unauthorized database access, and simulated exfiltration response practice.</p>
+        <dl class="report-snapshot">
+          <div><dt>Scenario</dt><dd>Public production environment-file exposure</dd></div>
+          <div><dt>Severity</dt><dd>Critical</dd></div>
+          <div><dt>Impacted data</dt><dd>User records, personal information, and citizen document details</dd></div>
+          <div><dt>Root cause</dt><dd>Build and deployment misconfiguration</dd></div>
+        </dl>
+        <div class="tag-row" aria-label="Report tags">
+          <span class="tag-pill">Incident Response</span>
+          <span class="tag-pill">Secrets Exposure</span>
+          <span class="tag-pill">Nagarik App</span>
+          <span class="tag-pill">Database Exfiltration</span>
+          <span class="tag-pill">Secure Deployment</span>
+          <span class="tag-pill">MITRE ATT&amp;CK</span>
+        </div>
+        <nav class="guide-nav" aria-label="Report sections">
+          <a href="#disclaimer">Disclaimer</a>
+          <a href="#incident-summary">Incident Summary</a>
+          <a href="#executive-summary">Executive Summary</a>
+          <a href="#affected-system">Affected System</a>
+          <a href="#investigation-methodology">Investigation Methodology</a>
+          <a href="#indicators-of-compromise">Indicators of Compromise</a>
+          <a href="#mitre-att-ck-mapping">MITRE ATT&amp;CK Mapping</a>
+          <a href="#soc-analyst-findings">SOC Analyst Findings</a>
+          <a href="#soc-analyst-response">SOC Analyst Response</a>
+          <a href="#analyst-insight">Analyst Insight</a>
+          <a href="#conclusion">Conclusion</a>
+          <a href="../index.html#resources">Back to Resources</a>
+        </nav>
+      </section>
+
+      <section class="toc-box" id="reader-map">
+        <h2>Reader Map</h2>
+        <p><strong>Purpose:</strong> This page converts the original incident response report into a structured web reading format while preserving the report details, tables, findings, response actions, and conclusions.</p>
+        <ul>
+            <li><a href="#disclaimer">Disclaimer</a></li>
+            <li><a href="#incident-summary">Incident Summary</a></li>
+            <li><a href="#executive-summary">Executive Summary</a></li>
+            <li><a href="#affected-system">Affected System</a></li>
+            <li><a href="#investigation-methodology">Investigation Methodology</a></li>
+            <li><a href="#indicators-of-compromise">Indicators of Compromise</a></li>
+            <li><a href="#mitre-att-ck-mapping">MITRE ATT&amp;CK Mapping</a></li>
+            <li><a href="#soc-analyst-findings">SOC Analyst Findings</a></li>
+            <li><a href="#soc-analyst-response">SOC Analyst Response</a></li>
+            <li><a href="#analyst-insight">Analyst Insight</a></li>
+            <li><a href="#conclusion">Conclusion</a></li>
+        </ul>
+      </section>
+
+        <section class="level-block report-section report-disclaimer" id="disclaimer">
+        <h2>Disclaimer</h2>
+        <p>This report is written for cybersecurity learning, SOC analysis practice, and portfolio demonstration. The exposed environment-file vulnerability discussed in this report is based on publicly discussed information, while the exploitation chain, attacker activity, database access, exfiltration scenario, and response actions are simulated for incident report writing practice.</p>
+        </section>
+        <section class="level-block report-section" id="incident-summary">
+        <h2><span class="section-index">1</span>Incident Summary</h2>
+        <p>A production build of the Nagarik App unintentionally exposed sensitive environment configuration files, including <code>.env</code> and <code>.dev.env</code>. These files contained database credentials, API keys, and other application secrets.</p>
+        <p>A threat actor accessed the exposed files, extracted valid credentials, and used them to gain unauthorized access to the application database. The attacker then exfiltrated tens of thousands of user records, including sensitive personal information and citizen document details such as passport-related data.</p>
+        <p>The incident was caused by a build and deployment misconfiguration that allowed sensitive development and environment files to be included in the production environment.</p>
+        </section>
+        <section class="level-block report-section" id="executive-summary">
+        <h2><span class="section-index">2</span>Executive Summary</h2>
+        <p>Nagarik App suffered a serious security incident due to exposed configuration files in the production application. These files contained sensitive credentials that should never have been publicly accessible.</p>
+        <p>The attacker used the exposed credentials to access the backend database and steal a large volume of citizen records. The affected data included personally identifiable information and sensitive government document details.</p>
+        <p>The incident created operational, legal, reputational, and public-trust risks. Immediate response actions included notifying the development team, patching the exposure, rotating compromised credentials, moving service operations to a secured backup server, and preserving the original server for forensic investigation.</p>
+        <p>The key business lesson is clear: secrets management, secure build pipelines, deployment reviews, and egress monitoring must be treated as mandatory controls for public-facing government applications.</p>
+        </section>
+        <section class="level-block report-section" id="affected-system">
+        <h2><span class="section-index">3</span>Affected System</h2>
+        <div class="report-table-wrap"><table class="report-table"><thead><tr><th scope="col">Field</th><th scope="col">Details</th></tr></thead><tbody><tr><td>Application</td><td>Nagarik App</td></tr><tr><td>System Type</td><td>Public-facing government digital service platform</td></tr><tr><td>Hostname</td><td><code>nagarik-prod-app-01</code></td></tr><tr><td>Public IP</td><td>Not provided / pending confirmation</td></tr><tr><td>Private IP</td><td>Not provided / pending confirmation</td></tr><tr><td>Operating System</td><td>Linux server, exact version pending confirmation</td></tr><tr><td>Application Role</td><td>Production application server</td></tr><tr><td>Database Role</td><td>Backend citizen records database</td></tr><tr><td>Timezone</td><td>Nepal Time, UTC+05:45</td></tr><tr><td>Environment</td><td>Production</td></tr><tr><td>Impacted Data</td><td>User records, personal information, citizen document details, passport-related data</td></tr><tr><td>Incident Severity</td><td>Critical</td></tr><tr><td>Initial Cause</td><td>Sensitive environment files included in production build</td></tr></tbody></table></div>
+        </section>
+        <section class="level-block report-section" id="investigation-methodology">
+        <h2><span class="section-index">4</span>Investigation Methodology</h2>
+        <h3>Step 1: Initial Alert Review</h3>
+        <p>The investigation began after suspicious database activity and abnormal data access patterns were observed. The SOC team reviewed available application logs, database logs, server access logs, and network traffic records.</p>
+        <p>The first objective was to determine whether the database access was legitimate administrative activity or unauthorized access.</p>
+        <h3>Step 2: Web Server Log Analysis</h3>
+        <p>The web server logs were reviewed for requests to sensitive files and hidden configuration paths. The investigation focused on requests such as:</p>
+        <ul><li><code>GET /.env</code></li><li><code>GET /.dev.env</code></li><li><code>GET /config/.env</code></li><li><code>GET /backup/.env</code></li><li><code>GET /.git/config</code></li></ul>
+        <p>Successful HTTP <code>200 OK</code> responses to <code>.env</code> and <code>.dev.env</code> confirmed that sensitive files were publicly accessible from the production environment.</p>
+        <h3>Step 3: Secret Exposure Validation</h3>
+        <p>The exposed files were reviewed in a controlled forensic environment. The files contained sensitive values, including:</p>
+        <ul><li>Database hostname</li><li>Database username</li><li>Database password</li><li>API keys</li><li>Service tokens</li><li>Environment-specific configuration values</li></ul>
+        <p>No secrets were reused during the investigation. All credentials were treated as compromised immediately.</p>
+        <h3>Step 4: Database Access Review</h3>
+        <p>Database authentication logs were analyzed to identify suspicious login activity. The investigation found successful database access using credentials that matched the exposed environment files.</p>
+        <p>The database activity showed unusual query volume and access patterns inconsistent with normal application behavior.</p>
+        <p>Observed suspicious behavior included:</p>
+        <ul><li>Large SELECT queries</li><li>Repeated access to user profile tables</li><li>Access to document-related tables</li><li>High-volume record retrieval</li><li>Access from an unrecognized source IP or host</li></ul>
+        <h3>Step 5: Data Exfiltration Analysis</h3>
+        <p>Network and database logs were reviewed to determine whether data had been extracted. The investigation identified bulk data access consistent with exfiltration.</p>
+        <p>Potential signs of data theft included:</p>
+        <ul><li>Large outbound data transfers</li><li>High-volume database reads</li><li>Compressed or serialized response patterns</li><li>Repeated queries against sensitive tables</li><li>Access outside normal business operation patterns</li></ul>
+        <h3>Step 6: Scope Assessment</h3>
+        <p>The SOC team attempted to identify:</p>
+        <ul><li>When the <code>.env</code> files first became exposed</li><li>When the attacker first accessed the files</li><li>Which credentials were used</li><li>Which database tables were accessed</li><li>How many records were affected</li><li>Whether persistence was created</li><li>Whether other systems reused the same credentials</li></ul>
+        <p>At the time of this report, the confirmed root cause is production exposure of sensitive environment files. Full record-level impact requires forensic validation.</p>
+        <h3>Step 7: Containment and Preservation</h3>
+        <p>The development team was notified immediately. The vulnerable production build was patched to remove exposed files. Credentials and API keys were rotated.</p>
+        <p>A secured backup server with rotated keys was brought online to reduce downtime. The original affected server was isolated and handed over to the forensic team for evidence preservation and deeper analysis.</p>
+        </section>
+        <section class="level-block report-section" id="indicators-of-compromise">
+        <h2><span class="section-index">5</span>Indicators of Compromise</h2>
+        <h3>Network Indicators</h3>
+        <div class="report-table-wrap"><table class="report-table"><thead><tr><th scope="col">Indicator Type</th><th scope="col">Value</th><th scope="col">Notes</th></tr></thead><tbody><tr><td>Source IP</td><td>Pending confirmation</td><td>Suspected attacker IP from web/database logs</td></tr><tr><td>Destination</td><td>Production application server</td><td>Targeted public-facing service</td></tr><tr><td>Destination</td><td>Backend database server</td><td>Accessed using exposed credentials</td></tr><tr><td>User-Agent</td><td>Pending confirmation</td><td>Review web logs for scanner or scripted access</td></tr><tr><td>Traffic Pattern</td><td>Large outbound transfer</td><td>Possible database export or bulk extraction</td></tr></tbody></table></div>
+        <h3>File Indicators</h3>
+        <div class="report-table-wrap"><table class="report-table"><thead><tr><th scope="col">Indicator</th><th scope="col">Description</th></tr></thead><tbody><tr><td><code>/.env</code></td><td>Exposed production environment file</td></tr><tr><td><code>/.dev.env</code></td><td>Exposed development environment file</td></tr><tr><td>Database credentials</td><td>Found inside exposed environment files</td></tr><tr><td>API keys</td><td>Found inside exposed environment files</td></tr><tr><td>Service tokens</td><td>Found inside exposed environment files</td></tr></tbody></table></div>
+        <h3>Account and Credential Indicators</h3>
+        <div class="report-table-wrap"><table class="report-table"><thead><tr><th scope="col">Indicator</th><th scope="col">Description</th></tr></thead><tbody><tr><td>Exposed database username</td><td>Credential found in exposed <code>.env</code> file</td></tr><tr><td>Exposed database password</td><td>Credential found in exposed <code>.env</code> file</td></tr><tr><td>Exposed API keys</td><td>Application or third-party service keys exposed</td></tr><tr><td>Unauthorized database session</td><td>Login using exposed credential set</td></tr></tbody></table></div>
+        <h3>Behavioral Indicators</h3>
+        <ul><li>Public HTTP requests to <code>.env</code> and <code>.dev.env</code></li><li>Successful access to sensitive configuration files</li><li>Database login using exposed credentials</li><li>High-volume database reads</li><li>Queries targeting user records and document tables</li><li>Unusual access time or access source</li><li>Possible bulk export of sensitive citizen data</li></ul>
+        </section>
+        <section class="level-block report-section" id="mitre-att-ck-mapping">
+        <h2><span class="section-index">6</span>MITRE ATT&amp;CK Mapping</h2>
+        <div class="report-table-wrap"><table class="report-table"><thead><tr><th scope="col">Tactic</th><th scope="col">Technique</th><th scope="col">ID</th><th scope="col">Evidence</th></tr></thead><tbody><tr><td>Initial Access</td><td>Exploit Public-Facing Application</td><td>T1190</td><td>Attacker accessed exposed <code>.env</code> and <code>.dev.env</code> files from the public-facing production application</td></tr><tr><td>Credential Access</td><td>Credentials in Files</td><td>T1552.001</td><td>Database credentials and API keys were present inside exposed environment files</td></tr><tr><td>Defense Evasion</td><td>Valid Accounts</td><td>T1078</td><td>Attacker used valid database credentials instead of brute-force or exploit-based database access</td></tr><tr><td>Discovery</td><td>Data from Information Repositories</td><td>T1213</td><td>Attacker identified sensitive database tables containing citizen records and document details</td></tr><tr><td>Collection</td><td>Data from Local System</td><td>T1005</td><td>Large volumes of database records were queried and collected</td></tr><tr><td>Exfiltration</td><td>Exfiltration Over Web Service / Network Channel</td><td>T1567 / T1041</td><td>Bulk data access and abnormal outbound transfer patterns suggest data exfiltration</td></tr></tbody></table></div>
+        </section>
+        <section class="level-block report-section" id="soc-analyst-findings">
+        <h2><span class="section-index">7</span>SOC Analyst Findings</h2>
+        <ol><li>Sensitive environment files were included in the production build.</li><li>The files were accessible from the public-facing application server.</li><li>The exposed files contained database credentials, API keys, and other secrets.</li><li>A threat actor accessed the exposed files and obtained valid credentials.</li><li>The attacker used the exposed credentials to authenticate to the backend database.</li><li>Database logs showed abnormal access patterns consistent with unauthorized data extraction.</li><li>Tens of thousands of user records were reportedly affected, including sensitive personal and citizen document information.</li><li>The root cause was a deployment and configuration management failure, not a traditional password brute-force attack.</li><li>The incident indicates weaknesses in secrets management, production build validation, access control, monitoring, and data exfiltration detection.</li><li>The original affected server should be treated as compromised until forensic analysis confirms otherwise.</li></ol>
+        </section>
+        <section class="level-block report-section" id="soc-analyst-response">
+        <h2><span class="section-index">8</span>SOC Analyst Response</h2>
+        <h3>Immediate Actions Taken</h3>
+        <ul><li>Notified the development and infrastructure teams.</li><li>Removed <code>.env</code>, <code>.dev.env</code>, and other sensitive files from the production build.</li><li>Blocked public access to hidden configuration files.</li><li>Rotated exposed database credentials.</li><li>Rotated exposed API keys and service tokens.</li><li>Brought a secured backup server online with rotated keys.</li><li>Isolated the original production server.</li><li>Preserved the original server for forensic investigation.</li><li>Started review of database access logs and outbound traffic logs.</li></ul>
+        <h3>Recommended Containment Actions</h3>
+        <ul><li>Disable all credentials found in exposed files.</li><li>Invalidate active sessions and tokens linked to exposed secrets.</li><li>Restrict database access to approved application hosts only.</li><li>Apply firewall rules to prevent direct public database access.</li><li>Enforce least-privilege permissions for application database users.</li><li>Block access to dotfiles and sensitive paths at the web server level.</li><li>Review whether secrets were reused across staging, development, and production.</li></ul>
+        <h3>Recommended Eradication Actions</h3>
+        <ul><li>Remove sensitive files from all production artifacts.</li><li>Update CI/CD pipelines to prevent <code>.env</code> files from being packaged.</li><li>Add automated secret scanning before deployment.</li><li>Add repository-level secret scanning.</li><li>Add build artifact scanning.</li><li>Remove hardcoded credentials from source code and configuration files.</li><li>Store secrets in a dedicated secrets manager.</li><li>Rebuild production from a clean and verified source.</li></ul>
+        <h3>Recommended Recovery Actions</h3>
+        <ul><li>Restore service using a clean backup server.</li><li>Validate that rotated credentials are active.</li><li>Confirm that old credentials no longer work.</li><li>Monitor logs for repeated access attempts.</li><li>Confirm database integrity.</li><li>Notify appropriate legal, regulatory, and organizational authorities.</li><li>Prepare user communication if legally or operationally required.</li><li>Continue enhanced monitoring for follow-up attacks.</li></ul>
+        <h3>Recommended Long-Term Improvements</h3>
+        <ul><li>Implement a formal secure SDLC process.</li><li>Add mandatory deployment checklists.</li><li>Train developers on secrets management.</li><li>Enforce production build reviews.</li><li>Use DLP and egress monitoring to detect large data movement.</li><li>Deploy SIEM correlation rules for suspicious file access and database behavior.</li><li>Implement anomaly detection for large database queries.</li><li>Apply defense-in-depth across application, network, database, and monitoring layers.</li></ul>
+        </section>
+        <section class="level-block report-section" id="analyst-insight">
+        <h2><span class="section-index">9</span>Analyst Insight</h2>
+        <p>This incident shows how a simple configuration mistake can become a critical breach when sensitive files are exposed in production.</p>
+        <p>The attacker did not need an advanced exploit. The exposed <code>.env</code> files acted like a key left outside the front door. Once the credentials were discovered, the attacker could use legitimate access paths to reach sensitive data.</p>
+        <p>The most important pattern is that secret exposure often turns into credential-based compromise. This makes detection harder because the attacker may appear to be using valid credentials. For that reason, organizations should not rely only on authentication success or failure logs. They must also monitor behavior after login.</p>
+        <p>Key lessons from the pattern:</p>
+        <ul><li>Secrets must never be shipped with frontend or public production builds.</li><li>Production deployments must be scanned before release.</li><li>Database accounts should have minimum required permissions only.</li><li>Direct database access should be restricted by network controls.</li><li>Large data access patterns should trigger alerts.</li><li>Credential rotation must be fast and practiced.</li><li>Public trust damage can be greater than the technical damage.</li></ul>
+        <p>The incident also highlights the importance of layered defense. Even if a secret is accidentally exposed, strong database restrictions, least privilege, network segmentation, and egress monitoring can reduce the impact.</p>
+        </section>
+        <section class="level-block report-section" id="conclusion">
+        <h2><span class="section-index">10</span>Conclusion</h2>
+        <p>The Nagarik App incident was caused by exposed environment files in the production build. These files contained sensitive credentials that enabled unauthorized database access and large-scale data exfiltration.</p>
+        <p>The incident had critical impact because the affected data included sensitive personal and citizen document information. Immediate response actions focused on removing the exposure, rotating credentials, restoring service through a secured backup server, and preserving the original server for forensic analysis.</p>
+        <p>The primary root cause was weak production configuration control and insufficient secrets management. To prevent similar incidents, the organization should strengthen secure build pipelines, implement automated secret scanning, enforce least privilege, improve database access monitoring, and deploy stronger egress detection.</p>
+        <p>This incident should be treated as a high-severity data breach and used as a clear reminder that configuration security is not a minor operational task. In public-sector systems, a small deployment mistake can become a national-scale trust issue.</p>
+        </section>
+    </div>
+  </main>
+
+  <footer class="site-footer"></footer>
+  <script src="../js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<!-- lokii-note-polish: checked 2026-06-25; focused Nmap field cheat sheet with five master workflows. -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nmap Field Cheat Sheet | Five Master Scan Commands | lokii.tech</title>
+
+    <meta name="description" content="A concise Nmap field cheat sheet with one command skeleton and five master scan workflows for local labs, target discovery, fingerprinting, full port sweeps, service enumeration, and edge cases.">
+    <meta name="author" content="lokii (UnExplainableFish52)">
+    <meta name="theme-color" content="#0d0d0d">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://lokii.tech/intermediate/tools/nmap-cheatsheet.html">
+    <meta property="og:title" content="Nmap Field Cheat Sheet | Five Master Scan Commands | lokii.tech">
+    <meta property="og:description" content="A concise Nmap field cheat sheet with one command skeleton and five master scan workflows for local labs, target discovery, fingerprinting, full port sweeps, service enumeration, and edge cases.">
+    <meta property="og:image" content="https://lokii.tech/preview.jpg">
+    <meta property="og:site_name" content="lokii.tech">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Nmap Field Cheat Sheet | Five Master Scan Commands | lokii.tech">
+    <meta name="twitter:description" content="A concise Nmap field cheat sheet with one command skeleton and five master scan workflows for local labs, target discovery, fingerprinting, full port sweeps, service enumeration, and edge cases.">
+    <meta name="twitter:image" content="https://lokii.tech/preview.jpg">
+    <meta name="twitter:url" content="https://lokii.tech/intermediate/tools/nmap-cheatsheet.html">
+    <link rel="canonical" href="https://lokii.tech/intermediate/tools/nmap-cheatsheet.html">
+    <meta name="robots" content="index, follow">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
+    <link rel="manifest" href="../../site.webmanifest">
+    <link rel="icon" href="../../favicon.ico">
+
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/global-ui.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0d0d0d;
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 18px;
+            line-height: 1.75;
+            min-height: 100vh;
+        }
+
+        .site-header {
+            padding: 15px 20px;
+            border-bottom: 1px solid #30363d;
+            background: rgba(13, 13, 13, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1180px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .branding {
+            text-decoration: none;
+        }
+
+        .branding .logo {
+            color: #00ffff;
+            font-size: 1.5rem;
+            font-weight: 800;
+        }
+
+        .site-nav {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .site-nav .nav-link {
+            color: #c9d1d9;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s ease;
+        }
+
+        .site-nav .nav-link:hover {
+            color: #00ffff;
+        }
+
+        .page-shell {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 42px 32px 70px;
+        }
+
+        .hero {
+            border-bottom: 1px solid #30363d;
+            padding-bottom: 30px;
+            margin-bottom: 28px;
+        }
+
+        .kicker {
+            color: #ffd700;
+            font-weight: 800;
+            letter-spacing: 0;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+        }
+
+        h1 {
+            color: #00ffff;
+            font-size: 3rem;
+            line-height: 1.1;
+            margin-bottom: 12px;
+            text-shadow: 0 0 18px rgba(0, 255, 255, 0.35);
+        }
+
+        .subtitle {
+            color: #d7e0e8;
+            max-width: 860px;
+            font-size: 1.1rem;
+        }
+
+        .jump-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 24px 0 0;
+        }
+
+        .jump-nav a {
+            border: 1px solid #30363d;
+            color: #00d4ff;
+            background: #111;
+            border-radius: 8px;
+            padding: 8px 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        .jump-nav a:hover {
+            border-color: #00ffff;
+            color: #ffd700;
+        }
+
+        h2 {
+            color: #00ffff;
+            font-size: 1.85rem;
+            margin: 36px 0 16px;
+            padding-bottom: 9px;
+            border-bottom: 2px solid #00ffff;
+        }
+
+        h3 {
+            color: #40e0d0;
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+        }
+
+        p, li {
+            color: #f4f7fb;
+            font-weight: 500;
+        }
+
+        a {
+            color: #00ffff;
+        }
+
+        code {
+            background: #1e1e1e;
+            color: #00ff88;
+            padding: 3px 7px;
+            border-radius: 4px;
+            font-family: Consolas, 'Fira Code', monospace;
+            font-size: 0.94em;
+        }
+
+        pre {
+            background: #070707;
+            border: 1px solid #30363d;
+            border-left: 4px solid #00ff88;
+            border-radius: 8px;
+            padding: 18px;
+            margin: 14px 0;
+            overflow-x: auto;
+        }
+
+        pre code {
+            background: transparent;
+            color: #00ff88;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .scope-strip {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.12), rgba(0, 255, 255, 0.07));
+            border: 1px solid #6f6420;
+            border-radius: 8px;
+            padding: 18px 20px;
+            margin: 26px 0;
+        }
+
+        .scope-strip strong {
+            color: #ffd700;
+        }
+
+        .block-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 14px;
+            margin-top: 16px;
+        }
+
+        .block {
+            background: #111;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            padding: 14px;
+        }
+
+        .block strong {
+            display: block;
+            color: #00ffff;
+            margin-bottom: 5px;
+        }
+
+        .master-list {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .master-command {
+            background: #111;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .master-command h3 {
+            border-bottom: 1px solid #30363d;
+            padding-bottom: 9px;
+            margin-bottom: 12px;
+        }
+
+        .purpose {
+            color: #ffd700;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .adjust-list {
+            margin-left: 22px;
+            margin-top: 10px;
+        }
+
+        .adjust-list li {
+            margin-bottom: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            background: #0f0f0f;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th {
+            color: #00ffff;
+            background: #161b22;
+            text-align: left;
+            padding: 12px 14px;
+            border-bottom: 1px solid #30363d;
+        }
+
+        td {
+            padding: 12px 14px;
+            border-bottom: 1px solid #30363d;
+            vertical-align: top;
+        }
+
+        td:first-child {
+            color: #00ff88;
+            font-family: Consolas, monospace;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .compact-note {
+            background: rgba(0, 255, 136, 0.08);
+            border: 1px solid #00ff88;
+            border-radius: 8px;
+            padding: 16px 18px;
+            margin-top: 18px;
+        }
+
+        .footer-note {
+            margin-top: 42px;
+            padding-top: 22px;
+            border-top: 1px solid #30363d;
+            color: #8b949e;
+            text-align: center;
+        }
+
+        body.nmap-cheatsheet-page .page-shell {
+            max-width: 1120px;
+            padding-top: 34px;
+        }
+
+        body.nmap-cheatsheet-page .hero {
+            min-height: auto;
+            display: block;
+            overflow: visible;
+            isolation: auto;
+            text-align: left;
+            padding: 26px 0 28px;
+            margin-bottom: 24px;
+            border-bottom: 1px solid #30363d;
+            background: transparent;
+        }
+
+        body.nmap-cheatsheet-page .hero::before {
+            content: none;
+            display: none;
+        }
+
+        body.nmap-cheatsheet-page .kicker,
+        body.nmap-cheatsheet-page h1,
+        body.nmap-cheatsheet-page .subtitle,
+        body.nmap-cheatsheet-page .jump-nav {
+            position: relative;
+            z-index: 2;
+        }
+
+        body.nmap-cheatsheet-page h1 {
+            max-width: 780px;
+            color: #00ffff;
+            -webkit-text-fill-color: initial;
+            background: none;
+            font-size: clamp(2.3rem, 6vw, 4.4rem);
+            line-height: 1.02;
+            text-align: left;
+            margin: 0 0 14px;
+        }
+
+        body.nmap-cheatsheet-page .subtitle {
+            color: #d7e0e8;
+            max-width: 820px;
+            margin: 0;
+            text-align: left;
+        }
+
+        body.nmap-cheatsheet-page .jump-nav {
+            justify-content: flex-start;
+            max-width: 880px;
+        }
+
+        body.nmap-cheatsheet-page .scope-strip {
+            margin-top: 0;
+        }
+
+        body.nmap-cheatsheet-page td:first-child {
+            white-space: normal;
+            overflow-wrap: anywhere;
+        }
+
+        .command-block {
+            position: relative;
+            margin: 14px 0;
+        }
+
+        .command-block pre {
+            margin: 0;
+            padding-right: 92px;
+        }
+
+        .copy-command {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 3;
+            border: 1px solid rgba(0, 255, 255, 0.45);
+            border-radius: 7px;
+            background: #102024;
+            color: #bdf8d6;
+            font: inherit;
+            font-size: 0.82rem;
+            font-weight: 800;
+            line-height: 1;
+            padding: 8px 10px;
+            cursor: pointer;
+        }
+
+        .copy-command:hover,
+        .copy-command:focus-visible {
+            border-color: #ffd700;
+            color: #ffd700;
+            outline: none;
+        }
+
+        .copy-command.copied {
+            border-color: #00ff88;
+            color: #00ff88;
+        }
+
+        .recipe-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 14px;
+            margin: 16px 0 22px;
+        }
+
+        .recipe-card {
+            background: #111;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            padding: 16px;
+        }
+
+        .recipe-card h3 {
+            color: #00ffff;
+            margin-bottom: 8px;
+        }
+
+        .recipe-card p {
+            margin-bottom: 8px;
+        }
+
+        .recipe-line {
+            color: #ffd700;
+            font-weight: 800;
+        }
+
+        @media (max-width: 760px) {
+            body {
+                font-size: 16px;
+            }
+
+            .header-content {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .site-nav {
+                gap: 14px;
+            }
+
+            .page-shell {
+                padding: 28px 18px 54px;
+            }
+
+            h1 {
+                font-size: 2.15rem;
+            }
+
+            h2 {
+                font-size: 1.45rem;
+            }
+
+            .block-grid {
+                grid-template-columns: 1fr;
+            }
+
+            th, td {
+                padding: 10px;
+            }
+
+            .command-block pre {
+                padding-top: 46px;
+                padding-right: 14px;
+            }
+        }
+    </style>
+    <script type="application/ld+json" data-seo="lokii">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://lokii.tech/#creator",
+          "name": "lokii (UnExplainableFish52)",
+          "url": "https://lokii.tech/",
+          "sameAs": [
+            "https://github.com/UnExplainableFish52"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://lokii.tech/#website",
+          "url": "https://lokii.tech/",
+          "name": "lokii.tech",
+          "description": "An open-source learning platform for computer science, cybersecurity, Linux, networking, and security project guidance.",
+          "publisher": {
+            "@id": "https://lokii.tech/#creator"
+          },
+          "inLanguage": "en"
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://lokii.tech/intermediate/tools/nmap-cheatsheet.html#breadcrumbs",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://lokii.tech/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Intermediate Tools",
+              "item": "https://lokii.tech/#resources"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Nmap Field Cheat Sheet",
+              "item": "https://lokii.tech/intermediate/tools/nmap-cheatsheet.html"
+            }
+          ]
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://lokii.tech/intermediate/tools/nmap-cheatsheet.html#webpage",
+          "url": "https://lokii.tech/intermediate/tools/nmap-cheatsheet.html",
+          "name": "Nmap Field Cheat Sheet | Five Master Scan Commands | lokii.tech",
+          "description": "A concise Nmap field cheat sheet with one command skeleton and five master scan workflows for local labs, target discovery, fingerprinting, full port sweeps, service enumeration, and edge cases.",
+          "isPartOf": {
+            "@id": "https://lokii.tech/#website"
+          },
+          "breadcrumb": {
+            "@id": "https://lokii.tech/intermediate/tools/nmap-cheatsheet.html#breadcrumbs"
+          },
+          "primaryImageOfPage": "https://lokii.tech/preview.jpg",
+          "dateModified": "2026-06-25",
+          "inLanguage": "en"
+        },
+        {
+          "@type": [
+            "TechArticle",
+            "LearningResource"
+          ],
+          "@id": "https://lokii.tech/intermediate/tools/nmap-cheatsheet.html#article",
+          "headline": "Nmap Field Cheat Sheet | Five Master Scan Commands | lokii.tech",
+          "description": "A concise Nmap field cheat sheet with one command skeleton and five master scan workflows for local labs, target discovery, fingerprinting, full port sweeps, service enumeration, and edge cases.",
+          "url": "https://lokii.tech/intermediate/tools/nmap-cheatsheet.html",
+          "image": "https://lokii.tech/preview.jpg",
+          "author": {
+            "@id": "https://lokii.tech/#creator"
+          },
+          "publisher": {
+            "@id": "https://lokii.tech/#creator"
+          },
+          "mainEntityOfPage": {
+            "@id": "https://lokii.tech/intermediate/tools/nmap-cheatsheet.html#webpage"
+          },
+          "educationalLevel": "Intermediate",
+          "learningResourceType": "Cheat Sheet",
+          "dateModified": "2026-06-25",
+          "inLanguage": "en"
+        }
+      ]
+    }
+    </script>
+</head>
+<body class="nmap-cheatsheet-page">
+    <header class="site-header">
+        <div class="header-content">
+            <a href="../../index.html" class="branding">
+                <span class="logo">lokii.tech</span>
+            </a>
+            <nav class="site-nav">
+                <a href="../../index.html#resources" class="nav-link">Resources</a>
+                <a href="nmap.html" class="nav-link">Full Nmap Guide</a>
+                <a href="https://github.com/UnExplainableFish52" target="_blank" class="nav-link" rel="noopener noreferrer">GitHub</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="page-shell">
+        <section class="hero">
+            <p class="kicker">Nmap field page</p>
+            <h1>Nmap Field Cheat Sheet</h1>
+            <p class="subtitle">A short action page for building the right scan from small blocks: target, scan type, ports, depth, timing, and output. Use the full Nmap guide for theory; use this page when you need to act.</p>
+            <nav class="jump-nav" aria-label="Page sections">
+                <a href="#zero">0. Skeleton</a>
+                <a href="#recipes">Block Recipes</a>
+                <a href="#command-1">1. Basic Recon</a>
+                <a href="#command-2">2. Loud Lab</a>
+                <a href="#command-3">3. Slow Lab</a>
+                <a href="#command-4">4. Full TCP</a>
+                <a href="#command-5">5. Service Pack</a>
+            </nav>
+        </section>
+
+        <section class="scope-strip">
+            <p><strong>Before command zero:</strong> know the exact target. In a lab, find the VM IP or the lab subnet first. In real work, use the written scope. If you are not sure what belongs to you, stop and identify the target before scanning.</p>
+        </section>
+
+        <section id="zero">
+            <h2>0. Command Skeleton</h2>
+            <p>This is the shape behind almost every useful Nmap command. Treat each part as a block you swap depending on the task.</p>
+            <div class="command-block">
+                <button class="copy-command" type="button" data-copy-target="cmd-skeleton">Copy</button>
+                <pre><code id="cmd-skeleton">sudo nmap [scan-type] [ports] [depth] [timing] [output] &lt;target&gt;</code></pre>
+            </div>
+
+            <div class="block-grid">
+                <div class="block">
+                    <strong>Target</strong>
+                    <p><code>192.168.56.101</code>, <code>192.168.56.0/24</code>, <code>host.local</code>, or <code>-iL targets.txt</code>.</p>
+                </div>
+                <div class="block">
+                    <strong>Scan type</strong>
+                    <p><code>-sS</code> for privileged TCP SYN, <code>-sT</code> without sudo, <code>-sU</code> for UDP, <code>-sA</code> for firewall filtering behavior.</p>
+                </div>
+                <div class="block">
+                    <strong>Depth</strong>
+                    <p><code>-sV</code> versions, <code>-sC</code> default scripts, <code>-O</code> OS guess, <code>-A</code> all-in-one fingerprinting.</p>
+                </div>
+                <div class="block">
+                    <strong>Ports</strong>
+                    <p>No <code>-p</code> means default top 1000 TCP ports. Use <code>-p 22,80</code>, <code>-p-</code>, or <code>--top-ports 200</code> when needed.</p>
+                </div>
+                <div class="block">
+                    <strong>Speed</strong>
+                    <p><code>-T3</code> normal, <code>-T4</code> fast local lab, <code>-T2</code> slower and less bursty for careful training. Rate flags are optional lab tuning.</p>
+                </div>
+                <div class="block">
+                    <strong>Output</strong>
+                    <p><code>-oA "$(date +%F_%H%M)_name"</code> saves normal, grepable, and XML output with a timestamped base filename. If you are not in Bash, type a clear name manually.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="recipes">
+            <h2>Build Scans From Blocks</h2>
+            <p>Do not memorize random commands. Choose the situation, then combine only the blocks that fit.</p>
+
+            <div class="recipe-grid">
+                <article class="recipe-card">
+                    <h3>Local vulnerable VM</h3>
+                    <p class="recipe-line">known target + SYN + default ports + aggressive depth + fast timing + saved output</p>
+                    <p>Use for Metasploitable, DVWA, OWASP Juice Shop, and other intentionally vulnerable local labs where noise is not the problem.</p>
+                </article>
+                <article class="recipe-card">
+                    <h3>Careful training scan</h3>
+                    <p class="recipe-line">known target + SYN + small port list + version check + slow timing + saved output</p>
+                    <p>Use when practicing disciplined scanning against a monitored lab or a fragile practice network. This is still visible; it is just less bursty.</p>
+                </article>
+                <article class="recipe-card">
+                    <h3>Basic network recon</h3>
+                    <p class="recipe-line">subnet + discovery only, then known host + OS/service check</p>
+                    <p>Use when you need to find devices first, then identify likely operating systems and exposed services.</p>
+                </article>
+                <article class="recipe-card">
+                    <h3>Service follow-up</h3>
+                    <p class="recipe-line">found ports + version check + only matching scripts</p>
+                    <p>Use after the first scan reveals web, SMB, SSH, FTP, database, or UDP services. Focus the scripts on what actually exists.</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="commands">
+            <h2>Five Master Commands</h2>
+            <div class="master-list">
+                <article class="master-command" id="command-1">
+                    <h3>1. Basic recon: find devices, then ask for OS clues</h3>
+                    <p class="purpose">Use when: you know the subnet, but not the exact VM or device IP.</p>
+                    <div class="command-block">
+                        <button class="copy-command" type="button" data-copy-target="cmd-basic-recon">Copy</button>
+                        <pre><code id="cmd-basic-recon">sudo nmap -sn --reason -oA "$(date +%F_%H%M)_live-hosts" 192.168.56.0/24
+sudo nmap -sS -O --osscan-limit --reason -oA "$(date +%F_%H%M)_os-check" 192.168.56.101</code></pre>
+                    </div>
+                    <ul class="adjust-list">
+                        <li><code>-sn</code> does host discovery only. It does not port scan.</li>
+                        <li>Change <code>192.168.56.0/24</code> to your VirtualBox, VMware, home, or lab subnet.</li>
+                        <li><code>-O</code> asks for OS detection after you choose a live host.</li>
+                        <li><code>--osscan-limit</code> keeps OS detection focused on hosts where Nmap has enough signal.</li>
+                    </ul>
+                </article>
+
+                <article class="master-command" id="command-2">
+                    <h3>2. Loud default scan for a local lab VM</h3>
+                    <p class="purpose">Use when: you have a Metasploitable-style target and want the useful first scan.</p>
+                    <div class="command-block">
+                        <button class="copy-command" type="button" data-copy-target="cmd-loud-lab">Copy</button>
+                        <pre><code id="cmd-loud-lab">sudo nmap -sS -A -T4 --reason -oA "$(date +%F_%H%M)_lab-default" 192.168.56.101</code></pre>
+                    </div>
+                    <ul class="adjust-list">
+                        <li>No <code>-p</code> is intentional: Nmap scans the default top 1000 TCP ports.</li>
+                        <li><code>-sS</code> is the normal privileged TCP SYN scan.</li>
+                        <li><code>-A</code> turns on service/version detection, OS detection, default scripts, and traceroute.</li>
+                        <li><code>-T4</code> is fast and practical for a reliable local lab.</li>
+                        <li><code>--reason</code> tells you why Nmap decided a port state.</li>
+                    </ul>
+                </article>
+
+                <article class="master-command" id="command-3">
+                    <h3>3. Slower controlled scan for careful practice</h3>
+                    <p class="purpose">Use when: you are practicing against a monitored lab or a fragile practice network and want fewer bursts.</p>
+                    <div class="command-block">
+                        <button class="copy-command" type="button" data-copy-target="cmd-slow-lab">Copy</button>
+                        <pre><code id="cmd-slow-lab">sudo nmap -sS -sV -T2 --scan-delay 500ms --reason -p 22,80,443 -oA "$(date +%F_%H%M)_careful-scan" 192.168.56.101</code></pre>
+                    </div>
+                    <ul class="adjust-list">
+                        <li><code>-p 22,80,443</code> keeps the scan narrow. Change this list to the ports you actually need.</li>
+                        <li><code>-T2</code> slows the timing template.</li>
+                        <li><code>--scan-delay 500ms</code> spaces probes out. It does not make the scan invisible.</li>
+                        <li>Use this for training discipline, not for pretending a scan cannot be seen.</li>
+                    </ul>
+                </article>
+
+                <article class="master-command" id="command-4">
+                    <h3>4. Full TCP sweep, then fingerprint only what matters</h3>
+                    <p class="purpose">Use when: the default scan is not enough and you suspect services on uncommon ports.</p>
+                    <div class="command-block">
+                        <button class="copy-command" type="button" data-copy-target="cmd-full-tcp">Copy</button>
+                        <pre><code id="cmd-full-tcp">sudo nmap -sS -p- -T4 --reason -oA "$(date +%F_%H%M)_all-tcp" 192.168.56.101
+sudo nmap -sS -sV -sC -O -p 21,22,80,139,445,3306 -oA "$(date +%F_%H%M)_found-detail" 192.168.56.101</code></pre>
+                    </div>
+                    <ul class="adjust-list">
+                        <li><code>-p-</code> checks TCP ports 1 through 65535.</li>
+                        <li><code>-T4</code> is enough speed control for most local labs. Add <code>--min-rate 3000</code> only when you are intentionally tuning a fast lab sweep.</li>
+                        <li>In the second line, replace the <code>-p</code> list with the open ports from the first scan.</li>
+                        <li>This two-step flow keeps the heavy port sweep separate from the detailed fingerprinting.</li>
+                    </ul>
+                </article>
+
+                <article class="master-command" id="command-5">
+                    <h3>5. Service-specific deep dive</h3>
+                    <p class="purpose">Use when: you found a service family and need focused scripts, not a huge script dump.</p>
+                    <div class="command-block">
+                        <button class="copy-command" type="button" data-copy-target="cmd-service-web">Copy</button>
+                        <pre><code id="cmd-service-web">nmap -sV -p 80,443,8080 --script http-title,http-headers,http-methods -oA "$(date +%F_%H%M)_web" 192.168.56.101</code></pre>
+                    </div>
+                    <table>
+                        <tr>
+                            <th>Replace the service block with</th>
+                            <th>Use when</th>
+                        </tr>
+                        <tr>
+                            <td>-p 139,445 --script smb-os-discovery,smb-enum-shares,smb-enum-users</td>
+                            <td>SMB or Samba appears open in a lab.</td>
+                        </tr>
+                        <tr>
+                            <td>-p 21 --script ftp-anon,ftp-syst</td>
+                            <td>FTP is open and you need quick configuration clues.</td>
+                        </tr>
+                        <tr>
+                            <td>-p 22 --script ssh-auth-methods,ssh-hostkey</td>
+                            <td>SSH is open and you want login method and host key context.</td>
+                        </tr>
+                    </table>
+                    <p>Keep this focused. Pick the service family you actually found, then run the matching script set.</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="swaps">
+            <h2>Fast Flag Swaps</h2>
+            <p>Use these as replacement blocks inside the skeleton. They change the behavior of a scan without forcing you to memorize a completely new command.</p>
+            <table>
+                <tr>
+                    <th>Flag</th>
+                    <th>One-line decision</th>
+                </tr>
+                <tr>
+                    <td>-sS</td>
+                    <td>Use as your normal privileged TCP scan in a lab.</td>
+                </tr>
+                <tr>
+                    <td>-sT</td>
+                    <td>Use when you cannot run with elevated privileges.</td>
+                </tr>
+                <tr>
+                    <td>-sU</td>
+                    <td>Use when DNS, SNMP, NTP, VPN, or other UDP services matter.</td>
+                </tr>
+                <tr>
+                    <td>-sA</td>
+                    <td>Use to study firewall filtering behavior, not to find open services directly.</td>
+                </tr>
+                <tr>
+                    <td>-A</td>
+                    <td>Use for loud all-in-one local-lab fingerprinting.</td>
+                </tr>
+                <tr>
+                    <td>-sV -sC -O</td>
+                    <td>Use when you want the explicit version of what <code>-A</code> bundles together.</td>
+                </tr>
+                <tr>
+                    <td>-T4</td>
+                    <td>Use on reliable local labs; slow down on fragile or production-like networks.</td>
+                </tr>
+                <tr>
+                    <td>-oA name</td>
+                    <td>Use whenever the result matters enough to save.</td>
+                </tr>
+            </table>
+
+            <h3>Edge-case replacement commands</h3>
+            <p>These are not extra master commands. They are swaps for when the normal answer is missing or when UDP/firewall behavior is the specific question.</p>
+
+            <div class="command-block">
+                <button class="copy-command" type="button" data-copy-target="cmd-pn-edge">Copy</button>
+                <pre><code id="cmd-pn-edge">sudo nmap -Pn -sS -sV --reason -p 22,80,443 -oA "$(date +%F_%H%M)_no-ping" 192.168.56.101</code></pre>
+            </div>
+
+            <div class="command-block">
+                <button class="copy-command" type="button" data-copy-target="cmd-udp-edge">Copy</button>
+                <pre><code id="cmd-udp-edge">sudo nmap -sU --top-ports 20 --version-intensity 2 -oA "$(date +%F_%H%M)_udp-top" 192.168.56.101</code></pre>
+            </div>
+
+            <div class="command-block">
+                <button class="copy-command" type="button" data-copy-target="cmd-ack-edge">Copy</button>
+                <pre><code id="cmd-ack-edge">sudo nmap -sA --reason -p 22,80,443 -oA "$(date +%F_%H%M)_ack-filtering" 192.168.56.101</code></pre>
+            </div>
+
+            <div class="compact-note">
+                <p><strong>Do not stack everything by default.</strong> A useful scan answers one question cleanly: which hosts exist, which TCP ports are open, what services are behind them, what scripts apply to those services, or whether discovery/filtering is changing the result.</p>
+            </div>
+        </section>
+
+        <p class="footer-note">For concepts, examples, port states, NSE categories, timing explanations, and practice scenarios, read the <a href="nmap.html">full Nmap guide</a>.</p>
+    </main>
+    <script>
+        (function () {
+            function fallbackCopy(text) {
+                const textarea = document.createElement('textarea');
+                textarea.value = text;
+                textarea.setAttribute('readonly', '');
+                textarea.style.position = 'fixed';
+                textarea.style.left = '-9999px';
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                textarea.remove();
+            }
+
+            function setCopied(button) {
+                const original = button.textContent;
+                button.textContent = 'Copied';
+                button.classList.add('copied');
+                window.setTimeout(function () {
+                    button.textContent = original;
+                    button.classList.remove('copied');
+                }, 1400);
+            }
+
+            document.querySelectorAll('.copy-command').forEach(function (button) {
+                button.addEventListener('click', function () {
+                    const target = document.getElementById(button.dataset.copyTarget);
+                    if (!target) {
+                        return;
+                    }
+
+                    const text = target.textContent.trim();
+                    if (navigator.clipboard && window.isSecureContext) {
+                        navigator.clipboard.writeText(text).then(function () {
+                            setCopied(button);
+                        }).catch(function () {
+                            fallbackCopy(text);
+                            setCopied(button);
+                        });
+                        return;
+                    }
+
+                    fallbackCopy(text);
+                    setCopied(button);
+                });
+            });
+        })();
+    </script>
+    <script src="../../js/main.js"></script>
+</body>
+</html>
