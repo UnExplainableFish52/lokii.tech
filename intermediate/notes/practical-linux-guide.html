@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<!-- lokii-note-polish: checked 2026-06-30; converted root linux draft into an Intermediate practical Linux field guide. -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Practical Linux Guide | Intermediate Notes | lokii.tech</title>
+  <meta name="description" content="A practical Linux field guide for system recon, health checks, processes, networking, users, files, services, logs, packages, and secure transfer workflows.">
+  <meta name="author" content="lokii (UnExplainableFish52)">
+  <meta name="theme-color" content="#050505">
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://lokii.tech/intermediate/notes/practical-linux-guide.html">
+  <meta property="og:title" content="Practical Linux Guide | Intermediate Notes | lokii.tech">
+  <meta property="og:description" content="A practical Linux field guide for system recon, health checks, processes, networking, users, files, services, logs, packages, and secure transfer workflows.">
+  <meta property="og:image" content="https://lokii.tech/preview.jpg">
+  <meta property="og:site_name" content="lokii.tech">
+
+  <link rel="canonical" href="https://lokii.tech/intermediate/notes/practical-linux-guide.html">
+  <meta name="robots" content="index, follow">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://lokii.tech/intermediate/notes/practical-linux-guide.html">
+  <meta name="twitter:title" content="Practical Linux Guide | Intermediate Notes | lokii.tech">
+  <meta name="twitter:description" content="A practical Linux field guide for system recon, health checks, processes, networking, users, files, services, logs, packages, and secure transfer workflows.">
+  <meta name="twitter:image" content="https://lokii.tech/preview.jpg">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
+  <link rel="manifest" href="../../site.webmanifest">
+  <link rel="icon" href="../../favicon.ico">
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/global-ui.css">
+
+  <script type="application/ld+json" data-seo="lokii">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://lokii.tech/#creator",
+        "name": "lokii (UnExplainableFish52)",
+        "url": "https://lokii.tech/",
+        "sameAs": [
+          "https://github.com/UnExplainableFish52"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://lokii.tech/#website",
+        "url": "https://lokii.tech/",
+        "name": "lokii.tech",
+        "description": "An open-source learning platform for computer science, cybersecurity, Linux, networking, and security project guidance.",
+        "publisher": {
+          "@id": "https://lokii.tech/#creator"
+        },
+        "inLanguage": "en"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://lokii.tech/intermediate/notes/practical-linux-guide.html#breadcrumbs",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://lokii.tech/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Intermediate Level",
+            "item": "https://lokii.tech/#resources"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Practical Linux Guide | Intermediate Notes | lokii.tech",
+            "item": "https://lokii.tech/intermediate/notes/practical-linux-guide.html"
+          }
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://lokii.tech/intermediate/notes/practical-linux-guide.html#webpage",
+        "url": "https://lokii.tech/intermediate/notes/practical-linux-guide.html",
+        "name": "Practical Linux Guide | Intermediate Notes | lokii.tech",
+        "description": "A practical Linux field guide for system recon, health checks, processes, networking, users, files, services, logs, packages, and secure transfer workflows.",
+        "isPartOf": {
+          "@id": "https://lokii.tech/#website"
+        },
+        "breadcrumb": {
+          "@id": "https://lokii.tech/intermediate/notes/practical-linux-guide.html#breadcrumbs"
+        },
+        "primaryImageOfPage": "https://lokii.tech/preview.jpg",
+        "dateModified": "2026-06-30",
+        "inLanguage": "en"
+      },
+      {
+        "@type": [
+          "TechArticle",
+          "LearningResource"
+        ],
+        "@id": "https://lokii.tech/intermediate/notes/practical-linux-guide.html#article",
+        "headline": "Practical Linux Guide | Intermediate Notes | lokii.tech",
+        "description": "A practical Linux field guide for system recon, health checks, processes, networking, users, files, services, logs, packages, and secure transfer workflows.",
+        "url": "https://lokii.tech/intermediate/notes/practical-linux-guide.html",
+        "image": "https://lokii.tech/preview.jpg",
+        "author": {
+          "@id": "https://lokii.tech/#creator"
+        },
+        "publisher": {
+          "@id": "https://lokii.tech/#creator"
+        },
+        "mainEntityOfPage": {
+          "@id": "https://lokii.tech/intermediate/notes/practical-linux-guide.html#webpage"
+        },
+        "educationalLevel": "Intermediate",
+        "learningResourceType": "Field Guide",
+        "about": [
+          "Linux",
+          "system administration",
+          "network troubleshooting",
+          "process management",
+          "log investigation",
+          "security operations",
+          "evidence handling"
+        ],
+        "dateModified": "2026-06-30",
+        "inLanguage": "en"
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="guide-page">
+  <header class="site-header" id="top">
+    <div class="container">
+      <div class="header-content">
+        <a href="../../index.html" class="branding">
+          <span class="logo">lokii.tech</span>
+        </a>
+        <nav class="nav-links">
+          <a href="../../index.html#about" class="nav-link nav-link-enhanced">About</a>
+          <a href="../../index.html#resources" class="nav-link nav-link-enhanced">Resources</a>
+          <a href="https://github.com/UnExplainableFish52/lokii.tech" target="_blank" class="nav-link nav-link-enhanced" rel="noopener noreferrer">GitHub</a>
+          <a href="https://github.com/UnExplainableFish52/lokii.tech/issues" target="_blank" class="nav-link nav-contribute" rel="noopener noreferrer">Contribute</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="guide-main">
+    <div class="container guide-container">
+      <section class="guide-hero">
+        <p class="section-kicker">Intermediate 2.2 Field Guide</p>
+        <h1>Practical Linux Guide</h1>
+        <p class="guide-subtitle">A linear Linux reference for turning the full course into quick checks, useful actions, and field-ready habits.</p>
+        <p>This page is an orientation before doing real work with Linux. It assumes you have already completed the full Linux course and now need a practical, repeatable way to inspect systems, troubleshoot issues, and collect useful evidence.</p>
+        <div class="guide-nav">
+          <a href="#how-to-use">How to Use</a>
+          <a href="#basic-recon">Basic Recon</a>
+          <a href="#system-health">System Health</a>
+          <a href="#process-management">Processes</a>
+          <a href="#networking">Networking</a>
+          <a href="#users-privileges">Users</a>
+          <a href="#files-metadata-changes">Files</a>
+          <a href="#services-startup">Services</a>
+          <a href="#logs-investigation">Logs</a>
+          <a href="#packages-application-checks">Packages</a>
+          <a href="#secure-transfer-evidence">Evidence</a>
+          <a href="../../index.html#resources">Back to Resources</a>
+        </div>
+      </section>
+
+      <section class="toc-box" id="how-to-use">
+        <h2>How to Use This Guide</h2>
+        <p>This guide follows a strict format: to do a practical task, use the matching command, then read one short line about what it shows or when it helps.</p>
+        <ul>
+          <li>Use it after the full Linux course, not as a replacement for the course.</li>
+          <li>Run commands only on systems you own, administer, or have permission to inspect.</li>
+          <li>Prefer read-only checks first. Use destructive or account-changing commands only when you understand the impact.</li>
+          <li>Keep notes when investigating: command, timestamp, system, output summary, and what you checked next.</li>
+        </ul>
+        <p class="study-note"><strong>Page rule:</strong> Every entry should stay practical: one goal, one command, and one short explanation. Add commands only when they help real Linux usage, troubleshooting, security checking, system administration, or investigation.</p>
+      </section>
+
+      <section class="level-block" id="basic-recon">
+        <h2>Phase 1: Basic Recon</h2>
+        <p>Goal: quickly understand what system you are working with.</p>
+
+        <article class="qa-card">
+          <h3>To check kernel and system information</h3>
+          <pre><code>uname -a</code></pre>
+          <p>Shows the kernel version, architecture, hostname, and system build details.</p>
+        </article>
+
+        <article class="qa-card">
+          <h3>To check the current hostname</h3>
+          <pre><code>hostname</code></pre>
+          <p>Shows the system name on the network.</p>
+        </article>
+
+        <article class="qa-card">
+          <h3>To check who you are logged in as</h3>
+          <pre><code>whoami</code></pre>
+          <p>Shows the current username.</p>
+        </article>
+
+        <article class="qa-card">
+          <h3>To check your user ID and groups</h3>
+          <pre><code>id</code></pre>
+          <p>Shows your UID, GID, and group memberships.</p>
+        </article>
+
+        <article class="qa-card">
+          <h3>To view users on the system</h3>
+          <pre><code>cat /etc/passwd</code></pre>
+          <p>Lists local user accounts stored on the system.</p>
+        </article>
+
+        <article class="qa-card">
+          <h3>To filter normal login users</h3>
+          <pre><code>grep "/bin/bash" /etc/passwd</code></pre>
+          <p>Shows users that likely have an interactive shell.</p>
+        </article>
+
+        <article class="qa-card">
+          <h3>To view general system information</h3>
+          <pre><code>fastfetch</code></pre>
+          <p>Shows a quick summary of OS, kernel, shell, CPU, memory, and desktop environment.</p>
+        </article>
+
+        <article class="qa-card">
+          <h3>To check public IP address</h3>
+          <pre><code>curl icanhazip.com</code></pre>
+          <p>Shows the public IP address seen from the internet.</p>
+        </article>
+
+        <article class="qa-card">
+          <h3>To check local IP addresses and interfaces</h3>
+          <pre><code>ip a</code></pre>
+          <p>Shows local IP addresses, network interfaces, and connection state.</p>
+        </article>
+      </section>
+
+      <section class="level-block" id="system-health">
+        <h2>Phase 2: System Health</h2>
+        <p>Goal: check whether the system is healthy, overloaded, or running out of resources.</p>
+
+        <article class="qa-card">
+          <h3>To check live resource usage</h3>
+          <pre><code>htop</code></pre>
+          <p>Shows live CPU, RAM, process, and resource usage in an interactive view.</p>
+        </article>
+
+        <article class="qa-card">
+          <h3>To check live resource usage without htop</h3>
+          <pre><code>top</code></pre>
+          <p>Shows live processes and resource usage using a default Linux tool.</p>
+        </article>
+
+        <article class="qa-card">
+          <h3>To check memory usage</h3>
+          <pre><code>free -h</code></pre>
+          <p>Shows used, free, and available RAM in human-readable format.</p>
+        </article>
+
+        <article class="qa-card">
+          <h3>To check disk usage</h3>
+          <pre><code>df -h</code></pre>
+          <p>Shows mounted disks and available storage.</p>
+        </article>
+
+        <article class="qa-card">
+          <h3>To check folder size</h3>
+          <pre><code>du -sh folder_name</code></pre>
+          <p>Shows the total size of a specific folder.</p>
+        </article>
+
+        <article class="qa-card">
+          <h3>To check system uptime and load</h3>
+          <pre><code>uptime</code></pre>
+          <p>Shows how long the system has been running and its load average.</p>
+        </article>
+      </section>
+
+      <section class="level-block" id="process-management">
+        <h2>Phase 3: Process Management</h2>
+        <p>Goal: understand what is running and stop processes safely when needed.</p>
+
+        <article class="qa-card">
+          <h3>To view all running processes</h3>
+          <pre><code>ps aux</code></pre>
+          <p>Shows all running processes with their users, CPU usage, memory usage, and PID.</p>
+        </article>
+
+        <article class="qa-card">
+          <h3>To find a process by name</h3>
+          <pre><code>pgrep -a process_name</code></pre>
+          <p>Finds matching processes and shows their PIDs with command details.</p>
+        </article>
+
+        <article class="qa-card">
+          <h3>To view processes as a tree</h3>
+          <pre><code>pstree -p</code></pre>
+          <p>Shows parent-child relationships between processes with PIDs.</p>
+        </article>
+
+        <article class="qa-card">
+          <h3>To stop a process safely</h3>
+          <pre><code>kill PID</code></pre>
+          <p>Sends SIGTERM, asking the process to stop cleanly.</p>
+        </article>
+
+        <article class="qa-card">
+          <h3>To force-stop a stuck process</h3>
+          <pre><code>kill -9 PID</code></pre>
+          <p>Sends SIGKILL, useful only when a process refuses to stop normally.</p>
+        </article>
+
+        <article class="qa-card">
+          <h3>To kill a process by name</h3>
+          <pre><code>pkill process_name</code></pre>
+          <p>Stops processes matching the given name.</p>
+        </article>
+      </section>
+
+      <section class="level-block" id="networking">
+        <h2>Phase 4: Networking</h2>
+        <p>Goal: understand IPs, routes, ports, DNS, connectivity, and packet movement.</p>
+
+        <article class="qa-card">
+          <h3>To check local IP addresses</h3>
+          <pre><code>ip a</code></pre>
+          <p>Shows local IPs, interfaces, and link status.</p>
+        </article>
+
+        <article class="qa-card">
+          <h3>To check network routes</h3>
+          <pre><code>ip r</code></pre>
+          <p>Shows the default gateway and routing table.</p>
+        </article>
+
+        <article class="qa-card">
+          <h3>To check listening ports</h3>
+          <pre><code>ss -tulpen</code></pre>
+          <p>Shows TCP/UDP listening ports, related processes, and users.</p>
+        </article>
+
+        <article class="qa-card">
+          <h3>To test internet connectivity</h3>
+          <pre><code>ping -c 4 8.8.8.8</code></pre>
+          <p>Tests whether the system can reach the internet by IP.</p>
+        </article>
+
+        <article class="qa-card">
+          <h3>To test DNS resolution</h3>
+          <pre><code>dig example.com</code></pre>
+          <p>Checks whether domain names are resolving correctly.</p>
+        </article>
+
+        <article class="qa-card">
+          <h3>To check public IP</h3>
+          <pre><code>curl icanhazip.com</code></pre>
+          <p>Shows the public IP address of the system.</p>
+        </article>
+
+        <article class="qa-card">
+          <h3>To capture packets on an interface</h3>
+          <pre><code>sudo tcpdump -i interface_name -w capture.pcap</code></pre>
+          <p>Captures network traffic and saves it into a packet capture file.</p>
+        </article>
+
+        <article class="qa-card">
+          <h3>To transfer a file securely to another system</h3>
+          <pre><code>scp capture.pcap user@host:/path/</code></pre>
+          <p>Copies a file securely over SSH.</p>
+        </article>
+      </section>
+
+      <section class="level-block" id="users-privileges">
+        <h2>Phase 5: Users and Privileges</h2>
+        <p>Goal: understand accounts, groups, passwords, sudo access, and user control.</p>
+
+        <article class="qa-card">
+          <h3>To check your current user</h3>
+          <pre><code>whoami</code></pre>
+          <p>Shows the username of the current session.</p>
+        </article>
+
+        <article class="qa-card">
+          <h3>To check a user's ID and groups</h3>
+          <pre><code>id username</code></pre>
+          <p>Shows the UID, GID, and groups for a specific user.</p>
+        </article>
+
+        <article class="qa-card">
+          <h3>To check a user's groups</h3>
+          <pre><code>groups username</code></pre>
+          <p>Shows which groups the user belongs to.</p>
+        </article>
+
+        <article class="qa-card">
+          <h3>To check your sudo permissions</h3>
+          <pre><code>sudo -l</code></pre>
+          <p>Shows what commands your user can run with sudo.</p>
+        </article>
+
+        <article class="qa-card">
+          <h3>To change a user password</h3>
+          <pre><code>sudo passwd username</code></pre>
+          <p>Changes the password for a user account.</p>
+        </article>
+
+        <article class="qa-card">
+          <h3>To lock a user account</h3>
+          <pre><code>sudo usermod -L username</code></pre>
+          <p>Locks the user account from password login.</p>
+        </article>
+
+        <article class="qa-card">
+          <h3>To unlock a user account</h3>
+          <pre><code>sudo usermod -U username</code></pre>
+          <p>Unlocks a previously locked user account.</p>
+        </article>
+
+        <article class="qa-card">
+          <h3>To add a user to a group</h3>
+          <pre><code>sudo usermod -aG group_name username</code></pre>
+          <p>Adds a user to a group without removing existing group memberships.</p>
+        </article>
+
+        <article class="qa-card">
+          <h3>To delete a user</h3>
+          <pre><code>sudo userdel username</code></pre>
+          <p>Deletes a user account but keeps the home directory.</p>
+        </article>
+
+        <article class="qa-card">
+          <h3>To delete a user with home directory</h3>
+          <pre><code>sudo userdel -r username</code></pre>
+          <p>Deletes the user account and its home directory.</p>
+        </article>
+      </section>
+
+      <section class="level-block" id="files-metadata-changes">
+        <h2>Phase 6: Files, Metadata, and Changes</h2>
+        <p>Goal: inspect files, permissions, ownership, size, and recent changes.</p>
+
+        <article class="qa-card">
+          <h3>To view file metadata</h3>
+          <pre><code>stat file_name</code></pre>
+          <p>Shows file size, permissions, owner, access time, modify time, and change time.</p>
+        </article>
+
+        <article class="qa-card">
+          <h3>To view file permissions clearly</h3>
+          <pre><code>ls -lah file_name</code></pre>
+          <p>Shows permissions, owner, group, size, and modification time.</p>
+        </article>
+
+        <article class="qa-card">
+          <h3>To find recently modified files</h3>
+          <pre><code>find /path -type f -mtime -1</code></pre>
+          <p>Finds files modified within the last 24 hours.</p>
+        </article>
+
+        <article class="qa-card">
+          <h3>To find large files</h3>
+          <pre><code>find /path -type f -size +100M</code></pre>
+          <p>Finds files larger than 100 MB.</p>
+        </article>
+
+        <article class="qa-card">
+          <h3>To find hidden files</h3>
+          <pre><code>find /path -name ".*"</code></pre>
+          <p>Finds hidden files and directories.</p>
+        </article>
+
+        <article class="qa-card">
+          <h3>To find world-writable files</h3>
+          <pre><code>find /path -type f -perm -o+w</code></pre>
+          <p>Finds files that any user on the system can write to.</p>
+        </article>
+
+        <article class="qa-card">
+          <h3>To calculate a file hash</h3>
+          <pre><code>sha256sum file_name</code></pre>
+          <p>Creates a SHA-256 hash for integrity checking or evidence tracking.</p>
+        </article>
+      </section>
+
+      <section class="level-block" id="services-startup">
+        <h2>Optional Phase 7: Services and Startup</h2>
+        <p>Goal: check what runs automatically, what is active, and what failed.</p>
+
+        <article class="qa-card">
+          <h3>To check services enabled at boot</h3>
+          <pre><code>systemctl list-unit-files --type=service --state=enabled</code></pre>
+          <p>Shows services configured to start automatically with the system.</p>
+        </article>
+
+        <article class="qa-card">
+          <h3>To check currently running services</h3>
+          <pre><code>systemctl list-units --type=service --state=running</code></pre>
+          <p>Shows services currently active on the system.</p>
+        </article>
+
+        <article class="qa-card">
+          <h3>To check failed services</h3>
+          <pre><code>systemctl --failed</code></pre>
+          <p>Shows services that failed to start or crashed.</p>
+        </article>
+
+        <article class="qa-card">
+          <h3>To check one service</h3>
+          <pre><code>systemctl status service_name</code></pre>
+          <p>Shows whether a service is running, failed, disabled, or enabled.</p>
+        </article>
+
+        <article class="qa-card">
+          <h3>To stop a service</h3>
+          <pre><code>sudo systemctl stop service_name</code></pre>
+          <p>Stops a running service until it is started again or the system reboots.</p>
+        </article>
+
+        <article class="qa-card">
+          <h3>To disable a service from boot</h3>
+          <pre><code>sudo systemctl disable service_name</code></pre>
+          <p>Prevents a service from starting automatically at boot.</p>
+        </article>
+      </section>
+
+      <section class="level-block" id="logs-investigation">
+        <h2>Optional Phase 8: Logs and Investigation</h2>
+        <p>Goal: check what happened recently on the system.</p>
+
+        <article class="qa-card">
+          <h3>To check recent system logs</h3>
+          <pre><code>journalctl --since "1 hour ago"</code></pre>
+          <p>Shows system logs from the last hour.</p>
+        </article>
+
+        <article class="qa-card">
+          <h3>To check logs for one service</h3>
+          <pre><code>journalctl -u service_name --since "1 hour ago"</code></pre>
+          <p>Shows recent logs for a specific service.</p>
+        </article>
+
+        <article class="qa-card">
+          <h3>To check recent sudo usage</h3>
+          <pre><code>journalctl _COMM=sudo --since "24 hours ago"</code></pre>
+          <p>Shows sudo commands used recently.</p>
+        </article>
+
+        <article class="qa-card">
+          <h3>To check successful logins</h3>
+          <pre><code>last</code></pre>
+          <p>Shows recent successful login sessions.</p>
+        </article>
+
+        <article class="qa-card">
+          <h3>To check current logged-in users</h3>
+          <pre><code>w</code></pre>
+          <p>Shows who is logged in and what they are doing.</p>
+        </article>
+
+        <article class="qa-card">
+          <h3>To check failed SSH login attempts</h3>
+          <pre><code>grep "Failed password" /var/log/auth.log</code></pre>
+          <p>Shows failed SSH/password login attempts on Debian/Ubuntu systems.</p>
+        </article>
+
+        <article class="qa-card">
+          <h3>To check successful SSH logins</h3>
+          <pre><code>grep "Accepted" /var/log/auth.log</code></pre>
+          <p>Shows successful SSH login attempts on Debian/Ubuntu systems.</p>
+        </article>
+      </section>
+
+      <section class="level-block" id="packages-application-checks">
+        <h2>Optional Phase 9: Packages and Application Checks</h2>
+        <p>Goal: check whether a command exists, where it is located, and what package/application is installed.</p>
+
+        <article class="qa-card">
+          <h3>To check if a command exists</h3>
+          <pre><code>which command_name</code></pre>
+          <p>Shows the path of a command if it exists in the system PATH.</p>
+        </article>
+
+        <article class="qa-card">
+          <h3>To check command location more reliably</h3>
+          <pre><code>command -v command_name</code></pre>
+          <p>Shows how the shell resolves a command.</p>
+        </article>
+
+        <article class="qa-card">
+          <h3>To find related binary, source, and manual paths</h3>
+          <pre><code>whereis command_name</code></pre>
+          <p>Shows common locations related to a command.</p>
+        </article>
+
+        <article class="qa-card">
+          <h3>To check installed packages on Debian/Ubuntu</h3>
+          <pre><code>apt list --installed</code></pre>
+          <p>Lists installed packages on Debian/Ubuntu systems.</p>
+        </article>
+
+        <article class="qa-card">
+          <h3>To search installed packages on Debian/Ubuntu</h3>
+          <pre><code>apt list --installed | grep package_name</code></pre>
+          <p>Checks whether a specific package is installed.</p>
+        </article>
+      </section>
+
+      <section class="level-block" id="secure-transfer-evidence">
+        <h2>Optional Phase 10: Secure Transfer and Evidence Handling</h2>
+        <p>Goal: move files safely and keep basic integrity records.</p>
+
+        <article class="qa-card">
+          <h3>To compress a folder</h3>
+          <pre><code>tar -czf archive.tar.gz folder_name</code></pre>
+          <p>Creates a compressed archive of a folder.</p>
+        </article>
+
+        <article class="qa-card">
+          <h3>To copy a file securely to another system</h3>
+          <pre><code>scp file_name user@host:/path/</code></pre>
+          <p>Transfers a file securely over SSH.</p>
+        </article>
+
+        <article class="qa-card">
+          <h3>To download a file securely from another system</h3>
+          <pre><code>scp user@host:/path/file_name .</code></pre>
+          <p>Downloads a file from a remote system over SSH.</p>
+        </article>
+
+        <article class="qa-card">
+          <h3>To verify file integrity</h3>
+          <pre><code>sha256sum file_name</code></pre>
+          <p>Creates a hash that can be used to confirm the file did not change.</p>
+        </article>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>lokii.tech</h4>
+          <p>Free cybersecurity and systems learning notes for building practical skill, clear reports, and portfolio-ready security work.</p>
+        </div>
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="../../index.html#about">About</a></li>
+            <li><a href="../../index.html#resources">Resources</a></li>
+            <li><a href="https://github.com/UnExplainableFish52/lokii.tech" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Intermediate Guide</h4>
+          <p>Practical Linux commands for system checks, troubleshooting, security review, and evidence handling.</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 lokii.tech. Free and open-source learning material for cybersecurity, systems, Linux, networking, GRC, and security project practice. <a href="../../LICENSE">See License</a></p>
+      </div>
+    </div>
+  </footer>
+  <script src="../../js/main.js"></script>
+</body>
+</html>
