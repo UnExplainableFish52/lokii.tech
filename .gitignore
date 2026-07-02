@@ -9,6 +9,7 @@ Desktop.ini
 __pycache__/
 *.py[cod]
 *.log
+!assets/OpenSSH_2k.log
 *.tmp
 *.temp
 *.bak

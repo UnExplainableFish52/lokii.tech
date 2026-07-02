@@ -182,42 +182,28 @@
           <li>Prefer read-only checks first. Use destructive or account-changing commands only when you understand the impact.</li>
           <li>Keep notes when investigating: command, timestamp, system, output summary, and what you checked next.</li>
         </ul>
-        <details>
-          <summary>How to read placeholders and flags</summary>
-          <ul>
-            <li><code>file_name</code>, <code>folder_name</code>, <code>username</code>, <code>service_name</code>, <code>interface_name</code>, and <code>host</code> are placeholders. Replace them with the real file, folder, account, service, interface, or remote system.</li>
-            <li>Flags change command behavior. For example, <code>-h</code> often means human-readable, <code>-a</code> often means all, <code>-r</code> often means recursive, and <code>-n</code> often controls a number. Always confirm with <code>command --help</code> when a command is new to you.</li>
-            <li>Numbers are usually adjustable. Change <code>-c 4</code> to <code>-c 10</code> for more ping packets, <code>-n 50</code> to <code>-n 200</code> for more log lines, or <code>+100M</code> to <code>+1G</code> for larger file searches.</li>
-            <li>Paths control scope. Start with a narrow path such as your home directory or a lab folder before scanning all of <code>/</code>.</li>
-          </ul>
-        </details>
+        <p class="study-note"><strong>How to read command comments:</strong> Lines starting with <code>#</code> are teaching notes, not part of the command to paste. Placeholder names such as <code>file_name</code>, <code>folder_name</code>, <code>username</code>, <code>service_name</code>, <code>interface_name</code>, and <code>host</code> should be replaced with real values.</p>
         <p class="study-note"><strong>Page rule:</strong> Every entry should stay practical: one goal, one command, and one short explanation. Add commands only when they help real Linux usage, troubleshooting, security checking, system administration, or investigation.</p>
       </section>
-
       <section class="level-block" id="basic-recon">
         <h2>Phase 1: Basic Recon</h2>
         <p>Goal: quickly understand what system you are working with.</p>
-        <details>
-          <summary>Flags and values to adjust in basic recon</summary>
-          <ul>
-            <li><code>uname -a</code>: <code>-a</code> prints all common system fields. Use <code>uname -r</code> for only the kernel release, <code>uname -m</code> for CPU architecture, and <code>uname -n</code> for the network node name.</li>
-            <li><code>hostname</code>: use plain <code>hostname</code> for the system name, <code>hostname -I</code> for assigned IP addresses, and <code>hostnamectl</code> on systemd systems for the static hostname and OS summary.</li>
-            <li><code>id</code>: use plain <code>id</code> for your own identity, <code>id username</code> for another user, <code>id -u</code> for only the UID, and <code>id -nG username</code> for group names only.</li>
-            <li><code>grep "/bin/bash" /etc/passwd</code>: change <code>/bin/bash</code> to another shell such as <code>/bin/zsh</code>, or use <code>getent passwd</code> when accounts may come from LDAP, AD, or another identity source.</li>
-            <li><code>curl icanhazip.com</code>: add <code>-4</code> or <code>-6</code> to force IPv4 or IPv6, and use <code>-s</code> for quiet script-friendly output.</li>
-            <li><code>ip a</code>: use <code>ip -br a</code> for a compact view, <code>ip a show interface_name</code> for one interface, and <code>ip link</code> when you only need link state.</li>
-          </ul>
-        </details>
 
         <article class="qa-card">
           <h3>To check kernel and system information</h3>
-          <pre><code>uname -a</code></pre>
+          <pre><code>uname -a
+# -a: all common system fields
+# -r: kernel release only
+# -m: machine architecture
+# -n: network node name</code></pre>
           <p>Shows the kernel version, architecture, hostname, and system build details.</p>
         </article>
 
         <article class="qa-card">
           <h3>To check the current hostname</h3>
-          <pre><code>hostname</code></pre>
+          <pre><code>hostname
+# -I: assigned IP addresses
+# hostnamectl: static hostname and OS summary on systemd systems</code></pre>
           <p>Shows the system name on the network.</p>
         </article>
 
@@ -229,74 +215,61 @@
 
         <article class="qa-card">
           <h3>To check your user ID and groups</h3>
-          <pre><code>id</code></pre>
+          <pre><code>id
+# id username: check another user
+# -u: UID only
+# -nG: group names only</code></pre>
           <p>Shows your UID, GID, and group memberships.</p>
         </article>
 
         <article class="qa-card">
           <h3>To check your current directory</h3>
-          <pre><code>pwd</code></pre>
+          <pre><code>pwd
+# Use before copying, deleting, or moving files
+# No normal daily flags are needed</code></pre>
           <p>Prints the full path of your current working directory.</p>
-          <details>
-            <summary>How to adjust it</summary>
-            <ul>
-              <li><code>pwd</code> has no normal flags needed for daily work. Use it before copying, deleting, or moving files so you know where the command will run.</li>
-              <li>Use it in scripts when output paths depend on the current directory.</li>
-            </ul>
-          </details>
         </article>
 
         <article class="qa-card">
           <h3>To list files clearly</h3>
-          <pre><code>ls -lah</code></pre>
+          <pre><code>ls -lah
+# -l: long format with permissions, owner, size, and time
+# -a: all entries, including hidden dotfiles
+# -h: human-readable sizes
+# ls -ltr: sort by time with newest entries at the bottom</code></pre>
           <p>Lists files, hidden entries, permissions, owners, sizes, and modification times in a readable format.</p>
-          <details>
-            <summary>Flags and variants</summary>
-            <ul>
-              <li><code>-l</code> uses long format with permissions, owner, group, size, and time.</li>
-              <li><code>-a</code> includes hidden files that start with a dot.</li>
-              <li><code>-h</code> makes sizes readable, such as <code>4K</code>, <code>20M</code>, or <code>1G</code>.</li>
-              <li>Use <code>ls -ltr</code> to sort by time with newest entries at the bottom, or <code>ls -lah folder_name</code> to inspect a specific folder.</li>
-            </ul>
-          </details>
         </article>
 
         <article class="qa-card">
           <h3>To move into another directory</h3>
-          <pre><code>cd /path/to/folder</code></pre>
+          <pre><code>cd /path/to/folder
+# /path/to/folder: replace with an absolute or relative path
+# cd: go home
+# cd -: return to the previous directory
+# cd ..: move one level up</code></pre>
           <p>Changes your current working directory to the selected path.</p>
-          <details>
-            <summary>Values and variants</summary>
-            <ul>
-              <li>Replace <code>/path/to/folder</code> with an absolute path such as <code>/var/log</code> or a relative path such as <code>../notes</code>.</li>
-              <li>Use <code>cd</code> to return to your home directory, <code>cd -</code> to jump back to the previous directory, and <code>cd ..</code> to move one level up.</li>
-              <li>Run <code>pwd</code> after changing directories if the next command will modify files.</li>
-            </ul>
-          </details>
         </article>
 
         <article class="qa-card">
           <h3>To view users on the system</h3>
-          <pre><code>cat /etc/passwd</code></pre>
+          <pre><code>cat /etc/passwd
+# /etc/passwd: local account database, not necessarily every identity source</code></pre>
           <p>Lists local user accounts stored on the system.</p>
         </article>
 
         <article class="qa-card">
           <h3>To view users from the active identity source</h3>
-          <pre><code>getent passwd</code></pre>
+          <pre><code>getent passwd
+# getent passwd username: check one account
+# Use when LDAP, AD, NIS, or another identity source may exist</code></pre>
           <p>Shows user accounts using the system name service configuration, not only the local password file.</p>
-          <details>
-            <summary>Values and variants</summary>
-            <ul>
-              <li>Use <code>getent passwd username</code> to check one account.</li>
-              <li>Prefer <code>getent</code> over <code>cat /etc/passwd</code> when the system may use LDAP, Active Directory, NIS, or another external identity source.</li>
-            </ul>
-          </details>
         </article>
 
         <article class="qa-card">
           <h3>To filter normal login users</h3>
-          <pre><code>grep "/bin/bash" /etc/passwd</code></pre>
+          <pre><code>grep "/bin/bash" /etc/passwd
+# Change "/bin/bash" to another shell such as "/bin/zsh"
+# Use getent passwd when accounts may come from external identity sources</code></pre>
           <p>Shows users that likely have an interactive shell.</p>
         </article>
 
@@ -308,1193 +281,813 @@
 
         <article class="qa-card">
           <h3>To view shell environment variables</h3>
-          <pre><code>env | sort</code></pre>
+          <pre><code>env | sort
+# printenv PATH: show one variable
+# env | grep -i proxy: find proxy-related settings
+# Do not paste full output publicly; it may contain sensitive values</code></pre>
           <p>Shows environment variables in alphabetical order, which helps when checking shell, PATH, proxy, or application settings.</p>
-          <details>
-            <summary>Values and variants</summary>
-            <ul>
-              <li>Use <code>printenv PATH</code> to check one variable.</li>
-              <li>Use <code>env | grep -i proxy</code> to find proxy-related settings.</li>
-              <li>Do not paste full environment output publicly. It may contain tokens, paths, usernames, or internal hostnames.</li>
-            </ul>
-          </details>
         </article>
 
         <article class="qa-card">
           <h3>To check public IP address</h3>
-          <pre><code>curl icanhazip.com</code></pre>
+          <pre><code>curl icanhazip.com
+# -4: force IPv4
+# -6: force IPv6
+# -s: silent output for scripts</code></pre>
           <p>Shows the public IP address seen from the internet.</p>
         </article>
 
         <article class="qa-card">
           <h3>To check local IP addresses and interfaces</h3>
-          <pre><code>ip a</code></pre>
+          <pre><code>ip a
+# ip -br a: compact interface summary
+# ip a show interface_name: one interface only
+# ip link: link state, MAC address, and interface flags</code></pre>
           <p>Shows local IP addresses, network interfaces, and connection state.</p>
         </article>
       </section>
-
       <section class="level-block" id="system-health">
         <h2>Phase 2: System Health</h2>
         <p>Goal: check whether the system is healthy, overloaded, or running out of resources.</p>
-        <details>
-          <summary>Flags and values to adjust in system health checks</summary>
-          <ul>
-            <li><code>top</code>: press <code>P</code> to sort by CPU, <code>M</code> to sort by memory, <code>k</code> to send a signal, and <code>q</code> to quit. Use <code>top -o %MEM</code> when you want memory-heavy processes first.</li>
-            <li><code>free -h</code>: <code>-h</code> makes values readable. Use <code>free -m</code> for MiB, <code>free -g</code> for GiB, and focus on the <code>available</code> column for practical capacity.</li>
-            <li><code>df -h</code>: <code>-h</code> makes disk sizes readable. Add a path such as <code>df -h /var</code> to check the filesystem holding that path.</li>
-            <li><code>du -sh folder_name</code>: <code>-s</code> summarizes instead of listing every child, and <code>-h</code> makes the result readable. Replace <code>folder_name</code> with the folder you are measuring.</li>
-            <li><code>uptime</code>: compare the load averages to CPU count from <code>nproc</code>. A load near or above CPU count for a long time deserves investigation.</li>
-          </ul>
-        </details>
 
         <article class="qa-card">
           <h3>To check live resource usage</h3>
-          <pre><code>htop</code></pre>
+          <pre><code>htop
+# F6: change sort column
+# F9: send a signal to a selected process
+# q: quit
+# Save evidence separately with ps aux or screenshots if needed</code></pre>
           <p>Shows live CPU, RAM, process, and resource usage in an interactive view.</p>
-          <details>
-            <summary>How to use it</summary>
-            <ul>
-              <li>Use function keys or the bottom menu to search, filter, sort, and inspect processes.</li>
-              <li>Press <code>F6</code> to change sort column, <code>F9</code> to send a signal, and <code>q</code> to quit.</li>
-              <li>Use this for live triage. Save evidence separately with commands such as <code>ps aux</code> or screenshots if needed.</li>
-            </ul>
-          </details>
         </article>
 
         <article class="qa-card">
           <h3>To check live resource usage without htop</h3>
-          <pre><code>top</code></pre>
+          <pre><code>top
+# P: sort by CPU
+# M: sort by memory
+# k: send a signal
+# q: quit
+# top -o %MEM: start with memory-heavy processes first</code></pre>
           <p>Shows live processes and resource usage using a default Linux tool.</p>
         </article>
 
         <article class="qa-card">
           <h3>To check memory usage</h3>
-          <pre><code>free -h</code></pre>
+          <pre><code>free -h
+# -h: human-readable units
+# -m: MiB
+# -g: GiB
+# Focus on available for practical remaining capacity</code></pre>
           <p>Shows used, free, and available RAM in human-readable format.</p>
         </article>
 
         <article class="qa-card">
           <h3>To check disk usage</h3>
-          <pre><code>df -h</code></pre>
+          <pre><code>df -h
+# -h: human-readable sizes
+# df -h /path: check the filesystem holding that path
+# -i: inode usage when space is free but file creation fails</code></pre>
           <p>Shows mounted disks and available storage.</p>
-          <details>
-            <summary>Flags and variants</summary>
-            <ul>
-              <li><code>-h</code> makes sizes readable.</li>
-              <li>Use <code>df -h /path</code> to check the filesystem that contains a specific path.</li>
-              <li>Use <code>df -i</code> when a disk has free space but still cannot create files. That checks inode usage.</li>
-            </ul>
-          </details>
         </article>
 
         <article class="qa-card">
           <h3>To check folder size</h3>
-          <pre><code>du -sh folder_name</code></pre>
+          <pre><code>du -sh folder_name
+# -s: summary total instead of every child
+# -h: human-readable units
+# folder_name: replace with the folder to measure
+# --max-depth=1: show immediate child folder sizes</code></pre>
           <p>Shows the total size of a specific folder.</p>
-          <details>
-            <summary>Flags and variants</summary>
-            <ul>
-              <li><code>-s</code> gives one total instead of every nested folder.</li>
-              <li><code>-h</code> prints readable units.</li>
-              <li>Use <code>du -h --max-depth=1 folder_name</code> to see which immediate child folder is using space.</li>
-              <li>Use <code>sudo du -sh /var/log</code> only when normal permissions hide important folders.</li>
-            </ul>
-          </details>
         </article>
 
         <article class="qa-card">
           <h3>To check system uptime and load</h3>
-          <pre><code>uptime</code></pre>
+          <pre><code>uptime
+# Compare load averages with CPU count from nproc
+# Load near or above CPU count for a long time deserves investigation</code></pre>
           <p>Shows how long the system has been running and its load average.</p>
         </article>
 
         <article class="qa-card">
           <h3>To check CPU count</h3>
-          <pre><code>nproc</code></pre>
+          <pre><code>nproc
+# Use this number when reading uptime load averages
+# lscpu: detailed CPU, architecture, and virtualization information</code></pre>
           <p>Shows how many processing units Linux sees.</p>
-          <details>
-            <summary>How to use the value</summary>
-            <ul>
-              <li>Compare this number with <code>uptime</code> load averages. A 4-core system can tolerate a different load than a 1-core system.</li>
-              <li>Use <code>lscpu</code> when you need more detail about sockets, cores, threads, architecture, and virtualization.</li>
-            </ul>
-          </details>
         </article>
 
         <article class="qa-card">
           <h3>To check block devices and mount layout</h3>
-          <pre><code>lsblk -f</code></pre>
+          <pre><code>lsblk -f
+# -f: filesystem details
+# plain lsblk: simpler block-device tree
+# Use before disk, partition, or mount work</code></pre>
           <p>Shows disks, partitions, filesystems, labels, UUIDs, and mount points.</p>
-          <details>
-            <summary>Flags and variants</summary>
-            <ul>
-              <li><code>-f</code> includes filesystem details.</li>
-              <li>Use plain <code>lsblk</code> for a simpler tree.</li>
-              <li>Use this before disk, partition, or mount work so you do not confuse devices.</li>
-            </ul>
-          </details>
         </article>
       </section>
-
       <section class="level-block" id="process-management">
         <h2>Phase 3: Process Management</h2>
         <p>Goal: understand what is running and stop processes safely when needed.</p>
-        <details>
-          <summary>Flags and values to adjust in process checks</summary>
-          <ul>
-            <li><code>ps aux</code>: <code>a</code> shows processes for all users, <code>u</code> uses a user-oriented format, and <code>x</code> includes processes without a terminal.</li>
-            <li><code>pgrep -a process_name</code>: <code>-a</code> prints the full command line. Add <code>-u username</code> to search only one user's processes, or <code>-f</code> to match the full command line.</li>
-            <li><code>pstree -p</code>: <code>-p</code> shows PIDs. Use <code>pstree -ap</code> to include command arguments.</li>
-            <li><code>kill PID</code>: plain <code>kill</code> sends SIGTERM. Use <code>kill -15 PID</code> for the same signal explicitly, and reserve <code>kill -9 PID</code> for stuck processes.</li>
-            <li><code>pkill process_name</code>: match carefully. Use <code>pgrep -a process_name</code> first so you can see what will be affected.</li>
-          </ul>
-        </details>
 
         <article class="qa-card">
           <h3>To view all running processes</h3>
-          <pre><code>ps aux</code></pre>
+          <pre><code>ps aux
+# a: processes for all users
+# u: user-oriented format
+# x: include processes without a terminal
+# --sort=-%cpu: high CPU first
+# --sort=-%mem: high memory first</code></pre>
           <p>Shows all running processes with their users, CPU usage, memory usage, and PID.</p>
-          <details>
-            <summary>Useful variants</summary>
-            <ul>
-              <li><code>ps aux --sort=-%cpu | head</code> shows high CPU processes near the top.</li>
-              <li><code>ps aux --sort=-%mem | head</code> shows high memory processes near the top.</li>
-              <li><code>ps -u username</code> shows processes owned by one user.</li>
-            </ul>
-          </details>
         </article>
 
         <article class="qa-card">
           <h3>To find a process by name</h3>
-          <pre><code>pgrep -a process_name</code></pre>
+          <pre><code>pgrep -a process_name
+# -a: show the full command line
+# -u username: match one user only
+# -f: match the full command line
+# process_name: replace with the process pattern</code></pre>
           <p>Finds matching processes and shows their PIDs with command details.</p>
         </article>
 
         <article class="qa-card">
           <h3>To view processes as a tree</h3>
-          <pre><code>pstree -p</code></pre>
+          <pre><code>pstree -p
+# -p: show PIDs
+# -a: show command arguments
+# pstree -ap: tree with arguments and PIDs</code></pre>
           <p>Shows parent-child relationships between processes with PIDs.</p>
         </article>
 
         <article class="qa-card">
           <h3>To stop a process safely</h3>
-          <pre><code>kill PID</code></pre>
+          <pre><code>kill PID
+# PID: replace with the process ID from ps, pgrep, top, or htop
+# plain kill sends SIGTERM
+# kill -15 PID: explicit SIGTERM
+# Verify before escalating to kill -9</code></pre>
           <p>Sends SIGTERM, asking the process to stop cleanly.</p>
-          <details>
-            <summary>Safety and variants</summary>
-            <ul>
-              <li>Replace <code>PID</code> with the process ID from <code>ps</code>, <code>pgrep</code>, <code>top</code>, or <code>htop</code>.</li>
-              <li>Use <code>kill -15 PID</code> when you want to be explicit about SIGTERM.</li>
-              <li>Wait a few seconds and verify with <code>pgrep -a process_name</code> before escalating.</li>
-            </ul>
-          </details>
         </article>
 
         <article class="qa-card">
           <h3>To force-stop a stuck process</h3>
-          <pre><code>kill -9 PID</code></pre>
+          <pre><code>kill -9 PID
+# -9: SIGKILL, which the process cannot cleanly handle
+# Use only after kill PID or kill -15 PID fails
+# Avoid on databases, package managers, backups, and write-heavy processes</code></pre>
           <p>Sends SIGKILL, useful only when a process refuses to stop normally.</p>
-          <details>
-            <summary>Safety and variants</summary>
-            <ul>
-              <li><code>-9</code> sends SIGKILL, which the process cannot cleanly handle.</li>
-              <li>Use this only after <code>kill PID</code> or <code>kill -15 PID</code> fails.</li>
-              <li>Avoid this on databases, package managers, backups, or write-heavy processes unless you understand the risk of corruption.</li>
-            </ul>
-          </details>
         </article>
 
         <article class="qa-card">
           <h3>To kill a process by name</h3>
-          <pre><code>pkill process_name</code></pre>
+          <pre><code>pkill process_name
+# Run pgrep -a process_name first to preview matches
+# -u username: limit matching to one user
+# -f pattern: match the full command line; can catch more than expected</code></pre>
           <p>Stops processes matching the given name.</p>
-          <details>
-            <summary>Flags and safer workflow</summary>
-            <ul>
-              <li>Run <code>pgrep -a process_name</code> first to preview matches.</li>
-              <li>Use <code>pkill -u username process_name</code> to limit matching to one user.</li>
-              <li>Use <code>pkill -f pattern</code> only when you need to match the full command line. This can catch more than expected.</li>
-            </ul>
-          </details>
         </article>
 
         <article class="qa-card">
           <h3>To inspect open files for a process</h3>
-          <pre><code>lsof -p PID</code></pre>
+          <pre><code>lsof -p PID
+# -p PID: inspect one process ID
+# -i: focus on network sockets
+# Use when a process holds a file, port, or mounted filesystem open</code></pre>
           <p>Shows files, sockets, and resources opened by a specific process.</p>
-          <details>
-            <summary>Values and variants</summary>
-            <ul>
-              <li>Replace <code>PID</code> with the process ID you are investigating.</li>
-              <li>Use <code>lsof -i</code> to focus on network sockets.</li>
-              <li>Use this when a process will not release a file, port, or mounted filesystem.</li>
-            </ul>
-          </details>
         </article>
       </section>
-
       <section class="level-block" id="networking">
         <h2>Phase 4: Networking</h2>
         <p>Goal: understand IPs, routes, ports, DNS, connectivity, and packet movement.</p>
-        <details>
-          <summary>Flags and values to adjust in networking commands</summary>
-          <ul>
-            <li><code>ip a</code>: use <code>ip -br a</code> for a compact view, <code>ip a show interface_name</code> for one interface, and <code>ip link set interface_name up</code> only when you intentionally change interface state.</li>
-            <li><code>ip r</code>: use <code>ip r get 8.8.8.8</code> to see the route Linux would use for a specific destination.</li>
-            <li><code>ss -tulpen</code>: <code>-t</code> TCP, <code>-u</code> UDP, <code>-l</code> listening sockets, <code>-p</code> process info, <code>-e</code> extended info, and <code>-n</code> numeric output.</li>
-            <li><code>ping -c 4 8.8.8.8</code>: change <code>4</code> to the number of packets you want. Change the target to your gateway, DNS server, or domain depending on what layer you are testing.</li>
-            <li><code>dig example.com</code>: change the domain, query type, or DNS server. For example, <code>dig A example.com</code>, <code>dig MX example.com</code>, or <code>dig @1.1.1.1 example.com</code>.</li>
-            <li><code>tcpdump</code>: always set the interface and capture filter deliberately. Captures can include sensitive traffic.</li>
-          </ul>
-        </details>
 
         <article class="qa-card">
           <h3>To check local IP addresses</h3>
-          <pre><code>ip a</code></pre>
+          <pre><code>ip a
+# ip -br a: compact interface summary
+# ip a show interface_name: inspect one interface
+# ip link: link state, MAC address, and interface flags</code></pre>
           <p>Shows local IPs, interfaces, and link status.</p>
-          <details>
-            <summary>Flags and variants</summary>
-            <ul>
-              <li>Use <code>ip -br a</code> for a compact interface summary.</li>
-              <li>Use <code>ip a show interface_name</code> to inspect one interface, such as <code>eth0</code>, <code>wlan0</code>, or <code>ens33</code>.</li>
-              <li>Use <code>ip link</code> when you only need link state, MAC address, and interface flags.</li>
-            </ul>
-          </details>
         </article>
 
         <article class="qa-card">
           <h3>To check network routes</h3>
-          <pre><code>ip r</code></pre>
+          <pre><code>ip r
+# Look for the default via line to identify the gateway
+# ip r get target_ip: show the route Linux would use for a target
+# Check routes before blaming DNS or a service</code></pre>
           <p>Shows the default gateway and routing table.</p>
-          <details>
-            <summary>Values and variants</summary>
-            <ul>
-              <li>Look for the <code>default via</code> line to identify the default gateway.</li>
-              <li>Use <code>ip r get target_ip</code> to see which interface and gateway Linux will use for a target.</li>
-              <li>Use this before blaming DNS or a service. Bad routes can make everything above them look broken.</li>
-            </ul>
-          </details>
         </article>
 
         <article class="qa-card">
           <h3>To check listening ports</h3>
-          <pre><code>ss -tulpen</code></pre>
+          <pre><code>ss -tulpen
+# -t: TCP sockets
+# -u: UDP sockets
+# -l: listening sockets only
+# -p: process details when permissions allow
+# -e: extended socket information
+# -n: numeric addresses and ports</code></pre>
           <p>Shows TCP/UDP listening ports, related processes, and users.</p>
-          <details>
-            <summary>Flags and variants</summary>
-            <ul>
-              <li><code>-t</code> shows TCP sockets and <code>-u</code> shows UDP sockets.</li>
-              <li><code>-l</code> limits output to listening sockets.</li>
-              <li><code>-p</code> shows process details when permissions allow it.</li>
-              <li><code>-n</code> avoids name resolution so output is faster and shows numeric ports.</li>
-              <li>Use <code>sudo ss -tulpen</code> if process names are hidden.</li>
-            </ul>
-          </details>
         </article>
 
         <article class="qa-card">
           <h3>To test internet connectivity</h3>
-          <pre><code>ping -c 4 8.8.8.8</code></pre>
+          <pre><code>ping -c 4 8.8.8.8
+# -c 4: send 4 packets
+# Change 4 for a longer or shorter check
+# Ping your gateway for local reachability
+# Ping a domain only when you also want DNS involved</code></pre>
           <p>Tests whether the system can reach the internet by IP.</p>
-          <details>
-            <summary>Flags and target choices</summary>
-            <ul>
-              <li><code>-c 4</code> sends 4 packets. Increase it for a longer check or lower it for a quick test.</li>
-              <li>Ping your gateway first when testing local network reachability.</li>
-              <li>Ping a public IP such as <code>8.8.8.8</code> to test routing without depending on DNS.</li>
-              <li>Ping a domain such as <code>example.com</code> only when you also want DNS involved.</li>
-            </ul>
-          </details>
         </article>
 
         <article class="qa-card">
           <h3>To test DNS resolution</h3>
-          <pre><code>dig example.com</code></pre>
+          <pre><code>dig example.com
+# example.com: replace with the domain you are testing
+# dig A domain: IPv4 records
+# dig AAAA domain: IPv6 records
+# dig @1.1.1.1 domain: query a specific DNS server
+# +short: answer only</code></pre>
           <p>Checks whether domain names are resolving correctly.</p>
-          <details>
-            <summary>Values and variants</summary>
-            <ul>
-              <li>Replace <code>example.com</code> with the domain you are testing.</li>
-              <li>Use <code>dig A domain</code> for IPv4 records and <code>dig AAAA domain</code> for IPv6 records.</li>
-              <li>Use <code>dig @1.1.1.1 domain</code> to query a specific DNS server.</li>
-              <li>Use <code>dig +short domain</code> when you only need the answer.</li>
-            </ul>
-          </details>
         </article>
 
         <article class="qa-card">
           <h3>To check public IP</h3>
-          <pre><code>curl icanhazip.com</code></pre>
-          <p>Shows the public IP address of the system.</p>
+          <pre><code>curl icanhazip.com
+# -4: force IPv4
+# -6: force IPv6
+# -s: silent output for scripts</code></pre>
+          <p>Shows the public IP address from the system's network.</p>
         </article>
 
         <article class="qa-card">
           <h3>To capture packets on an interface</h3>
-          <pre><code>sudo tcpdump -i interface_name -w capture.pcap</code></pre>
-          <p>Captures network traffic and saves it into a packet capture file.</p>
-          <details>
-            <summary>Flags and safe capture patterns</summary>
-            <ul>
-              <li><code>-i interface_name</code> chooses the interface. Replace it with <code>eth0</code>, <code>wlan0</code>, <code>ens33</code>, or the interface from <code>ip -br a</code>.</li>
-              <li><code>-w capture.pcap</code> writes packets to a file for Wireshark or later analysis.</li>
-              <li>Add <code>-c 100</code> to stop after 100 packets.</li>
-              <li>Add a filter such as <code>host 192.168.1.10</code>, <code>port 53</code>, or <code>tcp</code> to reduce noise.</li>
-              <li>Packet captures can contain credentials or private data. Store and share them carefully.</li>
-            </ul>
-          </details>
+          <pre><code>sudo tcpdump -i interface_name -w capture.pcap
+# -i interface_name: capture from one network interface
+# -w capture.pcap: write packets to a file
+# -c count: stop after a fixed number of packets
+# Use a narrow capture filter when possible; captures may contain sensitive traffic</code></pre>
+          <p>Captures packets from a specific interface into a pcap file.</p>
         </article>
 
         <article class="qa-card">
           <h3>To trace the path to a destination</h3>
-          <pre><code>tracepath example.com</code></pre>
-          <p>Shows the network hops toward a destination without requiring root on many systems.</p>
-          <details>
-            <summary>Values and variants</summary>
-            <ul>
-              <li>Replace <code>example.com</code> with a domain or IP you are troubleshooting.</li>
-              <li>Use this when ping works inconsistently or you need to know where a path may be failing.</li>
-              <li>If <code>tracepath</code> is unavailable, try <code>traceroute example.com</code> if installed.</li>
-            </ul>
-          </details>
+          <pre><code>tracepath example.com
+# example.com: replace with a host or IP address
+# Use traceroute if tracepath is not installed
+# Middle hops may block replies; focus on the destination and pattern</code></pre>
+          <p>Shows the network path and possible MTU issues to a destination.</p>
         </article>
 
         <article class="qa-card">
           <h3>To connect to another system over SSH</h3>
-          <pre><code>ssh user@host</code></pre>
-          <p>Starts a secure remote shell session to another system.</p>
-          <details>
-            <summary>Values and variants</summary>
-            <ul>
-              <li>Replace <code>user</code> with the remote username and <code>host</code> with a hostname or IP address.</li>
-              <li>Use <code>ssh -p 2222 user@host</code> when SSH is running on a non-default port.</li>
-              <li>Use <code>ssh -i key_file user@host</code> when authenticating with a specific private key.</li>
-              <li>Do not connect to systems without permission.</li>
-            </ul>
-          </details>
+          <pre><code>ssh user@host
+# user: remote username
+# host: hostname or IP address
+# -p port: custom SSH port
+# -i key_file: use a specific private key</code></pre>
+          <p>Starts a secure remote shell session.</p>
         </article>
 
         <article class="qa-card">
           <h3>To transfer a file securely to another system</h3>
-          <pre><code>scp capture.pcap user@host:/path/</code></pre>
-          <p>Copies a file securely over SSH.</p>
-          <details>
-            <summary>Values and variants</summary>
-            <ul>
-              <li>Replace <code>capture.pcap</code> with the local file you want to send.</li>
-              <li>Replace <code>user@host:/path/</code> with the remote account, system, and destination folder.</li>
-              <li>Use <code>scp -P 2222 file user@host:/path/</code> for a non-default SSH port. In <code>scp</code>, the port flag is uppercase <code>-P</code>.</li>
-              <li>Use <code>scp -r folder user@host:/path/</code> only when intentionally copying a whole folder recursively.</li>
-            </ul>
-          </details>
+          <pre><code>scp capture.pcap user@host:/path/
+# capture.pcap: local file to upload
+# user@host:/path/: remote account, system, and destination
+# -P port: custom SSH port; uppercase P for scp
+# -r: recursively copy a directory</code></pre>
+          <p>Copies a local capture file to a remote system over SSH.</p>
         </article>
       </section>
-
       <section class="level-block" id="users-privileges">
         <h2>Phase 5: Users and Privileges</h2>
-        <p>Goal: understand accounts, groups, passwords, sudo access, and user control.</p>
-        <details>
-          <summary>Flags and values to adjust for users and privileges</summary>
-          <ul>
-            <li><code>id username</code> and <code>groups username</code>: replace <code>username</code> with the account you are checking. Use plain <code>id</code> or <code>groups</code> for your current account.</li>
-            <li><code>sudo -l</code>: lists allowed sudo commands for your current user. Use <code>sudo -l -U username</code> only if you have permission to inspect another user's sudo rules.</li>
-            <li><code>passwd</code>, <code>usermod</code>, and <code>userdel</code> change accounts. Confirm the account name before running them.</li>
-            <li><code>usermod -aG group_name username</code>: <code>-a</code> appends and <code>-G</code> sets supplementary groups. Do not omit <code>-a</code> when adding a group, or you may replace existing memberships.</li>
-            <li><code>userdel -r username</code> removes the account and home directory. Back up required files first.</li>
-          </ul>
-        </details>
+        <p>Goal: understand identity, groups, sudo access, and account changes.</p>
 
         <article class="qa-card">
           <h3>To check your current user</h3>
           <pre><code>whoami</code></pre>
-          <p>Shows the username of the current session.</p>
+          <p>Shows the username for the current shell.</p>
         </article>
 
         <article class="qa-card">
           <h3>To check a user's ID and groups</h3>
-          <pre><code>id username</code></pre>
-          <p>Shows the UID, GID, and groups for a specific user.</p>
+          <pre><code>id username
+# username: replace with the account to inspect
+# -u: UID only
+# -nG: group names only</code></pre>
+          <p>Shows UID, GID, and groups for a specific user.</p>
         </article>
 
         <article class="qa-card">
           <h3>To check a user's groups</h3>
-          <pre><code>groups username</code></pre>
-          <p>Shows which groups the user belongs to.</p>
+          <pre><code>groups username
+# username: replace with the account to inspect
+# Groups affect file access, sudo rules, and service permissions</code></pre>
+          <p>Shows group memberships for a specific user.</p>
         </article>
 
         <article class="qa-card">
           <h3>To check your sudo permissions</h3>
-          <pre><code>sudo -l</code></pre>
+          <pre><code>sudo -l
+# -l: list allowed sudo rules
+# -U username: inspect another user only if you have permission
+# NOPASSWD means sudo may not ask for a password for listed commands</code></pre>
           <p>Shows what commands your user can run with sudo.</p>
-          <details>
-            <summary>How to read it</summary>
-            <ul>
-              <li>Look for commands listed after the host and run-as section. Those are what the user can run with sudo.</li>
-              <li><code>(ALL : ALL) ALL</code> means broad sudo access. Treat that as high privilege.</li>
-              <li><code>NOPASSWD</code> means sudo may not ask for a password for listed commands.</li>
-            </ul>
-          </details>
         </article>
 
         <article class="qa-card">
           <h3>To change a user password</h3>
-          <pre><code>sudo passwd username</code></pre>
+          <pre><code>sudo passwd username
+# username: account whose password will change
+# This is an account-changing action; confirm you are allowed to do it
+# Use passwd without sudo to change your own password</code></pre>
           <p>Changes the password for a user account.</p>
-          <details>
-            <summary>Values and caution</summary>
-            <ul>
-              <li>Replace <code>username</code> with the exact account name.</li>
-              <li>Use <code>passwd</code> without sudo to change your own password.</li>
-              <li>Changing passwords can interrupt active users or service accounts. Confirm intent first.</li>
-            </ul>
-          </details>
         </article>
 
         <article class="qa-card">
           <h3>To lock a user account</h3>
-          <pre><code>sudo usermod -L username</code></pre>
-          <p>Locks the user account from password login.</p>
-          <details>
-            <summary>Flags and caution</summary>
-            <ul>
-              <li><code>-L</code> locks the password by modifying the password hash state.</li>
-              <li>This blocks password login, but it may not disable all access methods such as existing sessions or SSH keys.</li>
-              <li>Use <code>sudo passwd -S username</code> to inspect password status on many Linux systems.</li>
-            </ul>
-          </details>
+          <pre><code>sudo usermod -L username
+# -L: lock the password field
+# This may not stop active sessions or SSH-key access
+# Check policy and document why the account was locked</code></pre>
+          <p>Locks password authentication for a user account.</p>
         </article>
 
         <article class="qa-card">
           <h3>To unlock a user account</h3>
-          <pre><code>sudo usermod -U username</code></pre>
-          <p>Unlocks a previously locked user account.</p>
-          <details>
-            <summary>Flags and caution</summary>
-            <ul>
-              <li><code>-U</code> unlocks the password state.</li>
-              <li>Confirm the account should be restored before unlocking it.</li>
-              <li>If the account was locked for incident response, document who approved the unlock.</li>
-            </ul>
-          </details>
+          <pre><code>sudo usermod -U username
+# -U: unlock the password field
+# Unlock only when the reason for the lock is resolved
+# Check login method and account policy after unlocking</code></pre>
+          <p>Unlocks password authentication for a user account.</p>
         </article>
 
         <article class="qa-card">
           <h3>To add a user to a group</h3>
-          <pre><code>sudo usermod -aG group_name username</code></pre>
-          <p>Adds a user to a group without removing existing group memberships.</p>
-          <details>
-            <summary>Flags and values</summary>
-            <ul>
-              <li><code>-a</code> appends new groups instead of replacing the user's existing supplementary groups.</li>
-              <li><code>-G group_name</code> sets the supplementary group list. Use comma-separated groups for multiple additions.</li>
-              <li>Replace <code>group_name</code> and <code>username</code> carefully. Adding a user to <code>sudo</code>, <code>wheel</code>, <code>docker</code>, or similar groups can grant serious privilege.</li>
-              <li>The user may need to log out and back in before new group membership applies.</li>
-            </ul>
-          </details>
+          <pre><code>sudo usermod -aG group_name username
+# -a: append instead of replacing group memberships
+# -G group_name: supplementary group list
+# Omitting -a can remove existing supplementary groups
+# The user may need to log out and back in</code></pre>
+          <p>Adds a user to a supplementary group.</p>
         </article>
 
         <article class="qa-card">
           <h3>To delete a user</h3>
-          <pre><code>sudo userdel username</code></pre>
-          <p>Deletes a user account but keeps the home directory.</p>
-          <details>
-            <summary>Safety notes</summary>
-            <ul>
-              <li>Replace <code>username</code> with the exact account name.</li>
-              <li>Check <code>id username</code>, <code>last username</code>, and running processes before deletion.</li>
-              <li>This keeps the home directory, which is safer when you may need to recover files or evidence.</li>
-            </ul>
-          </details>
+          <pre><code>sudo userdel username
+# username: account to remove
+# Check running processes, ownership, and data retention first
+# This usually leaves the home directory behind</code></pre>
+          <p>Removes a user account but normally leaves the home directory behind.</p>
         </article>
 
         <article class="qa-card">
           <h3>To delete a user with home directory</h3>
-          <pre><code>sudo userdel -r username</code></pre>
-          <p>Deletes the user account and its home directory.</p>
-          <details>
-            <summary>Flags and caution</summary>
-            <ul>
-              <li><code>-r</code> removes the user's home directory and mail spool.</li>
-              <li>Back up required files before running this.</li>
-              <li>Prefer plain <code>userdel username</code> when you are not sure whether the home directory contains evidence or useful data.</li>
-            </ul>
-          </details>
+          <pre><code>sudo userdel -r username
+# -r: remove the home directory and mail spool
+# Back up or review files before using this
+# Do not use on accounts with evidence or data-retention requirements</code></pre>
+          <p>Removes a user account and its home directory.</p>
         </article>
 
         <article class="qa-card">
           <h3>To create a new user account</h3>
-          <pre><code>sudo useradd -m -s /bin/bash username</code></pre>
-          <p>Creates a user with a home directory and sets the login shell.</p>
-          <details>
-            <summary>Flags and values</summary>
-            <ul>
-              <li><code>-m</code> creates the home directory.</li>
-              <li><code>-s /bin/bash</code> sets the login shell. Change it to another approved shell when needed.</li>
-              <li>Set the password separately with <code>sudo passwd username</code>.</li>
-              <li>Use this only when account creation is part of an approved admin task.</li>
-            </ul>
-          </details>
+          <pre><code>sudo useradd -m -s /bin/bash username
+# -m: create a home directory
+# -s /bin/bash: set the login shell
+# username: new account name
+# Set a password separately with sudo passwd username if needed</code></pre>
+          <p>Creates a user with a home directory and Bash as the login shell.</p>
         </article>
       </section>
-
       <section class="level-block" id="files-metadata-changes">
         <h2>Phase 6: Files, Metadata, and Changes</h2>
         <p>Goal: inspect files, permissions, ownership, size, and recent changes.</p>
-        <details>
-          <summary>Flags and values to adjust for file work</summary>
-          <ul>
-            <li><code>stat file_name</code>: replace <code>file_name</code> with any file or folder. Use it when timestamps, ownership, permissions, or inode details matter.</li>
-            <li><code>ls -lah file_name</code>: <code>-l</code> long format, <code>-a</code> hidden files, and <code>-h</code> readable sizes. Add a folder path to inspect that folder.</li>
-            <li><code>find /path</code>: replace <code>/path</code> with the smallest safe search scope. Searching <code>/</code> can be slow and noisy.</li>
-            <li><code>-mtime -1</code>: files modified within the last 24 hours. Change <code>-1</code> to <code>-7</code> for seven days or <code>+30</code> for older than 30 days.</li>
-            <li><code>-size +100M</code>: files larger than 100 MiB. Change <code>100M</code> to <code>1G</code>, <code>500M</code>, or another threshold.</li>
-            <li><code>chmod</code> and <code>chown</code> change access. Use them only after checking current permissions and ownership.</li>
-          </ul>
-        </details>
 
         <article class="qa-card">
           <h3>To view file metadata</h3>
-          <pre><code>stat file_name</code></pre>
+          <pre><code>stat file_name
+# file_name: replace with a file or folder path
+# -c: custom output format on GNU systems
+# Use when timestamps, ownership, permissions, or inode details matter</code></pre>
           <p>Shows file size, permissions, owner, access time, modify time, and change time.</p>
-          <details>
-            <summary>Values and variants</summary>
-            <ul>
-              <li>Replace <code>file_name</code> with a file or folder path.</li>
-              <li>Use <code>stat -c "%A %U %G %s %n" file_name</code> for a compact permissions, owner, group, size, and name view on GNU systems.</li>
-              <li>Use this when checking evidence timing or permission changes.</li>
-            </ul>
-          </details>
         </article>
 
         <article class="qa-card">
           <h3>To view file permissions clearly</h3>
-          <pre><code>ls -lah file_name</code></pre>
+          <pre><code>ls -lah file_name
+# -l: long format with permission bits
+# -a: include hidden entries
+# -h: human-readable sizes
+# ls -ld folder_name: inspect the folder itself, not its contents</code></pre>
           <p>Shows permissions, owner, group, size, and modification time.</p>
-          <details>
-            <summary>Flags and variants</summary>
-            <ul>
-              <li><code>-l</code> shows long format, including permission bits.</li>
-              <li><code>-a</code> includes hidden files.</li>
-              <li><code>-h</code> prints readable sizes.</li>
-              <li>Use <code>ls -ld folder_name</code> to inspect the folder itself instead of its contents.</li>
-            </ul>
-          </details>
         </article>
 
         <article class="qa-card">
           <h3>To copy files while preserving metadata</h3>
-          <pre><code>cp -av source_path destination_path</code></pre>
+          <pre><code>cp -av source_path destination_path
+# -a: archive mode; preserves metadata and copies directories recursively
+# -v: verbose output
+# source_path and destination_path: verify both before copying
+# -i: prompt before overwrite</code></pre>
           <p>Copies files or folders while preserving useful metadata and showing what is copied.</p>
-          <details>
-            <summary>Flags and values</summary>
-            <ul>
-              <li><code>-a</code> archive mode preserves mode, ownership where possible, timestamps, symlinks, and recursively copies directories.</li>
-              <li><code>-v</code> prints each copied item.</li>
-              <li>Replace <code>source_path</code> and <code>destination_path</code> carefully. Use a test folder first if you are unsure.</li>
-              <li>Use <code>cp -i source destination</code> when you want a prompt before overwrite.</li>
-            </ul>
-          </details>
         </article>
 
         <article class="qa-card">
           <h3>To move or rename a file safely</h3>
-          <pre><code>mv -i old_name new_name</code></pre>
+          <pre><code>mv -i old_name new_name
+# -i: prompt before overwrite
+# mv file folder/: move into a folder
+# mv old_name new_name: rename in the same folder
+# Keep a copy first when rollback matters</code></pre>
           <p>Moves or renames a file and asks before overwriting an existing destination.</p>
-          <details>
-            <summary>Flags and values</summary>
-            <ul>
-              <li><code>-i</code> prompts before overwrite.</li>
-              <li>Use <code>mv file folder/</code> to move into a folder.</li>
-              <li>Use <code>mv old_name new_name</code> to rename in the same folder.</li>
-              <li>Be careful when moving logs, configs, or evidence files. Keep a copy if rollback matters.</li>
-            </ul>
-          </details>
         </article>
 
         <article class="qa-card">
           <h3>To change file permissions</h3>
-          <pre><code>chmod 640 file_name</code></pre>
+          <pre><code>chmod 640 file_name
+# 640: owner read/write, group read, others no access
+# +x: add execute permission, useful for scripts
+# -R: recursive; use carefully because mistakes can break apps or expose data
+# Check current permissions with ls -lah first</code></pre>
           <p>Changes who can read, write, or execute a file.</p>
-          <details>
-            <summary>Values and caution</summary>
-            <ul>
-              <li><code>640</code> means owner can read/write, group can read, others get no access.</li>
-              <li>Use <code>chmod +x script.sh</code> to make a script executable.</li>
-              <li>Use <code>chmod -R</code> only when you intentionally want recursive permission changes. Recursive permission mistakes can break applications or expose data.</li>
-              <li>Check current permissions first with <code>ls -lah file_name</code>.</li>
-            </ul>
-          </details>
         </article>
 
         <article class="qa-card">
           <h3>To change file ownership</h3>
-          <pre><code>sudo chown user:group file_name</code></pre>
+          <pre><code>sudo chown user:group file_name
+# user:group: new owner and group
+# file_name: file or folder to change
+# -R: recursive ownership change; use only when required
+# Check ownership before and after with ls -lah</code></pre>
           <p>Changes the owner and group assigned to a file or folder.</p>
-          <details>
-            <summary>Values and caution</summary>
-            <ul>
-              <li>Replace <code>user</code> and <code>group</code> with real account and group names.</li>
-              <li>Use <code>sudo chown -R user:group folder_name</code> only when recursive ownership changes are required.</li>
-              <li>Wrong ownership can break services or expose private files. Check with <code>ls -lah</code> before and after.</li>
-            </ul>
-          </details>
         </article>
 
         <article class="qa-card">
           <h3>To find recently modified files</h3>
-          <pre><code>find /path -type f -mtime -1</code></pre>
+          <pre><code>find /path -type f -mtime -1
+# /path: smallest safe folder to search
+# -type f: files only
+# -type d: directories only
+# -mtime -1: modified less than one day ago
+# -ls: show metadata with results</code></pre>
           <p>Finds files modified within the last 24 hours.</p>
-          <details>
-            <summary>Flags and values</summary>
-            <ul>
-              <li>Replace <code>/path</code> with the folder to search.</li>
-              <li><code>-type f</code> limits results to files. Use <code>-type d</code> for directories.</li>
-              <li><code>-mtime -1</code> means modified less than one day ago. Use <code>-mtime -7</code> for the last week or <code>-mtime +30</code> for older than 30 days.</li>
-              <li>Add <code>-ls</code> to show file metadata with results.</li>
-            </ul>
-          </details>
         </article>
 
         <article class="qa-card">
           <h3>To find large files</h3>
-          <pre><code>find /path -type f -size +100M</code></pre>
+          <pre><code>find /path -type f -size +100M
+# /path: smallest safe folder to search
+# -type f: files only
+# -size +100M: larger than 100 MiB
+# -xdev: do not cross into other mounted filesystems</code></pre>
           <p>Finds files larger than 100 MB.</p>
-          <details>
-            <summary>Flags and values</summary>
-            <ul>
-              <li><code>-size +100M</code> finds files larger than 100 MiB.</li>
-              <li>Change the threshold to <code>+500M</code>, <code>+1G</code>, or another practical limit.</li>
-              <li>Use <code>-xdev</code> when searching from <code>/</code> but you do not want to cross into other mounted filesystems.</li>
-            </ul>
-          </details>
         </article>
 
         <article class="qa-card">
           <h3>To find hidden files</h3>
-          <pre><code>find /path -name ".*"</code></pre>
+          <pre><code>find /path -name ".*"
+# /path: use a narrow scope such as a home directory
+# -name ".*": names that start with a dot
+# -type f: hidden files only
+# -type d: hidden directories only
+# Hidden does not automatically mean malicious</code></pre>
           <p>Finds hidden files and directories.</p>
-          <details>
-            <summary>Values and variants</summary>
-            <ul>
-              <li>Replace <code>/path</code> with a narrow folder, such as a user's home directory.</li>
-              <li>Add <code>-type f</code> for hidden files only or <code>-type d</code> for hidden directories only.</li>
-              <li>Hidden does not mean malicious. Treat results as leads, not conclusions.</li>
-            </ul>
-          </details>
         </article>
 
         <article class="qa-card">
           <h3>To find world-writable files</h3>
-          <pre><code>find /path -type f -perm -o+w</code></pre>
+          <pre><code>find /path -type f -perm -o+w
+# /path: focused search scope
+# -type f: files only
+# -perm -o+w: others write bit is set
+# Use -type d to check world-writable directories
+# Some temporary directories are intentionally writable</code></pre>
           <p>Finds files that any user on the system can write to.</p>
-          <details>
-            <summary>Flags and values</summary>
-            <ul>
-              <li><code>-perm -o+w</code> matches files where the "others" write bit is set.</li>
-              <li>Replace <code>/path</code> with a focused scope such as <code>/var/www</code> or a project folder.</li>
-              <li>Use <code>find /path -type d -perm -o+w</code> to check world-writable directories.</li>
-              <li>Review context before changing permissions. Some temporary directories are intentionally writable.</li>
-            </ul>
-          </details>
         </article>
 
         <article class="qa-card">
           <h3>To calculate a file hash</h3>
-          <pre><code>sha256sum file_name</code></pre>
+          <pre><code>sha256sum file_name
+# file_name: file to verify
+# sha256sum file_name &gt; file_name.sha256: save a hash record
+# -c file_name.sha256: verify from a saved hash file
+# Hash before and after transfer when integrity matters</code></pre>
           <p>Creates a SHA-256 hash for integrity checking or evidence tracking.</p>
-          <details>
-            <summary>Values and variants</summary>
-            <ul>
-              <li>Replace <code>file_name</code> with the file you want to verify.</li>
-              <li>Use <code>sha256sum file_name &gt; file_name.sha256</code> to save a hash record.</li>
-              <li>Use <code>sha256sum -c file_name.sha256</code> to verify later.</li>
-              <li>Hash before and after transfer when evidence integrity matters.</li>
-            </ul>
-          </details>
         </article>
 
         <article class="qa-card">
           <h3>To read a long file safely</h3>
-          <pre><code>less file_name</code></pre>
+          <pre><code>less file_name
+# file_name: file to view
+# /pattern: search inside the file
+# n: next search match
+# q: quit
+# +G: open at the end of the file</code></pre>
           <p>Opens a file in a pager without editing it.</p>
-          <details>
-            <summary>Keys and variants</summary>
-            <ul>
-              <li>Press <code>/pattern</code> to search, <code>n</code> for next match, and <code>q</code> to quit.</li>
-              <li>Use <code>less +G file_name</code> to open at the end of a file.</li>
-              <li>Prefer <code>less</code> over opening large logs in an editor.</li>
-            </ul>
-          </details>
         </article>
 
         <article class="qa-card">
           <h3>To view the end of a file</h3>
-          <pre><code>tail -n 50 file_name</code></pre>
+          <pre><code>tail -n 50 file_name
+# -n 50: show the last 50 lines
+# Change 50 to the amount of context you need
+# -f: follow new lines as they are written
+# Ctrl+C: stop following</code></pre>
           <p>Shows the last 50 lines of a file, useful for recent log entries.</p>
-          <details>
-            <summary>Flags and values</summary>
-            <ul>
-              <li><code>-n 50</code> controls how many lines to show. Change <code>50</code> to the amount you need.</li>
-              <li>Use <code>tail -f file_name</code> to follow new lines as they are written.</li>
-              <li>Use <code>Ctrl+C</code> to stop following a file.</li>
-            </ul>
-          </details>
         </article>
 
         <article class="qa-card">
           <h3>To view the start of a file</h3>
-          <pre><code>head -n 20 file_name</code></pre>
+          <pre><code>head -n 20 file_name
+# -n 20: show the first 20 lines
+# Use before parsing unknown files so you understand the structure</code></pre>
           <p>Shows the first 20 lines of a file, useful for checking headers or file format.</p>
-          <details>
-            <summary>Flags and values</summary>
-            <ul>
-              <li><code>-n 20</code> controls how many lines to show.</li>
-              <li>Use this before parsing unknown files so you understand the structure.</li>
-            </ul>
-          </details>
         </article>
       </section>
-
       <section class="level-block" id="services-startup">
         <h2>Optional Phase 7: Services and Startup</h2>
         <p>Goal: check what runs automatically, what is active, and what failed.</p>
-        <details>
-          <summary>Flags and values to adjust for services</summary>
-          <ul>
-            <li><code>--type=service</code> limits output to service units. Change the type only when inspecting sockets, timers, mounts, or other unit types.</li>
-            <li><code>--state=enabled</code>, <code>--state=running</code>, and <code>--failed</code> control which unit state you inspect.</li>
-            <li><code>service_name</code> should be a real unit such as <code>ssh</code>, <code>nginx</code>, <code>apache2</code>, <code>docker</code>, or <code>cron</code>. Use tab completion or <code>systemctl list-units</code> to confirm the exact name.</li>
-            <li><code>stop</code>, <code>restart</code>, <code>disable</code>, and <code>enable</code> change system behavior. Check <code>status</code> first and document why you changed it.</li>
-          </ul>
-        </details>
 
         <article class="qa-card">
           <h3>To check services enabled at boot</h3>
-          <pre><code>systemctl list-unit-files --type=service --state=enabled</code></pre>
+          <pre><code>systemctl list-unit-files --type=service --state=enabled
+# list-unit-files: unit-file enablement, not current runtime state
+# --type=service: service units only
+# --state=enabled: enabled at boot
+# Change enabled to disabled to review disabled services</code></pre>
           <p>Shows services configured to start automatically with the system.</p>
-          <details>
-            <summary>Flags and variants</summary>
-            <ul>
-              <li><code>list-unit-files</code> shows unit file enablement, not necessarily what is running right now.</li>
-              <li><code>--type=service</code> filters to service units.</li>
-              <li><code>--state=enabled</code> shows services enabled for boot.</li>
-              <li>Change <code>enabled</code> to <code>disabled</code> to review services that do not start at boot.</li>
-            </ul>
-          </details>
         </article>
 
         <article class="qa-card">
           <h3>To check currently running services</h3>
-          <pre><code>systemctl list-units --type=service --state=running</code></pre>
+          <pre><code>systemctl list-units --type=service --state=running
+# list-units: loaded runtime units
+# --type=service: service units only
+# --state=running: active running services only
+# Remove --state to see more service states</code></pre>
           <p>Shows services currently active on the system.</p>
-          <details>
-            <summary>Flags and variants</summary>
-            <ul>
-              <li><code>list-units</code> shows loaded runtime units.</li>
-              <li><code>--state=running</code> limits output to currently running services.</li>
-              <li>Use <code>systemctl list-units --type=service</code> without the state filter to see more service states.</li>
-            </ul>
-          </details>
         </article>
 
         <article class="qa-card">
           <h3>To check failed services</h3>
-          <pre><code>systemctl --failed</code></pre>
+          <pre><code>systemctl --failed
+# --failed: units in failed state
+# Check status and logs for any important failed service</code></pre>
           <p>Shows services that failed to start or crashed.</p>
         </article>
 
         <article class="qa-card">
           <h3>To check one service</h3>
-          <pre><code>systemctl status service_name</code></pre>
+          <pre><code>systemctl status service_name
+# service_name: real unit such as ssh, nginx, docker, or cron
+# --no-pager: print output without opening a pager
+# is-active: script-friendly active/inactive check
+# is-enabled: check boot enablement</code></pre>
           <p>Shows whether a service is running, failed, disabled, or enabled.</p>
-          <details>
-            <summary>Values and variants</summary>
-            <ul>
-              <li>Replace <code>service_name</code> with the real unit name.</li>
-              <li>Use <code>systemctl status service_name --no-pager</code> for output that does not open in a pager.</li>
-              <li>Use <code>systemctl is-active service_name</code> for script-friendly active/inactive checks.</li>
-              <li>Use <code>systemctl is-enabled service_name</code> to check boot enablement.</li>
-            </ul>
-          </details>
         </article>
 
         <article class="qa-card">
           <h3>To stop a service</h3>
-          <pre><code>sudo systemctl stop service_name</code></pre>
+          <pre><code>sudo systemctl stop service_name
+# stop: stop for the current boot only
+# service_name: real unit to stop
+# start: start it again
+# Check status first; stopping SSH, network, database, or production services can break access</code></pre>
           <p>Stops a running service until it is started again or the system reboots.</p>
-          <details>
-            <summary>Safety and variants</summary>
-            <ul>
-              <li>Check <code>systemctl status service_name</code> before stopping it.</li>
-              <li><code>stop</code> affects the current boot only.</li>
-              <li>Use <code>sudo systemctl start service_name</code> to start it again.</li>
-              <li>Stopping SSH, network, database, or production services can disconnect users or break applications.</li>
-            </ul>
-          </details>
         </article>
 
         <article class="qa-card">
           <h3>To disable a service from boot</h3>
-          <pre><code>sudo systemctl disable service_name</code></pre>
+          <pre><code>sudo systemctl disable service_name
+# disable: change boot behavior
+# --now: disable and stop immediately
+# enable: allow it to start at boot again
+# Document why before disabling security, logging, networking, or backup services</code></pre>
           <p>Prevents a service from starting automatically at boot.</p>
-          <details>
-            <summary>Safety and variants</summary>
-            <ul>
-              <li><code>disable</code> changes boot behavior but does not necessarily stop the running service.</li>
-              <li>Use <code>sudo systemctl disable --now service_name</code> only when you want to disable and stop it immediately.</li>
-              <li>Use <code>sudo systemctl enable service_name</code> to enable it again at boot.</li>
-              <li>Document the reason before disabling security, logging, networking, or backup services.</li>
-            </ul>
-          </details>
         </article>
 
         <article class="qa-card">
           <h3>To restart or reload a service</h3>
-          <pre><code>sudo systemctl restart service_name</code></pre>
+          <pre><code>sudo systemctl restart service_name
+# restart: fully stop and start the service
+# reload: apply config without dropping sessions when supported
+# reload-or-restart: reload if possible, restart otherwise
+# Check status and logs afterward</code></pre>
           <p>Stops and starts a service, usually to apply configuration changes.</p>
-          <details>
-            <summary>Values and safer choices</summary>
-            <ul>
-              <li>Use <code>restart</code> when the service must fully stop and start.</li>
-              <li>Use <code>reload</code> instead of <code>restart</code> when the service supports reloading config without dropping active sessions.</li>
-              <li>Run <code>sudo systemctl reload-or-restart service_name</code> when you want reload if supported, restart otherwise.</li>
-              <li>Check status and logs after restarting.</li>
-            </ul>
-          </details>
         </article>
       </section>
-
       <section class="level-block" id="logs-investigation">
         <h2>Optional Phase 8: Logs and Investigation</h2>
         <p>Goal: check what happened recently on the system.</p>
-        <details>
-          <summary>Flags and values to adjust for logs</summary>
-          <ul>
-            <li><code>--since</code> accepts practical time windows such as <code>"10 minutes ago"</code>, <code>"1 hour ago"</code>, <code>"24 hours ago"</code>, or <code>"2026-06-30 09:00"</code>.</li>
-            <li><code>journalctl -u service_name</code> filters to one service. Replace <code>service_name</code> with the unit you are investigating.</li>
-            <li><code>-n 100</code> controls how many recent log lines to show. Change the number based on how much context you need.</li>
-            <li><code>-f</code> follows new log entries live. Stop with <code>Ctrl+C</code>.</li>
-            <li><code>grep</code> patterns are adjustable. Change <code>"Failed password"</code> to the exact phrase you need to find.</li>
-          </ul>
-        </details>
 
         <article class="qa-card">
           <h3>To check recent system logs</h3>
-          <pre><code>journalctl --since "1 hour ago"</code></pre>
+          <pre><code>journalctl --since "1 hour ago"
+# --since: start time for the log window
+# Use values like "10 minutes ago", "24 hours ago", or "2026-06-30 09:00"
+# -n 100: last 100 log lines
+# -f: follow logs live
+# --no-pager: print output without opening a pager</code></pre>
           <p>Shows system logs from the last hour.</p>
-          <details>
-            <summary>Time windows and variants</summary>
-            <ul>
-              <li>Change <code>"1 hour ago"</code> to <code>"10 minutes ago"</code>, <code>"24 hours ago"</code>, or a specific timestamp.</li>
-              <li>Use <code>journalctl -n 100</code> for the last 100 log lines.</li>
-              <li>Use <code>journalctl -f</code> to follow logs live.</li>
-              <li>Add <code>--no-pager</code> when capturing output or using scripts.</li>
-            </ul>
-          </details>
         </article>
 
         <article class="qa-card">
           <h3>To check logs for one service</h3>
-          <pre><code>journalctl -u service_name --since "1 hour ago"</code></pre>
+          <pre><code>journalctl -u service_name --since "1 hour ago"
+# -u service_name: logs for one systemd unit
+# --since: investigation time window
+# -f: follow that service live
+# -b: current boot only</code></pre>
           <p>Shows recent logs for a specific service.</p>
-          <details>
-            <summary>Values and variants</summary>
-            <ul>
-              <li>Replace <code>service_name</code> with a unit such as <code>ssh</code>, <code>nginx</code>, <code>docker</code>, or <code>cron</code>.</li>
-              <li>Change <code>--since</code> to match the incident or troubleshooting window.</li>
-              <li>Use <code>journalctl -u service_name -f</code> to follow one service live.</li>
-              <li>Use <code>journalctl -u service_name -b</code> to show logs from the current boot.</li>
-            </ul>
-          </details>
         </article>
 
         <article class="qa-card">
           <h3>To check recent sudo usage</h3>
-          <pre><code>journalctl _COMM=sudo --since "24 hours ago"</code></pre>
+          <pre><code>journalctl _COMM=sudo --since "24 hours ago"
+# _COMM=sudo: filter logs where the command name is sudo
+# --since: investigation time window
+# Use as a lead; confirm important actions with other logs or records</code></pre>
           <p>Shows sudo commands used recently.</p>
-          <details>
-            <summary>Filters and values</summary>
-            <ul>
-              <li><code>_COMM=sudo</code> filters logs where the command name is sudo.</li>
-              <li>Change <code>"24 hours ago"</code> to your investigation window.</li>
-              <li>Use this as a lead. Confirm important actions with shell history, audit logs, application logs, or change tickets when available.</li>
-            </ul>
-          </details>
         </article>
 
         <article class="qa-card">
           <h3>To check successful logins</h3>
-          <pre><code>last</code></pre>
+          <pre><code>last
+# Use with w, journalctl, and service logs when confirming unusual sessions</code></pre>
           <p>Shows recent successful login sessions.</p>
         </article>
 
         <article class="qa-card">
           <h3>To check current logged-in users</h3>
-          <pre><code>w</code></pre>
+          <pre><code>w
+# Shows user, terminal, source host, idle time, and current command</code></pre>
           <p>Shows who is logged in and what they are doing.</p>
         </article>
 
         <article class="qa-card">
           <h3>To check failed SSH login attempts</h3>
-          <pre><code>grep "Failed password" /var/log/auth.log</code></pre>
+          <pre><code>grep "Failed password" /var/log/auth.log
+# Change the quoted pattern for different services or distro wording
+# -i: case-insensitive matching
+# tail -n 20: focus on recent matches
+# Some systems use /var/log/secure or journalctl instead of auth.log</code></pre>
           <p>Shows failed SSH/password login attempts on Debian/Ubuntu systems.</p>
-          <details>
-            <summary>Patterns and variants</summary>
-            <ul>
-              <li>Change the quoted pattern when your distro or service logs different wording.</li>
-              <li>Use <code>grep -i "failed password" /var/log/auth.log</code> for case-insensitive matching.</li>
-              <li>Use <code>grep "Failed password" /var/log/auth.log | tail -n 20</code> to focus on recent matches.</li>
-              <li>On some systems, SSH logs may be in <code>/var/log/secure</code> or the journal instead of <code>/var/log/auth.log</code>.</li>
-            </ul>
-          </details>
         </article>
 
         <article class="qa-card">
           <h3>To check successful SSH logins</h3>
-          <pre><code>grep "Accepted" /var/log/auth.log</code></pre>
+          <pre><code>grep "Accepted" /var/log/auth.log
+# "Accepted": common SSH success pattern
+# "Accepted publickey": key-based logins
+# "Accepted password": password logins
+# Confirm unusual logins with last, w, and service logs</code></pre>
           <p>Shows successful SSH login attempts on Debian/Ubuntu systems.</p>
-          <details>
-            <summary>Patterns and variants</summary>
-            <ul>
-              <li><code>"Accepted"</code> commonly matches successful SSH authentication lines.</li>
-              <li>Use <code>grep "Accepted publickey" /var/log/auth.log</code> to focus on key-based logins.</li>
-              <li>Use <code>grep "Accepted password" /var/log/auth.log</code> to focus on password logins.</li>
-              <li>Confirm unusual logins with <code>last</code>, <code>w</code>, and service logs.</li>
-            </ul>
-          </details>
         </article>
 
         <article class="qa-card">
           <h3>To follow a log file live</h3>
-          <pre><code>tail -f /var/log/auth.log</code></pre>
+          <pre><code>tail -f /var/log/auth.log
+# -f: follow appended lines
+# -n 100 -f: show recent context before following
+# Change the path to the log you need
+# Ctrl+C: stop following</code></pre>
           <p>Shows new log lines as they are written.</p>
-          <details>
-            <summary>Flags and values</summary>
-            <ul>
-              <li><code>-f</code> follows appended lines.</li>
-              <li>Change the path to the log you need, such as <code>/var/log/syslog</code>, <code>/var/log/nginx/access.log</code>, or an application log.</li>
-              <li>Use <code>tail -n 100 -f file_name</code> to show recent context before following.</li>
-              <li>Stop with <code>Ctrl+C</code>.</li>
-            </ul>
-          </details>
         </article>
 
         <article class="qa-card">
           <h3>To review shell history</h3>
-          <pre><code>history | tail -n 50</code></pre>
+          <pre><code>history | tail -n 50
+# tail -n 50: show the last 50 history lines
+# Change 50 to the amount you need
+# History may be incomplete, disabled, edited, or split across shells
+# Treat history as a lead, not proof by itself</code></pre>
           <p>Shows the last 50 commands from the current user's shell history.</p>
-          <details>
-            <summary>Values and caution</summary>
-            <ul>
-              <li>Change <code>-n 50</code> to the number of commands you need.</li>
-              <li>History may be incomplete, disabled, edited, or split across shells.</li>
-              <li>Do not treat shell history alone as proof. Use it as a lead with logs and timestamps.</li>
-            </ul>
-          </details>
         </article>
       </section>
-
       <section class="level-block" id="packages-application-checks">
         <h2>Optional Phase 9: Packages and Application Checks</h2>
         <p>Goal: check whether a command exists, where it is located, and what package/application is installed.</p>
-        <details>
-          <summary>Flags and values to adjust for package and command checks</summary>
-          <ul>
-            <li><code>command_name</code> is a placeholder for a binary such as <code>python</code>, <code>curl</code>, <code>nmap</code>, <code>ss</code>, or <code>tcpdump</code>.</li>
-            <li><code>command -v</code> is usually better for scripts because it is shell-aware and predictable.</li>
-            <li><code>apt list --installed</code> can be noisy. Pipe to <code>grep</code> or use <code>apt-cache policy package_name</code> for one package.</li>
-            <li>Package commands differ by distro. Debian/Ubuntu use <code>apt</code> and <code>dpkg</code>; Fedora/RHEL often use <code>dnf</code> and <code>rpm</code>.</li>
-          </ul>
-        </details>
 
         <article class="qa-card">
           <h3>To check if a command exists</h3>
-          <pre><code>which command_name</code></pre>
+          <pre><code>which command_name
+# command_name: replace with a binary such as curl or python3
+# Useful interactively; command -v is usually better in scripts</code></pre>
           <p>Shows the path of a command if it exists in the system PATH.</p>
-          <details>
-            <summary>Values and caveat</summary>
-            <ul>
-              <li>Replace <code>command_name</code> with the command you need, such as <code>curl</code> or <code>python3</code>.</li>
-              <li><code>which</code> is useful interactively, but <code>command -v</code> is usually safer in scripts.</li>
-            </ul>
-          </details>
         </article>
 
         <article class="qa-card">
           <h3>To check command location more reliably</h3>
-          <pre><code>command -v command_name</code></pre>
+          <pre><code>command -v command_name
+# command_name: binary, shell builtin, function, or alias to check
+# &gt; /dev/null: hide output when you only need success or failure in scripts
+# type command_name: show whether it is a binary, builtin, function, or alias</code></pre>
           <p>Shows how the shell resolves a command.</p>
-          <details>
-            <summary>Values and variants</summary>
-            <ul>
-              <li>Replace <code>command_name</code> with the binary or shell command you are checking.</li>
-              <li>Use <code>command -v command_name &gt;/dev/null</code> in scripts when you only need success or failure.</li>
-              <li>Use <code>type command_name</code> when you want to know whether something is a binary, shell builtin, function, or alias.</li>
-            </ul>
-          </details>
         </article>
 
         <article class="qa-card">
           <h3>To find related binary, source, and manual paths</h3>
-          <pre><code>whereis command_name</code></pre>
+          <pre><code>whereis command_name
+# command_name: command to inspect
+# -b: binaries only
+# man command_name: full manual when documentation is needed</code></pre>
           <p>Shows common locations related to a command.</p>
-          <details>
-            <summary>Values and variants</summary>
-            <ul>
-              <li>Use this when you want binary, source, and man page locations in one quick check.</li>
-              <li>Use <code>whereis -b command_name</code> to show binaries only.</li>
-              <li>Use <code>man command_name</code> when you need full documentation.</li>
-            </ul>
-          </details>
         </article>
 
         <article class="qa-card">
           <h3>To check installed packages on Debian/Ubuntu</h3>
-          <pre><code>apt list --installed</code></pre>
+          <pre><code>apt list --installed
+# --installed: installed packages only
+# Pipe to less when reviewing interactively
+# dpkg -l: classic package table format</code></pre>
           <p>Lists installed packages on Debian/Ubuntu systems.</p>
-          <details>
-            <summary>Flags and variants</summary>
-            <ul>
-              <li><code>--installed</code> filters to installed packages.</li>
-              <li>Use <code>apt list --installed | less</code> when reviewing interactively.</li>
-              <li>Use <code>dpkg -l</code> for the classic package table format.</li>
-            </ul>
-          </details>
         </article>
 
         <article class="qa-card">
           <h3>To search installed packages on Debian/Ubuntu</h3>
-          <pre><code>apt list --installed | grep package_name</code></pre>
+          <pre><code>apt list --installed | grep package_name
+# package_name: package or keyword to search for
+# grep -i: case-insensitive matching
+# apt-cache policy package_name: installed and candidate versions
+# dpkg -L package_name: files installed by a package</code></pre>
           <p>Checks whether a specific package is installed.</p>
-          <details>
-            <summary>Values and variants</summary>
-            <ul>
-              <li>Replace <code>package_name</code> with the package or keyword you are checking.</li>
-              <li>Use <code>grep -i package_name</code> for case-insensitive matching.</li>
-              <li>Use <code>apt-cache policy package_name</code> to check installed and candidate versions for one package.</li>
-              <li>Use <code>dpkg -L package_name</code> to list files installed by a package.</li>
-            </ul>
-          </details>
         </article>
 
         <article class="qa-card">
           <h3>To inspect package details on Debian/Ubuntu</h3>
-          <pre><code>apt show package_name</code></pre>
+          <pre><code>apt show package_name
+# package_name: package to review
+# Use before installing so you understand what it is and where it comes from
+# apt search keyword: find package names by keyword</code></pre>
           <p>Shows package description, version, dependencies, maintainer, and repository information.</p>
-          <details>
-            <summary>Values and variants</summary>
-            <ul>
-              <li>Replace <code>package_name</code> with the package you are reviewing.</li>
-              <li>Use this before installing a package so you understand what it is and where it comes from.</li>
-              <li>Use <code>apt search keyword</code> when you do not know the exact package name.</li>
-            </ul>
-          </details>
         </article>
       </section>
-
       <section class="level-block" id="secure-transfer-evidence">
         <h2>Optional Phase 10: Secure Transfer and Evidence Handling</h2>
         <p>Goal: move files safely and keep basic integrity records.</p>
-        <details>
-          <summary>Flags and values to adjust for transfer and evidence</summary>
-          <ul>
-            <li><code>tar -czf archive.tar.gz folder_name</code>: <code>-c</code> creates, <code>-z</code> compresses with gzip, and <code>-f</code> names the archive file.</li>
-            <li><code>scp</code>: replace local file paths, remote usernames, hosts, and destination paths carefully. Use uppercase <code>-P</code> for a custom SSH port.</li>
-            <li><code>rsync</code>: use when transfers may be interrupted or repeated. It can resume and only copy changes.</li>
-            <li><code>sha256sum</code>: hash files before and after transfer when integrity matters. Store hash files with your notes.</li>
-          </ul>
-        </details>
 
         <article class="qa-card">
           <h3>To compress a folder</h3>
-          <pre><code>tar -czf archive.tar.gz folder_name</code></pre>
+          <pre><code>tar -czf archive.tar.gz folder_name
+# -c: create a new archive
+# -z: gzip compression
+# -f archive.tar.gz: output file name; the name must come right after -f
+# folder_name: folder to archive
+# -v: verbose output</code></pre>
           <p>Creates a compressed archive of a folder.</p>
-          <details>
-            <summary>Flags and values</summary>
-            <ul>
-              <li><code>-c</code> creates a new archive.</li>
-              <li><code>-z</code> uses gzip compression.</li>
-              <li><code>-f archive.tar.gz</code> sets the output file name. The archive name must come right after <code>-f</code>.</li>
-              <li>Replace <code>folder_name</code> with the folder you want to archive.</li>
-              <li>Use <code>tar -czvf archive.tar.gz folder_name</code> if you want verbose output.</li>
-            </ul>
-          </details>
         </article>
 
         <article class="qa-card">
           <h3>To extract a compressed archive</h3>
-          <pre><code>tar -xzf archive.tar.gz</code></pre>
+          <pre><code>tar -xzf archive.tar.gz
+# -x: extract an archive
+# -z: handle gzip compression
+# -f archive.tar.gz: archive file to read
+# -t: list contents before extracting
+# -C destination_folder: extract into a specific folder</code></pre>
           <p>Extracts a gzip-compressed tar archive into the current directory.</p>
-          <details>
-            <summary>Flags and values</summary>
-            <ul>
-              <li><code>-x</code> extracts an archive.</li>
-              <li><code>-z</code> handles gzip compression.</li>
-              <li><code>-f archive.tar.gz</code> selects the archive file.</li>
-              <li>Use <code>tar -tzf archive.tar.gz</code> to list contents before extracting.</li>
-              <li>Use <code>tar -xzf archive.tar.gz -C destination_folder</code> to extract into a specific folder.</li>
-            </ul>
-          </details>
         </article>
 
         <article class="qa-card">
           <h3>To copy a file securely to another system</h3>
-          <pre><code>scp file_name user@host:/path/</code></pre>
+          <pre><code>scp file_name user@host:/path/
+# file_name: local file to upload
+# user@host:/path/: remote account, system, and destination
+# -P port: custom SSH port; uppercase P for scp
+# -r: recursively copy a directory</code></pre>
           <p>Transfers a file securely over SSH.</p>
-          <details>
-            <summary>Values and variants</summary>
-            <ul>
-              <li>Replace <code>file_name</code> with the local file.</li>
-              <li>Replace <code>user</code>, <code>host</code>, and <code>/path/</code> with the remote account, system, and destination.</li>
-              <li>Use <code>scp -P 2222 file_name user@host:/path/</code> for a custom SSH port.</li>
-              <li>Use <code>scp -r folder_name user@host:/path/</code> to copy a directory recursively.</li>
-            </ul>
-          </details>
         </article>
 
         <article class="qa-card">
           <h3>To download a file securely from another system</h3>
-          <pre><code>scp user@host:/path/file_name .</code></pre>
+          <pre><code>scp user@host:/path/file_name .
+# final .: download into the current directory
+# Replace . with a local folder path for a specific destination
+# -P port: custom SSH port; uppercase P for scp
+# Quote remote paths that contain spaces</code></pre>
           <p>Downloads a file from a remote system over SSH.</p>
-          <details>
-            <summary>Values and variants</summary>
-            <ul>
-              <li>The final <code>.</code> means download into the current directory.</li>
-              <li>Replace it with a local folder path when you want a specific destination.</li>
-              <li>Use quotes around remote paths that contain spaces.</li>
-              <li>Use <code>scp -P 2222 user@host:/path/file_name .</code> for a custom SSH port.</li>
-            </ul>
-          </details>
         </article>
 
         <article class="qa-card">
           <h3>To sync files with resume-friendly behavior</h3>
-          <pre><code>rsync -avP source_path user@host:/path/</code></pre>
+          <pre><code>rsync -avP source_path user@host:/path/
+# -a: archive mode with recursion and metadata preservation
+# -v: verbose output
+# -P: progress plus partial transfer handling
+# --dry-run: preview important syncs first
+# Trailing slash matters: source/ copies contents, source copies the directory</code></pre>
           <p>Copies files over SSH while preserving useful metadata and showing progress.</p>
-          <details>
-            <summary>Flags and values</summary>
-            <ul>
-              <li><code>-a</code> uses archive mode for recursive copying and metadata preservation.</li>
-              <li><code>-v</code> prints what is happening.</li>
-              <li><code>-P</code> combines progress output and partial transfer handling.</li>
-              <li>Use <code>--dry-run</code> first when syncing important folders.</li>
-              <li>Be careful with trailing slashes: <code>source/</code> copies contents, while <code>source</code> copies the directory itself.</li>
-            </ul>
-          </details>
         </article>
 
         <article class="qa-card">
           <h3>To verify file integrity</h3>
-          <pre><code>sha256sum file_name</code></pre>
+          <pre><code>sha256sum file_name
+# file_name: file to verify
+# &gt; file_name.sha256: save the hash record
+# -c file_name.sha256: verify from the saved hash file
+# Record hash, filename, timestamp, and system name for evidence</code></pre>
           <p>Creates a hash that can be used to confirm the file did not change.</p>
-          <details>
-            <summary>Values and workflow</summary>
-            <ul>
-              <li>Run <code>sha256sum file_name &gt; file_name.sha256</code> before transfer.</li>
-              <li>Transfer both the file and the <code>.sha256</code> record.</li>
-              <li>Run <code>sha256sum -c file_name.sha256</code> after transfer to verify integrity.</li>
-              <li>Record the hash, filename, timestamp, and system name when handling evidence.</li>
-            </ul>
-          </details>
         </article>
       </section>
     </div>

@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<!-- lokii-note-polish: added 2026-07-02; practical grep and awk log-processing workflow for fast brute-force investigation. -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log Processing Mastery Cheatsheet | CLI Tools | lokii.tech</title>
+    <meta name="description" content="A practical command-line log processing cheatsheet for finding brute-force patterns fast with grep, awk, sort, uniq, wc, and saved reports.">
+    <meta name="author" content="lokii (UnExplainableFish52)">
+    <meta name="theme-color" content="#080a0c">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://lokii.tech/intermediate/tools/log-processing-mastery.html">
+    <meta property="og:title" content="Log Processing Mastery Cheatsheet | CLI Tools | lokii.tech">
+    <meta property="og:description" content="A practical command-line log processing cheatsheet for finding brute-force patterns fast with grep, awk, sort, uniq, wc, and saved reports.">
+    <meta property="og:image" content="https://lokii.tech/preview.jpg">
+    <meta property="og:site_name" content="lokii.tech">
+
+    <link rel="canonical" href="https://lokii.tech/intermediate/tools/log-processing-mastery.html">
+    <meta name="robots" content="index, follow">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://lokii.tech/intermediate/tools/log-processing-mastery.html">
+    <meta name="twitter:title" content="Log Processing Mastery Cheatsheet | CLI Tools | lokii.tech">
+    <meta name="twitter:description" content="A practical command-line log processing cheatsheet for finding brute-force patterns fast with grep, awk, sort, uniq, wc, and saved reports.">
+    <meta name="twitter:image" content="https://lokii.tech/preview.jpg">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
+    <link rel="manifest" href="../../site.webmanifest">
+    <link rel="icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../css/global-ui.css">
+
+    <script type="application/ld+json" data-seo="lokii">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://lokii.tech/#creator",
+          "name": "lokii (UnExplainableFish52)",
+          "url": "https://lokii.tech/",
+          "sameAs": [
+            "https://github.com/UnExplainableFish52"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://lokii.tech/#website",
+          "url": "https://lokii.tech/",
+          "name": "lokii.tech",
+          "description": "An open-source learning platform for computer science, cybersecurity, Linux, networking, and security project guidance.",
+          "publisher": {
+            "@id": "https://lokii.tech/#creator"
+          },
+          "inLanguage": "en"
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://lokii.tech/intermediate/tools/log-processing-mastery.html#breadcrumbs",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://lokii.tech/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Intermediate Tools",
+              "item": "https://lokii.tech/#resources"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Log Processing Mastery Cheatsheet",
+              "item": "https://lokii.tech/intermediate/tools/log-processing-mastery.html"
+            }
+          ]
+        },
+        {
+          "@type": [
+            "TechArticle",
+            "LearningResource"
+          ],
+          "@id": "https://lokii.tech/intermediate/tools/log-processing-mastery.html#article",
+          "headline": "Log Processing Mastery Cheatsheet | CLI Tools | lokii.tech",
+          "description": "A practical command-line log processing cheatsheet for finding brute-force patterns fast with grep, awk, sort, uniq, wc, and saved reports.",
+          "url": "https://lokii.tech/intermediate/tools/log-processing-mastery.html",
+          "image": "https://lokii.tech/preview.jpg",
+          "author": {
+            "@id": "https://lokii.tech/#creator"
+          },
+          "publisher": {
+            "@id": "https://lokii.tech/#creator"
+          },
+          "educationalLevel": "Intermediate",
+          "learningResourceType": "Cheatsheet",
+          "about": [
+            "Linux",
+            "log analysis",
+            "grep",
+            "awk",
+            "brute-force investigation",
+            "command line"
+          ],
+          "dateModified": "2026-07-02",
+          "inLanguage": "en"
+        }
+      ]
+    }
+    </script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: #080a0c;
+            color: #eef2f3;
+            font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            font-size: 17px;
+            line-height: 1.75;
+        }
+
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            border-bottom: 1px solid #263039;
+            background: rgba(8, 10, 12, 0.92);
+            backdrop-filter: blur(14px);
+        }
+
+        .header-inner,
+        .page-shell {
+            width: min(1120px, calc(100% - 32px));
+            margin: 0 auto;
+        }
+
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            min-height: 64px;
+        }
+
+        .brand {
+            color: #ffffff;
+            font-weight: 800;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+
+        .site-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+
+        .site-nav a {
+            color: #b9c4cc;
+            font-size: 0.95rem;
+            font-weight: 650;
+            text-decoration: none;
+        }
+
+        .site-nav a:hover {
+            color: #ffffff;
+        }
+
+        .hero {
+            padding: 64px 0 28px;
+        }
+
+        .kicker {
+            color: #f3bd4f;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-size: 0.82rem;
+            margin: 0 0 12px;
+        }
+
+        h1,
+        h2,
+        h3 {
+            letter-spacing: 0;
+            line-height: 1.2;
+        }
+
+        h1 {
+            color: #ffffff;
+            font-size: clamp(2.1rem, 6vw, 4.2rem);
+            margin: 0 0 16px;
+        }
+
+        .subtitle {
+            color: #c8d2d8;
+            font-size: 1.1rem;
+            max-width: 840px;
+            margin: 0;
+        }
+
+        .jump-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 26px;
+        }
+
+        .jump-nav a {
+            border: 1px solid #2d3942;
+            border-radius: 8px;
+            color: #9ee7c5;
+            background: #0d1215;
+            padding: 8px 12px;
+            text-decoration: none;
+            font-size: 0.92rem;
+            font-weight: 700;
+        }
+
+        .jump-nav a:hover {
+            border-color: #57d39c;
+            color: #dfffee;
+        }
+
+        .principle-strip {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 12px;
+            margin: 24px 0 34px;
+        }
+
+        .principle {
+            border: 1px solid #29343d;
+            border-radius: 8px;
+            background: #0d1114;
+            padding: 16px;
+        }
+
+        .principle strong {
+            display: block;
+            color: #f3bd4f;
+            margin-bottom: 4px;
+        }
+
+        .principle p {
+            margin: 0;
+            color: #c8d2d8;
+            font-size: 0.96rem;
+        }
+
+        .case-board {
+            border: 1px solid #33414b;
+            border-radius: 8px;
+            background: #0d1114;
+            padding: 18px;
+            margin: 26px 0 34px;
+        }
+
+        .case-board h2 {
+            border-bottom: none;
+            margin-bottom: 8px;
+            padding-bottom: 0;
+        }
+
+        .file-link {
+            display: inline-flex;
+            align-items: center;
+            border: 1px solid #374651;
+            border-radius: 8px;
+            color: #dfffee;
+            background: #11181c;
+            padding: 8px 12px;
+            text-decoration: none;
+            font-weight: 800;
+            margin-top: 8px;
+        }
+
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .metric {
+            border: 1px solid #29343d;
+            border-radius: 8px;
+            background: #080b0d;
+            padding: 14px;
+        }
+
+        .metric strong {
+            display: block;
+            color: #ffffff;
+            font-size: 1.7rem;
+            line-height: 1.1;
+        }
+
+        .metric span {
+            color: #aebbc2;
+            font-size: 0.92rem;
+        }
+
+        .finding {
+            border-left: 4px solid #57d39c;
+            background: #0d1713;
+            border-radius: 8px;
+            padding: 14px 16px;
+            margin: 18px 0;
+        }
+
+        .finding strong {
+            color: #9ee7c5;
+        }
+
+        .compact-list {
+            margin: 10px 0 0;
+            padding-left: 20px;
+        }
+
+        .compact-list li {
+            margin-bottom: 6px;
+        }
+
+        section {
+            margin: 36px 0;
+        }
+
+        h2 {
+            color: #f7f9fa;
+            border-bottom: 1px solid #28343d;
+            padding-bottom: 12px;
+            margin: 0 0 18px;
+            font-size: 1.8rem;
+        }
+
+        h3 {
+            color: #9ee7c5;
+            margin: 0 0 8px;
+            font-size: 1.2rem;
+        }
+
+        p,
+        li {
+            color: #d8e0e4;
+        }
+
+        .workflow-grid,
+        .signal-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .workflow-card,
+        .signal-card,
+        .script-card,
+        .note-panel {
+            border: 1px solid #29343d;
+            border-radius: 8px;
+            background: #0d1114;
+            padding: 18px;
+        }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #17211b;
+            color: #f3bd4f;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        code {
+            font-family: Consolas, "Fira Code", "Courier New", monospace;
+            color: #9ee7c5;
+            background: #11181c;
+            border-radius: 4px;
+            padding: 2px 5px;
+            font-size: 0.92em;
+        }
+
+        pre {
+            margin: 14px 0 0;
+            overflow-x: auto;
+            border: 1px solid #26343c;
+            border-left: 4px solid #57d39c;
+            border-radius: 8px;
+            background: #050708;
+            padding: 16px;
+        }
+
+        pre code {
+            display: block;
+            color: #e8f4ef;
+            background: transparent;
+            padding: 0;
+            line-height: 1.55;
+            font-size: 0.91rem;
+            white-space: pre;
+        }
+
+        .code-comment {
+            color: #8ba1a8;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 14px;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        th,
+        td {
+            border: 1px solid #28343d;
+            padding: 12px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        th {
+            color: #ffffff;
+            background: #162024;
+        }
+
+        td {
+            color: #d8e0e4;
+            background: #0b0f12;
+        }
+
+        .callout {
+            border-left: 4px solid #f3bd4f;
+            background: #15130b;
+            border-radius: 8px;
+            padding: 14px 16px;
+            margin: 18px 0;
+        }
+
+        .callout strong {
+            color: #f3bd4f;
+        }
+
+        .footer-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 44px 0 70px;
+        }
+
+        .footer-nav a {
+            border: 1px solid #2d3942;
+            border-radius: 8px;
+            color: #dfffee;
+            padding: 10px 14px;
+            text-decoration: none;
+            font-weight: 700;
+            background: #0d1215;
+        }
+
+        @media (max-width: 820px) {
+            body {
+                font-size: 16px;
+            }
+
+            .header-inner {
+                align-items: flex-start;
+                flex-direction: column;
+                padding: 14px 0;
+            }
+
+            .hero {
+                padding-top: 42px;
+            }
+
+            .principle-strip,
+            .metric-grid,
+            .workflow-grid,
+            .signal-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-inner">
+            <a class="brand" href="../../index.html">lokii.tech</a>
+            <nav class="site-nav" aria-label="Page navigation">
+                <a href="../../index.html#resources">Resources</a>
+                <a href="grep.html">grep</a>
+                <a href="awk.html">awk</a>
+                <a href="cli-trinity-wrapup.html">CLI Wrapup</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="page-shell">
+        <section class="hero">
+            <p class="kicker">CLI Tools Mastery</p>
+            <h1>SSH Log Processing Mastery</h1>
+            <p class="subtitle">Use grep, awk, sort, uniq, and wc to turn one long OpenSSH log into a small set of answers: failed-login volume, top source IPs, targeted usernames, suspicious pairs, and accepted logins that need review.</p>
+            <nav class="jump-nav" aria-label="Page sections">
+                <a href="#case-file">Case File</a>
+                <a href="#method">Method</a>
+                <a href="#measure">Measure</a>
+                <a href="#rank">Rank</a>
+                <a href="#pivot">Pivot</a>
+                <a href="#script">Script</a>
+                <a href="#cheatsheet">Cheatsheet</a>
+            </nav>
+        </section>
+
+        <section class="case-board" id="case-file">
+            <h2>Case File</h2>
+            <p>The practice file is a real 2,000-record OpenSSH log stored in this repo. Work from the repo root when running the commands.</p>
+            <a class="file-link" href="../../assets/OpenSSH_2k.log" download>assets/OpenSSH_2k.log</a>
+            <div class="metric-grid">
+                <div class="metric">
+                    <strong>2,000</strong>
+                    <span>total log records</span>
+                </div>
+                <div class="metric">
+                    <strong>520</strong>
+                    <span>failed password events</span>
+                </div>
+                <div class="metric">
+                    <strong>23</strong>
+                    <span>failed-login source IPs</span>
+                </div>
+                <div class="metric">
+                    <strong>1</strong>
+                    <span>accepted login</span>
+                </div>
+            </div>
+        </section>
+
+        <div class="principle-strip" id="method">
+            <article class="principle">
+                <strong>1. Do not read first</strong>
+                <p>Count and sample before scrolling. A long log needs reduction first.</p>
+            </article>
+            <article class="principle">
+                <strong>2. Filter to one event</strong>
+                <p>Create smaller files for failed passwords and accepted logins.</p>
+            </article>
+            <article class="principle">
+                <strong>3. Group by question</strong>
+                <p>Group by IP, then by IP plus username, then by one attacker.</p>
+            </article>
+            <article class="principle">
+                <strong>4. Save every report</strong>
+                <p>Each output file becomes the input for the next check.</p>
+            </article>
+        </div>
+
+        <section id="measure">
+            <h2>1. Measure The Log</h2>
+            <p>Start with counts. This tells you whether the log has enough signal to justify deeper work.</p>
+
+            <div class="workflow-grid">
+                <article class="workflow-card">
+                    <span class="step-number">1</span>
+                    <h3>Set the file once</h3>
+                    <pre><code>log="assets/OpenSSH_2k.log"
+awk 'END {print NR, FILENAME}' "$log"</code></pre>
+                    <pre><code>2000 assets/OpenSSH_2k.log</code></pre>
+                </article>
+
+                <article class="workflow-card">
+                    <span class="step-number">2</span>
+                    <h3>Count the important event types</h3>
+                    <pre><code>grep -c "Failed password" "$log"
+grep -c "Accepted " "$log"
+grep -c "invalid user" "$log"
+grep -c "POSSIBLE BREAK-IN" "$log"</code></pre>
+                    <pre><code>520
+1
+252
+85</code></pre>
+                </article>
+
+                <article class="workflow-card">
+                    <span class="step-number">3</span>
+                    <h3>Save smaller working files</h3>
+                    <pre><code>mkdir -p analysis
+grep "Failed password" "$log" &gt; analysis/failed-passwords.log
+grep "Accepted " "$log" &gt; analysis/accepted.log
+wc -l analysis/*.log</code></pre>
+                    <pre><code>   1 analysis/accepted.log
+ 520 analysis/failed-passwords.log
+ 521 total</code></pre>
+                </article>
+
+                <article class="workflow-card">
+                    <span class="step-number">4</span>
+                    <h3>Sample the line shape</h3>
+                    <pre><code>head -2 analysis/failed-passwords.log</code></pre>
+                    <pre><code>Dec 10 06:55:48 LabSZ sshd[24200]: Failed password for invalid user webmaster from 173.234.31.186 port 38926 ssh2
+Dec 10 07:07:45 LabSZ sshd[24206]: Failed password for invalid user test9 from 52.80.34.196 port 36060 ssh2</code></pre>
+                </article>
+            </div>
+        </section>
+
+        <section id="rank">
+            <h2>2. Rank The Noise</h2>
+            <p>Now answer the useful question: who is trying what, and how often?</p>
+
+            <article class="script-card">
+                <h3>Top failed-login source IPs</h3>
+                <pre><code>awk '{
+  for (i = 1; i &lt;= NF; i++)
+    if ($i == "from") print $(i+1)
+}' analysis/failed-passwords.log |
+sort |
+uniq -c |
+sort -rn |
+head -8</code></pre>
+                <pre><code>286 183.62.140.253
+ 80 187.141.143.180
+ 46 103.99.0.122
+ 26 112.95.230.3
+ 18 5.188.10.180
+ 17 185.190.58.151
+  7 123.235.32.19
+  6 119.4.203.64</code></pre>
+            </article>
+
+            <article class="script-card">
+                <h3>Count by IP and username</h3>
+                <pre><code>awk '{
+  user = "unknown"
+  ip = "unknown"
+  for (i = 1; i &lt;= NF; i++) {
+    if ($i == "from") ip = $(i+1)
+    if ($i == "for") {
+      if ($(i+1) == "invalid" &amp;&amp; $(i+2) == "user") user = $(i+3)
+      else user = $(i+1)
+    }
+  }
+  if (ip != "unknown" &amp;&amp; user != "unknown") print ip, user
+}' analysis/failed-passwords.log |
+sort |
+uniq -c |
+sort -rn &gt; analysis/failed-by-ip-user.txt
+
+head analysis/failed-by-ip-user.txt</code></pre>
+                <pre><code>276 183.62.140.253 root
+ 46 187.141.143.180 root
+ 24 112.95.230.3 root
+ 15 185.190.58.151 admin
+ 11 5.188.10.180 admin
+  10 103.99.0.122 admin
+  7 123.235.32.19 root
+  6 119.4.203.64 admin
+  6 103.99.0.122 root
+  5 60.2.12.12 root</code></pre>
+            </article>
+
+            <div class="finding">
+                <p><strong>First conclusion:</strong> `183.62.140.253` is the obvious brute-force source. It produced 286 failed password events, and 276 of them targeted `root`.</p>
+            </div>
+
+            <article class="script-card">
+                <h3>Save suspicious pairs</h3>
+                <pre><code>awk '$1 &gt; 5 {print}' analysis/failed-by-ip-user.txt \
+  &gt; analysis/suspicious-failed-pairs.txt
+
+cat analysis/suspicious-failed-pairs.txt</code></pre>
+                <pre><code>276 183.62.140.253 root
+ 46 187.141.143.180 root
+ 24 112.95.230.3 root
+ 15 185.190.58.151 admin
+  11 5.188.10.180 admin
+  10 103.99.0.122 admin
+  7 123.235.32.19 root
+  6 119.4.203.64 admin
+  6 103.99.0.122 root</code></pre>
+            </article>
+        </section>
+
+        <section id="pivot">
+            <h2>3. Pivot On The Loudest Source</h2>
+            <p>A ranked list gives a lead. A pivot explains behavior.</p>
+
+            <div class="workflow-grid">
+                <article class="workflow-card">
+                    <span class="step-number">1</span>
+                    <h3>Pull every line for the attacker</h3>
+                    <pre><code>attacker="183.62.140.253"
+grep "$attacker" "$log" &gt; analysis/attacker-183.62.140.253.log
+wc -l analysis/attacker-183.62.140.253.log</code></pre>
+                    <pre><code>858 analysis/attacker-183.62.140.253.log</code></pre>
+                </article>
+
+                <article class="workflow-card">
+                    <span class="step-number">2</span>
+                    <h3>Find the time window</h3>
+                    <pre><code>grep "Failed password" analysis/attacker-183.62.140.253.log | head -1
+grep "Failed password" analysis/attacker-183.62.140.253.log | tail -1</code></pre>
+                    <pre><code>Dec 10 10:54:29 ... Failed password for invalid user zhangyan from 183.62.140.253 ...
+Dec 10 11:04:43 ... Failed password for root from 183.62.140.253 ...</code></pre>
+                </article>
+
+                <article class="workflow-card">
+                    <span class="step-number">3</span>
+                    <h3>List usernames tried by that source</h3>
+                    <pre><code>grep "Failed password" analysis/attacker-183.62.140.253.log |
+awk '{
+  for (i = 1; i &lt;= NF; i++)
+    if ($i == "for") {
+      if ($(i+1) == "invalid" &amp;&amp; $(i+2) == "user") print $(i+3)
+      else print $(i+1)
+    }
+}' |
+sort |
+uniq -c |
+sort -rn |
+head</code></pre>
+                    <pre><code>276 root
+  2 oracle
+  1 zhangyan
+  1 ubuntu
+  1 test
+  1 postgres
+  1 git
+  1 dff
+  1 boot</code></pre>
+                </article>
+
+                <article class="workflow-card">
+                    <span class="step-number">4</span>
+                    <h3>Check if that source got in</h3>
+                    <pre><code>grep "Accepted " analysis/attacker-183.62.140.253.log</code></pre>
+                    <pre><code><span class="code-comment"># no output in this file</span></code></pre>
+                </article>
+            </div>
+
+            <div class="finding">
+                <p><strong>Second conclusion:</strong> the loudest source hammered `root` for about ten minutes, but this log does not show a successful login from that same IP.</p>
+            </div>
+
+            <article class="script-card">
+                <h3>Do not stop there: check accepted logins</h3>
+                <pre><code>cat analysis/accepted.log</code></pre>
+                <pre><code>Dec 10 09:32:20 LabSZ sshd[24680]: Accepted password for fztu from 119.137.62.142 port 49116 ssh2</code></pre>
+                <p>The accepted login is a separate lead. It came from `119.137.62.142` for user `fztu`. Review that account, source IP, session open/close lines, and any commands or file changes available from other logs.</p>
+            </article>
+        </section>
+
+        <section id="script">
+            <h2>4. Reusable Report Script</h2>
+            <p>This script repeats the same workflow and writes small report files. It does not edit the log.</p>
+
+            <article class="script-card">
+                <h3><code>ssh-log-report.sh</code></h3>
+                <pre><code>#!/usr/bin/env bash
+set -euo pipefail
+
+log="${1:-assets/OpenSSH_2k.log}"
+out="${2:-analysis}"
+threshold="${3:-5}"
+
+mkdir -p "$out"
+
+awk 'END {print NR, FILENAME}' "$log" &gt; "$out/record-count.txt"
+grep "Failed password" "$log" &gt; "$out/failed-passwords.log" || true
+grep "Accepted " "$log" &gt; "$out/accepted.log" || true
+
+awk '{
+  ip = "unknown"
+  for (i = 1; i &lt;= NF; i++)
+    if ($i == "from") ip = $(i+1)
+  if (ip != "unknown") print ip
+}' "$out/failed-passwords.log" |
+sort |
+uniq -c |
+sort -rn &gt; "$out/failed-by-ip.txt"
+
+awk '{
+  user = "unknown"
+  ip = "unknown"
+  for (i = 1; i &lt;= NF; i++) {
+    if ($i == "from") ip = $(i+1)
+    if ($i == "for") {
+      if ($(i+1) == "invalid" &amp;&amp; $(i+2) == "user") user = $(i+3)
+      else user = $(i+1)
+    }
+  }
+  if (ip != "unknown" &amp;&amp; user != "unknown") print ip, user
+}' "$out/failed-passwords.log" |
+sort |
+uniq -c |
+sort -rn &gt; "$out/failed-by-ip-user.txt"
+
+awk -v t="$threshold" '$1 &gt; t {print}' \
+  "$out/failed-by-ip-user.txt" \
+  &gt; "$out/suspicious-failed-pairs.txt"
+
+printf "Wrote reports to %s\n" "$out"</code></pre>
+            </article>
+
+            <article class="script-card">
+                <h3>Run it</h3>
+                <pre><code>chmod +x ssh-log-report.sh
+./ssh-log-report.sh assets/OpenSSH_2k.log analysis 5
+
+head analysis/failed-by-ip.txt
+cat analysis/suspicious-failed-pairs.txt
+cat analysis/accepted.log</code></pre>
+            </article>
+        </section>
+
+        <section id="cheatsheet">
+            <h2>Cheatsheet: Question To Command</h2>
+            <table>
+                <tr>
+                    <th>Question</th>
+                    <th>Command pattern</th>
+                </tr>
+                <tr>
+                    <td>How many records are in the log?</td>
+                    <td><code>awk 'END {print NR, FILENAME}' "$log"</code></td>
+                </tr>
+                <tr>
+                    <td>How many failed passwords?</td>
+                    <td><code>grep -c "Failed password" "$log"</code></td>
+                </tr>
+                <tr>
+                    <td>How many successful logins?</td>
+                    <td><code>grep -c "Accepted " "$log"</code></td>
+                </tr>
+                <tr>
+                    <td>Which IPs failed most?</td>
+                    <td><code>extract word after from, then sort | uniq -c | sort -rn</code></td>
+                </tr>
+                <tr>
+                    <td>Which username did each IP target?</td>
+                    <td><code>extract IP plus username with awk, then count repeated pairs</code></td>
+                </tr>
+                <tr>
+                    <td>Which pairs cross the threshold?</td>
+                    <td><code>awk '$1 &gt; 5 {print}' analysis/failed-by-ip-user.txt</code></td>
+                </tr>
+                <tr>
+                    <td>What did one source do?</td>
+                    <td><code>grep "$attacker" "$log" &gt; analysis/attacker.log</code></td>
+                </tr>
+                <tr>
+                    <td>Did the attacker succeed?</td>
+                    <td><code>grep "Accepted " analysis/attacker.log</code></td>
+                </tr>
+            </table>
+
+            <div class="callout">
+                <p><strong>Keep the conclusion narrow:</strong> one IP can be shared infrastructure, and distributed brute force may stay below a simple per-IP threshold. Use this workflow for fast triage, then confirm with timestamps, account activity, network logs, endpoint data, and known-good business context.</p>
+            </div>
+
+            <div class="footer-nav">
+                <a href="grep.html">Review grep</a>
+                <a href="awk.html">Review awk</a>
+                <a href="cli-trinity-wrapup.html">CLI Text Processing Wrapup</a>
+                <a href="../../index.html#resources">Back to Resources</a>
+            </div>
+        </section>
+    </main>
+
+    <script src="../../js/main.js"></script>
+</body>
+</html>
